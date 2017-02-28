@@ -1,0 +1,306 @@
+﻿/* **********Unsigned URL********** */
+http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&Operation=ItemLookup&SubscriptionId=AKIAJEGXYAPQ5DFQWHMA&AssociateTag=remaura-20&ItemId=B00719ZZWQ&IdType=ASIN&ResponseGroup=Images,ItemAttributes,Offers
+
+/* **********Signed URL********** */
+http://webservices.amazon.com/onca/xml?AWSAccessKeyId=AKIAJEGXYAPQ5DFQWHMA&AssociateTag=remaura-20&IdType=ASIN&ItemId=B00719ZZWQ&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers&Service=AWSECommerceService&Timestamp=2017-02-24T19%3A55%3A05.000Z&Signature=1wCAoJLtzbBkuTxFKc90W0TB7vlNGqOWi4UYa6RLGa8%3D
+
+/* **********Response********** */
+
+<?xml version="1.0" ?>
+<ItemLookupResponse
+    xmlns="http://webservices.amazon.com/AWSECommerceService/2011-08-01">
+    <OperationRequest>
+        <HTTPHeaders>
+            <Header Name="UserAgent" Value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"></Header>
+        </HTTPHeaders>
+        <RequestId>48b4abbc-0dbc-46a4-a48f-e635687b7273</RequestId>
+        <Arguments>
+            <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"></Argument>
+            <Argument Name="AssociateTag" Value="remaura-20"></Argument>
+            <Argument Name="IdType" Value="ASIN"></Argument>
+            <Argument Name="ItemId" Value="B00719ZZWQ"></Argument>
+            <Argument Name="Operation" Value="ItemLookup"></Argument>
+            <Argument Name="ResponseGroup" Value="Images,ItemAttributes,Offers"></Argument>
+            <Argument Name="Service" Value="AWSECommerceService"></Argument>
+            <Argument Name="Timestamp" Value="2017-02-24T19:55:05.000Z"></Argument>
+            <Argument Name="Signature" Value="1wCAoJLtzbBkuTxFKc90W0TB7vlNGqOWi4UYa6RLGa8="></Argument>
+        </Arguments>
+        <RequestProcessingTime>0.0084672940000000</RequestProcessingTime>
+    </OperationRequest>
+    <Items>
+        <Request>
+            <IsValid>True</IsValid>
+            <ItemLookupRequest>
+                <IdType>ASIN</IdType>
+                <ItemId>B00719ZZWQ</ItemId>
+                <ResponseGroup>Images</ResponseGroup>
+                <ResponseGroup>ItemAttributes</ResponseGroup>
+                <ResponseGroup>Offers</ResponseGroup>
+                <VariationPage>All</VariationPage>
+            </ItemLookupRequest>
+        </Request>
+        <Item>
+            <ASIN>B00719ZZWQ</ASIN>
+            <ParentASIN>B0007IBYO6</ParentASIN>
+            <DetailPageURL>https://www.amazon.com/Russell-Athletic-T-Shirt-Heather-4X-Large/dp/B00719ZZWQ%3Fpsc%3D1%26SubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB00719ZZWQ</DetailPageURL>
+            <ItemLinks>
+                <ItemLink>
+                    <Description>Technical Details</Description>
+                    <URL>https://www.amazon.com/Russell-Athletic-T-Shirt-Heather-4X-Large/dp/tech-data/B00719ZZWQ%3FSubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Add To Baby Registry</Description>
+                    <URL>https://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3DB00719ZZWQ%26SubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Add To Wedding Registry</Description>
+                    <URL>https://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3DB00719ZZWQ%26SubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Add To Wishlist</Description>
+                    <URL>https://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3DB00719ZZWQ%26SubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Tell A Friend</Description>
+                    <URL>https://www.amazon.com/gp/pdp/taf/B00719ZZWQ%3FSubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>All Customer Reviews</Description>
+                    <URL>https://www.amazon.com/review/product/B00719ZZWQ%3FSubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>All Offers</Description>
+                    <URL>https://www.amazon.com/gp/offer-listing/B00719ZZWQ%3FSubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</URL>
+                </ItemLink>
+            </ItemLinks>
+            <SmallImage>
+                <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL75_.jpg</URL>
+                <Height Units="pixels">75</Height>
+                <Width Units="pixels">65</Width>
+            </SmallImage>
+            <MediumImage>
+                <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL160_.jpg</URL>
+                <Height Units="pixels">160</Height>
+                <Width Units="pixels">138</Width>
+            </MediumImage>
+            <LargeImage>
+                <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL.jpg</URL>
+                <Height Units="pixels">500</Height>
+                <Width Units="pixels">432</Width>
+            </LargeImage>
+            <ImageSets>
+                <ImageSet Category="swatch">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">26</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">65</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">65</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">95</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">138</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">432</Width>
+                    </LargeImage>
+                </ImageSet>
+                <ImageSet Category="variant">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/418F2D9wykL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">27</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/418F2D9wykL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">69</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/418F2D9wykL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">69</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/418F2D9wykL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">101</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/418F2D9wykL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">147</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/418F2D9wykL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">458</Width>
+                    </LargeImage>
+                </ImageSet>
+                <ImageSet Category="variant">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/412fRVZUnoL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">27</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/412fRVZUnoL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">67</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/412fRVZUnoL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">67</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/412fRVZUnoL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">99</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/412fRVZUnoL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">144</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/412fRVZUnoL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">449</Width>
+                    </LargeImage>
+                </ImageSet>
+                <ImageSet Category="primary">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">26</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">65</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">65</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">95</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">138</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51BOMk7cckL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">432</Width>
+                    </LargeImage>
+                </ImageSet>
+            </ImageSets>
+            <ItemAttributes>
+                <Binding>Apparel</Binding>
+                <Brand>Russell Athletic</Brand>
+                <ClothingSize>4XL</ClothingSize>
+                <Color>Black Heather</Color>
+                <Department>mens</Department>
+                <EAN>0023255783825</EAN>
+                <EANList>
+                    <EANListElement>0023255783825</EANListElement>
+                </EANList>
+                <Feature>Short-sleeve tee with crew neckline and logo at sleeve</Feature>
+                <ItemDimensions>
+                    <Height Units="hundredths-inches">50</Height>
+                    <Length Units="hundredths-inches">1100</Length>
+                    <Weight Units="hundredths-pounds">50</Weight>
+                    <Width Units="hundredths-inches">900</Width>
+                </ItemDimensions>
+                <Label>Russell Corporation</Label>
+                <ListPrice>
+                    <Amount>699</Amount>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <FormattedPrice>$6.99</FormattedPrice>
+                </ListPrice>
+                <Manufacturer>Russell Corporation</Manufacturer>
+                <Model>67014MR</Model>
+                <MPN>67014MR</MPN>
+                <NumberOfItems>1</NumberOfItems>
+                <PackageDimensions>
+                    <Height Units="hundredths-inches">40</Height>
+                    <Length Units="hundredths-inches">1100</Length>
+                    <Weight Units="hundredths-pounds">65</Weight>
+                    <Width Units="hundredths-inches">790</Width>
+                </PackageDimensions>
+                <PackageQuantity>1</PackageQuantity>
+                <PartNumber>67014MR</PartNumber>
+                <ProductGroup>Apparel</ProductGroup>
+                <ProductTypeName>SHIRT</ProductTypeName>
+                <Publisher>Russell Corporation</Publisher>
+                <Size>4X-Large</Size>
+                <Studio>Russell Corporation</Studio>
+                <Title>Russell Athletic Men's Basic T-Shirt, Black Heather, 4X-Large</Title>
+                <UPC>023255783825</UPC>
+                <UPCList>
+                    <UPCListElement>023255783825</UPCListElement>
+                </UPCList>
+            </ItemAttributes>
+            <OfferSummary>
+                <LowestNewPrice>
+                    <Amount>699</Amount>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <FormattedPrice>$6.99</FormattedPrice>
+                </LowestNewPrice>
+                <TotalNew>4</TotalNew>
+                <TotalUsed>0</TotalUsed>
+                <TotalCollectible>0</TotalCollectible>
+                <TotalRefurbished>0</TotalRefurbished>
+            </OfferSummary>
+            <Offers>
+                <TotalOffers>1</TotalOffers>
+                <TotalOfferPages>1</TotalOfferPages>
+                <MoreOffersUrl>https://www.amazon.com/gp/offer-listing/B00719ZZWQ%3FSubscriptionId%3DAKIAJEGXYAPQ5DFQWHMA%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB00719ZZWQ</MoreOffersUrl>
+                <Offer>
+                    <OfferAttributes>
+                        <Condition>New</Condition>
+                    </OfferAttributes>
+                    <OfferListing>
+                        <OfferListingId>zO1LUYOj0PYF2HGJDZVarktc88xZ5FpO8pjy4At173DZWf%2BuayKSOzFLrVl0WaUHfMXB7gZ%2F%2FZlLHeSs48g5cedpdm6IT8OTPQ07HvJKtjonfJvOZanRPA%3D%3D</OfferListingId>
+                        <Price>
+                            <Amount>699</Amount>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <FormattedPrice>$6.99</FormattedPrice>
+                        </Price>
+                        <Availability>Usually ships in 24 hours</Availability>
+                        <AvailabilityAttributes>
+                            <AvailabilityType>now</AvailabilityType>
+                            <MinimumHours>0</MinimumHours>
+                            <MaximumHours>0</MaximumHours>
+                        </AvailabilityAttributes>
+                        <IsEligibleForSuperSaverShipping>0</IsEligibleForSuperSaverShipping>
+                        <IsEligibleForPrime>1</IsEligibleForPrime>
+                    </OfferListing>
+                </Offer>
+            </Offers>
+        </Item>
+    </Items>
+</ItemLookupResponse>

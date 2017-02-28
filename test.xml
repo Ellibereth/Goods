@@ -1,0 +1,309 @@
+<?xml version="1.0" ?>
+<ItemSearchResponse
+    xmlns="http://webservices.amazon.com/AWSECommerceService/2011-08-01">
+    <OperationRequest>
+        <HTTPHeaders>
+            <Header Name="UserAgent" Value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"></Header>
+        </HTTPHeaders>
+        <RequestId>7e8fe830-de15-4c52-b7ac-92d25837adc8</RequestId>
+        <Arguments>
+            <Argument Name="AWSAccessKeyId" Value="AKIAJ3YZUAOYK2J2IHCQ"></Argument>
+            <Argument Name="AssociateTag" Value="remaura-20"></Argument>
+            <Argument Name="Keywords" Value="Bonk Fit 3X Stronger Kid Tough Fitness Inflatable Bop Bag Toy Free Standing Punching Bag for Kids   Machine Washable Fabric Cover Made in USA Planet Friendly - Cocky"></Argument>
+            <Argument Name="Operation" Value="ItemSearch"></Argument>
+            <Argument Name="ResponseGroup" Value="Images,ItemAttributes,Offers"></Argument>
+            <Argument Name="SearchIndex" Value="All"></Argument>
+            <Argument Name="Service" Value="AWSECommerceService"></Argument>
+            <Argument Name="Timestamp" Value="2017-02-24T19:32:36.000Z"></Argument>
+            <Argument Name="Signature" Value="TqCZcL7boMAj+5E8aGGzA3l1+utP+mwkd8TRbZFtl7A="></Argument>
+        </Arguments>
+        <RequestProcessingTime>0.0747938190000000</RequestProcessingTime>
+    </OperationRequest>
+    <Items>
+        <Request>
+            <IsValid>True</IsValid>
+            <ItemSearchRequest>
+                <Keywords>Bonk Fit 3X Stronger Kid Tough Fitness Inflatable Bop Bag Toy Free Standing Punching Bag for Kids   Machine Washable Fabric Cover Made in USA Planet Friendly - Cocky</Keywords>
+                <ResponseGroup>Images</ResponseGroup>
+                <ResponseGroup>ItemAttributes</ResponseGroup>
+                <ResponseGroup>Offers</ResponseGroup>
+                <SearchIndex>All</SearchIndex>
+            </ItemSearchRequest>
+        </Request>
+        <TotalResults>1</TotalResults>
+        <TotalPages>1</TotalPages>
+        <MoreSearchResultsUrl>https://www.amazon.com/gp/redirect.html?linkCode=xm2&SubscriptionId=AKIAJ3YZUAOYK2J2IHCQ&location=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fsearch%3Fkeywords%3DBonk%2BFit%2B3X%2BStronger%2BKid%2BTough%2BFitness%2BInflatable%2BBop%2BBag%2BToy%2BFree%2BStanding%2BPunching%2BBag%2Bfor%2BKids%2B%2B%2BMachine%2BWashable%2BFabric%2BCover%2BMade%2Bin%2BUSA%2BPlanet%2BFriendly%2B-%2BCocky%26url%3Dsearch-alias%253Daws-amazon-aps&tag=remaura-20&creative=386001&camp=2025</MoreSearchResultsUrl>
+        <Item>
+            <ASIN>B0091ULRPC</ASIN>
+            <ParentASIN>B00OXISF0M</ParentASIN>
+            <DetailPageURL>https://www.amazon.com/Bonk-Fit-Stronger-Inflatable-Standing/dp/B0091ULRPC%3Fpsc%3D1%26SubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D165953%26creativeASIN%3DB0091ULRPC</DetailPageURL>
+            <ItemLinks>
+                <ItemLink>
+                    <Description>Technical Details</Description>
+                    <URL>https://www.amazon.com/Bonk-Fit-Stronger-Inflatable-Standing/dp/tech-data/B0091ULRPC%3FSubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Add To Baby Registry</Description>
+                    <URL>https://www.amazon.com/gp/registry/baby/add-item.html%3Fasin.0%3DB0091ULRPC%26SubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Add To Wedding Registry</Description>
+                    <URL>https://www.amazon.com/gp/registry/wedding/add-item.html%3Fasin.0%3DB0091ULRPC%26SubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Add To Wishlist</Description>
+                    <URL>https://www.amazon.com/gp/registry/wishlist/add-item.html%3Fasin.0%3DB0091ULRPC%26SubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>Tell A Friend</Description>
+                    <URL>https://www.amazon.com/gp/pdp/taf/B0091ULRPC%3FSubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>All Customer Reviews</Description>
+                    <URL>https://www.amazon.com/review/product/B0091ULRPC%3FSubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</URL>
+                </ItemLink>
+                <ItemLink>
+                    <Description>All Offers</Description>
+                    <URL>https://www.amazon.com/gp/offer-listing/B0091ULRPC%3FSubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</URL>
+                </ItemLink>
+            </ItemLinks>
+            <SmallImage>
+                <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL._SL75_.jpg</URL>
+                <Height Units="pixels">75</Height>
+                <Width Units="pixels">50</Width>
+            </SmallImage>
+            <MediumImage>
+                <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL._SL160_.jpg</URL>
+                <Height Units="pixels">160</Height>
+                <Width Units="pixels">107</Width>
+            </MediumImage>
+            <LargeImage>
+                <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL.jpg</URL>
+                <Height Units="pixels">500</Height>
+                <Width Units="pixels">335</Width>
+            </LargeImage>
+            <ImageSets>
+                <ImageSet Category="swatch">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/31SqeS-8zXL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">18</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/31SqeS-8zXL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">45</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/31SqeS-8zXL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">45</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/31SqeS-8zXL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">66</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/31SqeS-8zXL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">96</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/31SqeS-8zXL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">300</Width>
+                    </LargeImage>
+                </ImageSet>
+                <ImageSet Category="variant">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">30</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">75</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">75</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">110</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">160</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">500</Width>
+                    </LargeImage>
+                </ImageSet>
+                <ImageSet Category="variant">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">30</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">75</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">75</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">110</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">160</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/51zrQ1AZDdL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">500</Width>
+                    </LargeImage>
+                </ImageSet>
+                <ImageSet Category="primary">
+                    <SwatchImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL._SL30_.jpg</URL>
+                        <Height Units="pixels">30</Height>
+                        <Width Units="pixels">20</Width>
+                    </SwatchImage>
+                    <SmallImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">50</Width>
+                    </SmallImage>
+                    <ThumbnailImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL._SL75_.jpg</URL>
+                        <Height Units="pixels">75</Height>
+                        <Width Units="pixels">50</Width>
+                    </ThumbnailImage>
+                    <TinyImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL._SL110_.jpg</URL>
+                        <Height Units="pixels">110</Height>
+                        <Width Units="pixels">74</Width>
+                    </TinyImage>
+                    <MediumImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL._SL160_.jpg</URL>
+                        <Height Units="pixels">160</Height>
+                        <Width Units="pixels">107</Width>
+                    </MediumImage>
+                    <LargeImage>
+                        <URL>https://images-na.ssl-images-amazon.com/images/I/415A6Z626IL.jpg</URL>
+                        <Height Units="pixels">500</Height>
+                        <Width Units="pixels">335</Width>
+                    </LargeImage>
+                </ImageSet>
+            </ImageSets>
+            <ItemAttributes>
+                <Binding>Sports</Binding>
+                <Brand>Bonk Fit</Brand>
+                <CatalogNumberList>
+                    <CatalogNumberListElement>1023MCQTEZH</CatalogNumberListElement>
+                </CatalogNumberList>
+                <Color>Jackson Brown Bear</Color>
+                <EAN>7662558377282</EAN>
+                <EANList>
+                    <EANListElement>7662558377282</EANListElement>
+                    <EANListElement>0639767233477</EANListElement>
+                </EANList>
+                <Feature>IT'S A WORKOUT: Watch your kids and grandkids put the electronics down and get physically fit with award-winning characters who are ready for rough-and-tumble play. Kids have so much fun they don't even realize they're working out and burning off that excess energy</Feature>
+                <Feature>STRONGER: The sturdiest bop toy on the market! With an inflatable that is 3X stronger than your average bop bag, this product is built durable, kid tough, and guaranteed to last. The perfect gift for birthdays, Christmas, Easter or any occasion for kids to get them up and off the couch</Feature>
+                <Feature>MACHINE-WASHABLE: The only inflatable bop bag toy available with a form fitting, removeable cover you can toss in the laundry! Stains or spills? No problem, simply remove the cover, toss, and wash!</Feature>
+                <Feature>IMAGINATIVE PLAY: This is the ultimate imaginative play experience, with colorful and expressive characters standing 3 feet tall! Kids love to interact with them - feed them, hug them, and tumble with them. The best part is they always bounce back for more!</Feature>
+                <Feature>RECYCLED MATERIALS: A planet-friendly bop bag toy? Yes, the only one of its kind! Made from USA-derived recycled materials, so you can feel good about your kids playing with it, even long after its been loved. Plus, it's MADE IN THE USA by a WOMAN-OWNED COMPANY, proudly keeping jobs local!</Feature>
+                <IsAutographed>0</IsAutographed>
+                <IsMemorabilia>0</IsMemorabilia>
+                <ItemDimensions>
+                    <Height Units="hundredths-inches">3600</Height>
+                    <Length Units="hundredths-inches">2000</Length>
+                    <Weight Units="pounds">1.7</Weight>
+                    <Width Units="hundredths-inches">2000</Width>
+                </ItemDimensions>
+                <Label>Pueri Elemental LLC</Label>
+                <ListPrice>
+                    <Amount>4995</Amount>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <FormattedPrice>$49.95</FormattedPrice>
+                </ListPrice>
+                <Manufacturer>Pueri Elemental LLC</Manufacturer>
+                <ManufacturerMaximumAge Units="months">96</ManufacturerMaximumAge>
+                <ManufacturerMinimumAge Units="months">24</ManufacturerMinimumAge>
+                <Model>101EBGB</Model>
+                <MPN>101EBGB</MPN>
+                <PackageDimensions>
+                    <Height Units="hundredths-inches">250</Height>
+                    <Length Units="hundredths-inches">1150</Length>
+                    <Weight Units="hundredths-pounds">145</Weight>
+                    <Width Units="hundredths-inches">930</Width>
+                </PackageDimensions>
+                <PackageQuantity>1</PackageQuantity>
+                <PartNumber>101EBGB</PartNumber>
+                <ProductGroup>Sports</ProductGroup>
+                <ProductTypeName>SPORTING_GOODS</ProductTypeName>
+                <Publisher>Pueri Elemental LLC</Publisher>
+                <Studio>Pueri Elemental LLC</Studio>
+                <Title>Bonk Fit 3X Stronger Kid Tough Fitness Inflatable Bop Bag Toy Free Standing Punching Bag for Kids + Machine Washable Fabric Cover Made in USA Planet Friendly - Cocky</Title>
+                <UPC>639767233477</UPC>
+                <UPCList>
+                    <UPCListElement>639767233477</UPCListElement>
+                </UPCList>
+                <Warranty>Pueri Elemental stands behind the products that we produce. Eco-Bonk is not intended for one-time use. It is our goal to provide a positive, memorable and long lasting active-play experience. Given the nature of the product; issues may happen from time to time. We're happy to help you, please contact us directly via email at support@pueri-elemental.com or toll free at (866) 639 1430.</Warranty>
+            </ItemAttributes>
+            <OfferSummary>
+                <LowestNewPrice>
+                    <Amount>4995</Amount>
+                    <CurrencyCode>USD</CurrencyCode>
+                    <FormattedPrice>$49.95</FormattedPrice>
+                </LowestNewPrice>
+                <TotalNew>2</TotalNew>
+                <TotalUsed>0</TotalUsed>
+                <TotalCollectible>0</TotalCollectible>
+                <TotalRefurbished>0</TotalRefurbished>
+            </OfferSummary>
+            <Offers>
+                <TotalOffers>1</TotalOffers>
+                <TotalOfferPages>1</TotalOfferPages>
+                <MoreOffersUrl>https://www.amazon.com/gp/offer-listing/B0091ULRPC%3FSubscriptionId%3DAKIAJ3YZUAOYK2J2IHCQ%26tag%3Dremaura-20%26linkCode%3Dxm2%26camp%3D2025%26creative%3D386001%26creativeASIN%3DB0091ULRPC</MoreOffersUrl>
+                <Offer>
+                    <OfferAttributes>
+                        <Condition>New</Condition>
+                    </OfferAttributes>
+                    <OfferListing>
+                        <OfferListingId>leNXFeDCZDymCsNzgAil9gCzAMfPy1o%2F%2FDxWv8imUh7uyNXb00kZG1yoDgxgwbjJuAelRvhjzLT2RsA%2BUw6%2FIniFSGLB%2FvOYhki4g2y1ABvUI4fgdOi1Tk4JCiFwGc6HPSvwTkut6m9JXescj0ambCMORDWaXBVC</OfferListingId>
+                        <Price>
+                            <Amount>4995</Amount>
+                            <CurrencyCode>USD</CurrencyCode>
+                            <FormattedPrice>$49.95</FormattedPrice>
+                        </Price>
+                        <Availability>Usually ships in 24 hours</Availability>
+                        <AvailabilityAttributes>
+                            <AvailabilityType>now</AvailabilityType>
+                            <MinimumHours>0</MinimumHours>
+                            <MaximumHours>0</MaximumHours>
+                        </AvailabilityAttributes>
+                        <IsEligibleForSuperSaverShipping>0</IsEligibleForSuperSaverShipping>
+                        <IsEligibleForPrime>1</IsEligibleForPrime>
+                    </OfferListing>
+                </Offer>
+            </Offers>
+        </Item>
+    </Items>
+</ItemSearchResponse>
