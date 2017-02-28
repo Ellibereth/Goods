@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   ec1e8a48-f768-4403-8981-291443c58c09
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="274322011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:41:52Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="9bpXV7Il8SlYIHNOXeP7KLstCT7Yue77HDhc2pPDoz4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006092459
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     274322011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    274322011
+   </BrowseNodeId>
+   <Name>
+    Banners, Streamers &amp; Confetti
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2489384011
+     </BrowseNodeId>
+     <Name>
+      Banners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      274323011
+     </BrowseNodeId>
+     <Name>
+      Confetti
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2489385011
+     </BrowseNodeId>
+     <Name>
+      Streamers
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1266203011
+     </BrowseNodeId>
+     <Name>
+      Party Supplies
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        165795011
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          165793011
+         </BrowseNodeId>
+         <Name>
+          Toys &amp; Games
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

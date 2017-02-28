@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   b69557e4-7a58-40bc-a340-d9827e4e125e
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3743711"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:45:17Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="NTJ4M8HnO+aQHWmguD2nysofs/8GqIGsvh5Ncv+SE6M="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001032699
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3743711
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3743711
+   </BrowseNodeId>
+   <Name>
+    Hoses
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      510128
+     </BrowseNodeId>
+     <Name>
+      Vacuum Parts &amp; Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        510106
+       </BrowseNodeId>
+       <Name>
+        Vacuums &amp; Floor Care
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1063498
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1055398
+           </BrowseNodeId>
+           <Name>
+            Home &amp; Kitchen
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

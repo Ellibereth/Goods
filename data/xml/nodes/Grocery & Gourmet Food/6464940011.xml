@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   099e4c84-99ba-4d67-b1a3-0db51fb95b3a
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="6464940011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:38:19Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="kyLuncT/O4LPyZujFlf0SfeaffErLynqEdCeouCg1wo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001799334
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     6464940011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    6464940011
+   </BrowseNodeId>
+   <Name>
+    Beans &amp; Peas
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464941011
+     </BrowseNodeId>
+     <Name>
+      Baked Beans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464942011
+     </BrowseNodeId>
+     <Name>
+      Black Beans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15500532011
+     </BrowseNodeId>
+     <Name>
+      Black-eyed Peas
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464943011
+     </BrowseNodeId>
+     <Name>
+      Garbanzo Beans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464944011
+     </BrowseNodeId>
+     <Name>
+      Kidney Beans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15500533011
+     </BrowseNodeId>
+     <Name>
+      Lentils
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464945011
+     </BrowseNodeId>
+     <Name>
+      Lima Beans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464946011
+     </BrowseNodeId>
+     <Name>
+      Pinto Beans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11194033011
+     </BrowseNodeId>
+     <Name>
+      Refried Beans
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464939011
+     </BrowseNodeId>
+     <Name>
+      Canned, Jarred &amp; Packaged Foods
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310211
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310101
+         </BrowseNodeId>
+         <Name>
+          Grocery &amp; Gourmet Food
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

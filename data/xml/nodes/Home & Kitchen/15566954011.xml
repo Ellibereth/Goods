@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   d5fd6763-1c6f-4818-b87b-fbcabadf6de1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="15566954011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:30:11Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="NgumhkND3AFSM+cO7/JhSoQWgc+HJu5devVVSjkm6Wc="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.007447213
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     15566954011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    15566954011
+   </BrowseNodeId>
+   <Name>
+    Cribs, Beds &amp; Mattresses
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      677977011
+     </BrowseNodeId>
+     <Name>
+      Bassinets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3734031
+     </BrowseNodeId>
+     <Name>
+      Bed Rails
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      677978011
+     </BrowseNodeId>
+     <Name>
+      Cradles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166815011
+     </BrowseNodeId>
+     <Name>
+      Cribs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5824646011
+     </BrowseNodeId>
+     <Name>
+      Portable Cribs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      239224011
+     </BrowseNodeId>
+     <Name>
+      Toddler Beds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166817011
+     </BrowseNodeId>
+     <Name>
+      Mattresses
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      13552765011
+     </BrowseNodeId>
+     <Name>
+      Nursery Furniture
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1063306
+       </BrowseNodeId>
+       <Name>
+        Furniture
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1063498
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1055398
+           </BrowseNodeId>
+           <Name>
+            Home &amp; Kitchen
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

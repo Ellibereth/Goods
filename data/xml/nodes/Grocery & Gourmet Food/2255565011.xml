@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   d4805c84-aed9-4172-a698-fa3f245935cd
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2255565011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:42:21Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="p8CwcyRGngEbSuqRgN8davtxKbDapCGS2WJmyIFbRNE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001680288
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2255565011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2255565011
+   </BrowseNodeId>
+   <Name>
+    Chocolate Drink Mixes
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      119346011
+     </BrowseNodeId>
+     <Name>
+      Powdered Drink Mixes
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        15525241011
+       </BrowseNodeId>
+       <Name>
+        Drink Mixes &amp; Flavorings
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310231
+         </BrowseNodeId>
+         <Name>
+          Coffee, Tea &amp; Beverages
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310211
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              16310101
+             </BrowseNodeId>
+             <Name>
+              Grocery &amp; Gourmet Food
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   7ab4d81f-2306-4f07-88af-4dafd514969d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="15442734011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:14:47Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="iJ5k+uNDfNnfI/KHhsmg8ikJl9Q8fLLSuQeItslrJao="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002268515
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     15442734011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    15442734011
+   </BrowseNodeId>
+   <Name>
+    Point-of-Sale (POS) Equipment
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      15327871
+     </BrowseNodeId>
+     <Name>
+      Bar Code Scanners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      14258520011
+     </BrowseNodeId>
+     <Name>
+      Credit Card Readers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6684132011
+     </BrowseNodeId>
+     <Name>
+      Receipt Printers
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      172574
+     </BrowseNodeId>
+     <Name>
+      Office Electronics
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1084128
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1064954
+         </BrowseNodeId>
+         <Name>
+          Office Products
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e3c3b904-ef7e-4fd0-9808-11ee32ac98d0
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3224445011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:13:19Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="r+hNwmqgX+GJVQkylkIzsS19jKkqt0DKfVIYkr6Fuh0="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001583588
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3224445011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3224445011
+   </BrowseNodeId>
+   <Name>
+    Digital-to-Analog Converters
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      172532
+     </BrowseNodeId>
+     <Name>
+      Audio &amp; Video Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        281407
+       </BrowseNodeId>
+       <Name>
+        Accessories &amp; Supplies
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          493964
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            172282
+           </BrowseNodeId>
+           <Name>
+            Electronics
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

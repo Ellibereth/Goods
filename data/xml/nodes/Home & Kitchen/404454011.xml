@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   0f622659-3f8c-474d-b935-01fe9f831e5d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="404454011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:50:54Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="YFU5YfHwVUBktdl75+vuQVOIRduHeeZVbpslVzGPico="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001195583
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     404454011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    404454011
+   </BrowseNodeId>
+   <Name>
+    Kids' Room Décor
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      404455011
+     </BrowseNodeId>
+     <Name>
+      Accents
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      404456011
+     </BrowseNodeId>
+     <Name>
+      Lamps &amp; Lighting
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      404457011
+     </BrowseNodeId>
+     <Name>
+      Rugs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      404458011
+     </BrowseNodeId>
+     <Name>
+      Wall Décor
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      404459011
+     </BrowseNodeId>
+     <Name>
+      Window Treatments
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063278
+     </BrowseNodeId>
+     <Name>
+      Home Décor
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1063498
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1055398
+         </BrowseNodeId>
+         <Name>
+          Home &amp; Kitchen
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e1225f96-bb7a-478e-884c-ba86a7a7b2a2
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="10773959011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:55:36Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="4xA7Xb4nKbKoB8kfHGD+z0ZjGEVN1/KkxttVbOkGkFo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006672676
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     10773959011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    10773959011
+   </BrowseNodeId>
+   <Name>
+    Trims, Seals &amp; Gaskets
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      10773891011
+     </BrowseNodeId>
+     <Name>
+      Commercial Door Hardware
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        10773802011
+       </BrowseNodeId>
+       <Name>
+        Commercial Door Products
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310161
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310091
+           </BrowseNodeId>
+           <Name>
+            Industrial &amp; Scientific
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

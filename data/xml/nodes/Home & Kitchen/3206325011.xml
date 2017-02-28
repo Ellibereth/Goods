@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   2cf032c4-e334-411f-8f1c-20dc498c3322
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3206325011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:49:22Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="EIJAzGyTgCHBZCdRFUBH67MM1edDuUkag1BanBmG0CE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001406401
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3206325011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3206325011
+   </BrowseNodeId>
+   <Name>
+    Kids' Home Store
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2231407011
+     </BrowseNodeId>
+     <Name>
+      Kids' Baking Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063268
+     </BrowseNodeId>
+     <Name>
+      Kids' Bedding
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166803011
+     </BrowseNodeId>
+     <Name>
+      Kids' Flatware
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063314
+     </BrowseNodeId>
+     <Name>
+      Kids' Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      404454011
+     </BrowseNodeId>
+     <Name>
+      Kids' Room Décor
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166875011
+     </BrowseNodeId>
+     <Name>
+      Nursery Décor
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166809011
+     </BrowseNodeId>
+     <Name>
+      Nursery Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166742011
+     </BrowseNodeId>
+     <Name>
+      Nursery Bedding
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3263108011
+     </BrowseNodeId>
+     <Name>
+      Kids' Bath
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063498
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1055398
+       </BrowseNodeId>
+       <Name>
+        Home &amp; Kitchen
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

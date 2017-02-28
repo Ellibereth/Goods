@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   f2944903-8f6b-435a-8f56-29c8b9606640
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2665578011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:52:03Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="6DfmWd79o95VlEYujSlr0ltXW3/xnaao4iB+CDBL5C0="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001298677
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2665578011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2665578011
+   </BrowseNodeId>
+   <Name>
+    Cup Power Brushes
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      2665577011
+     </BrowseNodeId>
+     <Name>
+      Power Brushes
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        256168011
+       </BrowseNodeId>
+       <Name>
+        Abrasive Brushes
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          256167011
+         </BrowseNodeId>
+         <Name>
+          Abrasive &amp; Finishing Products
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310161
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              16310091
+             </BrowseNodeId>
+             <Name>
+              Industrial &amp; Scientific
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

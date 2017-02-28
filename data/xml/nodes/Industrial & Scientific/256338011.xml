@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   aa548ce1-cd2d-4b21-98a5-ba385b0afbcb
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="256338011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:10:05Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="0H0v+dAt0y8PD0HXZK1ftcjBWr7HFyjRFYTMLQSuRvE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008332086
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     256338011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    256338011
+   </BrowseNodeId>
+   <Name>
+    Hose Clamps
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001524011
+     </BrowseNodeId>
+     <Name>
+      Band Hose Clamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      979135011
+     </BrowseNodeId>
+     <Name>
+      Ear Clamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001526011
+     </BrowseNodeId>
+     <Name>
+      Hose Clamping Tools
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001525011
+     </BrowseNodeId>
+     <Name>
+      Quick Release Hose Clamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      979132011
+     </BrowseNodeId>
+     <Name>
+      Snap Grip Hose Clamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001523011
+     </BrowseNodeId>
+     <Name>
+      Spring Hose Clamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      979131011
+     </BrowseNodeId>
+     <Name>
+      T-Bolt Hose Clamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      979130011
+     </BrowseNodeId>
+     <Name>
+      Worm Gear Hose Clamps
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383665011
+     </BrowseNodeId>
+     <Name>
+      Hose Fittings
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3021480011
+       </BrowseNodeId>
+       <Name>
+        Fittings
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3021479011
+         </BrowseNodeId>
+         <Name>
+          Hydraulics, Pneumatics &amp; Plumbing
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310161
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              16310091
+             </BrowseNodeId>
+             <Name>
+              Industrial &amp; Scientific
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

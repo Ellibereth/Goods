@@ -71,14 +71,20 @@ In other news I started an Amazon Associates account that is free for 180 days, 
 
 To get our database started we can get a list of manufacturers we know are in the USA and use the API to find some of these and add the ASIN to the database. Next things to do are to start writing our own API in java to do these searches and set up our database manager in java. I'll ask Eli what database we want to store these things in.
 
-\section*{2/26/2017}
-Goals for today are to 
+\section*{2/28/2017}
+Since last we have recovered all the XMLs for Amazons subcategories. This is the hierarchy for Amazon products. This has given us a lot of the frequently searched keywords. What I have done so far is stored these XML files, then finding a node with no children, use the name of that node and append it with the root ancestor, for example Home \& Goods Chairs, uses this as a keyword search Amazon, then from the 20 pages of results, HTML scrapes to get each ASINs from those pages. We store the ASINs in asin_list.csv. Regardless of what we do with Amazon, getting a list of ASINs will be very important. \\ \\
+Things to do soon,
 
 \begin{itemize}
-	\item Write python script to check the ORIGIN tag on Amazon HTML
-	\item Figure out how to get Amazon Associate API to work in python 
-	\item 
+	\item Set up multiple rotating proxies to scrape all of these ASINs without getting caught
+	\item Use ASIN to get the following information: price + company + country of origin + name of product + classification of product
+	\item Amazon API only allows 2000 requests an hour, so how do we get around this? What should we use Amazon API for and how. If this is limiting, what can we scrape instead.
+	\item Rewrite parse.py to run requests concurrently to optimize using grequests library
+	\item Use try and catch statements around anything HTTP requests or things that could break. Log what's broken somewhere not in console
 \end{itemize}
+
+Overall structure, we should have the following files
+
 
 
 \end{document}

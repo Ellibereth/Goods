@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   14241547-59f5-4b05-8bb7-721ae2760f12
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="383602011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:10:35Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="+BJRzqboV1QjsZ2KmfMf7ICHnN89OJZJiFO6QQcSBCA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.010028416
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     383602011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    383602011
+   </BrowseNodeId>
+   <Name>
+    Tube Fittings
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      383604011
+     </BrowseNodeId>
+     <Name>
+      Barbed Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      580144011
+     </BrowseNodeId>
+     <Name>
+      Chromatography Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      383614011
+     </BrowseNodeId>
+     <Name>
+      Compression Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5760572011
+     </BrowseNodeId>
+     <Name>
+      Flared Tube Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      383606011
+     </BrowseNodeId>
+     <Name>
+      Luer Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700742011
+     </BrowseNodeId>
+     <Name>
+      Manifold Tube Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      580145011
+     </BrowseNodeId>
+     <Name>
+      Microbore Tubing Connectors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      580146011
+     </BrowseNodeId>
+     <Name>
+      Push-to-connect Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      383609011
+     </BrowseNodeId>
+     <Name>
+      Quick-connect Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      580147011
+     </BrowseNodeId>
+     <Name>
+      Sanitary Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      383603011
+     </BrowseNodeId>
+     <Name>
+      Threaded Tube Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      383605011
+     </BrowseNodeId>
+     <Name>
+      Threaded-to-barbed Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700741011
+     </BrowseNodeId>
+     <Name>
+      Welded Tube Fittings
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3021480011
+     </BrowseNodeId>
+     <Name>
+      Fittings
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3021479011
+       </BrowseNodeId>
+       <Name>
+        Hydraulics, Pneumatics &amp; Plumbing
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310161
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310091
+           </BrowseNodeId>
+           <Name>
+            Industrial &amp; Scientific
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

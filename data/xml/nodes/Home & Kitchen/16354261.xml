@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   b612fa6a-ca01-4713-8e76-60adbf0683cd
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16354261"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:28:16Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="+nJUIdnabcmVKs+aUZ9N2hgZ7O/wTt7DxlVx4dFt/tQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002417495
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16354261
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16354261
+   </BrowseNodeId>
+   <Name>
+    Standing Baker's Racks
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3744061
+     </BrowseNodeId>
+     <Name>
+      Baker's Racks
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3733781
+       </BrowseNodeId>
+       <Name>
+        Kitchen &amp; Dining Room Furniture
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1063306
+         </BrowseNodeId>
+         <Name>
+          Furniture
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1063498
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1055398
+             </BrowseNodeId>
+             <Name>
+              Home &amp; Kitchen
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

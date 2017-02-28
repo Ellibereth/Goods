@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   0061707a-37ed-4607-822a-ab299ccf9231
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="165112011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:47:16Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="CCNx9RhqJm296cQnRQw/ZppAcXp9BfyJ9SAT2xdW1cs="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001458743
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     165112011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    165112011
+   </BrowseNodeId>
+   <Name>
+    Garage Storage
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      165113011
+     </BrowseNodeId>
+     <Name>
+      Bike Racks &amp; Stands
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2423298011
+     </BrowseNodeId>
+     <Name>
+      Ceiling Mounted Storage Racks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      303685011
+     </BrowseNodeId>
+     <Name>
+      Rack Attachments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      165116011
+     </BrowseNodeId>
+     <Name>
+      Ski Storage Racks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      303689011
+     </BrowseNodeId>
+     <Name>
+      System Attachments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      167334011
+     </BrowseNodeId>
+     <Name>
+      Systems
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      165115011
+     </BrowseNodeId>
+     <Name>
+      Storage Racks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13400741
+     </BrowseNodeId>
+     <Name>
+      Utility Shelves
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      13400631
+     </BrowseNodeId>
+     <Name>
+      Storage &amp; Home Organization
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        468240
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          228013
+         </BrowseNodeId>
+         <Name>
+          Tools &amp; Home Improvement
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

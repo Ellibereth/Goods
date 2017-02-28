@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   68fedcab-cc23-4520-ab8f-9616a66e1dbc
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="289864"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:00:36Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="RZcGmUlQoOLEmak+EcoRfljoSVaU7OqW8GFRaS8Xhu8="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001507537
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     289864
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    289864
+   </BrowseNodeId>
+   <Name>
+    Knife Sets
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      409670
+     </BrowseNodeId>
+     <Name>
+      Knife Block Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      409676
+     </BrowseNodeId>
+     <Name>
+      Boxed Knife Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      409660
+     </BrowseNodeId>
+     <Name>
+      Carving Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      409672
+     </BrowseNodeId>
+     <Name>
+      Steak Sets
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      289851
+     </BrowseNodeId>
+     <Name>
+      Cutlery &amp; Knife Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        284507
+       </BrowseNodeId>
+       <Name>
+        Kitchen &amp; Dining
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1063498
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1055398
+           </BrowseNodeId>
+           <Name>
+            Home &amp; Kitchen
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

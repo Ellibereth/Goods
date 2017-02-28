@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   1acf2f7f-8c03-49fc-870d-7a9e2e8483bb
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3348511"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:41:41Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="wUbwHytzeB7zGU6lSbjPkIp1aEt01eDvR2bMESpArlI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001796203
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3348511
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3348511
+   </BrowseNodeId>
+   <Name>
+    Chemicals
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3348501
+     </BrowseNodeId>
+     <Name>
+      Darkroom Supplies
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        172435
+       </BrowseNodeId>
+       <Name>
+        Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          502394
+         </BrowseNodeId>
+         <Name>
+          Camera &amp; Photo
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            493964
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              172282
+             </BrowseNodeId>
+             <Name>
+              Electronics
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

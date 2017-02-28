@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e13a0c62-bc84-4b5c-a34d-543067d23983
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="490632011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:48:52Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="IwDWujvm5pqux0ZsAGcGCi4MCFPpJ8CPpyCjZTaartQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   9.85842E-4
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     490632011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    490632011
+   </BrowseNodeId>
+   <Name>
+    Storage File Boxes
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069652
+     </BrowseNodeId>
+     <Name>
+      Office Storage Supplies
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1069242
+       </BrowseNodeId>
+       <Name>
+        Office &amp; School Supplies
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1084128
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1064954
+           </BrowseNodeId>
+           <Name>
+            Office Products
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

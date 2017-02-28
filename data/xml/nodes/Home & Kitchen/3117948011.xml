@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   8b53d12d-3f5d-4de3-8496-fdcf47f461dc
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3117948011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:18:42Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="ZtYT0cagxwMdTW3VssQw2bijpVeJ9FfBx3/yAdM0Usk="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001451527
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3117948011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3117948011
+   </BrowseNodeId>
+   <Name>
+    Electric Coffee Percolators
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      289742
+     </BrowseNodeId>
+     <Name>
+      Coffee, Tea &amp; Espresso Appliances
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        289913
+       </BrowseNodeId>
+       <Name>
+        Small Appliances
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          284507
+         </BrowseNodeId>
+         <Name>
+          Kitchen &amp; Dining
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1063498
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1055398
+             </BrowseNodeId>
+             <Name>
+              Home &amp; Kitchen
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

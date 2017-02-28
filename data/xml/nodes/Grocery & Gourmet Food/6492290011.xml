@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   6d756794-fbbb-4c08-93b0-a1f423cfb106
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="6492290011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:50:10Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="1yG+lvye8Ru+UIGRBbzkCv/cN/0g6AdPpFdEpApZlSs="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006296985
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     6492290011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    6492290011
+   </BrowseNodeId>
+   <Name>
+    Bread Machine Yeasts
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16317831
+     </BrowseNodeId>
+     <Name>
+      Leaveners &amp; Yeasts
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310221
+       </BrowseNodeId>
+       <Name>
+        Cooking &amp; Baking
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310211
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310101
+           </BrowseNodeId>
+           <Name>
+            Grocery &amp; Gourmet Food
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

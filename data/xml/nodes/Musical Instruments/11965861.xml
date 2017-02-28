@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e1f7bcca-ede1-4979-9612-7076736e7277
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="11965861"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:22:28Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="hCiLaAObgnWPAI3ONZiRFCsKk1eW1BccVd58/ZOnFiA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001387818
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     11965861
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    11965861
+   </BrowseNodeId>
+   <Name>
+    Products
+   </Name>
+   <IsCategoryRoot>
+    1
+   </IsCategoryRoot>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971241
+     </BrowseNodeId>
+     <Name>
+      Guitars
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971311
+     </BrowseNodeId>
+     <Name>
+      Bass Guitars
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      14733114011
+     </BrowseNodeId>
+     <Name>
+      Ukuleles, Mandolins &amp; Banjos
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8882494011
+     </BrowseNodeId>
+     <Name>
+      Amplifiers &amp; Effects
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11970241
+     </BrowseNodeId>
+     <Name>
+      Drums &amp; Percussion
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11969981
+     </BrowseNodeId>
+     <Name>
+      Keyboards &amp; MIDI
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11974521
+     </BrowseNodeId>
+     <Name>
+      Microphones &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      405758011
+     </BrowseNodeId>
+     <Name>
+      Band &amp; Orchestra
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971681
+     </BrowseNodeId>
+     <Name>
+      Brass Instruments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8882493011
+     </BrowseNodeId>
+     <Name>
+      Stringed Instruments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8882497011
+     </BrowseNodeId>
+     <Name>
+      Wind &amp; Woodwind Instruments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11965871
+     </BrowseNodeId>
+     <Name>
+      Instrument Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      405757011
+     </BrowseNodeId>
+     <Name>
+      Live Sound &amp; Stage
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11973111
+     </BrowseNodeId>
+     <Name>
+      Studio Recording Equipment
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11973881
+     </BrowseNodeId>
+     <Name>
+      Electronic Music, DJ &amp; Karaoke
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11091801
+     </BrowseNodeId>
+     <Name>
+      Musical Instruments
+     </Name>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

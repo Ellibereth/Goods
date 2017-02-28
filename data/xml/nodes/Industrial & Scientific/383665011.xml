@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   1374f0b6-d87a-4715-93be-cee03651755d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="383665011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:09:58Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="j5qlbE47oJQioPqQndvlGMC4P/AkXiUM/G549h0zOV0="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.007861761
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     383665011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    383665011
+   </BrowseNodeId>
+   <Name>
+    Hose Fittings
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001529011
+     </BrowseNodeId>
+     <Name>
+      Barbed Hose Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      580142011
+     </BrowseNodeId>
+     <Name>
+      Cam &amp; Groove Hose Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7236044011
+     </BrowseNodeId>
+     <Name>
+      Fire Hose Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256338011
+     </BrowseNodeId>
+     <Name>
+      Hose Clamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001531011
+     </BrowseNodeId>
+     <Name>
+      Hydraulic Hose Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001528011
+     </BrowseNodeId>
+     <Name>
+      Push-On Hose Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001527011
+     </BrowseNodeId>
+     <Name>
+      Quick Connect Hose Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6001530011
+     </BrowseNodeId>
+     <Name>
+      Universal Hose Fittings
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3021480011
+     </BrowseNodeId>
+     <Name>
+      Fittings
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3021479011
+       </BrowseNodeId>
+       <Name>
+        Hydraulics, Pneumatics &amp; Plumbing
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310161
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310091
+           </BrowseNodeId>
+           <Name>
+            Industrial &amp; Scientific
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

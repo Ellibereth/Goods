@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e46e22d3-ce72-4e31-b0b1-0bb609892c93
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="14241611"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:20:54Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="/3mpu/gQH9TFkWvFW+e8WrqlCLU3E4C2OmsEfUXj5RQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001591894
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     14241611
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    14241611
+   </BrowseNodeId>
+   <Name>
+    Surveillance Video Recorders
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      14248481
+     </BrowseNodeId>
+     <Name>
+      Surveillance Video Equipment
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        524136
+       </BrowseNodeId>
+       <Name>
+        Security &amp; Surveillance
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          493964
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            172282
+           </BrowseNodeId>
+           <Name>
+            Electronics
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

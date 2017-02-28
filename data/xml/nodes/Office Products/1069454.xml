@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   6f9a8761-84d1-46ee-b5cb-b2eb62c5efe1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="1069454"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:23:51Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="gDYHpN3ihVPAdIBm1tOn6x4D1hCT9P+Z5sleF+KPbvw="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001330811
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     1069454
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    1069454
+   </BrowseNodeId>
+   <Name>
+    Calendars, Planners &amp; Personal Organizers
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      9887000011
+     </BrowseNodeId>
+     <Name>
+      Planners, Refills &amp; Covers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490570011
+     </BrowseNodeId>
+     <Name>
+      Desktop Calendars &amp; Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069478
+     </BrowseNodeId>
+     <Name>
+      Personal Organizers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490575011
+     </BrowseNodeId>
+     <Name>
+      Planning Boards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069462
+     </BrowseNodeId>
+     <Name>
+      Planning Pads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069474
+     </BrowseNodeId>
+     <Name>
+      Wall Calendars
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069242
+     </BrowseNodeId>
+     <Name>
+      Office &amp; School Supplies
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1084128
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1064954
+         </BrowseNodeId>
+         <Name>
+          Office Products
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

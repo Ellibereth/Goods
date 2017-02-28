@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   77497ab7-23cc-4f6a-a392-d164367b45cc
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3265758011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:10:56Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="gbtFGrOkN8LehVx5hELBs6sX4YJldeKEegJwXv2zSTQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   9.96136E-4
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3265758011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3265758011
+   </BrowseNodeId>
+   <Name>
+    Phono Preamps
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      9977442011
+     </BrowseNodeId>
+     <Name>
+      Home Theater Systems
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        667846011
+       </BrowseNodeId>
+       <Name>
+        Home Audio
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          493964
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            172282
+           </BrowseNodeId>
+           <Name>
+            Electronics
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

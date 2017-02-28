@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   62c59315-e113-4dd8-964c-9f24e1edbbf5
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="552402"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:56:17Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="14iQkgDnXHJjw8GnDii0MzMk/UGu9mj/RE4eTcSgdzE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.005542874
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     552402
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    552402
+   </BrowseNodeId>
+   <Name>
+    Hole Saws &amp; Accessories
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      8106327011
+     </BrowseNodeId>
+     <Name>
+      Hole Saw Arbors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8106328011
+     </BrowseNodeId>
+     <Name>
+      Hole Saw Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256292011
+     </BrowseNodeId>
+     <Name>
+      Hole Saws
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      552796
+     </BrowseNodeId>
+     <Name>
+      Power Drill Parts &amp; Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        552262
+       </BrowseNodeId>
+       <Name>
+        Power Tool Parts &amp; Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          328182011
+         </BrowseNodeId>
+         <Name>
+          Power &amp; Hand Tools
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            468240
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              228013
+             </BrowseNodeId>
+             <Name>
+              Tools &amp; Home Improvement
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

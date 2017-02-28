@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   4f5e2df3-8aa7-4a7e-a1ef-a0cafe28aafd
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="405585011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:34:08Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="0Sazle/jUjGuZzmXYDw5+rZM5Rjt4XV3umuHJlD1Gao="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001826817
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     405585011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    405585011
+   </BrowseNodeId>
+   <Name>
+    Controllers
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      405586011
+     </BrowseNodeId>
+     <Name>
+      Flight Controls
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      405587011
+     </BrowseNodeId>
+     <Name>
+      Gamepads &amp; Standard Controllers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      405588011
+     </BrowseNodeId>
+     <Name>
+      Joysticks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      405589011
+     </BrowseNodeId>
+     <Name>
+      Light Guns
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10110961011
+     </BrowseNodeId>
+     <Name>
+      Music Controllers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      405590011
+     </BrowseNodeId>
+     <Name>
+      Steering Wheels
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      318812011
+     </BrowseNodeId>
+     <Name>
+      Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        229647
+       </BrowseNodeId>
+       <Name>
+        Mac
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11846801
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            468642
+           </BrowseNodeId>
+           <Name>
+            Video Games
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

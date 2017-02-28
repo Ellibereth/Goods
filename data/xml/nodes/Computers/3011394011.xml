@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   f79e38c1-4cf9-49ea-b87e-eefee69c8c72
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3011394011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:36:15Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="IGMXRnPAmQK9GtiSJo8ZkM5eiuHq2+WkEOQ9K454qP8="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.007816693
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3011394011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3011394011
+   </BrowseNodeId>
+   <Name>
+    Printer Transfer Belts, Rollers &amp; Units
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      15400231
+     </BrowseNodeId>
+     <Name>
+      Printer Transfer Belts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15400241
+     </BrowseNodeId>
+     <Name>
+      Printer Transfer Rollers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15400251
+     </BrowseNodeId>
+     <Name>
+      Printer Transfer Units
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      172636
+     </BrowseNodeId>
+     <Name>
+      Printer Parts &amp; Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        9424016011
+       </BrowseNodeId>
+       <Name>
+        Printers &amp; Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          172574
+         </BrowseNodeId>
+         <Name>
+          Office Electronics
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1084128
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1064954
+             </BrowseNodeId>
+             <Name>
+              Office Products
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

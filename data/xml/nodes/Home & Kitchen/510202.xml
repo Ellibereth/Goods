@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   c21af82f-dd9d-430f-b5da-0af3b6aac298
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="510202"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:22:04Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="jTC6nJPUBo0YGfB5ndPWD1q69UPNuwYPKB4s1HQ+tqc="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002616535
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     510202
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    510202
+   </BrowseNodeId>
+   <Name>
+    Water Coolers &amp; Filters
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      680337011
+     </BrowseNodeId>
+     <Name>
+      Faucet Water Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3741101
+     </BrowseNodeId>
+     <Name>
+      Pitcher Water Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3741111
+     </BrowseNodeId>
+     <Name>
+      Replacement Water Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13397611
+     </BrowseNodeId>
+     <Name>
+      Under-Sink &amp; Countertop Filtration
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3741041
+     </BrowseNodeId>
+     <Name>
+      Water Coolers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3741061
+     </BrowseNodeId>
+     <Name>
+      Water Filter Cleaners
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      284507
+     </BrowseNodeId>
+     <Name>
+      Kitchen &amp; Dining
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1063498
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1055398
+         </BrowseNodeId>
+         <Name>
+          Home &amp; Kitchen
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

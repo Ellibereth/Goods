@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   cd8833b6-17eb-47e2-b11b-92d7867f81a5
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="340045011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:59:04Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="SGIuERf+E8ujV1I5puyfVAjQfoYvz86rdOfuE03Ce7A="/>
+  </Arguments>
+  <RequestProcessingTime>
+   9.61667E-4
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     340045011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    340045011
+   </BrowseNodeId>
+   <Name>
+    Corner Rounding End Mills
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      256305011
+     </BrowseNodeId>
+     <Name>
+      End Mills
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        5825198011
+       </BrowseNodeId>
+       <Name>
+        Milling Tools
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          383598011
+         </BrowseNodeId>
+         <Name>
+          Cutting Tools
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310161
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              16310091
+             </BrowseNodeId>
+             <Name>
+              Industrial &amp; Scientific
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

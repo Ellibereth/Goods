@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   4b850120-61a4-46fe-8834-05f3736f729c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="14163029011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:45:40Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="WG2XR0USgeZuSI/OlT+P6cm6fEYztAKDTFCq94lBmLk="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001135513
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     14163029011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    14163029011
+   </BrowseNodeId>
+   <Name>
+    Carpet Spot Cleaning Sprays
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      361410011
+     </BrowseNodeId>
+     <Name>
+      Carpet Cleaners &amp; Deodorizers
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        15342821
+       </BrowseNodeId>
+       <Name>
+        Household Cleaning
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          15342811
+         </BrowseNodeId>
+         <Name>
+          Household Supplies
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            3760931
+           </BrowseNodeId>
+           <Name>
+            Products
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              3760901
+             </BrowseNodeId>
+             <Name>
+              Health &amp; Household
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

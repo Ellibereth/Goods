@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   5b66d81e-9da4-433e-b346-ccdedad062b2
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="9001140011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:26:03Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="mhVIXBc0/0pvOqUsdrUiSHHUuNwTa3NOnPXN1bs8iRQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006325455
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     9001140011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    9001140011
+   </BrowseNodeId>
+   <Name>
+    Spades, Shovels &amp; Trowels
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3753671
+     </BrowseNodeId>
+     <Name>
+      Shovels
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3480690011
+     </BrowseNodeId>
+     <Name>
+      Spades
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3480691011
+     </BrowseNodeId>
+     <Name>
+      Trowels
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      128061011
+     </BrowseNodeId>
+     <Name>
+      Hand Tools
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3610851
+       </BrowseNodeId>
+       <Name>
+        Gardening &amp; Lawn Care
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3238155011
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            2972638011
+           </BrowseNodeId>
+           <Name>
+            Patio, Lawn &amp; Garden
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

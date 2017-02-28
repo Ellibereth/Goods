@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   49306041-47d3-45f8-bb42-a329464c715c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="172427"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:44:36Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="+Dz66YJoPd1Z/FBPo3Calz+yFQ7eDRB1BZBodwTJF/4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.005945846
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     172427
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    172427
+   </BrowseNodeId>
+   <Name>
+    Camcorder Lenses
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      499248
+     </BrowseNodeId>
+     <Name>
+      Lenses
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        502394
+       </BrowseNodeId>
+       <Name>
+        Camera &amp; Photo
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          493964
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            172282
+           </BrowseNodeId>
+           <Name>
+            Electronics
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

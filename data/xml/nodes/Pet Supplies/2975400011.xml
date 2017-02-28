@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   4fdcb87c-5a8d-445b-ae3d-c07b73620763
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2975400011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:29:18Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="5/LvffvXMCetFzUAafc3CBYhf0Ml1LozWxmYw6nZ1as="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001694537
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2975400011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2975400011
+   </BrowseNodeId>
+   <Name>
+    Crates, Houses &amp; Pens
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975401011
+     </BrowseNodeId>
+     <Name>
+      Crates &amp; Kennels
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975402011
+     </BrowseNodeId>
+     <Name>
+      Dog Houses
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975403011
+     </BrowseNodeId>
+     <Name>
+      Kennel Covers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975404011
+     </BrowseNodeId>
+     <Name>
+      Outdoor Pens
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975312011
+     </BrowseNodeId>
+     <Name>
+      Dogs
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2619534011
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2619533011
+         </BrowseNodeId>
+         <Name>
+          Pet Supplies
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   59c3f335-fd06-4868-9a8b-b0c65e5f91de
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3213025011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:21:48Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="iS6dVuQA2o1JXEQ2ki5cn1WmfClTQHs5PJuRbk66bA4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001533571
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3213025011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3213025011
+   </BrowseNodeId>
+   <Name>
+    Blu-ray Players &amp; Recorders
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3213026011
+     </BrowseNodeId>
+     <Name>
+      Blu-ray Recorders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      352697011
+     </BrowseNodeId>
+     <Name>
+      Blu-ray Players
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1266092011
+     </BrowseNodeId>
+     <Name>
+      Television &amp; Video
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        493964
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          172282
+         </BrowseNodeId>
+         <Name>
+          Electronics
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

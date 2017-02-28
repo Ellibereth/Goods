@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   9bdf2b5b-692e-4647-84c5-295b5e07c0c0
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="10111065011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:31:45Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="2VMD6+hN0qNsDYZKXiWFo5nK3cq/l39pnZMABEI1pzI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006503527
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     10111065011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    10111065011
+   </BrowseNodeId>
+   <Name>
+    Faceplates, Protectors &amp; Skins
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      10111067011
+     </BrowseNodeId>
+     <Name>
+      Protectors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3010620011
+     </BrowseNodeId>
+     <Name>
+      Faceplates
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3010625011
+     </BrowseNodeId>
+     <Name>
+      Skins
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3010600011
+     </BrowseNodeId>
+     <Name>
+      Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3010556011
+       </BrowseNodeId>
+       <Name>
+        PlayStation Vita
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11846801
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            468642
+           </BrowseNodeId>
+           <Name>
+            Video Games
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

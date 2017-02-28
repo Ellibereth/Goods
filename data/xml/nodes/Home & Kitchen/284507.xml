@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   c81e79c4-0cdf-440a-8992-08378c454b22
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="284507"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:54:07Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="tb9t/RiwXbt5+/2RtXspvzLok5mDF1AhyFbK6QXFQtU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.00154959
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     284507
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    284507
+   </BrowseNodeId>
+   <Name>
+    Kitchen &amp; Dining
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      289668
+     </BrowseNodeId>
+     <Name>
+      Bakeware
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      915194
+     </BrowseNodeId>
+     <Name>
+      Coffee, Tea &amp; Espresso
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289814
+     </BrowseNodeId>
+     <Name>
+      Cookware
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289851
+     </BrowseNodeId>
+     <Name>
+      Cutlery &amp; Knife Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13162311
+     </BrowseNodeId>
+     <Name>
+      Dining &amp; Entertaining
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6054382011
+     </BrowseNodeId>
+     <Name>
+      Food Service Equipment &amp; Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      979832011
+     </BrowseNodeId>
+     <Name>
+      Home Brewing &amp; Wine Making
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063916
+     </BrowseNodeId>
+     <Name>
+      Kitchen &amp; Table Linens
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289754
+     </BrowseNodeId>
+     <Name>
+      Kitchen Utensils &amp; Gadgets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289913
+     </BrowseNodeId>
+     <Name>
+      Small Appliances
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1267449011
+     </BrowseNodeId>
+     <Name>
+      Small Appliance Parts &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      510136
+     </BrowseNodeId>
+     <Name>
+      Storage &amp; Organization
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9630569011
+     </BrowseNodeId>
+     <Name>
+      Travel &amp; To-Go Drinkware
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      510202
+     </BrowseNodeId>
+     <Name>
+      Water Coolers &amp; Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13299291
+     </BrowseNodeId>
+     <Name>
+      Wine Accessories
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063498
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1055398
+       </BrowseNodeId>
+       <Name>
+        Home &amp; Kitchen
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

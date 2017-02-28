@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   392c7b35-6cc1-44ce-8279-d7aa7bc2cd0c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="11971381"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:22:30Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="IDDqvJgyHOKaYtMmEg2I3hjO49uItKNoOLCJi+atanA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.00205087
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     11971381
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    11971381
+   </BrowseNodeId>
+   <Name>
+    Electric Guitars
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971401
+     </BrowseNodeId>
+     <Name>
+      Beginner Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971391
+     </BrowseNodeId>
+     <Name>
+      Hollow &amp; Semi-Hollow Body
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971471
+     </BrowseNodeId>
+     <Name>
+      Lap &amp; Pedal Steel Guitars
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971421
+     </BrowseNodeId>
+     <Name>
+      Solid Body
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971241
+     </BrowseNodeId>
+     <Name>
+      Guitars
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        11965861
+       </BrowseNodeId>
+       <Name>
+        Products
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11091801
+         </BrowseNodeId>
+         <Name>
+          Musical Instruments
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

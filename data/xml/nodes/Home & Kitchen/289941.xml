@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   60271d25-4a39-4463-afbd-d0f36e9d4bd0
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="289941"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:19:08Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="qOq8u69zZUZtXx8rXKX8OXZuhxtl7o1fjH3kHV6lhXY="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001721263
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     289941
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    289941
+   </BrowseNodeId>
+   <Name>
+    Specialty Appliances
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3741661
+     </BrowseNodeId>
+     <Name>
+      Bagel Slicers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      297927011
+     </BrowseNodeId>
+     <Name>
+      Chocolate Fountains
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16188245011
+     </BrowseNodeId>
+     <Name>
+      Cotton Candy Makers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3741671
+     </BrowseNodeId>
+     <Name>
+      Crepe Makers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090752
+     </BrowseNodeId>
+     <Name>
+      Dehydrators
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090754
+     </BrowseNodeId>
+     <Name>
+      Egg Cookers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289756
+     </BrowseNodeId>
+     <Name>
+      Electric Can Openers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090758
+     </BrowseNodeId>
+     <Name>
+      Electric Slicers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3117953011
+     </BrowseNodeId>
+     <Name>
+      Electric Wine Bottle Openers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090760
+     </BrowseNodeId>
+     <Name>
+      Food Grinders &amp; Mills
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289867
+     </BrowseNodeId>
+     <Name>
+      Knife Sharpeners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090762
+     </BrowseNodeId>
+     <Name>
+      Pizzelle Makers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090764
+     </BrowseNodeId>
+     <Name>
+      Popcorn Poppers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3741681
+     </BrowseNodeId>
+     <Name>
+      Quesadilla &amp; Tortilla Makers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090766
+     </BrowseNodeId>
+     <Name>
+      Sandwich Makers &amp; Panini Presses
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3117959011
+     </BrowseNodeId>
+     <Name>
+      Shaved Ice Machines
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10962055011
+     </BrowseNodeId>
+     <Name>
+      Sous Vide Machines
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1090768
+     </BrowseNodeId>
+     <Name>
+      Vacuum Sealers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16012141
+     </BrowseNodeId>
+     <Name>
+      Yogurt Makers
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      289913
+     </BrowseNodeId>
+     <Name>
+      Small Appliances
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        284507
+       </BrowseNodeId>
+       <Name>
+        Kitchen &amp; Dining
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1063498
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1055398
+           </BrowseNodeId>
+           <Name>
+            Home &amp; Kitchen
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

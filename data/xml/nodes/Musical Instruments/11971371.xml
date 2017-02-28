@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   d4f17288-b2cc-46ff-ade7-efe9f9beaa13
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="11971371"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:22:42Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="yEs1BvxYQ1nO/Fw3KuvYhyMt02JJqLUhnyqD8X8rnwI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001624732
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     11971371
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    11971371
+   </BrowseNodeId>
+   <Name>
+    Beginner Kits
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971311
+     </BrowseNodeId>
+     <Name>
+      Bass Guitars
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        11965861
+       </BrowseNodeId>
+       <Name>
+        Products
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11091801
+         </BrowseNodeId>
+         <Name>
+          Musical Instruments
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

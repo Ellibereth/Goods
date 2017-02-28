@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   285fba79-07c6-4e41-bde3-1cdfdea6078e
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="499262"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:36:06Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="7puQA/1T3eh8xKQWarMza6aEZJCRMpc4hWuk7hT/L1A="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001223942
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     499262
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    499262
+   </BrowseNodeId>
+   <Name>
+    Filters &amp; Accessories
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109900011
+     </BrowseNodeId>
+     <Name>
+      Black &amp; White Contrast Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109901011
+     </BrowseNodeId>
+     <Name>
+      Color Correction &amp; Compensation Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109902011
+     </BrowseNodeId>
+     <Name>
+      Effects Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109903011
+     </BrowseNodeId>
+     <Name>
+      Filter Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109904011
+     </BrowseNodeId>
+     <Name>
+      Graduated Color Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109905011
+     </BrowseNodeId>
+     <Name>
+      Infrared Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109906011
+     </BrowseNodeId>
+     <Name>
+      Neutral Density Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109907011
+     </BrowseNodeId>
+     <Name>
+      Polarizing Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109908011
+     </BrowseNodeId>
+     <Name>
+      Skylight &amp; UV Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      14015121
+     </BrowseNodeId>
+     <Name>
+      Filter Accessories
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      172435
+     </BrowseNodeId>
+     <Name>
+      Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        502394
+       </BrowseNodeId>
+       <Name>
+        Camera &amp; Photo
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          493964
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            172282
+           </BrowseNodeId>
+           <Name>
+            Electronics
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

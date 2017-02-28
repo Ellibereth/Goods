@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   1fa7d693-0ffd-4a9b-81d3-83e909eacdd8
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16318751"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T17:10:25Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Mj0pbIJwh0taeNzQKZbjhCKGRFskrapwoudDpRJ63Tw="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001954433
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16318751
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16318751
+   </BrowseNodeId>
+   <Name>
+    Breads &amp; Bakery
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2255576011
+     </BrowseNodeId>
+     <Name>
+      Bakery &amp; Dessert Gifts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548768011
+     </BrowseNodeId>
+     <Name>
+      Breadcrumbs &amp; Stuffing
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548769011
+     </BrowseNodeId>
+     <Name>
+      Breadsticks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548770011
+     </BrowseNodeId>
+     <Name>
+      Breakfast Bakery
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      347681011
+     </BrowseNodeId>
+     <Name>
+      Cakes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548788011
+     </BrowseNodeId>
+     <Name>
+      Desserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548796011
+     </BrowseNodeId>
+     <Name>
+      Fresh Baked Cookies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548817011
+     </BrowseNodeId>
+     <Name>
+      Fresh Bakery Breads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548842011
+     </BrowseNodeId>
+     <Name>
+      Packaged Breads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6548861011
+     </BrowseNodeId>
+     <Name>
+      Pastry Shells &amp; Crusts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      291442011
+     </BrowseNodeId>
+     <Name>
+      Pizza Crusts
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310211
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310101
+       </BrowseNodeId>
+       <Name>
+        Grocery &amp; Gourmet Food
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

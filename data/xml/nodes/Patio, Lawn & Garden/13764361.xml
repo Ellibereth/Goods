@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   a4c65a31-4758-4603-8993-635c1123d29d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="13764361"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:27:21Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="5f1gASGIKu7o1J5UKBqKOSRvGkLufA7+alnxnX8AvcU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001402354
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     13764361
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    13764361
+   </BrowseNodeId>
+   <Name>
+    Filtration
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      13764241
+     </BrowseNodeId>
+     <Name>
+      Water Gardens &amp; Ponds
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        553788
+       </BrowseNodeId>
+       <Name>
+        Outdoor Décor
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3238155011
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            2972638011
+           </BrowseNodeId>
+           <Name>
+            Patio, Lawn &amp; Garden
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   5edd8544-a334-43c0-8d8d-b431245648b6
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3348021"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:45:19Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="9rE8Xio1ZTnCPuw01RY1UPOswxGBslCHc8VGLh3v57o="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.007489567
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3348021
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3348021
+   </BrowseNodeId>
+   <Name>
+    Flags
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3109892011
+     </BrowseNodeId>
+     <Name>
+      Lighting Controls &amp; Modifiers
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3347871
+       </BrowseNodeId>
+       <Name>
+        Lighting
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          7161086011
+         </BrowseNodeId>
+         <Name>
+          Lighting &amp; Studio
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            502394
+           </BrowseNodeId>
+           <Name>
+            Camera &amp; Photo
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              493964
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                172282
+               </BrowseNodeId>
+               <Name>
+                Electronics
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

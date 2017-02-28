@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   78d6399a-361d-431e-91c8-d4e4e1c7eca1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="11076521"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:30:56Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="egLqFcyR+JVBgPNstdk89OLoa/dzmboxWUNbXWSqDkA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001321051
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     11076521
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    11076521
+   </BrowseNodeId>
+   <Name>
+    Accessories
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      353829011
+     </BrowseNodeId>
+     <Name>
+      Accessory Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11076531
+     </BrowseNodeId>
+     <Name>
+      Batteries &amp; Chargers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11076541
+     </BrowseNodeId>
+     <Name>
+      Cables &amp; Adapters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11076551
+     </BrowseNodeId>
+     <Name>
+      Cases &amp; Storage
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10110990011
+     </BrowseNodeId>
+     <Name>
+      Hand Grips
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2607927011
+     </BrowseNodeId>
+     <Name>
+      Headsets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10110996011
+     </BrowseNodeId>
+     <Name>
+      Stylus Pens
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11075831
+     </BrowseNodeId>
+     <Name>
+      Nintendo DS
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        11846801
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          468642
+         </BrowseNodeId>
+         <Name>
+          Video Games
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

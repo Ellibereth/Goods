@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   91c13b9f-b2c1-4379-a7be-1db4bfe04717
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="       1085696      "/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:25:09Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="5whvS6UByHNeYWmA/pXPkUf1n6QA35Z0UjTJ8A/RUgM="/>
+  </Arguments>
+  <RequestProcessingTime>
+   4.35131E-4
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     1085696
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+   <Errors>
+    <Error>
+     <Code>
+      AWS.InvalidParameterValue
+     </Code>
+     <Message>
+      1085696
+      is not a valid value for BrowseNodeId. Please change this value and retry your request.
+     </Message>
+    </Error>
+   </Errors>
+  </Request>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

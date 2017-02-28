@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   2b138b96-8714-4b24-b9de-c64e0325d72b
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="6127504011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:45:07Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Y0mBmCMTVTDa/BIR3fs0fGT+LwHHSLVysBps1KQCIsk="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006333458
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     6127504011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    6127504011
+   </BrowseNodeId>
+   <Name>
+    Choir
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      6127486011
+     </BrowseNodeId>
+     <Name>
+      Gospel
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        624868011
+       </BrowseNodeId>
+       <Name>
+        Styles
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          163856011
+         </BrowseNodeId>
+         <Name>
+          Digital Music
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

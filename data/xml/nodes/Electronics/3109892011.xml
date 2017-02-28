@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   bb4d3b1d-c231-4f73-bb73-ac3b2eba26e1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3109892011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:45:14Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Q3K3H+TS88fDKUSSD2Mkq8Kz0LN4wfuly6mUwhV1PBc="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008696787
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3109892011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3109892011
+   </BrowseNodeId>
+   <Name>
+    Lighting Controls &amp; Modifiers
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3348001
+     </BrowseNodeId>
+     <Name>
+      Diffusers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3348011
+     </BrowseNodeId>
+     <Name>
+      Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3348021
+     </BrowseNodeId>
+     <Name>
+      Flags
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3348031
+     </BrowseNodeId>
+     <Name>
+      Gobos
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      581151011
+     </BrowseNodeId>
+     <Name>
+      Reflectors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      14014901
+     </BrowseNodeId>
+     <Name>
+      Soft Boxes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      14014911
+     </BrowseNodeId>
+     <Name>
+      Umbrellas
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3347871
+     </BrowseNodeId>
+     <Name>
+      Lighting
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        7161086011
+       </BrowseNodeId>
+       <Name>
+        Lighting &amp; Studio
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          502394
+         </BrowseNodeId>
+         <Name>
+          Camera &amp; Photo
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            493964
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              172282
+             </BrowseNodeId>
+             <Name>
+              Electronics
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

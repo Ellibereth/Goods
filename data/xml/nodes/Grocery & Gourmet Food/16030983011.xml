@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   754509a7-0e77-4933-be4d-b3235b40ebed
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16030983011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:53:15Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="PS8Jml24DC7vfiteEzsR+s14Msq394vForDN9ge7L3Y="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.00769529
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16030983011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16030983011
+   </BrowseNodeId>
+   <Name>
+    Cotija
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16040118011
+     </BrowseNodeId>
+     <Name>
+      Mexican Cheese
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        6520456011
+       </BrowseNodeId>
+       <Name>
+        Packaged Cheese
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          371460011
+         </BrowseNodeId>
+         <Name>
+          Dairy, Cheese &amp; Eggs
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            16310211
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              16310101
+             </BrowseNodeId>
+             <Name>
+              Grocery &amp; Gourmet Food
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   43d2d6fb-74fc-4ee6-9c5b-689c2c67e567
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2649512011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:22:25Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="qR+XzXlGxpWW7OVNEWbJkTgMignjZK6CEpl4MUMtc6o="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001689227
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2649512011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2649512011
+   </BrowseNodeId>
+   <Name>
+    Movies
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      2625374011
+     </BrowseNodeId>
+     <Name>
+      Departments
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2625373011
+       </BrowseNodeId>
+       <Name>
+        Movies &amp; TV
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

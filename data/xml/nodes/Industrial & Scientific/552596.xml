@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   52b3a9d5-f33a-4317-ad25-672cbe75eab4
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="552596"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:52:18Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="YRa6xwBvEAyzO/eF09Efcw7CVS8qtx4bXM3dTDyABpY="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001646734
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     552596
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    552596
+   </BrowseNodeId>
+   <Name>
+    Sanding Sleeves
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      552582
+     </BrowseNodeId>
+     <Name>
+      Power Sander Parts &amp; Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        8106314011
+       </BrowseNodeId>
+       <Name>
+        Power Finishing Tool Parts &amp; Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          552262
+         </BrowseNodeId>
+         <Name>
+          Power Tool Parts &amp; Accessories
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            328182011
+           </BrowseNodeId>
+           <Name>
+            Power &amp; Hand Tools
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              468240
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                228013
+               </BrowseNodeId>
+               <Name>
+                Tools &amp; Home Improvement
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

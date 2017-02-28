@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   34b939a9-8e7b-4503-82a7-22370ae6db5e
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="256259011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:55:57Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="CRUGXwWEUwEt5wdDQAqg/IThLDfYBQ5YMyiuLEcCqw8="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001768564
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     256259011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    256259011
+   </BrowseNodeId>
+   <Name>
+    Countersinks
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      256260011
+     </BrowseNodeId>
+     <Name>
+      Combined Drill Countersinks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256261011
+     </BrowseNodeId>
+     <Name>
+      Double End Countersinks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256262011
+     </BrowseNodeId>
+     <Name>
+      Single End Countersinks
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383598011
+     </BrowseNodeId>
+     <Name>
+      Cutting Tools
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

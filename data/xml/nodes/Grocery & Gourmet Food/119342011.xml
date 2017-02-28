@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   224e558b-93b7-47da-b4cc-f43fe4b166c1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="119342011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:41:35Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="OFr1DG99G8r3WW89LT4PJXyu2BtYWeFtBqa7LHHkfYM="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.00118719
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     119342011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    119342011
+   </BrowseNodeId>
+   <Name>
+    Cocktail Mixers
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      5782428011
+     </BrowseNodeId>
+     <Name>
+      Bitters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5782427011
+     </BrowseNodeId>
+     <Name>
+      Bloody Mary
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5782429011
+     </BrowseNodeId>
+     <Name>
+      Daiquiri
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5782430011
+     </BrowseNodeId>
+     <Name>
+      Margarita
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5782431011
+     </BrowseNodeId>
+     <Name>
+      Martini
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5782445011
+     </BrowseNodeId>
+     <Name>
+      Seltzer Water
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5782446011
+     </BrowseNodeId>
+     <Name>
+      Tonic Water
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310231
+     </BrowseNodeId>
+     <Name>
+      Coffee, Tea &amp; Beverages
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310211
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310101
+         </BrowseNodeId>
+         <Name>
+          Grocery &amp; Gourmet Food
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

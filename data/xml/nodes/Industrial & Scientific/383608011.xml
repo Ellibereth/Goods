@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   ef348a3e-3e58-4c23-b533-0571dca3fc37
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="383608011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:11:26Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="mlEo5yqh6gTwYzIZBbftVaDUOd7WceIyt1NJfwBb2vo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.007740054
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     383608011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    383608011
+   </BrowseNodeId>
+   <Name>
+    Luer-to-barbed Fittings
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      700786011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Bulkhead Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700787011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Cap Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700788011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Elbow Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700789011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Panel Mount Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700790011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Slip Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700791011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Straight Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700792011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Tee Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700793011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-barbed Y Fittings
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383606011
+     </BrowseNodeId>
+     <Name>
+      Luer Fittings
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        383602011
+       </BrowseNodeId>
+       <Name>
+        Tube Fittings
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3021480011
+         </BrowseNodeId>
+         <Name>
+          Fittings
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            3021479011
+           </BrowseNodeId>
+           <Name>
+            Hydraulics, Pneumatics &amp; Plumbing
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              16310161
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                16310091
+               </BrowseNodeId>
+               <Name>
+                Industrial &amp; Scientific
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

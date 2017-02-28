@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   1d2e640a-abf1-42e1-964a-8ca00aae3d6e
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="14162591"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:57:57Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="ziiMlNhv1ngl284l4hMrC2LLCWCEGpss1hYRuoPkbl0="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001757591
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     14162591
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    14162591
+   </BrowseNodeId>
+   <Name>
+    Reusable Filters
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      14042401
+     </BrowseNodeId>
+     <Name>
+      Coffee Filters
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        289743
+       </BrowseNodeId>
+       <Name>
+        Coffee Machine Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3115648011
+         </BrowseNodeId>
+         <Name>
+          Coffee &amp; Espresso Machine Parts &amp; Accessories
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1267449011
+           </BrowseNodeId>
+           <Name>
+            Small Appliance Parts &amp; Accessories
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              284507
+             </BrowseNodeId>
+             <Name>
+              Kitchen &amp; Dining
+             </Name>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                1063498
+               </BrowseNodeId>
+               <Name>
+                Categories
+               </Name>
+               <IsCategoryRoot>
+                1
+               </IsCategoryRoot>
+               <Ancestors>
+                <BrowseNode>
+                 <BrowseNodeId>
+                  1055398
+                 </BrowseNodeId>
+                 <Name>
+                  Home &amp; Kitchen
+                 </Name>
+                </BrowseNode>
+               </Ancestors>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

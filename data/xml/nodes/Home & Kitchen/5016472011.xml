@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   b8b2f0a5-69d9-4a46-b189-6b77d0c72e66
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="5016472011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:11:07Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="5+M+1Acaejy3g4TVwNUFqOw7J8/Le+7ppofma7dxT4Q="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001460701
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     5016472011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    5016472011
+   </BrowseNodeId>
+   <Name>
+    Clamshell Take Out Containers
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      5016465011
+     </BrowseNodeId>
+     <Name>
+      Take Out Containers
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        6134197011
+       </BrowseNodeId>
+       <Name>
+        Disposables
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          6054382011
+         </BrowseNodeId>
+         <Name>
+          Food Service Equipment &amp; Supplies
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            284507
+           </BrowseNodeId>
+           <Name>
+            Kitchen &amp; Dining
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1063498
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                1055398
+               </BrowseNodeId>
+               <Name>
+                Home &amp; Kitchen
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

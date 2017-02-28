@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e88fc984-8869-4696-adee-b4c32700169e
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="1069166"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:28:45Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="v/6aHHuoOsy7rZMiefVjoJNw+VJeJomYRZ6yjp3VIZ4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001271145
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     1069166
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    1069166
+   </BrowseNodeId>
+   <Name>
+    File Cabinets
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      490881011
+     </BrowseNodeId>
+     <Name>
+      Vertical File Cabinets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490877011
+     </BrowseNodeId>
+     <Name>
+      Lateral File Cabinets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490883011
+     </BrowseNodeId>
+     <Name>
+      Mobile File Cabinets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490922011
+     </BrowseNodeId>
+     <Name>
+      Chest File Cabinets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490876011
+     </BrowseNodeId>
+     <Name>
+      Flat File Cabinets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1271826011
+     </BrowseNodeId>
+     <Name>
+      Card File Cabinets
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069108
+     </BrowseNodeId>
+     <Name>
+      Cabinets, Racks &amp; Shelves
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1069102
+       </BrowseNodeId>
+       <Name>
+        Office Furniture &amp; Lighting
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1084128
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1064954
+           </BrowseNodeId>
+           <Name>
+            Office Products
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

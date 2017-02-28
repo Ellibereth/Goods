@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   d3bd606f-3734-476f-b584-5b3decea47d7
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="14106461"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:26:35Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Du55NjMfxWtMNZkgVkAFeFNpldoO+TXQvLv8ICXu6P0="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001417695
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     14106461
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    14106461
+   </BrowseNodeId>
+   <Name>
+    Plant Support Structures
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      553790
+     </BrowseNodeId>
+     <Name>
+      Arbors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3480672011
+     </BrowseNodeId>
+     <Name>
+      Garden Edging
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3480673011
+     </BrowseNodeId>
+     <Name>
+      Garden Netting
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3742371
+     </BrowseNodeId>
+     <Name>
+      Garden Stakes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11117588011
+     </BrowseNodeId>
+     <Name>
+      Pergolas
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3480674011
+     </BrowseNodeId>
+     <Name>
+      Plant Cages &amp; Supports
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      14106471
+     </BrowseNodeId>
+     <Name>
+      Trellises
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3610851
+     </BrowseNodeId>
+     <Name>
+      Gardening &amp; Lawn Care
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3238155011
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2972638011
+         </BrowseNodeId>
+         <Name>
+          Patio, Lawn &amp; Garden
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

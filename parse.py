@@ -28,17 +28,15 @@ class AmazonHtmlParser:
 	    random.shuffle(uas)
 	    return uas
 
-	def LoadProxies(self, proxy_fife):
-	    """
-	    uafile : string
-	        path to text file of user agents, one per line
-	    """
-	    output = []
-	    with open(proxy_fife, 'r') as f:
-	        for proxy in f.readlines():
-	            output.append(proxy.replace(" ", "").replace("\n", ""))
-	    random.shuffle(output)
-	    return output
+			
+	def getRandomProxy(self,proxy_file):
+		with open(proxy_file, 'r') as f:
+			reader = csv.reader(f)
+			proxy_list = list()
+			for row in reader:
+				proxy_list.append(row[0])
+			random.shuffle(proxy_list)
+			return proxy_list[0]
 
 
 	def getHtml(self, url):
@@ -47,25 +45,39 @@ class AmazonHtmlParser:
 		user_agent = self.LoadUserAgents(uafile="user_agents.txt")
 		random_user_agent = random.choice(user_agent)
 		desired_capabilities['phantomjs.page.customHeaders.User-Agent'] = random_user_agent
-		proxy_list = self.LoadProxies(proxy_fife = "proxy.txt")
-		random_proxy = '--proxy=' + random.choice(proxy_list).replace(" ", "").replace("\n", "")
-		print(random_proxy)
-		# print(random_proxy)
-		# print(len(random_proxy))
-		# print(random_proxy)
-		service_args = [random_proxy,'--proxy-type=http']
-		driver = webdriver.PhantomJS(service_args=service_args, desired_capabilities=desired_capabilities)	
-		# driver = webdriver.PhantomJS(desired_capabilities=desired_capabilities)	
+		random_proxy = self.getRandomProxy(proxy_file = "proxies.csv")
+		full_random_proxy = '--proxy=' + random_proxy
+		print(full_random_proxy)
+		service_args = [full_random_proxy,'--proxy-type=http']
+		# driver = webdriver.PhantomJS(service_args=service_args, desired_capabilities=desired_capabilities)
+		driver = webdriver.PhantomJS(desired_capabilities=desired_capabilities)	
+		# try:
+		time_start = time.time()
+		print("getting html")
+		print(url)
 		driver.get(url)
+		print("url getting done")
 		html = driver.page_source
 		driver.quit()
-		# soupFromJokesCC = BeautifulSoup(driver.page_source) #fetch HTML source code after rendering
+		time_1 = time.time()
+		total_time = time_1 - time_start
+		print("done getting html in : " + str(total_time) + " seconds")
+		# except:
+		# 	print("bad proxy at : " + random_proxy)
+		# 	with open("bad_proxies.csv", "a") as f:
+		# 		writer = csv.writer(f)
+		# 		writer.writerow([random_proxy])
+		# 	return self.getHtml(url)
+
+		# driver = webdriver.PhantomJS(desired_capabilities=desired_capabilities)	
+		
+		time_1 = time.time()
+		print(str(time_1 - time_0))
 		return html
 		
 
 	def checkAmazonPage(self, html):
 		soup = BeautifulSoup(html,"html.parser")
-
 		# nnarrow down to prod details
 		product_details = soup.find("div", {'id': 'prodDetails'})
 		details_table = product_details.find("table", {"id" : 'productDetails_detailBullets_sections1'})
@@ -78,7 +90,11 @@ class AmazonHtmlParser:
 				row_country = row.find("td", {}).text.replace(" ", "").replace("\n", "")
 
 
-	def recursiveGetAsinListFromUrl(self, url, page_number):
+	def recursiveGetAsinListFromUrl(self, url, page_number, num_errors = None):
+		if (num_errors != None):
+			if num_errors > 100:
+				print(str("broke at time : " + time.time() - time_0))
+
 		html = self.getHtml(url)
 		soup = BeautifulSoup(html, "html.parser")
 		directory = "data/test_html"
@@ -91,11 +107,17 @@ class AmazonHtmlParser:
 		if (product_list == None):
 			print("bad url : " + url)	
 			print(product_list)
-			self.recursiveGetAsinListFromUrl(url, page_number)
+			if num_errors == None:
+				num_errors = 0
+			num_errors = num_errors + 1
+			self.recursiveGetAsinListFromUrl(url, page_number, num_errors)
 		asin_list = list()
+		if product_list == None:
+			return 
 		for product in product_list.find_all("li"):
 			if product.get("data-asin") != None:
-				asin_list.append(product['data-asin'])
+				if len(product['data-asin']) == 10:
+					asin_list.append(product['data-asin'])
 
 		# /gp/search/ref=sr_pg_3?rh=i%3Aaps%2Ck%3Afurniture&page=3&keywords=furniture&ie=UTF8&qid=1488212748&spIA=B01NBE3QE4,B014142SOQ,B01LB2TXIA,B00464AJ7U,B01M9JENJD,B00T40L0SS
 		next_page_link = soup.find("a", {'id' : 'pagnNextLink'})
@@ -108,15 +130,29 @@ class AmazonHtmlParser:
 		if (index_of_asin != -1):
 			asin_from_link = next_page_url[index_of_asin: len(next_page_url)].split(",")
 			for asin in asin_from_link:
-				asin_list.append(asin)
+				if len(asin) == 10:
+					asin_list.append(asin)
 
 		# append asin list to a csv 
+		existing_list = list()
+		with open('data/asin_list.csv', 'r') as f:
+			reader = csv.reader(f)
+			your_list = list(reader)
+			for item in your_list:
+				existing_list.append(item[0])
+
+
 		with open('data/asin_list.csv', 'a') as f:
 			writer = csv.writer(f)
 			for asin in asin_list:
-				writer.writerow([asin])
+				if asin not in existing_list:
+					writer.writerow([asin])
+				else:
+					print("Found duplicate ASIN : " + asin)
 
+		print(len(existing_list))
 		page_number = page_number + 1
+		print(url)
 		print("page_number : " + str(page_number))
 		if page_number < 19:
 			self.recursiveGetAsinListFromUrl(next_url_to_load, page_number)
@@ -125,18 +161,23 @@ class AmazonHtmlParser:
 		self.recursiveGetAsinListFromUrl(url, 1)
 
 	def getProductDescriptionFromBrowseNodeXml(self, filename, category):
-
 		with open(filename, "r") as f:
 			xml_text = f.read()
 			# soup = BeautifulSoup(response, "xml")
 		xml_soup = BeautifulSoup(xml_text, "xml")
+		print(filename)
 		if self.xmlHasChildren(xml_soup):
+			print("had children, moving on")
 			return
 		else:
+			if xml_soup.find("Name") == None:
+				return
 			this_item_name = xml_soup.find("Name").text
 			root_ancestor = self.getRootAncestor(xml_soup)
 			if root_ancestor != None:
+
 				this_item_name = root_ancestor + " " + this_item_name
+				print(len(this_item_name))
 				base_url = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=" 
 				url = base_url + this_item_name
 				self.getAsinListFromUrl(url)
@@ -172,17 +213,24 @@ class AmazonHtmlParser:
 
 	def main(self):
 		categories = self.getCategories()
+		random.shuffle(categories)
 		directory = "./data/xml/nodes/"
 		for category_dict in categories:
 			this_directory = directory + category_dict['name'] + "/"
 			if os.path.exists(this_directory):
-				for filename in os.listdir(this_directory):
+				directory_items = os.listdir(this_directory)
+				random.shuffle(directory_items)
+				for filename in directory_items:
 					self.getProductDescriptionFromBrowseNodeXml(this_directory + filename, category_dict['name'])
 
 		
 
 parser = AmazonHtmlParser()
-parser.main()
+time_0 = time.time()
+# parser.main()
+
+parser.getHtml("https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=      Cooking Wine          Red")
+
 # url = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=furniture"
 # page_number = 0
 # parser.getAsinListFromUrl(url, page_number)

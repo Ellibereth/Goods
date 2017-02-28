@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   c49d86cc-47af-40cb-a972-d00a7ad894ad
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="979847011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:12:25Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="+SObW+SsTAKHyjm1nAKgTdpCH40KLyVyTat6INK2it4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.0055148
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     979847011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    979847011
+   </BrowseNodeId>
+   <Name>
+    Aeration Equipment
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      979846011
+     </BrowseNodeId>
+     <Name>
+      Fermentation &amp; More
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        979832011
+       </BrowseNodeId>
+       <Name>
+        Home Brewing &amp; Wine Making
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          284507
+         </BrowseNodeId>
+         <Name>
+          Kitchen &amp; Dining
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1063498
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1055398
+             </BrowseNodeId>
+             <Name>
+              Home &amp; Kitchen
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

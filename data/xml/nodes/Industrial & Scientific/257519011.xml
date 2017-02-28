@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   f384a46a-cfb9-427d-9a21-7489463eb0eb
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="257519011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:56:50Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="p+Eof7OQnV/8bjcadmTwQVDlQXovTL9nIIe6oModErU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.010047863
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     257519011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    257519011
+   </BrowseNodeId>
+   <Name>
+    Indexable Inserts
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      257524011
+     </BrowseNodeId>
+     <Name>
+      Boring Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      340049011
+     </BrowseNodeId>
+     <Name>
+      Center Drill Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      257520011
+     </BrowseNodeId>
+     <Name>
+      Drilling Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      257523011
+     </BrowseNodeId>
+     <Name>
+      Grooving Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      257521011
+     </BrowseNodeId>
+     <Name>
+      Milling Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      331550011
+     </BrowseNodeId>
+     <Name>
+      Parting Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      331551011
+     </BrowseNodeId>
+     <Name>
+      Profiling Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      342529011
+     </BrowseNodeId>
+     <Name>
+      Spade Blade Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      262580011
+     </BrowseNodeId>
+     <Name>
+      Threading Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      257522011
+     </BrowseNodeId>
+     <Name>
+      Turning Inserts
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383598011
+     </BrowseNodeId>
+     <Name>
+      Cutting Tools
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

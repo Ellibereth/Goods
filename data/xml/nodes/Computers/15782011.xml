@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   ff1d26fc-0a55-42c2-9c79-91e8c12ce61d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="15782011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:35:44Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="IHZczezleb8RGq3PeB3/I/rlHQlT7v9w8DSftx8nTWw="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006746882
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     15782011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    15782011
+   </BrowseNodeId>
+   <Name>
+    Screen Protectors
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      281062
+     </BrowseNodeId>
+     <Name>
+      Monitor Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        172456
+       </BrowseNodeId>
+       <Name>
+        Computer Accessories &amp; Peripherals
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          541966
+         </BrowseNodeId>
+         <Name>
+          Computers &amp; Accessories
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            493964
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              172282
+             </BrowseNodeId>
+             <Name>
+              Electronics
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

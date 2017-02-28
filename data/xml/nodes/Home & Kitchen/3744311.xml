@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   2d85f2f1-f0ea-4e32-81c3-dacd1ecde430
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3744311"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:21:01Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="CpdhhqjAkJqkRiBkES67rvS7OSMh4Ye5V6oYQpEtiBM="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001054931
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3744311
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3744311
+   </BrowseNodeId>
+   <Name>
+    Kitchen Towel Hooks
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      9768328011
+     </BrowseNodeId>
+     <Name>
+      Countertop &amp; Wall Organization
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        510136
+       </BrowseNodeId>
+       <Name>
+        Storage &amp; Organization
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          284507
+         </BrowseNodeId>
+         <Name>
+          Kitchen &amp; Dining
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1063498
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1055398
+             </BrowseNodeId>
+             <Name>
+              Home &amp; Kitchen
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

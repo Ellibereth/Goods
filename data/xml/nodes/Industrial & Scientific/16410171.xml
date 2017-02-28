@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   56c01457-5b15-4791-870d-b21f70a8062c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16410171"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:02:45Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="X8jQMPpPUrYVFQgq/iaoh40/VaqT400Jr/RxZ4t82RY="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.009097543
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16410171
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16410171
+   </BrowseNodeId>
+   <Name>
+    Pins
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410201
+     </BrowseNodeId>
+     <Name>
+      Clevis Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410221
+     </BrowseNodeId>
+     <Name>
+      Cotter Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410231
+     </BrowseNodeId>
+     <Name>
+      Dowel Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410331
+     </BrowseNodeId>
+     <Name>
+      Linchpins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9528179011
+     </BrowseNodeId>
+     <Name>
+      Locating Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6906604011
+     </BrowseNodeId>
+     <Name>
+      Locking Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410311
+     </BrowseNodeId>
+     <Name>
+      Non-Towing Hitch Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410371
+     </BrowseNodeId>
+     <Name>
+      Quick-Release Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410401
+     </BrowseNodeId>
+     <Name>
+      Spring Pins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410421
+     </BrowseNodeId>
+     <Name>
+      Taper Pins
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383599011
+     </BrowseNodeId>
+     <Name>
+      Fasteners
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

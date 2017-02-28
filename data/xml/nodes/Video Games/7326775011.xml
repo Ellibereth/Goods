@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   c8170dc6-359e-4cdc-a267-d470775382f1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="7326775011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:39:49Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="SSD2HefrDmQdaa05U4LtzezLbdt/UgloIiY/JJ8Wsqg="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.005656539
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     7326775011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    7326775011
+   </BrowseNodeId>
+   <Name>
+    Downloadable Content
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      7326764011
+     </BrowseNodeId>
+     <Name>
+      Digital Games &amp; DLC
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        6469269011
+       </BrowseNodeId>
+       <Name>
+        Xbox One
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11846801
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            468642
+           </BrowseNodeId>
+           <Name>
+            Video Games
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e3119f50-a5e3-457d-ab03-0a4d3829a88f
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="15524333011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:50:01Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="s7ka5gneFbr/TyhqENOAeWxN7mMR+EzuQEaDV0JR8vQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.005829313
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     15524333011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    15524333011
+   </BrowseNodeId>
+   <Name>
+    Multipurpose Bathroom Cleaners
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      15347371
+     </BrowseNodeId>
+     <Name>
+      Bathroom Cleaners
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        15342821
+       </BrowseNodeId>
+       <Name>
+        Household Cleaning
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          15342811
+         </BrowseNodeId>
+         <Name>
+          Household Supplies
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            3760931
+           </BrowseNodeId>
+           <Name>
+            Products
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              3760901
+             </BrowseNodeId>
+             <Name>
+              Health &amp; Household
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

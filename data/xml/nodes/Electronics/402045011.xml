@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e65c9b22-ffa2-4ff8-838f-cf273ed22fd3
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="402045011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:59:38Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="zzKN2Z09DesI2/+UqAcV0D3wLAs8QXpuW6K2Lc4qSX8="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001697056
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     402045011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    402045011
+   </BrowseNodeId>
+   <Name>
+    Controllers
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      402046011
+     </BrowseNodeId>
+     <Name>
+      Flight Controls
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      402047011
+     </BrowseNodeId>
+     <Name>
+      Gamepads &amp; Standard Controllers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      402048011
+     </BrowseNodeId>
+     <Name>
+      Joysticks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      402049011
+     </BrowseNodeId>
+     <Name>
+      Light Guns
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10110997011
+     </BrowseNodeId>
+     <Name>
+      Music Controllers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      402050011
+     </BrowseNodeId>
+     <Name>
+      Racing Wheels
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      318813011
+     </BrowseNodeId>
+     <Name>
+      Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        229575
+       </BrowseNodeId>
+       <Name>
+        PC
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11846801
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            468642
+           </BrowseNodeId>
+           <Name>
+            Video Games
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

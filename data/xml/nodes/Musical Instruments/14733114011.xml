@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   81cdbaaf-7415-4490-9713-a1603ccf2026
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="14733114011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:22:44Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="JRs68/t2R6Z9bBytoxt/mLeu+0u/5+Zy9cB3L4Lw0IQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.006099396
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     14733114011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    14733114011
+   </BrowseNodeId>
+   <Name>
+    Ukuleles, Mandolins &amp; Banjos
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971501
+     </BrowseNodeId>
+     <Name>
+      Ukuleles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971481
+     </BrowseNodeId>
+     <Name>
+      Mandolins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11971211
+     </BrowseNodeId>
+     <Name>
+      Banjos
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11965861
+     </BrowseNodeId>
+     <Name>
+      Products
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        11091801
+       </BrowseNodeId>
+       <Name>
+        Musical Instruments
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

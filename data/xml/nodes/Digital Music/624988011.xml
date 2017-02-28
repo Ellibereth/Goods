@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   3086e378-a5f5-4af9-ae63-5a064a53effe
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="624988011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:44:31Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="YyDKZoeojrsn5w5+iUGoLwe/o0zj63NJUPCHvxPU5ns="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001299273
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     624988011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    624988011
+   </BrowseNodeId>
+   <Name>
+    Dance &amp; Electronic
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      624992011
+     </BrowseNodeId>
+     <Name>
+      Disco
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624993011
+     </BrowseNodeId>
+     <Name>
+      Drum &amp; Bass
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6188047011
+     </BrowseNodeId>
+     <Name>
+      Dubstep
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624994011
+     </BrowseNodeId>
+     <Name>
+      Electronica
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624995011
+     </BrowseNodeId>
+     <Name>
+      Freestyle
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624997011
+     </BrowseNodeId>
+     <Name>
+      House
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624998011
+     </BrowseNodeId>
+     <Name>
+      Techno
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624999011
+     </BrowseNodeId>
+     <Name>
+      Trance
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625000011
+     </BrowseNodeId>
+     <Name>
+      Trip-Hop
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625001011
+     </BrowseNodeId>
+     <Name>
+      Turntablists
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625002011
+     </BrowseNodeId>
+     <Name>
+      World Dance
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      624868011
+     </BrowseNodeId>
+     <Name>
+      Styles
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        163856011
+       </BrowseNodeId>
+       <Name>
+        Digital Music
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

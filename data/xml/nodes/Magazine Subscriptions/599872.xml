@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   8f090089-7d2f-4f7e-8025-98471d25ae5b
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="599872"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:20:23Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="XjneE0q9riBoQL/DJ0AMdA4ZSLZqKd1E8s6hPd07d3k="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.003546539
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     599872
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    599872
+   </BrowseNodeId>
+   <Name>
+    Subjects
+   </Name>
+   <IsCategoryRoot>
+    1
+   </IsCategoryRoot>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      16014521
+     </BrowseNodeId>
+     <Name>
+      Antiques &amp; Collectibles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602314
+     </BrowseNodeId>
+     <Name>
+      Arts &amp; Photography
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602316
+     </BrowseNodeId>
+     <Name>
+      Automotive
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602318
+     </BrowseNodeId>
+     <Name>
+      Brides &amp; Weddings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602320
+     </BrowseNodeId>
+     <Name>
+      Business &amp; Investing
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602322
+     </BrowseNodeId>
+     <Name>
+      Children's
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602324
+     </BrowseNodeId>
+     <Name>
+      Computers &amp; Internet
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602334
+     </BrowseNodeId>
+     <Name>
+      Cooking, Food &amp; Wine
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      769100
+     </BrowseNodeId>
+     <Name>
+      Crafts &amp; Hobbies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      252511011
+     </BrowseNodeId>
+     <Name>
+      Education
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602326
+     </BrowseNodeId>
+     <Name>
+      Electronics &amp; Audio
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602328
+     </BrowseNodeId>
+     <Name>
+      Entertainment
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602332
+     </BrowseNodeId>
+     <Name>
+      Fashion &amp; Style
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602338
+     </BrowseNodeId>
+     <Name>
+      Gay &amp; Lesbian
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602340
+     </BrowseNodeId>
+     <Name>
+      Health, Mind &amp; Body
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602342
+     </BrowseNodeId>
+     <Name>
+      History
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602344
+     </BrowseNodeId>
+     <Name>
+      Home &amp; Garden
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602346
+     </BrowseNodeId>
+     <Name>
+      International Publications
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      253238011
+     </BrowseNodeId>
+     <Name>
+      Large Print
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      253239011
+     </BrowseNodeId>
+     <Name>
+      Law
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602348
+     </BrowseNodeId>
+     <Name>
+      Lifestyle &amp; Cultures
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602350
+     </BrowseNodeId>
+     <Name>
+      Literary Magazines &amp; Journals
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1116172
+     </BrowseNodeId>
+     <Name>
+      Medicine
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602352
+     </BrowseNodeId>
+     <Name>
+      Men's Interest
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      253352011
+     </BrowseNodeId>
+     <Name>
+      Movies &amp; Music
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602358
+     </BrowseNodeId>
+     <Name>
+      News &amp; Politics
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16416041
+     </BrowseNodeId>
+     <Name>
+      Newsletters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1040160
+     </BrowseNodeId>
+     <Name>
+      Newspapers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      253359011
+     </BrowseNodeId>
+     <Name>
+      Outdoors &amp; Nature
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602330
+     </BrowseNodeId>
+     <Name>
+      Parenting &amp; Families
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602360
+     </BrowseNodeId>
+     <Name>
+      Pets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1115660
+     </BrowseNodeId>
+     <Name>
+      Professional &amp; Trade
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      254105011
+     </BrowseNodeId>
+     <Name>
+      Reference
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      254109011
+     </BrowseNodeId>
+     <Name>
+      Regional Publications
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602362
+     </BrowseNodeId>
+     <Name>
+      Religion &amp; Spirituality
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602364
+     </BrowseNodeId>
+     <Name>
+      Science &amp; Nature
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      254618011
+     </BrowseNodeId>
+     <Name>
+      Science Fiction &amp; Fantasy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1040158
+     </BrowseNodeId>
+     <Name>
+      Spanish-Language
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602366
+     </BrowseNodeId>
+     <Name>
+      Sports &amp; Leisure
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602368
+     </BrowseNodeId>
+     <Name>
+      Teens
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      254716011
+     </BrowseNodeId>
+     <Name>
+      Transportation
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602370
+     </BrowseNodeId>
+     <Name>
+      Travel &amp; Regional
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      602372
+     </BrowseNodeId>
+     <Name>
+      Women's Interest
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      599858
+     </BrowseNodeId>
+     <Name>
+      Magazine Subscriptions
+     </Name>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

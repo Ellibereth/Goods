@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   4dcba28e-c32b-4cc1-a184-371c3e48acda
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3024219011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:30:34Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="YUYYyAkXqCtju6PIZleqCrVLcQI5S0gyHCvw2FavZPs="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002289194
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3024219011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3024219011
+   </BrowseNodeId>
+   <Name>
+    Fish Oil Supplements
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975397011
+     </BrowseNodeId>
+     <Name>
+      Supplements &amp; Vitamins
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2975377011
+       </BrowseNodeId>
+       <Name>
+        Health Supplies
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2975312011
+         </BrowseNodeId>
+         <Name>
+          Dogs
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            2619534011
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              2619533011
+             </BrowseNodeId>
+             <Name>
+              Pet Supplies
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

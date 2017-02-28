@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   fb60db47-2477-4eca-8b97-9e92235a5c67
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="13981621"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:18:52Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="GgyIF1HEHEkV8ij4OJcIYZ+kAVqZyqNwsX9j5hfin7g="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001805169
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     13981621
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    13981621
+   </BrowseNodeId>
+   <Name>
+    FM Transmitters
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      9926001011
+     </BrowseNodeId>
+     <Name>
+      Bluetooth &amp; FM Transmitters
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        290438
+       </BrowseNodeId>
+       <Name>
+        MP3 &amp; MP4 Player Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          172623
+         </BrowseNodeId>
+         <Name>
+          Portable Audio &amp; Video
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            493964
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              172282
+             </BrowseNodeId>
+             <Name>
+              Electronics
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

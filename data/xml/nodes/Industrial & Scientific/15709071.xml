@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   f80776da-674d-4c90-839b-03c0a114e462
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="15709071"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:00:30Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="9zUgDB5TzPb0FrKbeWbRbUtaZ+erJ+qTHAjzJRXJjAc="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001121556
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     15709071
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    15709071
+   </BrowseNodeId>
+   <Name>
+    Thread Repair Kits
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      15709081
+     </BrowseNodeId>
+     <Name>
+      Inch Inserts &amp; Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15709091
+     </BrowseNodeId>
+     <Name>
+      Metric Inserts &amp; Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15709101
+     </BrowseNodeId>
+     <Name>
+      Spark Plug Thread Repair Kits
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      15706941
+     </BrowseNodeId>
+     <Name>
+      Tools &amp; Equipment
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        15690151
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          15684181
+         </BrowseNodeId>
+         <Name>
+          Automotive
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

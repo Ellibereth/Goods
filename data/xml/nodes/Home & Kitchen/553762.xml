@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   d5f2a6c3-45e7-4233-94ba-0760313bbfee
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="553762"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:16:36Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="08BYvwPRswd+/7luaeBYHbXU0PUnEB9riHy3VG4/vjY="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001888331
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     553762
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    553762
+   </BrowseNodeId>
+   <Name>
+    Grilling &amp; Barbecue Utensils
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      9001153011
+     </BrowseNodeId>
+     <Name>
+      Barbecue Forks &amp; Claws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13750221
+     </BrowseNodeId>
+     <Name>
+      Barbecue Skewers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13750241
+     </BrowseNodeId>
+     <Name>
+      Barbecue Tongs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13791161
+     </BrowseNodeId>
+     <Name>
+      Barbecue Tool Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13750251
+     </BrowseNodeId>
+     <Name>
+      Barbecue Turners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3614833011
+     </BrowseNodeId>
+     <Name>
+      Basting Brushes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16135370011
+     </BrowseNodeId>
+     <Name>
+      Grill Presses &amp; Irons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289810
+     </BrowseNodeId>
+     <Name>
+      Meat Thermometers
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      13299251
+     </BrowseNodeId>
+     <Name>
+      Outdoor Cooking Tools &amp; Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        553760
+       </BrowseNodeId>
+       <Name>
+        Grills &amp; Outdoor Cooking
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3238155011
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            2972638011
+           </BrowseNodeId>
+           <Name>
+            Patio, Lawn &amp; Garden
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

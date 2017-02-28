@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   6372c2ea-8e01-476e-b7bd-3c2502bf9c06
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="13679381"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:40:05Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="3ZUW3Wesf18Eb6uHzdzPQ7P3trnyataNraLe6Xje/iw="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001469847
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     13679381
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    13679381
+   </BrowseNodeId>
+   <Name>
+    Seasonal Décor
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3256921011
+     </BrowseNodeId>
+     <Name>
+      Advent Calendars
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15704031
+     </BrowseNodeId>
+     <Name>
+      Artificial Snow
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15704041
+     </BrowseNodeId>
+     <Name>
+      Candleholders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13679441
+     </BrowseNodeId>
+     <Name>
+      Candles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1258670011
+     </BrowseNodeId>
+     <Name>
+      Collectible Buildings &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1258672011
+     </BrowseNodeId>
+     <Name>
+      Collectible Figurines
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      702628011
+     </BrowseNodeId>
+     <Name>
+      Nativity
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15704431
+     </BrowseNodeId>
+     <Name>
+      Nutcrackers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16175652011
+     </BrowseNodeId>
+     <Name>
+      Ornament Hooks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      12659354011
+     </BrowseNodeId>
+     <Name>
+      Ornaments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      285033011
+     </BrowseNodeId>
+     <Name>
+      Outdoor Holiday Décor
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3736751
+     </BrowseNodeId>
+     <Name>
+      Seasonal Lighting
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15704441
+     </BrowseNodeId>
+     <Name>
+      Snow Globes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13744821
+     </BrowseNodeId>
+     <Name>
+      Stockings &amp; Holders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15704451
+     </BrowseNodeId>
+     <Name>
+      Tree Skirts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13350211
+     </BrowseNodeId>
+     <Name>
+      Tree Stands
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13744831
+     </BrowseNodeId>
+     <Name>
+      Tree Toppers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13679421
+     </BrowseNodeId>
+     <Name>
+      Trees
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16175650011
+     </BrowseNodeId>
+     <Name>
+      Wreath Hangers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13679411
+     </BrowseNodeId>
+     <Name>
+      Wreaths, Garlands &amp; Swags
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063498
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1055398
+       </BrowseNodeId>
+       <Name>
+        Home &amp; Kitchen
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

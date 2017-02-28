@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   907e73c8-598b-4125-a1f7-601d5b604ed0
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="166752011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:53:20Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="oWtSSJKbxVwlTpa2DLMJ16QIU0MYByNwuAfs7dKKPqc="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008133005
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     166752011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    166752011
+   </BrowseNodeId>
+   <Name>
+    Crib Bedding
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      302875011
+     </BrowseNodeId>
+     <Name>
+      Bed Skirts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      302876011
+     </BrowseNodeId>
+     <Name>
+      Bedding Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166753011
+     </BrowseNodeId>
+     <Name>
+      Bumpers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2237482011
+     </BrowseNodeId>
+     <Name>
+      Crib Netting
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      302878011
+     </BrowseNodeId>
+     <Name>
+      Mattress Pads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      302879011
+     </BrowseNodeId>
+     <Name>
+      Sheets
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      166742011
+     </BrowseNodeId>
+     <Name>
+      Bedding
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        11625834011
+       </BrowseNodeId>
+       <Name>
+        Beds, Cribs &amp; Bedding
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          695338011
+         </BrowseNodeId>
+         <Name>
+          Nursery
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            165797011
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              165796011
+             </BrowseNodeId>
+             <Name>
+              Baby Products
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

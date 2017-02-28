@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   ce54cd84-7580-4309-ac75-b3b6229e1137
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="193870011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:03:43Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="rl5cDwTgM4AX6gumByD2vqAXdGTfTVwGfsKlJ8WZtbA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001939724
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     193870011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    193870011
+   </BrowseNodeId>
+   <Name>
+    Computer Components
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      572238
+     </BrowseNodeId>
+     <Name>
+      Computer Cases
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      229189
+     </BrowseNodeId>
+     <Name>
+      CPU Processors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3015426011
+     </BrowseNodeId>
+     <Name>
+      Desktop Barebones
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1292112011
+     </BrowseNodeId>
+     <Name>
+      External Optical Drives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3015427011
+     </BrowseNodeId>
+     <Name>
+      External Sound Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3015428011
+     </BrowseNodeId>
+     <Name>
+      External TV Tuners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3012290011
+     </BrowseNodeId>
+     <Name>
+      Fans &amp; Cooling
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      284822
+     </BrowseNodeId>
+     <Name>
+      Graphics Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3012291011
+     </BrowseNodeId>
+     <Name>
+      I/O Port Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3310626011
+     </BrowseNodeId>
+     <Name>
+      Internal Memory Card Readers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172508
+     </BrowseNodeId>
+     <Name>
+      Internal Modems
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1292107011
+     </BrowseNodeId>
+     <Name>
+      Internal Optical Drives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      284823
+     </BrowseNodeId>
+     <Name>
+      Internal Sound Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6795230011
+     </BrowseNodeId>
+     <Name>
+      Internal TV Tuner &amp; Capture Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13983771
+     </BrowseNodeId>
+     <Name>
+      KVM Switches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6795229011
+     </BrowseNodeId>
+     <Name>
+      Laptop Replacement Parts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172500
+     </BrowseNodeId>
+     <Name>
+      Memory
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1048424
+     </BrowseNodeId>
+     <Name>
+      Motherboards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13983711
+     </BrowseNodeId>
+     <Name>
+      Network Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1161760
+     </BrowseNodeId>
+     <Name>
+      Power Supplies
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      541966
+     </BrowseNodeId>
+     <Name>
+      Computers &amp; Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        493964
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          172282
+         </BrowseNodeId>
+         <Name>
+          Electronics
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

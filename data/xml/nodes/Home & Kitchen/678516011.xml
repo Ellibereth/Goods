@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   6a6f4b08-c1ac-4bcc-9aec-5bfae30aa44e
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="678516011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:14:23Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="2ySMilqFweVRnLl+Upoeu8r1CBam6paTBZkUuA9Vj+A="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002120391
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     678516011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    678516011
+   </BrowseNodeId>
+   <Name>
+    Garlic Keepers
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      760382
+     </BrowseNodeId>
+     <Name>
+      Garlic Tools
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        289779
+       </BrowseNodeId>
+       <Name>
+        Seasoning &amp; Spice Tools
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          289754
+         </BrowseNodeId>
+         <Name>
+          Kitchen Utensils &amp; Gadgets
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            284507
+           </BrowseNodeId>
+           <Name>
+            Kitchen &amp; Dining
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1063498
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                1055398
+               </BrowseNodeId>
+               <Name>
+                Home &amp; Kitchen
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

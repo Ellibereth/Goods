@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   288dadff-20b9-40bb-9047-2815e328a28b
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="367201011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:08:10Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="V7f8rmD7GlpQaFXwYBOGH8M39VYq3GP4kf4aSWbygw4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001731478
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     367201011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    367201011
+   </BrowseNodeId>
+   <Name>
+    Serving Dishes, Trays &amp; Platters
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      367204011
+     </BrowseNodeId>
+     <Name>
+      Candy Dishes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367205011
+     </BrowseNodeId>
+     <Name>
+      Celery, Pickle &amp; Relish Dishes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367207011
+     </BrowseNodeId>
+     <Name>
+      Chip &amp; Dip Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367209011
+     </BrowseNodeId>
+     <Name>
+      Deviled Egg Plates
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367210011
+     </BrowseNodeId>
+     <Name>
+      Divided Trays &amp; Platters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9298962011
+     </BrowseNodeId>
+     <Name>
+      Egg Trays
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367212011
+     </BrowseNodeId>
+     <Name>
+      Olive Dishes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      678544011
+     </BrowseNodeId>
+     <Name>
+      Platters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6054860011
+     </BrowseNodeId>
+     <Name>
+      Restaurant Baskets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      678547011
+     </BrowseNodeId>
+     <Name>
+      Serving Trays
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367219011
+     </BrowseNodeId>
+     <Name>
+      Tiered Trays &amp; Platters
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      367165011
+     </BrowseNodeId>
+     <Name>
+      Serveware
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        13162311
+       </BrowseNodeId>
+       <Name>
+        Dining &amp; Entertaining
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          284507
+         </BrowseNodeId>
+         <Name>
+          Kitchen &amp; Dining
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1063498
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1055398
+             </BrowseNodeId>
+             <Name>
+              Home &amp; Kitchen
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

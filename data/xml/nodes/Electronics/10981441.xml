@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   61496825-7b4f-4fbe-b61b-f74f675c48c3
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="10981441"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:53:04Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="qHlXm2HbL/GK/J9givqS4NheftcOLRZABYmSxVbSGXI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008929364
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     10981441
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    10981441
+   </BrowseNodeId>
+   <Name>
+    Amplifier Installation
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981611
+     </BrowseNodeId>
+     <Name>
+      Amplifier Wiring Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981451
+     </BrowseNodeId>
+     <Name>
+      Battery Wiring &amp; Terminals
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981571
+     </BrowseNodeId>
+     <Name>
+      Capacitors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981621
+     </BrowseNodeId>
+     <Name>
+      Cooling Fans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11041951
+     </BrowseNodeId>
+     <Name>
+      Distribution Blocks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981511
+     </BrowseNodeId>
+     <Name>
+      Fuse Holders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981491
+     </BrowseNodeId>
+     <Name>
+      Fuses
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981501
+     </BrowseNodeId>
+     <Name>
+      Heat-Shrink Tubing
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981531
+     </BrowseNodeId>
+     <Name>
+      Interconnect Cables
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981581
+     </BrowseNodeId>
+     <Name>
+      Mounting Hardware
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981591
+     </BrowseNodeId>
+     <Name>
+      Noise Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981521
+     </BrowseNodeId>
+     <Name>
+      Power &amp; Ground Cable
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981471
+     </BrowseNodeId>
+     <Name>
+      Power-Cable Terminals
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981481
+     </BrowseNodeId>
+     <Name>
+      Power-Distribution Components
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981461
+     </BrowseNodeId>
+     <Name>
+      Power-Distribution Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5811989011
+     </BrowseNodeId>
+     <Name>
+      Amplifier Harnesses
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      10981311
+     </BrowseNodeId>
+     <Name>
+      Vehicle Audio &amp; Video Installation
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        10981291
+       </BrowseNodeId>
+       <Name>
+        Vehicle Electronics Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3248684011
+         </BrowseNodeId>
+         <Name>
+          Car &amp; Vehicle Electronics
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            493964
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              172282
+             </BrowseNodeId>
+             <Name>
+              Electronics
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

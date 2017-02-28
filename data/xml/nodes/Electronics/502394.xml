@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   05eb449b-5844-4875-a781-5f6d04505535
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="502394"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:33:50Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="rswMR953JxtlgSs0ZmKKnR1cCBE0t6eVAcP556WWIhw="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001802324
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     502394
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    502394
+   </BrowseNodeId>
+   <Name>
+    Camera &amp; Photo
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      172435
+     </BrowseNodeId>
+     <Name>
+      Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172437
+     </BrowseNodeId>
+     <Name>
+      Bags &amp; Cases
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      499320
+     </BrowseNodeId>
+     <Name>
+      Binoculars &amp; Scopes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      281052
+     </BrowseNodeId>
+     <Name>
+      Digital Cameras
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7161070011
+     </BrowseNodeId>
+     <Name>
+      Film Photography
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172447
+     </BrowseNodeId>
+     <Name>
+      Flashes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      499248
+     </BrowseNodeId>
+     <Name>
+      Lenses
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7161086011
+     </BrowseNodeId>
+     <Name>
+      Lighting &amp; Studio
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7161073011
+     </BrowseNodeId>
+     <Name>
+      Video
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      499328
+     </BrowseNodeId>
+     <Name>
+      Printers &amp; Scanners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      525462
+     </BrowseNodeId>
+     <Name>
+      Projectors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      499306
+     </BrowseNodeId>
+     <Name>
+      Tripods &amp; Monopods
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3350161
+     </BrowseNodeId>
+     <Name>
+      Underwater Photography
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7161091011
+     </BrowseNodeId>
+     <Name>
+      Video Surveillance
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      493964
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        172282
+       </BrowseNodeId>
+       <Name>
+        Electronics
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

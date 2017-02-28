@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   c8556e04-02c1-48d7-9ef4-9a4ecc8c4ff2
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3760931"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T17:44:48Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="lVQyMPaJFbjSzV6P1r5qYUga1L51CU3aJ845R2ByK8c="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002213806
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3760931
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3760931
+   </BrowseNodeId>
+   <Name>
+    Products
+   </Name>
+   <IsCategoryRoot>
+    1
+   </IsCategoryRoot>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      10787321
+     </BrowseNodeId>
+     <Name>
+      Baby &amp; Child Care
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3760941
+     </BrowseNodeId>
+     <Name>
+      Health Care
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15342811
+     </BrowseNodeId>
+     <Name>
+      Household Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3775161
+     </BrowseNodeId>
+     <Name>
+      Medical Supplies &amp; Equipment
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10079992011
+     </BrowseNodeId>
+     <Name>
+      Oral Care
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3777891
+     </BrowseNodeId>
+     <Name>
+      Personal Care
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3777371
+     </BrowseNodeId>
+     <Name>
+      Sexual Wellness
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6973663011
+     </BrowseNodeId>
+     <Name>
+      Sports Nutrition
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      723418011
+     </BrowseNodeId>
+     <Name>
+      Stationery &amp; Gift Wrapping Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10079994011
+     </BrowseNodeId>
+     <Name>
+      Vision Care
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3764441
+     </BrowseNodeId>
+     <Name>
+      Vitamins &amp; Dietary Supplements
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10079996011
+     </BrowseNodeId>
+     <Name>
+      Wellness &amp; Relaxation
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3760901
+     </BrowseNodeId>
+     <Name>
+      Health &amp; Household
+     </Name>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

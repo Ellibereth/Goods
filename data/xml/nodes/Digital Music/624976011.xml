@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   17208759-10ac-43df-af84-62ab05e0f2c9
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="624976011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:44:11Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="DeoSBhyt3nhr07Dq8onXXVERL8WxA0Gb38qoQra1aqU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002296505
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     624976011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    624976011
+   </BrowseNodeId>
+   <Name>
+    Country
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      624977011
+     </BrowseNodeId>
+     <Name>
+      Alt-Country &amp; Americana
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624978011
+     </BrowseNodeId>
+     <Name>
+      Bluegrass
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624980011
+     </BrowseNodeId>
+     <Name>
+      Contemporary Country
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624981011
+     </BrowseNodeId>
+     <Name>
+      Cowboy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624983011
+     </BrowseNodeId>
+     <Name>
+      Honky-Tonk
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624985011
+     </BrowseNodeId>
+     <Name>
+      Outlaw &amp; Progressive Country
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624986011
+     </BrowseNodeId>
+     <Name>
+      Traditional Country
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624987011
+     </BrowseNodeId>
+     <Name>
+      Western Swing
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      624868011
+     </BrowseNodeId>
+     <Name>
+      Styles
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        163856011
+       </BrowseNodeId>
+       <Name>
+        Digital Music
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

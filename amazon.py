@@ -44,30 +44,53 @@ class AmazonManager:
 
 	def recursiveBrowseNodes(self, NodeId, depth, category):
 		print(" depth level is : " + str(depth))
-		response = self.amazon.BrowseNodeLookup(BrowseNodeId = NodeId)
-		directory = "data/xml/nodes/" + category 
+		
+		directory = "data/xml/nodes/" + category
+		print(" directory : " + directory)
 		if not os.path.exists(directory):
 			os.makedirs(directory)
 
-		with open(directory + "/" + NodeId + ".xml", "wb") as f:
-			soup = BeautifulSoup(response, "xml")
-			f.write(soup.prettify())
+
+		
+		end_extension = "/" + NodeId + ".xml"
+		end_extension = end_extension.replace("\n", "")
+		end_extension = end_extension.replace(" " , "")
+
+		file_directory = directory + end_extension
+
+		print("file_directory : "  + file_directory)
+
+		if os.path.isfile(file_directory):
+			print("found existing xml file")
+			with open(file_directory, 'r') as f:
+				response = f.read()
+			# print(horse)
+
+		else:
+			response = self.amazon.BrowseNodeLookup(BrowseNodeId = NodeId)
+			
+			with open(file_directory, "w") as f:
+				soup = BeautifulSoup(response, "xml")
+				f.write(soup.prettify())
+			sleep_time = random.uniform(0,1) + 0.25
+			time.sleep(sleep_time)
+
 		print(NodeId)
 		print(category)
+		print(time.time())
 		print("-----------------------------------")
 		children_nodes = self.getNodeChildren(response)
 		if depth > 10:
 			return
 		for child_node in children_nodes:
 			self.recursiveBrowseNodes(child_node, depth + 1, category)
-			time.sleep(1.6)
+			
 			
 
 
 	# need functions to interpret the xml
 def main():
 	amazon_manager = AmazonManager()
-
 	workbook = xlrd.open_workbook('AmazonNodeId.xlsx')
 	categories = list()
 	for sheet in workbook.sheets():
@@ -82,11 +105,14 @@ def main():
 			category_dict['NodeId'] = NodeId
 			categories.append(category_dict)
 
+	check = False
 	for category in categories:
 		directory = "data/xml/nodes/" + category['name']
 		if not os.path.exists(directory):
 			os.makedirs(directory)
-		if category['NodeId'] != "1063498":
+		if category['NodeId'] == "16310161":
+			check = True
+		if check:
 			amazon_manager.browseNodes(category['NodeId'], category['name'])
 
 main()

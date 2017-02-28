@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e0148725-9d46-4c8e-b3fb-8f3cacbaf050
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="367305011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:05:06Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="1SQbqciDAdyJJiMppNujoHmBom40A4jc7gSMR3N56y4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001054997
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     367305011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    367305011
+   </BrowseNodeId>
+   <Name>
+    Serving Spoons
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      367265011
+     </BrowseNodeId>
+     <Name>
+      Berry Spoons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367275011
+     </BrowseNodeId>
+     <Name>
+      Casserole Spoons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367284011
+     </BrowseNodeId>
+     <Name>
+      Cracker Spoons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367291011
+     </BrowseNodeId>
+     <Name>
+      Jelly Servers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367294011
+     </BrowseNodeId>
+     <Name>
+      Olive Spoons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367297011
+     </BrowseNodeId>
+     <Name>
+      Pierced Serving Spoons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367300011
+     </BrowseNodeId>
+     <Name>
+      Rice &amp; Potato Servers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367308011
+     </BrowseNodeId>
+     <Name>
+      Sugar Spoons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      367310011
+     </BrowseNodeId>
+     <Name>
+      Tablespoons
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      367259011
+     </BrowseNodeId>
+     <Name>
+      Serving Utensils
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        13218891
+       </BrowseNodeId>
+       <Name>
+        Flatware
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          13162311
+         </BrowseNodeId>
+         <Name>
+          Dining &amp; Entertaining
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            284507
+           </BrowseNodeId>
+           <Name>
+            Kitchen &amp; Dining
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              1063498
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                1055398
+               </BrowseNodeId>
+               <Name>
+                Home &amp; Kitchen
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

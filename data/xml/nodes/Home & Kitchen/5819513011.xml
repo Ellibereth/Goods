@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   e52753bd-419f-40ef-bab0-fb866db808d7
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="5819513011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:52:14Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="WfC/qhY0c9UOW8qqDM1z4NcAEWQQNvLL+eK0Dwv2dMU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001027347
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     5819513011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    5819513011
+   </BrowseNodeId>
+   <Name>
+    Dressers
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      5821987011
+     </BrowseNodeId>
+     <Name>
+      Chests &amp; Dressers
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        11625840011
+       </BrowseNodeId>
+       <Name>
+        Changing &amp; Dressing
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          166809011
+         </BrowseNodeId>
+         <Name>
+          Furniture
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            695338011
+           </BrowseNodeId>
+           <Name>
+            Nursery
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              165797011
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                165796011
+               </BrowseNodeId>
+               <Name>
+                Baby Products
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

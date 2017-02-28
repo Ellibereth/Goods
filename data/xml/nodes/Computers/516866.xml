@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   1341f019-2f07-4c33-b408-2e7eb860abc7
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="516866"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:35:12Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="NQKJgnRIGRQCKtnR3fL5eOzMhFWtJ5puz7oEk/wuWhI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001370953
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     516866
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    516866
+   </BrowseNodeId>
+   <Name>
+    Memory Cards
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      1197392
+     </BrowseNodeId>
+     <Name>
+      CompactFlash Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1197394
+     </BrowseNodeId>
+     <Name>
+      Memory Sticks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3015433011
+     </BrowseNodeId>
+     <Name>
+      Micro SD Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15874171
+     </BrowseNodeId>
+     <Name>
+      MiniSD Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15874211
+     </BrowseNodeId>
+     <Name>
+      Multimedia Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1197396
+     </BrowseNodeId>
+     <Name>
+      SD &amp; SDHC Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1197400
+     </BrowseNodeId>
+     <Name>
+      SmartMedia Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15874191
+     </BrowseNodeId>
+     <Name>
+      xD-Picture Cards
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      172456
+     </BrowseNodeId>
+     <Name>
+      Computer Accessories &amp; Peripherals
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        541966
+       </BrowseNodeId>
+       <Name>
+        Computers &amp; Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          493964
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            172282
+           </BrowseNodeId>
+           <Name>
+            Electronics
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

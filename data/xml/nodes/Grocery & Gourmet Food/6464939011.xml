@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   9f979a12-ecad-4dc7-98a4-c7a2f01483e3
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="6464939011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:37:55Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="D6VUy3OUYD9pm9UaEs35xpkjCvfUtdmHhSChfWYRGAU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001387089
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     6464939011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    6464939011
+   </BrowseNodeId>
+   <Name>
+    Canned, Jarred &amp; Packaged Foods
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      9847696011
+     </BrowseNodeId>
+     <Name>
+      Antipasto
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464940011
+     </BrowseNodeId>
+     <Name>
+      Beans &amp; Peas
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464947011
+     </BrowseNodeId>
+     <Name>
+      Fruits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464978011
+     </BrowseNodeId>
+     <Name>
+      Meat Substitutes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464972011
+     </BrowseNodeId>
+     <Name>
+      Meat, Poultry &amp; Seafood
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464979011
+     </BrowseNodeId>
+     <Name>
+      Sloppy Joe Mix
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6465007011
+     </BrowseNodeId>
+     <Name>
+      Vegetables
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310211
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310101
+       </BrowseNodeId>
+       <Name>
+        Grocery &amp; Gourmet Food
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

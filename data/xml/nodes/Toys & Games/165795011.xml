@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   bc38f76d-6ec2-4022-9314-1177f1d4b9ca
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="165795011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:36:55Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="RLOItSUYe6/kaWbwHYXoqjN6OIcnUoap+yZl0xYiMjQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.00269522
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     165795011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    165795011
+   </BrowseNodeId>
+   <Name>
+    Categories
+   </Name>
+   <IsCategoryRoot>
+    1
+   </IsCategoryRoot>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      165993011
+     </BrowseNodeId>
+     <Name>
+      Action Figures &amp; Statues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166057011
+     </BrowseNodeId>
+     <Name>
+      Arts &amp; Crafts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      196601011
+     </BrowseNodeId>
+     <Name>
+      Baby &amp; Toddler Toys
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166092011
+     </BrowseNodeId>
+     <Name>
+      Building Toys
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166118011
+     </BrowseNodeId>
+     <Name>
+      Dolls &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166316011
+     </BrowseNodeId>
+     <Name>
+      Dress Up &amp; Pretend Play
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166164011
+     </BrowseNodeId>
+     <Name>
+      Kids' Electronics
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166220011
+     </BrowseNodeId>
+     <Name>
+      Games
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3226142011
+     </BrowseNodeId>
+     <Name>
+      Grown-Up Toys
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      276729011
+     </BrowseNodeId>
+     <Name>
+      Hobbies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166210011
+     </BrowseNodeId>
+     <Name>
+      Kids' Furniture, Décor &amp; Storage
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166269011
+     </BrowseNodeId>
+     <Name>
+      Learning &amp; Education
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166027011
+     </BrowseNodeId>
+     <Name>
+      Novelty &amp; Gag Toys
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1266203011
+     </BrowseNodeId>
+     <Name>
+      Party Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166333011
+     </BrowseNodeId>
+     <Name>
+      Puppets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166359011
+     </BrowseNodeId>
+     <Name>
+      Puzzles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166420011
+     </BrowseNodeId>
+     <Name>
+      Sports &amp; Outdoor Play
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166461011
+     </BrowseNodeId>
+     <Name>
+      Stuffed Animals &amp; Plush Toys
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166508011
+     </BrowseNodeId>
+     <Name>
+      Toy Remote Control &amp; Play Vehicles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256994011
+     </BrowseNodeId>
+     <Name>
+      Tricycles, Scooters &amp; Wagons
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8794716011
+     </BrowseNodeId>
+     <Name>
+      Video Games
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      165793011
+     </BrowseNodeId>
+     <Name>
+      Toys &amp; Games
+     </Name>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

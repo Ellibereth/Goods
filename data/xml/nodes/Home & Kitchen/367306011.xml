@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   44f748bd-563f-4ac6-832b-568f06f51baa
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="367306011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:04:44Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="gjbQATs7t2lZ2dRWft7X2Xg6xUwgFaRfRl5SjSf3XNY="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001690531
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     367306011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    367306011
+   </BrowseNodeId>
+   <Name>
+    Soup Ladles
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      643697011
+     </BrowseNodeId>
+     <Name>
+      Ladles
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        367259011
+       </BrowseNodeId>
+       <Name>
+        Serving Utensils
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          13218891
+         </BrowseNodeId>
+         <Name>
+          Flatware
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            13162311
+           </BrowseNodeId>
+           <Name>
+            Dining &amp; Entertaining
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              284507
+             </BrowseNodeId>
+             <Name>
+              Kitchen &amp; Dining
+             </Name>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                1063498
+               </BrowseNodeId>
+               <Name>
+                Categories
+               </Name>
+               <IsCategoryRoot>
+                1
+               </IsCategoryRoot>
+               <Ancestors>
+                <BrowseNode>
+                 <BrowseNodeId>
+                  1055398
+                 </BrowseNodeId>
+                 <Name>
+                  Home &amp; Kitchen
+                 </Name>
+                </BrowseNode>
+               </Ancestors>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

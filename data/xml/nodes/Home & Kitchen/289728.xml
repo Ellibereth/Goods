@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   b469d425-a309-4e20-a810-cb14aaf7b606
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="289728"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:01:40Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Tiu3K7yj7kGEr4n+VMVVCy6LMt6+7/hj6SZ6CMrmci4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002642304
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     289728
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    289728
+   </BrowseNodeId>
+   <Name>
+    Bar Tools &amp; Glasses
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      289731
+     </BrowseNodeId>
+     <Name>
+      Bar Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3736991
+     </BrowseNodeId>
+     <Name>
+      Bar Strainers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5817285011
+     </BrowseNodeId>
+     <Name>
+      Bar, Cocktail &amp; Wine Glasses
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      498924
+     </BrowseNodeId>
+     <Name>
+      Coasters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2566762011
+     </BrowseNodeId>
+     <Name>
+      Cocktail Napkins
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2566771011
+     </BrowseNodeId>
+     <Name>
+      Cocktail Picks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289733
+     </BrowseNodeId>
+     <Name>
+      Cocktail Shakers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289734
+     </BrowseNodeId>
+     <Name>
+      Corkscrews &amp; Openers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9298943011
+     </BrowseNodeId>
+     <Name>
+      Decanters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13789651
+     </BrowseNodeId>
+     <Name>
+      Flasks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2566775011
+     </BrowseNodeId>
+     <Name>
+      Glass Markers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289735
+     </BrowseNodeId>
+     <Name>
+      Ice Buckets &amp; Tongs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289732
+     </BrowseNodeId>
+     <Name>
+      Ice Crushers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      643700011
+     </BrowseNodeId>
+     <Name>
+      Ice Tongs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2566780011
+     </BrowseNodeId>
+     <Name>
+      Jiggers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2566781011
+     </BrowseNodeId>
+     <Name>
+      Muddlers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2566783011
+     </BrowseNodeId>
+     <Name>
+      Rimming Salts &amp; Sugars
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      49572011
+     </BrowseNodeId>
+     <Name>
+      Seltzer Bottles &amp; Chargers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2566784011
+     </BrowseNodeId>
+     <Name>
+      Swizzle Sticks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289737
+     </BrowseNodeId>
+     <Name>
+      Wine Stoppers &amp; Pourers
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      13162311
+     </BrowseNodeId>
+     <Name>
+      Dining &amp; Entertaining
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        284507
+       </BrowseNodeId>
+       <Name>
+        Kitchen &amp; Dining
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1063498
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1055398
+           </BrowseNodeId>
+           <Name>
+            Home &amp; Kitchen
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

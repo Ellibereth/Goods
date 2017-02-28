@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   a945dd8e-d5ce-4269-ad8b-fb9118ddc3fe
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2975280011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:31:59Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="oDy8wYP7dD9FTcsfR2BtCzJgsCPP+9+aW4E3vmP/nCI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.007788193
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2975280011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2975280011
+   </BrowseNodeId>
+   <Name>
+    Flea &amp; Tick Control
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975281011
+     </BrowseNodeId>
+     <Name>
+      Flea Collars
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975282011
+     </BrowseNodeId>
+     <Name>
+      Flea Combs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975283011
+     </BrowseNodeId>
+     <Name>
+      Flea Shampoos
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975284011
+     </BrowseNodeId>
+     <Name>
+      Cat Flea Powders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975285011
+     </BrowseNodeId>
+     <Name>
+      Cat Flea Sprays
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975286011
+     </BrowseNodeId>
+     <Name>
+      Tick Remover Tools
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3024156011
+     </BrowseNodeId>
+     <Name>
+      Carpet Flea Powders &amp; Sprays
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3024160011
+     </BrowseNodeId>
+     <Name>
+      Flea Drops
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975241011
+     </BrowseNodeId>
+     <Name>
+      Cats
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2619534011
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2619533011
+         </BrowseNodeId>
+         <Name>
+          Pet Supplies
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

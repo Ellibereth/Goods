@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   64c4bbc0-0f52-46ee-9cff-f30d8c53837d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16310161"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:51:41Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="UfiiYXbV/YapDuLirmIOXq+lwckR6Xc/5ES82Gxw5Ng="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002764881
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16310161
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16310161
+   </BrowseNodeId>
+   <Name>
+    Categories
+   </Name>
+   <IsCategoryRoot>
+    1
+   </IsCategoryRoot>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      256167011
+     </BrowseNodeId>
+     <Name>
+      Abrasive &amp; Finishing Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6066126011
+     </BrowseNodeId>
+     <Name>
+      Additive Manufacturing Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10773802011
+     </BrowseNodeId>
+     <Name>
+      Commercial Door Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      383598011
+     </BrowseNodeId>
+     <Name>
+      Cutting Tools
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      383599011
+     </BrowseNodeId>
+     <Name>
+      Fasteners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3061625011
+     </BrowseNodeId>
+     <Name>
+      Filtration
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6054382011
+     </BrowseNodeId>
+     <Name>
+      Food Service Equipment &amp; Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3021479011
+     </BrowseNodeId>
+     <Name>
+      Hydraulics, Pneumatics &amp; Plumbing
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      306506011
+     </BrowseNodeId>
+     <Name>
+      Industrial Electrical
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16412251
+     </BrowseNodeId>
+     <Name>
+      Industrial Hardware
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3021459011
+     </BrowseNodeId>
+     <Name>
+      Industrial Power &amp; Hand Tools
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      317971011
+     </BrowseNodeId>
+     <Name>
+      Janitorial &amp; Sanitation Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      317970011
+     </BrowseNodeId>
+     <Name>
+      Lab &amp; Scientific Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256346011
+     </BrowseNodeId>
+     <Name>
+      Material Handling Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      318135011
+     </BrowseNodeId>
+     <Name>
+      Occupational Health &amp; Safety Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8553197011
+     </BrowseNodeId>
+     <Name>
+      Packaging &amp; Shipping Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310181
+     </BrowseNodeId>
+     <Name>
+      Power Transmission Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8297371011
+     </BrowseNodeId>
+     <Name>
+      Professional Dental Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8297370011
+     </BrowseNodeId>
+     <Name>
+      Professional Medical Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310191
+     </BrowseNodeId>
+     <Name>
+      Raw Materials
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8615538011
+     </BrowseNodeId>
+     <Name>
+      Retail Store Fixtures &amp; Equipment
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8498884011
+     </BrowseNodeId>
+     <Name>
+      Robotics
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      393459011
+     </BrowseNodeId>
+     <Name>
+      Science Education
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256225011
+     </BrowseNodeId>
+     <Name>
+      Tapes, Adhesives &amp; Sealants
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      256409011
+     </BrowseNodeId>
+     <Name>
+      Test, Measure &amp; Inspect
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310091
+     </BrowseNodeId>
+     <Name>
+      Industrial &amp; Scientific
+     </Name>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

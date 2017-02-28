@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   91c908cb-9f78-48ce-ae7d-d962e4704665
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="9938479011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:58:05Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="LvSafJKCziDRrNjWXxcc3cygtKnAkBTFatFHPN/2cyA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001208754
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     9938479011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    9938479011
+   </BrowseNodeId>
+   <Name>
+    Cat 7 Cables
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      464398
+     </BrowseNodeId>
+     <Name>
+      Ethernet Cables
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        172463
+       </BrowseNodeId>
+       <Name>
+        Cables &amp; Interconnects
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          172456
+         </BrowseNodeId>
+         <Name>
+          Computer Accessories &amp; Peripherals
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            541966
+           </BrowseNodeId>
+           <Name>
+            Computers &amp; Accessories
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              493964
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                172282
+               </BrowseNodeId>
+               <Name>
+                Electronics
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

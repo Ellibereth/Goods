@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   01bb0ff3-2c48-448d-bb89-515d48125ecc
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="289851"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:00:12Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="9nNkG60eP22MsnXSWzaOZcUQfftXsKScEjAZcn74Vh4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001925064
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     289851
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    289851
+   </BrowseNodeId>
+   <Name>
+    Cutlery &amp; Knife Accessories
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      289852
+     </BrowseNodeId>
+     <Name>
+      Asian Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289854
+     </BrowseNodeId>
+     <Name>
+      Boning &amp; Fillet Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289857
+     </BrowseNodeId>
+     <Name>
+      Chef's Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3737391
+     </BrowseNodeId>
+     <Name>
+      Electric Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289864
+     </BrowseNodeId>
+     <Name>
+      Knife Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289859
+     </BrowseNodeId>
+     <Name>
+      Paring Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289860
+     </BrowseNodeId>
+     <Name>
+      Shears
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289861
+     </BrowseNodeId>
+     <Name>
+      Steak Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      498926
+     </BrowseNodeId>
+     <Name>
+      Utility Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289863
+     </BrowseNodeId>
+     <Name>
+      Cutting Boards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289870
+     </BrowseNodeId>
+     <Name>
+      Knife Blocks &amp; Storage
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289867
+     </BrowseNodeId>
+     <Name>
+      Knife Sharpeners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289855
+     </BrowseNodeId>
+     <Name>
+      Bread &amp; Serrated Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3737381
+     </BrowseNodeId>
+     <Name>
+      Cake Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289856
+     </BrowseNodeId>
+     <Name>
+      Carving Knives &amp; Forks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289858
+     </BrowseNodeId>
+     <Name>
+      Cleavers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      289862
+     </BrowseNodeId>
+     <Name>
+      Specialty Knives
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3737361
+     </BrowseNodeId>
+     <Name>
+      Knife Accessories
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      284507
+     </BrowseNodeId>
+     <Name>
+      Kitchen &amp; Dining
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1063498
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1055398
+         </BrowseNodeId>
+         <Name>
+          Home &amp; Kitchen
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   fc42336d-10ef-4a13-a476-2e67b97907b9
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="10155427011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:29:34Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="099st+yJ/21WpN5Z4pBD0Y4rGYqy9KQj4wg1/YWkYnQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008300493
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     10155427011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    10155427011
+   </BrowseNodeId>
+   <Name>
+    Keyboards
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      10111124011
+     </BrowseNodeId>
+     <Name>
+      Music Controllers
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        14218871
+       </BrowseNodeId>
+       <Name>
+        Controllers
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          14218821
+         </BrowseNodeId>
+         <Name>
+          Accessories
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            14218901
+           </BrowseNodeId>
+           <Name>
+            Wii
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              11846801
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                468642
+               </BrowseNodeId>
+               <Name>
+                Video Games
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

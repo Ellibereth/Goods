@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   ceecbd12-85d1-4466-9334-8097a1d4b28d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16322461"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:36:47Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="T8xjegiD7VeuSI7FycjcN9lv2d2F/K2rHEx0YItldXo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001982449
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16322461
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16322461
+   </BrowseNodeId>
+   <Name>
+    Candy &amp; Chocolate
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      6558922011
+     </BrowseNodeId>
+     <Name>
+      Assortments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6558923011
+     </BrowseNodeId>
+     <Name>
+      Bars
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2255566011
+     </BrowseNodeId>
+     <Name>
+      Brittle
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2255572011
+     </BrowseNodeId>
+     <Name>
+      Candy &amp; Chocolate Gifts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322451
+     </BrowseNodeId>
+     <Name>
+      Caramels
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322471
+     </BrowseNodeId>
+     <Name>
+      Chewing Gum
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2257229011
+     </BrowseNodeId>
+     <Name>
+      Chocolate Truffles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6558929011
+     </BrowseNodeId>
+     <Name>
+      Fruits, Nuts &amp; Snacks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6558936011
+     </BrowseNodeId>
+     <Name>
+      Fruity Candy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2255567011
+     </BrowseNodeId>
+     <Name>
+      Fudge
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7514604011
+     </BrowseNodeId>
+     <Name>
+      Ginger Candy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322481
+     </BrowseNodeId>
+     <Name>
+      Gummy Candy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      724729011
+     </BrowseNodeId>
+     <Name>
+      Halva
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322491
+     </BrowseNodeId>
+     <Name>
+      Hard Candy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322511
+     </BrowseNodeId>
+     <Name>
+      Jelly Beans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322521
+     </BrowseNodeId>
+     <Name>
+      Licorice
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      724726011
+     </BrowseNodeId>
+     <Name>
+      Marshmallows
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322531
+     </BrowseNodeId>
+     <Name>
+      Mints
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322541
+     </BrowseNodeId>
+     <Name>
+      Nut Clusters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6558939011
+     </BrowseNodeId>
+     <Name>
+      Sour Candy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322551
+     </BrowseNodeId>
+     <Name>
+      Suckers &amp; Lollipops
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322571
+     </BrowseNodeId>
+     <Name>
+      Taffy
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322581
+     </BrowseNodeId>
+     <Name>
+      Toffee
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310211
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310101
+       </BrowseNodeId>
+       <Name>
+        Grocery &amp; Gourmet Food
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   fafcce66-5719-49d5-b2c2-1577fd15aee4
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="552424"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:01:34Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="B8Rpcsgfw5hEF9yaAoIK0oA5MLntU1yYJWoZbNgjGYE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001534295
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     552424
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    552424
+   </BrowseNodeId>
+   <Name>
+    Collated Nails
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      552426
+     </BrowseNodeId>
+     <Name>
+      Brad Nails
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      552428
+     </BrowseNodeId>
+     <Name>
+      Finish Nails
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      552430
+     </BrowseNodeId>
+     <Name>
+      Framing Nails
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      552432
+     </BrowseNodeId>
+     <Name>
+      Pinner Nails
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      552434
+     </BrowseNodeId>
+     <Name>
+      Roofing Nails
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      552436
+     </BrowseNodeId>
+     <Name>
+      Siding Nails
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      552420
+     </BrowseNodeId>
+     <Name>
+      Collated Fasteners
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        8106313011
+       </BrowseNodeId>
+       <Name>
+        Power Fastening Tool Parts &amp; Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          552262
+         </BrowseNodeId>
+         <Name>
+          Power Tool Parts &amp; Accessories
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            328182011
+           </BrowseNodeId>
+           <Name>
+            Power &amp; Hand Tools
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              468240
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                228013
+               </BrowseNodeId>
+               <Name>
+                Tools &amp; Home Improvement
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

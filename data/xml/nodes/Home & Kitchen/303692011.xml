@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   49b7dfb8-ca0c-4071-aeab-035f7e63d9ba
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="303692011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:47:32Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="wc7/mE1ZwQ2nJ2bO4kAlI+pMHWMI7NyUFbHDMdL2GtM="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001536816
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     303692011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    303692011
+   </BrowseNodeId>
+   <Name>
+    Shelves
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      303689011
+     </BrowseNodeId>
+     <Name>
+      System Attachments
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        165112011
+       </BrowseNodeId>
+       <Name>
+        Garage Storage
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          13400631
+         </BrowseNodeId>
+         <Name>
+          Storage &amp; Home Organization
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            468240
+           </BrowseNodeId>
+           <Name>
+            Categories
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              228013
+             </BrowseNodeId>
+             <Name>
+              Tools &amp; Home Improvement
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

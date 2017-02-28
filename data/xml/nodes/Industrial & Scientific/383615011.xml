@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   9960c19f-1c42-4fbe-9105-21f735311f8f
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="383615011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:15:06Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="/E+UcGXP2M0v/zq5Pw9u65gJoAhqZpS7KB5cY7rS7KU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002621271
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     383615011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    383615011
+   </BrowseNodeId>
+   <Name>
+    Valves
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265144011
+     </BrowseNodeId>
+     <Name>
+      Ball Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265145011
+     </BrowseNodeId>
+     <Name>
+      Butterfly Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265146011
+     </BrowseNodeId>
+     <Name>
+      Check Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265147011
+     </BrowseNodeId>
+     <Name>
+      Control Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265151011
+     </BrowseNodeId>
+     <Name>
+      Diaphragm Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650343011
+     </BrowseNodeId>
+     <Name>
+      Filter Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650344011
+     </BrowseNodeId>
+     <Name>
+      Float Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265149011
+     </BrowseNodeId>
+     <Name>
+      Gate Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265150011
+     </BrowseNodeId>
+     <Name>
+      Globe Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650345011
+     </BrowseNodeId>
+     <Name>
+      Hydraulic Directional Control Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650346011
+     </BrowseNodeId>
+     <Name>
+      Needle Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650347011
+     </BrowseNodeId>
+     <Name>
+      Pinch Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650348011
+     </BrowseNodeId>
+     <Name>
+      Plug Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5739457011
+     </BrowseNodeId>
+     <Name>
+      Pressure Regulators
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650349011
+     </BrowseNodeId>
+     <Name>
+      Relief Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265148011
+     </BrowseNodeId>
+     <Name>
+      Solenoid Valves
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      4650350011
+     </BrowseNodeId>
+     <Name>
+      Toggle Valves
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3021479011
+     </BrowseNodeId>
+     <Name>
+      Hydraulics, Pneumatics &amp; Plumbing
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

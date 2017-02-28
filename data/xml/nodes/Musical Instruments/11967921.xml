@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   33329727-1f7d-49ea-9735-1f5a5a583027
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="11967921"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:22:53Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="pTj9iJkucfWAvc6naE6gi2WIysgp/r+8/774pMauRmw="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001198829
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     11967921
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    11967921
+   </BrowseNodeId>
+   <Name>
+    Cabinets
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11967911
+     </BrowseNodeId>
+     <Name>
+      Bass Guitar Amplifiers
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        486410011
+       </BrowseNodeId>
+       <Name>
+        Guitar &amp; Bass Amplifiers
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          8882494011
+         </BrowseNodeId>
+         <Name>
+          Amplifiers &amp; Effects
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            11965861
+           </BrowseNodeId>
+           <Name>
+            Products
+           </Name>
+           <IsCategoryRoot>
+            1
+           </IsCategoryRoot>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              11091801
+             </BrowseNodeId>
+             <Name>
+              Musical Instruments
+             </Name>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

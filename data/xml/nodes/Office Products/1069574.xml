@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   741f00d9-655d-42a2-a0de-2d58c29fcc49
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="1069574"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:23:37Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Ssnf+QQe5qXwVTwxclYOj2Am5sqVLr4cbDnZChYWCbI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008321964
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     1069574
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    1069574
+   </BrowseNodeId>
+   <Name>
+    Binders
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069578
+     </BrowseNodeId>
+     <Name>
+      D-Ring Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069576
+     </BrowseNodeId>
+     <Name>
+      Data Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490551011
+     </BrowseNodeId>
+     <Name>
+      Display Easel Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490557011
+     </BrowseNodeId>
+     <Name>
+      Padfolio Ring Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490553011
+     </BrowseNodeId>
+     <Name>
+      Portfolio &amp; Case Ring Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069580
+     </BrowseNodeId>
+     <Name>
+      Post Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490552011
+     </BrowseNodeId>
+     <Name>
+      Punchless Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      490554011
+     </BrowseNodeId>
+     <Name>
+      Reference Ring Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069584
+     </BrowseNodeId>
+     <Name>
+      Round Ring Binders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069588
+     </BrowseNodeId>
+     <Name>
+      View Binders
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1069556
+     </BrowseNodeId>
+     <Name>
+      Binders &amp; Binding Systems
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1069242
+       </BrowseNodeId>
+       <Name>
+        Office &amp; School Supplies
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          1084128
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            1064954
+           </BrowseNodeId>
+           <Name>
+            Office Products
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   fe3e7ab9-58cf-4061-b67f-8b9ea098f598
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="383607011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:11:43Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="l6B8lOwc4ZoGwMvUx7xa9gHPZmcODJhOyFZp2sVpSGo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.007621996
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     383607011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    383607011
+   </BrowseNodeId>
+   <Name>
+    Luer-to-threaded Fittings
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      700795011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Bulkhead Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700796011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Cap Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700797011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Elbow Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700798011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Panel Mount Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700799011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Stopcock Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700800011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Straight Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700801011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Tee Fittings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      700802011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Y Fittings
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383606011
+     </BrowseNodeId>
+     <Name>
+      Luer Fittings
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        383602011
+       </BrowseNodeId>
+       <Name>
+        Tube Fittings
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3021480011
+         </BrowseNodeId>
+         <Name>
+          Fittings
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            3021479011
+           </BrowseNodeId>
+           <Name>
+            Hydraulics, Pneumatics &amp; Plumbing
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              16310161
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                16310091
+               </BrowseNodeId>
+               <Name>
+                Industrial &amp; Scientific
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

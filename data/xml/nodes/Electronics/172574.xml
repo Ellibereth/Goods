@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   82c7d9d2-8507-4bf5-978b-19cdc2becc1a
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="172574"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:13:51Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="PBUi3MHXibkyG6Nq91wyQrvn40pf1iNdFwXQJ0gUVhM="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.004670549
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     172574
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    172574
+   </BrowseNodeId>
+   <Name>
+    Office Electronics
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      172518
+     </BrowseNodeId>
+     <Name>
+      Calculators
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172576
+     </BrowseNodeId>
+     <Name>
+      Copiers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5728045011
+     </BrowseNodeId>
+     <Name>
+      Document Cameras
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11072581
+     </BrowseNodeId>
+     <Name>
+      Electronic Dictionaries, Thesauri &amp; Translators
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      290458
+     </BrowseNodeId>
+     <Name>
+      Electronic Organizers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172582
+     </BrowseNodeId>
+     <Name>
+      Fax Machines
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2686473011
+     </BrowseNodeId>
+     <Name>
+      Installation Services
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      281418
+     </BrowseNodeId>
+     <Name>
+      Other Office Equipment
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2226256011
+     </BrowseNodeId>
+     <Name>
+      PDAs, Handhelds &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      15442734011
+     </BrowseNodeId>
+     <Name>
+      Point-of-Sale (POS) Equipment
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      300333
+     </BrowseNodeId>
+     <Name>
+      Presentation Products
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9424016011
+     </BrowseNodeId>
+     <Name>
+      Printers &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9277898011
+     </BrowseNodeId>
+     <Name>
+      Scanners &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172606
+     </BrowseNodeId>
+     <Name>
+      Telephones &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      14759145011
+     </BrowseNodeId>
+     <Name>
+      Video Projectors &amp; Accessories
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1084128
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1064954
+       </BrowseNodeId>
+       <Name>
+        Office Products
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

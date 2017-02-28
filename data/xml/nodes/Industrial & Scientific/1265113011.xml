@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   f45ebd5e-a986-4e6c-8fa8-4c92f77c22f7
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="1265113011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:13:20Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="U4iAzX3l+d0+0Udy+2+ZNcO04EE6UIHEacqf7OjUf2I="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.00173952
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     1265113011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    1265113011
+   </BrowseNodeId>
+   <Name>
+    Pumps
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265117011
+     </BrowseNodeId>
+     <Name>
+      Centrifugal Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265115011
+     </BrowseNodeId>
+     <Name>
+      Diaphragm Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265118011
+     </BrowseNodeId>
+     <Name>
+      Drum Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265120011
+     </BrowseNodeId>
+     <Name>
+      Flexible Impeller Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265114011
+     </BrowseNodeId>
+     <Name>
+      Gear Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265122011
+     </BrowseNodeId>
+     <Name>
+      Jet Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265119011
+     </BrowseNodeId>
+     <Name>
+      Peristaltic Metering Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265123011
+     </BrowseNodeId>
+     <Name>
+      Piston Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265121011
+     </BrowseNodeId>
+     <Name>
+      Rotary Vane Pumps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1265116011
+     </BrowseNodeId>
+     <Name>
+      Submersible Pumps
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3021479011
+     </BrowseNodeId>
+     <Name>
+      Hydraulics, Pneumatics &amp; Plumbing
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   05513369-e19e-413e-91f0-b129c15311e4
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="602314"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:20:51Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="BoLt+oXblq3d2/3rGP1w8Hs4dXtvQK5QnLD0fK0zzPw="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001297135
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     602314
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    602314
+   </BrowseNodeId>
+   <Name>
+    Arts &amp; Photography
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      637710
+     </BrowseNodeId>
+     <Name>
+      Antiques
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      252063011
+     </BrowseNodeId>
+     <Name>
+      Architecture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      637714
+     </BrowseNodeId>
+     <Name>
+      Art
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      252064011
+     </BrowseNodeId>
+     <Name>
+      Art History
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      769100
+     </BrowseNodeId>
+     <Name>
+      Crafts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      252094011
+     </BrowseNodeId>
+     <Name>
+      Fashion
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13006691
+     </BrowseNodeId>
+     <Name>
+      Graphic Design
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      252607011
+     </BrowseNodeId>
+     <Name>
+      Performing Arts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      637716
+     </BrowseNodeId>
+     <Name>
+      Photography
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      599872
+     </BrowseNodeId>
+     <Name>
+      Subjects
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        599858
+       </BrowseNodeId>
+       <Name>
+        Magazine Subscriptions
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

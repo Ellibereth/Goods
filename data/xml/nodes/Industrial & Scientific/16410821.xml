@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   aac959a8-060f-4912-b770-e5ef1abfea2d
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16410821"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:04:49Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="aE1sHp/y5aKgEwaEwYl3QAgocRHmD+vSzUPFGJCSwxA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008839319
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16410821
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16410821
+   </BrowseNodeId>
+   <Name>
+    Washers
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410831
+     </BrowseNodeId>
+     <Name>
+      Belleville Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410841
+     </BrowseNodeId>
+     <Name>
+      Beveled Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      323585011
+     </BrowseNodeId>
+     <Name>
+      Cup Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6826023011
+     </BrowseNodeId>
+     <Name>
+      Curved Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410861
+     </BrowseNodeId>
+     <Name>
+      D-Shaped Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410891
+     </BrowseNodeId>
+     <Name>
+      Flat Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410901
+     </BrowseNodeId>
+     <Name>
+      Lock Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      323586011
+     </BrowseNodeId>
+     <Name>
+      Retaining Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410911
+     </BrowseNodeId>
+     <Name>
+      Rivet Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410921
+     </BrowseNodeId>
+     <Name>
+      Sealing Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2526654011
+     </BrowseNodeId>
+     <Name>
+      Shoulder Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410931
+     </BrowseNodeId>
+     <Name>
+      Slotted Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410941
+     </BrowseNodeId>
+     <Name>
+      Spherical Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410961
+     </BrowseNodeId>
+     <Name>
+      Square Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6826025011
+     </BrowseNodeId>
+     <Name>
+      Tab Washers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410981
+     </BrowseNodeId>
+     <Name>
+      Wave Washers &amp; Wave Springs
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383599011
+     </BrowseNodeId>
+     <Name>
+      Fasteners
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

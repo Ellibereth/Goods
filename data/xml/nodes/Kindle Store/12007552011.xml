@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   0af8ef4d-4c6f-4601-ac6e-759a2408b6b1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="12007552011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:16:40Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Rm/jJRl1gQPn4unOapANzn4wRvKrkan2KaLozAQdPYE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.009720086
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     12007552011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    12007552011
+   </BrowseNodeId>
+   <Name>
+    Fire Tablet Accessories
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      15087019011
+     </BrowseNodeId>
+     <Name>
+      Fire HD 8 Accessories (6th Generation)
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      12516219011
+     </BrowseNodeId>
+     <Name>
+      Fire (5th Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      12516220011
+     </BrowseNodeId>
+     <Name>
+      Fire HD 8 (5th Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      12516221011
+     </BrowseNodeId>
+     <Name>
+      Fire HD 10 (5th Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9865606011
+     </BrowseNodeId>
+     <Name>
+      Fire HDX 8.9 (4th Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9865605011
+     </BrowseNodeId>
+     <Name>
+      Fire HD 7 (4th Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9865604011
+     </BrowseNodeId>
+     <Name>
+      Fire HD 6 (4th Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7605537011
+     </BrowseNodeId>
+     <Name>
+      Kindle Fire HDX 8.9 (3rd Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5499882011
+     </BrowseNodeId>
+     <Name>
+      Kindle Fire HDX (3rd Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5499881011
+     </BrowseNodeId>
+     <Name>
+      Kindle Fire HD (3rd Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5499880011
+     </BrowseNodeId>
+     <Name>
+      Kindle Fire HD 8.9 (2nd Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5499879011
+     </BrowseNodeId>
+     <Name>
+      Kindle Fire HD (2nd Generation) Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3013572011
+     </BrowseNodeId>
+     <Name>
+      Kindle Fire (2nd Generation) Accessories
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      370783011
+     </BrowseNodeId>
+     <Name>
+      Amazon Device Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        133141011
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          133140011
+         </BrowseNodeId>
+         <Name>
+          Kindle Store
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

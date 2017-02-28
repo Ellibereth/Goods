@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   d5e07edb-0a3e-4bcc-bac6-396c92d40b19
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16409861"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:01:54Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="J3FWhcKROOpWwCVpUGzBRFFPNH+QD+ZF6lW62HiFki4="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001870421
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16409861
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16409861
+   </BrowseNodeId>
+   <Name>
+    Nuts
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409871
+     </BrowseNodeId>
+     <Name>
+      Acorn Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409881
+     </BrowseNodeId>
+     <Name>
+      Allen Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409901
+     </BrowseNodeId>
+     <Name>
+      Barrel &amp; Binding Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409941
+     </BrowseNodeId>
+     <Name>
+      Coupling Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409951
+     </BrowseNodeId>
+     <Name>
+      Eye Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409961
+     </BrowseNodeId>
+     <Name>
+      Flange Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409981
+     </BrowseNodeId>
+     <Name>
+      Hex Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410001
+     </BrowseNodeId>
+     <Name>
+      Locknuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410011
+     </BrowseNodeId>
+     <Name>
+      Nut Inserts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      307021011
+     </BrowseNodeId>
+     <Name>
+      Panel Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410031
+     </BrowseNodeId>
+     <Name>
+      Push Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410041
+     </BrowseNodeId>
+     <Name>
+      Regulator Inlet Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410051
+     </BrowseNodeId>
+     <Name>
+      Rivet Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      317399011
+     </BrowseNodeId>
+     <Name>
+      Self-Clinching Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410071
+     </BrowseNodeId>
+     <Name>
+      Slotted Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410081
+     </BrowseNodeId>
+     <Name>
+      Speed Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410091
+     </BrowseNodeId>
+     <Name>
+      Square Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410101
+     </BrowseNodeId>
+     <Name>
+      Strut-Channel Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410131
+     </BrowseNodeId>
+     <Name>
+      T-Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410141
+     </BrowseNodeId>
+     <Name>
+      T-Slot Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410111
+     </BrowseNodeId>
+     <Name>
+      Tamper-Resistant Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410121
+     </BrowseNodeId>
+     <Name>
+      Thumb Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      307022011
+     </BrowseNodeId>
+     <Name>
+      Weld Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410161
+     </BrowseNodeId>
+     <Name>
+      Wing Nuts
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383599011
+     </BrowseNodeId>
+     <Name>
+      Fasteners
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

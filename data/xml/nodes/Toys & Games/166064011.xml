@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   9eb34cb9-bfda-4e4f-a502-12e86ce2edae
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="166064011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:37:09Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="G/DN0NQHzI/0/a2fLHtrQ3+Ir6cS0boE5GUxlfgHWfo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001479851
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     166064011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    166064011
+   </BrowseNodeId>
+   <Name>
+    Craft Kits
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2488744011
+     </BrowseNodeId>
+     <Name>
+      Felt Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      274305011
+     </BrowseNodeId>
+     <Name>
+      Flower Pressing
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166067011
+     </BrowseNodeId>
+     <Name>
+      Glass Arts &amp; Sun Catchers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2488224011
+     </BrowseNodeId>
+     <Name>
+      Jewelry
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2488757011
+     </BrowseNodeId>
+     <Name>
+      Mosaics
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      676720011
+     </BrowseNodeId>
+     <Name>
+      Paint-By-Number Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166070011
+     </BrowseNodeId>
+     <Name>
+      Paper Craft
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166072011
+     </BrowseNodeId>
+     <Name>
+      Sand Art
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166073011
+     </BrowseNodeId>
+     <Name>
+      Scrapbooking
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166074011
+     </BrowseNodeId>
+     <Name>
+      Scratch Art
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166075011
+     </BrowseNodeId>
+     <Name>
+      Sewing
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166077011
+     </BrowseNodeId>
+     <Name>
+      Tie-Dye &amp; Fashion
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      676721011
+     </BrowseNodeId>
+     <Name>
+      Waterpainting Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166078011
+     </BrowseNodeId>
+     <Name>
+      Wood
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      166057011
+     </BrowseNodeId>
+     <Name>
+      Arts &amp; Crafts
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        165795011
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          165793011
+         </BrowseNodeId>
+         <Name>
+          Toys &amp; Games
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

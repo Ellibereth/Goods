@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   f7515322-5651-4fff-acf5-16311c784387
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="552394"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:58:24Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="1frSitch4faKzGqkUfwhTUMKM+2g6kytCDuFHSWLPOA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.005727876
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     552394
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    552394
+   </BrowseNodeId>
+   <Name>
+    Brad-Point Drill Bits
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      552388
+     </BrowseNodeId>
+     <Name>
+      Drill Bits
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        552796
+       </BrowseNodeId>
+       <Name>
+        Power Drill Parts &amp; Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          552262
+         </BrowseNodeId>
+         <Name>
+          Power Tool Parts &amp; Accessories
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            328182011
+           </BrowseNodeId>
+           <Name>
+            Power &amp; Hand Tools
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              468240
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                228013
+               </BrowseNodeId>
+               <Name>
+                Tools &amp; Home Improvement
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

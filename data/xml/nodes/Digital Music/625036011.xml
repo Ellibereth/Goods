@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   6d51ef1e-ab15-47d3-8e98-11432ed8b976
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="625036011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:46:09Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="/1lbHa/cfBHnG4A/MHUH6WDQyiPM+jZHqqZAOCd/8BA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001169637
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     625036011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    625036011
+   </BrowseNodeId>
+   <Name>
+    Jazz
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      625037011
+     </BrowseNodeId>
+     <Name>
+      Acid Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625038011
+     </BrowseNodeId>
+     <Name>
+      Avant Garde &amp; Free Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625039011
+     </BrowseNodeId>
+     <Name>
+      Bebop
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625040011
+     </BrowseNodeId>
+     <Name>
+      Brazilian Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625042011
+     </BrowseNodeId>
+     <Name>
+      Cool Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625044011
+     </BrowseNodeId>
+     <Name>
+      Jazz Fusion
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625045011
+     </BrowseNodeId>
+     <Name>
+      Latin Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625047011
+     </BrowseNodeId>
+     <Name>
+      Modern Postbebop
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625048011
+     </BrowseNodeId>
+     <Name>
+      New Orleans Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625049011
+     </BrowseNodeId>
+     <Name>
+      Smooth Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625050011
+     </BrowseNodeId>
+     <Name>
+      Soul-Jazz &amp; Boogaloo
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625051011
+     </BrowseNodeId>
+     <Name>
+      Swing Jazz
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625052011
+     </BrowseNodeId>
+     <Name>
+      Traditional Jazz &amp; Ragtime
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      625053011
+     </BrowseNodeId>
+     <Name>
+      Vocal Jazz
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      624868011
+     </BrowseNodeId>
+     <Name>
+      Styles
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        163856011
+       </BrowseNodeId>
+       <Name>
+        Digital Music
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

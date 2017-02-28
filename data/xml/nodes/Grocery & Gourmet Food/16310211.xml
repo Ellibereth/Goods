@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   83cf6c7a-98c7-4c29-8899-5abcf9fd7e6c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16310211"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T17:10:02Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="xtPfNtzxXIgseB0ObzOC3ozIRI0PZikjgf4mHueBjFo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002212253
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16310211
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16310211
+   </BrowseNodeId>
+   <Name>
+    Categories
+   </Name>
+   <IsCategoryRoot>
+    1
+   </IsCategoryRoot>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      16323111
+     </BrowseNodeId>
+     <Name>
+      Baby Foods
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2983385011
+     </BrowseNodeId>
+     <Name>
+      Beer
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16318751
+     </BrowseNodeId>
+     <Name>
+      Breads &amp; Bakery
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310251
+     </BrowseNodeId>
+     <Name>
+      Breakfast Foods
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322461
+     </BrowseNodeId>
+     <Name>
+      Candy &amp; Chocolate
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6464939011
+     </BrowseNodeId>
+     <Name>
+      Canned, Jarred &amp; Packaged Foods
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310231
+     </BrowseNodeId>
+     <Name>
+      Coffee, Tea &amp; Beverages
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16320321
+     </BrowseNodeId>
+     <Name>
+      Condiments &amp; Salad Dressings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310221
+     </BrowseNodeId>
+     <Name>
+      Cooking &amp; Baking
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      371460011
+     </BrowseNodeId>
+     <Name>
+      Dairy, Cheese &amp; Eggs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10778627011
+     </BrowseNodeId>
+     <Name>
+      Deli
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16321991
+     </BrowseNodeId>
+     <Name>
+      Dried Beans, Grains &amp; Rice
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2255571011
+     </BrowseNodeId>
+     <Name>
+      Food &amp; Beverage Gifts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3745171
+     </BrowseNodeId>
+     <Name>
+      Fresh Flowers &amp; Live Indoor Plants
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6459122011
+     </BrowseNodeId>
+     <Name>
+      Frozen
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310281
+     </BrowseNodeId>
+     <Name>
+      Herbs, Spices &amp; Seasonings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16320071
+     </BrowseNodeId>
+     <Name>
+      Jams, Jellies &amp; Sweet Spreads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      371469011
+     </BrowseNodeId>
+     <Name>
+      Meat &amp; Seafood
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319771
+     </BrowseNodeId>
+     <Name>
+      Olives, Pickles &amp; Relishes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6499407011
+     </BrowseNodeId>
+     <Name>
+      Packaged Meals &amp; Side Dishes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6502933011
+     </BrowseNodeId>
+     <Name>
+      Pasta &amp; Noodles
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10755958011
+     </BrowseNodeId>
+     <Name>
+      Prepared Foods
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6506977011
+     </BrowseNodeId>
+     <Name>
+      Produce
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6502765011
+     </BrowseNodeId>
+     <Name>
+      Sauces, Gravies &amp; Marinades
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322721
+     </BrowseNodeId>
+     <Name>
+      Snack Foods
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319621
+     </BrowseNodeId>
+     <Name>
+      Soups, Stocks &amp; Broths
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2983386011
+     </BrowseNodeId>
+     <Name>
+      Wine
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310101
+     </BrowseNodeId>
+     <Name>
+      Grocery &amp; Gourmet Food
+     </Name>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

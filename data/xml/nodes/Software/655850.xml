@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   9dbab4b8-f18c-41e0-b3e9-c38f1e4f568c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="655850"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:35:02Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Gm2UU5/inFz4z4Ai/as4ZzpNZq8/WKN+opbIy4jDJ7s="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008207605
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     655850
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    655850
+   </BrowseNodeId>
+   <Name>
+    Roxio's Burn Central
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      409488
+     </BrowseNodeId>
+     <Name>
+      Brands
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2334140011
+       </BrowseNodeId>
+       <Name>
+        Custom Stores
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2334109011
+         </BrowseNodeId>
+         <Name>
+          Self Service
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            229534
+           </BrowseNodeId>
+           <Name>
+            Software
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

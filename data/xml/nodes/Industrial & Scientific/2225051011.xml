@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   0d542d89-b8eb-4411-8eeb-3fba8fa3eff8
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2225051011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:59:24Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Gw/a+Fa17AusXvfZr+I8rZaQm+gBUPtFY9gqWkeqBHY="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001881298
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2225051011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2225051011
+   </BrowseNodeId>
+   <Name>
+    Punches
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2225054011
+     </BrowseNodeId>
+     <Name>
+      Arch Punches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2225055011
+     </BrowseNodeId>
+     <Name>
+      Center Punches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2225056011
+     </BrowseNodeId>
+     <Name>
+      Drift Punches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2225057011
+     </BrowseNodeId>
+     <Name>
+      Hole Punches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2225058011
+     </BrowseNodeId>
+     <Name>
+      Knockout Punches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2225059011
+     </BrowseNodeId>
+     <Name>
+      Pin Punches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2225060011
+     </BrowseNodeId>
+     <Name>
+      Transfer Punches
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      551238
+     </BrowseNodeId>
+     <Name>
+      Hand Tools
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        328182011
+       </BrowseNodeId>
+       <Name>
+        Power &amp; Hand Tools
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          468240
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            228013
+           </BrowseNodeId>
+           <Name>
+            Tools &amp; Home Improvement
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   dcf87226-02c5-43c9-9837-be3b4cc2f1d3
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="686957011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:00:12Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="RozQX6ybMb+TXClnmoASLLXgoyxApA6ArwqNytRsK9Q="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001913195
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     686957011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    686957011
+   </BrowseNodeId>
+   <Name>
+    Straight
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3116571
+     </BrowseNodeId>
+     <Name>
+      Straight, Spiral &amp; Trim Bits
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3116511
+       </BrowseNodeId>
+       <Name>
+        Router Bits
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          552566
+         </BrowseNodeId>
+         <Name>
+          Router Parts &amp; Accessories
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            552262
+           </BrowseNodeId>
+           <Name>
+            Power Tool Parts &amp; Accessories
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              328182011
+             </BrowseNodeId>
+             <Name>
+              Power &amp; Hand Tools
+             </Name>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                468240
+               </BrowseNodeId>
+               <Name>
+                Categories
+               </Name>
+               <IsCategoryRoot>
+                1
+               </IsCategoryRoot>
+               <Ancestors>
+                <BrowseNode>
+                 <BrowseNodeId>
+                  228013
+                 </BrowseNodeId>
+                 <Name>
+                  Tools &amp; Home Improvement
+                 </Name>
+                </BrowseNode>
+               </Ancestors>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   b199c6ee-53c1-4227-80aa-8eaa0ee4d1ed
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16322881"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:50:21Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="RqZDvXMU3JVGFKv333Ko60DgveSSmSOkP+R0F8Abl1Q="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.011536534
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16322881
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16322881
+   </BrowseNodeId>
+   <Name>
+    Nuts &amp; Seeds
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322891
+     </BrowseNodeId>
+     <Name>
+      Almonds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8975266011
+     </BrowseNodeId>
+     <Name>
+      Brazil
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322901
+     </BrowseNodeId>
+     <Name>
+      Cashews
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6492299011
+     </BrowseNodeId>
+     <Name>
+      Chia Seeds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8975267011
+     </BrowseNodeId>
+     <Name>
+      Flax Seeds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6492300011
+     </BrowseNodeId>
+     <Name>
+      Hazelnuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8975268011
+     </BrowseNodeId>
+     <Name>
+      Hemp Seeds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322921
+     </BrowseNodeId>
+     <Name>
+      Macadamia Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322931
+     </BrowseNodeId>
+     <Name>
+      Mixed Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322941
+     </BrowseNodeId>
+     <Name>
+      Peanuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      370408011
+     </BrowseNodeId>
+     <Name>
+      Pecans
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322951
+     </BrowseNodeId>
+     <Name>
+      Pistachio Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322961
+     </BrowseNodeId>
+     <Name>
+      Pumpkin Seeds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8980429011
+     </BrowseNodeId>
+     <Name>
+      Sesame Seeds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8980430011
+     </BrowseNodeId>
+     <Name>
+      Soy Nuts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322971
+     </BrowseNodeId>
+     <Name>
+      Sunflower Seeds
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8975271011
+     </BrowseNodeId>
+     <Name>
+      Trail Mixes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16322981
+     </BrowseNodeId>
+     <Name>
+      Walnuts
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310221
+     </BrowseNodeId>
+     <Name>
+      Cooking &amp; Baking
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310211
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310101
+         </BrowseNodeId>
+         <Name>
+          Grocery &amp; Gourmet Food
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   1930bd9a-59c8-4403-9e78-fd34cd24ec2c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="1063306"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:26:56Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="cVnfUn/OLP8g+AVQLpz4id9AEUq1YKc1efTLbuGKcXA="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001993557
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     1063306
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    1063306
+   </BrowseNodeId>
+   <Name>
+    Furniture
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063308
+     </BrowseNodeId>
+     <Name>
+      Bedroom Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063318
+     </BrowseNodeId>
+     <Name>
+      Living Room Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3733781
+     </BrowseNodeId>
+     <Name>
+      Kitchen &amp; Dining Room Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063312
+     </BrowseNodeId>
+     <Name>
+      Home Office Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063314
+     </BrowseNodeId>
+     <Name>
+      Kids' Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063310
+     </BrowseNodeId>
+     <Name>
+      Home Entertainment Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3734101
+     </BrowseNodeId>
+     <Name>
+      Home Bar Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3249856011
+     </BrowseNodeId>
+     <Name>
+      Entryway Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5422303011
+     </BrowseNodeId>
+     <Name>
+      Lounge &amp; Recreation Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      5392425011
+     </BrowseNodeId>
+     <Name>
+      Bathroom Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13552765011
+     </BrowseNodeId>
+     <Name>
+      Nursery Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3734111
+     </BrowseNodeId>
+     <Name>
+      Other Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      8516080011
+     </BrowseNodeId>
+     <Name>
+      Replacement Parts
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      1063498
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        1055398
+       </BrowseNodeId>
+       <Name>
+        Home &amp; Kitchen
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

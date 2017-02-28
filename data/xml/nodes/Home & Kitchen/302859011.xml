@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   b87349cb-e9a9-4b86-9cb3-a26e655dec47
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="302859011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:53:10Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="0NZasNFE6+et6M+QqE22cWtAmYnyerZNK75cSh0vBJc="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001191147
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     302859011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    302859011
+   </BrowseNodeId>
+   <Name>
+    Bed Skirts
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      302858011
+     </BrowseNodeId>
+     <Name>
+      Cradle Bedding
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        166742011
+       </BrowseNodeId>
+       <Name>
+        Bedding
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11625834011
+         </BrowseNodeId>
+         <Name>
+          Beds, Cribs &amp; Bedding
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            695338011
+           </BrowseNodeId>
+           <Name>
+            Nursery
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              165797011
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                165796011
+               </BrowseNodeId>
+               <Name>
+                Baby Products
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

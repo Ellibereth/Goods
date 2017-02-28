@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   898fc0da-1ebe-4272-bc35-a9e4a874f7e1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="624881011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:42:54Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="sWKK1cYE7pFSdGrVDr3AWi6kxfXOzg2C94EDdwTR2p8="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002097425
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     624881011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    624881011
+   </BrowseNodeId>
+   <Name>
+    Blues
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      624882011
+     </BrowseNodeId>
+     <Name>
+      Acoustic Blues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624883011
+     </BrowseNodeId>
+     <Name>
+      Chicago Blues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624884011
+     </BrowseNodeId>
+     <Name>
+      Classic Female Vocal Blues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624886011
+     </BrowseNodeId>
+     <Name>
+      Contemporary Blues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624887011
+     </BrowseNodeId>
+     <Name>
+      Delta Blues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624888011
+     </BrowseNodeId>
+     <Name>
+      Electric Blues Guitar
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624891011
+     </BrowseNodeId>
+     <Name>
+      Modern Blues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624892011
+     </BrowseNodeId>
+     <Name>
+      Regional Blues
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      624893011
+     </BrowseNodeId>
+     <Name>
+      Traditional Blues
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      624868011
+     </BrowseNodeId>
+     <Name>
+      Styles
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        163856011
+       </BrowseNodeId>
+       <Name>
+        Digital Music
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

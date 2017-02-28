@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   16d6a89a-2f6e-4152-9ac5-8578c2c077bf
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3781181"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:34:51Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="I+iCy3Sue9Wh2bbPxlJiKOxEOfU/Bhx/U0WdzLMK870="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.010795208
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3781181
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3781181
+   </BrowseNodeId>
+   <Name>
+    Macromedia
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3781191
+     </BrowseNodeId>
+     <Name>
+      All Macromedia
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3781201
+     </BrowseNodeId>
+     <Name>
+      Graphics
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3781211
+     </BrowseNodeId>
+     <Name>
+      Macintosh
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3781221
+     </BrowseNodeId>
+     <Name>
+      Web Development
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      409488
+     </BrowseNodeId>
+     <Name>
+      Brands
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2334140011
+       </BrowseNodeId>
+       <Name>
+        Custom Stores
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2334109011
+         </BrowseNodeId>
+         <Name>
+          Self Service
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            229534
+           </BrowseNodeId>
+           <Name>
+            Software
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

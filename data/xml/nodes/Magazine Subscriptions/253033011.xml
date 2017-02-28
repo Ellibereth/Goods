@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   16d9f329-8d36-4789-9799-4e76f24b2ef1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="253033011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:20:30Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Ow4gV/Zquxk7Yrtygjm6a6mrhuBirl3oq4rye6RTuoo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.008226705
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     253033011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    253033011
+   </BrowseNodeId>
+   <Name>
+    Coins &amp; Medals
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16014521
+     </BrowseNodeId>
+     <Name>
+      Antiques &amp; Collectibles
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        602344
+       </BrowseNodeId>
+       <Name>
+        Home &amp; Garden
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          599872
+         </BrowseNodeId>
+         <Name>
+          Subjects
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            599858
+           </BrowseNodeId>
+           <Name>
+            Magazine Subscriptions
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

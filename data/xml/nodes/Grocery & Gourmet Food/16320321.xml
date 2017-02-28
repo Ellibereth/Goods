@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   34e8d551-d901-4219-9ef1-d03c62ef9a40
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16320321"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T15:44:40Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Z3oeQHrtqlPTJaP67oFaQwiGzaJcjvg55WUji2pX23w="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001606964
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16320321
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16320321
+   </BrowseNodeId>
+   <Name>
+    Condiments &amp; Salad Dressings
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      16321121
+     </BrowseNodeId>
+     <Name>
+      Cocktail Sauce
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319841
+     </BrowseNodeId>
+     <Name>
+      Horseradish
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319851
+     </BrowseNodeId>
+     <Name>
+      Ketchup
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319881
+     </BrowseNodeId>
+     <Name>
+      Mayonnaise
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319891
+     </BrowseNodeId>
+     <Name>
+      Mustard
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16320901
+     </BrowseNodeId>
+     <Name>
+      Salad Dressings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16321001
+     </BrowseNodeId>
+     <Name>
+      Salad Toppings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319941
+     </BrowseNodeId>
+     <Name>
+      Sandwich Spreads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      6466919011
+     </BrowseNodeId>
+     <Name>
+      Steak Sauce
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16321441
+     </BrowseNodeId>
+     <Name>
+      Tartar Sauce
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16319971
+     </BrowseNodeId>
+     <Name>
+      Wasabi
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      16310211
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310101
+       </BrowseNodeId>
+       <Name>
+        Grocery &amp; Gourmet Food
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

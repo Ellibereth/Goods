@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   68f13dc0-090d-466d-a379-2db7ef5a4aff
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="172456"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T10:31:53Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="pY3/+PwtE8lqpFV1UoJnssb8z4Ssd6a7mqU/Ij/VNEk="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.0027894
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     172456
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    172456
+   </BrowseNodeId>
+   <Name>
+    Computer Accessories &amp; Peripherals
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      11548951011
+     </BrowseNodeId>
+     <Name>
+      Audio &amp; Video Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      281408
+     </BrowseNodeId>
+     <Name>
+      Blank Media
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11036541
+     </BrowseNodeId>
+     <Name>
+      Cable Security Devices
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172463
+     </BrowseNodeId>
+     <Name>
+      Cables &amp; Interconnects
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      281501
+     </BrowseNodeId>
+     <Name>
+      Cleaning &amp; Repair
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172472
+     </BrowseNodeId>
+     <Name>
+      Computer Cable Adapters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172487
+     </BrowseNodeId>
+     <Name>
+      Game Hardware
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11548952011
+     </BrowseNodeId>
+     <Name>
+      Hard Drive Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172493
+     </BrowseNodeId>
+     <Name>
+      Input Devices
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11548956011
+     </BrowseNodeId>
+     <Name>
+      Keyboards, Mice &amp; Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      516866
+     </BrowseNodeId>
+     <Name>
+      Memory Cards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11548957011
+     </BrowseNodeId>
+     <Name>
+      Memory Card Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      281062
+     </BrowseNodeId>
+     <Name>
+      Monitor Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172636
+     </BrowseNodeId>
+     <Name>
+      Printer Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172638
+     </BrowseNodeId>
+     <Name>
+      Printer Ink &amp; Toner
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      172585
+     </BrowseNodeId>
+     <Name>
+      Scanner Accessories
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      761520
+     </BrowseNodeId>
+     <Name>
+      Surge Protectors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11548961011
+     </BrowseNodeId>
+     <Name>
+      USB Gadgets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      764572
+     </BrowseNodeId>
+     <Name>
+      Uninterruptible Power Supply (UPS)
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1232269011
+     </BrowseNodeId>
+     <Name>
+      Video Projector Accessories
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      541966
+     </BrowseNodeId>
+     <Name>
+      Computers &amp; Accessories
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        493964
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          172282
+         </BrowseNodeId>
+         <Name>
+          Electronics
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

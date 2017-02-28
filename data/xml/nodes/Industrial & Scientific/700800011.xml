@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   15161266-7f80-4f62-ac8e-ded326c11c2c
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="700800011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:11:55Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="LbABXf9AQx7ttA7AuEhLBh7OQ5hOO4dZP2W0G0psGs8="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.009603604
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     700800011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    700800011
+   </BrowseNodeId>
+   <Name>
+    Luer-to-threaded Straight Fittings
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383607011
+     </BrowseNodeId>
+     <Name>
+      Luer-to-threaded Fittings
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        383606011
+       </BrowseNodeId>
+       <Name>
+        Luer Fittings
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          383602011
+         </BrowseNodeId>
+         <Name>
+          Tube Fittings
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            3021480011
+           </BrowseNodeId>
+           <Name>
+            Fittings
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              3021479011
+             </BrowseNodeId>
+             <Name>
+              Hydraulics, Pneumatics &amp; Plumbing
+             </Name>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                16310161
+               </BrowseNodeId>
+               <Name>
+                Categories
+               </Name>
+               <IsCategoryRoot>
+                1
+               </IsCategoryRoot>
+               <Ancestors>
+                <BrowseNode>
+                 <BrowseNodeId>
+                  16310091
+                 </BrowseNodeId>
+                 <Name>
+                  Industrial &amp; Scientific
+                 </Name>
+                </BrowseNode>
+               </Ancestors>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

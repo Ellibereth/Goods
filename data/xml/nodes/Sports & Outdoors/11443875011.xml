@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   4172f6b6-834d-410b-9fe6-f34f2c6a7318
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="11443875011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:35:31Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="Dmslatk+/K4ZwSzk77tzeOmgg75CZ0uXcH/ea+8wBwM="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001971396
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     11443875011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    11443875011
+   </BrowseNodeId>
+   <Name>
+    Men
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443876011
+     </BrowseNodeId>
+     <Name>
+      Shirts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443882011
+     </BrowseNodeId>
+     <Name>
+      Sweatshirts &amp; Hoodies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443885011
+     </BrowseNodeId>
+     <Name>
+      Pants
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443890011
+     </BrowseNodeId>
+     <Name>
+      Tights &amp; Leggings
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443891011
+     </BrowseNodeId>
+     <Name>
+      Shorts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443894011
+     </BrowseNodeId>
+     <Name>
+      Vests
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443895011
+     </BrowseNodeId>
+     <Name>
+      Jackets &amp; Coats
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443904011
+     </BrowseNodeId>
+     <Name>
+      Socks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      9590791011
+     </BrowseNodeId>
+     <Name>
+      Compression Socks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2211975011
+     </BrowseNodeId>
+     <Name>
+      Base Layers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443905011
+     </BrowseNodeId>
+     <Name>
+      Underwear
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443906011
+     </BrowseNodeId>
+     <Name>
+      Accessories
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11443874011
+     </BrowseNodeId>
+     <Name>
+      Outdoor Clothing
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        706814011
+       </BrowseNodeId>
+       <Name>
+        Outdoor Recreation
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          3375301
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            3375251
+           </BrowseNodeId>
+           <Name>
+            Sports &amp; Outdoors
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

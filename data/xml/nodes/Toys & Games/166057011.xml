@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   c2d87096-88a4-4479-835e-1903e0cc2cd5
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="166057011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:37:04Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="J7PTz+Z61Reps3yf8EQB/9EwDAOT2CTWAg7gyhmgeuU="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001720118
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     166057011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    166057011
+   </BrowseNodeId>
+   <Name>
+    Arts &amp; Crafts
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      166058011
+     </BrowseNodeId>
+     <Name>
+      Aprons &amp; Smocks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166060011
+     </BrowseNodeId>
+     <Name>
+      Beads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166061011
+     </BrowseNodeId>
+     <Name>
+      Blackboards &amp; Whiteboards
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166063011
+     </BrowseNodeId>
+     <Name>
+      Clay &amp; Dough
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166064011
+     </BrowseNodeId>
+     <Name>
+      Craft Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2488275011
+     </BrowseNodeId>
+     <Name>
+      Drawing &amp; Painting Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166082011
+     </BrowseNodeId>
+     <Name>
+      Drawing &amp; Sketching Tablets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166081011
+     </BrowseNodeId>
+     <Name>
+      Easels
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2488758011
+     </BrowseNodeId>
+     <Name>
+      Fuse Beads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166083011
+     </BrowseNodeId>
+     <Name>
+      Glue, Paste &amp; Tape
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2488756011
+     </BrowseNodeId>
+     <Name>
+      Molding &amp; Sculpting Sticks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2488617011
+     </BrowseNodeId>
+     <Name>
+      Printing &amp; Stamping
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      1084736
+     </BrowseNodeId>
+     <Name>
+      Scissors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      676735011
+     </BrowseNodeId>
+     <Name>
+      Stickers
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      165795011
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        165793011
+       </BrowseNodeId>
+       <Name>
+        Toys &amp; Games
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

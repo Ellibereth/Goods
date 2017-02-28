@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   45d10d2a-6786-4a0e-9db8-d3393f55e060
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="3480662011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:26:42Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="EjFnnDvAECXbFejq8ksZHSGuJrLxLmy2W4+gB0h84ew="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001574854
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     3480662011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    3480662011
+   </BrowseNodeId>
+   <Name>
+    Plants, Seeds &amp; Bulbs
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      13402031
+     </BrowseNodeId>
+     <Name>
+      Aquatic Plants
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      10825941
+     </BrowseNodeId>
+     <Name>
+      Bonsai
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3745941
+     </BrowseNodeId>
+     <Name>
+      Cacti &amp; Succulents
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3749091
+     </BrowseNodeId>
+     <Name>
+      Flowers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3564019011
+     </BrowseNodeId>
+     <Name>
+      Fruits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3751361
+     </BrowseNodeId>
+     <Name>
+      Grasses
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3748321
+     </BrowseNodeId>
+     <Name>
+      Herbs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      13349841
+     </BrowseNodeId>
+     <Name>
+      Shrubs
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3752061
+     </BrowseNodeId>
+     <Name>
+      Trees
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3564020011
+     </BrowseNodeId>
+     <Name>
+      Vegetables
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3564021011
+     </BrowseNodeId>
+     <Name>
+      Vines
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      3610851
+     </BrowseNodeId>
+     <Name>
+      Gardening &amp; Lawn Care
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        3238155011
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2972638011
+         </BrowseNodeId>
+         <Name>
+          Patio, Lawn &amp; Garden
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

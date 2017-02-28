@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   c02f8233-5441-40c1-8c4b-f87686a7d9a4
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="11968271"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:22:56Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="X8lg4LZ/fwTGFvVBDVoASlNZvU41LwlRCmP7JpawXcI="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001758377
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     11968271
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    11968271
+   </BrowseNodeId>
+   <Name>
+    Electric Guitar Amplifiers
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      11968281
+     </BrowseNodeId>
+     <Name>
+      Cabinets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11968291
+     </BrowseNodeId>
+     <Name>
+      Combo Amps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      486422011
+     </BrowseNodeId>
+     <Name>
+      Footswitches
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11968301
+     </BrowseNodeId>
+     <Name>
+      Heads
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      486423011
+     </BrowseNodeId>
+     <Name>
+      Mini &amp; Headphone Amps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      486424011
+     </BrowseNodeId>
+     <Name>
+      Power Amps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11968311
+     </BrowseNodeId>
+     <Name>
+      Preamps
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      11968321
+     </BrowseNodeId>
+     <Name>
+      Stacks
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      486410011
+     </BrowseNodeId>
+     <Name>
+      Guitar &amp; Bass Amplifiers
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        8882494011
+       </BrowseNodeId>
+       <Name>
+        Amplifiers &amp; Effects
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          11965861
+         </BrowseNodeId>
+         <Name>
+          Products
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            11091801
+           </BrowseNodeId>
+           <Name>
+            Musical Instruments
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

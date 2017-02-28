@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   523e312a-73f3-4d35-8150-f81b35a0feb1
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="166742011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T18:52:37Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="0WPqBVIOydjmaZfWQdYw+oCtCxE1z5diTffDR5xX8cE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001915515
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     166742011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    166742011
+   </BrowseNodeId>
+   <Name>
+    Bedding
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      166743011
+     </BrowseNodeId>
+     <Name>
+      Bassinet Bedding
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166747011
+     </BrowseNodeId>
+     <Name>
+      Blankets &amp; Swaddling
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      302858011
+     </BrowseNodeId>
+     <Name>
+      Cradle Bedding
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166752011
+     </BrowseNodeId>
+     <Name>
+      Crib Bedding
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      617765011
+     </BrowseNodeId>
+     <Name>
+      Gift Sets
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      302883011
+     </BrowseNodeId>
+     <Name>
+      Pillow Protectors
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      302882011
+     </BrowseNodeId>
+     <Name>
+      Pillowcases
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166882011
+     </BrowseNodeId>
+     <Name>
+      Pillows
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166761011
+     </BrowseNodeId>
+     <Name>
+      Playard Bedding
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      166762011
+     </BrowseNodeId>
+     <Name>
+      Quilts &amp; Bed Covers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      302884011
+     </BrowseNodeId>
+     <Name>
+      Toddler Bedding
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      11625834011
+     </BrowseNodeId>
+     <Name>
+      Beds, Cribs &amp; Bedding
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        695338011
+       </BrowseNodeId>
+       <Name>
+        Nursery
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          165797011
+         </BrowseNodeId>
+         <Name>
+          Categories
+         </Name>
+         <IsCategoryRoot>
+          1
+         </IsCategoryRoot>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            165796011
+           </BrowseNodeId>
+           <Name>
+            Baby Products
+           </Name>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

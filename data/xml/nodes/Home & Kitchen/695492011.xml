@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   aaa3979e-c682-4d71-b9bf-5cef5afc6668
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="695492011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T19:50:25Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="A1A/tnLPoAgViEn2O18xVnB2K1KO9pIeRCfP4XvvDmE="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001737985
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     695492011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    695492011
+   </BrowseNodeId>
+   <Name>
+    Refill Sponges
+   </Name>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      14253981
+     </BrowseNodeId>
+     <Name>
+      Mop Heads &amp; Sponges
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2245508011
+       </BrowseNodeId>
+       <Name>
+        Accessories
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          2245503011
+         </BrowseNodeId>
+         <Name>
+          Mopping
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            15342831
+           </BrowseNodeId>
+           <Name>
+            Cleaning Tools
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              15342811
+             </BrowseNodeId>
+             <Name>
+              Household Supplies
+             </Name>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                3760931
+               </BrowseNodeId>
+               <Name>
+                Products
+               </Name>
+               <IsCategoryRoot>
+                1
+               </IsCategoryRoot>
+               <Ancestors>
+                <BrowseNode>
+                 <BrowseNodeId>
+                  3760901
+                 </BrowseNodeId>
+                 <Name>
+                  Health &amp; Household
+                 </Name>
+                </BrowseNode>
+               </Ancestors>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

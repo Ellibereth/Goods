@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   ec706620-6ce5-43d3-9949-ec5d2f539914
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2975446011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:32:57Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="R6tMp2JDtgERZEx5BHSfQFY3hvyt+LvPMjJfs9682vQ="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.009990508
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2975446011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2975446011
+   </BrowseNodeId>
+   <Name>
+    Fish &amp; Aquatic Pets
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975479011
+     </BrowseNodeId>
+     <Name>
+      Food
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      7955292011
+     </BrowseNodeId>
+     <Name>
+      Aquariums &amp; Fish Bowls
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975464011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Cleaners
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975448011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Décor
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975456011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Heaters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975457011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Hoods
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3048857011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Hydrometers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975458011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Lights
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975469011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Pumps &amp; Filters
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975459011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Stands
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975476011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Substrate
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3048858011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Test Kits
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975477011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Thermometers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975478011
+     </BrowseNodeId>
+     <Name>
+      Aquarium Water Treatments
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975462011
+     </BrowseNodeId>
+     <Name>
+      Automatic Feeders
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975463011
+     </BrowseNodeId>
+     <Name>
+      Breeding Tanks
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975480011
+     </BrowseNodeId>
+     <Name>
+      Health Supplies
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      2619534011
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2619533011
+       </BrowseNodeId>
+       <Name>
+        Pet Supplies
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

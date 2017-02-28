@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   3c03599b-18e4-455e-a6be-b9c35ef3455a
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="2975241011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:31:10Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="sgDRJpCpFVzI1KkaScbLCnu7E2DOzg2nol4MsgEkOQo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.002741261
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     2975241011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    2975241011
+   </BrowseNodeId>
+   <Name>
+    Cats
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975265011
+     </BrowseNodeId>
+     <Name>
+      Food
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975309011
+     </BrowseNodeId>
+     <Name>
+      Treats
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975242011
+     </BrowseNodeId>
+     <Name>
+      Apparel
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975243011
+     </BrowseNodeId>
+     <Name>
+      Beds &amp; Furniture
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975257011
+     </BrowseNodeId>
+     <Name>
+      Cages
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975250011
+     </BrowseNodeId>
+     <Name>
+      Carriers &amp; Strollers
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975251011
+     </BrowseNodeId>
+     <Name>
+      Cat Doors, Steps, Nets &amp; Pens
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975252011
+     </BrowseNodeId>
+     <Name>
+      Collars, Harnesses &amp; Leashes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975259011
+     </BrowseNodeId>
+     <Name>
+      Feeding &amp; Watering Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975280011
+     </BrowseNodeId>
+     <Name>
+      Flea &amp; Tick Control
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975268011
+     </BrowseNodeId>
+     <Name>
+      Grooming
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975276011
+     </BrowseNodeId>
+     <Name>
+      Health Supplies
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975296011
+     </BrowseNodeId>
+     <Name>
+      Litter &amp; Housebreaking
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975302011
+     </BrowseNodeId>
+     <Name>
+      Memorials
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975258011
+     </BrowseNodeId>
+     <Name>
+      Repellents &amp; Training Aids
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      2975303011
+     </BrowseNodeId>
+     <Name>
+      Toys
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      2619534011
+     </BrowseNodeId>
+     <Name>
+      Categories
+     </Name>
+     <IsCategoryRoot>
+      1
+     </IsCategoryRoot>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        2619533011
+       </BrowseNodeId>
+       <Name>
+        Pet Supplies
+       </Name>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

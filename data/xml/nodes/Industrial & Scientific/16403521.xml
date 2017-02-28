@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   22d2ead6-2f40-4944-b16a-4d1fe17b8ae8
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="16403521"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T20:03:27Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="F7BsqnydoBhTOQbLEXJwG8x14+61dHasPZCz9SOvVwc="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.00222229
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     16403521
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    16403521
+   </BrowseNodeId>
+   <Name>
+    Screws &amp; Bolts
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      6809676011
+     </BrowseNodeId>
+     <Name>
+      Anchor Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409601
+     </BrowseNodeId>
+     <Name>
+      Cap Screws &amp; Hex Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410541
+     </BrowseNodeId>
+     <Name>
+      Captive Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409521
+     </BrowseNodeId>
+     <Name>
+      Carriage Screws &amp; Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      307023011
+     </BrowseNodeId>
+     <Name>
+      Concrete Screws &amp; Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409591
+     </BrowseNodeId>
+     <Name>
+      Dowel Screws &amp; Hanger Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410561
+     </BrowseNodeId>
+     <Name>
+      Drywall Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409551
+     </BrowseNodeId>
+     <Name>
+      Elevator Screws &amp; Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409561
+     </BrowseNodeId>
+     <Name>
+      Expansion Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409571
+     </BrowseNodeId>
+     <Name>
+      Eyebolts &amp; Eyescrews
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409621
+     </BrowseNodeId>
+     <Name>
+      Lag Screws &amp; Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16403531
+     </BrowseNodeId>
+     <Name>
+      Machine Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410571
+     </BrowseNodeId>
+     <Name>
+      Panel Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409631
+     </BrowseNodeId>
+     <Name>
+      Penta Head Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409641
+     </BrowseNodeId>
+     <Name>
+      Plow Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      307025011
+     </BrowseNodeId>
+     <Name>
+      Self-Drilling Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410581
+     </BrowseNodeId>
+     <Name>
+      Set Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410591
+     </BrowseNodeId>
+     <Name>
+      Sheet Metal Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410601
+     </BrowseNodeId>
+     <Name>
+      Shoulder Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410531
+     </BrowseNodeId>
+     <Name>
+      Socket Cap Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409661
+     </BrowseNodeId>
+     <Name>
+      Square Head Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409691
+     </BrowseNodeId>
+     <Name>
+      Structural Screws &amp; Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409721
+     </BrowseNodeId>
+     <Name>
+      T-Handle Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409741
+     </BrowseNodeId>
+     <Name>
+      T-Slot Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409711
+     </BrowseNodeId>
+     <Name>
+      Tension Control Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410611
+     </BrowseNodeId>
+     <Name>
+      Thread Forming &amp; Cutting Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410621
+     </BrowseNodeId>
+     <Name>
+      Thumb Screws
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409731
+     </BrowseNodeId>
+     <Name>
+      Toggle Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409751
+     </BrowseNodeId>
+     <Name>
+      U-Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16409761
+     </BrowseNodeId>
+     <Name>
+      Wheel Bolts
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      16410631
+     </BrowseNodeId>
+     <Name>
+      Wood Screws
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      383599011
+     </BrowseNodeId>
+     <Name>
+      Fasteners
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        16310161
+       </BrowseNodeId>
+       <Name>
+        Categories
+       </Name>
+       <IsCategoryRoot>
+        1
+       </IsCategoryRoot>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          16310091
+         </BrowseNodeId>
+         <Name>
+          Industrial &amp; Scientific
+         </Name>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>

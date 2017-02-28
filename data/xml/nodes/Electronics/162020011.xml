@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BrowseNodeLookupResponse xmlns="http://webservices.amazon.com/AWSECommerceService/2013-08-01">
+ <OperationRequest>
+  <HTTPHeaders>
+   <Header Name="UserAgent" Value="Python-urllib/3.5"/>
+  </HTTPHeaders>
+  <RequestId>
+   3da48e1d-58ea-4e0b-bf48-b8040d477166
+  </RequestId>
+  <Arguments>
+   <Argument Name="AWSAccessKeyId" Value="AKIAJEGXYAPQ5DFQWHMA"/>
+   <Argument Name="AssociateTag" Value="remaura-20"/>
+   <Argument Name="BrowseNodeId" Value="162020011"/>
+   <Argument Name="Operation" Value="BrowseNodeLookup"/>
+   <Argument Name="Service" Value="AWSECommerceService"/>
+   <Argument Name="Timestamp" Value="2017-02-28T14:40:34Z"/>
+   <Argument Name="Version" Value="2013-08-01"/>
+   <Argument Name="Signature" Value="STsUre2kk9BrmmMGFoJoMyaKVeWljvKJn3PiybbxrRo="/>
+  </Arguments>
+  <RequestProcessingTime>
+   0.001414036
+  </RequestProcessingTime>
+ </OperationRequest>
+ <BrowseNodes>
+  <Request>
+   <IsValid>
+    True
+   </IsValid>
+   <BrowseNodeLookupRequest>
+    <BrowseNodeId>
+     162020011
+    </BrowseNodeId>
+   </BrowseNodeLookupRequest>
+  </Request>
+  <BrowseNode>
+   <BrowseNodeId>
+    162020011
+   </BrowseNodeId>
+   <Name>
+    Gun Scopes
+   </Name>
+   <Children>
+    <BrowseNode>
+     <BrowseNodeId>
+      3226123011
+     </BrowseNodeId>
+     <Name>
+      Handgun Scopes
+     </Name>
+    </BrowseNode>
+    <BrowseNode>
+     <BrowseNodeId>
+      3226124011
+     </BrowseNodeId>
+     <Name>
+      Rifle Scopes
+     </Name>
+    </BrowseNode>
+   </Children>
+   <Ancestors>
+    <BrowseNode>
+     <BrowseNodeId>
+      162017011
+     </BrowseNodeId>
+     <Name>
+      Optics
+     </Name>
+     <Ancestors>
+      <BrowseNode>
+       <BrowseNodeId>
+        13364359011
+       </BrowseNodeId>
+       <Name>
+        Shooting
+       </Name>
+       <Ancestors>
+        <BrowseNode>
+         <BrowseNodeId>
+          706813011
+         </BrowseNodeId>
+         <Name>
+          Hunting &amp; Fishing
+         </Name>
+         <Ancestors>
+          <BrowseNode>
+           <BrowseNodeId>
+            10971181011
+           </BrowseNodeId>
+           <Name>
+            Sports &amp; Fitness
+           </Name>
+           <Ancestors>
+            <BrowseNode>
+             <BrowseNodeId>
+              3375301
+             </BrowseNodeId>
+             <Name>
+              Categories
+             </Name>
+             <IsCategoryRoot>
+              1
+             </IsCategoryRoot>
+             <Ancestors>
+              <BrowseNode>
+               <BrowseNodeId>
+                3375251
+               </BrowseNodeId>
+               <Name>
+                Sports &amp; Outdoors
+               </Name>
+              </BrowseNode>
+             </Ancestors>
+            </BrowseNode>
+           </Ancestors>
+          </BrowseNode>
+         </Ancestors>
+        </BrowseNode>
+       </Ancestors>
+      </BrowseNode>
+     </Ancestors>
+    </BrowseNode>
+   </Ancestors>
+  </BrowseNode>
+ </BrowseNodes>
+</BrowseNodeLookupResponse>
