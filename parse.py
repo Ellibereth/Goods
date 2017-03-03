@@ -122,33 +122,34 @@ class AmazonHtmlParser:
 		# /gp/search/ref=sr_pg_3?rh=i%3Aaps%2Ck%3Afurniture&page=3&keywords=furniture&ie=UTF8&qid=1488212748&spIA=B01NBE3QE4,B014142SOQ,B01LB2TXIA,B00464AJ7U,B01M9JENJD,B00T40L0SS
 		next_page_link = soup.find("a", {'id' : 'pagnNextLink'})
 		base_url = "https://www.amazon.com"
-		next_page_url = next_page_link['href']
-		next_url_to_load = base_url + next_page_url
+		if next_page_link.get('href') != None:
+			next_page_url = next_page_link['href']
+			next_url_to_load = base_url + next_page_url
 
-		# here we grab more asin numbers
-		index_of_asin = next_page_url.find("spIA") + 5
-		if (index_of_asin != -1):
-			asin_from_link = next_page_url[index_of_asin: len(next_page_url)].split(",")
-			for asin in asin_from_link:
-				if len(asin) == 10:
-					asin_list.append(asin)
+			# here we grab more asin numbers
+			index_of_asin = next_page_url.find("spIA") + 5
+			if (index_of_asin != -1):
+				asin_from_link = next_page_url[index_of_asin: len(next_page_url)].split(",")
+				for asin in asin_from_link:
+					if len(asin) == 10:
+						asin_list.append(asin)
 
-		# append asin list to a csv 
-		existing_list = list()
-		with open('data/asin_list.csv', 'r') as f:
-			reader = csv.reader(f)
-			your_list = list(reader)
-			for item in your_list:
-				existing_list.append(item[0])
+			# append asin list to a csv 
+			existing_list = list()
+			with open('data/asin_list.csv', 'r') as f:
+				reader = csv.reader(f)
+				your_list = list(reader)
+				for item in your_list:
+					existing_list.append(item[0])
 
 
-		with open('data/asin_list.csv', 'a') as f:
-			writer = csv.writer(f)
-			for asin in asin_list:
-				if asin not in existing_list:
-					writer.writerow([asin])
-				else:
-					print("Found duplicate ASIN : " + asin)
+			with open('data/asin_list.csv', 'a') as f:
+				writer = csv.writer(f)
+				for asin in asin_list:
+					if asin not in existing_list:
+						writer.writerow([asin])
+					else:
+						print("Found duplicate ASIN : " + asin)
 
 		print(len(existing_list))
 		page_number = page_number + 1
@@ -227,9 +228,9 @@ class AmazonHtmlParser:
 
 parser = AmazonHtmlParser()
 time_0 = time.time()
-# parser.main()
+parser.main()
 
-parser.getHtml("https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=      Cooking Wine          Red")
+# parser.getHtml("https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=      Cooking Wine          Red")
 
 # url = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=furniture"
 # page_number = 0
