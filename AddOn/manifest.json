@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+ 
+  "name": "American Goods",
+  "version": "0.1.0",
+  "description": "Tells if a good was made in America",
+  // "background-page" : "background.html",
+
+  "browser_action" : {
+  	"default_popup" : "popup.html",
+  	"default_title" : "America"
+  },
+
+  // "apps" : {
+  // 	"urls": ["www.amazon.com"]
+  // },
+ 
+  "content_scripts" : [{
+    "css": ["styles.css"],
+    "js": ["content.js"],
+    "matches": ["*://www.amazon.com/*"]
+  }],
+
+  "permissions": [
+    "tabs", 
+    "*://www.amazon.com/*"
+  ]
+ 
+}
