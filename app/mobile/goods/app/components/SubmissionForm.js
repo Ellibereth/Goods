@@ -58,7 +58,7 @@ export default class SubmissionForm extends React.Component {
 
 	submitProductInformation() {
 		console.log("submit to api")
-		fetch(url + "/mobileSubmitInformation", {method: "POST",
+		fetch(test_url + "/mobileSubmitInformation", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default class SubmissionForm extends React.Component {
 				contact_information : this.state.contact_information,
 				url_link: this.state.url_link,
 				location: this.state.location,
-				image: this.state.image
+				image_data: this.state.image_data
 
 			})
 		})

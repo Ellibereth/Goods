@@ -15,15 +15,15 @@ mobile_api = Blueprint('mobile_api', __name__)
 
 @mobile_api.route('/mobileSubmitInformation', methods = ['POST'])
 def mobileSubmitProductInformation():
-	product_name = request.json['product_name']
-	manufacturer_name = request.json['manufacturer_name']
-	location = request.json['location']
-	url_link = request.json['url_link']
-	image_data = request.json['image']
-	
+	product_name = request.json.get('product_name')
+	manufacturer_name = request.json.get('manufacturer_name')
+	location = request.json.get('location')
+	url_link = request.json.get('url_link')
+	image_data = request.json.get('image_data')
+	contact_information = request.json.get('contact_information')
 
 	data_manager = ProductDataManager()
-	data_manager.addProductEntry(product_name, manufacturer_name, location,url_link, image_data)
+	data_manager.addProductEntry(product_name, manufacturer_name, location,url_link, contact_information, image_data)
 	data_manager.closeConnection()
 	output = {"result" : "success"}
 	return jsonify(output)

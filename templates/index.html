@@ -19,7 +19,95 @@
 
 
 	  {% block content %}
-		<div id="app"></div>
+
+	  <script>
+
+
+		var submitData = function () {
+
+			var product_name = document.getElementById('product_name').value
+			var url_link = document.getElementById('url_link').value
+			var location = document.getElementById('location').value
+			var manufacturer_name = document.getElementById('manufacturer_name').value
+			var contact_information = document.getElementById('contact_information').value
+
+
+			// check if an image is submitted
+
+			var image_div = document.getElementById('image')
+			if (image_div.files.length > 0) {
+				var image_file = image_div.files[0]
+				var reader = new FileReader()
+				reader.readAsDataURL(image_file)
+
+				reader.onloadend = function( ){
+	    			var data = reader.result
+	    			var trim_image_data = data.split(',')[1]
+					  	var formData = JSON.stringify({
+					  		"product_name" : product_name,
+					  		"url_link" : url_link,
+					  		"location" : location,
+					  		"manufacturer_name" : manufacturer_name ,
+					  		"contact_information" : contact_information,
+					  		"image_data" : trim_image_data	
+					  	})
+					  	$.ajax({
+						  type: "POST",
+						  url: "http://0.0.0.0:5000/browserSubmitInformation",
+						  data: formData,
+						  success: function() {
+						  		window.location.reload();
+						  },
+						  error : function(){
+						  	console.log("error")
+						  },
+						  dataType: "json",
+						  contentType : "application/json; charset=utf-8"
+						});
+					}
+				}
+
+			// otherwise we submit if there is no photo
+			else {
+				var formData = JSON.stringify({
+					  		"product_name" : product_name,
+					  		"url_link" : url_link,
+					  		"location" : location,
+					  		"manufacturer_name" : manufacturer_name ,
+					  		"contact_information" : contact_information
+					  	})
+				$.ajax({
+						  type: "POST",
+						  url: "http://0.0.0.0:5000/browserSubmitInformation",
+						  data: formData,
+						  success: function() {
+						  		window.location.reload();
+						  },
+						  error : function(){
+						  	console.log("error")
+						  },
+						  dataType: "json",
+						  contentType : "application/json; charset=utf-8"
+					});
+
+			}
+		}
+
+		// var submit_button = document.getElementById("submit_button").onclick = submitData
+
+	  </script>
+
+		<div id="app">
+			<div id = "form">
+					Product Name:  <input type="text" id = "product_name"><br>
+					Manufacturer Name:  <input type="text" id = "manufacturer_name"><br>
+					Location:  <input type="text" id = "location"><br>
+					Url Link:  <input type="text" id = "url_link"><br>
+					Contact Information:  <input type="text" id = "contact_information"><br>
+					Image:  <input type="file" accept = "image/*" id = "image"> <br>
+					<button type="submit" id = "submit_button" onClick = "submitData()"> Submit </button>
+			</div>
+		</div>
 		<!-- <script src={{ url_for('static', filename='bundle.js') }}></script> -->
 	  {% endblock %}
 	  {% if error %}

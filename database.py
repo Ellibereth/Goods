@@ -34,7 +34,7 @@ class ProductDataManager:
 
 	def createProductEntryTable(self):
 		table_name = self.USER_SUBMISSION_TABLE
-		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (product_name TEXT, manufacturer_name TEXT, location TEXT, url_link TEXT, image_id TEXT, timeStamp FLOAT)'
+		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (product_name TEXT, manufacturer_name TEXT, location TEXT, url_link TEXT, image_id TEXT, contact_information TEXT, timeStamp FLOAT)'
 		self.db.execute(createTableCode)
 
 	def isImageIdTaken(self, image_id):
@@ -59,19 +59,28 @@ class ProductDataManager:
 			image_id = self.id_generator()
 		return image_id
 
-	def addProductEntry(self, product_name, manufacturer_name, location, url_link, image_data):
+	def addProductEntry(self, product_name, manufacturer_name, location, url_link, contact_information, image_data):
 		self.createProductEntryTable()
 		image_id = self.generateNewImageId()
-
 		# write the image file to memory as a png, if there is image data
-		if image_data != "":
+		if image_data != None and image_data != "":
 			image_bytes = image_data.encode('utf-8')
 			image_decoded = base64.decodestring(image_bytes)
 			with open("data/images/product_submissions/" + image_id + ".png", "wb") as fh:
 			    fh.write(image_decoded)
+		if product_name == None:
+			product_name = ""
+		if manufacturer_name == None:
+			manufacturer_name = ""
+		if location == None:
+			location = ""
+		if url_link == None:
+			url_link = ""
+		if contact_information == None:
+			contact_information = ""
 
 		## insert into the database
 		timeStamp = time.time()
-		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (product_name, manufacturer_name, location, url_link, image_id, timeStamp) VALUES (%s,%s,%s,%s,%s,%s)"
-					,(product_name, manufacturer_name, location, url_link, image_id, timeStamp))
+		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (product_name, manufacturer_name, location, url_link, image_id, contact_information, timeStamp) VALUES (%s,%s,%s,%s,%s,%s, %s)"
+					,(product_name, manufacturer_name, location, url_link, image_id, contact_information, timeStamp))
 		self.db.execute(sql)

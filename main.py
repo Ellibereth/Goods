@@ -28,6 +28,8 @@ app.secret_key = "powerplay"
 
 from api.mobile_api import mobile_api
 app.register_blueprint(mobile_api)
+from api.browser_api import browser_api
+app.register_blueprint(browser_api)
 
 @app.after_request
 def add_header(response):
