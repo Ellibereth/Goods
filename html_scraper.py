@@ -40,7 +40,7 @@ class HtmlScraper():
 
 	def processAllUrlFromQueue(self):
 		# 20 is the number of threads
-		for i in range(1,20):
+		for i in range(1,40):
 			thread = Thread(target = self.processNextUrlFromQueue)
 			thread.start()
 
@@ -205,34 +205,30 @@ class HtmlScraper():
 					if len(asin) == 10:
 						asin_list.append(asin)
 
-			# append asin list to a csv 
-			existing_list = list()
-			with open('data/asin_list.csv', 'r') as f:
-				reader = csv.reader(f)
-				your_list = list(reader)
-				for item in your_list:
-					existing_list.append(item[0])
+			# # append asin list to a csv 
+			# existing_list = list()
+			# with open('data/asin_list.csv', 'r') as f:
+			# 	reader = csv.reader(f)
+			# 	your_list = list(reader)
+			# 	for item in your_list:
+			# 		existing_list.append(item[0])
 
 
-			with open('data/asin_list.csv', 'a') as f:
-				writer = csv.writer(f)
-				for asin in asin_list:
-					if asin not in existing_list:
-						writer.writerow([asin])
-					else:
-						print("Found duplicate ASIN : " + asin)
-
+		with open('data/asin_list.csv', 'a') as f:
+			writer = csv.writer(f)
+			for asin in asin_list:
+				writer.writerow([asin])		
 		if page_number < 19:
-			wait_time = random.uniform(0,1) + 0.5
+			wait_time = random.uniform(0,1)
 			time.sleep(wait_time)
 			try:
 				self.recursiveGetAsinListFromUrl(next_url_to_load, page_number)
 			except:
+				print("bad url")
 				return
 
 	def getAsinListFromUrl(self, url):
 		self.recursiveGetAsinListFromUrl(url, 1)
-		print("one asin done")
 
 	def getProductDescriptionFromBrowseNodeXml(self, filename, category):
 		with open(filename, "rb") as f:
@@ -248,17 +244,20 @@ class HtmlScraper():
 			root_ancestor = self.getRootAncestor(xml_soup)
 			if root_ancestor != None:
 				this_item_name = root_ancestor + " " + this_item_name
-				base_url = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=" 
-				url = base_url + this_item_name
-				self.addUrlToQueue(url)
+				# base_url = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=" 
+				# url = base_url + this_item_name
+				# self.addUrlToQueue(url)
+				with open("data/scraping/keywords.csv", 'a') as f:
+					writer = csv.writer(f)
+					writer.writerow([this_item_name])
 
 
 	def getRootAncestor(self, xml_soup):
 		ancestor_xml = xml_soup.find("Ancestors")
 		if ancestor_xml == None:
-			return None
+			return xml_soup.find("Name").text
 		else:
-			return ancestor_xml.find("Name").text
+			return self.getRootAncestor(ancestor_xml)
 
 	def xmlHasChildren(self, xml_soup):
 		children = xml_soup.find("Children")
@@ -280,27 +279,25 @@ class HtmlScraper():
 				category_dict['name'] = name
 				category_dict['NodeId'] = NodeId
 				categories.append(category_dict)
-		return categories
+		return categories	
 
 	def main(self):
-		categories = self.getCategories()
-		random.shuffle(categories)
-		directory = "./data/xml/nodes/"
 		count = 0
-		for category_dict in categories:
-			# this is for home and kitchen
-			if category_dict['NodeId'] == "1063498":
-				this_directory = directory + category_dict['name'] + "/"
-				if os.path.exists(this_directory):
-					directory_items = os.listdir(this_directory)
-					random.shuffle(directory_items)
-					for filename in directory_items:
-						count = count + 1
-						print("count : " + str(count))
-						self.getProductDescriptionFromBrowseNodeXml(this_directory + filename, category_dict['name'])
-						if count % 100 == 0:
-							self.processAllUrlFromQueue()
-							self.queue.join()
+		with open ('./data/scraping/keywords.csv') as f:
+			csv_reader = csv.reader(f)
+			for row in csv_reader:
+				count = count + 1
+				print(count)
+				keyword = row[0]
+				base_url = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=" 
+				url = base_url + keyword
+				with open ('./data/scraping/completed_keywords.csv', 'a') as f:
+					csv_writer = csv.writer(f)
+					csv_writer.writerow([keyword])
+				self.addUrlToQueue(url)
+				if count % 1000 == 0:
+					self.processAllUrlFromQueue()
+					self.queue.join()
 
 		self.processAllUrlFromQueue()
 		self.queue.join()
