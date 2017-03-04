@@ -42,10 +42,11 @@ class AmazonHtmlParser:
 	def getHtml(self, url):
 		desired_capabilities = DesiredCapabilities.PHANTOMJS.copy()
 		# load the user agents, in random order
-		user_agent = self.LoadUserAgents(uafile="user_agents.txt")
+		user_agent = self.LoadUserAgents(uafile="scraping_tools/user_agents.txt")
 		random_user_agent = random.choice(user_agent)
 		desired_capabilities['phantomjs.page.customHeaders.User-Agent'] = random_user_agent
-		random_proxy = self.getRandomProxy(proxy_file = "proxies.csv")
+		print(random_user_agent)
+		random_proxy = self.getRandomProxy(proxy_file = "scraping_tools/proxylist.csv")
 		full_random_proxy = '--proxy=' + random_proxy
 		print(full_random_proxy)
 		service_args = [full_random_proxy,'--proxy-type=http']

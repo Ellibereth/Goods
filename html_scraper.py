@@ -20,10 +20,11 @@ class HtmlScraper():
 	def __init__(self):
 		self.proxy_list = []
 		self.user_agent_list = []
-		self.initializeProxyList()
-		self.initializeUserAgentList()
+		self.initializeScraper()
 		self.queue = queue.LifoQueue()
 		self.output_html = list()
+		self.proxy_username = "darekjohnson28"
+		self.proxy_password = "hB9CUZqI"
 
 
 	def addUrlToQueue(self,url):
@@ -32,9 +33,9 @@ class HtmlScraper():
 	def processNextUrlFromQueue(self):
 		while not self.queue.empty():
 			url = self.queue.get()
-			html = self.getJavascriptRenderedHtml(url)
+			self.getAsinListFromUrl(url)
+			# html = self.getJavascriptRenderedHtml(url)
 			# html = self.getHtml(url)
-			self.output_html.append(html)
 			self.queue.task_done()
 
 	def processAllUrlFromQueue(self):
@@ -52,14 +53,8 @@ class HtmlScraper():
 					"https": proxy}
 		user_agent = self.getRandomUserAgent()
 		headers = {'User-agent': user_agent, "content-type" : "text"}
-		print ("Trying HTTP proxy %s" % proxy)
 		response = requests.get(url, proxies=proxies, headers = headers)	
-		print ("Got URL using proxy %s" % proxy)
 		return response.text
-		# except:
-		# 	print ("Trying next proxy in 2 seconds")
-		# 	time.sleep(2)
-		# 	self.getHtml(url)
 
 	
 
@@ -69,19 +64,18 @@ class HtmlScraper():
 		desired_capabilities = DesiredCapabilities.PHANTOMJS.copy()
 		desired_capabilities['phantomjs.page.customHeaders.User-Agent'] = user_agent
 		full_random_proxy = '--proxy=' + proxy
-		service_args = [full_random_proxy,'--proxy-type=http']
+		proxy_authentication = '--proxy-auth=' + self.proxy_username + ':' + self.proxy_password
+		service_args = [full_random_proxy,'--proxy-type=https', proxy_authentication, '--ignore-ssl-errors=true', '--ssl-protocol=any']
 		driver = webdriver.PhantomJS(service_args=service_args, desired_capabilities=desired_capabilities)
 		# driver = webdriver.PhantomJS(desired_capabilities=desired_capabilities)	
 		time_start = time.time()
-		print(url)
-		print(proxy)
 		driver.get(url)
-		print("url getting done")
 		html = driver.page_source
 		driver.quit()
-		time_1 = time.time()
-		total_time = time_1 - time_start
-		print("done getting html in : " + str(total_time) + " seconds")
+		# print(proxy)
+		# time_1 = time.time()
+		# total_time = time_1 - time_start
+		# print("done getting html in : " + str(total_time) + " seconds")
 		return html
 
 
@@ -89,11 +83,21 @@ class HtmlScraper():
 	# this will eventually be changed to pull from a file or databse that has all our proxies
 	# right now it's hardcoded
 	def initializeProxyList(self):
-		self.proxy_list = ["62.151.183.58:80",
-							"104.198.5.198:80",
-							"210.101.131.231:8080",
-							"200.29.191.149:3128"
-							]
+		proxy_list = list()
+		with open ("scraping_tools/proxylist.csv") as f:
+			csv_reader = csv.reader(f, delimiter=',', quotechar='|')
+			for row in csv_reader:
+				proxy = row[0] + ":" + row[1]
+				proxy_list.append(proxy)
+
+		self.proxy_list = proxy_list
+
+
+		# self.proxy_list = ["62.151.183.58:80",
+		# 					"104.198.5.198:80",
+		# 					"210.101.131.231:8080",
+		# 					"200.29.191.149:3128"
+		# 					]
 
 	# this methods pulls a random proxy from the proxy list
 	def getRandomProxy(self):
@@ -104,6 +108,15 @@ class HtmlScraper():
 	# this will eventually be changed to pull from a file or databse that has all our user_agents (see user_agents.txt)
 	# right now it's hardcoded
 	def initializeUserAgentList(self):
+		user_agent_list = list()
+		with open ("scraping_tools/user_agents.txt") as f:
+			for line in f:
+				this_agent = line.replace("\n", "").replace("\"", "")
+				user_agent_list.append(this_agent)
+
+		# self.user_agent_list = user_agent_list
+				
+
 		self.user_agent_list = ["Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)",
 								"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)",
 								"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/5.0)",
@@ -117,11 +130,186 @@ class HtmlScraper():
 	def getRandomUserAgent(self):
 		return random.choice(self.user_agent_list)
 
+	def initializeScraper(self):
+		self.initializeProxyList()
+		self.initializeUserAgentList()
+
+
+
+	## below this is testing form parse.py just to see how multithreading will work 
+	def checkAmazonPage(self, html):
+		soup = BeautifulSoup(html,"html.parser")
+		# nnarrow down to prod details
+		product_details = soup.find("div", {'id': 'prodDetails'})
+		details_table = product_details.find("table", {"id" : 'productDetails_detailBullets_sections1'})
+		row_list = details_table.find_all("tr", {})
+		row_country = "BLANK"
+		for row in row_list:
+			row_header = row.find("th", {})	
+			header_text = row_header.text.replace(" ", "@").lower()
+			if header_text.find("origin") != -1:
+				row_country = row.find("td", {}).text.replace(" ", "").replace("\n", "")
+
+
+	def recursiveGetAsinListFromUrl(self, url, page_number, num_errors = None):
+		if (num_errors != None):
+			if num_errors > 100:
+				print(str("broke at time : " + time.time() - time_0))
+
+		try:	
+			html = self.getJavascriptRenderedHtml(url)
+		except:
+			return
+
+		soup = BeautifulSoup(html, "html.parser")
+		directory = "data/test_html"
+		if os.path.exists(directory):
+			next_page_number = len(os.listdir(directory)) + 1
+			with open("data/test_html/" + str(next_page_number) + ".html", "w") as f:
+				f.write(html)
+
+		product_list = soup.find("ul", {'id' : 's-results-list-atf'})
+		if product_list == None:
+			# print("bad url : " + url)	
+			# print(product_list)
+			if num_errors == None:
+				num_errors = 0
+			num_errors = num_errors + 1
+			self.recursiveGetAsinListFromUrl(url, page_number, num_errors)
+		asin_list = list()
+		if product_list == None:
+			return 
+		for product in product_list.find_all("li"):
+			if product.get("data-asin") != None:
+				if len(product['data-asin']) == 10:
+					asin_list.append(product['data-asin'])
+
+		# /gp/search/ref=sr_pg_3?rh=i%3Aaps%2Ck%3Afurniture&page=3&keywords=furniture&ie=UTF8&qid=1488212748&spIA=B01NBE3QE4,B014142SOQ,B01LB2TXIA,B00464AJ7U,B01M9JENJD,B00T40L0SS
+		next_page_link = soup.find("a", {'id' : 'pagnNextLink'})
+		base_url = "https://www.amazon.com"
+		if next_page_link == None:
+			with open('data/asin_list.csv', 'a') as f:
+				writer = csv.writer(f)
+				for asin in asin_list:
+					writer.writerow([asin])
+			return
+		if next_page_link.get('href') != None:
+			next_page_url = next_page_link['href']
+			next_url_to_load = base_url + next_page_url
+
+			# here we grab more asin numbers
+			index_of_asin = next_page_url.find("spIA") + 5
+			if (index_of_asin != -1):
+				asin_from_link = next_page_url[index_of_asin: len(next_page_url)].split(",")
+				for asin in asin_from_link:
+					if len(asin) == 10:
+						asin_list.append(asin)
+
+			# append asin list to a csv 
+			existing_list = list()
+			with open('data/asin_list.csv', 'r') as f:
+				reader = csv.reader(f)
+				your_list = list(reader)
+				for item in your_list:
+					existing_list.append(item[0])
+
+
+			with open('data/asin_list.csv', 'a') as f:
+				writer = csv.writer(f)
+				for asin in asin_list:
+					if asin not in existing_list:
+						writer.writerow([asin])
+					else:
+						print("Found duplicate ASIN : " + asin)
+
+		if page_number < 19:
+			wait_time = random.uniform(0,1) + 0.5
+			time.sleep(wait_time)
+			try:
+				self.recursiveGetAsinListFromUrl(next_url_to_load, page_number)
+			except:
+				return
+
+	def getAsinListFromUrl(self, url):
+		self.recursiveGetAsinListFromUrl(url, 1)
+		print("one asin done")
+
+	def getProductDescriptionFromBrowseNodeXml(self, filename, category):
+		with open(filename, "rb") as f:
+			xml_text = f.read()
+			# soup = BeautifulSoup(response, "xml")
+		xml_soup = BeautifulSoup(xml_text, "xml")
+		if self.xmlHasChildren(xml_soup):
+			return
+		else:
+			if xml_soup.find("Name") == None:
+				return
+			this_item_name = xml_soup.find("Name").text
+			root_ancestor = self.getRootAncestor(xml_soup)
+			if root_ancestor != None:
+				this_item_name = root_ancestor + " " + this_item_name
+				base_url = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=" 
+				url = base_url + this_item_name
+				self.addUrlToQueue(url)
+
+
+	def getRootAncestor(self, xml_soup):
+		ancestor_xml = xml_soup.find("Ancestors")
+		if ancestor_xml == None:
+			return None
+		else:
+			return ancestor_xml.find("Name").text
+
+	def xmlHasChildren(self, xml_soup):
+		children = xml_soup.find("Children")
+		if children == None:
+			return False
+		else:
+			return True
+
+	def getCategories(self):
+		workbook = xlrd.open_workbook('AmazonNodeId.xlsx')
+		categories = list()
+		for sheet in workbook.sheets():
+			number_of_rows = sheet.nrows
+			number_of_columns = sheet.ncols
+			for i in range(0,number_of_rows):
+				name = sheet.cell(i,0).value
+				NodeId = sheet.cell(i,3).value 
+				category_dict = {}
+				category_dict['name'] = name
+				category_dict['NodeId'] = NodeId
+				categories.append(category_dict)
+		return categories
+
+	def main(self):
+		categories = self.getCategories()
+		random.shuffle(categories)
+		directory = "./data/xml/nodes/"
+		count = 0
+		for category_dict in categories:
+			# this is for home and kitchen
+			if category_dict['NodeId'] == "1063498":
+				this_directory = directory + category_dict['name'] + "/"
+				if os.path.exists(this_directory):
+					directory_items = os.listdir(this_directory)
+					random.shuffle(directory_items)
+					for filename in directory_items:
+						count = count + 1
+						print("count : " + str(count))
+						self.getProductDescriptionFromBrowseNodeXml(this_directory + filename, category_dict['name'])
+						if count % 100 == 0:
+							self.processAllUrlFromQueue()
+							self.queue.join()
+
+		self.processAllUrlFromQueue()
+		self.queue.join()
+
+	## end of stuff ripped from parse.py
 
 	def test(self):
 		# url = "http://www.lagado.com/proxy-test"
 		url = "http://www.findmyip.org/"
-
 		for i in range(1,50):
 			self.addUrlToQueue(url)
 
@@ -137,9 +325,9 @@ class HtmlScraper():
 		total_time = time_1 - time_0
 		print("multithreaded time : " + str(total_time))
 		
+		
 
 
 html_scraper = HtmlScraper()
-# while True:
-html_scraper.test()
+html_scraper.main()
 
