@@ -11,6 +11,7 @@ import time
 import psycopg2
 import urllib
 import base64
+import openpyxl
 
 class AmazonWriter:
 	def __init__(self):
@@ -39,7 +40,6 @@ class AmazonWriter:
 		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (asin TEXT)'
 		self.db.execute(createTableCode)
 
-
 	# by default all columns will be TEXT
 	def addColumnToScrapingTable(self, column_name):
 		sql = "ALTER TABLE " + self.AMAZON_SCRAPING_TABLE + " ADD " + column_name + " TEXT"
@@ -57,24 +57,49 @@ class AmazonWriter:
 		# log if this happens
 		if 'asin' not in keys:
 			return 
-
-		# insert an item 
-		sql = "INSERT INTO " + self.AMAZON_SCRAPING_TABLE + " (asin) VALUES (%s) "
-		self.db.execute(self.db.mogrify(sql, (product['asin'],)))
-
+		if not self.tableHasAsin(product['asin']):
+			# insert an item 
+			sql = "INSERT INTO " + self.AMAZON_SCRAPING_TABLE + " (asin) VALUES (%s) "
+			self.db.execute(self.db.mogrify(sql, (product['asin'],)))
 		## update the rest keys in product
 		for key in keys:
 			self.updateEntryByAsin(product['asin'], key, product[key])
 
 	def updateEntryByAsin(self, asin, column_name, data):	
-		try:
-			self.addColumnToScrapingTable(column_name)
-		except:
-			print("column exists alredy")
+		# try:
+		# 	self.addColumnToScrapingTable(column_name)
+		# except:
+		# 	print("column exists alredy")
 
 		sql = "UPDATE " + self.AMAZON_SCRAPING_TABLE + " SET " + column_name + " = %s " + " WHERE asin = %s"
 		self.db.execute(self.db.mogrify(sql, (data, asin)))
 
+	def tableHasAsin(self, asin):
+		# self.createScrapingDataTable()
+		sql = "SELECT * FROM " + self.AMAZON_SCRAPING_TABLE + " WHERE asin = %s"
+		self.db.execute(self.db.mogrify(sql, (asin,)))
+		if self.db.rowcount == 0:
+			return False
+		else:
+			return True
+
 	def id_generator(self, size=20, chars=string.ascii_uppercase + string.digits):
 		return ''.join(random.choice(chars) for _ in range(size))
+
+	def writeTableToCsv(self):
+		sql = "SELECT * FROM " + self.AMAZON_SCRAPING_TABLE
+		self.db.execute(sql)
+		if self.db.rowcount == 0:
+			return 
+		
+		query = self.db.fetchall()
+		wb = openpyxl.Workbook()
+		ws = wb.active
+		# Rows can also be appended
+		for row in query:
+			ws.append(row)
+
+		# Save the file
+		wb.save("./database/amazon_table.xlsx")
+
 

@@ -42,7 +42,7 @@
 \DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Cov}{Cov}
 
-\title{Amazon Notes}
+\title{Goods Notes}
 \author{Darek Johnson}
 \date{Feb 24, 2017}
 
@@ -124,8 +124,22 @@ Things that were easy to see from Target
 	\item At least one of company / brand / manufacturer
 \end{itemize}
 
-The big question is ``how much can we" determine from a bar code. I think this will be the best way for us to uniquely identify products moving forward. We can get these for every good from Amazon API. With just the product name and company some products will be easy to find, but not all. One that I had a lot of trouble finding was happy birthday gift cards. They're very hard to distinguish easily. But products with a clear model number or name like appliances are pretty easy to find. 
+The big question is ``how much can we" determine from a bar code. I think this will be the best way for us to uniquely identify products moving forward. We can get these for every good from Amazon API. With just the product name and company some products will be easy to find, but not all. One that I had a lot of trouble finding was happy birthday gift cards. They're very hard to distinguish easily. But products with a clear model number or name like appliances are pretty easy to find.  \\ \\
 
+For reference, visiting 6300 connections on Amazon sites is about 800MB, which got us about 2600 scraped websites. Each GB of proxy data costs 50cents through proxy bananza.
+
+\section*{3/5/2017}
+Goals
+
+\begin{itemize}
+	\item Add barcode scanning to our application so that the UPC is provided on submission
+	\item Add an admin tool page the website so that Eli and Darek can view submissions easily and then add the functionality to accept or reject.
+	\item Add rows in database for the use submissions for confirmed and for the UPC (barcode)
+	\item Comment the code as Ben + Kenny advise
+	\item Organize the code as they advise
+	\item Try to determine cheaper proxy services
+	\item Set up the python file to use Amazon's API to write information to our database. (Ask Kenny + Ben advice on how to structure this)
+\end{itemize}
 
 
 \end{document}

@@ -8,6 +8,7 @@ import os
 import bottlenose
 from selenium.webdriver import DesiredCapabilities
 import random
+import openpyxl
 import xlrd
 import sys
 # from multiprocessing import Queue
@@ -21,28 +22,9 @@ class HtmlScraper():
 		self.proxy_list = []
 		self.user_agent_list = []
 		self.initializeScraper()
-		self.queue = queue.LifoQueue()
 		self.output_html = list()
 		self.proxy_username = "darekjohnson28"
 		self.proxy_password = "hB9CUZqI"
-
-
-	def addUrlToQueue(self,url):
-		self.queue.put(url)
-
-	def processNextUrlFromQueue(self):
-		while not self.queue.empty():
-			url = self.queue.get()
-			self.getAsinListFromUrl(url)
-			# html = self.getJavascriptRenderedHtml(url)
-			# html = self.getHtml(url)
-			self.queue.task_done()
-
-	def processAllUrlFromQueue(self):
-		# 20 is the number of threads
-		for i in range(1,40):
-			thread = Thread(target = self.processNextUrlFromQueue)
-			thread.start()
 
 	# function that will pull the raw html with response and the option to use proxies
 	# input: website url 
@@ -55,8 +37,6 @@ class HtmlScraper():
 		headers = {'User-agent': user_agent, "content-type" : "text"}
 		response = requests.get(url, proxies=proxies, headers = headers)	
 		return response.text
-
-	
 
 	def getJavascriptRenderedHtml(self, url):
 		proxy = self.getRandomProxy()
@@ -92,17 +72,9 @@ class HtmlScraper():
 
 		self.proxy_list = proxy_list
 
-
-		# self.proxy_list = ["62.151.183.58:80",
-		# 					"104.198.5.198:80",
-		# 					"210.101.131.231:8080",
-		# 					"200.29.191.149:3128"
-		# 					]
-
 	# this methods pulls a random proxy from the proxy list
 	def getRandomProxy(self):
 		return random.choice(self.proxy_list)
-
 
 	# this function will initialize the proxy list
 	# this will eventually be changed to pull from a file or databse that has all our user_agents (see user_agents.txt)
@@ -115,17 +87,6 @@ class HtmlScraper():
 				user_agent_list.append(this_agent)
 
 		self.user_agent_list = user_agent_list
-				
-
-		# self.user_agent_list = ["Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)",
-		# 						"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)",
-		# 						"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/5.0)",
-		# 						"Mozilla/4.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/5.0)",
-		# 						"Mozilla/1.22 (compatible; MSIE 10.0; Windows 3.1)",
-		# 						"Mozilla/5.0 (Windows; U; MSIE 9.0; WIndows NT 9.0; en-US))",
-		# 						"Mozilla/5.0 (Windows; U; MSIE 9.0; Windows NT 9.0; en-US)",
-		# 						"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; Zune 4.0; InfoPath.3; MS-RTC LM 8; .NET4.0C; .NET4.0E)"]
-	
 
 	def getRandomUserAgent(self):
 		return random.choice(self.user_agent_list)
@@ -133,102 +94,6 @@ class HtmlScraper():
 	def initializeScraper(self):
 		self.initializeProxyList()
 		self.initializeUserAgentList()
-
-
-
-	## below this is testing form parse.py just to see how multithreading will work 
-	def checkAmazonPage(self, html):
-		soup = BeautifulSoup(html,"html.parser")
-		# nnarrow down to prod details
-		product_details = soup.find("div", {'id': 'prodDetails'})
-		details_table = product_details.find("table", {"id" : 'productDetails_detailBullets_sections1'})
-		row_list = details_table.find_all("tr", {})
-		row_country = "BLANK"
-		for row in row_list:
-			row_header = row.find("th", {})	
-			header_text = row_header.text.replace(" ", "@").lower()
-			if header_text.find("origin") != -1:
-				row_country = row.find("td", {}).text.replace(" ", "").replace("\n", "")
-
-
-	def recursiveGetAsinListFromUrl(self, url, page_number, num_errors = None):
-		if (num_errors != None):
-			if num_errors > 100:
-				print(str("broke at time : " + time.time() - time_0))
-
-		try:	
-			html = self.getJavascriptRenderedHtml(url)
-		except:
-			return
-
-		soup = BeautifulSoup(html, "html.parser")
-		directory = "data/test_html"
-		if os.path.exists(directory):
-			next_page_number = len(os.listdir(directory)) + 1
-			with open("data/test_html/" + str(next_page_number) + ".html", "w") as f:
-				f.write(html)
-
-		product_list = soup.find("ul", {'id' : 's-results-list-atf'})
-		if product_list == None:
-			# print("bad url : " + url)	
-			# print(product_list)
-			if num_errors == None:
-				num_errors = 0
-			num_errors = num_errors + 1
-			self.recursiveGetAsinListFromUrl(url, page_number, num_errors)
-		asin_list = list()
-		if product_list == None:
-			return 
-		for product in product_list.find_all("li"):
-			if product.get("data-asin") != None:
-				if len(product['data-asin']) == 10:
-					asin_list.append(product['data-asin'])
-
-		# /gp/search/ref=sr_pg_3?rh=i%3Aaps%2Ck%3Afurniture&page=3&keywords=furniture&ie=UTF8&qid=1488212748&spIA=B01NBE3QE4,B014142SOQ,B01LB2TXIA,B00464AJ7U,B01M9JENJD,B00T40L0SS
-		next_page_link = soup.find("a", {'id' : 'pagnNextLink'})
-		base_url = "https://www.amazon.com"
-		if next_page_link == None:
-			with open('data/asin_list.csv', 'a') as f:
-				writer = csv.writer(f)
-				for asin in asin_list:
-					writer.writerow([asin])
-			return
-		if next_page_link.get('href') != None:
-			next_page_url = next_page_link['href']
-			next_url_to_load = base_url + next_page_url
-
-			# here we grab more asin numbers
-			index_of_asin = next_page_url.find("spIA") + 5
-			if (index_of_asin != -1):
-				asin_from_link = next_page_url[index_of_asin: len(next_page_url)].split(",")
-				for asin in asin_from_link:
-					if len(asin) == 10:
-						asin_list.append(asin)
-
-			# # append asin list to a csv 
-			# existing_list = list()
-			# with open('data/asin_list.csv', 'r') as f:
-			# 	reader = csv.reader(f)
-			# 	your_list = list(reader)
-			# 	for item in your_list:
-			# 		existing_list.append(item[0])
-
-
-		with open('data/asin_list.csv', 'a') as f:
-			writer = csv.writer(f)
-			for asin in asin_list:
-				writer.writerow([asin])		
-		if page_number < 19:
-			wait_time = random.uniform(0,1)
-			time.sleep(wait_time)
-			try:
-				self.recursiveGetAsinListFromUrl(next_url_to_load, page_number)
-			except:
-				print("bad url")
-				return
-
-	def getAsinListFromUrl(self, url):
-		self.recursiveGetAsinListFromUrl(url, 1)
 
 	def getProductDescriptionFromBrowseNodeXml(self, filename, category):
 		with open(filename, "rb") as f:

@@ -50,11 +50,12 @@ class AmazonParser():
 		# here we get the category 
 		category_tags = soup.findAll("a" , {"class" : "a-link-normal a-color-tertiary"})
 		if category_tags != None:
-			last_tag = category_tags[len(category_tags)-1]
-			category_link = last_tag['href']
-			node_index = category_link.find("node=") + 5
-			product['category_node_id'] = category_link[node_index:]
-			product['category'] = last_tag.text
+			if len(category_tags) > 0:
+				last_tag = category_tags[len(category_tags)-1]
+				category_link = last_tag['href']
+				node_index = category_link.find("node=") + 5
+				product['category_node_id'] = category_link[node_index:]
+				product['category'] = last_tag.text
 
 		# here we check if the product details are in table form 
 		description_tables = soup.findAll('table', id=re.compile("^productDe.*"))

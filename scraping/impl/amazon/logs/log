@@ -1,0 +1,600 @@
+processing html
+html processed 3
+time to add asins from search to queue : 2.819463014602661
+processing html
+html processed 4
+time to add asins from search to queue : 2.147308826446533
+processing html
+html processed 5
+time to add asins from search to queue : 2.5311741828918457
+processing html
+html processed 6
+time to add asins from search to queue : 1.5995540618896484
+processing html
+html processed 7
+time to add asins from search to queue : 1.7876269817352295
+processing html
+html processed 8
+time to add asins from search to queue : 2.0783159732818604
+processing html
+html processed 9
+time to add asins from search to queue : 2.2055180072784424
+processing html
+html processed 10
+time to add asins from search to queue : 2.5893919467926025
+processing html
+html processed 11
+time to add asins from search to queue : 2.257560968399048
+processing html
+html processed 12
+time to add asins from search to queue : 2.772822141647339
+processing html
+html processed 13
+time to add asins from search to queue : 2.1335248947143555
+processing html
+html processed 14
+time to add asins from search to queue : 1.9387240409851074
+processing html
+html processed 15
+time to add asins from search to queue : 2.1294939517974854
+processing html
+html processed 16
+time to add asins from search to queue : 2.4099910259246826
+processing html
+html processed 17
+time to add asins from search to queue : 3.7319579124450684
+processing html
+html processed 18
+time to add asins from search to queue : 7.216498136520386
+processing html
+html processed 19
+time to add asins from search to queue : 2.152345895767212
+beginning to process URLS
+processing asin : B01MUBBTED
+processing asin : B005PX8AVS
+processing asin : B00DEF5WGA
+processing asin : B0192W6WEY
+processing asin : B01M3U909T
+processing asin : B00CP27DFG
+processing asin : B016RMRHGE
+processing asin : B01C7LXBL4
+processing asin : B01EW3Z6JK
+processing asin : B01LXXUE7S
+processing asin : B01N4VEES6
+processing asin : B00U176LBY
+processing asin : B018M7YAAS
+processing asin : B00DJYNMRC
+processing asin : B0183OQ32S
+processing asin : B01BKJM1AQ
+processing asin : B01G3WIL5Y
+processing asin : B004H6UTNG
+processing asin : B001LUE6GC
+processing asin : B01C6PD4FO
+processing asin : B003MY10OQ
+processing asin : B00K6HALJ2
+processing asin : B00PJ2L36Y
+processing asin : B017NERBV6
+processing asin : B00C7926IG
+processing asin : B00PJOL2IQ
+processing asin : B00H1QAA1U
+processing asin : B008MURZEO
+processing asin : B00MYY2L70
+processing asin : B01257NJ8U
+processing asin : B01M4KYKOP
+processing asin : B0054H3ZK6
+time to render html : 2.3218820095062256
+time to parse html : 0.5147960186004639
+time to write to database : 1.4043569564819336
+{'category': 'Chairs', 'asin': 'B00DEF5WGA', 'origin': 'Made in US', 'price': '203.99', 'product_name': 'Sole Designs Amore Series Bella Collection Upholstered Modern Dining Chair (Set of 2), Blue/Red', 'category_node_id': '3733821', 'model': 'Bella-Amore-Prim-Nat'}
+processing asin : B00N15FLYQ
+time to render html : 1.9245860576629639
+time to parse html : 0.8859119415283203
+time to write to database : 0.7719099521636963
+{'price': '264.99', 'product_name': 'Industrial Rustic Acacia Wood and Metal Dining Chairs with Back - Set of 2 - Includes Modhaus Living Pen', 'category_node_id': '3733821', 'asin': 'B01M4KYKOP', 'category': 'Chairs'}
+processing asin : B010M20OX8
+time to render html : 3.1119370460510254
+time to parse html : 1.8994710445404053
+time to write to database : 0.30017709732055664
+{'category': 'Chairs', 'asin': 'B01G3WIL5Y', 'origin': 'Made in USA', 'price': '65.00', 'product_name': 'Hampton 3150 Dining Room Chair with Dark Cherry Finish', 'category_node_id': '3733821', 'model': '3150'}
+processing asin : B01N9S79A8
+time to render html : 2.2517409324645996
+time to parse html : 2.2643561363220215
+time to write to database : 0.4690549373626709
+{'category': 'Chairs', 'product_name': 'Set of 2 Dining Chairs Black Leather Like Rich Cherry Finish', 'category_node_id': '3733821', 'asin': 'B001LUE6GC'}
+processing asin : B01LYFFINT
+time to render html : 2.5114638805389404
+time to parse html : 2.836008071899414
+time to write to database : 0.6533050537109375
+{'category': 'Chairs', 'asin': 'B003MY10OQ', 'origin': 'China', 'price': '626.99', 'product_name': 'Eurø Style Diana Soft Leatherette Stacking Side Chair with Stainless Steel Frame, White, Set of 4', 'category_node_id': '3733821', 'model': '02348WHT'}
+processing asin : B008SSY5B6
+time to render html : 2.8883090019226074
+time to parse html : 2.527951955795288
+time to write to database : 0.7061049938201904
+{'category': 'Chairs', 'asin': 'B01257NJ8U', 'origin': 'Imported', 'price': '132.18', 'product_name': 'Pulaski Modern Upholstered Dining Chair in Geo Mist, Multicolor', 'category_node_id': '3733821', 'model': 'DS-2262-900-391'}
+processing asin : B00FHXGG08
+time to render html : 2.7986299991607666
+time to parse html : 3.104201078414917
+time to write to database : 0.40616893768310547
+{'category': 'Chairs', 'product_name': 'Stakmore French Folding Chair - Set of 2', 'category_node_id': '3733821', 'asin': 'B017NERBV6'}
+processing asin : B00TV45MWM
+time to render html : 2.8963310718536377
+time to parse html : 2.7954249382019043
+time to write to database : 0.7230570316314697
+{'category': 'Chairs', 'asin': 'B00C7926IG', 'origin': 'China', 'price': '167.29', 'product_name': 'Pastel Furniture MC-117-CH-978 Monaco Arm Chair, Chrome and PU Ivory', 'category_node_id': '3733821', 'model': 'MC-117-CH-978'}
+processing asin : B01J7JOYPG
+time to render html : 3.849720001220703
+time to parse html : 2.385993003845215
+time to write to database : 0.5792419910430908
+{'category': 'Chairs', 'asin': 'B004H6UTNG', 'origin': 'Malaysia', 'price': '67.92', 'product_name': 'ACME 02185A-C Nostalgia Double Press Back Side Chair, Oak Finish', 'category_node_id': '3733821', 'model': '02185A-C'}
+processing asin : B01JACZRUG
+time to render html : 3.5000808238983154
+time to parse html : 2.786604166030884
+time to write to database : 0.5344498157501221
+{'category': 'Chairs', 'asin': 'B008MURZEO', 'origin': 'Imported', 'price': '218.45', 'product_name': 'Monsoon Pacific Voyage Upholstered Dining Chairs, Black, Set of 2', 'category_node_id': '3733821', 'model': '222283'}
+processing asin : B01LZK96JJ
+time to render html : 3.1131350994110107
+time to parse html : 3.195556879043579
+time to write to database : 0.5413908958435059
+{'price': '175.73', 'product_name': 'Steve Silver Crosspointe Counter Height Dining Chair - Set of 2 - Dark Espresso Cherry', 'category_node_id': '3733821', 'asin': 'B00K6HALJ2', 'category': 'Chairs'}
+processing asin : B000QCYWEW
+time to render html : 4.823927879333496
+time to parse html : 1.8995630741119385
+time to write to database : 0.2006978988647461
+{'price': '170.39', 'product_name': 'Mendoza Modern Cherry Finish Black Faux Leather Keyhole Back Dining Room Chairs (Set of 2)', 'category_node_id': '3733821', 'asin': 'B00PJ2L36Y', 'category': 'Chairs'}
+processing asin : B00FEEHFV4
+time to render html : 3.897357940673828
+time to parse html : 2.8210809230804443
+time to write to database : 0.33320116996765137
+{'price': '109.94', 'product_name': 'Arizona Woven Abaca Dining Chair', 'category_node_id': '3733821', 'asin': 'B00PJOL2IQ', 'category': 'Chairs'}
+processing asin : B01M7ZX43J
+time to render html : 4.665348052978516
+time to parse html : 2.189880847930908
+time to write to database : 0.24351119995117188
+{'category': 'Chairs', 'asin': 'B00MYY2L70', 'origin': 'Vietnam', 'price': '119.21', 'product_name': 'International Concepts C-1622 Sheaf Back Arm Chair, Unfinished', 'category_node_id': '3733821', 'model': 'C-1622'}
+processing asin : B00TV46EFG
+time to render html : 5.2348949909210205
+time to parse html : 1.5284769535064697
+time to write to database : 0.35064697265625
+{'category': 'Chairs', 'asin': 'B0054H3ZK6', 'price': '156.32', 'product_name': 'Coaster Set of 2 Parson Dining Chairs in Cream Leather Like', 'category_node_id': '3733821', 'model': '102264'}
+processing asin : B0015DTWHI
+time to render html : 7.431848049163818
+time to parse html : 0.6203899383544922
+time to write to database : 0.07771110534667969
+{'category': 'Chairs', 'product_name': 'INKIVY Boomerang Dining Chair Set Of 2 Blue See below', 'category_node_id': '3733821', 'asin': 'B0192W6WEY'}
+processing asin : B009I3KX5M
+time to render html : 4.335654973983765
+time to parse html : 0.4147820472717285
+time to write to database : 0.1716771125793457
+{'category': 'Chairs', 'asin': 'B010M20OX8', 'price': '254.72', 'product_name': 'Work Smart/OSP Designs BRW29A4-C230-osp Bristow Armless Chair (4 Pack), Matte Black', 'category_node_id': '3733821', 'model': 'BRW29A4-C230-osp'}
+processing asin : B01J709QUI
+time to render html : 4.44121789932251
+time to parse html : 0.49049806594848633
+time to write to database : 0.2692568302154541
+{'manufacturer': 'FineHome', 'category': 'Chairs', 'price': '27.99', 'product_name': 'Set of Two Soft Micro Suede Shortly Dining Chair Covers (Khaki)', 'category_node_id': '3733821', 'asin': 'B00N15FLYQ'}
+processing asin : B00AVUKSOW
+time to render html : 3.791411876678467
+time to parse html : 0.41988396644592285
+time to write to database : 0.29575610160827637
+{'price': '250.00', 'product_name': 'Magnussen Abington Dining Side Chair in Weathered Charcoal', 'category_node_id': '3733821', 'asin': 'B01LYFFINT', 'category': 'Chairs'}
+processing asin : B00VEZ9RE0
+time to render html : 3.793164014816284
+time to parse html : 0.591965913772583
+time to write to database : 0.3728950023651123
+{'price': '149.99', 'product_name': 'Koiv Light Grey Fabric with Oak Finish Dining Chairs (Set of 2)', 'category_node_id': '3733821', 'asin': 'B01N9S79A8', 'category': 'Chairs'}
+processing asin : B01M9K7NG5
+time to render html : 2.7044789791107178
+time to parse html : 0.7951340675354004
+time to write to database : 0.33971691131591797
+{'category': 'Chairs', 'asin': 'B00TV45MWM', 'origin': 'Vietnam', 'price': '108.72', 'product_name': 'East West Furniture ANC-CAP-C Dining Room Chair Set for Kitchen with Cushion Seat, Cappuccino Finish, Set of 2', 'category_node_id': '3733821', 'model': 'ANC-CAP-C'}
+processing asin : B008V6RXUA
+time to render html : 2.687636137008667
+time to parse html : 0.9065887928009033
+time to write to database : 0.35741710662841797
+{'category': 'Chairs', 'asin': 'B01J7JOYPG', 'origin': 'China', 'price': '59.82', 'product_name': 'Flash Furniture CH-61200-18-OR-GG Orange Metal Indoor-Outdoor Chair', 'category_node_id': '3733821', 'model': 'CH-61200-18-OR-GG'}
+processing asin : B00X8D70C2
+time to render html : 2.110469102859497
+time to parse html : 1.3502838611602783
+time to write to database : 1.0717601776123047
+{'price': '159.99', 'product_name': 'Barrington Brown Leather Dining Chairs (Set of 2)', 'category_node_id': '3733821', 'asin': 'B009I3KX5M', 'category': 'Chairs'}
+processing asin : B01M7ZX0QH
+time to render html : 2.4407920837402344
+time to parse html : 1.5299420356750488
+time to write to database : 1.7015788555145264
+{'category': 'Chairs', 'asin': 'B00TV46EFG', 'origin': 'Vietnam', 'price': '123.11', 'product_name': 'East West Furniture POC-SBR-W Slat Back Dining Room Chair Set with Wood Seat, Set of 2', 'category_node_id': '3733821', 'model': 'POC-SBR-W'}
+processing asin : B004DJVXNW
+time to render html : 2.6991219520568848
+time to parse html : 1.8884150981903076
+time to write to database : 1.3536689281463623
+{'price': '233.00', 'product_name': 'Set of 4 Oak Finish Windsor Dining Side Chairs', 'category_node_id': '3733821', 'asin': 'B000QCYWEW', 'category': 'Chairs'}
+processing asin : B01N5JO8S0
+processing asin : B01K9TUHPO
+time to render html : 3.3867440223693848
+time to parse html : 2.1827569007873535
+time to write to database : 1.4900851249694824
+{'price': '105.30', 'product_name': 'Ashley Zilmar Upholstered Dining Chair in Brown (Set of 2)', 'category_node_id': '3733821', 'asin': 'B01JACZRUG', 'category': 'Chairs'}
+processing asin : B00U2KZPBC
+time to render html : 3.953902006149292
+time to parse html : 2.5603818893432617
+time to write to database : 0.9451260566711426
+{'category': 'Chairs', 'model': 'I 1048', 'price': '148.99', 'product_name': 'Monarch Bentwood/Chrome Metal 4-Piece Dining Chairs, 34-Inch, White', 'category_node_id': '3733821', 'asin': 'B00FHXGG08'}
+processing asin : B007VLXFQ2
+time to render html : 4.485032796859741
+time to parse html : 2.0739030838012695
+time to write to database : 1.1791760921478271
+{'manufacturer': 'Safavieh', 'origin': 'China', 'model': 'MCR4706C-SET2', 'category': 'Chairs', 'price': '310.24', 'product_name': 'Safavieh Mercer Collection Carter Black Leather Dining Chair, Set of 2', 'category_node_id': '3733821', 'asin': 'B008SSY5B6'}
+processing asin : B002PNHC24
+time to render html : 4.544688940048218
+time to parse html : 1.7104661464691162
+time to write to database : 0.8008120059967041
+{'price': '70.00', 'product_name': 'Windsor Chair in Natural, Set of Two', 'category_node_id': '3733821', 'asin': 'B01LZK96JJ', 'category': 'Chairs'}
+processing asin : B00PJOLJT8
+processing asin : B01N4AV1XV
+time to render html : 4.361567974090576
+time to parse html : 1.6596391201019287
+time to write to database : 0.9783937931060791
+{'category': 'Chairs', 'manufacturer': 'Glitzhome', 'asin': 'B01M7ZX43J', 'product_name': 'Glitzhome Upholstered Dining Chairs With Studded Decoration Set Of Two', 'category_node_id': '3733821', 'model': 'JK85003'}
+processing asin : B00IKVADEO
+time to render html : 3.66645884513855
+time to parse html : 2.1829450130462646
+time to write to database : 1.2784969806671143
+{'category': 'Chairs', 'asin': 'B00FEEHFV4', 'origin': 'Imported', 'price': '229.99', 'product_name': 'Casual Dining Cushion Swivel and Tilt Rolling Caster Chair', 'category_node_id': '3733821', 'model': 'AZC151'}
+processing asin : B00SIMCJHY
+time to render html : 4.637173891067505
+time to parse html : 0.6392359733581543
+time to write to database : 0.6027240753173828
+{'price': '89.99', 'product_name': 'Merax Modern Dining Chair Molded Crystal Plastic Side Chair Crystal Set of 2 (Smoky Gray)', 'category_node_id': '3733821', 'asin': 'B01J709QUI', 'category': 'Chairs'}
+processing asin : B018IR6398
+time to render html : 4.011253118515015
+time to parse html : 1.7003250122070312
+time to write to database : 1.2662720680236816
+{'manufacturer': 'Target Marketing Systems', 'model': '12618', 'category': 'Chairs', 'price': '73.02', 'product_name': 'Target Marketing Systems Set of 2 Retro Upholstered Vinyl Dining Chairs with Chrome Accents, Red', 'category_node_id': '3733821', 'asin': 'B0015DTWHI'}
+processing asin : B008BTRZZK
+time to render html : 4.367048978805542
+time to parse html : 0.6567909717559814
+time to write to database : 0.5879030227661133
+{'category': 'Chairs', 'asin': 'B00AVUKSOW', 'price': '284.72', 'product_name': 'ACME 60277 Quimby Side Chair, Cherry Finish, Set of 2', 'category_node_id': '3733821', 'model': '60277'}
+processing asin : B00HQ7F49C
+time to render html : 4.279630184173584
+time to parse html : 0.6179029941558838
+time to write to database : 0.25259995460510254
+{'price': '284.05', 'product_name': 'Frazier Dining Chair(Set of 2) Brown See below', 'category_node_id': '3733821', 'asin': 'B01M9K7NG5', 'category': 'Chairs'}
+processing asin : B01MYZ2QI7
+time to render html : 4.514048099517822
+time to parse html : 0.5931079387664795
+time to write to database : 0.19861197471618652
+{'category': 'Chairs', 'product_name': 'Better Homes and Gardens Autumn Lane Ladder Back Dining Chairs, Set of 2, Black', 'category_node_id': '3733821', 'asin': 'B00VEZ9RE0'}
+processing asin : B01J5LWLXS
+time to render html : 4.0972230434417725
+time to parse html : 0.6993880271911621
+time to write to database : 0.8113758563995361
+{'price': '599.00', 'product_name': 'Casual Rolling Caster Dining Chair with Swivel Tilt in Oak Wood with Fabric Seat and Back (Set of 2)', 'category_node_id': '3733821', 'asin': 'B00X8D70C2', 'category': 'Chairs'}
+processing asin : B00EBC7NE4
+time to render html : 4.322520017623901
+time to parse html : 0.627845048904419
+time to write to database : 1.0503718852996826
+{'category': 'Chairs', 'asin': 'B008V6RXUA', 'price': '104.50', 'product_name': 'Fine Mod Plywood Dining Chair, Walnut', 'category_node_id': '3733821', 'model': 'FMI2019-Walnut'}
+processing asin : B005N2BCJS
+time to render html : 3.5263190269470215
+time to parse html : 0.34961414337158203
+time to write to database : 0.7304089069366455
+{'category': 'Chairs', 'origin': 'Imported', 'asin': 'B01M7ZX0QH', 'product_name': 'Glitzhome Herringbone Upholstered Accent Chair Gray', 'category_node_id': '3733821', 'model': 'JK85004R'}
+processing asin : B00I6EQRRC
+time to render html : 3.5104708671569824
+time to parse html : 0.2865900993347168
+time to write to database : 0.9138619899749756
+{'category': 'Chairs', 'asin': 'B01N5JO8S0', 'price': '79.99', 'product_name': 'Modern Set of 2 Hollow-Out Waves Style Chair (Yellow)', 'category_node_id': '3733821', 'model': 'CHR07'}
+processing asin : B00LIBH0R6
+time to render html : 2.998810052871704
+time to parse html : 1.0482869148254395
+time to write to database : 0.8752789497375488
+{'category': 'Chairs', 'asin': 'B007VLXFQ2', 'origin': 'China', 'price': '134.05', 'product_name': 'LexMod Mademoiselle Style Accent Chair with Clear Acrylic Base', 'category_node_id': '3733821', 'model': 'EEI-553-CLR'}
+processing asin : B01IDZNV4U
+time to render html : 2.9914309978485107
+time to parse html : 0.8547701835632324
+time to write to database : 0.719106912612915
+{'category': 'Chairs', 'asin': 'B00IKVADEO', 'price': '113.99', 'product_name': '*Set of 2* High Quality Eames Style Kids DSR Dining Playroom Bedroom Side Chair - White', 'category_node_id': '3733821', 'model': 'XX-EBAY-SET-PC0117-WH-2'}
+processing asin : B008A1L9WO
+time to render html : 2.998347043991089
+time to parse html : 1.0147027969360352
+time to write to database : 0.7130920886993408
+{'category': 'Chairs', 'asin': 'B01N4AV1XV', 'price': '109.99', 'product_name': 'Merax PU Leather Dining Chairs Padded Side Chair with Unique Wood Legs, Set of 2 (Dark Gray)', 'category_node_id': '3733821', 'model': 'PP033276'}
+processing asin : B002GU4HSS
+time to render html : 3.1465048789978027
+time to parse html : 1.154921054840088
+time to write to database : 0.826801061630249
+{'category': 'Chairs', 'asin': 'B00U2KZPBC', 'price': '128.94', 'product_name': 'Ave Six KMN-R24-osp Kingman Dining Chair, Edward Flannel', 'category_node_id': '3733821', 'model': 'KMN-R24-osp'}
+processing asin : B006VT7YYO
+time to render html : 3.4880290031433105
+time to parse html : 2.0055129528045654
+time to write to database : 0.44202089309692383
+{'category': 'Chairs', 'asin': 'B008BTRZZK', 'product_name': 'Baxton Studio Blanche Molded Plastic Modern Dining Chair, White, Set of 2', 'category_node_id': '3733821', 'model': 'DC-42-White-2PC'}
+processing asin : B001G5L642
+time to render html : 3.597038984298706
+time to parse html : 2.5683939456939697
+time to write to database : 0.38577795028686523
+{'price': '223.40', 'product_name': 'Vintage Tabouret Stacking Chair (Set of 4), Steel, Brown, Metal, Dining Room Chairs', 'category_node_id': '3733821', 'asin': 'B00HQ7F49C', 'category': 'Chairs'}
+processing asin : B01LYC3K9J
+time to render html : 4.09893798828125
+time to parse html : 2.9198949337005615
+time to write to database : 0.2264540195465088
+{'price': '214.60', 'product_name': 'International Caravan Bali Salma Woven Abcaca Dining Side Chair - Mahogany - Set of 2', 'category_node_id': '3733821', 'asin': 'B00PJOLJT8', 'category': 'Chairs'}
+processing asin : B0002V387E
+time to render html : 4.735720872879028
+time to parse html : 2.270470142364502
+time to write to database : 0.3073618412017822
+{'manufacturer': 'Oeuf', 'category': 'Chairs', 'price': '226.00', 'product_name': 'Oeuf Set of 2 Play Chairs- Bear- Birch', 'category_node_id': '3733821', 'asin': 'B00SIMCJHY'}
+processing asin : B00NUD9IRK
+time to render html : 3.769423007965088
+time to parse html : 2.991286039352417
+time to write to database : 0.19861292839050293
+{'category': 'Chairs', 'asin': 'B018IR6398', 'product_name': 'Joveco Tulip Adjustable 360 Degree Swivel Chair (Set of Two)', 'category_node_id': '3733821', 'model': 'JCH207-2'}
+processing asin : B015MS8TMA
+time to render html : 4.295263051986694
+time to parse html : 3.0465240478515625
+time to write to database : 0.3174409866333008
+{'category': 'Chairs', 'asin': 'B002PNHC24', 'product_name': 'Home Style 5180-802 Arts and Crafts Dining Chair, Cottage Oak Finish', 'category_node_id': '3733821', 'model': '5180-802'}
+processing asin : B01DNH80NA
+time to render html : 4.183262825012207
+time to parse html : 2.401097059249878
+time to write to database : 0.30901598930358887
+{'price': '41.27', 'product_name': 'Big Joe Milano Bean Bag Chair | Filled with UltimaX Beans | Soft but Firm Support (Fuchsia Supreme)', 'category_node_id': '3733821', 'asin': 'B01MYZ2QI7', 'category': 'Chairs'}
+processing asin : B01HCL86VO
+time to render html : 4.232780933380127
+time to parse html : 2.2949578762054443
+time to write to database : 0.31745314598083496
+{'manufacturer': 'OW', 'model': 'PP020320', 'category': 'Chairs', 'price': '59.99', 'product_name': 'Merax Modern Eames Style Armchair Dining Chair Molded Plastic Set of 2 (White-NO.1)', 'category_node_id': '3733821', 'asin': 'B01J5LWLXS'}
+processing asin : B0136PXBLK
+time to render html : 5.048670053482056
+time to parse html : 0.9997439384460449
+time to write to database : 0.16436505317687988
+{'price': '120.60', 'product_name': 'Music Back Folding Chair in Warm Cherry Finish - Set of 2', 'category_node_id': '3733821', 'asin': 'B005N2BCJS', 'category': 'Chairs'}
+processing asin : B006RPSUAE
+time to render html : 4.681802988052368
+time to parse html : 0.9067680835723877
+time to write to database : 0.2951369285583496
+{'category': 'Chairs', 'asin': 'B00I6EQRRC', 'product_name': 'Olivia Parson Chair, Black, Set of 2', 'category_node_id': '3733821', 'model': '80118PR'}
+processing asin : B006W3C04S
+time to render html : 5.351620197296143
+time to parse html : 1.0636928081512451
+time to write to database : 0.3289601802825928
+{'category': 'Chairs', 'asin': 'B00EBC7NE4', 'origin': 'Imported', 'price': '113.86', 'product_name': 'Monsoon Pacific Villa Fabric Dining Chairs, Berry Print, Set of 2', 'category_node_id': '3733821', 'model': '222224'}
+processing asin : B00768D7OK
+time to render html : 4.893970012664795
+time to parse html : 0.9805078506469727
+time to write to database : 0.22072100639343262
+{'price': '239.99', 'product_name': 'Marcel Breuer Cesca Cane Chrome Arm Chair in Honey Oak', 'category_node_id': '3733821', 'asin': 'B00LIBH0R6', 'category': 'Chairs'}
+processing asin : B01CLC5VOE
+time to render html : 3.9777028560638428
+time to parse html : 1.101513147354126
+time to write to database : 0.2975499629974365
+{'category': 'Chairs', 'asin': 'B002GU4HSS', 'product_name': 'Ambellis - Luxurious Comfort Swing Chair Model – Y9067', 'category_node_id': '3733821', 'model': 'Y9067'}
+processing asin : B00W4NP7RM
+time to render html : 4.12767219543457
+time to parse html : 1.3277997970581055
+time to write to database : 0.2209022045135498
+{'category': 'Chairs', 'asin': 'B006VT7YYO', 'product_name': 'Louis Rattan Side Chair', 'category_node_id': '3733821', 'model': '9953004025'}
+processing asin : B002BG0ML8
+time to render html : 4.202387094497681
+time to parse html : 1.3156580924987793
+time to write to database : 0.26505279541015625
+{'category': 'Chairs', 'asin': 'B008A1L9WO', 'origin': 'China', 'price': '206.20', 'product_name': 'Coaster Home Furnishings Casual Arm Chair, Walnut, Set of 2', 'category_node_id': '3733821', 'model': '101633'}
+processing asin : B007CMETSI
+time to render html : 4.89544415473938
+time to parse html : 0.8033099174499512
+time to write to database : 0.20675086975097656
+{'category': 'Chairs', 'asin': 'B01IDZNV4U', 'price': '109.00', 'product_name': 'LeisureMod Astor Modern Dining Chair in Transparent Blue', 'category_node_id': '3733821', 'model': 'AC20TBU'}
+processing asin : B01EPNHDIY
+time to render html : 3.0424089431762695
+time to parse html : 0.8094460964202881
+time to write to database : 0.3079679012298584
+{'price': '159.99'}
+processing asin : B004DJN4HA
+time to render html : 3.879028081893921
+time to parse html : 0.740635871887207
+time to write to database : 1.2175440788269043
+{'price': '191.00', 'product_name': 'Bertoia Side Chair set of 2', 'category_node_id': '3733821', 'asin': 'B001G5L642', 'category': 'Chairs'}
+processing asin : B008PNFCMA
+time to render html : 3.0286049842834473
+time to parse html : 1.4747130870819092
+time to write to database : 0.9083428382873535
+{'category': 'Chairs', 'asin': 'B015MS8TMA', 'origin': 'Imported', 'price': '205.98', 'product_name': 'International Concepts Empire Chair with Solid Wood Seat, Brown', 'category_node_id': '3733821', 'model': 'C-1202P'}
+processing asin : B00MIMDBP4
+time to render html : 3.005250930786133
+time to parse html : 1.493156909942627
+time to write to database : 0.8165590763092041
+{'price': '162.99', 'product_name': 'Darcy Metal Upholstered Dining Chair (Set of 4) Grey', 'category_node_id': '3733821', 'asin': 'B01HCL86VO', 'category': 'Chairs'}
+processing asin : B01M6Y6LP5
+time to render html : 3.0336339473724365
+time to parse html : 1.544753074645996
+time to write to database : 0.8321120738983154
+{'category': 'Chairs', 'manufacturer': 'Merax', 'asin': 'B01DNH80NA', 'product_name': 'Merax Rattan Style Stackable Plastic Dining Chairs, Set of 2, Green', 'category_node_id': '3733821', 'model': 'WTHY-8062'}
+processing asin : B00Q8HASHO
+time to render html : 3.9451191425323486
+time to parse html : 1.3179328441619873
+time to write to database : 1.358422040939331
+{'category': 'Chairs', 'origin': 'China', 'asin': 'B01LYC3K9J', 'product_name': 'Kinfine Parsons Woven Stripe Dining Chair, Coral', 'category_node_id': '3733821', 'model': 'K6805-F1541'}
+processing asin : B00WGW39DK
+time to render html : 3.604196071624756
+time to parse html : 1.2822680473327637
+time to write to database : 1.231337070465088
+{'category': 'Chairs', 'asin': 'B0136PXBLK', 'origin': 'Vietnam', 'price': '208.67', 'product_name': 'Baxton Studio Zachary Chic French Vintage Oak Brown Beige Linen Fabric Upholstered Dining Chair', 'category_node_id': '3733821', 'model': 'DC18836P-DC'}
+processing asin : B00UWMYCVO
+time to render html : 4.152712106704712
+time to parse html : 0.40622591972351074
+time to write to database : 0.9411849975585938
+{'price': '69.11', 'product_name': 'Classic Parsons Chair Upholstery: Red /Gold Damask', 'category_node_id': '3733821', 'asin': 'B006RPSUAE', 'category': 'Chairs'}
+processing asin : B06WD5JCNW
+time to render html : 4.924221038818359
+time to parse html : 0.6820869445800781
+time to write to database : 1.1775851249694824
+{'category': 'Chairs', 'asin': 'B0002V387E', 'price': '199.52', 'product_name': 'Hillsdale Montello Dining-Chairs, Set of 2 with Brown Faux Leather, Old Steel Finish', 'category_node_id': '3733821', 'model': '41543'}
+processing asin : B01N4R8EC2
+time to render html : 3.34871506690979
+time to parse html : 0.9436450004577637
+time to write to database : 0.5042650699615479
+{'category': 'Chairs', 'asin': 'B01CLC5VOE', 'price': '235.00', 'product_name': 'Alex Land Modern Brushed Aluminum Dining Chair - Indoor or Outdoor (Pack of 2)', 'category_node_id': '3733821', 'model': 'C165-AL'}
+processing asin : B00GMKENFA
+time to render html : 4.216655015945435
+time to parse html : 1.1081650257110596
+time to write to database : 0.4570341110229492
+{'category': 'Chairs', 'asin': 'B00768D7OK', 'price': '79.00', 'product_name': 'Designer Modern Plastic Dining Side Chair WoodLeg Eiffel Base Set of 2', 'category_node_id': '3733821', 'model': 'FMI2012'}
+processing asin : B015PK90WI
+time to render html : 4.410176038742065
+time to parse html : 1.0989890098571777
+time to write to database : 0.48490095138549805
+{'category': 'Chairs', 'asin': 'B006W3C04S', 'origin': 'Malaysia', 'price': '145.40', 'product_name': 'Baxton Studio Anne Fabric Modern Dining Chair, Brown, Set of 2', 'category_node_id': '3733821', 'model': 'Anne Dining Chair-107/662-2'}
+processing asin : B01IFHAD6K
+time to render html : 3.395447015762329
+time to parse html : 0.40406298637390137
+time to write to database : 0.045156002044677734
+{'price': '158.00', 'origin': 'Vietnam', 'model': 'D367-01'}
+processing asin : B00PN9Z9XG
+time to render html : 4.052693843841553
+time to parse html : 0.5629169940948486
+time to write to database : 0.8594381809234619
+{'category': 'Chairs', 'asin': 'B00W4NP7RM', 'origin': 'Vietnam', 'price': '146.17', 'product_name': 'Pulaski Brighton Arm Chair', 'category_node_id': '3733821', 'model': '8672-155'}
+processing asin : B00Q0B71B4
+time to render html : 3.7856619358062744
+time to parse html : 0.6461060047149658
+time to write to database : 0.8251819610595703
+{'category': 'Chairs', 'asin': 'B002BG0ML8', 'price': '317.00', 'product_name': 'Bowback Windsor Arm Chair Kit', 'category_node_id': '3733821', 'model': '267K'}
+processing asin : B008MURYZO
+time to render html : 3.9430270195007324
+time to parse html : 0.7673749923706055
+time to write to database : 0.7432780265808105
+{'category': 'Chairs', 'asin': 'B007CMETSI', 'origin': 'Vietnam', 'price': '141.27', 'product_name': 'Alpine Furniture Lakeport Counter Height Pub Chairs - Espresso - Set of 2', 'category_node_id': '3733821', 'model': '552-02'}
+processing asin : B01E29GZCG
+time to render html : 4.5164501667022705
+time to parse html : 0.5338008403778076
+time to write to database : 1.0087120532989502
+{'manufacturer': 'PoliVaz', 'origin': 'China', 'model': 'PV-8055-TLP-GRY', 'category': 'Chairs', 'price': '328.97', 'product_name': 'Eero Saarinen Style Tulip Chair, Grey', 'category_node_id': '3733821', 'asin': 'B01EPNHDIY'}
+processing asin : B000BPFIWY
+time to render html : 3.044045925140381
+time to parse html : 0.34186816215515137
+time to write to database : 0.7270629405975342
+{'category': 'Chairs', 'asin': 'B00MIMDBP4', 'origin': 'Vietnam', 'price': '126.99', 'product_name': 'Milton Greens Stars 8728BK Burgos Counter Height Chair, Black, Set of 2', 'category_node_id': '3733821', 'model': '8728BK'}
+processing asin : B00RQZYUMQ
+time to render html : 3.986330986022949
+time to parse html : 0.32500505447387695
+time to write to database : 1.3009519577026367
+{'category': 'Chairs', 'asin': 'B008PNFCMA', 'origin': 'China', 'price': '160.71', 'product_name': 'Coaster Home Furnishings 103053 Casual Dining Chair, Brown/Brown, Set of 2', 'category_node_id': '3733821', 'model': '103053'}
+processing asin : B01N1Z1IYG
+time to render html : 3.836225986480713
+time to parse html : 0.5343079566955566
+time to write to database : 0.9394009113311768
+{'category': 'Chairs', 'origin': 'Imported (China)', 'asin': 'B01M6Y6LP5', 'product_name': 'Asense Distressed Paint Tolix Style Steel Dinning Chair 33 Inch Height (A Set of Two) (Aged Black)', 'category_node_id': '3733821', 'model': 'ASCH0280-3'}
+processing asin : B007AU7QW8
+time to render html : 2.9953720569610596
+time to parse html : 0.9069359302520752
+time to write to database : 0.5321230888366699
+{'category': 'Chairs', 'asin': 'B01N4R8EC2', 'price': '99.99', 'product_name': 'Costway Set of 2 Dining Arm Chairs Bent Wood Arm Kitchen Living Room Decor Furniture', 'category_node_id': '3733821', 'model': 'Dining Arm Chairs'}
+processing asin : B01N7L38BM
+time to render html : 4.2181150913238525
+time to parse html : 0.8532059192657471
+time to write to database : 0.5176289081573486
+{'category': 'Chairs', 'asin': 'B00Q8HASHO', 'origin': 'Bulgaria', 'price': '197.49', 'product_name': 'Beechwood Mountain Fully Assembled Colonial Side Chairs in Cherry Finish for Kitchen and Dining, Set of 2', 'category_node_id': '3733821', 'model': '033S-C'}
+processing asin : B01MSTNJEQ
+time to render html : 3.4400739669799805
+time to parse html : 1.0014610290527344
+time to write to database : 0.3613460063934326
+{'category': 'Chairs', 'asin': 'B00UWMYCVO', 'price': '126.96', 'product_name': 'Fine Mod Imports Brand Name Dining Chair, Silver, Set of 2', 'category_node_id': '3733821', 'model': 'FMI10067-silver(2)'}
+processing asin : B00KM7GDDO
+time to render html : 3.7497611045837402
+time to parse html : 0.788240909576416
+time to write to database : 0.308164119720459
+{'price': '163.99', 'product_name': 'Kona Ladder Back Side Chairs - Set of 2', 'category_node_id': '3733821', 'asin': 'B06WD5JCNW', 'category': 'Chairs'}
+processing asin : B00TS60070
+time to render html : 4.081870079040527
+time to parse html : 0.8118300437927246
+time to write to database : 0.24996685981750488
+{'price': '180.00', 'product_name': 'Replacement Swivel & Tilt for Caster Chairs (Set of 4)', 'category_node_id': '3733821', 'asin': 'B00WGW39DK', 'category': 'Chairs'}
+processing asin : B004DJVXNW
+processing asin : B01N5JO8S0
+processing asin : B01K9TUHPO
+processing asin : B00TS60070
+time to render html : 3.8479909896850586
+time to parse html : 0.6406028270721436
+time to write to database : 0.47930002212524414
+{'category': 'Chairs', 'asin': 'B015PK90WI', 'origin': 'Made in USA and Imported', 'price': '7.79', 'product_name': 'LOVE US Santa Claus Clause Hat Chair Covers Set of 4 Decor Christmas Holiday Festive Brand New 4 pcs', 'category_node_id': '3733821', 'model': 'No Model'}time to render html : 4.1255340576171875
+time to parse html : 0.5357890129089355
+time to write to database : 0.41400790214538574
+{'category': 'Chairs', 'asin': 'B00GMKENFA', 'origin': 'Imported (Vietnam)', 'price': '459.93', 'product_name': 'Magnussen D2503-63 Rothman Warm Stained Finish Upholstered Chair, Set of 2', 'category_node_id': '3733821', 'model': 'D2503-63'}
+processing asin : B01JYBIEQC
+
+processing asin : B01N05VWNF
+time to render html : 3.7419071197509766
+time to parse html : 0.9531459808349609
+time to write to database : 0.33741307258605957
+{'category': 'Chairs', 'asin': 'B00PN9Z9XG', 'origin': 'Malaysia', 'price': '78.99', 'product_name': 'Baxton Studio Jet Warm Dining Chair, Set of 2', 'category_node_id': '3733821', 'model': 'Set of 2 Jet Warm Dining Chair'}
+processing asin : B008DJVDLU
+time to render html : 4.553437948226929
+time to parse html : 1.0283610820770264
+time to write to database : 0.40882205963134766
+{'price': '146.00', 'product_name': 'Set of 4 Natural & White Finish Arrow Back Windsor Wood Dining Chairs', 'category_node_id': '3733821', 'asin': 'B01IFHAD6K', 'category': 'Chairs'}
+processing asin : B00IRY5E8O
+time to render html : 3.442417860031128
+time to parse html : 1.1105520725250244
+time to write to database : 0.4308650493621826
+{'category': 'Chairs', 'asin': 'B008MURYZO', 'origin': 'Imported', 'price': '155.09', 'product_name': 'Monsoon Pacific Voyage Upholstered Dining Chairs, Brown, Set of 2', 'category_node_id': '3733821', 'model': '222282'}
+processing asin : B00A87MIE6
+time to render html : 4.256469011306763
+time to parse html : 0.41997718811035156
+time to write to database : 0.19370484352111816
+{'category': 'Chairs', 'asin': 'B01E29GZCG', 'price': '237.11', 'product_name': 'Dining Chairs in Modern/Rustic Viewpoint Solid Washed Oak Rustic Side Chairs (Set of 2) in Distressed White Glaze Finish - D966-20-2PK-K. Wide Slat Back Dining Chair. Assembly Required', 'category_node_id': '3733821', 'model': 'D966-20-2PK-K'}
+processing asin : B000CC7IGK
+time to render html : 4.793345928192139
+time to parse html : 0.45075201988220215
+time to write to database : 0.19115805625915527
+{'category': 'Chairs', 'asin': 'B00Q0B71B4', 'price': '495.63', 'product_name': 'Poundex F2093 & F1078 Faux Marble Top W/ Brown Leatherette Chairs Dining Set', 'category_node_id': '3733821', 'model': 'F2093 & F1078'}
+processing asin : B016VBZBC8
+time to render html : 4.209138870239258
+time to parse html : 0.27390217781066895
+time to write to database : 0.025870800018310547
+{'price': '11.94', 'product_name': 'Betty Dain Creations Chair Back Cover Deluxe Round', 'category_node_id': '3733821', 'category': 'Chairs'}
+processing asin : B00CXSU2PU
+time to render html : 2.5905749797821045
+time to parse html : 0.9294509887695312
+time to write to database : 0.4238619804382324
+{'category': 'Chairs', 'asin': 'B01N7L38BM', 'origin': 'China', 'price': '198.16', 'product_name': 'Limari Home LIM-72376 Tinman Collection Modern Metal Kitchen and Dining Room Contemporary Dining Room Chairs (Set of 2), 33" Tall, Rust', 'category_node_id': '3733821', 'model': 'LIM-72376'}
+processing asin : B0104NSF18
+time to render html : 2.753998041152954
+time to parse html : 1.2615289688110352
+time to write to database : 0.1826939582824707
+{'price': '119.99', 'product_name': 'Camilla Light Green Fabric Dining Chair (Set of 2)', 'category_node_id': '3733821', 'asin': 'B01MSTNJEQ', 'category': 'Chairs'}
+processing asin : B01601KJ8U
+time to render html : 4.268242835998535
+time to parse html : 1.2432470321655273
+time to write to database : 0.2591071128845215
+{'category': 'Chairs', 'asin': 'B00RQZYUMQ', 'price': '185.00', 'product_name': 'Solid Hardwood Square Back Brown Dining Chair (Set of 2)', 'category_node_id': '3733821', 'model': 'AZC-620'}
+processing asin : B00BTB4QBS
+time to render html : 2.9305191040039062
+time to parse html : 1.3798010349273682
+time to write to database : 0.2775309085845947
+{'price': '204.61', 'product_name': 'Set of 2 Dining Chairs with Vibrant Pattern in Dark Cappuccino Finish', 'category_node_id': '3733821', 'asin': 'B007AU7QW8', 'category': 'Chairs'}
+processing asin : B007MTS23O
+time to render html : 3.624166965484619
+time to parse html : 1.061331033706665
+time to write to database : 0.27802586555480957
+{'category': 'Chairs', 'origin': 'Imported (China)', 'asin': 'B01N1Z1IYG', 'product_name': 'Asense Tolix Style Four Leg Indented Seat Metal Dinning Chairs/Side Chairs with Back (Set of Two) (Gunmetal)', 'category_node_id': '3733821', 'model': 'ASCH0138-5'}
+processing asin : B00FYXYHFM
+time to render html : 3.0158910751342773
+time to parse html : 0.8849079608917236
+time to write to database : 0.19821691513061523
+{'category': 'Chairs', 'asin': 'B01N05VWNF', 'product_name': 'Glitzhome Vintage Metal Back Counter Bar Stools White, Set Of Two', 'category_node_id': '3733821', 'model': 'JK85028'}
+processing asin : B00BFCPKIE
+time to render html : 4.0802130699157715
+time to parse html : 0.9573438167572021
+time to write to database : 0.17229104042053223
+{'price': '151.50', 'product_name': 'Tabouret Bistro Vintage Dark Bronze Steel Side Chairs (Set of 2)', 'category_node_id': '3733821', 'asin': 'B00KM7GDDO', 'category': 'Chairs'}
+processing asin : B01CDWEQB6
+time to render html : 3.8094801902770996
+time to parse html : 0.9748609066009521
+time to write to database : 0.3474879264831543
+{'category': 'Chairs', 'asin': 'B00TS60070', 'origin': 'Imported', 'price': '138.62', 'product_name': 'Furniture of America Macchio Transitional Dining Chair, Cherry/Vintage White, Set of 2', 'category_node_id': '3733821', 'model': 'IDF-3326WC-SC'}
+processing asin : B01MG0BVY6
+processing asin : B01NAQB5H1
+time to render html : 4.391252040863037
+time to parse html : 0.9866218566894531
+time to write to database : 0.3045361042022705
+{'category': 'Chairs', 'asin': 'B00TS60070', 'origin': 'Imported', 'price': '138.62', 'product_name': 'Furniture of America Macchio Transitional Dining Chair, Cherry/Vintage White, Set of 2', 'category_node_id': '3733821', 'model': 'IDF-3326WC-SC'}
+processing asin : B001E4V4XI
