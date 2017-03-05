@@ -16,7 +16,7 @@ class ProductDataManager:
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
 		urllib.parse.uses_netloc.append("postgres")
-		os.environ["DATABASE_URL"] = "postgres://spkgochzoicojm:y0MABz523D1H-zMqeZVvplCuC2@ec2-54-163-252-55.compute-1.amazonaws.com:5432/d15b0teu2kkhek"
+		os.environ["DATABASE_URL"] = "postgres://hwdeympyzrxlzq:1083131fdf083180520fadbf5dd7fc0161410fcbccef02059fce434b839a287d@ec2-75-101-142-182.compute-1.amazonaws.com:5432/d82cfb87nis5in"
 		url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
 		self.p_db = psycopg2.connect(
 		    database=url.path[1:],
@@ -45,10 +45,6 @@ class ProductDataManager:
 			return True
 		else:
 			return False
-
-		# check if there is a duplicate in the directory 
-
-	
 
 	def id_generator(self, size=20, chars=string.ascii_uppercase + string.digits):
 		return ''.join(random.choice(chars) for _ in range(size))

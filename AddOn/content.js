@@ -128,7 +128,7 @@ function generateAddOnDiv(){
 	// this has a link to submission
 	var second_col = document.createElement("div")
 	var submit_link = document.createElement("a")
-	submit_link.href = "http://www.manaweb.com"
+	submit_link.href = "https://whereisitmade.herokuapp.com/"
 	submit_link.innerText = "Know where it's from? Click here to help us out!"
 	second_col.append(submit_link)
 
