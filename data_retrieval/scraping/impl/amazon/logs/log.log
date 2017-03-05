@@ -1,0 +1,892 @@
+processing html
+html processed 55
+time to render html : 1.9208018779754639
+time to parse html : 0.5336430072784424
+time to write to database : 0.19627809524536133
+time to render html : 2.11726713180542
+time to parse html : 0.5920000076293945
+time to write to database : 0.24878692626953125
+time to render html : 2.3838319778442383
+time to parse html : 0.6315310001373291
+time to write to database : 0.1671769618988037
+time to render html : 2.5406179428100586
+time to parse html : 0.563230037689209
+time to write to database : 0.15534400939941406
+time to render html : 1.9699690341949463
+time to parse html : 0.24747705459594727
+time to write to database : 0.14477205276489258
+time to render html : 1.9039130210876465
+time to parse html : 0.23495793342590332
+time to write to database : 0.1792619228363037
+time to render html : 1.6701960563659668
+time to parse html : 0.2884650230407715
+time to write to database : 0.14848089218139648
+time to render html : 2.2942399978637695
+time to parse html : 0.3519630432128906
+time to write to database : 0.23372292518615723
+time to render html : 2.326756000518799
+time to parse html : 0.3210868835449219
+time to write to database : 0.1710970401763916
+time to render html : 1.7855079174041748
+time to parse html : 0.38465309143066406
+time to write to database : 0.10427093505859375
+time to render html : 2.4168450832366943
+time to parse html : 0.4176819324493408
+time to write to database : 0.15796804428100586
+time to render html : 2.3140151500701904
+time to parse html : 0.4234950542449951
+time to write to database : 0.13909578323364258
+time to render html : 2.099632978439331
+time to parse html : 0.43074798583984375
+time to write to database : 0.2666029930114746
+time to render html : 2.3144428730010986
+time to parse html : 0.4575519561767578
+time to write to database : 0.30487799644470215
+time to render html : 2.1299028396606445
+time to parse html : 0.28400206565856934
+time to write to database : 0.1317138671875
+time to render html : 1.8292629718780518
+time to parse html : 0.3711099624633789
+time to write to database : 0.15324687957763672
+time to render html : 1.7674040794372559
+time to parse html : 0.47972607612609863
+time to write to database : 0.28991198539733887
+time to render html : 2.4745099544525146
+time to parse html : 0.5618798732757568
+time to write to database : 0.27306103706359863
+time to render html : 2.155777931213379
+time to parse html : 0.5018088817596436
+time to write to database : 0.16959810256958008
+time to render html : 2.2816548347473145
+time to parse html : 0.5611121654510498
+time to write to database : 0.17150402069091797
+time to render html : 1.9562699794769287
+time to parse html : 0.2975029945373535
+time to write to database : 0.10020995140075684
+time to render html : 1.6528499126434326
+time to parse html : 0.36315202713012695
+time to write to database : 0.15512394905090332
+time to render html : 2.2542009353637695
+time to parse html : 0.3696939945220947
+time to write to database : 0.2145681381225586
+time to render html : 2.1163299083709717
+time to parse html : 0.46858811378479004
+time to write to database : 0.3137938976287842
+time to render html : 2.62636399269104
+time to parse html : 0.49622106552124023
+time to write to database : 0.2713749408721924
+time to render html : 1.936837911605835
+time to parse html : 0.2165980339050293
+time to write to database : 0.11777186393737793
+time to render html : 2.051698923110962
+time to parse html : 0.4183011054992676
+time to write to database : 0.1392519474029541
+time to render html : 2.418966054916382
+time to parse html : 0.5077841281890869
+time to write to database : 0.14161300659179688
+time to render html : 2.1412980556488037
+time to parse html : 0.528026819229126
+time to write to database : 0.1413872241973877
+time to render html : 2.053818941116333
+time to parse html : 0.5297930240631104
+time to write to database : 0.1442110538482666
+time to render html : 2.6591508388519287
+time to parse html : 0.29380297660827637
+time to write to database : 0.10434603691101074
+time to render html : 2.0706348419189453
+time to parse html : 0.37108302116394043
+time to write to database : 0.33871006965637207
+time to render html : 2.37321400642395
+time to parse html : 0.4243190288543701
+time to write to database : 0.3896489143371582
+time to render html : 2.052056074142456
+time to parse html : 0.6119520664215088
+time to write to database : 0.1763138771057129
+time to render html : 1.792968988418579
+time to parse html : 0.6915860176086426
+time to write to database : 0.14112591743469238
+time to render html : 2.062917947769165
+time to parse html : 0.7372820377349854
+time to write to database : 0.10627317428588867
+time to render html : 2.10048508644104
+time to parse html : 0.5735979080200195
+time to write to database : 0.21456122398376465
+time to render html : 1.802786111831665
+time to parse html : 0.6448688507080078
+time to write to database : 0.2538290023803711
+time to render html : 2.618425130844116
+time to parse html : 0.5931599140167236
+time to write to database : 0.13367104530334473
+time to render html : 2.3255319595336914
+time to parse html : 0.398514986038208
+time to write to database : 0.13183093070983887
+time to render html : 2.751725912094116
+time to parse html : 0.3383040428161621
+time to write to database : 0.1435680389404297
+time to render html : 2.1513140201568604
+time to parse html : 0.32106590270996094
+time to write to database : 0.15938210487365723
+time to render html : 2.0091679096221924
+time to parse html : 0.5573740005493164
+time to write to database : 0.13401198387145996
+time to render html : 2.0867040157318115
+time to parse html : 0.7041759490966797
+time to write to database : 0.18715310096740723
+time to render html : 2.260953903198242
+time to parse html : 0.5637190341949463
+time to write to database : 0.24200701713562012
+time to render html : 2.8541810512542725
+time to parse html : 0.6054890155792236
+time to write to database : 0.22382092475891113
+time to render html : 2.7855868339538574
+time to parse html : 0.5198400020599365
+time to write to database : 0.14141416549682617
+time to render html : 2.266690969467163
+time to parse html : 0.5538020133972168
+time to write to database : 0.14915180206298828
+time to render html : 2.528074026107788
+time to parse html : 0.7167260646820068
+time to write to database : 0.2088329792022705
+time to render html : 2.272449016571045
+time to parse html : 0.6782040596008301
+time to write to database : 0.11690688133239746
+time to render html : 2.3615951538085938
+time to parse html : 0.625669002532959
+time to write to database : 0.10930585861206055
+time to render html : 2.138545036315918
+time to parse html : 0.23140883445739746
+time to write to database : 0.12059998512268066
+time to render html : 2.2379658222198486
+time to parse html : 0.3323020935058594
+time to write to database : 0.15836405754089355
+time to render html : 2.1861679553985596
+time to parse html : 0.6296601295471191
+time to write to database : 0.24299192428588867
+time to render html : 2.089452028274536
+time to parse html : 0.7172329425811768
+time to write to database : 0.09443807601928711
+time to render html : 2.099846839904785
+time to parse html : 0.7594571113586426
+time to write to database : 0.12159395217895508
+time to render html : 2.49330997467041
+time to parse html : 0.29166507720947266
+time to write to database : 0.11317777633666992
+time to render html : 2.6571249961853027
+time to parse html : 0.250424861907959
+time to write to database : 0.11230301856994629
+time to add asins from search to queue : 37.47444701194763
+processing html
+html processed 56
+time to render html : 1.5003180503845215
+time to parse html : 0.26552605628967285
+time to write to database : 0.4271118640899658
+time to render html : 1.7742619514465332
+time to parse html : 0.8281660079956055
+time to write to database : 0.30048108100891113
+time to render html : 1.7841739654541016
+time to parse html : 0.8894338607788086
+time to write to database : 0.22686505317687988
+time to render html : 1.7738709449768066
+time to parse html : 0.9555599689483643
+time to write to database : 0.19724512100219727
+time to render html : 2.2492969036102295
+time to parse html : 0.6188609600067139
+time to write to database : 0.11529803276062012
+time to render html : 2.2361831665039062
+time to parse html : 0.2892189025878906
+time to write to database : 0.3167891502380371
+time to render html : 1.8237528800964355
+time to parse html : 0.6421351432800293
+time to write to database : 0.21321892738342285
+time to render html : 1.8378779888153076
+time to parse html : 0.729193925857544
+time to write to database : 0.19974207878112793
+time to render html : 1.9676110744476318
+time to parse html : 0.613832950592041
+time to write to database : 0.1852569580078125
+time to render html : 2.5354299545288086
+time to parse html : 0.3168330192565918
+time to write to database : 0.10592317581176758
+time to render html : 2.2742919921875
+time to parse html : 0.24360990524291992
+time to write to database : 0.2390120029449463
+time to render html : 1.9855849742889404
+time to parse html : 0.7219598293304443
+time to write to database : 0.2449941635131836
+time to render html : 1.8606479167938232
+time to parse html : 0.772381067276001
+time to write to database : 0.2185518741607666
+time to render html : 1.904491901397705
+time to parse html : 0.7814230918884277
+time to write to database : 0.21986007690429688
+time to render html : 2.415466070175171
+time to parse html : 0.3000929355621338
+time to write to database : 0.10380005836486816
+time to render html : 2.0513758659362793
+time to parse html : 0.12393808364868164
+time to write to database : 0.011957883834838867
+time to render html : 1.4890010356903076
+time to parse html : 0.3206961154937744
+time to write to database : 0.18536901473999023
+time to render html : 1.6311190128326416
+time to parse html : 0.344696044921875
+time to write to database : 0.2526569366455078
+time to render html : 2.209691047668457
+time to parse html : 0.579150915145874
+time to write to database : 0.10975289344787598
+time to render html : 2.2035460472106934
+time to parse html : 0.5791969299316406
+time to write to database : 0.11538314819335938
+time to render html : 2.2401490211486816
+time to parse html : 0.1592719554901123
+time to write to database : 0.011471033096313477
+time to render html : 2.5090301036834717
+time to parse html : 0.4567759037017822
+time to write to database : 0.17308807373046875
+time to render html : 2.309648036956787
+time to parse html : 0.5560510158538818
+time to write to database : 0.18521690368652344
+time to render html : 2.202946901321411
+time to parse html : 0.41099095344543457
+time to write to database : 0.10678815841674805
+time to render html : 1.9072461128234863
+time to parse html : 0.3342418670654297
+time to write to database : 0.12175703048706055
+time to render html : 2.0539538860321045
+time to parse html : 0.40665316581726074
+time to write to database : 0.1273348331451416
+time to render html : 2.137645959854126
+time to parse html : 0.575545072555542
+time to write to database : 0.20929408073425293
+time to render html : 1.8361358642578125
+time to parse html : 0.7749731540679932
+time to write to database : 0.2090449333190918
+time to render html : 2.2395269870758057
+time to parse html : 0.6963808536529541
+time to write to database : 0.10071516036987305
+time to render html : 1.6478500366210938
+time to parse html : 0.6122469902038574
+time to write to database : 0.10173296928405762
+time to render html : 2.304924964904785
+time to parse html : 0.2993900775909424
+time to write to database : 0.19905591011047363
+time to render html : 1.875288963317871
+time to parse html : 0.36233091354370117
+time to write to database : 0.21898102760314941
+time to render html : 1.7751641273498535
+time to parse html : 0.41953587532043457
+time to write to database : 0.19225597381591797
+time to render html : 1.9090309143066406
+time to parse html : 0.48480987548828125
+time to write to database : 0.21256399154663086
+time to render html : 2.2597360610961914
+time to parse html : 0.2932448387145996
+time to write to database : 0.0956411361694336
+time to render html : 1.839493989944458
+time to parse html : 0.29721903800964355
+time to write to database : 0.12259984016418457
+time to render html : 2.1257848739624023
+time to parse html : 0.3740360736846924
+time to write to database : 0.17014193534851074
+time to render html : 1.6289539337158203
+time to parse html : 0.34980297088623047
+time to write to database : 0.21201205253601074
+time to render html : 2.2836861610412598
+time to parse html : 0.43338704109191895
+time to write to database : 0.19967293739318848
+time to render html : 2.272343873977661
+time to parse html : 0.4755990505218506
+time to write to database : 0.1091771125793457
+time to render html : 2.246048927307129
+time to parse html : 0.24980616569519043
+time to write to database : 0.10301494598388672
+time to render html : 2.014806032180786
+time to parse html : 0.2536349296569824
+time to write to database : 0.2025449275970459
+time to render html : 1.5721900463104248
+time to parse html : 0.30614185333251953
+time to write to database : 0.18840503692626953
+time to render html : 2.3883728981018066
+time to parse html : 0.3965010643005371
+time to write to database : 0.09308004379272461
+time to render html : 1.9432220458984375
+time to parse html : 0.4343581199645996
+time to write to database : 0.09742999076843262
+time to render html : 1.7713699340820312
+time to parse html : 0.30515599250793457
+time to write to database : 0.10741305351257324
+time to render html : 1.7767210006713867
+time to parse html : 0.1474471092224121
+time to write to database : 0.013020038604736328
+time to render html : 1.7365732192993164
+time to parse html : 0.4498558044433594
+time to write to database : 0.2906010150909424
+time to render html : 2.3484041690826416
+time to parse html : 0.49678587913513184
+time to write to database : 0.2886021137237549
+time to render html : 2.2227249145507812
+time to parse html : 0.35039186477661133
+time to write to database : 0.1441960334777832
+time to render html : 2.0129590034484863
+time to parse html : 0.3406398296356201
+time to write to database : 0.12288212776184082
+time to render html : 1.7622959613800049
+time to parse html : 0.31789708137512207
+time to write to database : 0.10494089126586914
+time to render html : 1.71268892288208
+time to parse html : 0.44848012924194336
+time to write to database : 0.1578049659729004
+time to render html : 1.619570016860962
+time to parse html : 0.5099480152130127
+time to write to database : 0.19336605072021484
+time to render html : 2.691835880279541
+time to parse html : 0.7132680416107178
+time to write to database : 0.12549901008605957
+time to render html : 1.7188210487365723
+time to parse html : 0.4564509391784668
+time to write to database : 0.12776803970336914
+time to render html : 1.9786159992218018
+time to parse html : 0.3127729892730713
+time to write to database : 0.17854094505310059
+time to render html : 2.1416661739349365
+time to parse html : 0.26076388359069824
+time to write to database : 0.08901810646057129
+time to add asins from search to queue : 35.20228099822998
+processing html
+html processed 57
+time to render html : 1.4232959747314453
+time to parse html : 0.3595709800720215
+time to write to database : 0.20920491218566895
+time to render html : 1.798063039779663
+time to parse html : 0.618582010269165
+time to write to database : 0.18726205825805664
+time to render html : 1.8178088665008545
+time to parse html : 0.7320342063903809
+time to write to database : 0.12068676948547363
+time to render html : 1.8133070468902588
+time to parse html : 0.8208920955657959
+time to write to database : 0.17719602584838867
+time to render html : 2.6376240253448486
+time to parse html : 0.30468201637268066
+time to write to database : 0.08908390998840332
+time to render html : 2.170591115951538
+time to parse html : 0.21232986450195312
+time to write to database : 0.1336221694946289
+time to render html : 1.9210939407348633
+time to parse html : 0.3506631851196289
+time to write to database : 0.2912459373474121
+time to render html : 1.8697850704193115
+time to parse html : 0.6753098964691162
+time to write to database : 0.19884705543518066
+time to render html : 2.1022231578826904
+time to parse html : 0.7746388912200928
+time to write to database : 0.12589097023010254
+time to render html : 2.3619019985198975
+time to parse html : 0.6971540451049805
+time to write to database : 0.11844086647033691
+time to render html : 1.9466640949249268
+time to parse html : 0.29601502418518066
+time to write to database : 0.12411308288574219
+time to render html : 1.3650050163269043
+time to parse html : 0.26981306076049805
+time to write to database : 0.27961206436157227
+time to render html : 2.245915174484253
+time to parse html : 0.5241289138793945
+time to write to database : 0.20821595191955566
+time to render html : 1.746640920639038
+time to parse html : 0.4521009922027588
+time to write to database : 0.18754005432128906
+time to render html : 2.171454906463623
+time to parse html : 0.30817103385925293
+time to write to database : 0.10343599319458008
+time to render html : 1.7593841552734375
+time to parse html : 0.26080989837646484
+time to write to database : 0.10017108917236328
+time to render html : 1.406304121017456
+time to parse html : 0.2392559051513672
+time to write to database : 0.11358499526977539
+time to render html : 2.2369561195373535
+time to parse html : 0.2387998104095459
+time to write to database : 0.12308502197265625
+time to render html : 2.2116739749908447
+time to parse html : 0.37502312660217285
+time to write to database : 0.18467092514038086
+time to render html : 2.3120439052581787
+time to parse html : 0.28908205032348633
+time to write to database : 0.14680004119873047
+time to render html : 2.037935972213745
+time to parse html : 0.3354940414428711
+time to write to database : 0.14176487922668457
+time to render html : 1.7845971584320068
+time to parse html : 0.2613959312438965
+time to write to database : 0.1283409595489502
+time to render html : 1.9260759353637695
+time to parse html : 0.31008410453796387
+time to write to database : 0.10780692100524902
+time to render html : 1.9802610874176025
+time to parse html : 0.33858203887939453
+time to write to database : 0.2418808937072754
+time to render html : 2.0689949989318848
+time to parse html : 0.28151488304138184
+time to write to database : 0.11595010757446289
+time to render html : 2.0309250354766846
+time to parse html : 0.30829906463623047
+time to write to database : 0.11434602737426758
+time to render html : 1.8641648292541504
+time to parse html : 0.2200939655303955
+time to write to database : 0.007965087890625
+time to render html : 2.280862808227539
+time to parse html : 0.26317620277404785
+time to write to database : 0.19143891334533691
+time to render html : 2.0034890174865723
+time to parse html : 0.2683110237121582
+time to write to database : 0.19812893867492676
+time to render html : 2.1149239540100098
+time to parse html : 0.28768205642700195
+time to write to database : 0.3545980453491211
+time to render html : 1.8289709091186523
+time to parse html : 0.37442898750305176
+time to write to database : 0.18805718421936035
+time to render html : 2.30531907081604
+time to parse html : 0.425555944442749
+time to write to database : 0.12671303749084473
+time to render html : 1.505915880203247
+time to parse html : 0.2122969627380371
+time to write to database : 0.1383202075958252
+time to render html : 1.6808459758758545
+time to parse html : 0.4222891330718994
+time to write to database : 0.1755828857421875
+time to render html : 2.4597249031066895
+time to parse html : 0.4828181266784668
+time to write to database : 0.14476394653320312
+time to render html : 2.49802303314209
+time to parse html : 0.30246615409851074
+time to write to database : 0.20430803298950195
+time to render html : 2.0284721851348877
+time to parse html : 0.3071579933166504
+time to write to database : 0.1549968719482422
+time to render html : 2.650085926055908
+time to parse html : 0.3597390651702881
+time to write to database : 0.1233980655670166
+time to render html : 2.0637638568878174
+time to parse html : 0.25008106231689453
+time to write to database : 0.1919260025024414
+time to render html : 2.1729629039764404
+time to parse html : 0.2592451572418213
+time to write to database : 0.17494988441467285
+time to render html : 2.0711920261383057
+time to parse html : 0.35348081588745117
+time to write to database : 0.20043516159057617
+time to render html : 2.1070291996002197
+time to parse html : 0.44701385498046875
+time to write to database : 0.2586650848388672
+time to render html : 2.2799160480499268
+time to parse html : 0.371845006942749
+time to write to database : 0.10044598579406738
+time to render html : 2.047199010848999
+time to parse html : 0.3492419719696045
+time to write to database : 0.016558170318603516
+time to render html : 2.1638131141662598
+time to parse html : 0.4985330104827881
+time to write to database : 0.18224596977233887
+time to render html : 2.0372610092163086
+time to parse html : 0.2924079895019531
+time to write to database : 0.12047314643859863
+time to render html : 1.8426101207733154
+time to parse html : 0.26264381408691406
+time to write to database : 0.11949014663696289
+time to render html : 2.042677164077759
+time to parse html : 0.31853485107421875
+time to write to database : 0.11182403564453125
+time to render html : 2.326831102371216
+time to parse html : 0.4039890766143799
+time to write to database : 0.12463593482971191
+time to render html : 2.2850289344787598
+time to parse html : 0.4329700469970703
+time to write to database : 0.29213595390319824
+time to render html : 2.2199819087982178
+time to parse html : 0.5681760311126709
+time to write to database : 0.1750020980834961
+time to render html : 1.8029839992523193
+time to parse html : 0.6204390525817871
+time to write to database : 0.16943597793579102
+time to render html : 2.4984819889068604
+time to parse html : 0.7370059490203857
+time to write to database : 0.12352204322814941
+time to render html : 1.8677339553833008
+time to parse html : 0.2927548885345459
+time to write to database : 0.15065813064575195
+time to render html : 1.707543134689331
+time to parse html : 0.5000848770141602
+time to write to database : 0.21032404899597168
+time to render html : 1.7046198844909668
+time to parse html : 0.47661304473876953
+time to write to database : 0.1920011043548584
+time to render html : 3.0293049812316895
+time to parse html : 0.40711498260498047
+time to write to database : 0.17672109603881836
+time to render html : 2.244873046875
+time to parse html : 0.39289116859436035
+time to write to database : 0.11593484878540039
+time to render html : 2.215588092803955
+time to parse html : 0.28185606002807617
+time to write to database : 0.11102294921875
+time to render html : 2.098007917404175
+time to parse html : 0.3028380870819092
+time to write to database : 0.0964658260345459
+time to add asins from search to queue : 34.86701416969299
+processing html
+html processed 58
+time to render html : 1.4733068943023682
+time to parse html : 0.2327899932861328
+time to write to database : 0.1891460418701172
+time to render html : 1.7895081043243408
+time to parse html : 0.21712899208068848
+time to write to database : 0.28638792037963867
+time to render html : 2.0160250663757324
+time to parse html : 0.3085141181945801
+time to write to database : 0.029454946517944336
+time to render html : 2.044687032699585
+time to parse html : 0.5758950710296631
+time to write to database : 0.13750505447387695
+time to render html : 2.237334966659546
+time to parse html : 0.6052160263061523
+time to write to database : 0.09140801429748535
+time to render html : 1.930877923965454
+time to parse html : 0.3426330089569092
+time to write to database : 0.02088308334350586
+time to render html : 2.3112270832061768
+time to parse html : 0.5088808536529541
+time to write to database : 0.18218207359313965
+time to render html : 1.802217960357666
+time to parse html : 0.34038805961608887
+time to write to database : 0.10789608955383301
+time to render html : 2.4294140338897705
+time to parse html : 0.4782140254974365
+time to write to database : 0.11380505561828613
+time to render html : 2.4690921306610107
+time to parse html : 0.3629038333892822
+time to write to database : 0.12351512908935547
+time to render html : 2.3507559299468994
+time to parse html : 0.633040189743042
+time to write to database : 0.16584086418151855
+time to render html : 1.9130020141601562
+time to parse html : 0.5656449794769287
+time to write to database : 0.1582629680633545
+time to render html : 2.7617218494415283
+time to parse html : 0.26652002334594727
+time to write to database : 0.2512321472167969
+time to render html : 2.2392468452453613
+time to parse html : 0.510159969329834
+time to write to database : 0.14289212226867676
+time to render html : 2.6897079944610596
+time to parse html : 0.5457038879394531
+time to write to database : 0.09712505340576172
+time to render html : 1.9549050331115723
+time to parse html : 0.2989470958709717
+time to write to database : 0.28576207160949707
+time to render html : 2.242379903793335
+time to parse html : 0.3630208969116211
+time to write to database : 0.17338299751281738
+time to render html : 2.1900248527526855
+time to parse html : 0.36815500259399414
+time to write to database : 0.18132901191711426
+time to render html : 2.0273520946502686
+time to parse html : 0.5493159294128418
+time to write to database : 0.15947389602661133
+time to render html : 2.245993137359619
+time to parse html : 0.4152388572692871
+time to write to database : 0.12073898315429688
+time to render html : 2.051668882369995
+time to parse html : 0.31430506706237793
+time to write to database : 0.11029291152954102
+time to render html : 2.2912909984588623
+time to parse html : 0.6284959316253662
+time to write to database : 0.2170848846435547
+time to render html : 2.1359751224517822
+time to parse html : 0.7131140232086182
+time to write to database : 0.19467902183532715
+time to render html : 2.226933002471924
+time to parse html : 0.4439520835876465
+time to write to database : 0.2791719436645508
+time to render html : 2.572150945663452
+time to parse html : 0.295543909072876
+time to write to database : 0.1192481517791748
+time to render html : 2.2011330127716064
+time to parse html : 0.3082408905029297
+time to write to database : 0.10107016563415527
+time to render html : 1.846933126449585
+time to parse html : 0.3425459861755371
+time to write to database : 0.1581578254699707
+time to render html : 1.6523189544677734
+time to parse html : 0.4640071392059326
+time to write to database : 0.17736387252807617
+time to render html : 1.9718999862670898
+time to parse html : 0.4807150363922119
+time to write to database : 0.21116089820861816
+time to render html : 2.0163040161132812
+time to parse html : 0.29035186767578125
+time to write to database : 0.09753012657165527
+time to render html : 2.339453935623169
+time to parse html : 0.3096120357513428
+time to write to database : 0.24269890785217285
+time to render html : 2.084152936935425
+time to parse html : 0.4152839183807373
+time to write to database : 0.24986815452575684
+time to render html : 1.6080060005187988
+time to parse html : 0.7387712001800537
+time to write to database : 0.17470288276672363
+time to render html : 2.0389809608459473
+time to parse html : 0.702233076095581
+time to write to database : 0.16678810119628906
+time to render html : 2.212224006652832
+time to parse html : 0.5488948822021484
+time to write to database : 0.1469571590423584
+time to render html : 2.4523770809173584
+time to parse html : 0.2832949161529541
+time to write to database : 0.24846410751342773
+time to render html : 2.2304019927978516
+time to parse html : 0.30770277976989746
+time to write to database : 0.17681312561035156
+time to render html : 1.8962910175323486
+time to parse html : 0.5637240409851074
+time to write to database : 0.3013019561767578
+time to render html : 2.0422050952911377
+time to parse html : 0.6341347694396973
+time to write to database : 0.30431699752807617
+time to render html : 2.481343984603882
+time to parse html : 0.2971651554107666
+time to write to database : 0.11046481132507324
+time to render html : 1.9846200942993164
+time to parse html : 0.28107190132141113
+time to write to database : 0.11658906936645508
+time to render html : 1.5470480918884277
+time to parse html : 0.7763059139251709
+time to write to database : 0.23901796340942383
+time to render html : 1.7023861408233643
+time to parse html : 0.8549730777740479
+time to write to database : 0.26155781745910645
+time to render html : 2.768217086791992
+time to parse html : 0.8307318687438965
+time to write to database : 0.25725507736206055
+time to render html : 2.533972978591919
+time to parse html : 0.3369112014770508
+time to write to database : 0.13296985626220703
+time to render html : 2.6255440711975098
+time to parse html : 0.30287790298461914
+time to write to database : 0.22561311721801758
+time to render html : 1.7579739093780518
+time to parse html : 0.4371321201324463
+time to write to database : 0.15405607223510742
+time to render html : 1.7521100044250488
+time to parse html : 0.4472219944000244
+time to write to database : 0.2097940444946289
+time to render html : 2.449437141418457
+time to parse html : 0.30478501319885254
+time to write to database : 0.12055182456970215
+time to render html : 2.764914035797119
+time to parse html : 0.3433361053466797
+time to write to database : 0.11818194389343262
+time to render html : 1.6834750175476074
+time to parse html : 0.16215991973876953
+time to write to database : 0.012567996978759766
+time to render html : 1.773850917816162
+time to parse html : 0.525825023651123
+time to write to database : 0.2458040714263916
+time to render html : 2.4252209663391113
+time to parse html : 0.48751401901245117
+time to write to database : 0.2497730255126953
+time to render html : 1.6127820014953613
+time to parse html : 0.24150609970092773
+time to write to database : 0.0913228988647461
+time to render html : 2.977895975112915
+time to parse html : 0.21212315559387207
+time to write to database : 0.15041089057922363
+time to render html : 1.5988960266113281
+time to parse html : 0.5182328224182129
+time to write to database : 0.22548699378967285
+time to render html : 1.8677539825439453
+time to parse html : 0.631788969039917
+time to write to database : 0.1284780502319336
+time to render html : 3.1327009201049805
+time to parse html : 0.6397879123687744
+time to write to database : 0.1550149917602539
+time to render html : 2.218262195587158
+time to parse html : 0.6967790126800537
+time to write to database : 0.16189289093017578
+time to render html : 1.9482638835906982
+time to parse html : 0.28223204612731934
+time to write to database : 0.09198713302612305
+time to add asins from search to queue : 36.12399101257324
+processing html
+html processed 59
+time to render html : 1.5324180126190186
+time to parse html : 0.830333948135376
+time to write to database : 0.30150914192199707
+time to render html : 1.652987003326416
+time to parse html : 0.8657050132751465
+time to write to database : 0.17763304710388184
+time to render html : 1.5712192058563232
+time to parse html : 0.7534918785095215
+time to write to database : 0.4130740165710449
+time to render html : 2.328749895095825
+time to parse html : 0.504431962966919
+time to write to database : 0.18230605125427246
+time to render html : 2.6232471466064453
+time to parse html : 0.33832788467407227
+time to write to database : 0.09440493583679199
+time to render html : 1.7484130859375
+time to parse html : 0.28644490242004395
+time to write to database : 0.20077800750732422
+time to render html : 1.9676308631896973
+time to parse html : 0.3264610767364502
+time to write to database : 0.3350050449371338
+time to render html : 1.9358479976654053
+time to parse html : 0.6738660335540771
+time to write to database : 0.21549701690673828
+time to render html : 2.405117988586426
+time to parse html : 0.7102968692779541
+time to write to database : 0.14966607093811035
+time to render html : 2.180129051208496
+time to parse html : 0.6915891170501709
+time to write to database : 0.11492490768432617
+time to render html : 2.5993587970733643
+time to parse html : 0.6483790874481201
+time to write to database : 0.25862693786621094
+time to render html : 2.332298994064331
+time to parse html : 0.5767538547515869
+time to write to database : 0.26566600799560547
+time to render html : 1.5807580947875977
+time to parse html : 0.7143838405609131
+time to write to database : 0.31116414070129395
+time to render html : 2.3587779998779297
+time to parse html : 0.5096690654754639
+time to write to database : 0.12961888313293457
+time to render html : 2.2480390071868896
+time to parse html : 0.5300130844116211
+time to write to database : 0.13166284561157227
+time to render html : 1.5501031875610352
+time to parse html : 0.4541139602661133
+time to write to database : 0.14727091789245605
+time to render html : 1.9610228538513184
+time to parse html : 0.557016134262085
+time to write to database : 0.17417693138122559
+time to render html : 2.2984838485717773
+time to parse html : 0.42377805709838867
+time to write to database : 0.24946808815002441
+time to render html : 2.559896945953369
+time to parse html : 0.323667049407959
+time to write to database : 0.25010204315185547
+time to render html : 2.473209857940674
+time to parse html : 0.2920551300048828
+time to write to database : 0.11552190780639648
+time to render html : 1.333266019821167
+time to parse html : 0.30725598335266113
+time to write to database : 0.1946251392364502
+time to render html : 1.9171080589294434
+time to parse html : 0.3240349292755127
+time to write to database : 0.16309809684753418
+time to render html : 1.6051149368286133
+time to parse html : 0.32146596908569336
+time to write to database : 0.21181797981262207
+time to render html : 2.5208730697631836
+time to parse html : 0.46239709854125977
+time to write to database : 0.13311505317687988
+time to render html : 2.2854270935058594
+time to parse html : 0.4164130687713623
+time to write to database : 0.10391497611999512
+time to render html : 1.9290568828582764
+time to parse html : 0.2625010013580322
+time to write to database : 0.17544817924499512
+time to render html : 1.8668489456176758
+time to parse html : 0.6465280055999756
+time to write to database : 0.22818708419799805
+time to render html : 2.3251309394836426
+time to parse html : 0.7250349521636963
+time to write to database : 0.16895604133605957
+time to render html : 1.98667311668396
+time to parse html : 0.49234604835510254
+time to write to database : 0.15102005004882812
+time to render html : 2.2632322311401367
+time to parse html : 0.29712486267089844
+time to write to database : 0.11547493934631348
+time to render html : 1.4157111644744873
+time to parse html : 0.681865930557251
+time to write to database : 0.18570208549499512
+time to render html : 2.4015860557556152
+time to parse html : 0.28703999519348145
+time to write to database : 0.12227296829223633
+time to render html : 1.7239952087402344
+time to parse html : 0.29222798347473145
+time to write to database : 0.1484999656677246
+time to render html : 2.196216106414795
+time to parse html : 0.26276588439941406
+time to write to database : 0.25106000900268555
+time to render html : 1.8018691539764404
+time to parse html : 0.5994410514831543
+time to write to database : 0.15202784538269043
+time to render html : 2.1290488243103027
+time to parse html : 0.6713600158691406
+time to write to database : 0.12926912307739258
+time to render html : 2.2342050075531006
+time to parse html : 0.3238980770111084
+time to write to database : 0.1252739429473877
+time to render html : 1.3006858825683594
+time to parse html : 0.2417769432067871
+time to write to database : 0.12070822715759277
+time to render html : 2.4980039596557617
+time to parse html : 0.3007090091705322
+time to write to database : 0.19645309448242188
+time to render html : 2.490269899368286
+time to parse html : 0.42055702209472656
+time to write to database : 0.1958301067352295
+time to render html : 2.4140429496765137
+time to parse html : 0.2989780902862549
+time to write to database : 0.10397696495056152
+time to render html : 2.003385066986084
+time to parse html : 0.28447413444519043
+time to write to database : 0.10770583152770996
+time to render html : 2.2072088718414307
+time to parse html : 0.29102110862731934
+time to write to database : 0.1417069435119629
+time to render html : 2.0585250854492188
+time to parse html : 0.2242279052734375
+time to write to database : 0.11472415924072266
+time to render html : 1.9591190814971924
+time to parse html : 0.2696568965911865
+time to write to database : 0.11831116676330566
+time to render html : 2.7279348373413086
+time to parse html : 0.31963109970092773
+time to write to database : 0.14934802055358887
+time to render html : 2.21608304977417
+time to parse html : 0.28478503227233887
+time to write to database : 0.09491801261901855
+time to render html : 1.8586301803588867
+time to parse html : 0.5626637935638428
+time to write to database : 0.1656789779663086
+time to render html : 2.134080171585083
+time to parse html : 0.5217189788818359
+time to write to database : 0.19733595848083496
+time to render html : 1.8606979846954346
+time to parse html : 0.23579096794128418
+time to write to database : 0.11862897872924805
+time to render html : 2.106192111968994
+time to parse html : 0.2539198398590088
+time to write to database : 0.18530511856079102
+time to render html : 2.1302201747894287
+time to parse html : 0.3295269012451172
+time to write to database : 0.10264706611633301
+time to render html : 1.6262619495391846
+time to parse html : 0.24936985969543457
+time to write to database : 0.18356800079345703
+time to render html : 2.0454630851745605
+time to parse html : 0.4145939350128174
+time to write to database : 0.14751410484313965
+time to render html : 2.100003957748413
+time to parse html : 0.5225129127502441
+time to write to database : 0.12031292915344238
+time to render html : 2.0030500888824463
+time to parse html : 0.29648900032043457
+time to write to database : 0.11861491203308105
+time to add asins from search to queue : 35.08857798576355
+beginning to process URLS

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 MAR 2017 05:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  5 MAR 2017 05:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -466,7 +466,7 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box50
 \enitdp@description=\count146
 )
-No file "Goods Notes".aux.
+(./Goods Notes.aux)
 \openout1 = `"Goods Notes.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
@@ -481,6 +481,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
+
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count147
@@ -631,8 +632,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 127--128
 
 [3] [4] (./Goods Notes.aux) ) 
 Here is how much of TeX's memory you used:
- 10907 strings out of 493089
- 187863 string characters out of 6134842
+ 10909 strings out of 493089
+ 187895 string characters out of 6134842
  240099 words of memory out of 5000000
  14289 multiletter control sequences out of 15000+600000
  8195 words of font info for 33 fonts, out of 8000000 for 9000
@@ -643,7 +644,7 @@ blic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy10.pfb>
-Output written on "Goods Notes.pdf" (4 pages, 53532 bytes).
+Output written on "Goods Notes.pdf" (4 pages, 53627 bytes).
 PDF statistics:
  33 PDF objects out of 1000 (max. 8388607)
  22 compressed objects within 1 object stream
