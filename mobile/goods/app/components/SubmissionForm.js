@@ -4,7 +4,7 @@ import {Component} from 'react'
 import {Image, Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, ActivityIndicator, NetInfo, AsyncStorage, Platform, AppState, AppRegistry, StyleSheet, TabBarIOS, View} from 'react-native';
 var ImagePicker = require('react-native-image-picker');
 const {CameraRoll,} = 'react'
-const url = "https://manaweb-events.herokuapp.com"
+const url = "https://whereitsmade.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
 
 import BarcodeModal from './BarcodeModal'
@@ -63,7 +63,7 @@ export default class SubmissionForm extends React.Component {
 
 	submitProductInformation() {
 		console.log("submit to api")
-		fetch(url + "/submitProductInformation", {method: "POST",
+		fetch(url + "/userSubmitProductInformation", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
