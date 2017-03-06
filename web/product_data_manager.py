@@ -64,7 +64,7 @@ class ProductDataManager:
 		else:
 			return False
 
-	def isUniqueIdTaken(self):
+	def isUniqueIdTaken(self, unique_id):
 		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE + " WHERE unique_id = %s"
 		self.db.execute(self.db.mogrify(sql, (image_id,)))
 		query = self.db.fetchall()
