@@ -100,7 +100,7 @@ class ProductDataManager:
 		timeStamp = time.time()
 		unique_id = self.generateNewUniqueId()
 		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (unique_id, timeStamp) VALUES (%s, %s)"
-					,(timeStamp, unique_id))
+					,(unique_id, timeStamp))
 		self.db.execute(sql)
 		for key in submission:
 			if key != "image_data":
