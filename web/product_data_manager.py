@@ -34,7 +34,7 @@ class ProductDataManager:
 
 	def createProductEntryTable(self):
 		table_name = self.USER_SUBMISSION_TABLE
-		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (unique_id TEXT, timeStamp FLOAT)'
+		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (unique_id TEXT, image_id TEXT, timeStamp FLOAT)'
 		self.db.execute(createTableCode)
 
 	def isImageIdTaken(self, image_id):
