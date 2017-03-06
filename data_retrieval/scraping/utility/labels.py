@@ -31,8 +31,9 @@ class Labels:
 		self.AllLabels.append(self.Model)
 		self.ProductName = 'product_name'
 		self.AllLabels.append(self.ProductName)
+		self.Upc = 'upc'
 
-		self.amazon_detail_search_targets = ['origin', 'manufacturer_name', 'model', 'asin']
+		self.amazon_detail_search_targets = [self.Origin, self.Manufacturer, self.Model, self.Asin, self.Upc]
 
 	def getAmazonDetailSearchTargets(self):
 		return self.amazon_detail_search_targets

@@ -1,19 +1,19 @@
 'use-strict';
 import React from 'react';
 import {Component} from 'react'
-import {Image,Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, ActivityIndicator, NetInfo, AsyncStorage, Platform, AppState, AppRegistry, StyleSheet, TabBarIOS, View} from 'react-native';
+import {Image, Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, ActivityIndicator, NetInfo, AsyncStorage, Platform, AppState, AppRegistry, StyleSheet, TabBarIOS, View} from 'react-native';
 var ImagePicker = require('react-native-image-picker');
-
 const {CameraRoll,} = 'react'
-
 const url = "https://manaweb-events.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
+
+import BarcodeModal from './BarcodeModal'
 
 var options = {
   title: 'Select an Image',
   storageOptions: {
     skipBackup: true,
-    path: 'images'
+    path: 'images',
   }
 };
 
@@ -25,14 +25,15 @@ export default class SubmissionForm extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			cameraRollModal: false,
 			product_name : "",
 			manufacturer_name : "",
 			contact_information : "",
 			url_link: "",
 			location: "",
 			image_source : "",
-			image_data : ""
+			image_data : "",
+			barcode_modal_visible : false,
+			barcode_upc: ""
 		}
 	}
 
@@ -52,8 +53,12 @@ export default class SubmissionForm extends React.Component {
 		this.setState({location : location})
 	}
 
-	toggleCameraRollModal(){
-		this.setState({cameraRollModal : !this.state.cameraRollModal})
+	setBarcodeUpc(barcode_upc) {
+		this.setState({barcode_upc : barcode_upc})
+	}
+
+	toggleBarcodeModal(){
+		this.setState({barcode_modal_visible : !this.state.barcode_modal_visible})
 	}
 
 	submitProductInformation() {
@@ -71,7 +76,8 @@ export default class SubmissionForm extends React.Component {
 				contact_information : this.state.contact_information,
 				url_link: this.state.url_link,
 				location: this.state.location,
-				image_data: this.state.image_data
+				image_data: this.state.image_data,
+				barcode_upc: this.state.barcode_upc
 
 			})
 		})
@@ -132,10 +138,10 @@ export default class SubmissionForm extends React.Component {
 	render(){
 		return (
 				<View style = {styles.container}>
-				{/*
-					<CameraRollModal visible = {this.state.cameraRollModal}
-							toggleCameraRollModal = {this.toggleCameraRollModal.bind(this)}
-						/> */}
+					<BarcodeModal visible = {this.state.barcode_modal_visible}
+						setBarcodeUpc = {this.setBarcodeUpc.bind(this)}
+						toggleBarcodeModal = {this.toggleBarcodeModal.bind(this)}
+						/>
 
 					<View style = {{flex : 0.025}}/>
 					<View style = {{flex : 0.7, padding: 20}}>
@@ -169,9 +175,11 @@ export default class SubmissionForm extends React.Component {
 												style = {styles.input}/>
 								<View style = {{flex : 0.2}}/>
 							</View>
+
 					</View>
 
-					<View style = {{flex:0.2}}>
+
+					<View style = {{flex:0.1}}>
 						<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)}>
 							<View>
 								<Text>
@@ -182,6 +190,23 @@ export default class SubmissionForm extends React.Component {
 						{this.state.image_source != "" &&
 							<View>
 								<Image style = {{height: 30, width : 30}} source = {this.state.image_source} />
+							</View>
+						}
+					</View>
+
+					<View style = {{flex : 0.1}}>
+						<TouchableOpacity onPress = {this.toggleBarcodeModal.bind(this)}>
+							<View>
+								<Text>
+									Press to scan a barcode!
+								</Text>
+							</View>
+						</TouchableOpacity>
+						{this.state.barcode_upc != "" &&
+							<View>
+								<Text>
+									{this.state.barcode_upc}
+								</Text>
 							</View>
 						}
 					</View>

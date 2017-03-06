@@ -21,19 +21,15 @@
 	  {% block content %}
 
 	  <script>
-
-
 		var submitData = function () {
-
 			var product_name = document.getElementById('product_name').value
 			var url_link = document.getElementById('url_link').value
 			var location = document.getElementById('location').value
 			var manufacturer_name = document.getElementById('manufacturer_name').value
 			var contact_information = document.getElementById('contact_information').value
-
-
+			var origin = document.getElementById('origin').value
+			var barcode_upc = document.getElementById('barcode_upc').value
 			// check if an image is submitted
-
 			var image_div = document.getElementById('image')
 			if (image_div.files.length > 0) {
 				var image_file = image_div.files[0]
@@ -49,11 +45,14 @@
 					  		"location" : location,
 					  		"manufacturer_name" : manufacturer_name ,
 					  		"contact_information" : contact_information,
-					  		"image_data" : trim_image_data	
+					  		"image_data" : trim_image_data,
+					  		"origin" : origin,
+					  		"barcode_upc" : barcode_upc
+
 					  	})
 					  	$.ajax({
 						  type: "POST",
-						  url: "http://0.0.0.0:5000/browserSubmitInformation",
+						  url: "http://0.0.0.0:5000/userSubmitProductInformation",
 						  data: formData,
 						  success: function() {
 						  		window.location.reload();
@@ -74,7 +73,9 @@
 					  		"url_link" : url_link,
 					  		"location" : location,
 					  		"manufacturer_name" : manufacturer_name ,
-					  		"contact_information" : contact_information
+					  		"contact_information" : contact_information,
+					  		"origin" : origin,
+					  		"barcode_upc" : barcode_upc
 					  	})
 				$.ajax({
 						  type: "POST",
@@ -104,6 +105,8 @@
 					Location:  <input type="text" id = "location"><br>
 					Url Link:  <input type="text" id = "url_link"><br>
 					Contact Information:  <input type="text" id = "contact_information"><br>
+					Origin:  <input type="text" id = "origin"><br>
+					Barcode UPC:  <input type="text" id = "barcode_upc"><br>
 					Image:  <input type="file" accept = "image/*" id = "image"> <br>
 					<button type="submit" id = "submit_button" onClick = "submitData()"> Submit </button>
 			</div>

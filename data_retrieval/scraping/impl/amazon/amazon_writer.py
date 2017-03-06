@@ -35,7 +35,6 @@ class AmazonWriter:
 		self.p_db.close()
 
 	def openConnection(self):
-		print("connection opened")
 		database_credentials = credential.getDatabaseCredentials()
 		self.p_db = psycopg2.connect(
 		    database=database_credentials['database'],
@@ -46,8 +45,6 @@ class AmazonWriter:
 		)
 		self.p_db.autocommit = True
 		self.db = self.p_db.cursor()
-
-
 
 	## all entries will be TEXT except
 	def createScrapingDataTable(self):

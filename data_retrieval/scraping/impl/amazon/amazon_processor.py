@@ -102,6 +102,7 @@ class AmazonProcessor():
 		# 	self.addAsinToQueue(asin)
 		try:
 			product = self.parser.getProductAttributes(html)
+			product.addAttribute(product.labels.Asin, asin)
 		except:
 			with open('./logs/bad_url_list.log', 'a') as f:
 				f.write(url + "\n")
@@ -162,6 +163,31 @@ class AmazonProcessor():
 		self.processAllUrlFromQueue()
 		self.joinProcesses()
 
+	def getMachineData(self):
+		url_start = "https://www.amazon.com/s/?fst=as%3Aoff&rh=n%3A16310091%2Cn%3A3021479011%2Ck%3Amachine+parts&page="
+		url_end = "&keywords=machine+parts&ie=UTF8&qid=1488777854&spIA=B00396J7V0,B002OU6ZSA"
+		for page_number in range(1, 20):
+			time_0 = time.time()
+			url = url_start + str(page_number) + url_end
+			print("processing html")
+			html = self.scraper.getHtml(url)
+			print("html processed " + str(page_number))
+			asin_list = self.crawler.getAsinFromHtml(html)
+			for asin in asin_list:
+				self.addAsinToQueue(asin)
+			self.processAllUrlFromQueue()
+			self.queue.join()	
+			time_1 = time.time()
+			print("time to add asins from search to queue : " + str(time_1 - time_0))
+		print("beginning to process URLS")
+		self.processAllUrlFromQueue()
+		self.joinProcesses()
+
+
+	def writeTableToCsv(self):
+		writer = AmazonWriter()
+		writer.writeTableToCsv()
+		writer.closeConnection()
 
 	def main(self):
 		asin = "B00WB14DTA"
@@ -171,6 +197,7 @@ class AmazonProcessor():
 		# self.joinProcesses()
 
 
-# writer.writeTableToCsv()
-AmazonProcessor = AmazonProcessor(numThreads = 5)
-AmazonProcessor.getChairData()
+
+processor = AmazonProcessor(numThreads = 10)
+processor.getMachineData()
+processor.writeTableToCsv()

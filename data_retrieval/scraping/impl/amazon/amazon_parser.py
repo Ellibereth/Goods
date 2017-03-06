@@ -66,8 +66,9 @@ class AmazonParser():
 			rows = table.findAll("tr")
 			for row in rows:
 				for target in detail_search_targets:
-					if row.find("th").text.lower().find(target) != -1:
-						product.addAttribute(target, row.find("td").text)
+					if row.find("th") != None:
+						if row.find("th").text.lower().find(target) != -1:
+							product.addAttribute(target, row.find("td").text)
 
 		# now we check if the product details are in list form 
 		description_list = soup.find('div', id = re.compile("^detailBullet.*"))
@@ -76,8 +77,9 @@ class AmazonParser():
 				spans = list_item.findAll("span")
 				if (len(spans) > 0):
 					for target in detail_search_targets:
-						if spans[0].text.lower().find(target) != -1:
-							product.addAttribute(target, spans[1].text)
+						if len(spans) > 0:
+							if spans[0].text.lower().find(target) != -1:
+								product.addAttribute(target, spans[1].text)
 
 
 		# here we remove a lot of spaces and new line characters
@@ -90,7 +92,6 @@ class AmazonParser():
 			if key == "price":
 				trimmed_info = trimmed_info.replace("$", "")
 			product.addAttribute(key, trimmed_info)
-
 		return product
 
 	def main():
