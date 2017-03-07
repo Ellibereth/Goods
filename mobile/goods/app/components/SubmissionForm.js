@@ -60,14 +60,13 @@ export default class SubmissionForm extends React.Component {
 		this.setState({additional_info : additional_info})
 	}
 
-	setBarcodeUpc(barcode_upc) {
-		this.setState({barcode_upc : barcode_upc.data})
-
+	setBarcodeUpc(barcode_upc, barcode_type) {
+		this.setState({barcode_upc : barcode_upc})
 		// types are in form org.gs1.
 		// we eliminate the first 8 
 		var type = ""
-		if (barcode_upc.type.length > 8) {
-			type = barcode_upc.type.substring(8, barcode_upc.type.length)
+		if (barcode_type.length > 8) {
+			type = barcode_type.substring(8, barcode_type.length)
 		} 
 		this.setState({barcode_type: type})
 	
@@ -157,6 +156,13 @@ export default class SubmissionForm extends React.Component {
 		})
 	}
 
+	removePhoto(){
+		this.setState({
+			image_data : "",
+			image_source: ""
+		})
+	}
+
 
 	render(){
 		return (
@@ -165,7 +171,6 @@ export default class SubmissionForm extends React.Component {
 						setBarcodeUpc = {this.setBarcodeUpc.bind(this)}
 						toggleBarcodeModal = {this.toggleBarcodeModal.bind(this)}
 						/>
-
 					<View style = {{flex : 0.025}}/>
 					<View style = {{flex : 0.7, padding: 20}}>
 							<View style = {{flex: 1}}>
@@ -222,9 +227,20 @@ export default class SubmissionForm extends React.Component {
 								</Text>
 							</View>
 						</TouchableWithoutFeedback>
+
 						{this.state.image_source != "" &&
 							<View>
-								<Image style = {{height: 30, width : 30}} source = {this.state.image_source} />
+								<View>
+									<Image style = {{height: 30, width : 30}} source = {this.state.image_source}/>
+								</View>
+
+								<TouchableWithoutFeedback onPress = {this.removePhoto.bind(this)}>
+									<View>
+										<Text style = {{color : "red"}}>
+											Remove this photo
+										</Text>
+									</View>
+								</TouchableWithoutFeedback>
 							</View>
 						}
 					</View>
@@ -237,8 +253,7 @@ export default class SubmissionForm extends React.Component {
 								</Text>
 							</View>
 						</TouchableOpacity>
-						
-						{this.state.barcode_upc &&
+						{this.state.barcode_upc != "" &&
 							<View>
 								<Text>
 									UPC :  {this.state.barcode_upc}

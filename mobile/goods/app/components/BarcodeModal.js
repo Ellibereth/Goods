@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-
 import {
   Image, Text, Modal, View, Platform, Alert, TouchableOpacity, Stylesheet
 } from 'react-native';
 
-import BarcodeScanner from 'react-native-barcodescanner';
+// import BarcodeScanner from 'react-native-barcodescanner';
 import UniversalBarcodeScanner from './UniversalBarcodeScanner'
+import AndroidBarcodeScanner from './AndroidBarcodeScanner'
 
 
 export default class BarcodeModal extends Component {
@@ -24,11 +24,11 @@ export default class BarcodeModal extends Component {
     this.setState({barcode_scanned: false})
   }
 
-  onBarCodeRead(code) {
+  onBarCodeRead(code, type) {
     if (!this.state.barcode_scanned){
       this.setState({barcode_scanned : true})
       console.log('Barcode: ' + code);
-      this.props.setBarcodeUpc(code)
+      this.props.setBarcodeUpc(code, type)
       Alert.alert(
         'Barcode Scanned',
         code.data,
@@ -48,19 +48,17 @@ export default class BarcodeModal extends Component {
   render() {
     return (
       <Modal visible = {this.props.visible} style = {{backgroundColor : "skyblue"}}
-            onRequestClose = {this.onRequestClose.bind(this)}
-      >
-
+            onRequestClose = {this.onRequestClose.bind(this)}>
         <View style = {{flex : 1, paddingTop: 20, alignItems : "center"}}>
-          <UniversalBarcodeScanner onBarCodeRead = {this.onBarCodeRead.bind(this)}/>
-{/*          {Platform.OS == 'android' &&
-          <BarcodeScanner
-            onBarCodeRead={this.barcodeReceived.bind(this)}
-            style={{ width : 200, height: 200}}
-            torchMode={this.state.torchMode}
-            cameraType={this.state.cameraType}
-            />
-          }   */}
+          
+          {Platform.OS == 'ios' && 
+            <UniversalBarcodeScanner onBarCodeRead = {this.onBarCodeRead.bind(this)}/>
+          }
+
+          {Platform.OS == 'android' && 
+            <AndroidBarcodeScanner onBarCodeRead = {this.onBarCodeRead.bind(this)}/>
+          }
+
           <TouchableOpacity onPress = {this.props.toggleBarcodeModal}>
             <View style = {{height: 40 }}>
               <Text> 
