@@ -16,10 +16,7 @@
 	  <script src="{{ url_for('static', filename='jquery/dist/jquery.min.js') }}"></script>
 	  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script> 
 	  <script src="{{ url_for('static', filename='sweetalert/dist/sweetalert.min.js') }}"></script> 
-
-
 	  {% block content %}
-
 	  <script>
 		var submitData = function () {
 			var product_name = document.getElementById('product_name').value
@@ -29,6 +26,7 @@
 			var contact_information = document.getElementById('contact_information').value
 			var origin = document.getElementById('origin').value
 			var barcode_upc = document.getElementById('barcode_upc').value
+			var additional_info = document.getElementById('additional_info').value
 			// check if an image is submitted
 			var image_div = document.getElementById('image')
 			if (image_div.files.length > 0) {
@@ -47,7 +45,8 @@
 					  		"contact_information" : contact_information,
 					  		"image_data" : trim_image_data,
 					  		"origin" : origin,
-					  		"barcode_upc" : barcode_upc
+					  		"barcode_upc" : barcode_upc,
+					  		"additional_info" : additional_info
 
 					  	})
 					  	$.ajax({
@@ -75,7 +74,8 @@
 					  		"manufacturer_name" : manufacturer_name ,
 					  		"contact_information" : contact_information,
 					  		"origin" : origin,
-					  		"barcode_upc" : barcode_upc
+					  		"barcode_upc" : barcode_upc,
+					  		"additional_info" : additional_info
 					  	})
 				$.ajax({
 						  type: "POST",
@@ -90,15 +90,13 @@
 						  dataType: "json",
 						  contentType : "application/json; charset=utf-8"
 					});
-
 			}
 		}
-
-		// var submit_button = document.getElementById("submit_button").onclick = submitData
 
 	  </script>
 
 		<div id="app">
+			<a href = "/adminLogin">  Click here for admin login </a>
 			<div id = "form">
 					Product Name:  <input type="text" id = "product_name"><br>
 					Manufacturer Name:  <input type="text" id = "manufacturer_name"><br>
@@ -106,10 +104,12 @@
 					Url Link:  <input type="text" id = "url_link"><br>
 					Contact Information:  <input type="text" id = "contact_information"><br>
 					Origin:  <input type="text" id = "origin"><br>
+					Additional Info:  <input type="text" id = "additional_info"><br>
 					Barcode UPC:  <input type="text" id = "barcode_upc"><br>
 					Image:  <input type="file" accept = "image/*" id = "image"> <br>
 					<button type="submit" id = "submit_button" onClick = "submitData()"> Submit </button>
 			</div>
+
 		</div>
 		<!-- <script src={{ url_for('static', filename='bundle.js') }}></script> -->
 	  {% endblock %}

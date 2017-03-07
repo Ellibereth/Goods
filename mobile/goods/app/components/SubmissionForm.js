@@ -33,7 +33,8 @@ export default class SubmissionForm extends React.Component {
 			image_source : "",
 			image_data : "",
 			barcode_modal_visible : false,
-			barcode_upc: ""
+			barcode_upc: "",
+			barcode_type: ""
 		}
 	}
 
@@ -52,13 +53,29 @@ export default class SubmissionForm extends React.Component {
 	handleLocationChange(location) {
 		this.setState({location : location})
 	}
+	handleOriginChange(location) {
+		this.setState({origin : origin})
+	}
+	handleAdditionalInfoChange(additional_info) {
+		this.setState({additional_info : additional_info})
+	}
 
 	setBarcodeUpc(barcode_upc) {
-		this.setState({barcode_upc : barcode_upc})
+		this.setState({barcode_upc : barcode_upc.data})
+
+		// types are in form org.gs1.
+		// we eliminate the first 8 
+		var type = ""
+		if (barcode_upc.type.length > 8) {
+			type = barcode_upc.type.substring(8, barcode_upc.type.length)
+		} 
+		this.setState({barcode_type: type})
+	
 	}
 
 	toggleBarcodeModal(){
-		this.setState({barcode_modal_visible : !this.state.barcode_modal_visible})
+		var new_visible = !this.state.barcode_modal_visible
+		this.setState({barcode_modal_visible : new_visible})
 	}
 
 	submitProductInformation() {
@@ -77,8 +94,10 @@ export default class SubmissionForm extends React.Component {
 				url_link: this.state.url_link,
 				location: this.state.location,
 				image_data: this.state.image_data,
-				barcode_upc: this.state.barcode_upc
-
+				barcode_upc: this.state.barcode_upc,
+				barcode_type: this.state.barcode_type,
+				origin: this.state.origin,
+				additional_info : this.state.additional_info
 			})
 		})
 		.then((response) => response.json())
@@ -130,7 +149,11 @@ export default class SubmissionForm extends React.Component {
 			location: "",
 			cameraRollModal: false,
 			image_source : "",
-			image_data : ""
+			image_data : "",
+			barcode_upc: "",
+			barcode_type: "",
+			origin: "",
+			additional_info: ""
 		})
 	}
 
@@ -147,31 +170,43 @@ export default class SubmissionForm extends React.Component {
 					<View style = {{flex : 0.7, padding: 20}}>
 							<View style = {{flex: 1}}>
 								<Text style={styles.label}> PRODUCT NAME</Text>
-								<TextInput onChangeText = {this.handleProductNameChange.bind(this)}
+								<TextInput value ={this.state.product_name} onChangeText = {this.handleProductNameChange.bind(this)}
 												style = {styles.input}/>
 								<View style = {{flex : 0.2}}/>
 							</View>
 							<View style = {{flex: 1}}>
 								<Text style={styles.label}> MANUFACTURER NAME</Text>
-								<TextInput onChangeText = {this.handleManufacturerNameChange.bind(this)}
+								<TextInput value = {this.state.manufacturer_name} onChangeText = {this.handleManufacturerNameChange.bind(this)}
 												style = {styles.input}/>
 								<View style = {{flex : 0.2}}/>
 							</View>
 							<View style = {{flex: 1}}>
 								<Text style={styles.label}> CONTACT INFOMRATION</Text>
-								<TextInput onChangeText = {this.handleContactInformationChange.bind(this)}
+								<TextInput value = {this.state.contact_information} onChangeText = {this.handleContactInformationChange.bind(this)}
 												style = {styles.input}/>
 								<View style = {{flex : 0.2}}/>
 							</View>
 							<View style = {{flex: 1}}>
 								<Text style={styles.label}> URL LINK (OPTIONAL) </Text>
-								<TextInput onChangeText = {this.handleUrlLinkChange.bind(this)}
+								<TextInput value = {this.state.url_link} onChangeText = {this.handleUrlLinkChange.bind(this)}
 												style = {styles.input}/>
 								<View style = {{flex : 0.2}}/>
 							</View>
 							<View style = {{flex: 1}}>
 								<Text style={styles.label}> LOCATION</Text>
-								<TextInput onChangeText = {this.handleLocationChange.bind(this)}
+								<TextInput value = {this.state.location} onChangeText = {this.handleLocationChange.bind(this)}
+												style = {styles.input}/>
+								<View style = {{flex : 0.2}}/>
+							</View>
+							<View style = {{flex: 1}}>
+								<Text style={styles.label}> ORIGIN</Text>
+								<TextInput value ={this.state.origin} onChangeText = {this.handleOriginChange.bind(this)}
+												style = {styles.input}/>
+								<View style = {{flex : 0.2}}/>
+							</View>
+							<View style = {{flex: 1}}>
+								<Text style={styles.label}> ADDITIONAL INFORMATION</Text>
+								<TextInput value ={this.state.additional_info} onChangeText = {this.handleAdditionalInfoChange.bind(this)}
 												style = {styles.input}/>
 								<View style = {{flex : 0.2}}/>
 							</View>
@@ -202,10 +237,11 @@ export default class SubmissionForm extends React.Component {
 								</Text>
 							</View>
 						</TouchableOpacity>
-						{this.state.barcode_upc != "" &&
+						
+						{this.state.barcode_upc &&
 							<View>
 								<Text>
-									{this.state.barcode_upc}
+									UPC :  {this.state.barcode_upc}
 								</Text>
 							</View>
 						}

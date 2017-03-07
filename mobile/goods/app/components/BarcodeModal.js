@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 
 import {
-  Image, Text, Modal, View, Platform, Alert, TouchableOpacity
+  Image, Text, Modal, View, Platform, Alert, TouchableOpacity, Stylesheet
 } from 'react-native';
 
 import BarcodeScanner from 'react-native-barcodescanner';
+import UniversalBarcodeScanner from './UniversalBarcodeScanner'
 
 
 export default class BarcodeModal extends Component {
@@ -14,14 +15,30 @@ export default class BarcodeModal extends Component {
     this.state = {
       torchMode: 'off',
       cameraType: 'back',
+      barcode_scanned: false
     };
   }
 
-  barcodeReceived(e) {
-    console.log('Barcode: ' + e.data);
-    console.log('Type: ' + e.type);
-    this.props.setBarcodeUps(e.data)
+  onOkPress () {
     this.props.toggleBarcodeModal()
+    this.setState({barcode_scanned: false})
+  }
+
+  onBarCodeRead(code) {
+    if (!this.state.barcode_scanned){
+      this.setState({barcode_scanned : true})
+      console.log('Barcode: ' + code);
+      this.props.setBarcodeUpc(code)
+      Alert.alert(
+        'Barcode Scanned',
+        code.data,
+        [
+          {text: 'Press Ok To Return', onPress: this.onOkPress.bind(this)
+          }
+        ],
+        { cancelable: false }
+      )
+    }
   }
 
   onRequestClose(){
@@ -35,18 +52,19 @@ export default class BarcodeModal extends Component {
       >
 
         <View style = {{flex : 1, paddingTop: 20, alignItems : "center"}}>
-          {Platform.OS == 'android' &&
+          <UniversalBarcodeScanner onBarCodeRead = {this.onBarCodeRead.bind(this)}/>
+{/*          {Platform.OS == 'android' &&
           <BarcodeScanner
             onBarCodeRead={this.barcodeReceived.bind(this)}
             style={{ width : 200, height: 200}}
             torchMode={this.state.torchMode}
             cameraType={this.state.cameraType}
             />
-          }
+          }   */}
           <TouchableOpacity onPress = {this.props.toggleBarcodeModal}>
-            <View>
+            <View style = {{height: 40 }}>
               <Text> 
-                Return
+                Return {this.props.visible}
               </Text>
             </View>
           </TouchableOpacity>

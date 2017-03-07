@@ -12,6 +12,23 @@ import psycopg2
 import urllib
 import base64
 
+## this is the same as the submission variables in product_data_manager.py 
+## should I just put these in a CSV?
+submission_variables = [
+							'unique_id', 
+							'image_id',
+							'timeStamp',
+							'manufacturer_name',
+							'url_link',
+							'contact_information',
+							'product_name',
+							'origin',
+							'barcode_upc',
+							'barcode_type',
+							'additional_info',
+							'verified'
+						 ]
+						 
 class ProductDataManager:
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
@@ -106,8 +123,30 @@ class ProductDataManager:
 			if key != "image_data":
 				self.updateEntryByUniqueId(unique_id, key, submission[key])
 
+	# somehow you need to keep track of the order of things in the database
+	# how can this be avoided in the future?
+	# looking for suggestions
+	def getProductSubmissions(self):
+		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE
+		self.db.execute(sql)
+		query = self.db.fetchall()
+		allProducts = list()
+		for row in query:
+			product_dict = self.productSubmissionQueryRowToDict(row)
+			allProducts.append(product_dict)
+		return allProducts
+
+	def productSubmissionQueryRowToDict(self, product_query):
+		product_dict = {}
+		i = 0
+		for key in submission_variables:
+			product_dict[key] = product_query[i]
+			i = i + 1
+		return product_dict
 
 	def updateEntryByUniqueId(self, unique_id, column_name, data):	
+		if column_name == "unique_id":
+			return
 		try:
 			self.addColumnToSubmissionTable(column_name)
 		except:
@@ -116,7 +155,38 @@ class ProductDataManager:
 		sql = "UPDATE " + self.USER_SUBMISSION_TABLE + " SET " + column_name + " = %s " + " WHERE unique_id = %s"
 		self.db.execute(self.db.mogrify(sql, (data, unique_id)))
 
-	def addColumnToSubmissionTable(self, column_name):
-		sql = "ALTER TABLE " + self.USER_SUBMISSION_TABLE + " ADD " + column_name + " TEXT"
+	def addColumnToSubmissionTable(self, column_name, data_type = None):
+		if data_type == None:
+			data_type = "TEXT"
+		sql = "ALTER TABLE " + self.USER_SUBMISSION_TABLE + " ADD " + column_name + " " + data_type
 		self.db.execute(self.db.mogrify(sql))
+
+	def verifySubmission(self, unique_id):
+		if unique_id == None or unique_id == "":
+			return
+		elif not self.isUniqueIdTaken(unique_id):
+			return
+		else:
+			column_name = "verified"
+			data = True
+			self.updateEntryByUniqueId(unique_id, column_name, data)
+
+
+	def test(self):
+		test_submission = {}
+		for key in submission_variables:
+			if key == "timeStamp":
+				test_submission[key] = time.time()
+			elif key == "verified":
+				test_submission[key] = False
+			else:
+				test_submission[key] = "test"
+
+		self.addProductEntry(test_submission)
+		product_submissions = self.getProductSubmissions()
+		print(product_submissions)
+
+
+# product_data_manager = ProductDataManager()
+# product_data_manager.test()
 

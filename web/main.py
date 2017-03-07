@@ -51,14 +51,14 @@ def adminLogin():
 	elif request.method == 'POST':
 		if (request.form['userName'] == 'admin' and request.form['password'] == 'powerplay'):
 			session['isAdmin'] = True
-			return redirect(url_for('index'))
+			return redirect(url_for('productList'))
 		elif (request.form['userName'] == 'a' and request.form['password'] == 'a'):
 			session['isAdmin'] = True
-			return redirect(url_for('index'))
+			return redirect(url_for('productList'))
 		elif (request.form['userName'] == 'testuser' and request.form['password'] == 'collectedcompany'):
 			session['isAdmin'] = True
-			return redirect(url_for('index'))
-		else :
+			return redirect(url_for('productList'))
+		else:
 			return render_template("adminLogin.html")
 
 @app.route("/", methods = ['GET'])
@@ -71,7 +71,12 @@ def index():
 def catch_all(path):
     return render_template("index.html")
 
-
+@app.route('/productList', methods = ['GET'])
+def productList():
+	if session.get('isAdmin'):
+		return render_template('productList.html')
+	else:
+		return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.debug = True

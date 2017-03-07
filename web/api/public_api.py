@@ -12,7 +12,23 @@ from product_data_manager import ProductDataManager
 
 public_api = Blueprint('public_api', __name__)
 
-submission_variables = ['product_name', 'manufacturer_name', 'origin', 'url_link', 'image_data', 'contact_information', 'barcode_upc']
+
+## this is the same as the submission variables in product_data_manager.py 
+## should I just put these in a CSV?
+submission_variables = [
+							'unique_id', 
+							'image_id',
+							'timeStamp',
+							'manufacturer_name',
+							'url_link',
+							'contact_information',
+							'product_name',
+							'origin',
+							'barcode_upc',
+							'barcode_type',
+							'additional_info',
+							'verified'
+						 ]
 
 
 @public_api.route('/userSubmitProductInformation', methods = ['POST'])
@@ -25,7 +41,23 @@ def userSubmitProductInformation():
 	data_manager.closeConnection()
 	output = {"result" : "success"}
 
+	return jsonify(output)
 
+@public_api.route('/getProductSubmissions', methods =['POST'])
+def getProductSubmissions():
+	data_manager = ProductDataManager()
+	product_submissions = data_manager.getProductSubmissions()
+	data_manager.closeConnection()
+	return jsonify(product_submissions)
+
+@public_api.route('/verifySubmission', methods =['POST'])
+def verifySubmission():
+	unique_id = request.json.get("unique_id")
+	data_manager = ProductDataManager()
+	data_manager.verifySubmission(unique_id)
+	data_manager.closeConnection()
+	output = {}
+	output['result'] = "success"
 	return jsonify(output)
 
 # @browser_api.route('/confirmAccount', methods = ['POST'])
