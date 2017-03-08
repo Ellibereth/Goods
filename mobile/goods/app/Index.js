@@ -1,8 +1,10 @@
 import React from 'react';
 import {Component} from 'react'
-import {Alert, TouchableWithoutFeedback, Text, ActivityIndicator, NetInfo, AsyncStorage, Platform, AppState, AppRegistry, StyleSheet, TabBarIOS, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import StartNavigator from './StartNavigator'
 
-import SubmissionForm from './components/SubmissionForm'
+// cut this later just testing now
+import SubmissionList from './components/SubmissionList'
 
 const url = "https://manaweb-events.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
@@ -12,16 +14,15 @@ export default class Index extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			
 			notifications: []
 		}
 	}
 
 	render(){
+		var initialRoute = "SubmissionForm"
 		return (
-			
 				<View style = {styles.container}>
-					<SubmissionForm/>
+					<SubmissionList />
 				</View>
 			
 			)
@@ -33,14 +34,5 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor : "#F5FCFF"
 	},
-	centering: {
-		flex : 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		padding: 8,
-	},
-	white: {
-		backgroundColor: 'skyblue',
-	}
 });
 

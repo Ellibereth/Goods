@@ -13,7 +13,7 @@ import urllib
 import base64
 
 sys.path.append('../credentials')
-import credential 
+import credentials
 
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
@@ -38,7 +38,7 @@ database_columns = [
 class ProductDataManager:
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
-		database_credentials = credential.getDatabaseCredentials()
+		database_credentials = credentials.getDatabaseCredentials()
 		self.p_db = psycopg2.connect(
 		    database=database_credentials['database'],
 		    user= database_credentials['user'],

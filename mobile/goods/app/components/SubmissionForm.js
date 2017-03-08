@@ -171,6 +171,7 @@ export default class SubmissionForm extends React.Component {
 						)
 			image_display.push(image_item)
 		}
+		console.log("submission form rendered")
 		return (
 				<View style = {styles.container}>
 					<BarcodeModal visible = {this.state.barcode_modal_visible}
