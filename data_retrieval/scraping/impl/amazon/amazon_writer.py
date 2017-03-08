@@ -67,16 +67,16 @@ class AmazonWriter:
 			return
 		# if there is no ASIN in there, it feels useless, figure out how to get the asin always
 		# log if this happens
-		if 'asin' not in keys:
+		if Labels.Asin not in keys:
 			return 
 
 		# insert an item if not already exists
-		if not self.tableHasAsin(product['asin']):
-			sql = "INSERT INTO " + self.AMAZON_SCRAPING_TABLE + " (asin) VALUES (%s) "
-			self.db.execute(self.db.mogrify(sql, (product['asin'],)))
+		if not self.tableHasAsin(product[Labels.Asin]):
+			sql = "INSERT INTO " + self.AMAZON_SCRAPING_TABLE + " (" + Labels.Asin + ") VALUES (%s) "
+			self.db.execute(self.db.mogrify(sql, (product[Labels.Asin],)))
 		## update the rest keys in product
 		for key in keys:
-			self.updateEntryByAsin(product['asin'], key, product[key])
+			self.updateEntryByAsin(product[Labels.Asin], key, product[key])
 
 	def updateEntryByAsin(self, asin, column_name, data):	
 		# try:
@@ -84,12 +84,12 @@ class AmazonWriter:
 		# except:
 		# 	print("column exists alredy")
 
-		sql = "UPDATE " + self.AMAZON_SCRAPING_TABLE + " SET " + column_name + " = %s " + " WHERE asin = %s"
+		sql = "UPDATE " + self.AMAZON_SCRAPING_TABLE + " SET " + column_name + " = %s " + " WHERE " + Labels.Asin + " = %s"
 		self.db.execute(self.db.mogrify(sql, (data, asin)))
 
 	def tableHasAsin(self, asin):
 		# self.createScrapingDataTable()
-		sql = "SELECT * FROM " + self.AMAZON_SCRAPING_TABLE + " WHERE asin = %s"
+		sql = "SELECT * FROM " + self.AMAZON_SCRAPING_TABLE + " WHERE " + Labels.Asin + " = %s"
 		self.db.execute(self.db.mogrify(sql, (asin,)))
 		if self.db.rowcount == 0:
 			return False

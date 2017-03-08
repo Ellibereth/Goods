@@ -27,7 +27,7 @@ submission_variables = [
 							'barcode_upc',
 							'barcode_type',
 							'additional_info',
-							'verified'
+							'verified',
 						 ]
 
 

@@ -66,7 +66,10 @@ class AmazonProcessor():
 		writer = AmazonWriter()
 		while not self.queue.empty():
 			url = self.queue.get()
-			self.processProductUrl(url, writer)
+			try:
+				self.processProductUrl(url, writer)
+			except:
+				writer = AmazonWriter()
 			self.queue.task_done()
 		writer.closeConnection()
 
@@ -102,7 +105,7 @@ class AmazonProcessor():
 		# 	self.addAsinToQueue(asin)
 		try:
 			product = self.parser.getProductAttributes(html)
-			product.addAttribute(product.labels.Asin, asin)
+			product.addAttribute(Labels.Asin, asin)
 		except:
 			with open('./logs/bad_url_list.log', 'a') as f:
 				f.write(url + "\n")

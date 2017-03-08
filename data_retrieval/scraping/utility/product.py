@@ -5,7 +5,6 @@ import random
 import os
 import sys
 import time
-
 from labels import Labels
 
 """" 
@@ -16,18 +15,17 @@ instance variables are private (figure out how to set this later)
 
 class Product:
 	def __init__(self):
-		self.labels = Labels()
 		self.details = {}
 
 	# if the attribute already exists we overwrite the original one
 	def addAttribute(self, label, data):
-		if not self.hasLabel(label):
+		if not Labels.hasLabel(label):
 			print("doesn't have label")
 			return 
 		self.details[label] = data
 
 	def removeAttribute(self, label):
-		if not self.hasLabel(label):
+		if not Labels.hasLabel(label):
 			print("doesn't have label")
 			return
 		self.details.pop(label)
@@ -40,7 +38,7 @@ class Product:
 
 	# this will get the detail search targets form 
 	def getAmazonDetailSearchTargets(self):
-		return self.labels.getAmazonDetailSearchTargets()
+		return Labels.AmazonDetailSearchTargets
 
 	def hasLabel(self, label):
 		if label in self.getLabels():
@@ -48,8 +46,11 @@ class Product:
 		else:
 			return False
 
-	def getLabels(self):
-		return self.labels.getLabels()
+
 
 	def test(self):
 		print("this is a product")
+		print(self.getLabels())
+
+product = Product()
+product.test()

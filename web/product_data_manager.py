@@ -12,12 +12,15 @@ import psycopg2
 import urllib
 import base64
 
+sys.path.append('../credentials')
+import credential 
+
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
-submission_variables = [
+database_columns = [
 							'unique_id', 
 							'image_id',
-							'timeStamp',
+							'time_stamp',
 							'manufacturer_name',
 							'url_link',
 							'contact_information',
@@ -26,21 +29,22 @@ submission_variables = [
 							'barcode_upc',
 							'barcode_type',
 							'additional_info',
-							'verified'
+							'verified',
+							'num_images'
 						 ]
+
+
 						 
 class ProductDataManager:
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
-		urllib.parse.uses_netloc.append("postgres")
-		os.environ["DATABASE_URL"] = "postgres://hwdeympyzrxlzq:1083131fdf083180520fadbf5dd7fc0161410fcbccef02059fce434b839a287d@ec2-75-101-142-182.compute-1.amazonaws.com:5432/d82cfb87nis5in"
-		url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
+		database_credentials = credential.getDatabaseCredentials()
 		self.p_db = psycopg2.connect(
-		    database=url.path[1:],
-		    user=url.username,
-		    password=url.password,
-		    host=url.hostname,
-		    port=url.port,
+		    database=database_credentials['database'],
+		    user= database_credentials['user'],
+		    password= database_credentials['password'],
+		    host=database_credentials['host'],
+		    port=database_credentials['port']
 		)
 		self.p_db.autocommit = True
 		self.db = self.p_db.cursor()
@@ -51,7 +55,7 @@ class ProductDataManager:
 
 	def createProductEntryTable(self):
 		table_name = self.USER_SUBMISSION_TABLE
-		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (unique_id TEXT, image_id TEXT, timeStamp FLOAT)'
+		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (unique_id TEXT, image_id TEXT, time_stamp FLOAT)'
 		self.db.execute(createTableCode)
 
 	def isImageIdTaken(self, image_id):
@@ -99,25 +103,36 @@ class ProductDataManager:
 	# takes submission dictionary
 	def addProductEntry(self, submission):
 		self.createProductEntryTable()
-		image_id = self.generateNewImageId()
-		image_data = submission.get("image_data")
-		# write the image file to memory as a png, if there is image data
-		if image_data != None and image_data != "":
-			image_bytes = image_data.encode('utf-8')
-			image_decoded = base64.decodestring(image_bytes)
-			with open("data/images/product_submissions/" + image_id + ".png", "wb") as fh:
-			    fh.write(image_decoded)
-			submission['image_id'] = image_id
+
+		# write the image_id and store the data
+		image_data = submission.get('image_data')
+		if image_data != None:
+			num_images = len(images_data)
+			submission['num_images'] = num_images
+			image_id = self.generateNewImageId()
+			for image in image_data:
+				# write the image file to memory as a png, if there is image data
+				count = 1
+				if image != None and image != "":
+					image_bytes = image.encode('utf-8')
+					image_decoded = base64.decodestring(image_bytes)
+					with open("static/images/product_submissions/" + image_id + "_" + str(count) + ".png", "wb") as fh:
+					    fh.write(image_decoded)
+					submission['image_id'] = image_id
+				count = count + 1
+		else:
+			num_images = 0
+			submission['num_images'] = 0
 		
 		for key in submission:
 			if submission.get(key) == None:
 				submission[key] = ""
 
 		## insert into the database
-		timeStamp = time.time()
+		time_stamp = time.time()
 		unique_id = self.generateNewUniqueId()
-		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (unique_id, timeStamp) VALUES (%s, %s)"
-					,(unique_id, timeStamp))
+		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (unique_id, time_stamp) VALUES (%s, %s)"
+					,(unique_id, time_stamp))
 		self.db.execute(sql)
 		for key in submission:
 			if key != "image_data":
@@ -134,21 +149,32 @@ class ProductDataManager:
 		for row in query:
 			product_dict = self.productSubmissionQueryRowToDict(row)
 			allProducts.append(product_dict)
+
 		return allProducts
 
 	def productSubmissionQueryRowToDict(self, product_query):
 		product_dict = {}
 		i = 0
-		for key in submission_variables:
+		for key in database_columns:
 			product_dict[key] = product_query[i]
 			i = i + 1
+		num_images = product_dict.get('num_images')
+		image_id = product['image_id']
+		if num_images != None and image_id != None and image_id != "":
+			image_file_names = list()
+			for i in range(0,num_images):
+				image_file_names = product['image_id'] + "_" + str(i) + ".png"
+			product['image_file_names'] =  image_file_names
 		return product_dict
 
 	def updateEntryByUniqueId(self, unique_id, column_name, data):	
 		if column_name == "unique_id":
 			return
 		try:
-			self.addColumnToSubmissionTable(column_name)
+			if column_name == "num_images":
+				self.addColumnToSubmissionTable(column_name, data_type = "INTEGER")
+			else:
+				self.addColumnToSubmissionTable(column_name)
 		except:
 			print("column exists alredy")
 
@@ -171,11 +197,10 @@ class ProductDataManager:
 			data = True
 			self.updateEntryByUniqueId(unique_id, column_name, data)
 
-
 	def test(self):
 		test_submission = {}
-		for key in submission_variables:
-			if key == "timeStamp":
+		for key in database_columns:
+			if key == "time_stamp":
 				test_submission[key] = time.time()
 			elif key == "verified":
 				test_submission[key] = False
@@ -187,6 +212,7 @@ class ProductDataManager:
 		print(product_submissions)
 
 
-# product_data_manager = ProductDataManager()
-# product_data_manager.test()
+product_data_manager = ProductDataManager()
+product_data_manager.test()
+product_data_manager.closeConnection()
 

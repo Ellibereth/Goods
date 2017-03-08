@@ -21,9 +21,9 @@ def getDatabaseCredentials():
 	# 	csv_reader = csv.reader(f)
 	# 	row_1 = next(csv_reader)
 	# 	database_url = row_1[1]
-	database_url = "postgres://hwdeympyzrxlzq:1083131fdf083180520fadbf5dd7fc0161410fcbccef02059fce434b839a287d@ec2-75-101-142-182.compute-1.amazonaws.com:5432/d82cfb87nis5in"
+	database_url = "postgres://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
 	urllib.parse.uses_netloc.append("postgres")
-	os.environ["DATABASE_URL"] = "postgres://hwdeympyzrxlzq:1083131fdf083180520fadbf5dd7fc0161410fcbccef02059fce434b839a287d@ec2-75-101-142-182.compute-1.amazonaws.com:5432/d82cfb87nis5in"
+	os.environ["DATABASE_URL"] = "postgres://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
 	url = urllib.parse.urlparse(os.environ["DATABASE_URL"])
 	database_credentials = {}
 	database_credentials['database'] = url.path[1:]

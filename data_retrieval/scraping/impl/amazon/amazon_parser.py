@@ -15,6 +15,7 @@ from threading import Thread
 import re
 sys.path.append('../../utility')
 from product import Product
+from labels import Labels
 
 """
 This file has 2 main goals
@@ -36,19 +37,18 @@ class AmazonParser():
 	# we return Product object that has the product informaiton
 	def getProductAttributes(self, product_html):
 		product = Product()
-
-		detail_search_targets = product.getAmazonDetailSearchTargets()
+		detail_search_targets = Labels.AmazonDetailSearchTargets
 		soup = BeautifulSoup(product_html, "html.parser")
 		# here we get the product name 
 		product_name_tag = soup.find("h1", id = "title")
 		if product_name_tag != None:
-			product.addAttribute(product.labels.ProductName, product_name_tag.text)
+			product.addAttribute(Labels.ProductName, product_name_tag.text)
 
 		# here we get the price
 		price_tag = soup.find("span", id = "priceblock_ourprice")
 		if price_tag != None:
 			price = price_tag.text
-			product.addAttribute(product.labels.Price, price)
+			product.addAttribute(Labels.Price, price)
 
 		# here we get the category 
 		category_tags = soup.findAll("a" , {"class" : "a-link-normal a-color-tertiary"})
@@ -57,8 +57,8 @@ class AmazonParser():
 				last_tag = category_tags[len(category_tags)-1]
 				category_link = last_tag['href']
 				node_index = category_link.find("node=") + 5
-				product.addAttribute(product.labels.CategoryNodeId, category_link[node_index:])
-				product.addAttribute(product.labels.Category, last_tag.text)
+				product.addAttribute(Labels.CategoryNodeId, category_link[node_index:])
+				product.addAttribute(Labels.Category, last_tag.text)
 
 		# here we check if the product details are in table form 
 		description_tables = soup.findAll('table', id=re.compile("^productDe.*"))
@@ -71,6 +71,10 @@ class AmazonParser():
 							product.addAttribute(target, row.find("td").text)
 
 		# now we check if the product details are in list form 
+		# This code is written so that if by some (very rare) chance that
+		# produc details are in table and list form
+		# we would overwrite the table data if a list form exists
+		# this was intentional
 		description_list = soup.find('div', id = re.compile("^detailBullet.*"))
 		if description_list != None:
 			for list_item in description_list.findAll("span", {"class" : "a-list-item"}):
@@ -87,9 +91,9 @@ class AmazonParser():
 		for key in product.getDetails():
 			trimmed_info = product.getAttribute(key).replace("\n", "")
 			trimmed_info = re.sub('  +','',trimmed_info)
-			if key == "asin":
+			if key == Labels.Asin:
 				trimmed_info = trimmed_info.replace(" ", "")
-			if key == "price":
+			if key == Labels.Price:
 				trimmed_info = trimmed_info.replace("$", "")
 			product.addAttribute(key, trimmed_info)
 		return product

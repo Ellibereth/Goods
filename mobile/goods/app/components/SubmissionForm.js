@@ -30,8 +30,7 @@ export default class SubmissionForm extends React.Component {
 			contact_information : "",
 			url_link: "",
 			location: "",
-			image_source : "",
-			image_data : "",
+			images : [],
 			barcode_modal_visible : false,
 			barcode_upc: "",
 			barcode_type: ""
@@ -78,6 +77,11 @@ export default class SubmissionForm extends React.Component {
 	}
 
 	submitProductInformation() {
+		var image_data = []
+		for (var i = 0; i < this.state.images.length; i++){
+			image_data.push(this.state.images[i].data)
+		}
+
 		console.log("submit to api")
 		fetch(url + "/userSubmitProductInformation", {method: "POST",
 		headers: {
@@ -92,11 +96,11 @@ export default class SubmissionForm extends React.Component {
 				contact_information : this.state.contact_information,
 				url_link: this.state.url_link,
 				location: this.state.location,
-				image_data: this.state.image_data,
+				image_data: image_data,
 				barcode_upc: this.state.barcode_upc,
 				barcode_type: this.state.barcode_type,
 				origin: this.state.origin,
-				additional_info : this.state.additional_info
+				additional_info : this.state.additional_info,
 			})
 		})
 		.then((response) => response.json())
@@ -131,11 +135,14 @@ export default class SubmissionForm extends React.Component {
 
 		    // You can also display the image using data:
 		    // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+		    var images = this.state.images
+		    var image = {
+		    	source : source,
+		    	data : response.data
+		    }
 
-		    this.setState({
-		      image_source : source,
-		      image_data: response.data
-		    });
+		    images.push(image)
+		    this.setState({image : image})
 		  }
 		});
 	}
@@ -147,8 +154,7 @@ export default class SubmissionForm extends React.Component {
 			url_link: "",
 			location: "",
 			cameraRollModal: false,
-			image_source : "",
-			image_data : "",
+			images: [],
 			barcode_upc: "",
 			barcode_type: "",
 			origin: "",
@@ -156,15 +162,30 @@ export default class SubmissionForm extends React.Component {
 		})
 	}
 
-	removePhoto(){
-		this.setState({
-			image_data : "",
-			image_source: ""
-		})
+	removePhoto(i){
+		console.log(i)
+
+		var images = this.state.images.splice(i, 1)
+		this.setState({images: images})
+		Alert.alert("Image Removed")
+
 	}
 
 
-	render(){
+	render() {
+
+		var image_display = []
+		var images = this.state.images
+
+		for (var i = 0; i < images.length; i++) {
+			var image_item = (
+							<TouchableOpacity key = {i} onPress = {() => {this.removePhoto.bind(this)(i)}}>
+								<Image style = {{height: 30, width : 30}} source = {images[i].source}/>
+							</TouchableOpacity>
+						)
+			image_display.push(image_item)
+		}
+
 		return (
 				<View style = {styles.container}>
 					<BarcodeModal visible = {this.state.barcode_modal_visible}
@@ -219,7 +240,7 @@ export default class SubmissionForm extends React.Component {
 					</View>
 
 
-					<View style = {{flex:0.1}}>
+					<View style = {{flex:0.1}} >
 						<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)}>
 							<View>
 								<Text>
@@ -228,21 +249,11 @@ export default class SubmissionForm extends React.Component {
 							</View>
 						</TouchableWithoutFeedback>
 
-						{this.state.image_source != "" &&
-							<View>
-								<View>
-									<Image style = {{height: 30, width : 30}} source = {this.state.image_source}/>
-								</View>
+						<View style = {{flexDirection : "row"}}>
+							{image_display}
+						</View>
 
-								<TouchableWithoutFeedback onPress = {this.removePhoto.bind(this)}>
-									<View>
-										<Text style = {{color : "red"}}>
-											Remove this photo
-										</Text>
-									</View>
-								</TouchableWithoutFeedback>
-							</View>
-						}
+						
 					</View>
 
 					<View style = {{flex : 0.1}}>
