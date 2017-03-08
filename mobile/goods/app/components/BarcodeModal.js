@@ -1,12 +1,11 @@
 import React, {Component} from 'react'
 import {
-  Image, Text, Modal, View, Platform, Alert, TouchableOpacity, Stylesheet
+  Text, Modal, View, Platform, Alert, TouchableOpacity
 } from 'react-native';
 
 // import BarcodeScanner from 'react-native-barcodescanner';
 import UniversalBarcodeScanner from './UniversalBarcodeScanner'
 import AndroidBarcodeScanner from './AndroidBarcodeScanner'
-
 
 export default class BarcodeModal extends Component {
   constructor(props) {
@@ -19,11 +18,16 @@ export default class BarcodeModal extends Component {
     };
   }
 
+  // pressing this will allow the user to scan more barcodes
+  // this is intended because otherwise the barcode scaner will go crazy
+  // and scan the same barcode infinitely many times
   onOkPress () {
     this.props.toggleBarcodeModal()
     this.setState({barcode_scanned: false})
   }
 
+  // sets the appropriate state of the barcode
+  // then prompts to return
   onBarCodeRead(code, type) {
     if (!this.state.barcode_scanned){
       this.setState({barcode_scanned : true})
@@ -41,24 +45,23 @@ export default class BarcodeModal extends Component {
     }
   }
 
+  // alert when the barcode modal is closed
   onRequestClose(){
     Alert.alert("Modal Closed")
   }
+
 
   render() {
     return (
       <Modal visible = {this.props.visible} style = {{backgroundColor : "skyblue"}}
             onRequestClose = {this.onRequestClose.bind(this)}>
         <View style = {{flex : 1, paddingTop: 20, alignItems : "center"}}>
-          
           {Platform.OS == 'ios' && 
             <UniversalBarcodeScanner onBarCodeRead = {this.onBarCodeRead.bind(this)}/>
           }
-
           {Platform.OS == 'android' && 
             <AndroidBarcodeScanner onBarCodeRead = {this.onBarCodeRead.bind(this)}/>
           }
-
           <TouchableOpacity onPress = {this.props.toggleBarcodeModal}>
             <View style = {{height: 40 }}>
               <Text> 

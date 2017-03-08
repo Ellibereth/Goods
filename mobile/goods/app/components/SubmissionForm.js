@@ -1,14 +1,16 @@
 'use-strict';
 import React from 'react';
 import {Component} from 'react'
-import {Image, Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, ActivityIndicator, NetInfo, AsyncStorage, Platform, AppState, AppRegistry, StyleSheet, TabBarIOS, View} from 'react-native';
+import {Image, Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, StyleSheet, View} from 'react-native';
 var ImagePicker = require('react-native-image-picker');
 const {CameraRoll,} = 'react'
 const url = "https://whereisitmade.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
 
 import BarcodeModal from './BarcodeModal'
+import SubmissionFormField from './SubmissionFormField'
 
+//options for the image picker
 var options = {
   title: 'Select an Image',
   storageOptions: {
@@ -16,8 +18,6 @@ var options = {
     path: 'images',
   }
 };
-
-
 
 // setCustomText(customTextProps);
 // setCustomTextInput(customTextInputProps);
@@ -37,28 +37,16 @@ export default class SubmissionForm extends React.Component {
 		}
 	}
 
-	handleProductNameChange(product_name) {
-		this.setState({product_name : product_name})
-	}
-	handleManufacturerNameChange(manufacturer_name) {
-		this.setState({manufacturer_name : manufacturer_name})
-	}
-	handleContactInformationChange(contact_information) {
-		this.setState({contact_information: contact_information})
-	}
-	handleUrlLinkChange(url_link) {
-		this.setState({url_link : url_link})
-	}
-	handleLocationChange(location) {
-		this.setState({location : location})
-	}
-	handleOriginChange(location) {
-		this.setState({origin : origin})
-	}
-	handleAdditionalInfoChange(additional_info) {
-		this.setState({additional_info : additional_info})
-	}
+	// functions that handle the state change of text input fields
+	handleProductNameChange(product_name) {this.setState({product_name : product_name})}
+	handleManufacturerNameChange(manufacturer_name) {this.setState({manufacturer_name : manufacturer_name})}
+	handleContactInformationChange(contact_information) {this.setState({contact_information: contact_information})}
+	handleUrlLinkChange(url_link) {this.setState({url_link : url_link}) }
+	handleLocationChange(location) { this.setState({location : location}) }
+	handleOriginChange(location) { this.setState({origin : origin}) }
+	handleAdditionalInfoChange(additional_info) { this.setState({additional_info : additional_info}) }
 
+	// sets barcode information from the barcode scanner
 	setBarcodeUpc(barcode_upc, barcode_type) {
 		this.setState({barcode_upc : barcode_upc})
 		// types are in form org.gs1.
@@ -71,18 +59,20 @@ export default class SubmissionForm extends React.Component {
 	
 	}
 
+	// opens and closes the modal
 	toggleBarcodeModal(){
 		var new_visible = !this.state.barcode_modal_visible
 		this.setState({barcode_modal_visible : new_visible})
 	}
 
+	// when the submit button is pressed, we submit all the form data to the server
+	// then refreshes the page on success
 	submitProductInformation() {
 		var image_data = []
 		for (var i = 0; i < this.state.images.length; i++){
 			image_data.push(this.state.images[i].data)
 		}
 
-		console.log("submit to api")
 		fetch(url + "/userSubmitProductInformation", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
@@ -111,7 +101,7 @@ export default class SubmissionForm extends React.Component {
 		.done();
 	}
 
-
+	// this handles on picker press
 	handleImagePickerPress(){
 		/**
 		 * The first arg is the options object for customization (it can also be null or omitted for default options),
@@ -132,7 +122,6 @@ export default class SubmissionForm extends React.Component {
 		  else {
 		  	// console.log(response.uri)
 		    let source = { uri: response.uri };
-
 		    // You can also display the image using data:
 		    // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 		    var images = this.state.images
@@ -140,13 +129,13 @@ export default class SubmissionForm extends React.Component {
 		    	source : source,
 		    	data : response.data
 		    }
-
 		    images.push(image)
 		    this.setState({image : image})
 		  }
 		});
 	}
 
+	// when the form is submitted, we refresh the page, clearing all previously submitted data
 	refreshPage() {
 		this.setState({product_name : "",
 			manufacturer_name : "",
@@ -162,21 +151,18 @@ export default class SubmissionForm extends React.Component {
 		})
 	}
 
+	// this function removes a photo when it is clicked 
 	removePhoto(i){
 		console.log(i)
-
 		var images = this.state.images.splice(i, 1)
 		this.setState({images: images})
 		Alert.alert("Image Removed")
-
 	}
 
-
 	render() {
-
+		// here we get the image display from the state
 		var image_display = []
 		var images = this.state.images
-
 		for (var i = 0; i < images.length; i++) {
 			var image_item = (
 							<TouchableOpacity key = {i} onPress = {() => {this.removePhoto.bind(this)(i)}}>
@@ -185,62 +171,30 @@ export default class SubmissionForm extends React.Component {
 						)
 			image_display.push(image_item)
 		}
-
 		return (
 				<View style = {styles.container}>
 					<BarcodeModal visible = {this.state.barcode_modal_visible}
 						setBarcodeUpc = {this.setBarcodeUpc.bind(this)}
 						toggleBarcodeModal = {this.toggleBarcodeModal.bind(this)}
 						/>
-					<View style = {{flex : 0.025}}/>
-					<View style = {{flex : 0.7, padding: 20}}>
-							<View style = {{flex: 1}}>
-								<Text style={styles.label}> PRODUCT NAME</Text>
-								<TextInput value ={this.state.product_name} onChangeText = {this.handleProductNameChange.bind(this)}
-												style = {styles.input}/>
-								<View style = {{flex : 0.2}}/>
-							</View>
-							<View style = {{flex: 1}}>
-								<Text style={styles.label}> MANUFACTURER NAME</Text>
-								<TextInput value = {this.state.manufacturer_name} onChangeText = {this.handleManufacturerNameChange.bind(this)}
-												style = {styles.input}/>
-								<View style = {{flex : 0.2}}/>
-							</View>
-							<View style = {{flex: 1}}>
-								<Text style={styles.label}> CONTACT INFOMRATION</Text>
-								<TextInput value = {this.state.contact_information} onChangeText = {this.handleContactInformationChange.bind(this)}
-												style = {styles.input}/>
-								<View style = {{flex : 0.2}}/>
-							</View>
-							<View style = {{flex: 1}}>
-								<Text style={styles.label}> URL LINK (OPTIONAL) </Text>
-								<TextInput value = {this.state.url_link} onChangeText = {this.handleUrlLinkChange.bind(this)}
-												style = {styles.input}/>
-								<View style = {{flex : 0.2}}/>
-							</View>
-							<View style = {{flex: 1}}>
-								<Text style={styles.label}> LOCATION</Text>
-								<TextInput value = {this.state.location} onChangeText = {this.handleLocationChange.bind(this)}
-												style = {styles.input}/>
-								<View style = {{flex : 0.2}}/>
-							</View>
-							<View style = {{flex: 1}}>
-								<Text style={styles.label}> ORIGIN</Text>
-								<TextInput value ={this.state.origin} onChangeText = {this.handleOriginChange.bind(this)}
-												style = {styles.input}/>
-								<View style = {{flex : 0.2}}/>
-							</View>
-							<View style = {{flex: 1}}>
-								<Text style={styles.label}> ADDITIONAL INFORMATION</Text>
-								<TextInput value ={this.state.additional_info} onChangeText = {this.handleAdditionalInfoChange.bind(this)}
-												style = {styles.input}/>
-								<View style = {{flex : 0.2}}/>
-							</View>
-
+					<View style = {{flex : 1}}/>
+					<View style = {{flex : 28, padding: 20}}>
+						<SubmissionFormField value = {this.state.product_name} onChange = {this.handleProductNameChange.bind(this)}
+							label = "PRODUCT NAME"/>
+						<SubmissionFormField value = {this.state.manufacturer_name} onChange = {this.handleManufacturerNameChange.bind(this)}
+							label = "MANUFACTURER NAME"/>
+						<SubmissionFormField value = {this.state.contact_information} onChange = {this.handleContactInformationChange.bind(this)}
+							label = "CONTACT INFORMATION"/>
+						<SubmissionFormField value = {this.state.url_link} onChange = {this.handleUrlLinkChange.bind(this)}
+							label = "URL LINK"/>
+						<SubmissionFormField value = {this.state.origin} onChange = {this.handleOriginChange.bind(this)}
+							label = "ORIGIN"/>
+						<SubmissionFormField value = {this.state.location} onChange = {this.handleLocationChange.bind(this)}
+							label = "LOCATION"/>	
+						<SubmissionFormField value = {this.state.additional_info} onChange = {this.handleAdditionalInfoChange.bind(this)}
+							label = "ADDITIONAL INFORMATION"/>
 					</View>
-
-
-					<View style = {{flex:0.1}} >
+					<View style = {{flex:4}} >
 						<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)}>
 							<View>
 								<Text>
@@ -248,32 +202,27 @@ export default class SubmissionForm extends React.Component {
 								</Text>
 							</View>
 						</TouchableWithoutFeedback>
-
 						<View style = {{flexDirection : "row"}}>
 							{image_display}
 						</View>
-
-						
 					</View>
-
-					<View style = {{flex : 0.1}}>
+					<View style = {{flex : 4}}>
 						<TouchableOpacity onPress = {this.toggleBarcodeModal.bind(this)}>
 							<View>
-								<Text>
-									Press to scan a barcode!
-								</Text>
+								{
+								this.state.barcode_upc == "" ?
+									<Text>
+										Press to scan a barcode!
+									</Text>	
+								:
+									<Text>
+										Barcode Scanned!
+									</Text>
+								}
 							</View>
-						</TouchableOpacity>
-						{this.state.barcode_upc != "" &&
-							<View>
-								<Text>
-									UPC :  {this.state.barcode_upc}
-								</Text>
-							</View>
-						}
+						</TouchableOpacity>						
 					</View>
-
-					<View style = {{flex:0.1}}>
+					<View style = {{flex:4}}>
 						<TouchableOpacity onPress = {this.submitProductInformation.bind(this)}>
 							<View>
 								<Text>
@@ -283,7 +232,6 @@ export default class SubmissionForm extends React.Component {
 						</TouchableOpacity>
 					</View>
 				</View>
-			
 			)
 	}
 }

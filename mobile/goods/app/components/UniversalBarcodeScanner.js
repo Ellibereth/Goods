@@ -1,18 +1,17 @@
 import React, {Component} from 'react'
 
 import {
-  Image, Text, Modal, View, Platform, Alert, TouchableOpacity, StyleSheet
+  Platform, StyleSheet, View
 } from 'react-native';
 
 import BarcodeScanner from 'react-native-barcode-scanner-universal'
-
-
 export default class BarcodeModal extends Component {
 
   onBarCodeRead(code){
       this.props.onBarCodeRead(code)
   }
 
+  // add appropriate padding for 
   render () {
     let scanArea = null
     if (Platform.OS === 'ios') {

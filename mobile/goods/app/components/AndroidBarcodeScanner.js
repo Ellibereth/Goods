@@ -14,13 +14,12 @@ export default class AndroidBarcodeScanner extends Component {
       cameraType: 'back',
     };
   }
-
+  // barcode received listener
   barcodeReceived(e) {
     console.log('Barcode: ' + e.data);
     console.log('Type: ' + e.type);
     this.props.onBarCodeRead(e.data, e.type)
   }
-
   render() {
     return (
        <View style = {{flex : 1, paddingTop: 20, alignItems : "center"}}>
