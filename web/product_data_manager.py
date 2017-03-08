@@ -13,7 +13,7 @@ import urllib
 import base64
 
 sys.path.append('../credentials')
-import credentials
+import credential
 
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
@@ -38,7 +38,7 @@ database_columns = [
 class ProductDataManager:
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
-		database_credentials = credentials.getDatabaseCredentials()
+		database_credentials = credential.getDatabaseCredentials()
 		self.p_db = psycopg2.connect(
 		    database=database_credentials['database'],
 		    user= database_credentials['user'],
@@ -159,12 +159,12 @@ class ProductDataManager:
 			product_dict[key] = product_query[i]
 			i = i + 1
 		num_images = product_dict.get('num_images')
-		image_id = product['image_id']
+		image_id = product_dict['image_id']
 		if num_images != None and image_id != None and image_id != "":
 			image_file_names = list()
 			for i in range(0,num_images):
-				image_file_names = product['image_id'] + "_" + str(i) + ".png"
-			product['image_file_names'] =  image_file_names
+				image_file_names = product_dict['image_id'] + "_" + str(i) + ".png"
+			product_dict['image_file_names'] =  image_file_names
 		return product_dict
 
 	def updateEntryByUniqueId(self, unique_id, column_name, data):	
@@ -212,7 +212,7 @@ class ProductDataManager:
 		print(product_submissions)
 
 
-product_data_manager = ProductDataManager()
-product_data_manager.test()
-product_data_manager.closeConnection()
+# product_data_manager = ProductDataManager()
+# product_data_manager.test()
+# product_data_manager.closeConnection()
 

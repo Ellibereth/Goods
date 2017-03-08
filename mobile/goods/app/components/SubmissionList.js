@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, ListView} from 'react-native';
+import SubmissionListItem from './SubmissionListItem'
 
 const url = "https://whereisitmade.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
@@ -14,8 +15,8 @@ export default class SubmissionList extends React.Component {
 	}
 
 	getSubmissionList() {
-
-		fetch(url + "/getProductSubmissions", {method: "POST",
+		console.log("fetching")
+		fetch(test_url + "/getProductSubmissions", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
@@ -33,13 +34,17 @@ export default class SubmissionList extends React.Component {
 		this.getSubmissionList.bind(this)()
 	}
 
+
 	render(){
+		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+		var dataSource = ds.cloneWithRows(this.state.submissions)
 		return (
-			
 				<View style = {styles.container}>
-					<Text>
-						This is the submission list
-					</Text>
+					<ListView
+						dataSource={dataSource}
+          				renderRow={(submission) => <SubmissionListItem submission = {submission}/>}
+          				enableEmptySections = {true}
+					/>
 				</View>
 			)
 	}
