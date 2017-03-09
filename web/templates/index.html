@@ -19,6 +19,8 @@
 	  {% block content %}
 	  <script>
 		var submitData = function () {
+			var real_url = "https://whereisitmade.herokuapp.com"
+			var test_url = "http://0.0.0.0:5000"
 			var product_name = document.getElementById('product_name').value
 			var url_link = document.getElementById('url_link').value
 			var location = document.getElementById('location').value
@@ -37,13 +39,15 @@
 				reader.onloadend = function( ){
 	    			var data = reader.result
 	    			var trim_image_data = data.split(',')[1]
+	    			var image_list = []
+	    			image_list.push(trim_image_data)
 					  	var formData = JSON.stringify({
 					  		"product_name" : product_name,
 					  		"url_link" : url_link,
 					  		"location" : location,
 					  		"manufacturer_name" : manufacturer_name ,
 					  		"contact_information" : contact_information,
-					  		"image_data" : trim_image_data,
+					  		"image_data" : image_list,
 					  		"origin" : origin,
 					  		"barcode_upc" : barcode_upc,
 					  		"additional_info" : additional_info
@@ -51,7 +55,7 @@
 					  	})
 					  	$.ajax({
 						  type: "POST",
-						  url: "https://whereisitmade.herokuapp.com/userSubmitProductInformation",
+						  url: real_url  + "/userSubmitProductInformation",
 						  data: formData,
 						  success: function() {
 						  		window.location.reload();
@@ -79,7 +83,7 @@
 					  	})
 				$.ajax({
 						  type: "POST",
-						  url: "http://0.0.0.0:5000/browserSubmitInformation",
+						  url: real_url + "/browserSubmitInformation",
 						  data: formData,
 						  success: function() {
 						  		window.location.reload();

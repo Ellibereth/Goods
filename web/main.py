@@ -42,6 +42,7 @@ def add_header(response):
 	"""
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
 	response.headers['Cache-Control'] = 'public, max-age=0'
+	response.headers.add('Access-Control-Allow-Origin', '*')
 	return response
 
 
@@ -82,9 +83,8 @@ def productList():
 if __name__ == '__main__':
     app.debug = True
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, processes = 8)
+    app.run(host='0.0.0.0', port=port)
 
-EMPTY_STRING = ""
 
 
 
