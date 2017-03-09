@@ -16,6 +16,9 @@ import openpyxl
 sys.path.append('../../../../credentials')
 import credential 
 
+sys.path.append('../../utility')
+from labels import Labels
+
 class AmazonWriter:
 	def __init__(self):
 		self.AMAZON_SCRAPING_TABLE = "AMAZON_SCRAPING_TABLE"
@@ -59,6 +62,7 @@ class AmazonWriter:
 
 	# takes a dictionary called product as input, then writes each element to each row
 	def addProductEntryToDataTable(self, product):
+		self.createScrapingDataTable()
 		if product == None:
 			return 
 		self.createScrapingDataTable()
@@ -83,12 +87,15 @@ class AmazonWriter:
 		# 	self.addColumnToScrapingTable(column_name)
 		# except:
 		# 	print("column exists alredy")
-
 		sql = "UPDATE " + self.AMAZON_SCRAPING_TABLE + " SET " + column_name + " = %s " + " WHERE " + Labels.Asin + " = %s"
 		self.db.execute(self.db.mogrify(sql, (data, asin)))
 
+	def getNumberOfEntries(self):
+		sql = "SELECT * FROM " + self.AMAZON_SCRAPING_TABLE
+		self.db.execute(sql)
+		return self.db.rowcount
+
 	def tableHasAsin(self, asin):
-		# self.createScrapingDataTable()
 		sql = "SELECT * FROM " + self.AMAZON_SCRAPING_TABLE + " WHERE " + Labels.Asin + " = %s"
 		self.db.execute(self.db.mogrify(sql, (asin,)))
 		if self.db.rowcount == 0:

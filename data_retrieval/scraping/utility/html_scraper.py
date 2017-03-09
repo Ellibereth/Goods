@@ -13,7 +13,6 @@ import xlrd
 import sys
 # from multiprocessing import Queue
 import queue
-from threading import Thread
 
 sys.path.append('../../../../credentials')
 import credential
@@ -29,15 +28,18 @@ class HtmlScraper():
 		self.proxy_username = proxy_credentials['username']
 		self.proxy_password = proxy_credentials['password']
 
+
 	# function that will pull the raw html with response and the option to use proxies
 	# input: website url 
 	# output: string with the urls html without javascript rendering
 	def getHtml(self, url):
 		proxy = self.getRandomProxy()
-		proxies = {"http": proxy,
-					"https": proxy}
+		full_proxy_with_auth = "http://" + self.proxy_username + ":" + self.proxy_password + "@" + proxy
+		proxies = {"http": full_proxy_with_auth,
+					"https": full_proxy_with_auth}
 		user_agent = self.getRandomUserAgent()
 		headers = {'User-agent': user_agent, "content-type" : "text"}
+
 		response = requests.get(url, proxies=proxies, headers = headers)	
 		return response.text
 
@@ -194,5 +196,5 @@ class HtmlScraper():
 
 
 # html_scraper = HtmlScraper()
-# html_scraper.main()
+# html_scraper.test()
 

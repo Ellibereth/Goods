@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import BottomTabBar from './BottomTabBar';
 import SubmissionForm from './components/SubmissionForm'
 import SubmissionList from './components/SubmissionList'
+import SubmissionDetailView from './components/SubmissionDetailView'
 
 export default class StartNavigator extends Component {
 	constructor(props) {
@@ -27,7 +28,10 @@ export default class StartNavigator extends Component {
 				break;
 			case "SubmissionList":
 				screen = (<SubmissionList {...globalNavigatorProps} />)
-				break;	
+				break;
+			case "SubmissionDetailView":
+				screen = (<SubmissionDetailView submission = {route.submission} {...globalNavigatorProps} />)	
+				break;
 		 	default:
 				screen =  (<View>
 							<TouchableOpacity onPress = {() => this.props.navigator.pop()}>
@@ -41,32 +45,17 @@ export default class StartNavigator extends Component {
 		}
 
 	render() {
-		var href = this.props.initialRoute
+		var initialRoute = "SubmissionList"
 		return (
 				<Navigator 
-					initialRoute = {{href: href}}
+					initialRoute = {{href: initialRoute}}
 					ref = "appNavigator"
 					renderScene = {this._renderScene.bind(this)}
 					configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}
-					navigationBar = {<BottomTabBar navigator={this.refs.appNavigator}/>}
+					// navigationBar = {<BottomTabBar navigator={this.refs.appNavigator}/>}
 					/>
 	 		) 
 
 	 }  
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor : "white"
-	},
-	centering: {
-		flex : 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		padding: 8,
-	},
-	white: {
-		backgroundColor: 'white',
-	}
-});

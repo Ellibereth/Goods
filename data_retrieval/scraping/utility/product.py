@@ -40,17 +40,7 @@ class Product:
 	def getAmazonDetailSearchTargets(self):
 		return Labels.AmazonDetailSearchTargets
 
-	def hasLabel(self, label):
-		if label in self.getLabels():
-			return True
-		else:
-			return False
-
-
 
 	def test(self):
 		print("this is a product")
-		print(self.getLabels())
 
-product = Product()
-product.test()

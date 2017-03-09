@@ -37,10 +37,10 @@ class Labels:
 		return AmazonDetailSearchTargets
 
 	def getLabels():
-		return AllLabels
+		return Labels.AllLabels
 
 	def hasLabel(label):
-		return label in AllLabels
+		return label in Labels.AllLabels
 
 	def main():
 		print("this is a label!")

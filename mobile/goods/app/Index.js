@@ -19,10 +19,9 @@ export default class Index extends React.Component {
 	}
 
 	render(){
-		var initialRoute = "SubmissionForm"
 		return (
 				<View style = {styles.container}>
-					<SubmissionList />
+					<StartNavigator />
 				</View>
 			
 			)

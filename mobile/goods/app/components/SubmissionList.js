@@ -34,7 +34,12 @@ export default class SubmissionList extends React.Component {
 		this.getSubmissionList.bind(this)()
 	}
 
-
+	openDetailView(submission){
+		this.props.navigator.push({
+			href: "SubmissionDetailView",
+			submission : submission
+		})
+	}
 	render(){
 		const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 		var dataSource = ds.cloneWithRows(this.state.submissions)
@@ -42,7 +47,7 @@ export default class SubmissionList extends React.Component {
 				<View style = {styles.container}>
 					<ListView
 						dataSource={dataSource}
-          				renderRow={(submission) => <SubmissionListItem submission = {submission}/>}
+          				renderRow={(submission) => <SubmissionListItem submission = {submission} openDetailView = {this.openDetailView.bind(this)}/>}
           				enableEmptySections = {true}
 					/>
 				</View>

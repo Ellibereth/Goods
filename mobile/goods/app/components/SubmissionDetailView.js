@@ -1,6 +1,7 @@
 import React from 'react';
 import {Component} from 'react'
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const url = "https://whereisitmade.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
@@ -15,17 +16,24 @@ export default class SubmissionList extends React.Component {
 		// this.getSubmissionList.bind(this)()
 	}
 
-	openDetailView(){
-		this.props.openDetailView(this.props.submission)
+	returnToListView(){
+		this.props.navigator.pop()
 	}
 
 	render(){
 		var submission = this.props.submission
 		return (
+
 				<View style = {styles.item_container}>
-					<TouchableOpacity onPress = {this.openDetailView.bind(this)}>
+					<TouchableOpacity onPress = {this.returnToListView.bind(this)}>
+						<Icon name = "arrow" />
+					</TouchableOpacity>
+					<TouchableOpacity>
 						<Text>
 							Time Stamp : {submission.time_stamp}
+						</Text>
+						<Text>
+							Origin : {submission.origin}
 						</Text>
 					</TouchableOpacity>
 				</View>
