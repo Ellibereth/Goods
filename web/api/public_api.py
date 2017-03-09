@@ -28,6 +28,7 @@ submission_variables = [
 							'barcode_type',
 							'additional_info',
 							'verified',
+							'images'
 						 ]
 
 
@@ -36,6 +37,7 @@ def userSubmitProductInformation():
 	submission = {}
 	for key in submission_variables:
 		submission[key] = request.json.get(key)
+
 	data_manager = ProductDataManager()
 	data_manager.addProductEntry(submission)
 	data_manager.closeConnection()

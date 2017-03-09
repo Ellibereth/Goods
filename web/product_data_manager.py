@@ -171,13 +171,13 @@ class ProductDataManager:
 	def updateEntryByUniqueId(self, unique_id, column_name, data):	
 		if column_name == "unique_id":
 			return
-		try:
-			if column_name == "num_images":
-				self.addColumnToSubmissionTable(column_name, data_type = "INTEGER")
-			else:
-				self.addColumnToSubmissionTable(column_name)
-		except:
-			print("column exists alredy")
+		# try:
+		# 	if column_name == "num_images":
+		# 		self.addColumnToSubmissionTable(column_name, data_type = "INTEGER")
+		# 	else:
+		# 		self.addColumnToSubmissionTable(column_name)
+		# except:
+		# 	print("column exists alredy")
 
 		sql = "UPDATE " + self.USER_SUBMISSION_TABLE + " SET " + column_name + " = %s " + " WHERE unique_id = %s"
 		self.db.execute(self.db.mogrify(sql, (data, unique_id)))
