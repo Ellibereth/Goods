@@ -136,8 +136,9 @@ class ProductDataManager:
 		self.db.execute(sql)
 		submission['verified'] = False
 		for key in database_columns:
-			if key != "unique_id":
-				self.updateEntryByUniqueId(unique_id, key, submission[key])
+			if submission.get('key') != None:
+				if key != "unique_id":
+					self.updateEntryByUniqueId(unique_id, key, submission[key])
 
 	# somehow you need to keep track of the order of things in the database
 	# how can this be avoided in the future?

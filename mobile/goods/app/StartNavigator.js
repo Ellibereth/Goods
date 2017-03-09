@@ -46,7 +46,7 @@ export default class StartNavigator extends Component {
 		}
 
 	render() {
-		var initialRoute = "SubmissionList"
+		var initialRoute = "SubmissionForm"
 		return (
 				<Navigator 
 					initialRoute = {{href: initialRoute}}
