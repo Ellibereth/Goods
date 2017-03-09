@@ -195,20 +195,21 @@ export default class SubmissionForm extends React.Component {
 						<SubmissionFormField value = {this.state.additional_info} onChange = {this.handleAdditionalInfoChange.bind(this)}
 							label = "ADDITIONAL INFORMATION"/>
 					</View>
-					<View style = {{height : 30 }}>
-						<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)}>
+					<View style = {styles.image_button}>
+						<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)} >
 							<View>
 								<Text>
 									Add a photo
 								</Text>
 							</View>
 						</TouchableWithoutFeedback>
-						<View style = {{flexDirection : "row"}}>
+						<View>
 							{image_display}
 						</View>
 					</View>
-					<View style = {{height : 30 }}>
-						<TouchableOpacity onPress = {this.toggleBarcodeModal.bind(this)}>
+					<View style = {{height : 10}}/>
+					<View style = {styles.button}>
+						<TouchableOpacity onPress = {this.toggleBarcodeModal.bind(this)} style = {styles.submit_button}>
 							<View>
 								{
 								this.state.barcode_upc == "" ?
@@ -223,8 +224,9 @@ export default class SubmissionForm extends React.Component {
 							</View>
 						</TouchableOpacity>						
 					</View>
-					<View style = {{height : 30 }}>
-						<TouchableOpacity onPress = {this.submitProductInformation.bind(this)}>
+					<View style = {{height : 10}}/>
+					<View style = {styles.button}>
+						<TouchableOpacity onPress = {this.submitProductInformation.bind(this)} style = {styles.submit_button}>
 							<View>
 								<Text>
 									Submit!
@@ -239,11 +241,26 @@ export default class SubmissionForm extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	submit_button : {
+		alignSelf: "center"
+	},
+	image_button : {
+		height : 80,
+		borderWidth : 0.5,
+		borderRadius : 5,
+		borderColor : "black"
+	},
+	button : {
+		height : 40,
+		borderWidth : 0.5,
+		borderRadius : 5,
+		borderColor : "black"
+	},
 	container: {
 		flex: 1,
 		backgroundColor : "#F5FCFF",
 		padding: 20,
-		paddingTop : 16
+		paddingTop : 16,
 	},
 	input : {flex : 1, width : 220, fontSize : 14, justifyContent : 'flex-start', paddingBottom: 0, 
 	borderRadius : 5,
