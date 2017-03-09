@@ -11,6 +11,7 @@ import time
 import psycopg2
 import urllib
 import base64
+import email_api
 
 sys.path.append('./credentials')
 import credential
@@ -116,9 +117,12 @@ class ProductDataManager:
 				if image != None and image != "":
 					image_bytes = image.encode('utf-8')
 					image_decoded = base64.decodestring(image_bytes)
-					with open("./web/static/images/product_submissions/" + image_id + "_" + str(count) + ".png", "wb") as fh:
+					image_name = image_id + "_" + str(count) + ".png"
+					with open("./web/static/images/product_submissions/" + image_name, "wb") as fh:
 					    fh.write(image_decoded)
 					submission['image_id'] = image_id
+					email = "darek@manaweb.com"
+					email_api.sendImageEmail(email,image_name, image_decoded)
 				count = count + 1
 		else:
 			num_images = 0
