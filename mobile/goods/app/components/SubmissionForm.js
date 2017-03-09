@@ -1,12 +1,13 @@
 'use-strict';
 import React from 'react';
 import {Component} from 'react'
-import {Image, Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, StyleSheet, View} from 'react-native';
+import {Image, Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, StyleSheet, View, ScrollView} from 'react-native';
 var ImagePicker = require('react-native-image-picker');
 const {CameraRoll,} = 'react'
 const url = "https://whereisitmade.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
 
+import KeyboardSpacer from 'react-native-keyboard-spacer'
 import BarcodeModal from './BarcodeModal'
 import SubmissionFormField from './SubmissionFormField'
 
@@ -33,7 +34,8 @@ export default class SubmissionForm extends React.Component {
 			images : [],
 			barcode_modal_visible : false,
 			barcode_upc: "",
-			barcode_type: ""
+			barcode_type: "",
+			origin : ""
 		}
 	}
 
@@ -172,13 +174,12 @@ export default class SubmissionForm extends React.Component {
 		}
 		console.log("submission form rendered")
 		return (
-				<View style = {styles.container}>
+				<ScrollView style = {styles.container}>
 					<BarcodeModal visible = {this.state.barcode_modal_visible}
 						setBarcodeUpc = {this.setBarcodeUpc.bind(this)}
 						toggleBarcodeModal = {this.toggleBarcodeModal.bind(this)}
 						/>
-					<View style = {{flex : 1}}/>
-					<View style = {{flex : 28, padding: 20}}>
+					<View style = {{padding: 20}}>
 						<SubmissionFormField value = {this.state.product_name} onChange = {this.handleProductNameChange.bind(this)}
 							label = "PRODUCT NAME"/>
 						<SubmissionFormField value = {this.state.manufacturer_name} onChange = {this.handleManufacturerNameChange.bind(this)}
@@ -194,7 +195,7 @@ export default class SubmissionForm extends React.Component {
 						<SubmissionFormField value = {this.state.additional_info} onChange = {this.handleAdditionalInfoChange.bind(this)}
 							label = "ADDITIONAL INFORMATION"/>
 					</View>
-					<View style = {{flex:4}} >
+					<View style = {{height : 30 }}>
 						<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)}>
 							<View>
 								<Text>
@@ -206,7 +207,7 @@ export default class SubmissionForm extends React.Component {
 							{image_display}
 						</View>
 					</View>
-					<View style = {{flex : 4}}>
+					<View style = {{height : 30 }}>
 						<TouchableOpacity onPress = {this.toggleBarcodeModal.bind(this)}>
 							<View>
 								{
@@ -222,7 +223,7 @@ export default class SubmissionForm extends React.Component {
 							</View>
 						</TouchableOpacity>						
 					</View>
-					<View style = {{flex:4}}>
+					<View style = {{height : 30 }}>
 						<TouchableOpacity onPress = {this.submitProductInformation.bind(this)}>
 							<View>
 								<Text>
@@ -231,7 +232,8 @@ export default class SubmissionForm extends React.Component {
 							</View>
 						</TouchableOpacity>
 					</View>
-				</View>
+					<KeyboardSpacer/>
+				</ScrollView>
 			)
 	}
 }
@@ -240,7 +242,8 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor : "#F5FCFF",
-		padding: 20
+		padding: 20,
+		paddingTop : 16
 	},
 	input : {flex : 1, width : 220, fontSize : 14, justifyContent : 'flex-start', paddingBottom: 0, 
 	borderRadius : 5,

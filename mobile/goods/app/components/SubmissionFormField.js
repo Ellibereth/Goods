@@ -9,7 +9,7 @@ export default class SubmissionFormField extends Component {
   }
   render() {
     return (
-        <View style = {{flex: 1}}>
+        <View style = {{height : 60}}>
                 <Text style={styles.label}> {this.props.label}</Text>
                   <TextInput value ={this.props.value} onChangeText = {this.props.onChange}
                           style = {styles.input}/>
