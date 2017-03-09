@@ -36,6 +36,7 @@ export default class SubmissionList extends React.Component {
 		var submission = this.props.submission
 		var time_stamp = this.getFormattedTimeStamp(submission.time_stamp)
 		var is_verified_icon = submission.verified ? <Icon name = "check" size = {20}/> : <Icon name = "close" size = {20}/>
+		var num_images = submission.num_images != null ? submission.num_images : 0
 		return (
 				<View style = {styles.item_container}>
 					<View style = {{flex : 5}}>
@@ -48,7 +49,7 @@ export default class SubmissionList extends React.Component {
 									Product Name : {submission.product_name}
 								</Text>
 								<Text>
-									Number of Images : {submission.num_images}
+									Number of Images : {num_images}
 								</Text>
 							</View>
 						</TouchableOpacity>
