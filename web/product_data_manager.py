@@ -135,8 +135,8 @@ class ProductDataManager:
 					,(unique_id, time_stamp))
 		self.db.execute(sql)
 		submission['verified'] = False
-		for key in submission:
-			if key != "image_data":
+		for key in database_columns:
+			if key != "unique_id":
 				self.updateEntryByUniqueId(unique_id, key, submission[key])
 
 	# somehow you need to keep track of the order of things in the database
