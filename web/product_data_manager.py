@@ -12,7 +12,7 @@ import psycopg2
 import urllib
 import base64
 
-sys.path.append('../credentials')
+sys.path.append('./credentials')
 import credential
 
 ## this is the same as the submission variables in product_data_manager.py 
