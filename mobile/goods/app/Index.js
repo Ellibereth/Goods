@@ -20,10 +20,7 @@ export default class Index extends React.Component {
 
 	render(){
 		return (
-				<View style = {styles.container}>
-					<StartNavigator />
-				</View>
-			
+				<StartNavigator />
 			)
 	}
 }
@@ -31,7 +28,7 @@ export default class Index extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor : "#F5FCFF"
+		backgroundColor : "#F5FCFF",
 	},
 });
 

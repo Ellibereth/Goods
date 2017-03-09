@@ -240,7 +240,8 @@ export default class SubmissionForm extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor : "#F5FCFF"
+		backgroundColor : "#F5FCFF",
+		padding: 20
 	},
 	input : {flex : 1, width : 220, fontSize : 14, justifyContent : 'flex-start', paddingBottom: 0, 
 	borderRadius : 5,

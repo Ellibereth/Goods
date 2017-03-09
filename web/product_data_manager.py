@@ -134,6 +134,7 @@ class ProductDataManager:
 		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (unique_id, time_stamp) VALUES (%s, %s)"
 					,(unique_id, time_stamp))
 		self.db.execute(sql)
+		submission['verified'] = False
 		for key in submission:
 			if key != "image_data":
 				self.updateEntryByUniqueId(unique_id, key, submission[key])

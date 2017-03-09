@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, View, Text, ListView} from 'react-native';
+import {StyleSheet, View, Text, ListView, ScrollView} from 'react-native';
 import SubmissionListItem from './SubmissionListItem'
 
 const url = "https://whereisitmade.herokuapp.com"
@@ -16,7 +16,7 @@ export default class SubmissionList extends React.Component {
 
 	getSubmissionList() {
 		console.log("fetching")
-		fetch(test_url + "/getProductSubmissions", {method: "POST",
+		fetch(url + "/getProductSubmissions", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
@@ -58,7 +58,9 @@ export default class SubmissionList extends React.Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor : "#F5FCFF"
+		backgroundColor : "#F5FCFF",
+		paddingTop: 20,
+		padding : 10
 	},
 });
 

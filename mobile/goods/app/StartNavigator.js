@@ -41,6 +41,7 @@ export default class StartNavigator extends Component {
 						</View>
 					)
 			}
+
 			return screen
 		}
 
@@ -52,7 +53,7 @@ export default class StartNavigator extends Component {
 					ref = "appNavigator"
 					renderScene = {this._renderScene.bind(this)}
 					configureScene={(route, routeStack) => Navigator.SceneConfigs.PushFromRight}
-					// navigationBar = {<BottomTabBar navigator={this.refs.appNavigator}/>}
+					navigationBar = {<BottomTabBar navigator={this.refs.appNavigator}/>}
 					/>
 	 		) 
 
