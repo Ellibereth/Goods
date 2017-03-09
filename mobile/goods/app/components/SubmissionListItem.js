@@ -48,7 +48,7 @@ export default class SubmissionList extends React.Component {
 									Product Name : {submission.product_name}
 								</Text>
 								<Text>
-									Image coming soon....
+									Number of Images : {submission.num_images}
 								</Text>
 							</View>
 						</TouchableOpacity>

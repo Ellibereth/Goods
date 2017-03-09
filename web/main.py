@@ -63,15 +63,21 @@ def adminLogin():
 		else:
 			return render_template("adminLogin.html")
 
+@app.route('/static/<path:path>', methods = ['GET'])
+def send_static(path):
+    return send_from_directory('static', path)
+
 @app.route("/", methods = ['GET'])
 def index():
 	if request.method == 'GET':
 		return render_template("index.html")
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def catch_all(path):
-    return render_template("index.html")
+# Kenny what was the point of this in the old project?
+# is there a way I can use this so that it allows the static folder?
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path:path>')
+# def catch_all(path):
+#     return render_template("index.html")
 
 @app.route('/productList', methods = ['GET'])
 def productList():

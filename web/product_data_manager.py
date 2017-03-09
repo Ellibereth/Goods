@@ -105,25 +105,28 @@ class ProductDataManager:
 		self.createProductEntryTable()
 
 		# write the image_id and store the data
-		image_data = submission.get('image_data')
+		image_data = submission.get('images')
 		if image_data != None:
-			num_images = len(images_data)
+			num_images = len(image_data)
 			submission['num_images'] = num_images
 			image_id = self.generateNewImageId()
+			count = 0
 			for image in image_data:
 				# write the image file to memory as a png, if there is image data
-				count = 1
 				if image != None and image != "":
 					image_bytes = image.encode('utf-8')
 					image_decoded = base64.decodestring(image_bytes)
-					with open("static/images/product_submissions/" + image_id + "_" + str(count) + ".png", "wb") as fh:
+					with open("./web/static/images/product_submissions/" + image_id + "_" + str(count) + ".png", "wb") as fh:
 					    fh.write(image_decoded)
 					submission['image_id'] = image_id
 				count = count + 1
 		else:
 			num_images = 0
-			submission['num_images'] = 0
+
+		submission['verified'] = False
+		submission['num_images'] = num_images
 		
+
 		for key in submission:
 			if submission.get(key) == None:
 				submission[key] = ""
@@ -134,9 +137,9 @@ class ProductDataManager:
 		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (unique_id, time_stamp) VALUES (%s, %s)"
 					,(unique_id, time_stamp))
 		self.db.execute(sql)
-		submission['verified'] = False
+		print(submission.get('num_images'))
 		for key in database_columns:
-			if submission.get('key') != None:
+			if submission.get(key) != None:
 				if key != "unique_id":
 					self.updateEntryByUniqueId(unique_id, key, submission[key])
 

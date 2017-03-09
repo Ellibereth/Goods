@@ -1,10 +1,12 @@
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, View, Text, TouchableOpacity, Platform} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Platform, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 const url = "https://whereisitmade.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
+
+const image_url_base = "http://127.0.0.1:5000/static/images/product_submissions"
 
 export default class SubmissionList extends React.Component {
 	constructor(props){
@@ -22,6 +24,19 @@ export default class SubmissionList extends React.Component {
 
 	render(){
 		var submission = this.props.submission
+		var image_src = []
+		for (var i = 0; i < submission.num_images; i++){
+			image_src.push(submission.image_id + "_" + i + ".png")
+		}
+
+		var image_list = []
+		for (var i = 0; i < image_src.length; i++){
+			image_list.push(
+					<Image source = {{uri : image_src[i]}} key ={i}/>
+				)
+		}
+
+
 		return (
 
 				<View style = {styles.container}>
@@ -38,7 +53,9 @@ export default class SubmissionList extends React.Component {
 						<Text> Contact Information : {submission.contact_information} </Text>
 						<Text> Product Name : {submission.product_name} </Text>
 						<Text> Image ... coming soon! </Text>
+						{image_list}
 					</View>
+
 				</View>
 			)
 	}

@@ -72,7 +72,6 @@ export default class SubmissionForm extends React.Component {
 		for (var i = 0; i < this.state.images.length; i++){
 			image_data.push(this.state.images[i].data)
 		}
-
 		fetch(test_url + "/userSubmitProductInformation", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
@@ -86,7 +85,7 @@ export default class SubmissionForm extends React.Component {
 				contact_information : this.state.contact_information,
 				url_link: this.state.url_link,
 				location: this.state.location,
-				image_data: image_data,
+				images: image_data,
 				barcode_upc: this.state.barcode_upc,
 				barcode_type: this.state.barcode_type,
 				origin: this.state.origin,
