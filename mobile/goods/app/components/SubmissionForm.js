@@ -10,6 +10,7 @@ const test_url = "http://0.0.0.0:5000"
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import BarcodeModal from './BarcodeModal'
 import SubmissionFormField from './SubmissionFormField'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 //options for the image picker
 var options = {
@@ -45,7 +46,7 @@ export default class SubmissionForm extends React.Component {
 	handleContactInformationChange(contact_information) {this.setState({contact_information: contact_information})}
 	handleUrlLinkChange(url_link) {this.setState({url_link : url_link}) }
 	handleLocationChange(location) { this.setState({location : location}) }
-	handleOriginChange(location) { this.setState({origin : origin}) }
+	handleOriginChange(origin) { this.setState({origin : origin}) }
 	handleAdditionalInfoChange(additional_info) { this.setState({additional_info : additional_info}) }
 
 	// sets barcode information from the barcode scanner
@@ -136,6 +137,32 @@ export default class SubmissionForm extends React.Component {
 		});
 	}
 
+	onSubmitPress(){
+		Alert.alert(
+			  'Are you sure?',
+			  'Click to confirm',
+			  [
+			    {text: 'Submit', onPress: () => this.submitProductInformation.bind(this)()},
+			    {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+			  ],
+			  { cancelable: false }
+			  )
+		
+	}
+
+	onRemovePhotoPress(i){
+		Alert.alert(
+			  'Are you sure?',
+			  'Click to remove photo',
+			  [
+			    {text: 'Remove', onPress: () => this.removePhoto.bind(this)(i)},
+			    {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
+			  ],
+			  { cancelable: false }
+			  )
+		
+	}
+
 	// when the form is submitted, we refresh the page, clearing all previously submitted data
 	refreshPage() {
 		this.setState({product_name : "",
@@ -166,9 +193,14 @@ export default class SubmissionForm extends React.Component {
 		var images = this.state.images
 		for (var i = 0; i < images.length; i++) {
 			var image_item = (
-							<TouchableOpacity key = {i} onPress = {() => {this.removePhoto.bind(this)(i)}}>
-								<Image style = {{height: 30, width : 30}} source = {images[i].source}/>
-							</TouchableOpacity>
+							<View style = {{flex : 1}} key = {i}>
+								<View style = {{height : 30}}>
+									<TouchableOpacity onPress = {() => {this.onRemovePhotoPress.bind(this)(i)}}>
+										<Icon name = "remove" size = {20}/>
+									</TouchableOpacity>
+								</View>
+								<Image style = {{height: 40, width : 40}} source = {images[i].source}/>
+							</View>
 						)
 			image_display.push(image_item)
 		}
@@ -203,7 +235,7 @@ export default class SubmissionForm extends React.Component {
 								</Text>
 							</View>
 						</TouchableWithoutFeedback>
-						<View>
+						<View style = {{flexDirection: "column", justifyContent: "center"}}>
 							{image_display}
 						</View>
 					</View>
@@ -226,7 +258,7 @@ export default class SubmissionForm extends React.Component {
 					</View>
 					<View style = {{height : 10}}/>
 					<View style = {styles.button}>
-						<TouchableOpacity onPress = {this.submitProductInformation.bind(this)} style = {styles.submit_button}>
+						<TouchableOpacity onPress = {this.onSubmitPress.bind(this)} style = {styles.submit_button}>
 							<View>
 								<Text>
 									Submit!
@@ -234,6 +266,7 @@ export default class SubmissionForm extends React.Component {
 							</View>
 						</TouchableOpacity>
 					</View>
+					<View style = {{height : 30}}/>
 					<KeyboardSpacer/>
 				</ScrollView>
 			)
@@ -245,7 +278,7 @@ const styles = StyleSheet.create({
 		alignSelf: "center"
 	},
 	image_button : {
-		height : 80,
+		height : 100,
 		borderWidth : 0.5,
 		borderRadius : 5,
 		borderColor : "black"

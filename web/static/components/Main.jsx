@@ -5,6 +5,7 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
+import App from './App.jsx'
 
 class Main extends React.Component {
 	render() {
@@ -17,8 +18,6 @@ class Main extends React.Component {
 
 
 ReactDOM.render(
-	<Router history={browserHistory}>
-	<Route path="/" component={Main} >
-		<IndexRoute component={App}/>
-    </Route></Router>, document.getElementById('app'));
+	(<App />)
+    , document.getElementById('app'));
 

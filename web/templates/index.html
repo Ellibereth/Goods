@@ -7,15 +7,16 @@
 	  </title>
 	  <meta charset="UTF-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}">
-	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert/dist/sweetalert.css') }}">
+	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/bootstrap/css/bootstrap.min.css') }}">
+	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/sweetalert/dist/sweetalert.css') }}">
 	  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fixed-data-table.min.css') }}" /> -->
 </head>
 <body>
-	  <script src="{{ url_for('static', filename='jquery/dist/jquery.min.js') }}"></script>
-	  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script> 
-	  <script src="{{ url_for('static', filename='sweetalert/dist/sweetalert.min.js') }}"></script> 
+	  <script src="{{ url_for('static', filename='web_scripts/jquery/dist/jquery.min.js') }}"></script>
+	  <script src="{{ url_for('static', filename='web_scripts/bootstrap/js/bootstrap.min.js') }}"></script> 
+	  <script src="{{ url_for('static', filename='web_scripts/sweetalert/dist/sweetalert.min.js') }}"></script> 
+	  
 	  {% block content %}
 	  <script>
 		var submitData = function () {
@@ -120,5 +121,6 @@
 	  {% if error %}
 	  <div class="container"><p class = "alert alert-danger error"> <strong> Error: </strong> {{ error }} </p></div>
 	  {% endif %}
+	  <!-- <script src="{{ url_for('static', filename='bundle.js') }}"></script>  -->
 </body>
 </html>
