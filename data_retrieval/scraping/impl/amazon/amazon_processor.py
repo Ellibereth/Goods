@@ -22,6 +22,7 @@ from amazon_writer import AmazonWriter
 from amazon_crawler import AmazonCrawler
 from product import Product 
 from labels import Labels
+from url import Url
 
 """
 Dependendies ../scraper.py, ./amazon_parser.py, ./amazon_crawler.py, ./ amazon_writer.py
@@ -50,7 +51,6 @@ class AmazonProcessor():
 	def addUrlToQueue(self,url):
 		self.queue.put(url)
 
-
 	# adds a url to the queue based on the asin provided
 	def addAsinToQueue(self, asin):
 		if asin == None:
@@ -59,7 +59,6 @@ class AmazonProcessor():
 			return
 		url = "https://www.amazon.com/dp/" + asin
 		self.queue.put(url)
-
 
 	## this needs to be updated so that we can multithread and keep the same conncetion open instead 
 	## of opening and closing for each write to server
@@ -89,6 +88,7 @@ class AmazonProcessor():
 		writer = AmazonWriter()
 		self.processProductUrl(url, writer)
 		writer.closeConnection()
+		return True
 
 	# assumes a connection is open already and keeps it open
 	# use this one for multithreading
@@ -117,16 +117,12 @@ class AmazonProcessor():
 			with open('./logs/bad_url_list.log', 'a') as f:
 				f.write(url + "\n")
 			product = None
-			return
 
 		product_details = product.getDetails()
 		time_2 = time.time()
 		writer.addProductEntryToDataTable(product_details)
 		time_3 = time.time()
-
-		# print("time to render html : " + str(time_1 - time_0))
-		# print("time to parse html : " + str(time_2 - time_1))
-		# print("time to write to database : " + str(time_3 - time_2))
+		return True
 
 	# given something like 
 	# "https://www.amazon.com/s/ref=lp_3733821_pg_2?rh=n%3A1055398%2Cn%3A%211063498%2Cn%3A1063306%2Cn%3A3733781%2Cn%3A3733821&page=2&ie=UTF8&qid=1488683343&spIA=B01N7MG70Z,B00YHXESPE,B00YHXF394&lo=garden"
@@ -152,7 +148,7 @@ class AmazonProcessor():
 		return asin
 
 	def getDataFromCategoryUrl(self, url_start, url_end):
-		for page_number in range(1, 40):
+		for page_number in range(41, 42):
 			time_0 = time.time()
 			url = url_start + str(page_number) + url_end
 			print("processing html")
@@ -181,38 +177,47 @@ class AmazonProcessor():
 		# url = "https://www.amazon.com/dp/" + asin
 		# self.oneTimeProcessProductUrl(url)
 
-		chair_url_start = "https://www.amazon.com/s/rh=n%3A1055398%2Cn%3A%211063498%2Cn%3A1063306%2Cn%3A3733781%2Cn%3A3733821&page="
-		chair_url_end = "&ie=UTF8&qid=1488683343&spIA=B01N7MG70Z,B00YHXESPE,B00YHXF394&lo=garden"
+		chair_url_start = Url.ChairStart
+		chair_url_end = Url.ChairEnd
 		self.getDataFromCategoryUrl(chair_url_start, chair_url_end)
 		print("done with chairs")
 
-		machine_url_start = "https://www.amazon.com/s/fst=as%3Aoff&rh=n%3A16310091%2Cn%3A3021479011%2Ck%3Amachine+parts&page="
-		machine_url_end = "&keywords=machine+parts&ie=UTF8&qid=1488777854&spIA=B00396J7V0,B002OU6ZSA"
+		machine_url_start = Url.MachineStart
+		machine_url_end = Url.MachineEnd
 		self.getDataFromCategoryUrl(machine_url_start, machine_url_end)
 
-		mens_clothing_url_start = "https://www.amazon.com/s/rh=n%3A7141123011%2Cn%3A7147441011%2Ck%3Amens+clothing&page="
-		mens_clothing_url_end = "&keywords=mens+clothing&ie=UTF8&qid=1489017989&spIA=B00S01E34A,B00JAWCT1M,B000JHCYT4"
+		mens_clothing_url_start = Url.MensClothingStart
+		mens_clothing_url_end = Url.MensClothingEnd
 		self.getDataFromCategoryUrl(mens_clothing_url_start, mens_clothing_url_end)
 
-		toys_url_start = "https://www.amazon.com/s/fst=p90x%3A1&rh=n%3A165793011%2Ck%3Atoys&page="
-		toys_url_end = "&keywords=toys&ie=UTF8&qid=1489018047&spIA=B017HAL1SU,B00ZDJ1A16,B01LXAL7WT,B019EWENAM,B06XB75Q93,B00PM722OI"
+		toys_url_start = Url.ToysStart
+		toys_url_end = Url.ToysEnd
 		self.getDataFromCategoryUrl(toys_url_start , toys_url_end)
 
-		sports_url_start = "https://www.amazon.com/s/fst=as%3Aoff&rh=n%3A165793011%2Cn%3A166420011%2Cn%3A365427011%2Ck%3Asports+equipment&page="
-		sports_url_end = "&keywords=sports+equipment&ie=UTF8&qid=1489018122&spIA=B00VKAB5XA,B00E5PLCVC,B000UGYBBS,B0021VW2IE,B001KGA1L6,B01LYR7AIV"
+		sports_url_start = Url.SportsStart
+		sports_url_end = Url.SportsEnd
 		self.getDataFromCategoryUrl(sports_url_start, sports_url_end)
 
-		furniture_url_start = "https://www.amazon.com/s/fst=as%3Aoff&rh=n%3A1055398%2Ck%3Afurniture&page="
-		furniture_url_end = "&keywords=furniture&ie=UTF8&qid=1489018180&spIA=B01DUOUVLK,B01MSIK6HG,B01AO2F22O,B01AMQ7GJ4,B01A1EGLCK,B01N1VGV3G"
+		furniture_url_start = Url.FurnitureStart
+		furniture_url_end = Url.FurnitureEnd
 		self.getDataFromCategoryUrl(furniture_url_start, furniture_url_end)
 
-		beauty_url_start = "https://www.amazon.com/s/ref=sr_pg_2?fst=as%3Aoff&rh=n%3A3760911%2Ck%3Acosmetics&page="
-		beauty_url_end = "&keywords=cosmetics&ie=UTF8&qid=1489018309&spIA=B06XDPYZP4,B00X2L0DJW,B01MR1F5PP,B01N7NLN60,B01N5S6CEY,B01GUK7NV2"
+		beauty_url_start = Url.BeautyStart
+		beauty_url_end = Url.BeautyEnd
 		self.getDataFromCategoryUrl(beauty_url_start, beauty_url_end)
+	
+	def test(self):
+		print("test_starting")
+		asin = "B00WB14DTA"
+		url = "https://www.amazon.com/dp/" + asin
+		test_result = self.oneTimeProcessProductUrl(url)
+		return test_result
+
+
+if __name__ == "__main__":
+	print("Bro")
+	processor = AmazonProcessor(10)
+	processor.main()
 
 
 
-processor = AmazonProcessor(numThreads = 20)
-# processor.main()
-# processor.oneTimeProcessProductUrl()
-processor.writeTableToCsv()

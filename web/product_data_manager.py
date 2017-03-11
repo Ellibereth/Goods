@@ -19,7 +19,7 @@ import credential
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
 database_columns = [
-							'unique_id', 
+							'id', 
 							'image_id',
 							'time_stamp',
 							'manufacturer_name',
@@ -63,10 +63,8 @@ class ProductDataManager:
 		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE + " WHERE image_id = %s"
 		self.db.execute(self.db.mogrify(sql, (image_id,)))
 		query = self.db.fetchall()
-		if len(query) > 0:
-			return True
-		else:
-			return False
+		return len(query) > 0
+
 
 	def id_generator(self, size=20, chars=string.ascii_uppercase + string.digits):
 		return ''.join(random.choice(chars) for _ in range(size))
@@ -77,23 +75,12 @@ class ProductDataManager:
 			image_id = self.id_generator()
 		return image_id
 
-	def isImageIdTaken(self, image_id):
-		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE + " WHERE image_id = %s"
-		self.db.execute(self.db.mogrify(sql, (image_id,)))
-		query = self.db.fetchall()
-		if len(query) > 0:
-			return True
-		else:
-			return False
 
 	def isUniqueIdTaken(self, unique_id):
 		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE + " WHERE unique_id = %s"
 		self.db.execute(self.db.mogrify(sql, (unique_id,)))
 		query = self.db.fetchall()
-		if len(query) > 0:
-			return True
-		else:
-			return False
+		return len(query) > 0
 	
 	def generateNewUniqueId(self):
 		unique_id = self.id_generator()
@@ -126,11 +113,8 @@ class ProductDataManager:
 				count = count + 1
 		else:
 			num_images = 0
-
 		submission['verified'] = False
 		submission['num_images'] = num_images
-		
-
 		for key in submission:
 			if submission.get(key) == None:
 				submission[key] = ""
@@ -196,9 +180,21 @@ class ProductDataManager:
 		sql = "ALTER TABLE " + self.USER_SUBMISSION_TABLE + " ADD " + column_name + " " + data_type
 		self.db.execute(self.db.mogrify(sql))
 
+	# returns the list of columns in a table given its name
+	def getColumnNames(self, table_name = None):
+		if table_name == None:
+			table_name = self.USER_SUBMISSION_TABLE
+		sql = "Select * FROM " + table_name
+		self.db.execute(sql)
+		colnames = self.db.fetchall()
+		colnames = [desc[0] for desc in self.db.description]
+		return colnames
+
+	# verifies a submission by unique_id
 	def verifySubmission(self, unique_id):
 		if unique_id == None or unique_id == "":
 			return
+		# if the unique id is not in use, then return 
 		elif not self.isUniqueIdTaken(unique_id):
 			return
 		else:
@@ -220,8 +216,9 @@ class ProductDataManager:
 		product_submissions = self.getProductSubmissions()
 		print(product_submissions)
 
-
-# product_data_manager = ProductDataManager()
-# product_data_manager.test()
-# product_data_manager.closeConnection()
+if __name__ == '__main__':
+	product_data_manager = ProductDataManager()
+	col_names = product_data_manager.getColumnNames()
+	print(col_names)
+	product_data_manager.closeConnection()
 

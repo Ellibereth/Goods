@@ -7,7 +7,7 @@ var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
 import App from './App.jsx'
 
-class Main extends React.Component {
+export default class Main extends React.Component {
 	render() {
 		return (
 			<div>
@@ -17,7 +17,10 @@ class Main extends React.Component {
 }
 
 
-ReactDOM.render(
-	(<App />)
-    , document.getElementById('app'));
+ReactDOM.render(  
+	<Router history={ browserHistory }>
+    <Route path='/' component={ Main }>
+      <IndexRoute component={ App } />
+    </Route>
+  </Router>, document.getElementById('app'));
 

@@ -15,10 +15,10 @@ public_api = Blueprint('public_api', __name__)
 
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
-submission_variables = [
+submission_keys = [
 							'unique_id', 
 							'image_id',
-							'timeStamp',
+							'time_stamp',
 							'manufacturer_name',
 							'url_link',
 							'contact_information',
@@ -35,7 +35,7 @@ submission_variables = [
 @public_api.route('/userSubmitProductInformation', methods = ['POST'])
 def userSubmitProductInformation():
 	submission = {}
-	for key in submission_variables:
+	for key in submission_keys:
 		submission[key] = request.json.get(key)
 
 	data_manager = ProductDataManager()

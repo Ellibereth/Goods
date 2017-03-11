@@ -88,6 +88,7 @@ export default class App extends React.Component {
 			}
 		}
 	render() {
+		return (
 			<div> 
 				<a href = "/adminLogin">  Click here for admin login </a>
 				<div id = "form">
@@ -103,6 +104,7 @@ export default class App extends React.Component {
 						<button type="submit" id = "submit_button"> Submit </button>
 				</div>
 			</div>
+			)
 		}
 	}
 
