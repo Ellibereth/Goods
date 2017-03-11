@@ -3,7 +3,7 @@ import time
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 
-def sendImageEmail(email, image_name, image_data):
+def sendImageEmail(image_name, image_data):
 	#to send from temporary gmail 
 	"""
 	sender = "manaweb.noreply@gmail.com"
@@ -37,3 +37,30 @@ def sendImageEmail(email, image_name, image_data):
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
+def sendRequestEmail(request):
+	#to send from temporary gmail 
+	"""
+	sender = "manaweb.noreply@gmail.com"
+	passW = "powerplay"
+	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
+	"""
+	
+	# to send from manaweb
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	receiver = email
+	msg = MIMEMultipart()
+	msg['Subject'] = "Please find attached images " + image_name
+	msg['From'] = "noreply@manaweb.com"
+	msg['To'] = "darek@manaweb.com"
+	msg.preamble = 'Here is a request from ' + request.get('contact_information') + "\n" + "Looking for a " + request.get('product_name') + \
+		+ " within the price range : ( " + price_min + " , " + price_max  + ")"
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	# smtpserver.sendmail(sender, receiver, msg)
+	
+	smtpserver.send_message(msg)
+	smtpserver.close()

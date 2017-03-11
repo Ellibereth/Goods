@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	  <link rel="SHORTCUT ICON" href="{{url_for('static', filename = 'favicon_test/favicon.ico')}}"/>
-	  <title>
-	    Manaweb!
-	  </title>
-	  <meta charset="UTF-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='font-awesome-4.7.0/css/font-awesome.min.css') }}">
-	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='sweetalert/dist/sweetalert.css') }}">
-	  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fixed-data-table.min.css') }}" /> -->
-</head>
-<body>
-	  <script src="{{ url_for('static', filename='jquery/dist/jquery.min.js') }}"></script>
-	  <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script> 
-	  <script src="{{ url_for('static', filename='sweetalert/dist/sweetalert.min.js') }}"></script> 
-	  {% block content %}
+var React = require('react');
+var ReactDOM = require('react-dom');
 
-		<div id="app">
-			<table id = "submission_table">
-			</table>
-		</div>
-		<!-- <script src={{ url_for('static', filename='bundle.js') }}></script> -->
-	  {% endblock %}
-	  {% if error %}
-	  <div class="container"><p class = "alert alert-danger error"> <strong> Error: </strong> {{ error }} </p></div>
-	  {% endif %}
+export default class AdminTools extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-	  	  <script>
+
+  componentDidMount(){
 	  		var submission_items = [
 							'unique_id', 
 							'image_id',
@@ -67,21 +46,6 @@
 			var real_url = "https://whereisitmade.herokuapp.com"
 			var test_url = "https://127.0.0.1:5000"
 
-
-
-			// var verify_submission = function(unique_id) {
-			// 	var formData = [unique_id]
-			// 	$.ajax({
-			// 		  type: "POST",
-			// 		  url: test_url + "/verifySubmission",
-			// 		  data: formData,
-			// 		  success: function(data) {
-			// 		  	window.location.reload();
-			// 		  },
-			// 		  error: function(){
-			// 		  	console.log("error")
-			// 		  }
-			// }
 		
 		  	$.ajax({
 			  type: "POST",
@@ -130,7 +94,7 @@
 										})
 							$.ajax({
 								  type: "POST",
-								  url: real_url + "/verifySubmission",
+								  url: real_url + "/verifyProductSubmission",
 								  data: formData,
 								  success: function(data) {
 								  	// window.location.reload();
@@ -155,10 +119,17 @@
 			  dataType: "json",
 			  contentType : "application/json; charset=utf-8"
 			});
+		  }
 
 	
 
+  render() {
+    return (
+        <div id = "submission_table_container">
+        	<table id = "submission_table">
+			</table>
+        </div>
+    );
+  }
+}
 
-	  </script>
-</body>
-</html>

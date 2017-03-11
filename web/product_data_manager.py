@@ -18,7 +18,7 @@ import credential
 
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
-database_columns = [
+product_submission_database_columns = [
 							'id', 
 							'image_id',
 							'time_stamp',
@@ -34,11 +34,18 @@ database_columns = [
 							'num_images'
 						 ]
 
-
+product_submission_database_columns = [
+								'unique_id'
+								'product_description',
+								'price_min',
+								'price_max',
+								'contact_information'
+								]
 						 
 class ProductDataManager:
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
+		self.USER_REQUEST_TABLE = "USER_REQUEST_TABLE"
 		database_credentials = credential.getDatabaseCredentials()
 		self.p_db = psycopg2.connect(
 		    database=database_credentials['database'],
@@ -59,8 +66,13 @@ class ProductDataManager:
 		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (unique_id TEXT, image_id TEXT, time_stamp FLOAT)'
 		self.db.execute(createTableCode)
 
-	def isImageIdTaken(self, image_id):
-		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE + " WHERE image_id = %s"
+	def createRequestTable(self):
+		table_name = self.USER_REQUEST_TABLE
+		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (unique_id TEXT, time_stamp FLOAT)'
+		self.db.execute(createTableCode)
+
+	def isImageIdTaken(self, image_id, table_name):
+		sql = "SELECT * FROM " + table_name + " WHERE image_id = %s"
 		self.db.execute(self.db.mogrify(sql, (image_id,)))
 		query = self.db.fetchall()
 		return len(query) > 0
@@ -69,35 +81,35 @@ class ProductDataManager:
 	def id_generator(self, size=20, chars=string.ascii_uppercase + string.digits):
 		return ''.join(random.choice(chars) for _ in range(size))
 
-	def generateNewImageId(self):
+	def generateNewImageId(self, table_name):
 		image_id = self.id_generator()
-		while self.isImageIdTaken(image_id):
+		while self.isImageIdTaken(image_id, table_name):
 			image_id = self.id_generator()
 		return image_id
 
 
-	def isUniqueIdTaken(self, unique_id):
-		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE + " WHERE unique_id = %s"
+	def isUniqueIdTaken(self, unique_id, table_name):
+		sql = "SELECT * FROM " + table_name + " WHERE unique_id = %s"
 		self.db.execute(self.db.mogrify(sql, (unique_id,)))
 		query = self.db.fetchall()
 		return len(query) > 0
 	
-	def generateNewUniqueId(self):
+	def generateNewUniqueId(self, table_name):
 		unique_id = self.id_generator()
-		while self.isUniqueIdTaken(unique_id):
+		while self.isUniqueIdTaken(unique_id, table_name):
 			unique_id = self.id_generator()
 		return unique_id
 
 	# takes submission dictionary
-	def addProductEntry(self, submission):
+	def addProductSubmission(self, submission):
 		self.createProductEntryTable()
-
+		table_name = self.USER_SUBMISSION_TABLE
 		# write the image_id and store the data
 		image_data = submission.get('images')
 		if image_data != None:
 			num_images = len(image_data)
 			submission['num_images'] = num_images
-			image_id = self.generateNewImageId()
+			image_id = self.generateNewImageId(self.USER_SUBMISSION_TABLE)
 			count = 0
 			for image in image_data:
 				# write the image file to memory as a png, if there is image data
@@ -108,8 +120,7 @@ class ProductDataManager:
 					with open("./web/static/images/product_submissions/" + image_name, "wb") as fh:
 					    fh.write(image_decoded)
 					submission['image_id'] = image_id
-					email = "darek@manaweb.com"
-					email_api.sendImageEmail(email,image_name, image_decoded)
+					email_api.sendImageEmail(image_name, image_decoded)
 				count = count + 1
 		else:
 			num_images = 0
@@ -121,56 +132,51 @@ class ProductDataManager:
 
 		## insert into the database
 		time_stamp = time.time()
-		unique_id = self.generateNewUniqueId()
+		unique_id = self.generateNewUniqueId(self.USER_SUBMISSION_TABLE)
 		sql = self.db.mogrify("INSERT INTO " + self.USER_SUBMISSION_TABLE + " (unique_id, time_stamp) VALUES (%s, %s)"
 					,(unique_id, time_stamp))
 		self.db.execute(sql)
 		print(submission.get('num_images'))
-		for key in database_columns:
+		for key in product_submission_database_columns:
 			if submission.get(key) != None:
 				if key != "unique_id":
-					self.updateEntryByUniqueId(unique_id, key, submission[key])
+					self.updateEntryByUniqueId(unique_id, key, submission[key], table_name)
 
-	# somehow you need to keep track of the order of things in the database
-	# how can this be avoided in the future?
-	# looking for suggestions
+
 	def getProductSubmissions(self):
-		sql = "SELECT * FROM " + self.USER_SUBMISSION_TABLE
-		self.db.execute(sql)
-		query = self.db.fetchall()
-		allProducts = list()
-		for row in query:
-			product_dict = self.productSubmissionQueryRowToDict(row)
-			allProducts.append(product_dict)
-
+		allProducts = self.getTableDataAsDict(self.USER_SUBMISSION_TABLE)
 		return allProducts
 
-	def productSubmissionQueryRowToDict(self, product_query):
-		product_dict = {}
-		i = 0
-		for key in database_columns:
-			product_dict[key] = product_query[i]
-			i = i + 1
-		num_images = product_dict.get('num_images')
-		image_id = product_dict['image_id']
-		if num_images != None and image_id != None and image_id != "":
-			image_file_names = list()
-			for i in range(0,num_images):
-				image_file_names = product_dict['image_id'] + "_" + str(i) + ".png"
-			product_dict['image_file_names'] =  image_file_names
-		return product_dict
+	def getRequestSubmissions(self):
+		allRequests = self.getTableDataAsDict(self.USER_REQUEST_TABLE)
+		return allRequests
 
-	def updateEntryByUniqueId(self, unique_id, column_name, data):	
+	def getTableDataAsDict(self, table_name):
+		keys = self.getColumnNames(table_name)
+		sql = "SELECT * FROM " + table_name
+		self.db.execute(sql)
+		query = self.db.fetchall()
+		output_list = list()
+		for row in query:
+			output = {}
+			for i in range(0, len(keys)-1):
+				output[keys[i]] = row[i]
+			output_list.append(output)
+		return output_list
+
+	def tableHasColumn(self, table_name,column_name):
+		colnames = self.getColumnNames(table_name)
+		return column_name in colnames
+
+	def updateEntryByUniqueId(self, unique_id, column_name, data, table_name):	
 		if column_name == "unique_id":
 			return
-		# try:
-		# 	if column_name == "num_images":
-		# 		self.addColumnToSubmissionTable(column_name, data_type = "INTEGER")
-		# 	else:
-		# 		self.addColumnToSubmissionTable(column_name)
-		# except:
-		# 	print("column exists alredy")
-
+		if column_name == "time_stamp":
+			return		
+		if data == None:
+			return
+		if not self.tableHasColumn(table_name, column_name):
+			self.addColumnToSubmissionTable(column_name)
 		sql = "UPDATE " + self.USER_SUBMISSION_TABLE + " SET " + column_name + " = %s " + " WHERE unique_id = %s"
 		self.db.execute(self.db.mogrify(sql, (data, unique_id)))
 
@@ -181,9 +187,7 @@ class ProductDataManager:
 		self.db.execute(self.db.mogrify(sql))
 
 	# returns the list of columns in a table given its name
-	def getColumnNames(self, table_name = None):
-		if table_name == None:
-			table_name = self.USER_SUBMISSION_TABLE
+	def getColumnNames(self, table_name):
 		sql = "Select * FROM " + table_name
 		self.db.execute(sql)
 		colnames = self.db.fetchall()
@@ -200,25 +204,29 @@ class ProductDataManager:
 		else:
 			column_name = "verified"
 			data = True
-			self.updateEntryByUniqueId(unique_id, column_name, data)
+			self.updateEntryByUniqueId(unique_id, column_name, data, )
 
-	def test(self):
-		test_submission = {}
-		for key in database_columns:
-			if key == "time_stamp":
-				test_submission[key] = time.time()
-			elif key == "verified":
-				test_submission[key] = False
-			else:
-				test_submission[key] = "test"
+	def addProductRequest(self, request):
+		self.createRequestTable()
+		table_name = self.USER_REQUEST_TABLE
+		unique_id = self.generateNewUniqueId(table_name)
+		time_stamp = time.time()
+		sql = "INSERT INTO " + table_name + " (unique_id, time_stamp) VALUES (%s, %s)"
+		self.db.execute(self.db.mogrify(sql, (unique_id, time_stamp)))
 
-		self.addProductEntry(test_submission)
-		product_submissions = self.getProductSubmissions()
-		print(product_submissions)
+		## add code to send us an email when this happens 
+		email_api.sendRequestEmail(request)
+
+		for key in keys:
+			self.updateEntryByUniqueId(unique_id, key, request.get(key), table_name)
+
+
+
+
 
 if __name__ == '__main__':
 	product_data_manager = ProductDataManager()
-	col_names = product_data_manager.getColumnNames()
-	print(col_names)
+	data = product_data_manager.getProductSubmissions()
+	print(data)
 	product_data_manager.closeConnection()
 

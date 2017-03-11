@@ -67,6 +67,11 @@ def adminLogin():
 def send_static(path):
     return send_from_directory('static', path)
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return render_template("index.html")
+
 @app.route("/", methods = ['GET'])
 def index():
 	if request.method == 'GET':

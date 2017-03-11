@@ -5,7 +5,9 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
-import ProductSubmissionForm from './ProductSubmissionForm/ProductSubmissionForm.jsx'
+import ProductSubmissionForm from './ProductSubmissionForm/ProductSubmissionForm.js'
+import ProductRequestForm from './ProductRequestForm/ProductRequestForm.js'
+import AdminTools from './AdminTools/AdminTools.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -20,7 +22,9 @@ export default class Main extends React.Component {
 ReactDOM.render(  
 	<Router history={ browserHistory }>
     <Route path='/' component={ Main }>
-      <IndexRoute component={ ProductSubmissionForm } />
+      <IndexRoute component={ProductRequestForm} />
+      <Route path = '/submissionForm' component = {ProductSubmissionForm}/>
+      <Route path = '/admin' component = {AdminTools}/>
     </Route>
   </Router>, document.getElementById('app'));
 

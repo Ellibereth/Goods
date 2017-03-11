@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-export default class ProducSubmissionTextInput extends React.Component {
+export default class ProductRequestFormTextInput extends React.Component {
   constructor(props) {
     super(props);
   }

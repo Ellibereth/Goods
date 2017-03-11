@@ -31,15 +31,20 @@ submission_keys = [
 							'images'
 						 ]
 
+request_keys = ['product_description',
+				'price_min',
+				'price_max',
+				'contact_information'
+				]
 
-@public_api.route('/userSubmitProductInformation', methods = ['POST'])
-def userSubmitProductInformation():
+@public_api.route('/addProductSubmission', methods = ['POST'])
+def addProductSubmission():
 	submission = {}
 	for key in submission_keys:
 		submission[key] = request.json.get(key)
 
 	data_manager = ProductDataManager()
-	data_manager.addProductEntry(submission)
+	data_manager.addUserProductSubmission(submission)
 	data_manager.closeConnection()
 	output = {"result" : "success"}
 
@@ -52,15 +57,29 @@ def getProductSubmissions():
 	data_manager.closeConnection()
 	return jsonify(product_submissions)
 
-@public_api.route('/verifySubmission', methods =['POST'])
+@public_api.route('/verifyProductSubmission', methods =['POST'])
 def verifySubmission():
 	unique_id = request.json.get("unique_id")
 	data_manager = ProductDataManager()
-	data_manager.verifySubmission(unique_id)
+	data_manager.verifyProductSubmission(unique_id)
 	data_manager.closeConnection()
 	output = {}
 	output['result'] = "success"
 	return jsonify(output)
+
+@public_api.route('/addProductRequest', methods = ['POST'])
+def addProductRequest():
+	request = {}
+	for key in request_keys:
+		request[key] = request.json.get(key)
+
+	data_manager = ProductDataManager()
+	data_manager.addUserProductRequest(request)
+	data_manager.closeConnection()
+	output = {}
+	output['result'] = "success"
+	return jsonify(output) 
+
 
 # @browser_api.route('/confirmAccount', methods = ['POST'])
 # def confirmAccount():

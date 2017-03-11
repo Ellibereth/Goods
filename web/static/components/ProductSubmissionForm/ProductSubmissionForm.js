@@ -1,13 +1,15 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+import ProductSubmissionTextInput from './ProductSubmissionTextInput.js'
+import Navbar from '../Navbar/Navbar.js'
 
 var real_url = "https://whereisitmade.herokuapp.com"
 var test_url = "http://0.0.0.0:5000"
-const inputs = ['product_name', 'url_link','location','manufacturer_name','contact_information','origin', 'barcode_upc','additional_info']
-import ProductSubmissionTextInput from './ProductSubmissionTextInput'
+const form_inputs = ['product_name', 'url_link','location','manufacturer_name','contact_information','origin', 'barcode_upc','additional_info']
+const form_labels = ['Product Name', "Url Link", "Location", "Manufacturer", "Contact Information", "Origin", "Barcode Number", "Additional Information"]
 
 
-export default class SubmissionForm extends React.Component {
+export default class ProductSubmissionForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -37,28 +39,26 @@ export default class SubmissionForm extends React.Component {
 			var image_file = image_div.files[0]
 			var reader = new FileReader()
 			reader.readAsDataURL(image_file)
-
 			reader.onloadend = function( ){
     			var data = reader.result
     			var trim_image_data = data.split(',')[1]
     			var image_list = []
     			image_list.push(trim_image_data)
-				  	var formData = JSON.stringify({
-				  		"product_name" : product_name,
-				  		"url_link" : url_link,
-				  		"location" : location,
-				  		"manufacturer_name" : manufacturer_name ,
-				  		"contact_information" : contact_information,
-				  		"images" : image_list,
-				  		"origin" : origin,
-				  		"barcode_upc" : barcode_upc,
-				  		"additional_info" : additional_info
-
+				  	var form_data = JSON.stringify({
+				  		"product_name" : this.state.product_name,
+				  		"url_link" : this.state.url_link,
+				  		"location" : this.state.location,
+				  		"manufacturer_name" : this.state.manufacturer_name ,
+				  		"contact_information" : this.state.contact_information,
+				  		"images" : this.state.image_list,
+				  		"origin" : this.state.origin,
+				  		"barcode_upc" : this.state.barcode_upc,
+				  		"additional_info" : this.state.additional_info
 				  	})
 				  	$.ajax({
 					  type: "POST",
 					  url: real_url  + "/userSubmitProductInformation",
-					  data: formData,
+					  data: form_data,
 					  success: function() {
 					  		window.location.reload();
 					  },
@@ -73,7 +73,7 @@ export default class SubmissionForm extends React.Component {
 
 		// otherwise we submit if there is no photo
 		else {
-			var formData = JSON.stringify({
+			var form_data = JSON.stringify({
 				  		"product_name" : product_name,
 				  		"url_link" : url_link,
 				  		"location" : location,
@@ -86,7 +86,7 @@ export default class SubmissionForm extends React.Component {
 			$.ajax({
 					  type: "POST",
 					  url: real_url + "/browserSubmitInformation",
-					  data: formData,
+					  data: form_data,
 					  success: function() {
 					  		window.location.reload();
 					  },
@@ -98,19 +98,26 @@ export default class SubmissionForm extends React.Component {
 				});
 		}
 	}
+
+	getTextInputs(){
+		var text_inputs = []
+		for (var i = 0; i < form_inputs.length; i++){
+			var this_input = form_inputs[i]
+			text_inputs.push(
+					<ProductSubmissionTextInput value = {this.state[this_input]} key = {this_input[i]} label = {form_labels[i]}/>
+				)
+		}
+		return text_inputs
+	}
+
 	render() {
+		var text_inputs = this.getTextInputs.bind(this)()
+
 		return (
 			<div> 
-				<a href = "/adminLogin">  Click here for admin login </a>
+				<Navbar/>
 				<div id = "form">
-						<ProductSubmissionTextInput value = {this.state["product_name"]} key = "product_name" label = "Product Name"/>
-						Manufacturer Name:  <input type="text" id = "manufacturer_name"/><br/>
-						Location:  <input type="text" id = "location"/><br/>
-						Url Link:  <input type="text" id = "url_link"/><br/>
-						Contact Information:  <input type="text" id = "contact_information"/><br/>
-						Origin:  <input type="text" id = "origin"/><br/>
-						Additional Info:  <input type="text" id = "additional_info"/><br/>
-						Barcode UPC:  <input type="text" id = "barcode_upc"/><br/>
+						{text_inputs}
 						Image:  <input type="file" accept = "image/*" id = "image"/> <br/>
 						<button type="submit" id = "submit_button"> Submit </button>
 				</div>
