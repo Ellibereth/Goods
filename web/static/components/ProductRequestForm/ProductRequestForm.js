@@ -40,7 +40,7 @@ export default class ProductRequestForm extends React.Component {
 
             $.ajax({
               type: "POST",
-              url: url  + "/addProductRequest",
+              url: real_url  + "/addProductRequest",
               data: form_data,
               success: function() {
                   window.location.reload();
