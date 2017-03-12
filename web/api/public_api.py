@@ -70,12 +70,11 @@ def verifySubmission():
 
 @public_api.route('/addProductRequest', methods = ['POST'])
 def addProductRequest():
-	request = {}
+	product_requests = {}
 	for key in request_keys:
-		request[key] = request.json.get(key)
-
+		product_requests[key] = request.json.get(key)
 	data_manager = ProductDataManager()
-	data_manager.addUserProductRequest(request)
+	data_manager.addUserProductRequest(product_requests)
 	data_manager.closeConnection()
 	output = {}
 	output['result'] = "success"
