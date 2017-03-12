@@ -4,7 +4,7 @@ import ProductRequestTextInput from './ProductRequestFormTextInput.js'
 import Navbar from '../Navbar/Navbar.js'
 
 var real_url = "https://whereisitmade.herokuapp.com"
-var test_url = "http://0.0.0.0:5000"
+var test_url = "https://0.0.0.0:5000"
 const form_labels = ['Product Description', "Price Minimum", "Price Maximum", "Contact Information"]
 const form_inputs = ["product_description", "price_min", "price_max", "contact_information"]
 
@@ -40,7 +40,7 @@ export default class ProductRequestForm extends React.Component {
 
             $.ajax({
               type: "POST",
-              url: test_url  + "/addProductRequest",
+              url: url  + "/addProductRequest",
               data: form_data,
               success: function() {
                   window.location.reload();
