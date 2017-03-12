@@ -26,8 +26,10 @@ export default class ProductSubmissionForm extends React.Component {
 
 
 	// handle the text input changes
-	onTextInputChange(key, value){
-		this.setState({key, value})
+	onTextInputChange(field, value){
+		var obj = {}
+	    obj[field] = value
+	    this.setState(obj)
 	}
 
 	//handle the image uploads
@@ -57,7 +59,7 @@ export default class ProductSubmissionForm extends React.Component {
 				  	})
 				  	$.ajax({
 					  type: "POST",
-					  url: real_url  + "/userSubmitProductInformation",
+					  url: real_url  + "/submitProductInformation",
 					  data: form_data,
 					  success: function() {
 					  		window.location.reload();
@@ -104,7 +106,9 @@ export default class ProductSubmissionForm extends React.Component {
 		for (var i = 0; i < form_inputs.length; i++){
 			var this_input = form_inputs[i]
 			text_inputs.push(
-					<ProductSubmissionTextInput value = {this.state[this_input]} key = {this_input[i]} label = {form_labels[i]}/>
+					<ProductSubmissionTextInput
+					onTextInputChange = {this.onTextInputChange.bind(this)}
+					 value = {this.state[this_input]} field = {this_input} label = {form_labels[i]}/>
 				)
 		}
 		return text_inputs

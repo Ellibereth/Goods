@@ -36,6 +36,7 @@ request_keys = ['product_description',
 				'price_max',
 				'contact_information'
 				]
+admin_login_password = 'powerplay'
 
 @public_api.route('/addProductSubmission', methods = ['POST'])
 def addProductSubmission():
@@ -80,6 +81,15 @@ def addProductRequest():
 	output['result'] = "success"
 	return jsonify(output) 
 
+@public_api.route('/checkAdminLogin', methods =['POST'])
+def checkAdminLogin():
+	password = request.json.get('password')
+	output = {}
+	if password == admin_login_password:
+		output['result'] = 'success'
+	else:
+		output['result'] = 'failure'
+	return jsonify(output)
 
 # @browser_api.route('/confirmAccount', methods = ['POST'])
 # def confirmAccount():

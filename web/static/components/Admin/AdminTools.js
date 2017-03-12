@@ -1,14 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
-export default class AdminTools extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-
-  componentDidMount(){
-	  		var submission_items = [
+const submission_items = [
 							'unique_id', 
 							'image_id',
 							'timeStamp',
@@ -22,6 +14,13 @@ export default class AdminTools extends React.Component {
 							'additional_info',
 							'verified'
 						 ]
+
+export default class AdminTools extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount(){
 			var submission_table = document.getElementById("submission_table")
 			var header_row = document.createElement("tr")
 			var thead = document.createElement("thead")
@@ -42,11 +41,8 @@ export default class AdminTools extends React.Component {
 			submission_table.appendChild(thead)
 			var tbody = document.createElement("tbody")
 			submission_table.appendChild(tbody)
-
 			var real_url = "https://whereisitmade.herokuapp.com"
-			var test_url = "https://127.0.0.1:5000"
-
-		
+			var test_url = "https://127.0.0.1:5000"		
 		  	$.ajax({
 			  type: "POST",
 			  url: real_url + "/getProductSubmissions",
@@ -120,8 +116,6 @@ export default class AdminTools extends React.Component {
 			  contentType : "application/json; charset=utf-8"
 			});
 		  }
-
-	
 
   render() {
     return (

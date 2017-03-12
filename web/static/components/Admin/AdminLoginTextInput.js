@@ -1,13 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-export default class ProductRequestFormTextInput extends React.Component {
+export default class AdminLoginTextInput extends React.Component {
   constructor(props) {
     super(props);
   }
 
   handleChange(event) {
-    this.props.onTextInputChange(this.props.field, event.target.value)
+    this.props.onTextInputChange(this.props.key, event.target.value)
   }
 
   render() {

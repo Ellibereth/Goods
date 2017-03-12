@@ -19,8 +19,8 @@ export default class Navbar extends React.Component {
                   <a class="navbar-brand" href="#">Remaura</a>
                 </div>
                 <ul class="nav navbar-nav">
-                  <li><a href="/">Product Submission Form</a></li>
-                  <li><a href="/requestForm">Product Request Form</a></li>
+                  <li><a href="/"> Product Request Form </a></li>
+                  <li><a href="/submissionForm">Product Submission Form</a></li>
                   <li><a href="#"> Admin Tools </a></li>
                 </ul>
               </div>

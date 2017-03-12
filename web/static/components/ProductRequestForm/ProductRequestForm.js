@@ -5,7 +5,7 @@ import Navbar from '../Navbar/Navbar.js'
 
 var real_url = "https://whereisitmade.herokuapp.com"
 var test_url = "http://0.0.0.0:5000"
-const form_labels = ['Product Description', "Price Min", "Price Maximum", "Contact Information"]
+const form_labels = ['Product Description', "Price Minimum", "Price Maximum", "Contact Information"]
 const form_inputs = ["product_description", "price_min", "price_max", "contact_information"]
 
 
@@ -22,8 +22,10 @@ export default class ProductRequestForm extends React.Component {
 
 
   // handle the text input changes
-  onTextInputChange(key, value){
-    this.setState({key, value})
+  onTextInputChange(field, value){
+    var obj = {}
+    obj[field] = value
+    this.setState(obj)
   }
 
   //handle the image uploads
@@ -38,7 +40,7 @@ export default class ProductRequestForm extends React.Component {
 
             $.ajax({
               type: "POST",
-              url: real_url  + "/userSubmitProductRequest",
+              url: test_url  + "/addProductRequest",
               data: form_data,
               success: function() {
                   window.location.reload();
@@ -56,7 +58,8 @@ export default class ProductRequestForm extends React.Component {
     for (var i = 0; i < form_inputs.length; i++){
       var this_input = form_inputs[i]
       text_inputs.push(
-          <ProductRequestTextInput value = {this.state[this_input]} key = {this_input[i]} label = {form_labels[i]}/>
+          <ProductRequestTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+          value = {this.state[this_input]} field = {this_input} label = {form_labels[i]}/>
         )
     }
     return text_inputs
@@ -70,7 +73,7 @@ export default class ProductRequestForm extends React.Component {
         <Navbar/>
         <div id = "form">
             {text_inputs}
-            <button type="submit" id = "submit_button"> Submit </button>
+            <button type="submit" id = "submit_button" onClick = {this.onSubmitPress.bind(this)}> Submit </button>
         </div>
       </div>
       )
