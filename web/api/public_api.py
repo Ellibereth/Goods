@@ -45,7 +45,7 @@ def addProductSubmission():
 		submission[key] = request.json.get(key)
 
 	data_manager = ProductDataManager()
-	data_manager.addUserProductSubmission(submission)
+	data_manager.addProductSubmission(submission)
 	data_manager.closeConnection()
 	output = {"result" : "success"}
 

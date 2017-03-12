@@ -204,7 +204,7 @@ class ProductDataManager:
 	# looking for comments and suggestions
 	# Darek Johnson 3/11
 	def addProductSubmission(self, submission):
-		self.createProductEntryTable()
+		self.createProductSubmissionTable()
 		table_name = self.USER_SUBMISSION_TABLE
 		# write the image_id and store the data
 		image_data = submission.get('images')
@@ -242,7 +242,7 @@ class ProductDataManager:
 		for key in product_submission_database_columns:
 			if submission.get(key) != None:
 				if key != "unique_id":
-					self.updateEntryByUniqueId(unique_id, key, submission[key], table_name)
+					self.updateEntryByUniqueId(table_name, unique_id, key, submission[key])
 	
 	def test(self):
 		keys = ['product_description',

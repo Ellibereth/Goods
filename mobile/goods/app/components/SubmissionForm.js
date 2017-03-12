@@ -75,7 +75,7 @@ export default class SubmissionForm extends React.Component {
 		for (var i = 0; i < this.state.images.length; i++){
 			image_data.push(this.state.images[i].data)
 		}
-		fetch(url + "/submitProductInformation", {method: "POST",
+		fetch(test_url + "/addProductSubmission", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
@@ -165,7 +165,8 @@ export default class SubmissionForm extends React.Component {
 
 	// when the form is submitted, we refresh the page, clearing all previously submitted data
 	refreshPage() {
-		this.setState({product_name : "",
+		this.setState({
+			product_name : "",
 			manufacturer_name : "",
 			contact_information : "",
 			url_link: "",

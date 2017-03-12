@@ -21,7 +21,7 @@ def sendImageEmail(image_name, image_data):
 	msg['Subject'] = "Please find attached images " + image_name
 	msg['From'] = "noreply@manaweb.com"
 	msg['To'] = "darek@manaweb.com"
-	msg.preamble = 'Image Submission ' + image_name
+	msg['Body'] = 'Image Submission ' + image_name
 
 	with open('./web/static/images/product_submissions/' + image_name, 'rb') as image:
 		img = MIMEImage(image.read())
@@ -56,7 +56,7 @@ def sendRequestEmail(request):
 	product_name = str(request.get('product_name'))
 	price_min = str(request.get('price_min'))
 	price_max = str(request.get('price_max'))
-	msg.preamble = 'Here is a request from ' + contact_information + "\n" + "Looking for a " + product_name + \
+	msg['Body'] = 'Here is a request from ' + contact_information + "\n" + "Looking for a " + product_name + \
 		" within the price range : ( " + price_min + " , " + price_max  + ")"
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
 	smtpserver.ehlo()

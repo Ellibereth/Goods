@@ -123,7 +123,7 @@ export default class ProductSubmissionForm extends React.Component {
 				<div id = "form">
 						{text_inputs}
 						Image:  <input type="file" accept = "image/*" id = "image"/> <br/>
-						<button type="submit" id = "submit_button"> Submit </button>
+						<button type="submit" id = "submit_button" onClick = {this.onSubmitPress.bind(this)}> Submit </button>
 				</div>
 			</div>
 			)
