@@ -46,23 +46,6 @@ def add_header(response):
 	return response
 
 
-@app.route('/adminLogin', methods = ['GET', 'POST'])
-def adminLogin():
-	if request.method == 'GET':
-		return render_template('adminLogin.html')
-	elif request.method == 'POST':
-		if (request.form['userName'] == 'admin' and request.form['password'] == 'powerplay'):
-			session['isAdmin'] = True
-			return redirect(url_for('productList'))
-		elif (request.form['userName'] == 'a' and request.form['password'] == 'a'):
-			session['isAdmin'] = True
-			return redirect(url_for('productList'))
-		elif (request.form['userName'] == 'testuser' and request.form['password'] == 'collectedcompany'):
-			session['isAdmin'] = True
-			return redirect(url_for('productList'))
-		else:
-			return render_template("adminLogin.html")
-
 @app.route('/static/<path:path>', methods = ['GET'])
 def send_static(path):
     return send_from_directory('static', path)
@@ -71,25 +54,6 @@ def send_static(path):
 @app.route('/<path:path>')
 def catch_all(path):
     return render_template("index.html")
-
-@app.route("/", methods = ['GET'])
-def index():
-	if request.method == 'GET':
-		return render_template("index.html")
-
-# Kenny what was the point of this in the old project?
-# is there a way I can use this so that it allows the static folder?
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def catch_all(path):
-#     return render_template("index.html")
-
-@app.route('/productList', methods = ['GET'])
-def productList():
-	if session.get('isAdmin'):
-		return render_template('productList.html')
-	else:
-		return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.debug = True

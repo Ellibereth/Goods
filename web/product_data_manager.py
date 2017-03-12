@@ -1,8 +1,5 @@
 import time
 import datetime
-import pytz
-from pytz import timezone
-import hashlib
 import string
 import random
 import os
@@ -36,7 +33,7 @@ product_submission_database_columns = [
 
 product_request_database_columns = [
 								'unique_id',
-								'time_stap',
+								'time_stamp',
 								'product_description',
 								'price_min',
 								'price_max',
@@ -105,7 +102,7 @@ class ProductDataManager:
 	# checks if the given table has the image id
 	def isUniqueIdTaken(self, table_name, unique_id):
 		column_name = "unique_id"
-		return self.tableHasEntryWithProperty(table_name, column_name, image_id)
+		return self.tableHasEntryWithProperty(table_name, column_name, unique_id)
 	
 	# generates a new unique_id for the given table
 	def generateNewUniqueId(self, table_name):
@@ -140,7 +137,7 @@ class ProductDataManager:
 
 	# return true if a table has a given column
 	# false otherwise
-	def tableHasColumn(self, table_name,column_name):
+	def tableHasColumn(self, table_name, column_name):
 		colnames = self.getColumnNames(table_name)
 		return column_name in colnames
 
@@ -154,7 +151,7 @@ class ProductDataManager:
 			return
 		if not self.tableHasColumn(table_name, column_name):
 			self.addColumnToTable(table_name, column_name)
-		sql = "UPDATE " + self.USER_SUBMISSION_TABLE + " SET " + column_name + " = %s " + " WHERE unique_id = %s"
+		sql = "UPDATE " + table_name + " SET " + column_name + " = %s " + " WHERE unique_id = %s"
 		self.db.execute(self.db.mogrify(sql, (data, unique_id)))
 
 	# adds a column to a given table if it does not already exist
@@ -190,7 +187,7 @@ class ProductDataManager:
 	# adds a product request to the database
 	def addProductRequest(self, request):
 		keys = product_request_database_columns
-		self.createRequestTable()
+		self.createProductRequestTable()
 		table_name = self.USER_REQUEST_TABLE
 		unique_id = self.generateNewUniqueId(table_name)
 		time_stamp = time.time()
@@ -199,12 +196,13 @@ class ProductDataManager:
 		## add code to send us an email when this happens 
 		email_api.sendRequestEmail(request)
 		for key in keys:
-			self.updateEntryByUniqueId(unique_id, key, request.get(key), table_name)
+			self.updateEntryByUniqueId(table_name, unique_id, key, request.get(key))
 
 	# takes submission dictionary as input then writes it to the database
 	# also sends the image as an email to darek@manaweb.com
 	# this should be refactored, but I'm not sure how to rework it best at this time
-	# looking for comments
+	# looking for comments and suggestions
+	# Darek Johnson 3/11
 	def addProductSubmission(self, submission):
 		self.createProductEntryTable()
 		table_name = self.USER_SUBMISSION_TABLE
@@ -245,12 +243,27 @@ class ProductDataManager:
 			if submission.get(key) != None:
 				if key != "unique_id":
 					self.updateEntryByUniqueId(unique_id, key, submission[key], table_name)
+	
+	def test(self):
+		keys = ['product_description',
+								'price_min',
+								'price_max',
+								'contact_information']
+		test_request = {}
+		for key in keys:
+			test_request[key] = "test"
+
+		self.addProductRequest(test_request)
+
+
 
 
 
 if __name__ == '__main__':
 	product_data_manager = ProductDataManager()
-	data = product_data_manager.getProductSubmissions()
-	print(data)
+	# print(product_data_manager.tableHasColumn("USER_REQUEST_TABLE", "unique_id"))
+	# print(product_data_manager.tableHasColumn("USER_REQUEST_TABLE", "product_description"))
+	# product_data_manager.test()
+	data = product_data_manager.getRequestSubmissions()
 	product_data_manager.closeConnection()
 

@@ -15,7 +15,7 @@ def sendImageEmail(image_name, image_data):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	
-	receiver = email
+	
 	message = image_name
 	msg = MIMEMultipart()
 	msg['Subject'] = "Please find attached images " + image_name
@@ -48,13 +48,16 @@ def sendRequestEmail(request):
 	# to send from manaweb
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
-	receiver = email
 	msg = MIMEMultipart()
-	msg['Subject'] = "Please find attached images " + image_name
+	msg['Subject'] = "User Request!"
 	msg['From'] = "noreply@manaweb.com"
 	msg['To'] = "darek@manaweb.com"
-	msg.preamble = 'Here is a request from ' + request.get('contact_information') + "\n" + "Looking for a " + request.get('product_name') + \
-		+ " within the price range : ( " + price_min + " , " + price_max  + ")"
+	contact_information = str(request.get('contact_information'))
+	product_name = str(request.get('product_name'))
+	price_min = str(request.get('price_min'))
+	price_max = str(request.get('price_max'))
+	msg.preamble = 'Here is a request from ' + contact_information + "\n" + "Looking for a " + product_name + \
+		" within the price range : ( " + price_min + " , " + price_max  + ")"
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
 	smtpserver.ehlo()
 	smtpserver.starttls()

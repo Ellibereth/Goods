@@ -74,7 +74,7 @@ def addProductRequest():
 	for key in request_keys:
 		product_requests[key] = request.json.get(key)
 	data_manager = ProductDataManager()
-	data_manager.addUserProductRequest(product_requests)
+	data_manager.addProductRequest(product_requests)
 	data_manager.closeConnection()
 	output = {}
 	output['result'] = "success"
@@ -90,11 +90,3 @@ def checkAdminLogin():
 		output['result'] = 'failure'
 	return jsonify(output)
 
-# @browser_api.route('/confirmAccount', methods = ['POST'])
-# def confirmAccount():
-# 	userID = request.json['userID']
-# 	user_manager = Users()
-# 	user_manager.updateInfo(userID, 'confirmed', True)
-# 	user_manager.closeConnection()
-# 	encoded = jwt.encode({'userID': userID, 'isAdmin':False}, secret_key, algorithm='HS256')
-# 	return jsonify({'result' : 'success', 'jwt' : encoded.decode('utf-8')})
