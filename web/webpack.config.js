@@ -23,11 +23,12 @@ var config = {
     ]
   },
   resolve : {
-     root: [
-       APP_DIR
+     modules: [
+       APP_DIR,
+       "node_modules"
      ],
 
-    extensions: ['', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']
   },
   target : 'node',
   plugins: [

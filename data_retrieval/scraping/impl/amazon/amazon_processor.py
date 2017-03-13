@@ -124,14 +124,6 @@ class AmazonProcessor():
 		time_3 = time.time()
 		return True
 
-	# given something like 
-	# "https://www.amazon.com/s/ref=lp_3733821_pg_2?rh=n%3A1055398%2Cn%3A%211063498%2Cn%3A1063306%2Cn%3A3733781%2Cn%3A3733821&page=2&ie=UTF8&qid=1488683343&spIA=B01N7MG70Z,B00YHXESPE,B00YHXF394&lo=garden"
-	# we can change it so the page=2 changes to page=3  (or in general increments it)
-	def getNextPageUrl(self, url):
-		page_index = url.find("page=")
-		url_after_page = url[page_index + 5:]
-		current_page_number = int(url_after_page.split("&")[0])
-
 	# if url = "amazon.com/dp/[asin]"
 	# will return [asin]
 	# if no /dp exists then will return None
@@ -166,7 +158,6 @@ class AmazonProcessor():
 		self.processAllUrlFromQueue()
 		self.joinProcesses()
 
-
 	def writeTableToCsv(self):
 		writer = AmazonWriter()
 		writer.writeTableToCsv()
@@ -176,35 +167,13 @@ class AmazonProcessor():
 		# asin = "B00WB14DTA"
 		# url = "https://www.amazon.com/dp/" + asin
 		# self.oneTimeProcessProductUrl(url)
-
-		chair_url_start = Url.ChairStart
-		chair_url_end = Url.ChairEnd
-		self.getDataFromCategoryUrl(chair_url_start, chair_url_end)
-		print("done with chairs")
-
-		machine_url_start = Url.MachineStart
-		machine_url_end = Url.MachineEnd
-		self.getDataFromCategoryUrl(machine_url_start, machine_url_end)
-
-		mens_clothing_url_start = Url.MensClothingStart
-		mens_clothing_url_end = Url.MensClothingEnd
-		self.getDataFromCategoryUrl(mens_clothing_url_start, mens_clothing_url_end)
-
-		toys_url_start = Url.ToysStart
-		toys_url_end = Url.ToysEnd
-		self.getDataFromCategoryUrl(toys_url_start , toys_url_end)
-
-		sports_url_start = Url.SportsStart
-		sports_url_end = Url.SportsEnd
-		self.getDataFromCategoryUrl(sports_url_start, sports_url_end)
-
-		furniture_url_start = Url.FurnitureStart
-		furniture_url_end = Url.FurnitureEnd
-		self.getDataFromCategoryUrl(furniture_url_start, furniture_url_end)
-
-		beauty_url_start = Url.BeautyStart
-		beauty_url_end = Url.BeautyEnd
-		self.getDataFromCategoryUrl(beauty_url_start, beauty_url_end)
+		self.getDataFromCategoryUrl(Url.ChairStart, Url.ChairEnd)
+		self.getDataFromCategoryUrl(Url.MachineStart, Url.MachineEnd)
+		self.getDataFromCategoryUrl(Url.MensClothingStart, Url.MensClothingEnd)
+		self.getDataFromCategoryUrl(Url.ToysStart , Url.ToysEnd)
+		self.getDataFromCategoryUrl(Url.SportsStart, Url.SportsEnd)
+		self.getDataFromCategoryUrl(Url.FurnitureStart, Url.FurnitureEnd)
+		self.getDataFromCategoryUrl(Url.BeautyStart,  Url.BeautyEnd)
 	
 	def test(self):
 		print("test_starting")

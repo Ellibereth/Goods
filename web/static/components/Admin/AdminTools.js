@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 const submission_items = [
-							'unique_id', 
+							'submission_id', 
 							'image_id',
 							'timeStamp',
 							'manufacturer_name',
@@ -52,7 +52,7 @@ export default class AdminTools extends React.Component {
 						var row = document.createElement("tr") 
 						for (var j = 0; j < submission_items.length; j++) {
 							var item = submission_items[j]
-							if (item == "unique_id"){
+							if (item == "submission_id"){
 								var cell = document.createElement("th")
 								cell.innerHTML = submission_list[i][item]
 								cell.scope = "row"
@@ -82,11 +82,11 @@ export default class AdminTools extends React.Component {
 
 					// here we need to add the verify column
 					var cell = document.createElement("td")
-					cell.setAttribute("data-unique-id",  submission_list[i]['unique_id'])
+					cell.setAttribute("data-unique-id",  submission_list[i]['submission_id'])
 					cell.onclick = function () {
-							var unique_id = this.getAttribute("data-unique-id")
+							var submission_id = this.getAttribute("data-unique-id")
 							var formData = JSON.stringify({
-											"unique_id" : unique_id
+											"submission_id" : submission_id
 										})
 							$.ajax({
 								  type: "POST",
@@ -94,7 +94,7 @@ export default class AdminTools extends React.Component {
 								  data: formData,
 								  success: function(data) {
 								  	// window.location.reload();
-								  	console.log(unique_id)
+								  	console.log(submission_id)
 								  },
 								  error: function(){
 								  	console.log("error")

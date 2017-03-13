@@ -16,7 +16,7 @@ import credential
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
 product_submission_database_columns = [
-							'id', 
+							'submission_id', 
 							'image_id',
 							'time_stamp',
 							'manufacturer_name',
@@ -32,7 +32,7 @@ product_submission_database_columns = [
 						 ]
 
 product_request_database_columns = [
-								'unique_id',
+								'submission_id',
 								'time_stamp',
 								'product_description',
 								'price_min',
@@ -59,9 +59,9 @@ class ProductDataManager:
 		self.db.close()
 		self.p_db.close()
 
-	# creates a new table with columns unique_id and time_stamp
+	# creates a new table with columns submission_id and time_stamp
 	def createNewTable(self, table_name):
-		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (unique_id TEXT, time_stamp FLOAT)'
+		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (submission_id TEXT, time_stamp FLOAT)'
 		self.db.execute(createTableCode)		
 
 	# initializes the product submission table
@@ -83,7 +83,7 @@ class ProductDataManager:
 		return len(query) > 0
 
 	# returns a random alphanumric character with size 20
-	# used for generating unique_id
+	# used for generating submission_id
 	def id_generator(self, size=20, chars=string.ascii_uppercase + string.digits):
 		return ''.join(random.choice(chars) for _ in range(size))
 
@@ -100,16 +100,16 @@ class ProductDataManager:
 		return image_id
 
 	# checks if the given table has the image id
-	def isUniqueIdTaken(self, table_name, unique_id):
-		column_name = "unique_id"
-		return self.tableHasEntryWithProperty(table_name, column_name, unique_id)
+	def isUniqueIdTaken(self, table_name, submission_id):
+		column_name = "submission_id"
+		return self.tableHasEntryWithProperty(table_name, column_name, submission_id)
 	
-	# generates a new unique_id for the given table
+	# generates a new submission_id for the given table
 	def generateNewUniqueId(self, table_name):
-		unique_id = self.id_generator()
-		while self.isUniqueIdTaken(unique_id, table_name):
-			unique_id = self.id_generator()
-		return unique_id
+		submission_id = self.id_generator()
+		while self.isUniqueIdTaken(submission_id, table_name):
+			submission_id = self.id_generator()
+		return submission_id
 
 	# given a table, outputs the table as a dictionary 
 	def getTableDataAsDict(self, table_name):
@@ -141,9 +141,9 @@ class ProductDataManager:
 		colnames = self.getColumnNames(table_name)
 		return column_name in colnames
 
-	# updates an entry given a table and it's unique_id
-	def updateEntryByUniqueId(self, table_name, unique_id, column_name, data):	
-		if column_name == "unique_id":
+	# updates an entry given a table and it's submission_id
+	def updateEntryByUniqueId(self, table_name, submission_id, column_name, data):	
+		if column_name == "submission_id":
 			return
 		if column_name == "time_stamp":
 			return		
@@ -151,8 +151,8 @@ class ProductDataManager:
 			return
 		if not self.tableHasColumn(table_name, column_name):
 			self.addColumnToTable(table_name, column_name)
-		sql = "UPDATE " + table_name + " SET " + column_name + " = %s " + " WHERE unique_id = %s"
-		self.db.execute(self.db.mogrify(sql, (data, unique_id)))
+		sql = "UPDATE " + table_name + " SET " + column_name + " = %s " + " WHERE submission_id = %s"
+		self.db.execute(self.db.mogrify(sql, (data, submission_id)))
 
 	# adds a column to a given table if it does not already exist
 	def addColumnToTable(self, table_name, column_name, data_type = None):
@@ -171,32 +171,32 @@ class ProductDataManager:
 		colnames = [desc[0] for desc in self.db.description]
 		return colnames
 
-	# verifies a product submission by unique_id
-	def verifyProductSubmission(self, unique_id):
-		if unique_id == None or unique_id == "":
+	# verifies a product submission by submission_id
+	def verifyProductSubmission(self, submission_id):
+		if submission_id == None or submission_id == "":
 			return
 		# if the unique id is not in use, then return 
-		elif not self.isUniqueIdTaken(unique_id):
+		elif not self.isUniqueIdTaken(submission_id):
 			return
 		else:
 			table_name = self.USER_SUBMISSION_TABLE
 			column_name = "verified"
 			data = True
-			self.updateEntryByUniqueId(table_name, unique_id, column_name, data)
+			self.updateEntryByUniqueId(table_name, submission_id, column_name, data)
 
 	# adds a product request to the database
 	def addProductRequest(self, request):
 		keys = product_request_database_columns
 		self.createProductRequestTable()
 		table_name = self.USER_REQUEST_TABLE
-		unique_id = self.generateNewUniqueId(table_name)
+		submission_id = self.generateNewUniqueId(table_name)
 		time_stamp = time.time()
-		sql = "INSERT INTO " + table_name + " (unique_id, time_stamp) VALUES (%s, %s)"
-		self.db.execute(self.db.mogrify(sql, (unique_id, time_stamp)))
+		sql = "INSERT INTO " + table_name + " (submission_id, time_stamp) VALUES (%s, %s)"
+		self.db.execute(self.db.mogrify(sql, (submission_id, time_stamp)))
 		## add code to send us an email when this happens 
 		email_api.sendRequestEmail(request)
 		for key in keys:
-			self.updateEntryByUniqueId(table_name, unique_id, key, request.get(key))
+			self.updateEntryByUniqueId(table_name, submission_id, key, request.get(key))
 
 	# takes submission dictionary as input then writes it to the database
 	# also sends the image as an email to darek@manaweb.com
@@ -234,21 +234,22 @@ class ProductDataManager:
 
 		## insert into the database
 		time_stamp = time.time()
-		unique_id = self.generateNewUniqueId(table_name)
-		sql = self.db.mogrify("INSERT INTO " + table_name + " (unique_id, time_stamp) VALUES (%s, %s)"
-					,(unique_id, time_stamp))
+		submission_id = self.generateNewUniqueId(table_name)
+		sql = self.db.mogrify("INSERT INTO " + table_name + " (submission_id, time_stamp) VALUES (%s, %s)"
+					,(submission_id, time_stamp))
 		self.db.execute(sql)
 		print(submission.get('num_images'))
 		for key in product_submission_database_columns:
 			if submission.get(key) != None:
-				if key != "unique_id":
-					self.updateEntryByUniqueId(table_name, unique_id, key, submission[key])
+				if key != "submission_id":
+					self.updateEntryByUniqueId(table_name, submission_id, key, submission[key])
 	
 	def test(self):
 		keys = ['product_description',
-								'price_min',
-								'price_max',
-								'contact_information']
+				'price_min',
+				'price_max',
+				'contact_information']
+		
 		test_request = {}
 		for key in keys:
 			test_request[key] = "test"
@@ -261,7 +262,7 @@ class ProductDataManager:
 
 if __name__ == '__main__':
 	product_data_manager = ProductDataManager()
-	# print(product_data_manager.tableHasColumn("USER_REQUEST_TABLE", "unique_id"))
+	# print(product_data_manager.tableHasColumn("USER_REQUEST_TABLE", "submission_id"))
 	# print(product_data_manager.tableHasColumn("USER_REQUEST_TABLE", "product_description"))
 	# product_data_manager.test()
 	data = product_data_manager.getRequestSubmissions()

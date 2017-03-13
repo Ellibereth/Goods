@@ -64,8 +64,7 @@ export default class SubmissionForm extends React.Component {
 
 	// opens and closes the modal
 	toggleBarcodeModal(){
-		var new_visible = !this.state.barcode_modal_visible
-		this.setState({barcode_modal_visible : new_visible})
+		this.setState({barcode_modal_visible : !this.state.barcode_modal_visible})
 	}
 
 	// when the submit button is pressed, we submit all the form data to the server
@@ -75,7 +74,7 @@ export default class SubmissionForm extends React.Component {
 		for (var i = 0; i < this.state.images.length; i++){
 			image_data.push(this.state.images[i].data)
 		}
-		fetch(test_url + "/addProductSubmission", {method: "POST",
+		fetch(url + "/addProductSubmission", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
