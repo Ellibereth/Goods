@@ -13,11 +13,8 @@ import urllib
 import base64
 import openpyxl
 
-sys.path.append('../../../../credentials')
-import credential 
-
-sys.path.append('../../utility')
-from labels import Labels
+from utility import credential
+from utility.labels import Labels
 
 class AmazonWriter:
 	def __init__(self):

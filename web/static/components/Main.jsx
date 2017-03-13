@@ -12,17 +12,18 @@ export default class Main extends React.Component {
 	render() {
 		return (
 			<div>
-		        {this.props.children}
-		    </div>);
+				{this.props.children}
+			</div>);
 	}
 }
 
 
 ReactDOM.render(  
 	<Router history={ browserHistory }>
-    <Route path='/' component={ Main }>
-      <IndexRoute component={HomeApp} />
-      <Route path = '/admin' component = {AdminApp}/>
-    </Route>
-  </Router>, document.getElementById('app'));
+		<Route path='/' component={ Main }>
+			<IndexRoute component={HomeApp} />
+			<Route path = '/admin' component = {AdminApp}/>
+		</Route>
+	</Router>, 
+document.getElementById('app'));
 

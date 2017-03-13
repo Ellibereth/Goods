@@ -5,7 +5,7 @@ import random
 import os
 import sys
 import time
-from labels import Labels
+from utility.labels import Labels
 
 """" 
 this class will represent a product 

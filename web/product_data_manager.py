@@ -9,9 +9,7 @@ import psycopg2
 import urllib
 import base64
 import email_api
-
-sys.path.append('./credentials')
-import credential
+from credentials import credential
 
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
@@ -243,22 +241,32 @@ class ProductDataManager:
 			if submission.get(key) != None:
 				if key != "submission_id":
 					self.updateEntryByUniqueId(table_name, submission_id, key, submission[key])
+
+	# deletes a row from a table by submission_id
+	def deleteRowFromTableById(self, table_name, submission_id):
+		sql = "DELETE FROM " + table_name + " WHERE submission_id = %s"
+		mogrified_sql = self.db.mogrify(sql, (submission_id,))
+		self.db.execute(mogrified_sql)
+
+	## deletes a product submission by id
+	def deleteProductSubmissionById(self, submission_id):
+		table_name = self.USER_SUBMISSION_TABLE
+		self.deleteRowFromTableById(table_name, submission_id)
+
+	## deletes a product request by id
+	def deleteProductRequestById(self, submission_id):
+		table_name = self.USER_REQUEST_TABLE
+		self.deleteRowFromTableById(table_name, submission_id)
 	
 	def test(self):
 		keys = ['product_description',
 				'price_min',
 				'price_max',
 				'contact_information']
-		
 		test_request = {}
 		for key in keys:
 			test_request[key] = "test"
-
 		self.addProductRequest(test_request)
-
-
-
-
 
 if __name__ == '__main__':
 	product_data_manager = ProductDataManager()
@@ -266,5 +274,6 @@ if __name__ == '__main__':
 	# print(product_data_manager.tableHasColumn("USER_REQUEST_TABLE", "product_description"))
 	# product_data_manager.test()
 	data = product_data_manager.getRequestSubmissions()
+	print(data)
 	product_data_manager.closeConnection()
 

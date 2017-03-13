@@ -9,20 +9,17 @@ from selenium.webdriver import DesiredCapabilities
 import random
 import xlrd
 import sys
-# from multiprocessing import Queue
 import queue
 from threading import Thread
+sys.stdout = open('./impl/amazon/logs/log.log', 'w')
 
-sys.path.append('../../utility')
-sys.stdout = open('logs/log.log', 'w')
-
-from html_scraper import HtmlScraper
-from amazon_parser import AmazonParser
-from amazon_writer import AmazonWriter
-from amazon_crawler import AmazonCrawler
-from product import Product 
-from labels import Labels
-from url import Url
+from utility.html_scraper import HtmlScraper
+from impl.amazon.amazon_parser import AmazonParser
+from impl.amazon.amazon_writer import AmazonWriter
+from impl.amazon.amazon_crawler import AmazonCrawler
+from utility.product import Product 
+from utility.labels import Labels
+from impl.amazon.url import Url
 
 """
 Dependendies ../scraper.py, ./amazon_parser.py, ./amazon_crawler.py, ./ amazon_writer.py
@@ -183,10 +180,6 @@ class AmazonProcessor():
 		return test_result
 
 
-if __name__ == "__main__":
-	print("Bro")
-	processor = AmazonProcessor(10)
-	processor.main()
 
 
 

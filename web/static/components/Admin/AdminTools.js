@@ -16,11 +16,11 @@ const submission_items = [
 						 ]
 
 export default class AdminTools extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+	constructor(props) {
+		super(props);
+	}
 
-  componentDidMount(){
+	componentDidMount(){
 			var submission_table = document.getElementById("submission_table")
 			var header_row = document.createElement("tr")
 			var thead = document.createElement("thead")

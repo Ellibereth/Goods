@@ -13,9 +13,8 @@ import sys
 import queue
 from threading import Thread
 import re
-sys.path.append('../../utility')
-from product import Product
-from labels import Labels
+from utility.product import Product
+from utility.labels import Labels
 
 """
 This file has 2 main goals

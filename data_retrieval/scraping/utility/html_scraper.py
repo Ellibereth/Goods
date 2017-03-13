@@ -11,11 +11,8 @@ import random
 import openpyxl
 import xlrd
 import sys
-# from multiprocessing import Queue
 import queue
-
-sys.path.append('../../../../credentials')
-import credential
+from utility import credential
 
 
 class HtmlScraper():
@@ -69,7 +66,7 @@ class HtmlScraper():
 	# right now it's hardcoded
 	def initializeProxyList(self):
 		proxy_list = list()
-		with open ("../../scraping_tools/proxylist.csv") as f:
+		with open ("./scraping_tools/proxylist.csv") as f:
 			csv_reader = csv.reader(f, delimiter=',', quotechar='|')
 			for row in csv_reader:
 				proxy = row[0] + ":" + row[1]
@@ -86,7 +83,7 @@ class HtmlScraper():
 	# right now it's hardcoded
 	def initializeUserAgentList(self):
 		user_agent_list = list()
-		with open ("../../scraping_tools/user_agents.txt") as f:
+		with open ("./scraping_tools/user_agents.txt") as f:
 			for line in f:
 				this_agent = line.replace("\n", "").replace("\"", "")
 				user_agent_list.append(this_agent)
