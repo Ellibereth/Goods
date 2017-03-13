@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import ProductSubmissionTextInput from './ProductSubmissionTextInput.js'
-import Navbar from '../Navbar/Navbar.js'
 
 var real_url = "https://whereisitmade.herokuapp.com"
 var test_url = "http://0.0.0.0:5000"
@@ -119,7 +118,6 @@ export default class ProductSubmissionForm extends React.Component {
 
 		return (
 			<div> 
-				<Navbar/>
 				<div id = "form">
 						{text_inputs}
 						Image:  <input type="file" accept = "image/*" id = "image"/> <br/>

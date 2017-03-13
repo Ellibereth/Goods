@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import AdminLoginTextInput from './AdminLoginTextInput.js'
+import AdminLogin from './AdminLogin.js'
 import AdminTools from './AdminTools.js'
 
 export default class AdminApp extends React.Component {

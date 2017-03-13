@@ -1,22 +1,24 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import ProductRequestTextInput from './ProductRequestFormTextInput.js'
-import Navbar from '../Navbar/Navbar.js'
+import {Form, Col, FormGroup, Button} from 'react-bootstrap'
+
 
 var real_url = "https://whereisitmade.herokuapp.com"
-var test_url = "https://0.0.0.0:5000"
-const form_labels = ['Product Description', "Price Minimum", "Price Maximum", "Contact Information"]
-const form_inputs = ["product_description", "price_min", "price_max", "contact_information"]
+var test_url = "http://0.0.0.0:5000"
+const form_labels = ['What is your name?', "What is your email?", "Phone Number? (Optional)", "How much would you like to pay?", "What are you looking for?"]
+const form_inputs = ["name", "email", "phone_number", "price_range", "product_description"]
 
 
 export default class ProductRequestForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: "",
+      email: "",
+      phone_number : "",
+      price_range: "",
       product_description : "",
-      price_min : "",
-      price_max: "",
-      contact_information: "",     
     }
   }
 
@@ -31,16 +33,18 @@ export default class ProductRequestForm extends React.Component {
   //handle the image uploads
 
   onSubmitPress(){
-            var form_data = JSON.stringify({
-              "product_description" : this.state.product_description,
-              "price_min" : this.state.price_min,
-              "price_max" : this.state.price_max,
-              "contact_information" : this.state.contact_information
-            })
+            var data = {}
+            for (var i = 0; i < form_inputs.length; i++){
+              var key = form_inputs[i]
+              data[key] = this.state[key]
+            }
+            console.log(data)
+
+            var form_data = JSON.stringify({data})
 
             $.ajax({
               type: "POST",
-              url: real_url  + "/addProductRequest",
+              url: test_url  + "/addProductRequest",
               data: form_data,
               success: function() {
                   window.location.reload();
@@ -69,13 +73,16 @@ export default class ProductRequestForm extends React.Component {
     var text_inputs = this.getTextInputs.bind(this)()
 
     return (
-      <div> 
-        <Navbar/>
-        <div id = "form">
-            {text_inputs}
-            <button type="submit" id = "submit_button" onClick = {this.onSubmitPress.bind(this)}> Submit </button>
-        </div>
-      </div>
+      <Form horizontal>
+        {text_inputs}
+        <FormGroup controlId = "submit_buton">
+          <Col smOffset={0} sm={10}>
+            <Button type="submit" onClick = {this.onSubmitPress.bind(this)}>
+              Submit!
+            </Button>
+          </Col>
+        </FormGroup>
+      </Form>
       )
     }
   }

@@ -1,6 +1,7 @@
 import smtplib
 import time
 from email.mime.image import MIMEImage
+from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def sendImageEmail(image_name, image_data):
@@ -56,8 +57,10 @@ def sendRequestEmail(request):
 	product_name = str(request.get('product_name'))
 	price_min = str(request.get('price_min'))
 	price_max = str(request.get('price_max'))
-	msg['Body'] = 'Here is a request from ' + contact_information + "\n" + "Looking for a " + product_name + \
+	body = 'Here is a request from ' + contact_information + "\n" + "Looking for a " + product_name + \
 		" within the price range : ( " + price_min + " , " + price_max  + ")"
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
 	smtpserver.ehlo()
 	smtpserver.starttls()

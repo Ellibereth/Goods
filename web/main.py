@@ -43,6 +43,9 @@ def add_header(response):
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
 	response.headers['Cache-Control'] = 'public, max-age=0'
 	response.headers.add('Access-Control-Allow-Origin', '*')
+	response.headers.add("Access-Control-Allow-Credentials", "true")
+	response.headers.add("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT")
+	response.headers.add("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
 	return response
 
 
