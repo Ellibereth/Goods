@@ -22,7 +22,7 @@ export default class EmailConfirmationPage extends React.Component {
 
 		$.ajax({
 			type: "POST",
-			url: test_url + "/confirmEmail",
+			url: real_url + "/confirmEmail",
 			data: form_data,
 			success: function(data) {
 				if (data.result == "success"){
