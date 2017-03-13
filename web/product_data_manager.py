@@ -73,7 +73,7 @@ class ProductDataManager:
 	# checks if the given table has an entry with data in that given column name	
 	def tableHasEntryWithProperty(self, table_name, column_name, entry):
 		try:
-			sql = "SELECT * FROM " + table_name + " WHERE %s = %s"
+			sql = "SELECT * FROM " + table_name + " WHERE " + column_name + " = %s"
 			self.db.execute(self.db.mogrify(sql (column_name, entry)))
 		except:
 			return False
@@ -254,7 +254,7 @@ class ProductDataManager:
 		self.deleteRowFromTableById(table_name, submission_id)
 
 	## deletes a product request by id
-	def deleteProductRequestById(self, submission_id):
+	def deleteProductRequestBySubmissionId(self, submission_id):
 		table_name = self.USER_REQUEST_TABLE
 		self.deleteRowFromTableById(table_name, submission_id)
 	

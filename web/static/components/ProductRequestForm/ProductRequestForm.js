@@ -11,79 +11,83 @@ const form_inputs = ["name", "email", "phone_number", "price_range", "product_de
 
 
 export default class ProductRequestForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      email: "",
-      phone_number : "",
-      price_range: "",
-      product_description : "",
-    }
-  }
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: "",
+			email: "",
+			phone_number : "",
+			price_range: "",
+			product_description : "",
+		}
+	}
 
 
-  // handle the text input changes
-  onTextInputChange(field, value){
-    var obj = {}
-    obj[field] = value
-    this.setState(obj)
-  }
+	// handle the text input changes
+	onTextInputChange(field, value){
+		var obj = {}
+		obj[field] = value
+		this.setState(obj)
+	}
 
-  //handle the image uploads
 
-  onSubmitPress(){
-            var data = {}
-            for (var i = 0; i < form_inputs.length; i++){
-              var key = form_inputs[i]
-              data[key] = this.state[key]
-            }
-            console.log(data)
+	onSubmitPress(){
+			var data = {}
+			for (var i = 0; i < form_inputs.length; i++){
+				var key = form_inputs[i]
+				data[key] = this.state[key]
+			}
 
-            var form_data = JSON.stringify({data})
+			var form_data = JSON.stringify(data)
 
-            $.ajax({
-              type: "POST",
-              url: test_url  + "/addProductRequest",
-              data: form_data,
-              success: function() {
-                  window.location.reload();
-              },
-              error : function(){
-                console.log("error")
-              },
-              dataType: "json",
-              contentType : "application/json; charset=utf-8"
-          });
-        }
+			$.ajax({
+				type: "POST",
+				url: test_url  + "/addProductRequest",
+				data: form_data,
+				success: function(data) {
 
-  getTextInputs(){
-    var text_inputs = []
-    for (var i = 0; i < form_inputs.length; i++){
-      var this_input = form_inputs[i]
-      text_inputs.push(
-          <ProductRequestTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-          value = {this.state[this_input]} field = {this_input} label = {form_labels[i]}/>
-        )
-    }
-    return text_inputs
-  }
+					if (data.result == "failure") {
+						alert(data.error)
+					}
+					else {
+						console.log(data)
+					}
+				},
+				error : function(){
+					console.log("error")
+				},
+				dataType: "json",
+				contentType : "application/json; charset=utf-8"
+			});
+		}
 
-  render() {
-    var text_inputs = this.getTextInputs.bind(this)()
+	getTextInputs(){
+		var text_inputs = []
+		for (var i = 0; i < form_inputs.length; i++){
+		var this_input = form_inputs[i]
+		text_inputs.push(
+			<ProductRequestTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+			value = {this.state[this_input]} field = {this_input} label = {form_labels[i]}/>
+		)
+	}
+		return text_inputs
+	}
 
-    return (
-      <Form horizontal>
-        {text_inputs}
-        <FormGroup controlId = "submit_buton">
-          <Col smOffset={0} sm={10}>
-            <Button type="submit" onClick = {this.onSubmitPress.bind(this)}>
-              Submit!
-            </Button>
-          </Col>
-        </FormGroup>
-      </Form>
-      )
-    }
-  }
+	render() {
+		var text_inputs = this.getTextInputs.bind(this)()
+
+		return (
+			<Form horizontal>
+				{text_inputs}
+				<FormGroup controlId = "submit_buton">
+				<Col smOffset={0} sm={10}>
+					<Button onClick = {this.onSubmitPress.bind(this)}>
+					Submit!
+					</Button>
+				</Col>
+				</FormGroup>
+			</Form>
+		)
+	}
+}
 

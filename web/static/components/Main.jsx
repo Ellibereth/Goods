@@ -7,6 +7,8 @@ var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
 import HomeApp from './Home/HomeApp.js'
 import AdminApp from './Admin/AdminApp.js'
+import PageNotFound from './Misc/PageNotFound.js'
+import EmailConfirmationPage from './Confirmation/EmailConfirmationPage.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -22,7 +24,9 @@ ReactDOM.render(
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
 			<IndexRoute component={HomeApp} />
-			<Route path = '/admin' component = {AdminApp}/>
+			<Route path = 'admin' component = {AdminApp}/>
+			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
+			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 
 document.getElementById('app'));

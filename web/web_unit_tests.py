@@ -2,7 +2,7 @@ import unittest
 from product_data_manager import ProductDataManager
 
 
-class TestAmazon(unittest.TestCase):
+class TestWeb(unittest.TestCase):
 	def testGetAsinFromUrl_ReturnsCorrectAsin(self):
 		processor = AmazonProcessor(1)
 		asin = processor.getAsinFromUrl("amazon.com/dp/3214124")

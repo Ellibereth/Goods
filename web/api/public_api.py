@@ -5,6 +5,7 @@ from passlib.hash import argon2
 # import jwt
 import base64
 from product_data_manager import ProductDataManager
+from account_manager import AccountManager
 
 # from py2neo import authenticate, Graph, Node
 # authenticate("localhost:7474", "neo4j", "powerplay")
@@ -32,9 +33,10 @@ submission_keys = [
 						 ]
 
 request_keys = ['product_description',
-				'price_min',
-				'price_max',
-				'contact_information'
+				'email',
+				'phone_number',
+				'price_range',
+				'name'
 				]
 admin_login_password = 'powerplay'
 
@@ -71,14 +73,23 @@ def verifySubmission():
 @public_api.route('/addProductRequest', methods = ['POST'])
 def addProductRequest():
 	product_requests = {}
+
 	for key in request_keys:
 		product_requests[key] = request.json.get(key)
+	email = request.json.get('email')
+	account_manager = AccountManager()
+	output = account_manager.addEmailToUserInfoTable(email)
+	account_manager.closeConnection()
+	if output['result'] == "failure":
+		return jsonify(output)
+
 	data_manager = ProductDataManager()
-	data_manager.addProductRequest(product_requests)
+	output = data_manager.addProductRequest(product_requests)
 	data_manager.closeConnection()
 	output = {}
-	output['result'] = "success"
-	return jsonify(output) 
+	output['result'] = 'success'
+	output['error'] = 'none'
+	return jsonify(output)
 
 @public_api.route('/checkAdminLogin', methods =['POST'])
 def checkAdminLogin():
@@ -89,4 +100,13 @@ def checkAdminLogin():
 	else:
 		output['result'] = 'failure'
 	return jsonify(output)
+
+@public_api.route('/confirmEmail', methods = ['POST'])
+def confirmEmail():
+	email_confirmation_id = request.json.get('email_confirmation_id')
+	account_manager = AccountManager()
+	output = account_manager.confirmEmail(email_confirmation_id)
+	account_manager.closeConnection()
+	return jsonify(output)
+
 

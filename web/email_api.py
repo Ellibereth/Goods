@@ -11,11 +11,9 @@ def sendImageEmail(image_name, image_data):
 	passW = "powerplay"
 	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
 	"""
-	
 	# to send from manaweb
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
-	
 	
 	message = image_name
 	msg = MIMEMultipart()
@@ -44,8 +42,7 @@ def sendRequestEmail(request):
 	sender = "manaweb.noreply@gmail.com"
 	passW = "powerplay"
 	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
-	"""
-	
+	"""	
 	# to send from manaweb
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
@@ -70,3 +67,31 @@ def sendRequestEmail(request):
 	
 	smtpserver.send_message(msg)
 	smtpserver.close()
+
+def sendEmailConfirmation(email, email_confirmation_id):
+	#to send from temporary gmail 
+	"""
+	sender = "manaweb.noreply@gmail.com"
+	passW = "powerplay"
+	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
+	"""	
+	# to send from manaweb
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	msg['Subject'] = "Please Confirm Your Email!"
+	msg['From'] = "noreply@manaweb.com"
+	msg['To'] = email
+	url = "https://whereisitmade.herokuapp.com/confirmEmail/" + email_confirmation_id
+	body = "Click on the following link to confirm your e-mail \n " + url
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	# smtpserver.sendmail(sender, receiver, msg)
+	smtpserver.send_message(msg)
+	smtpserver.close()
+
