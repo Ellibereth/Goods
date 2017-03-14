@@ -34,39 +34,39 @@ class AccountManager:
 	# initializes a user info table 
 	def createUserInfoTable(self):
 		table_name = self.USER_INFO_TABLE
-		self.sql.createNewTable(table_name)
+		self.sql.createNewTableIfNotExists(table_name)
 		for col in user_info_columns:
-			self.sql.addColumnToTable(table_name, column_name = col['name'], data_type = col['type'])
+			self.sql.addColumnToTableIfNotExists(table_name, column_name = col['name'], data_type = col['type'])
 
 
 	# handles a new user email
 	# first checks if the email is in the table
 	# also checks if it's a real email too with a try/except in email_api.py
 	def addEmailToUserInfoTable(self, input_email):
-		self.sql.createNewTable(self.USER_INFO_TABLE)
+		self.sql.createNewTableIfNotExists(self.USER_INFO_TABLE)
 		output = {}
 		try:
 			email = input_email.lower()
 		except:
-			output['result'] = 'failure'
+			output['success'] = False
 			output['error'] = "Email is not a string"
 			return output
 
 		email_confirmation_id = self.generateEmailConfirmationId()
 		print(self.tableHasEmail(email))
 		if self.tableHasEmail(email):
-			output['result'] = 'failure'
+			output['success'] = False
 			output['error'] = "No need to send an confirmation since this email exists!"
 			return output
 		try:
 			email_api.sendEmailConfirmation(email, email_confirmation_id)
 		except:
-			output['result'] = 'failure'
+			output['success'] = False
 			output['error'] = "Invalid Email Address"
 			return output
 		table_name = self.USER_INFO_TABLE
 		time_stamp = time.time()
-		self.sql.addColumnToTable(table_name, 'email')
+		self.sql.addColumnToTableIfNotExists(table_name, 'email')
 		sql = "INSERT INTO " + table_name + " (email) VALUES (%s)"
 		mogrified_sql = self.sql.db.mogrify(sql, (email,))
 		self.sql.db.execute(mogrified_sql)
@@ -77,9 +77,9 @@ class AccountManager:
 		default_info['email'] = email
 		for col in user_info_columns:
 			key = col['name']
-			self.sql.addColumnToTable(table_name, col['name'], col['type'])
+			self.sql.addColumnToTableIfNotExists(table_name, col['name'], col['type'])
 			self.sql.updateEntryByKey(table_name, 'email', email, key, default_info[key])
-		output['result'] = 'success'
+		output['success'] = True
 		return output
 
 	# generates a new email_confirmation_id
@@ -109,7 +109,7 @@ class AccountManager:
 	# how to make a Labels like class for all the db management
 	def isEmailConfirmed(self, email):
 		table_name = self.USER_INFO_TABLE
-		table_data = self.sql.getTableDataAsDict(table_name)
+		table_data = self.sql.tableToDict(table_name)
 		is_confirmed = False
 		for row in table_data:
 			if row['email'] == email.lower():
@@ -117,7 +117,6 @@ class AccountManager:
 					is_confirmed = True
 					break
 		return is_confirmed
-
 
 	# sets the 'email_confirmed' column to true for this e-mail
 	def confirmEmail(self, email_confirmation_id):
@@ -128,7 +127,7 @@ class AccountManager:
 		data = True
 		self.sql.updateEntryByKey(table_name, key_column_name, key, target_column_name, data)
 		output = {}
-		output['result'] = 'success'
+		output['success'] = False
 		return output
 		#### should we do this?
 		# then we delete the old confirmation pin once confirmed

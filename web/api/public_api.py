@@ -49,7 +49,7 @@ def addProductSubmission():
 	data_manager = ProductDataManager()
 	data_manager.addProductSubmission(submission)
 	data_manager.closeConnection()
-	output = {"result" : "success"}
+	output = {"success" : False}
 
 	return jsonify(output)
 
@@ -67,7 +67,7 @@ def verifySubmission():
 	data_manager.verifyProductSubmission(submission_id)
 	data_manager.closeConnection()
 	output = {}
-	output['result'] = "success"
+	output['success'] = False
 	return jsonify(output)
 
 @public_api.route('/addProductRequest', methods = ['POST'])
@@ -80,14 +80,14 @@ def addProductRequest():
 	account_manager = AccountManager()
 	output = account_manager.addEmailToUserInfoTable(email)
 	account_manager.closeConnection()
-	if output['result'] == "failure":
+	if output['success'] == False:
 		return jsonify(output)
 
 	data_manager = ProductDataManager()
 	output = data_manager.addProductRequest(product_requests)
 	data_manager.closeConnection()
 	output = {}
-	output['result'] = 'success'
+	output['success'] = True
 	output['error'] = 'none'
 	return jsonify(output)
 
@@ -96,9 +96,9 @@ def checkAdminLogin():
 	password = request.json.get('password')
 	output = {}
 	if password == admin_login_password:
-		output['result'] = 'success'
+		output['success'] = True
 	else:
-		output['result'] = 'failure'
+		output['success'] = False
 	return jsonify(output)
 
 @public_api.route('/confirmEmail', methods = ['POST'])

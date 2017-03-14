@@ -4,6 +4,7 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import TopNavBar from '../Navbar/TopNavBar.js'
 import HomePageLeft from './HomePageLeft.js'
 import HomePageRight from './HomePageRight.js'
+import HomePageImageRow from './HomePageImageRow'
 
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
@@ -24,6 +25,7 @@ export default class HomePageMainContainer extends React.Component {
 						<HomePageLeft toggleRequestFormModal = {this.props.toggleRequestFormModal.bind(this)}/>
 					</Col>
 				</Row>
+				<HomePageImageRow/>
 			</Grid>
 		);
 	}

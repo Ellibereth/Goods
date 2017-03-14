@@ -4,6 +4,8 @@ import {} from 'react-bootstrap';
 import RequestModal from './RequestModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'
 import TopNavBar from '../Navbar/TopNavBar.js'
+import Footer from '../Misc/Footer.js'
+
 
 
 export default class HomeApp extends React.Component {
@@ -23,9 +25,10 @@ export default class HomeApp extends React.Component {
   render() {
 
     return (
-        <div id = "home_page_container">
+        <div id = "home-page-container">
               <TopNavBar/>
               <HomePageMainContainer toggleRequestFormModal = {this.toggleRequestFormModal.bind(this)}/>
+              <Footer/>
               <RequestModal show = {this.state.show_modal} toggleRequestFormModal = {this.toggleRequestFormModal.bind(this)} />
         </div>
     );

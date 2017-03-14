@@ -25,7 +25,7 @@ export default class EmailConfirmationPage extends React.Component {
 			url: real_url + "/confirmEmail",
 			data: form_data,
 			success: function(data) {
-				if (data.result == "success"){
+				if (data.success){
 					// maybe do something to display if not confirmed
 					this.setState({display : "confirmed"})
 				}

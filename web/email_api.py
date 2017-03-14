@@ -50,12 +50,11 @@ def sendRequestEmail(request):
 	msg['Subject'] = "User Request!"
 	msg['From'] = "noreply@manaweb.com"
 	msg['To'] = "darek@manaweb.com"
-	contact_information = str(request.get('contact_information'))
-	product_name = str(request.get('product_name'))
-	price_min = str(request.get('price_min'))
-	price_max = str(request.get('price_max'))
-	body = 'Here is a request from ' + contact_information + "\n" + "Looking for a " + product_name + \
-		" within the price range : ( " + price_min + " , " + price_max  + ")"
+	email = str(request.get('email'))
+	product_description = str(request.get('product_description'))
+	price_range = str(request.get('price_range'))
+	body = 'Here is a request from ' + email + "\n" + "Looking for a " + product_description + \
+		" in the price range : " + price_range
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)

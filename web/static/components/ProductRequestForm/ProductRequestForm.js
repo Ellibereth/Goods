@@ -22,7 +22,6 @@ export default class ProductRequestForm extends React.Component {
 		}
 	}
 
-
 	// handle the text input changes
 	onTextInputChange(field, value){
 		var obj = {}
@@ -30,23 +29,20 @@ export default class ProductRequestForm extends React.Component {
 		this.setState(obj)
 	}
 
-
 	onSubmitPress(){
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
 				data[key] = this.state[key]
 			}
-
 			var form_data = JSON.stringify(data)
-
 			$.ajax({
 				type: "POST",
 				url: real_url  + "/addProductRequest",
 				data: form_data,
 				success: function(data) {
 
-					if (data.result == "failure") {
+					if (!data.success) {
 						alert(data.error)
 					}
 					else {
@@ -65,16 +61,18 @@ export default class ProductRequestForm extends React.Component {
 		var text_inputs = []
 		for (var i = 0; i < form_inputs.length; i++){
 		var this_input = form_inputs[i]
-		text_inputs.push(
-			<ProductRequestTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-			value = {this.state[this_input]} field = {this_input} label = {form_labels[i]}/>
-		)
-	}
+			text_inputs.push(
+				
+			)
+		}
 		return text_inputs
 	}
 
 	render() {
-		var text_inputs = this.getTextInputs.bind(this)()
+		var text_inputs = form_inputs.map((form_input, index) =>
+			<ProductRequestTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}/>
+			)
 
 		return (
 			<Form horizontal>

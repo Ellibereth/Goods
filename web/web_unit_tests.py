@@ -1,22 +1,67 @@
 import unittest
+import string
+import random
 from product_data_manager import ProductDataManager
+from account_manager import AccountManager
+
+def id_generator(size=5, chars=string.ascii_uppercase + string.digits):
+		return ''.join(random.choice(chars) for _ in range(size))
+
+# checks if the two lists of dictionaries have each element equal on a set of keys
+def areQueriesEqual(this_query, that_query, keys = None):
+	if keys == None:
+		this_keys = this_query[0].keys()
+		that_keys = that_query[0].keys()
+		if set(this_keys) != set(that_keys):
+			return False
+		else:
+			keys = this_keys
+
+	this_len = len(this_query)
+	that_len = len(that_query)
+	if this_len != that_len:
+		return False
+	for i in range(0, this_len):
+		for key in keys:
+			if this_query[i][key] != that_query[i][key]:
+				return False
+	return True
 
 
 class TestWeb(unittest.TestCase):
-	def testGetAsinFromUrl_ReturnsCorrectAsin(self):
-		processor = AmazonProcessor(1)
-		asin = processor.getAsinFromUrl("amazon.com/dp/3214124")
-		self.assertEqual('3214124', asin)
+
+	## inserts some random requests into the datbase, checks the get by submissionId method if it works
+	## then deletes and after deletion verifies the initial query is same as at the end
+	## test, insert, get, delete, and getAll
+	def testAddProductRequest_ReturnsSameList(self):
+		print("\n")
+		request = {}
+		keys = ['name', 'email', 'product_description', 'phone_number', 'price_range']
+		request_list = list()
+		for i in range(0,10):
+			request = {}
+			for key in keys:
+				request[key] = id_generator()
+			request_list.append(request)
+
+		product_manager = ProductDataManager()
+		initial_list = product_manager.getProductRequests()
+		for request in request_list:
+			submission_id = product_manager.addProductRequest(request)
+			output_request = product_manager.getProductRequestBySubmissionId(submission_id)
+			print(" ----------- ")
+			print(output_request)
+			for key in keys:
+				self.assertEquals(request[key], output_request[key])
+			product_manager.deleteProductRequestBySubmissionId(submission_id)
+		end_list = product_manager.getProductRequests()
+		product_manager.closeConnection()
 		
-	def testId_generator_ReturnsValidId(self):
-		processor = AmazonProcessor(1)
-		this_id = processor.id_generator()
-		self.assertGreater(len(this_id), 0)
-		for c in id:
-			self.verifyIsValidChar(c)
+		# checks if both queries are the same length
+		self.assertTrue(areQueriesEqual(initial_list, end_list))
 
 		
 if __name__ == '__main__':
-	suite = unittest.TestLoader().loadTestsFromTestCase(TestAmazon)
+	suite = unittest.TestLoader().loadTestsFromTestCase(TestWeb)
 	unittest.TextTestRunner(verbosity=2).run(suite)
 

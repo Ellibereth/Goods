@@ -23,7 +23,7 @@ export default class AdminApp extends React.Component {
 			data: form_data,
 			url: real_url + "/checkAdminLogin",
 			success: function(data) {
-				if (data.result == 'success') {
+				if (data.success) {
 					this.setState({access_granted : true})
 				}
 				else {
