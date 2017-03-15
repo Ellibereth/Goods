@@ -15,7 +15,7 @@ export default class EmailConfirmationPage extends React.Component {
 	
 	componentDidMount(){	
 		var test_url = "http://127.0.0.1:5000"
-		var real_url = "https://whereisitmade.herokuapp.com/"
+		var real_url = "https://whereisitmade.herokuapp.com"
 		var form_data = JSON.stringify({
 			"confirmation_id" : this.props.params.confirmation_id
 		})
