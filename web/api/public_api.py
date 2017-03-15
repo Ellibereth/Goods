@@ -43,12 +43,10 @@ def addProductSubmission():
 	submission = {}
 	for key in submission_keys:
 		submission[key] = request.json.get(key)
-
 	data_manager = ProductDataManager()
 	data_manager.addProductSubmission(submission)
 	data_manager.closeConnection()
 	output = {"success" : False}
-
 	return jsonify(output)
 
 @public_api.route('/getProductSubmissions', methods =['POST'])
@@ -57,6 +55,13 @@ def getProductSubmissions():
 	product_submissions = data_manager.getProductSubmissions()
 	data_manager.closeConnection()
 	return jsonify(product_submissions)
+
+@public_api.route('/getProductRequests', methods =['POST'])
+def getProductRequests():
+	data_manager = ProductDataManager()
+	product_requests = data_manager.getProductRequests()
+	data_manager.closeConnection()
+	return jsonify(product_requests)
 
 @public_api.route('/verifyProductSubmission', methods =['POST'])
 def verifySubmission():
@@ -81,6 +86,7 @@ def addProductRequest():
 
 @public_api.route('/checkAdminLogin', methods =['POST'])
 def checkAdminLogin():
+	print(request.json)
 	password = request.json.get('password')
 	output = {}
 	if password == admin_login_password:
@@ -88,7 +94,6 @@ def checkAdminLogin():
 	else:
 		output['success'] = False
 	return jsonify(output)
-
 
 ## confirms a request 
 @public_api.route('/confirmProductRequest', methods = ['POST'])

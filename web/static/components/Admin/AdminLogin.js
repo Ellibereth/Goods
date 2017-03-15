@@ -14,18 +14,26 @@ export default class AdminLogin extends React.Component {
 }
 
 	// this has to be moved to the server side, will do when I'm back from dinner 3/11
-	onLoginSubmit(event) {
-		this.props.onLoginSubmit()
+	onLoginSubmit() {
+		this.props.onLoginSubmit(this.state.username, this.state.password)
+	}
+
+	onTextInputChange(field, value) {
+		var obj = {}
+		obj[field] = value
+		this.setState(obj)
 	}
 
 	render() {
 		return (
 			<div>
 				<h2> Heathcliffe required </h2>
-				<AdminLoginTextInput lable = "Username" value = {this.state.username} key = "username"/>
-				<AdminLoginTextInput lable = "Password" value = {this.state.password} key = "password"/>
+				<AdminLoginTextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
+					 value = {this.state.username} field = "username" type = "text"/>
+				<AdminLoginTextInput label = "Password" onTextInputChange = {this.onTextInputChange.bind(this)}
+				value = {this.state.password} field = "password" type = "password"/>
 				<div>
-					<button type = "submit" onPress = {this.onLoginSubmit.bind(this)}> Admin Login </button>
+					<button onClick = {this.onLoginSubmit.bind(this)}> Admin Login </button>
 				</div>
 			</div>
 		);

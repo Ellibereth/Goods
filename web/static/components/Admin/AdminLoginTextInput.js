@@ -7,7 +7,7 @@ export default class AdminLoginTextInput extends React.Component {
   }
 
   handleChange(event) {
-    this.props.onTextInputChange(this.props.key, event.target.value)
+    this.props.onTextInputChange(this.props.field, event.target.value)
   }
 
   render() {
@@ -15,7 +15,7 @@ export default class AdminLoginTextInput extends React.Component {
         <div id = {this.props.label}>
           <label >
             {this.props.label} :
-             <input value={this.props.value} onChange={this.handleChange.bind(this)} />
+             <input value={this.props.value} onChange={this.handleChange.bind(this)} type = {this.props.type} />
           </label>
           <br/>
         </div>

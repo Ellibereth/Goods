@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import { Navbar, Nav, NavItem} from 'react-bootstrap';
+var Link = require('react-router').Link;
 
 export default class TopNavBar extends React.Component {
   constructor(props) {
@@ -22,10 +23,10 @@ export default class TopNavBar extends React.Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <NavItem eventKey={1} href="#">Left Pulled Link</NavItem>
+                <NavItem eventKey={1}> <Link to="/admin">Admin</Link> </NavItem>
               </Nav>
               <Nav pullRight>
-                <NavItem eventKey={1} href="#"> Home </NavItem>
+                <NavItem eventKey={2}> <Link to="/">Home</Link> </NavItem>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
