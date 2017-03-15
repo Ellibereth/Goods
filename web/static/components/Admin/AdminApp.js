@@ -10,7 +10,7 @@ export default class AdminApp extends React.Component {
 			access_granted : false
 		}
 	}
-
+	
 	// this has to be moved to the server side, will do when I'm back from dinner 3/11
 	onLoginSubmit(username, password) {
 		var form_data = JSON.stringify({
@@ -23,7 +23,7 @@ export default class AdminApp extends React.Component {
 		$.ajax({
 			type: "POST",
 			data: form_data,
-			url: test_url + "/checkAdminLogin",
+			url: real_url + "/checkAdminLogin",
 			success: function(data) {
 				if (data.success) {
 					that.setState({access_granted : true})

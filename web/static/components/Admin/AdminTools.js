@@ -16,7 +16,7 @@ export default class AdminTools extends React.Component {
 			var that = this
 			$.ajax({
 			  type: "POST",
-			  url: test_url + "/getProductRequests",
+			  url: real_url + "/getProductRequests",
 			  success: function(data) {
 				console.log(data)
 				that.setState({product_requests: data})
