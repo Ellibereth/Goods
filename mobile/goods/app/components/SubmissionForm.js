@@ -2,7 +2,6 @@
 import React from 'react';
 import {Component} from 'react'
 import {Image, Modal, TextInput, Alert, TouchableOpacity, TouchableWithoutFeedback, Text, StyleSheet, View, ScrollView} from 'react-native';
-var ImagePicker = require('react-native-image-picker');
 const {CameraRoll,} = 'react'
 const url = "https://whereisitmade.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
@@ -11,15 +10,8 @@ import KeyboardSpacer from 'react-native-keyboard-spacer'
 import BarcodeModal from './BarcodeModal'
 import SubmissionFormField from './SubmissionFormField'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import AddingImageModal from './AddingImageModal'
 
-//options for the image picker
-var options = {
-  title: 'Select an Image',
-  storageOptions: {
-    skipBackup: true,
-    path: 'images',
-  }
-};
 
 // setCustomText(customTextProps);
 // setCustomTextInput(customTextInputProps);
@@ -36,7 +28,8 @@ export default class SubmissionForm extends React.Component {
 			barcode_modal_visible : false,
 			barcode_upc: "",
 			barcode_type: "",
-			origin : ""
+			origin : "",
+			image_modal_visible: false,
 		}
 	}
 
@@ -59,12 +52,15 @@ export default class SubmissionForm extends React.Component {
 			type = barcode_type.substring(8, barcode_type.length)
 		} 
 		this.setState({barcode_type: type})
-	
 	}
 
 	// opens and closes the modal
 	toggleBarcodeModal(){
 		this.setState({barcode_modal_visible : !this.state.barcode_modal_visible})
+	}
+
+	toggleImageModal(){
+		this.setState({image_modal_visible : !this.state.image_modal_visible})
 	}
 
 	// when the submit button is pressed, we submit all the form data to the server
@@ -102,40 +98,6 @@ export default class SubmissionForm extends React.Component {
 		.done();
 	}
 
-	// this handles on picker press
-	handleImagePickerPress(){
-		/**
-		 * The first arg is the options object for customization (it can also be null or omitted for default options),
-		 * The second arg is the callback which sends object: response (more info below in README)
-		 */
-		ImagePicker.showImagePicker(options, (response) => {
-		  // console.log('Response = ', response);
-
-		  if (response.didCancel) {
-		    console.log('User cancelled image picker');
-		  }
-		  else if (response.error) {
-		    console.log('ImagePicker Error: ', response.error);
-		  }
-		  else if (response.customButton) {
-		    console.log('User tapped custom button: ', response.customButton);
-		  }
-		  else {
-		  	// console.log(response.uri)
-		    let source = { uri: response.uri };
-		    // You can also display the image using data:
-		    // let source = { uri: 'data:image/jpeg;base64,' + response.data };
-		    var images = this.state.images
-		    var image = {
-		    	source : source,
-		    	data : response.data
-		    }
-		    images.push(image)
-		    this.setState({image : image})
-		  }
-		});
-	}
-
 	onSubmitPress(){
 		Alert.alert(
 			  'Are you sure?',
@@ -158,7 +120,7 @@ export default class SubmissionForm extends React.Component {
 			    {text: 'Cancel', onPress: () => console.log('Cancel Pressed')},
 			  ],
 			  { cancelable: false }
-			  )
+			 )
 		
 	}
 
@@ -179,6 +141,11 @@ export default class SubmissionForm extends React.Component {
 		})
 	}
 
+	updateImages(images){
+		this.setState({images: images})
+	}
+
+
 	// this function removes a photo when it is clicked 
 	removePhoto(i){
 		console.log(i)
@@ -188,29 +155,18 @@ export default class SubmissionForm extends React.Component {
 	}
 
 	render() {
-		// here we get the image display from the state
-		var image_display = []
-		var images = this.state.images
-		for (var i = 0; i < images.length; i++) {
-			var image_item = (
-							<View style = {{flex : 1}} key = {i}>
-								<View style = {{height : 30}}>
-									<TouchableOpacity onPress = {() => {this.onRemovePhotoPress.bind(this)(i)}}>
-										<Icon name = "remove" size = {20}/>
-									</TouchableOpacity>
-								</View>
-								<Image style = {{height: 40, width : 40}} source = {images[i].source}/>
-							</View>
-						)
-			image_display.push(image_item)
-		}
-		console.log("submission form rendered")
 		return (
 				<ScrollView style = {styles.container}>
-					<BarcodeModal visible = {this.state.barcode_modal_visible}
-						setBarcodeUpc = {this.setBarcodeUpc.bind(this)}
-						toggleBarcodeModal = {this.toggleBarcodeModal.bind(this)}
-						/>
+						<BarcodeModal visible = {this.state.barcode_modal_visible}
+							setBarcodeUpc = {this.setBarcodeUpc.bind(this)}
+							toggleBarcodeModal = {this.toggleBarcodeModal.bind(this)}
+							/>
+						<AddingImageModal visible = {this.state.image_modal_visible} 
+							images = {this.state.images} 
+							onRemovePhotoPress = {this.onRemovePhotoPress.bind(this)}
+							updateImages = {this.updateImages.bind(this)}
+							toggleImageModal = {this.toggleImageModal.bind(this)}/>
+
 					<View style = {{padding: 20}}>
 						<SubmissionFormField value = {this.state.product_name} onChange = {this.handleProductNameChange.bind(this)}
 							label = "PRODUCT NAME"/>
@@ -227,17 +183,16 @@ export default class SubmissionForm extends React.Component {
 						<SubmissionFormField value = {this.state.additional_info} onChange = {this.handleAdditionalInfoChange.bind(this)}
 							label = "ADDITIONAL INFORMATION"/>
 					</View>
-					<View style = {styles.image_button}>
-						<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)} >
+					
+					
+					<View style = {styles.button}>
+						<TouchableOpacity onPress = {this.toggleImageModal.bind(this)} style = {styles.submit_button}>
 							<View>
 								<Text>
-									Add a photo
-								</Text>
+									Press to upload an image!
+								</Text>	
 							</View>
-						</TouchableWithoutFeedback>
-						<View style = {{flexDirection: "column", justifyContent: "center"}}>
-							{image_display}
-						</View>
+						</TouchableOpacity>						
 					</View>
 					<View style = {{height : 10}}/>
 					<View style = {styles.button}>

@@ -1,15 +1,10 @@
 import time
-import datetime
 import string
 import random
-import os
-import sys
 import time
 import psycopg2
-import urllib
 import base64
 import email_api
-from credentials import credential
 from sql_manager import SqlManager
 
 ## this is the same as the submission variables in product_data_manager.py 
@@ -48,56 +43,12 @@ product_request_submission_variables = [
 									'phone_number',
 									]
 
-# merge sorts an output from tableToDict by time_stamp
-def mergeSort(x):
-	result = []
-	if len(x) < 2:
-		return x
-	mid = int(len(x)/2)
-	y = mergeSort(x[:mid])
-	z = mergeSort(x[mid:])
-	while (len(y) > 0) or (len(z) > 0):
-		if len(y) > 0 and len(z) > 0:
-			# this is in case the time stamp is blank
-			if y[0]['time_stamp'] == None:
-				y_time_stamp = 0
-			else:
-				y_time_stamp = y[0]['time_stamp']
-			if z[0]['time_stamp'] == None:
-				z_time_stamp = 0
-			else:
-				z_time_stamp = z[0]['time_stamp']
-			if y_time_stamp > z_time_stamp:
-				result.append(z[0])
-				z.pop(0)
-			else:
-				result.append(y[0])
-				y.pop(0)
-		elif len(z) > 0:
-			for i in z:
-				result.append(i)
-				z.pop(0)
-		else:
-			for i in y:
-				result.append(i)
-				y.pop(0)
-	return result
 						 
 class ProductDataManager:
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
 		self.USER_REQUEST_TABLE = "USER_REQUEST_TABLE"
 		self.sql = SqlManager()
-		# database_credentials = credential.getDatabaseCredentials()
-		# self.p_db = psycopg2.connect(
-		#     database=database_credentials['database'],
-		#     user= database_credentials['user'],
-		#     password= database_credentials['password'],
-		#     host=database_credentials['host'],
-		#     port=database_credentials['port']
-		# )
-		# self.p_db.autocommit = True
-		# self.db = self.p_db.cursor()
 
 	def closeConnection(self):
 		self.sql.closeConnection()	
@@ -142,12 +93,12 @@ class ProductDataManager:
 	# returns a dictionary with all product submission
 	def getProductSubmissions(self):
 		allProducts = self.sql.tableToDict(self.USER_SUBMISSION_TABLE)
-		return mergeSort(allProducts)
+		return self.sql.mergeSort(allProducts)
 
 	# returns a dictionary with all request submissions
 	def getProductRequests(self):
 		allRequests = self.sql.tableToDict(self.USER_REQUEST_TABLE)
-		return mergeSort(allRequests)
+		return self.sql.mergeSort(allRequests)
 	
 	# verifies a product submission by submission_id
 	def verifyProductSubmission(self, submission_id):

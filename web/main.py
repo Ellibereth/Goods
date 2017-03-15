@@ -1,23 +1,8 @@
-from flask import Flask, render_template, request, url_for, redirect, session, flash, jsonify, send_from_directory
-from werkzeug import secure_filename
-# used for the date.today() in calculating age
-from datetime import date
-# used for time stamps 
+from flask import Flask, render_template, request, url_for, redirect, send_from_directory
 import time
-import datetime
-import pytz
-from pytz import timezone
-import smtplib
-import shutil
 import os
-import urllib
-import json
-from contextlib import closing
 import random
 import requests
-import sqlite3
-import sys
-import re
 
 
 # initialize app

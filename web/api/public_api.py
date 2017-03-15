@@ -1,8 +1,6 @@
-from flask import Blueprint, jsonify, request, session, render_template, redirect, url_for
+from flask import Blueprint, jsonify, request
 import time
-import random
 from passlib.hash import argon2
-# import jwt
 import base64
 from product_data_manager import ProductDataManager
 from account_manager import AccountManager
@@ -73,7 +71,7 @@ def verifySubmission():
 @public_api.route('/addProductRequest', methods = ['POST'])
 def addProductRequest():
 	product_requests = {}
-
+	output = {}
 	for key in request_keys:
 		product_requests[key] = request.json.get(key)
 	email = request.json.get('email')
@@ -84,9 +82,9 @@ def addProductRequest():
 		return jsonify(output)
 
 	data_manager = ProductDataManager()
-	output = data_manager.addProductRequest(product_requests)
+	data_manager.addProductRequest(product_requests)
 	data_manager.closeConnection()
-	output = {}
+	
 	output['success'] = True
 	output['error'] = 'none'
 	return jsonify(output)

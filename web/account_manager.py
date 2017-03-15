@@ -1,15 +1,9 @@
 import time
-import datetime
 import string
 import random
-import os
-import sys
-import time
 import psycopg2
-import urllib
 import base64
 import email_api
-from credentials import credential
 from sql_manager import SqlManager
 					
 

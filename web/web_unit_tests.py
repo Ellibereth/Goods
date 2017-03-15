@@ -38,7 +38,8 @@ class TestWeb(unittest.TestCase):
 		request = {}
 		keys = ['name', 'email', 'product_description', 'phone_number', 'price_range']
 		request_list = list()
-		for i in range(0,10):
+		num_entires = 3
+		for i in range(0, num_entires):
 			request = {}
 			for key in keys:
 				request[key] = id_generator()

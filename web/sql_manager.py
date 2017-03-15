@@ -1,14 +1,8 @@
 import time
-import datetime
 import string
 import random
-import os
-import sys
 import time
 import psycopg2
-import urllib
-import base64
-import email_api
 from credentials import credential
 						 
 class SqlManager:
@@ -155,3 +149,37 @@ class SqlManager:
 			output[keys[i]] = row[i]
 		return output
 
+	# merge sorts an output from tableToDict by time_stamp
+	def mergeSort(self, x):
+		result = []
+		if len(x) < 2:
+			return x
+		mid = int(len(x)/2)
+		y = self.mergeSort(x[:mid])
+		z = self.mergeSort(x[mid:])
+		while (len(y) > 0) or (len(z) > 0):
+			if len(y) > 0 and len(z) > 0:
+				# this is in case the time stamp is blank
+				if y[0]['time_stamp'] == None:
+					y_time_stamp = 0
+				else:
+					y_time_stamp = y[0]['time_stamp']
+				if z[0]['time_stamp'] == None:
+					z_time_stamp = 0
+				else:
+					z_time_stamp = z[0]['time_stamp']
+				if y_time_stamp > z_time_stamp:
+					result.append(z[0])
+					z.pop(0)
+				else:
+					result.append(y[0])
+					y.pop(0)
+			elif len(z) > 0:
+				for i in z:
+					result.append(i)
+					z.pop(0)
+			else:
+				for i in y:
+					result.append(i)
+					y.pop(0)
+		return result
