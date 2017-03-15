@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import {
   StyleSheet, View, TextInput, Text, TouchableWithoutFeedback, TouchableOpacity, Image
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'
 var ImagePicker = require('react-native-image-picker');
+import PhotoGrid from 'react-native-photo-grid'
 
 //options for the image picker
 var options = {
   title: 'Select an Image',
   storageOptions: {
-    skipBackup: true,
-    path: 'images',
+	skipBackup: true,
+	path: 'images',
   }
 };
 
@@ -21,8 +21,18 @@ export default class ImageSubmissionScreen extends Component {
 	this.state = {};
 	}
 
+	handleImagePress(isDefualtImage, id){
+		if (isDefualtImage) {
+			this.handleImagePickerPress.bind(this)()
+		}
+		else {
+			this.props.onRemovePhotoPress.bind(this)(id)
+		}
+
+	}
 	// this handles on picker press
 	handleImagePickerPress(){
+		console.log("image picker pressed")
 		/**
 		 * The first arg is the options object for customization (it can also be null or omitted for default options),
 		 * The second arg is the callback which sends object: response (more info below in README)
@@ -51,46 +61,63 @@ export default class ImageSubmissionScreen extends Component {
 			  }
 
 			  
-			  images.push(image)
-			  this.props.updateImages(images)
+				images.push(image)
+				this.props.updateImages(images)
 			}
 		});
+	}
+	renderHeader() {
+		return(
+		  <Text>I'm on top!</Text>
+		);
+	  }
+
+	renderItem(item, itemSize) {
+		return(
+			<TouchableOpacity
+				key = { item.id }
+				style = {{ width: 100, height: 100, borderWidth : 2 }}
+				onPress = {() => {this.handleImagePress.bind(this)(item['isDefault'], item['id'])}}>
+				<View style = {{flex : 1, alignItems: "center", justifyContent: "center"}} key = {item.id}>
+					{item['isDefault'] ? 
+						<Image style = {{height: 95, width : 95}} source = {require('../static/images/default.png')}/>
+					:
+						<Image style = {{height: 95, width : 95}} source = {{uri: item['source']['uri']}}/>
+					}
+				</View>
+			</TouchableOpacity>
+		)
 	}
 
 	render() {
 		// here we get the image display from the state
-		var image_display = []
 		var images = this.props.images
-		for (var i = 0; i < images.length; i++) {
-			var image_item = (
-				<View style = {{flex : 1}} key = {i}>
-					<View style = {{height : 30}}>
-						<TouchableOpacity onPress = {() => {this.props.onRemovePhotoPress(i)}}>
-							<Icon name = "remove" size = {20}/>
-			  			</TouchableOpacity>
-					</View>
-					<Image style = {{height: 40, width : 40}} source = {images[i].source}/>
-			  	</View>
-			)
-			image_display.push(image_item)
+		var filled_images = []
+		for (var i = 0; i < images.length; i++){
+			var this_image = {}
+			this_image['id'] = i
+			this_image['source'] = images[i].source
+			this_image['isDefault'] = false
+			filled_images.push(this_image)
 		}
+		for (var i = filled_images.length; i < 6; i++){
+			var default_image = {}
+			default_image['id'] = i
+			default_image['source'] = './static/images/default.png'
+			default_image['isDefault'] = true
+			filled_images.push(default_image)
+		}
+
+
 		return (
 			<View>
-				<View style = {styles.image_button}>
-					<TouchableWithoutFeedback onPress = {this.handleImagePickerPress.bind(this)} >
-						<View>
-							<Text>
-								Add a photo
-							</Text>
-						</View>
-					</TouchableWithoutFeedback>
-				</View>
-				<View style = {{flexDirection: "column", justifyContent: "center"}}>
-					<Text>
-						Below are your images
-					</Text>	
-					{image_display}
-				</View>
+				<PhotoGrid
+					data = { filled_images }
+					itemsPerRow = { 3 }
+					itemMargin = { 1 }
+					renderHeader = { this.renderHeader }
+					renderItem = { this.renderItem.bind(this) }
+				  />
 			</View>
 			);
 		}
@@ -98,7 +125,7 @@ export default class ImageSubmissionScreen extends Component {
 
 const styles = StyleSheet.create({
 	image_button : {
-		height : 100,
+		height : 40,
 		borderWidth : 0.5,
 		borderRadius : 5,
 		borderColor : "black"

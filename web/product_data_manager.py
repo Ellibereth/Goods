@@ -227,9 +227,10 @@ class ProductDataManager:
 		## insert into the database
 		time_stamp = time.time()
 		submission_id = self.generateNewSubmissionId(table_name)
-		sql = self.db.mogrify("INSERT INTO " + table_name + " (submission_id, time_stamp) VALUES (%s, %s)"
-					,(submission_id, time_stamp))
-		self.db.execute(sql)
+		self.sql.insertIntoTableWithInitialValue(table_name, "submission_id", submission_id)
+		## update the other variables
+		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'time_stamp', time_stamp)
+		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'confirmed', False)
 		for key in product_request_submission_variables:
 			if submission.get(key) != None:
 				self.sql.updateEntryByKey(table_name, 'submission_id', submission_id, key, submission[key])

@@ -107,7 +107,6 @@ class SqlManager:
 			self.addColumnToTableIfNotExists(table_name, target_column_name, data_type = data_type)
 		sql = "UPDATE " + table_name + " SET " + target_column_name + " = %s " + " WHERE " + key_column_name + " = %s"
 		mogrified_sql = self.db.mogrify(sql, (data, key))
-		print(mogrified_sql)
 		self.db.execute(mogrified_sql)
 
 	# adds a column to a given table if it does not already exist

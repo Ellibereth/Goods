@@ -70,7 +70,7 @@ export default class SubmissionForm extends React.Component {
 		for (var i = 0; i < this.state.images.length; i++){
 			image_data.push(this.state.images[i].data)
 		}
-		fetch(url + "/addProductSubmission", {method: "POST",
+		fetch(test_url + "/addProductSubmission", {method: "POST",
 		headers: {
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
@@ -148,9 +148,9 @@ export default class SubmissionForm extends React.Component {
 
 	// this function removes a photo when it is clicked 
 	removePhoto(i){
-		console.log(i)
-		var images = this.state.images.splice(i, 1)
-		this.setState({images: images})
+		var temp = this.state.images
+		temp.splice(i, 1)
+		this.setState({images: temp})
 		Alert.alert("Image Removed")
 	}
 
