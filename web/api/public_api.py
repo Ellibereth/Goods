@@ -94,7 +94,6 @@ def checkAdminLogin():
 @public_api.route('/confirmProductRequest', methods = ['POST'])
 def confirmProductRequest():
 	submission_id = request.json.get('submission_id')
-	output = 
 	product_manager = ProductDataManager()
 	output = product_manager.confirmRequest(submission_id)
 	product_manager.closeConnection()
