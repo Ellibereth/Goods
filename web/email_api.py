@@ -14,28 +14,24 @@ def sendImageEmail(image_name, image_data):
 	# to send from manaweb
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
-	
 	message = image_name
 	msg = MIMEMultipart()
 	msg['Subject'] = "Please find attached images " + image_name
 	msg['From'] = "noreply@manaweb.com"
 	msg['To'] = "darek@manaweb.com"
 	msg['Body'] = 'Image Submission ' + image_name
-
 	with open('./web/static/images/product_submissions/' + image_name, 'rb') as image:
 		img = MIMEImage(image.read())
 	msg.attach(img)
-
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
-	# smtpserver.sendmail(sender, receiver, msg)
-	
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
+## informs darek@manaweb.com of the incoming request 
 def sendRequestEmail(request):
 	#to send from temporary gmail 
 	"""
@@ -62,8 +58,32 @@ def sendRequestEmail(request):
 	smtpserver.starttls()
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
-	# smtpserver.sendmail(sender, receiver, msg)
-	
+	smtpserver.send_message(msg)
+	smtpserver.close()
+
+
+## sends an email to the user to confirm the request
+def sendRequestConfirmation(request, confirmation_id):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	msg['Subject'] = "User Request!"
+	msg['From'] = "noreply@manaweb.com"
+	email = str(request.get('email'))
+	msg['To'] = email
+	product_description = str(request.get('product_description'))
+	price_range = str(request.get('price_range'))
+	url = "https://whereisitmade.herokuapp.com/confirmRequest/" + confirmation_id
+	body = 'Please confirm that you are looking for :' + product_description + "\n" + \
+		" in the price range : " + price_range + "\n" \
+		+ "Click the following link to confirm : " + url
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
 	smtpserver.send_message(msg)
 	smtpserver.close()
 

@@ -9,6 +9,7 @@ import HomeApp from './Home/HomeApp.js'
 import AdminApp from './Admin/AdminApp.js'
 import PageNotFound from './Misc/PageNotFound.js'
 import EmailConfirmationPage from './Confirmation/EmailConfirmationPage.js'
+import RequestConfirmationPage from './Confirmation/RequestConfirmationPage.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -25,6 +26,7 @@ ReactDOM.render(
 		<Route path='/' component={ Main }>
 			<IndexRoute component={HomeApp} />
 			<Route path = 'admin' component = {AdminApp}/>
+			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>

@@ -74,19 +74,9 @@ def addProductRequest():
 	output = {}
 	for key in request_keys:
 		product_requests[key] = request.json.get(key)
-	email = request.json.get('email')
-	account_manager = AccountManager()
-	output = account_manager.addEmailToUserInfoTable(email)
-	account_manager.closeConnection()
-	if output['success'] == False:
-		return jsonify(output)
-
 	data_manager = ProductDataManager()
-	data_manager.addProductRequest(product_requests)
+	output = data_manager.addProductRequest(product_requests)
 	data_manager.closeConnection()
-	
-	output['success'] = True
-	output['error'] = 'none'
 	return jsonify(output)
 
 @public_api.route('/checkAdminLogin', methods =['POST'])
@@ -98,6 +88,18 @@ def checkAdminLogin():
 	else:
 		output['success'] = False
 	return jsonify(output)
+
+
+## confirms a request 
+@public_api.route('/confirmProductRequest', methods = ['POST'])
+def confirmProductRequest():
+	submission_id = request.json.get('submission_id')
+	output = 
+	product_manager = ProductDataManager()
+	output = product_manager.confirmRequest(submission_id)
+	product_manager.closeConnection()
+	return jsonify(output)
+
 
 @public_api.route('/confirmEmail', methods = ['POST'])
 def confirmEmail():

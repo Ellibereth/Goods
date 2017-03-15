@@ -33,8 +33,11 @@ product_request_database_columns = [
 								'price_range',
 								'email',
 								'phone_number',
-								'completed'
+								'completed',
+								'confirmed',
+								'confirmation_id'
 								]
+
 product_request_submission_variables = [
 									'name',
 									'product_description',
@@ -79,16 +82,26 @@ class ProductDataManager:
 		return image_id
 
 	# checks if the given table has the image id
-	def isUniqueIdTaken(self, table_name, submission_id):
+	def isSubmissionIdTaken(self, table_name, submission_id):
 		column_name = "submission_id"
 		return self.sql.tableHasEntryWithProperty(table_name, column_name, submission_id)
 	
 	# generates a new submission_id for the given table
-	def generateNewUniqueId(self, table_name):
+	def generateNewSubmissionId(self, table_name):
 		submission_id = self.id_generator()
-		while self.isUniqueIdTaken(submission_id, table_name):
+		while self.isSubmissionIdTaken(table_name, submission_id):
 			submission_id = self.id_generator()
 		return submission_id
+
+	def isConfirmationIdTaken(self, table_name, confirmation_id):
+		column_name = "confirmation_id"
+		return self.sql.tableHasEntryWithProperty(table_name, column_name, confirmation_id)
+
+	def generateNewConfirmationId(self, table_name):
+		confirmation_id = self.id_generator()
+		while self.isConfirmationIdTaken(confirmation_id, table_name):
+			confirmation_id = self.id_generator()
+		return confirmation_id
 
 	# returns a dictionary with all product submission
 	def getProductSubmissions(self):
@@ -104,8 +117,8 @@ class ProductDataManager:
 	def verifyProductSubmission(self, submission_id):
 		if submission_id == None or submission_id == "":
 			return
-		# if the unique id is not in use, then return 
-		elif not self.isUniqueIdTaken(submission_id):
+		# if the submission id is not in use, then return 
+		elif not self.isSubmissionIdTaken(submission_id):
 			return
 		else:
 			table_name = self.USER_SUBMISSION_TABLE
@@ -115,23 +128,39 @@ class ProductDataManager:
 
 	# adds a product request to the database
 	def addProductRequest(self, request, send_email = None):
+		output = {}
 		if send_email == None:
 			send_email = True
-		keys = product_request_submission_variables
+		submitted_keys = product_request_submission_variables
 		self.createProductRequestTable()
 		table_name = self.USER_REQUEST_TABLE
-		submission_id = self.generateNewUniqueId(table_name)
+		submission_id = self.generateNewSubmissionId(table_name)
+		confirmation_id = self.generateNewConfirmationId(table_name)
 		time_stamp = time.time()
-		self.sql.insertIntoTableWithInitialValue(table_name, "submission_id", submission_id)
-		## update the timestamp
-		self.sql.updateEntryByKey(table_name, 'submission_id', submission_id, "time_stamp", time_stamp)
+		# send the user an email asking to confirm the request
+		try: 
+			email_api.sendRequestConfirmation(request, confirmation_id)
+		# otherwise there's an error in the email
+		except:
+			output['success'] = False
+			output['error'] = "This email is not valid"
+			return output
 		## add code to send us an email when this happens 
 		if send_email:
 			email_api.sendRequestEmail(request)
-		for key in keys:
+		# initializes with the submission_id
+		self.sql.insertIntoTableWithInitialValue(table_name, "submission_id", submission_id)
+		## update the other variables
+		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'time_stamp', time_stamp)
+		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'confirmed', False)
+		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'completed', False)
+		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'confirmation_id', confirmation_id)
+		for key in submitted_keys:
 			if key != "submission_id":
 				self.sql.updateEntryByKey(table_name, "submission_id", submission_id, key, request.get(key))
-		return submission_id
+		output['success'] = True
+		output['submission_id'] = submission_id
+		return output
 
 	# given a submission_id, we find the request as a dict from the database
 	def getProductRequestBySubmissionId(self, submission_id):
@@ -140,6 +169,17 @@ class ProductDataManager:
 		table_name = self.USER_REQUEST_TABLE
 		this_submission = self.sql.getRowByUniqueProperty(table_name, 'submission_id', submission_id)
 		return this_submission
+
+	def confirmProductRequest(self, confirmation_id):
+		table_name = self.USER_INFO_TABLE
+		key_column_name = "confirmation_id"
+		key = confirmation_id
+		target_column_name = "confirmed"
+		data = True
+		self.sql.updateEntryByKey(table_name, key_column_name, key, target_column_name, data)
+		output = {}
+		output['success'] = True
+		return output
 
 	# takes submission dictionary as input then writes it to the database
 	# also sends the image as an email to darek@manaweb.com
@@ -177,7 +217,7 @@ class ProductDataManager:
 
 		## insert into the database
 		time_stamp = time.time()
-		submission_id = self.generateNewUniqueId(table_name)
+		submission_id = self.generateNewSubmissionId(table_name)
 		sql = self.db.mogrify("INSERT INTO " + table_name + " (submission_id, time_stamp) VALUES (%s, %s)"
 					,(submission_id, time_stamp))
 		self.db.execute(sql)

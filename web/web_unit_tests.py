@@ -9,6 +9,13 @@ def id_generator(size=5, chars=string.ascii_uppercase + string.digits):
 
 # checks if the two lists of dictionaries have each element equal on a set of keys
 def areQueriesEqual(this_query, that_query, keys = None):
+	# if both are empty return false
+	if len(this_query) == 0 and len(that_query) == 0:
+		return True
+	# if one is empty, but not the other return false
+	elif len(this_query) == 0 or len(that_query) == 0:
+		return False
+
 	if keys == None:
 		this_keys = this_query[0].keys()
 		that_keys = that_query[0].keys()
@@ -42,16 +49,19 @@ class TestWeb(unittest.TestCase):
 		for i in range(0, num_entires):
 			request = {}
 			for key in keys:
-				request[key] = id_generator()
+				if key == 'email':
+					request[key] = 'darek@manaweb.com'
+				else:
+					request[key] = id_generator()
 			request_list.append(request)
 
 		product_manager = ProductDataManager()
 		initial_list = product_manager.getProductRequests()
 		for request in request_list:
-			submission_id = product_manager.addProductRequest(request)
+			output = product_manager.addProductRequest(request)
+			submission_id = output['submission_id']
 			output_request = product_manager.getProductRequestBySubmissionId(submission_id)
-			print(" ----------- ")
-			print(output_request)
+			print(" --------------------------------------------------------- ")
 			for key in keys:
 				self.assertEquals(request[key], output_request[key])
 			product_manager.deleteProductRequestBySubmissionId(submission_id)

@@ -14,8 +14,6 @@ user_info_columns = [
 						{"name" : "email_confirmed", "type": "BOOL"}
 					]
 
-
-
 class AccountManager:
 	def __init__(self):
 		self.sql = SqlManager()
@@ -31,7 +29,6 @@ class AccountManager:
 		self.sql.createNewTableIfNotExists(table_name)
 		for col in user_info_columns:
 			self.sql.addColumnToTableIfNotExists(table_name, column_name = col['name'], data_type = col['type'])
-
 
 	# handles a new user email
 	# first checks if the email is in the table
@@ -121,7 +118,7 @@ class AccountManager:
 		data = True
 		self.sql.updateEntryByKey(table_name, key_column_name, key, target_column_name, data)
 		output = {}
-		output['success'] = False
+		output['success'] = True
 		return output
 		#### should we do this?
 		# then we delete the old confirmation pin once confirmed
