@@ -5,7 +5,7 @@ var env = process.env.WEBPACK_ENV;
 var BUILD_DIR = path.resolve(__dirname, 'static');
 var APP_DIR = path.resolve(__dirname, 'static/components');
 var config = {
-  entry: APP_DIR + '/Main.jsx',
+  entry: APP_DIR + '/Main.js',
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
@@ -13,7 +13,7 @@ var config = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {

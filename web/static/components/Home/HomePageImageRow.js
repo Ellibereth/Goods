@@ -23,7 +23,6 @@ export default class HomePageImageRow extends React.Component {
 		for (var i = 0; i < 3; i ++){
 			image_sources.push('../../static/images/home_page/' + i + '.png')
 		}
-		console.log(image_sources)
 		var col_sizes = [4,4,4]
 		var columns = col_sizes.map((col_size, index) =>
 			<Col md={col_size} style = {{overflow : "hidden"}}> 

@@ -86,7 +86,6 @@ def addProductRequest():
 
 @public_api.route('/checkAdminLogin', methods =['POST'])
 def checkAdminLogin():
-	print(request.json)
 	password = request.json.get('password')
 	output = {}
 	if password == admin_login_password:
