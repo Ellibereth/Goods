@@ -93,12 +93,11 @@ def checkAdminLogin():
 ## confirms a request 
 @public_api.route('/confirmProductRequest', methods = ['POST'])
 def confirmProductRequest():
-	submission_id = request.json.get('submission_id')
+	confirmation_id = request.json.get('confirmation_id')
 	product_manager = ProductDataManager()
-	output = product_manager.confirmRequest(submission_id)
+	output = product_manager.confirmProductRequest(confirmation_id)
 	product_manager.closeConnection()
 	return jsonify(output)
-
 
 @public_api.route('/confirmEmail', methods = ['POST'])
 def confirmEmail():

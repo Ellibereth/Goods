@@ -171,7 +171,16 @@ class ProductDataManager:
 		return this_submission
 
 	def confirmProductRequest(self, confirmation_id):
-		table_name = self.USER_INFO_TABLE
+		if confirmation_id == None:
+			output['success'] = False
+			output['error'] = "Confirmation id is None"
+			return output
+		if len(confirmation_id) != 20:
+			output['success'] = False
+			output['error'] = "Confirmation id is not right length"
+			return output
+
+		table_name = self.USER_REQUEST_TABLE
 		key_column_name = "confirmation_id"
 		key = confirmation_id
 		target_column_name = "confirmed"
