@@ -10,7 +10,7 @@ export default class AdminApp extends React.Component {
 			access_granted : false
 		}
 	}
-	
+
 	// this has to be moved to the server side, will do when I'm back from dinner 3/11
 	onLoginSubmit(username, password) {
 		var form_data = JSON.stringify({
@@ -19,19 +19,18 @@ export default class AdminApp extends React.Component {
 		})
 		var real_url = "https://whereisitmade.herokuapp.com"
 		var test_url = "http://127.0.0.1:5000"
-		var that = this
 		$.ajax({
 			type: "POST",
 			data: form_data,
 			url: real_url + "/checkAdminLogin",
 			success: function(data) {
 				if (data.success) {
-					that.setState({access_granted : true})
+					this.setState({access_granted : true})
 				}
 				else {
 					alert("nice try!")
 				}
-			},
+			}.bind(this),
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		})

@@ -59,8 +59,6 @@ export default class ImageSubmissionScreen extends Component {
 				  source : source,
 				  data : response.data
 			  }
-
-			  
 				images.push(image)
 				this.props.updateImages(images)
 			}
@@ -93,21 +91,15 @@ export default class ImageSubmissionScreen extends Component {
 		// here we get the image display from the state
 		var images = this.props.images
 		var filled_images = []
-		for (var i = 0; i < images.length; i++){
-			var this_image = {}
-			this_image['id'] = i
-			this_image['source'] = images[i].source
-			this_image['isDefault'] = false
-			filled_images.push(this_image)
-		}
-		for (var i = filled_images.length; i < 6; i++){
-			var default_image = {}
-			default_image['id'] = i
-			default_image['source'] = './static/images/default.png'
-			default_image['isDefault'] = true
+		for (var i = 0; i < 6; i++){
+			if (i < images.length){
+				var this_image = {'id' : i, 'isDefault' : false, 'source' : images[i].source}
+			}
+			else {
+				var this_image = {'id' : i, 'isDefault' : true}
+			}
 			filled_images.push(default_image)
 		}
-
 
 		return (
 			<View>

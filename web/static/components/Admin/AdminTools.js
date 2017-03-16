@@ -1,6 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+
+const request_variables = ['submission_id', 'name', 'email', 'product_description', 'price_range', 'confirmed', 'completed', 'time_stamp']
+const headers = ['Submission Id', 'Name', 'Email', 'Product Description', 'Price Range', 'Confirmed', 'Completed', 'Time Stamp']
 export default class AdminTools extends React.Component {
 	constructor(props) {
 		super(props);
@@ -13,20 +16,18 @@ export default class AdminTools extends React.Component {
 			var real_url = "https://whereisitmade.herokuapp.com"
 			var test_url = "http://127.0.0.1:5000"	
 			var product_requests = []
-			var that = this
 			$.ajax({
 			  type: "POST",
 			  url: real_url + "/getProductRequests",
 			  success: function(data) {
-				that.setState({product_requests: data})
-			  },
+				this.setState({product_requests: data})
+			  }.bind(this),
 			  error : function(){
 				console.log("error")
 			  },
 			  dataType: "json",
 			  contentType : "application/json; charset=utf-8"
 			});
-			return product_requests
 	}
 
 	shortenText(text){
@@ -52,26 +53,17 @@ export default class AdminTools extends React.Component {
 		}
 	}
 
-
 	render() {
 		var product_requests = this.state.product_requests
-		var request_variables = ['submission_id', 'name', 'email', 'product_description', 'price_range', 'confirmed', 'completed']
-		var headers = ['Submission Id', 'Name', 'Email', 'Product Description', 'Price Range', 'Confirmed', 'Completed']
 		var table_headers = headers.map((header) => 
 				<th> {header} </th>
 			)
-		
-		const td_styles = {
-			"word-wrap" : "break-word",
-			"min-width" : "160px",
-			"max-width" : "160px"
-		}
 
 		var table_entries = product_requests.map((request) => 
 				{	
 					var rows = request_variables.map((attr, index) =>
-							<td id = {request['submission_id'] + "_" + attr} s_id = {request['submission_id']}
-							attr = {attr} style = {td_styles} index = {index}
+							<td className = "admin-table-cell" id = {request['submission_id'] + "_" + attr} s_id = {request['submission_id']}
+							attr = {attr} index = {index}
 							onClick = {() => this.toggleText.bind(this)(request['submission_id'], index, attr)}> 
 							{this.shortenText(request[attr].toString())} </td> 
 						)

@@ -52,6 +52,8 @@ class ProductDataManager:
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
 		self.USER_REQUEST_TABLE = "USER_REQUEST_TABLE"
 		self.sql = SqlManager()
+		self.createProductSubmissionTable()
+		self.createProductRequestTable()
 
 	def closeConnection(self):
 		self.sql.closeConnection()	
@@ -106,12 +108,12 @@ class ProductDataManager:
 	# returns a dictionary with all product submission
 	def getProductSubmissions(self):
 		allProducts = self.sql.tableToDict(self.USER_SUBMISSION_TABLE)
-		return self.sql.mergeSort(allProducts)
+		return allProducts
 
 	# returns a dictionary with all request submissions
 	def getProductRequests(self):
 		allRequests = self.sql.tableToDict(self.USER_REQUEST_TABLE)
-		return self.sql.mergeSort(allRequests)
+		return allRequests
 	
 	# verifies a product submission by submission_id
 	def verifyProductSubmission(self, submission_id):
@@ -132,7 +134,6 @@ class ProductDataManager:
 		if send_email == None:
 			send_email = True
 		submitted_keys = product_request_submission_variables
-		self.createProductRequestTable()
 		table_name = self.USER_REQUEST_TABLE
 		submission_id = self.generateNewSubmissionId(table_name)
 		confirmation_id = self.generateNewConfirmationId(table_name)
@@ -196,7 +197,6 @@ class ProductDataManager:
 	# looking for comments and suggestions
 	# Darek Johnson 3/11
 	def addProductSubmission(self, submission):
-		self.createProductSubmissionTable()
 		table_name = self.USER_SUBMISSION_TABLE
 		# write the image_id and store the data
 		image_data = submission.get('images')

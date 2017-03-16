@@ -45,9 +45,13 @@ class SqlManager:
 		return ''.join(random.choice(chars) for _ in range(size))
 
 	# given a table, outputs the table as a dictionary 
+	# sorts the table by timestamp if it is a column
 	def tableToDict(self, table_name):
 		keys = self.getColumnNames(table_name)
-		sql = "SELECT * FROM " + table_name
+		if "time_stamp" in keys:
+			sql = "SELECT * FROM " + table_name + " ORDER BY time_stamp"
+		else:
+			sql = "SELECT * FROM " + table_name
 		self.db.execute(sql)
 		query = self.db.fetchall()
 		output_list = list()
@@ -142,6 +146,9 @@ class SqlManager:
 		except:
 			return None
 		query = self.db.fetchall()
+		if len(query) > 1:
+			raise Exception('Client tried to search by a property that was not unique! This method is only for unique property search')
+			return
 		row = query[0]
 		output = {}
 		keys = self.getColumnNames(table_name)

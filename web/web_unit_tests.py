@@ -41,12 +41,11 @@ class TestWeb(unittest.TestCase):
 	## then deletes and after deletion verifies the initial query is same as at the end
 	## test, insert, get, delete, and getAll
 	def testAddProductRequest_ReturnsSameList(self):
-		print("\n")
 		request = {}
 		keys = ['name', 'email', 'product_description', 'phone_number', 'price_range']
 		request_list = list()
-		num_entires = 3
-		for i in range(0, num_entires):
+		num_entries = 3
+		for i in range(0, num_entries):
 			request = {}
 			for key in keys:
 				if key == 'email':
@@ -61,7 +60,6 @@ class TestWeb(unittest.TestCase):
 			output = product_manager.addProductRequest(request)
 			submission_id = output['submission_id']
 			output_request = product_manager.getProductRequestBySubmissionId(submission_id)
-			print(" --------------------------------------------------------- ")
 			for key in keys:
 				self.assertEquals(request[key], output_request[key])
 			product_manager.deleteProductRequestBySubmissionId(submission_id)
