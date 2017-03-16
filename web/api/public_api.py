@@ -4,6 +4,7 @@ from passlib.hash import argon2
 import base64
 from product_data_manager import ProductDataManager
 from account_manager import AccountManager
+from feedback_manager import FeedbackManager
 
 # from py2neo import authenticate, Graph, Node
 # authenticate("localhost:7474", "neo4j", "powerplay")
@@ -36,6 +37,9 @@ request_keys = ['product_description',
 				'price_range',
 				'name'
 				]
+
+feedback_keys = ['name' , 'email', 'feedback']
+
 admin_login_password = 'powerplay'
 
 @public_api.route('/addProductSubmission', methods = ['POST'])
@@ -82,6 +86,17 @@ def addProductRequest():
 	data_manager = ProductDataManager()
 	output = data_manager.addProductRequest(product_requests)
 	data_manager.closeConnection()
+	return jsonify(output)
+
+@public_api.route('/addFeedback', methods = ['POST'])
+def addFeedback():
+	feedback = {}
+	output = {}
+	for key in feedback_keys:
+		feedback[key] = request.json.get(key)
+	feedback_manager = FeedbackManager()
+	output = feedback_manager.addFeedback(feedback)
+	feedback_manager.closeConnection()
 	return jsonify(output)
 
 @public_api.route('/checkAdminLogin', methods =['POST'])

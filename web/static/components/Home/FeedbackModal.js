@@ -20,7 +20,7 @@ export default class FeedbackModal extends React.Component {
     return (
         <Modal show = {this.props.show} bsSize="large" aria-labelledby="contained-modal-title-lg">
           <Modal.Header closeButton onClick = {this.props.toggleFeedbackModal}>
-            <Modal.Title id="contained-modal-title-lg"> Request a Product!</Modal.Title>
+            <Modal.Title id="contained-modal-title-lg"> Tell us your thoughts!</Modal.Title>
           </Modal.Header>
             <Modal.Body>
               <FeedbackForm />
