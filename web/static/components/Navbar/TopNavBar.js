@@ -22,11 +22,8 @@ export default class TopNavBar extends React.Component {
               <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
-              <Nav>
-                <NavItem eventKey={1}> <Link to="/admin">Admin</Link> </NavItem>
-              </Nav>
               <Nav pullRight>
-                <NavItem eventKey={2}> <Link to="/">Home</Link> </NavItem>
+                <NavItem eventKey={1}> <Link to="/">Sign In</Link> </NavItem>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

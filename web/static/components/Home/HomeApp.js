@@ -20,8 +20,6 @@ export default class HomeApp extends React.Component {
     this.setState({show_modal : !this.state.show_modal})
   }
 
-
-
   render() {
 
     return (

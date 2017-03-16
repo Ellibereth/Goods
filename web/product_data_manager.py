@@ -129,10 +129,8 @@ class ProductDataManager:
 			self.sql.updateEntryByKey(table_name, 'submission_id', submission_id, column_name, data)
 
 	# adds a product request to the database
-	def addProductRequest(self, request, send_email = None):
+	def addProductRequest(self, request, send_email = True):
 		output = {}
-		if send_email == None:
-			send_email = True
 		submitted_keys = product_request_submission_variables
 		table_name = self.USER_REQUEST_TABLE
 		submission_id = self.generateNewSubmissionId(table_name)

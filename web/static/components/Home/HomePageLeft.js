@@ -15,14 +15,24 @@ export default class HomePageLeft extends React.Component {
 	render() {
 		return (
 			<div>
-				<div id = "text-part">
-					<h1> 
-						Lorem Ipsum Horse **** Kramnik Fisherman Kazuma
-					</h1>
+				<center>
+				<div id = "text-part">	
+				  		<h1>
+				  			<b>
+								It can be hard to buy American
+							</b>
+						</h1>
+						<h3>
+							Find the things you want,
+						<br/>
+							at the prices you want
+						</h3>
 				</div>
+				<br/>
 				<Button onClick = {this.props.toggleRequestFormModal.bind(this)}>
-					Open the modal
+					Start a request
 				</Button>        
+				</center>
 			</div>
 		);
 	}
