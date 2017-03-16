@@ -12,11 +12,6 @@ export default class HomeThirdRow extends React.Component {
 		}
 	}
 
-	toggleRequestFormModal() {
-		this.setState({show_modal : !this.state.show_modal})
-	}
-
-
 
 	render() {
 		var col_size = 6
@@ -31,7 +26,7 @@ export default class HomeThirdRow extends React.Component {
 						<HomePageNewProduct />
 					</Col>
 					<Col md={col_size} style = {{overflow : "hidden"}}> 
-						<HomePageFeedback/>
+						<HomePageFeedback toggleFeedbackModal = {this.props.toggleFeedbackModal}/>
 					</Col>
 				</Row>
 			);

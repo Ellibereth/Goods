@@ -1,13 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../TextInput/TextInput.js'
+import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 
 
 var real_url = "https://whereisitmade.herokuapp.com"
 var test_url = "http://0.0.0.0:5000"
-const form_labels = ['What is your name?', "What is your email?", "Phone Number? (Optional)", "How much would you like to pay?", "What are you looking for?"]
-const form_inputs = ["name", "email", "phone_number", "price_range", "product_description"]
+const form_labels = ['What is your name?', "What is your email?", "What should we know?"]
+const form_inputs = ["name", "email", "feedback"]
 
 
 export default class ProductRequestForm extends React.Component {
@@ -16,9 +16,7 @@ export default class ProductRequestForm extends React.Component {
 		this.state = {
 			name: "",
 			email: "",
-			phone_number : "",
-			price_range: "",
-			product_description : "",
+			feedback: ""
 		}
 	}
 
@@ -38,7 +36,7 @@ export default class ProductRequestForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: real_url  + "/addProductRequest",
+				url: real_url  + "/addFeedback",
 				data: form_data,
 				success: function(data) {
 
@@ -55,15 +53,14 @@ export default class ProductRequestForm extends React.Component {
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});
-	}	
+		}
 
 	render() {
 		var text_inputs = form_inputs.map((form_input, index) => {
-			var input_type = form_input == "product_description" ? "textarea" : "text"
+			var input_type = (form_input == "feedback") ? "textarea" : "text"
 			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_type}/>
-			)
+				input_type = {input_type}/>)
 		})
 
 		return (

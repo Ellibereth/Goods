@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {Button} from 'react-bootstrap';
-import RequestModal from './RequestModal.js'
 
 
 export default class HomePageFeedback extends React.Component {
@@ -25,7 +24,7 @@ export default class HomePageFeedback extends React.Component {
 			Any questions or suggestions?
 			</h3>
 			<br/>
-			<Button>
+			<Button onClick = {this.props.toggleFeedbackModal}>
 				Let us know!
 			</Button>
 			</center>

@@ -20,11 +20,12 @@ export default class HomePageMainContainer extends React.Component {
 
 		return (
 			<Grid>
-				<HomePageTopRow toggleRequestFormModal = {this.props.toggleRequestFormModal.bind(this)}/>
+				<HomePageTopRow toggleRequestFormModal = {this.props.toggleRequestFormModal}/>
 				<hr/>
 				<HomeMiddleRow/>
 				<hr/>
-				<HomeThirdRow/>
+				<HomeThirdRow toggleFeedbackModal = {this.props.toggleFeedbackModal} />
+				
 			</Grid>
 		);
 	}

@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 
 import {Col, FormGroup, FormControl} from 'react-bootstrap'
 
-export default class ProductRequestFormTextInput extends React.Component {
+export default class TextInput extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -18,7 +18,7 @@ export default class ProductRequestFormTextInput extends React.Component {
                       <input placeholder="" id="name" className="form-control"  onChange = {this.handleChange.bind(this)} />
                     </div>
                     )
-    if (this.props.field == "product_description"){
+    if (this.props.input_type == "textarea"){
         input_div = (
           <div className="col-sm-12">
               <textarea placeholder="" id="name" rows = "12" className="form-control" onChange = {this.handleChange.bind(this)} />

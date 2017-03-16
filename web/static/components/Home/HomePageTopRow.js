@@ -25,11 +25,11 @@ export default class HomePageTopRow extends React.Component {
 
 		return (
 				<Row className="show-grid">
-					<Col xs = {4} xsPush ={4} md={4} mdPush={8}>
-						<HomePageRight />
-					</Col>
-					<Col xs = {8} xsPull = {8} md={8} mdPull={4}>
+					<Col xs = {8} md={8}>
 						<HomePageLeft toggleRequestFormModal = {this.props.toggleRequestFormModal}/>
+					</Col>
+					<Col xs = {4} md={4}>
+						<HomePageRight />
 					</Col>
 				</Row>
 			);
