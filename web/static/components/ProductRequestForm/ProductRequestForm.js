@@ -58,14 +58,12 @@ export default class ProductRequestForm extends React.Component {
 				url: real_url  + "/addProductRequest",
 				data: form_data,
 				success: function(data) {
-
 					if (!data.success) {
-						alert(data.error)
+						swal("Sorry!", "It seems the email you submitted was invalid", "warning")
 					}
 					else {
-						console.log(data)
+						swal("Thank you!", "You will receive a confirmation email regarding your product request", "success")
 					}
-					swal("Thank you!", "You will receive a confirmation email regarding your product request", "success")
 				},
 				error : function(){
 					console.log("error")
