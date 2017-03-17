@@ -74,9 +74,9 @@ def sendRequestConfirmation(request, confirmation_id):
 	product_description = str(request.get('product_description'))
 	price_range = str(request.get('price_range'))
 	url = "https://whereisitmade.herokuapp.com/confirmRequest/" + confirmation_id
-	body = 'Please confirm that you are looking for :' + product_description + "\n" + \
-		" in the price range : " + price_range + "\n" \
-		+ "Click the following link to confirm : " + url
+	body = 'This email is to confirm that you submitted a request on Remaura \n' \
+		+ "Please click the following link to confirm : " + url + "\n"  \
+		"If you did not submit a request, please ignore this email"
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)

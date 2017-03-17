@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 import {} from 'react-bootstrap';
+import TopNavBar from '../Navbar/TopNavBar.js'
 
 
 export default class EmailConfirmationPage extends React.Component {
@@ -47,11 +48,12 @@ export default class EmailConfirmationPage extends React.Component {
 
 		return (
 				<div id = "confirmation_page_container">
-						<h1>
-							{this.props.params.confirmation_id} <br/>
-							Thank you for confirming your request! <br/>
+					<TopNavBar/>
+						<h3>
+							Thank you for sending us a request! <br/>
+							We'll get back to you as soon as possible with suggestions or further questions! <br/>
 							Click <a href ="/"> here </a> to return to the home page.
-						</h1>
+						</h3>
 				</div>
 		);
 	}

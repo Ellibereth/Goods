@@ -23,7 +23,7 @@ export default class FeedbackModal extends React.Component {
             <Modal.Title id="contained-modal-title-lg"> Tell us your thoughts!</Modal.Title>
           </Modal.Header>
             <Modal.Body>
-              <FeedbackForm />
+              <FeedbackForm toggleFeedbackModal = {this.props.toggleFeedbackModal} />
             </Modal.Body>
       </Modal>
     );

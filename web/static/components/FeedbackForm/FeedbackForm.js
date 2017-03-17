@@ -28,6 +28,23 @@ export default class ProductRequestForm extends React.Component {
 	}
 
 	onSubmitPress(){
+		swal({
+		  title: "Ready?",
+		  text: "Are you sure you want to submit?",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: false,
+		  closeOnCancel: true
+		},
+		function () {
+			this.props.toggleFeedbackModal()
+			this.submitData.bind(this)()
+		}.bind(this))
+	}
+
+	submitData(){
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -39,14 +56,13 @@ export default class ProductRequestForm extends React.Component {
 				url: real_url  + "/addFeedback",
 				data: form_data,
 				success: function(data) {
-
 					if (!data.success) {
 						alert(data.error)
 					}
 					else {
-						alert("thank you for the submission!")
-						console.log(data)
+						swal("Thank you!", "Your feedback has been received", "success")
 					}
+
 				},
 				error : function(){
 					console.log("error")

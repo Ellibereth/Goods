@@ -30,6 +30,23 @@ export default class ProductRequestForm extends React.Component {
 	}
 
 	onSubmitPress(){
+		swal({
+		  title: "Confirm",
+		  text: "Is your request ready to submit?",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No",
+		  closeOnConfirm: false,
+		  closeOnCancel: true
+		},
+		function () {
+			this.props.toggleRequestFormModal()
+			this.submitData.bind(this)()
+		}.bind(this))
+	}
+
+	submitData(){
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -48,6 +65,7 @@ export default class ProductRequestForm extends React.Component {
 					else {
 						console.log(data)
 					}
+					swal("Thank you!", "You will receive a confirmation email regarding your product request", "success")
 				},
 				error : function(){
 					console.log("error")

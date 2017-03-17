@@ -30,15 +30,15 @@ export default class HomeMiddleRow extends React.Component {
 				<Row className = "show-grid">
 					<Col md={col_size} style = {{overflow : "hidden"}}> 
 						<h1 className="text-center"> Free </h1>
-						<h3 className="text-center"> No payment necessary! </h3>
+						<h3 className="text-center"> No payments necessary! </h3>
 					</Col>
 					<Col md={col_size} style = {{overflow : "hidden"}}> 
 						<h1 className="text-center"> Fast </h1>
-						<h3 className="text-center"> We'll get back within 12 hours </h3>
+						<h3 className="text-center"> We'll respond within 12 hours </h3>
 					</Col>
 					<Col md={col_size} style = {{overflow : "hidden"}}> 
-						<h1 className="text-center"> Private </h1>
-						<h3 className="text-center"> We won't share your information </h3>
+						<h1 className="text-center"> Privacy </h1>
+						<h3 className="text-center"> Your information will be confidential </h3>
 					</Col>
 				</Row>
 			);

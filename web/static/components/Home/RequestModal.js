@@ -29,7 +29,7 @@ export default class RequestModal extends React.Component {
             <Modal.Title id="contained-modal-title-lg"> Request a Product!</Modal.Title>
           </Modal.Header>
             <Modal.Body>
-              <ProductRequestForm />
+              <ProductRequestForm toggleRequestFormModal = {this.props.toggleRequestFormModal}/>
             </Modal.Body>
       </Modal>
     );

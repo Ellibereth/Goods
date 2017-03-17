@@ -19,7 +19,7 @@ export default class HomePageRight extends React.Component {
 		<div>
 			<h3> Send a request </h3>
 			<h3> We'll get back to you with suggestions </h3>
-			<h3> We'll talk until you're happy :)  </h3>
+			<h3> We'll talk until you're happy  </h3>
 		</div>
 	);
   }
