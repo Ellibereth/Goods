@@ -36,7 +36,7 @@ export default class HomeApp extends React.Component {
               <TopNavBar/>
               <HomePageMainContainer toggleFeedbackModal ={this.toggleFeedbackModal.bind(this)}
               toggleRequestFormModal = {this.toggleRequestFormModal.bind(this)}/>
-              <Footer/>
+             {/*  <Footer/> */}
               <RequestModal show = {this.state.show_request_modal} toggleRequestFormModal = {this.toggleRequestFormModal.bind(this)} />
               <FeedbackModal show = {this.state.show_feedback_modal} toggleFeedbackModal = {this.toggleFeedbackModal.bind(this)}/>
         </div>
