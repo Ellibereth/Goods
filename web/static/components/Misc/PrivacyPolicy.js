@@ -18,9 +18,9 @@ export default class PrivacyPolicy extends React.Component {
 	return (
 		<div  id = "privacy-policy-container">
 			<TopNavBar/>
-			<div clasName = "container">
-				<h2> Privary Policy </h2>
-				<h4> Lorem Ipsum </h4>
+			<div className = "container">
+				<h2> Privacy Policy </h2>
+				<h5> Lorem Ipsum </h5>
 			</div>
 		</div>
 	);

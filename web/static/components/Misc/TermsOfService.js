@@ -16,11 +16,11 @@ export default class TermsOfService extends React.Component {
   render() {
 	// class size 30 and centered 
 	return (
-		<div  id = "privacy-policy-container">
+		<div  id = "terms-service-container">
 			<TopNavBar/>
-			<div clasName = "container">
-				<h2> Privary Policy </h2>
-				<h4> Lorem Ipsum </h4>
+			<div className = "container">
+				<h2> Terms of Service </h2>
+				<h5> Lorem Ipsum </h5>
 			</div>
 		</div>
 	);
