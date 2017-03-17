@@ -13,19 +13,19 @@ export default class FeedbackModal extends React.Component {
   }
 
   onModalClosePress(){
-      swal({
+        swal({
               title: "Are you sure?",
               text: "Closing this will delete all the information you have typed",
               showCancelButton: true,
               confirmButtonColor: "#DD6B55",
-              confirmButtonText: "No",
-              cancelButtonText: "Close",
+              confirmButtonText: "Close",
+              cancelButtonText: "No",
               closeOnConfirm: true,
-              closeOnCancel: false
-                },
-                function () {
-                    this.props.toggleRequestFormModal()
-        }.bind(this))    
+              closeOnCancel: true
+            },
+            function () {
+                this.props.toggleFeedbackModal()
+        }.bind(this))
   }
   
 

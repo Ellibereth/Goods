@@ -22,10 +22,10 @@ export default class RequestModal extends React.Component {
               text: "Closing this will delete all the information you have typed",
               showCancelButton: true,
               confirmButtonColor: "#DD6B55",
-              confirmButtonText: "No",
-              cancelButtonText: "Close",
+              confirmButtonText: "Close",
+              cancelButtonText: "No",
               closeOnConfirm: true,
-              closeOnCancel: false
+              closeOnCancel: true
             },
             function () {
                 this.props.toggleRequestFormModal()
