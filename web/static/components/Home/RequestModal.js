@@ -16,6 +16,21 @@ export default class RequestModal extends React.Component {
     this.setState({modal_display : !this.state.modal_display})
   }
 
+  onModalClosePress(){
+        swal({
+              title: "Are you sure?",
+              text: "Closing this will delete all the information you have typed",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "No",
+              cancelButtonText: "Close",
+              closeOnConfirm: true,
+              closeOnCancel: false
+            },
+            function () {
+                this.props.toggleRequestFormModal()
+        }.bind(this))
+  }
 
 
   render() {
@@ -25,7 +40,7 @@ export default class RequestModal extends React.Component {
     // <PageRight/>
     return (
         <Modal show = {this.props.show} bsSize="large" aria-labelledby="contained-modal-title-lg">
-          <Modal.Header closeButton onClick = {this.props.toggleRequestFormModal}>
+          <Modal.Header closeButton onClick = {this.onModalClosePress.bind(this)}>
             <Modal.Title id="contained-modal-title-lg"> Request a Product!</Modal.Title>
           </Modal.Header>
             <Modal.Body>

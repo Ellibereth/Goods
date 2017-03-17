@@ -9,12 +9,8 @@ export default class Footer extends React.Component {
 						<ul className ="nav navbar-nav">
 							<li><Link to="/">© 2017 Manaweb, Inc.</Link></li>
 					    	<li><Link to="/">Home</Link></li>
-					    	<li><Link to="/">About</Link></li>
-					    	<li><Link to="/">Terms</Link></li>
-					    	<li><Link to="/">Privacy</Link></li>
-					    	<li><Link to="/">Cookies</Link></li>
-					    	<li><Link to="/">Status</Link></li>
-					    	<li><Link to="/">Help</Link></li>
+					    	<li><Link to="/terms">Terms</Link></li>
+					    	<li><Link to="/privacy">Privacy</Link></li>
 					    </ul>
 					</div>
 				</div>
