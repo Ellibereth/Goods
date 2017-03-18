@@ -41,7 +41,6 @@ export default class ProductRequestForm extends React.Component {
 		  closeOnCancel: true
 		},
 		function () {
-			this.props.toggleRequestFormModal()
 			this.submitData.bind(this)()
 		}.bind(this))
 	}
@@ -62,6 +61,7 @@ export default class ProductRequestForm extends React.Component {
 						swal("Sorry!", "It seems the email you submitted was invalid", "warning")
 					}
 					else {
+						this.props.toggleRequestFormModal()
 						swal("Thank you!", "You will receive a confirmation email regarding your product request", "success")
 					}
 				},

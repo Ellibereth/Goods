@@ -39,7 +39,6 @@ export default class ProductRequestForm extends React.Component {
 		  closeOnCancel: true
 		},
 		function () {
-			this.props.toggleFeedbackModal()
 			this.submitData.bind(this)()
 		}.bind(this))
 	}
@@ -57,13 +56,14 @@ export default class ProductRequestForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						alert(data.error)
+						swal("Sorry!", "It seems there was an error in your submission! Please try again!", "warning")
 					}
 					else {
+						this.props.toggleFeedbackModal()
 						swal("Thank you!", "Your feedback has been received", "success")
 					}
 
-				},
+				}.bind(this),
 				error : function(){
 					console.log("error")
 				},
