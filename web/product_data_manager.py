@@ -253,13 +253,15 @@ class ProductDataManager:
 		column_name = "submission_id"
 		self.sql.deleteRowFromTableByProperty(table_name, column_name, submission_id)
 
-
 	def softDeleteProductRequestBySubmissionId(self, submission_id):
 		table_name = self.USER_REQUEST_TABLE
 		column_name = "submission_id"
 		key = "soft_deleted"
 		value = True
 		self.sql.updateEntryByKey(table_name, column_name, submission_id, key, value)
+		output = {}
+		output['success'] = True
+		return output
 
 
 if __name__ == '__main__':

@@ -67,7 +67,6 @@ export default class AdminTools extends React.Component {
 		function () {
 			var temp = this.state.product_requests
 			temp.splice(index, 1)
-			console.log(temp.length)
 			this.setState({product_requests : temp})
 			this.submitData.bind(this)(s_id)
 		}.bind(this))
@@ -98,7 +97,6 @@ export default class AdminTools extends React.Component {
 
 	render() {
 		var product_requests = this.state.product_requests
-		console.log(product_requests.length)
 		var table_headers = headers.map((header) => 
 				<th> {header} </th>
 			)
