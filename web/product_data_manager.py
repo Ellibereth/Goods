@@ -130,6 +130,8 @@ class ProductDataManager:
 
 	# adds a product request to the database
 	def addProductRequest(self, request, send_email = True):
+		if request.get('email') != None:
+			request['email'] = request['email'].lower()
 		output = {}
 		submitted_keys = product_request_submission_variables
 		table_name = self.USER_REQUEST_TABLE

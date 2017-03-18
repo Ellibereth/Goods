@@ -137,7 +137,7 @@ class AmazonProcessor():
 		return asin
 
 	def getDataFromCategoryUrl(self, url_start, url_end):
-		for page_number in range(41, 42):
+		for page_number in range(1, 100):
 			time_0 = time.time()
 			url = url_start + str(page_number) + url_end
 			print("processing html")
@@ -164,14 +164,18 @@ class AmazonProcessor():
 		# asin = "B00WB14DTA"
 		# url = "https://www.amazon.com/dp/" + asin
 		# self.oneTimeProcessProductUrl(url)
-		self.getDataFromCategoryUrl(Url.ChairStart, Url.ChairEnd)
-		self.getDataFromCategoryUrl(Url.MachineStart, Url.MachineEnd)
-		self.getDataFromCategoryUrl(Url.MensClothingStart, Url.MensClothingEnd)
-		self.getDataFromCategoryUrl(Url.ToysStart , Url.ToysEnd)
-		self.getDataFromCategoryUrl(Url.SportsStart, Url.SportsEnd)
-		self.getDataFromCategoryUrl(Url.FurnitureStart, Url.FurnitureEnd)
-		self.getDataFromCategoryUrl(Url.BeautyStart,  Url.BeautyEnd)
-	
+		# self.getDataFromCategoryUrl(Url.ChairStart, Url.ChairEnd)
+		# self.getDataFromCategoryUrl(Url.MachineStart, Url.MachineEnd)
+		# self.getDataFromCategoryUrl(Url.MensClothingStart, Url.MensClothingEnd)
+		# self.getDataFromCategoryUrl(Url.ToysStart , Url.ToysEnd)
+		# self.getDataFromCategoryUrl(Url.SportsStart, Url.SportsEnd)
+		# self.getDataFromCategoryUrl(Url.FurnitureStart, Url.FurnitureEnd)
+		# self.getDataFromCategoryUrl(Url.BeautyStart,  Url.BeautyEnd)
+		start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A1040658%2Cn%3A2476517011%2Cn%3A1045630%2Ck%3Amens+short+sleeve+button+down&page="
+		end = "&bbn=2476517011&keywords=mens+short+sleeve+button+down"
+		self.getDataFromCategoryUrl(start,end)
+		self.writeTableToCsv()
+		
 	def test(self):
 		print("test_starting")
 		asin = "B00WB14DTA"

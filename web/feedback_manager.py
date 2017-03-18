@@ -58,6 +58,7 @@ class FeedbackManager:
 		self.sql.insertIntoTableWithInitialValue(table_name, 'f_id', f_id)
 		feedback['time_stamp'] = time_stamp
 		feedback['f_id'] = f_id
+		email_api.sendFeedbackEmailNotification(feedback)
 		for col in feedback_table_columns:
 			key = col['name']
 			self.sql.addColumnToTableIfNotExists(table_name, col['name'], col['type'])

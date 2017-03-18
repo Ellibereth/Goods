@@ -4,6 +4,8 @@ from email.mime.image import MIMEImage
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+recipients = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
+
 def sendImageEmail(image_name, image_data):
 	#to send from temporary gmail 
 	"""
@@ -18,7 +20,7 @@ def sendImageEmail(image_name, image_data):
 	msg = MIMEMultipart()
 	msg['Subject'] = "Please find attached images " + image_name
 	msg['From'] = "noreply@manaweb.com"
-	msg['To'] = "darek@manaweb.com"
+	msg['To'] = ", ".join(recipients)
 	msg['Body'] = 'Image Submission ' + image_name
 	with open('./web/static/images/product_submissions/' + image_name, 'rb') as image:
 		img = MIMEImage(image.read())
@@ -45,7 +47,7 @@ def sendRequestEmail(request):
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Request!"
 	msg['From'] = "noreply@manaweb.com"
-	msg['To'] = "darek@manaweb.com"
+	msg['To'] = ", ".join(recipients)
 	email = str(request.get('email'))
 	product_description = str(request.get('product_description'))
 	price_range = str(request.get('price_range'))
@@ -111,6 +113,34 @@ def sendEmailConfirmation(email, email_confirmation_id):
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
 	# smtpserver.sendmail(sender, receiver, msg)
+	smtpserver.send_message(msg)
+	smtpserver.close()
+
+def sendFeedbackEmailNotification(feedback):
+	#to send from temporary gmail 
+	"""
+	sender = "manaweb.noreply@gmail.com"
+	passW = "powerplay"
+	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
+	"""	
+	# to send from manaweb
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	msg['Subject'] = "User Feedback!"
+	msg['From'] = "noreply@manaweb.com"
+	msg['To'] = ", ".join(recipients)
+	email = str(feedback.get('email'))
+	product_description = str(feedback.get('feedback'))
+	name = str(feedback.get('name'))
+	body = 'Here is feedback from ' + name + " at " + email + "\n" + "With the following feedback : \n " + product_description
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
 	smtpserver.send_message(msg)
 	smtpserver.close()
 

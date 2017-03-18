@@ -53,7 +53,7 @@ export default class ProductRequestForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: real_url  + "/addFeedback",
+				url: test_url  + "/addFeedback",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

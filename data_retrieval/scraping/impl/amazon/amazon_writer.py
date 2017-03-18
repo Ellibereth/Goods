@@ -117,5 +117,5 @@ class AmazonWriter:
 			ws.append(row)
 
 		# Save the file
-		wb.save("./database/amazon_table.xlsx")
+		wb.save("./impl/amazon/database/amazon_table.xlsx")
 
