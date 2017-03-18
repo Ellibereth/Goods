@@ -126,4 +126,14 @@ def confirmEmail():
 	account_manager.closeConnection()
 	return jsonify(output)
 
+## soft deletes a product request
+@public_api.route('/softDeleteProductRequestBySubmissionId', methods = ['POST'])
+def softDeleteProductRequestBySubmissionId():
+	submission_id = request.json.get('submission_id')
+	product_manager = ProductDataManager()
+	output = product_manager.confirmProductRequest(submission_id)
+	product_manager.closeConnection()
+	return jsonify(output)
 
+
+# @public_api.route('/isAsinMadeInUsa', methods = ['POST'])

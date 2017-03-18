@@ -35,7 +35,8 @@ product_request_database_columns = [
 								'phone_number',
 								'completed',
 								'confirmed',
-								'confirmation_id'
+								'confirmation_id',
+								'soft_deleted'
 								]
 
 product_request_submission_variables = [
@@ -110,10 +111,14 @@ class ProductDataManager:
 		allProducts = self.sql.tableToDict(self.USER_SUBMISSION_TABLE)
 		return allProducts
 
-	# returns a dictionary with all request submissions
+	# returns a dictionary with all request submissions, not including the soft_deleted ones
 	def getProductRequests(self):
 		allRequests = self.sql.tableToDict(self.USER_REQUEST_TABLE)
-		return allRequests
+		actualRequests = list()
+		for request in allRequests:
+			if not request['soft_deleted']:
+				actualRequests.append(request)
+		return actualRequests
 	
 	# verifies a product submission by submission_id
 	def verifyProductSubmission(self, submission_id):
@@ -156,6 +161,7 @@ class ProductDataManager:
 		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'confirmed', False)
 		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'completed', False)
 		self.sql.updateEntryByKey(table_name, "submission_id", submission_id, 'confirmation_id', confirmation_id)
+		self.sql.updateEntryByKey(table_name, 'submission_id', submission_id, 'soft_deleted', False)
 		for key in submitted_keys:
 			if key != "submission_id":
 				self.sql.updateEntryByKey(table_name, "submission_id", submission_id, key, request.get(key))
@@ -247,9 +253,19 @@ class ProductDataManager:
 		column_name = "submission_id"
 		self.sql.deleteRowFromTableByProperty(table_name, column_name, submission_id)
 
+
+	def softDeleteProductRequestBySubmissionId(self, submission_id):
+		table_name = self.USER_REQUEST_TABLE
+		column_name = "submission_id"
+		key = "soft_deleted"
+		value = True
+		self.sql.updateEntryByKey(table_name, column_name, submission_id, key, value)
+
+
 if __name__ == '__main__':
 	product_data_manager = ProductDataManager()
-	data = product_data_manager.getRequestSubmissions()
-	print(data)
+	data = product_data_manager.getProductRequests()
+	for item in data:
+		print(item['submission_id'])
 	product_data_manager.closeConnection()
 

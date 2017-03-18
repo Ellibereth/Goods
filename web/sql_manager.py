@@ -57,7 +57,7 @@ class SqlManager:
 		output_list = list()
 		for row in query:
 			output = {}
-			for i in range(0, len(keys)-1):
+			for i in range(0, len(keys)):
 				output[keys[i]] = row[i]
 			output_list.append(output)
 		return output_list
