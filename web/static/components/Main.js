@@ -5,6 +5,10 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
+import AppStore from '../stores/AppStore.jsx';
+import AppActions from '../actions/AppActions.jsx';
+
+
 import HomeApp from './Home/HomeApp.js'
 import AdminApp from './Admin/AdminApp.js'
 import PageNotFound from './Misc/PageNotFound.js'

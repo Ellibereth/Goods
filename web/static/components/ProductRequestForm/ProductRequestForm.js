@@ -64,7 +64,7 @@ export default class ProductRequestForm extends React.Component {
 						this.props.toggleRequestFormModal()
 						swal("Thank you!", "You will receive a confirmation email regarding your product request", "success")
 					}
-				},
+				}.bind(this),
 				error : function(){
 					console.log("error")
 				},
