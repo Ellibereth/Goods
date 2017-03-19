@@ -5,8 +5,8 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
-import AppStore from '../stores/AppStore.jsx';
-import AppActions from '../actions/AppActions.jsx';
+import AppStore from '../stores/AppStore.js';
+import AppActions from '../actions/AppActions.js';
 
 
 import HomeApp from './Home/HomeApp.js'

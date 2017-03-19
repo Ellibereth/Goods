@@ -2,12 +2,15 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AdminLogin from './AdminLogin.js'
 import AdminTools from './AdminTools.js'
+import AppActions from '../../actions/AppActions.js'
+import AppStore from '../../stores/AppStore.js'
 
 export default class AdminApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			access_granted : false
+			access_granted : false,
+			current_user : {}
 		}
 	}
 
@@ -25,15 +28,27 @@ export default class AdminApp extends React.Component {
 			url: real_url + "/checkAdminLogin",
 			success: function(data) {
 				if (data.success) {
+					AppActions.addCurrentUser({isAdmin : true})
+					// var test = AppStore.getCurrentUser()
 					this.setState({access_granted : true})
 				}
 				else {
-					alert("nice try!")
+					swal("nice try!")
 				}
 			}.bind(this),
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		})
+	}
+
+	componentDidMount() {	
+		var current_user = AppStore.getCurrentUser()
+		this.setState({current_user : current_user})
+		if (current_user != ""){
+			if (current_user['isAdmin']){
+				this.setState({access_granted : true})
+			}
+		}
 	}
 
 	render() {
