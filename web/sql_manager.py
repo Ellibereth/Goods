@@ -69,6 +69,23 @@ class SqlManager:
 		colnames = self.getColumnNames()
 		return column_name in colnames
 
+	def insertDictIntoTable(self, dictionary):
+		sql = "INSERT INTO " + self.table_name + " ("
+		# add the 
+		keys = self.getColumnNames()
+		value_list = list()
+		for key in keys:
+			sql = sql + key + ", "
+		sql = sql[0:len(sql) - 2]
+		sql = sql + ") VALUES ("
+		for key in keys:
+			value_list.append(product.get(key))
+			sql = sql + "%s, "
+		sql = sql[0:len(sql) - 2]
+		sql = sql + ")"
+		value_tup = tuple(value_list)
+		mogrified_sql = self.db.mogrify(sql, value_tup)
+		self.db.execute(mogrified_sql)
 
 	# returns the data type of data in string form for 
 	# as the data type we want in the sql database

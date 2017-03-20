@@ -20,3 +20,9 @@ class Url:
 
 	BeautyStart = "https://www.amazon.com/s/ref=sr_pg_2?fst=as%3Aoff&rh=n%3A3760911%2Ck%3Acosmetics&page="
 	BeautyEnd = "&keywords=cosmetics&ie=UTF8&qid=1489018309&spIA=B06XDPYZP4,B00X2L0DJW,B01MR1F5PP,B01N7NLN60,B01N5S6CEY,B01GUK7NV2"
+
+	AmericanApparelMenStart = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cp_89%3AAmerican+Apparel&page="
+	AmericanApparelMenEnd = "&bbn=7141123011&ie=UTF8&qid=1490020693"
+
+	AmericanApparelWomenStart = "https://www.amazon.com/s/?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A1040660%2Cp_89%3AAmerican+Apparel&page="
+	AmericanApparelWomenEnd = "&bbn=1040660&ie=UTF8&qid=1490029092"

@@ -11,6 +11,7 @@ import xlrd
 import sys
 import queue
 from threading import Thread
+import threading
 sys.stdout = open('./impl/amazon/logs/log.log', 'w')
 
 from utility.html_scraper import HtmlScraper
@@ -62,7 +63,6 @@ class AmazonProcessor():
 	def processNextUrlFromQueue(self):
 		writer = AmazonWriter()
 		while not self.queue.empty():
-
 			url = self.queue.get()
 			# try:
 			self.processProductUrl(url, writer)
@@ -77,7 +77,6 @@ class AmazonProcessor():
 	def processAllUrlFromQueue(self):
 		# 20 is the number of threads
 		for i in range(0,self.numThreads):
-			print("this is a thread!")
 			thread = Thread(target = self.processNextUrlFromQueue)
 			thread.start()
 			
@@ -87,7 +86,6 @@ class AmazonProcessor():
 		writer = AmazonWriter()
 		self.processProductUrl(url, writer)
 		writer.closeConnection()
-
 
 	# assumes a connection is open already and keeps it open
 	# use this one for multithreading
@@ -119,9 +117,13 @@ class AmazonProcessor():
 
 		product_details = product.getDetails()
 		time_2 = time.time()
-		writer.addProductEntryToDataTable(product_details)
+		writer.addProductEntryToDataTableFast(product_details)
 		time_3 = time.time()
-		print("completed asin : " + asin)
+		print("time to write to db for asin \"" + str(asin) + "\" : " + str(time_3 - time_2))
+		print("from thread : " + str(threading.get_ident()))
+		# print("completed asin : " + asin)
+		print("----------------------------") 
+		print("\n")
 
 	# if url = "amazon.com/dp/[asin]"
 	# will return [asin]
@@ -175,6 +177,12 @@ class AmazonProcessor():
 					usa_company_list.append(this_dict)
 		return usa_company_list
 
+	def getUsaCompanyBrandNodeIdList(self):
+		usa_companies = self.getUsaCompaniesFromCsv()
+		usa_brand_node_list = list()
+		for row in usa_companies:
+			usa_node_list.append(row['node_id'])
+		return usa_brand_node_list
 
 	def getUrlsFromKeyWord(self, keyword):
 		url = "https://www.amazon.com/s/keywords=" + keyword
@@ -185,29 +193,13 @@ class AmazonProcessor():
 		return url
 
 	def main(self):
-		usa_companies = self.getUsaCompaniesFromCsv()
-		count = 0
-		for company in usa_companies:
-			if count > 6:
-				url = self.getUrlFromBrandNodeId(company['node_id'])
-				# self.getDataFromCategoryUrl(url)
-				print("URL is  : " + url)
-				for i in range(1,20):
-					html = self.scraper.getHtml(url + str(i))
-					self.crawler.getAsinFromHtml(html)
-					asin_list = self.crawler.getAsinFromHtml(html)
-					for asin in asin_list:
-						self.addAsinToQueue(asin)
-				
-				print("Queue size for company \"" + str(company['name'])  + "\" is  : " + str(self.queue.qsize()))
-				self.processAllUrlFromQueue()
-				self.joinProcesses()
-				print("completed company : " + company['name'])
-			count = count + 1
+		self.getDataFromCategoryUrl(Url.AmericanApparelWomenStart, Url.AmericanApparelWomenEnd, pagination_start = 1, pagination_end = 22)
 
+	def updateAmazonTableForUsaCompanies(self):
+		usa_brand_node_list = self.getUsaCompanyBrandNodeIdList()
 
 	def one_test(self):
-		asin = "B00KLFYGCC"
+		asin = "B00O257IJA"
 		url = "https://www.amazon.com/dp/" + asin
 		self.oneTimeProcessProductUrl(url)
 		self.writeTableToCsv()

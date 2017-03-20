@@ -74,8 +74,27 @@ class AmazonWriter:
 			sql = "INSERT INTO " + self.AMAZON_SCRAPING_TABLE + " (" + Labels.Asin + ") VALUES (%s) "
 			self.db.execute(self.db.mogrify(sql, (product[Labels.Asin],)))
 		## update the rest keys in product
-		for key in keys:
+		for key in keys:	
 			self.updateEntryByAsin(product[Labels.Asin], key, product[key])
+
+
+	def addProductEntryToDataTableFast(self, product):
+		sql = "INSERT INTO " + self.AMAZON_SCRAPING_TABLE + " ("
+		# add the 
+		value_list = list()
+		for key in Labels.AllLabels:
+			sql = sql + key + ", "
+		sql = sql[0:len(sql) - 2]
+		sql = sql + ") VALUES ("
+		for key in Labels.AllLabels:
+			value_list.append(product.get(key))
+			sql = sql + "%s, "
+		sql = sql[0:len(sql) - 2]
+		sql = sql + ")"
+		value_tup = tuple(value_list)
+		mogrified_sql = self.db.mogrify(sql, value_tup)
+		self.db.execute(mogrified_sql)
+
 
 	def getColumnNames(self):
 		sql = "Select * FROM " + self.AMAZON_SCRAPING_TABLE
