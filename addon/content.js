@@ -1,27 +1,45 @@
+var script = document.createElement('script');
+script.src = 'http://code.jquery.com/jquery-3.1.1.min.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('head')[0].appendChild(script);
 
 var this_asin = window.location.href.split("/dp/")[1].substring(0,10)
-api_url = "https://whereisitmade.herokuapp.com/"
+var url = "https://whereisitmade.herokuapp.com"
+var test_url = "http://127.0.0.1:5000"
 // checks the database if we have the product already
 // if not then we add the url to the database then check again
 function checkDatabaseForProduct(){
 
 	var form_data = JSON.stringify({
-		"this_asin" : this_asin
+		"asin" : this_asin
 	})
+	var final_origin = ""
 	$.ajax({
 		  type: "POST",
-		  url: api_url  + "/getAmazonProductInformationFromAsin",
+		  url: url  + "/getAmazonProductInformationFromAsin",
 		  data: form_data,
-		  success: function() {
-		  		window.location.reload();
+		  success: function(data) {
+		  		console.log(data)
+		  		if (data != null) {
+		  			if (data.final_origin == null){
+		  				final_origin = data.amazon_origin  				
+		  			}
+		  			else {
+		  				final_origin = data.final_origin
+		  			}
+		  		}
+		  		else {
+		  			final_origin = null
+		  		}
+		  		generateAddOnDiv(final_origin)
 		  },
 		  error : function(data){
 		  	console.log(data)
-		  	return data.final_origin
 		  },
 		  dataType: "json",
 		  contentType : "application/json; charset=utf-8"
 		});
+	return final_origin
 }	
 
 // adds the product to the database
@@ -39,7 +57,14 @@ function generateAddOnDiv(final_origin){
 	
 	// this says where it's made
 	var first_col = document.createElement("div")
-	first_col.innerText = "Made in " + final_origin
+	var posted_origin = "unclear"
+	if (final_origin != null) {
+		posted_origin = final_origin
+		first_col.innerText = "Made in " + final_origin
+	}
+	else {
+		first_col.innerText = "Made in ?"
+	}
 
 	// this has a link to submission
 	var second_col = document.createElement("div")
@@ -68,4 +93,5 @@ function generateAddOnDiv(final_origin){
 // ids = ["centerCol", "productDescription_feature_div"]
 // firstCheckMadeInAmerica(ids)
 var final_origin = checkDatabaseForProduct()
-generateAddOnDiv(final_origin)
+// uses a call back to get final_origin
+// generateAddOnDiv(final_origin)

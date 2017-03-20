@@ -150,4 +150,5 @@ def getAmazonProductInformationFromAsin():
 	amazon = AmazonManager()
 	product = amazon.getProductInfoByAsin(asin)
 	amazon.closeConnection()
+	print(product)
 	return jsonify(product)

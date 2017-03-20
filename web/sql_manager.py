@@ -164,6 +164,10 @@ class SqlManager:
 		except:
 			return None
 		query = self.db.fetchall()
+
+		## return none if no matches
+		if len(query) == 0:
+			return None
 		if len(query) > 1:
 			raise Exception('Client tried to search by a property that was not unique! This method is only for unique property search')
 			return

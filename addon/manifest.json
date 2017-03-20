@@ -14,10 +14,14 @@
   // "apps" : {
   // 	"urls": ["www.amazon.com"]
   // },
+   "background":
+    {
+        "scripts": ["web_scripts/jquery-3.1.1.min.js"]
+    },
  
   "content_scripts" : [{
     "css": ["styles.css"],
-    "js": ["content.js"],
+    "js": ["web_scripts/jquery-3.1.1.min.js", "content.js"],
     "matches": ["*://www.amazon.com/*"]
   }],
 
