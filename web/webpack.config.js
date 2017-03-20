@@ -38,12 +38,12 @@ var config = {
 	})
   ],
   externals: {
-	'Config': JSON.stringify(process.env.ENV === 'production' ? {
-	  serverUrl: "https://whereisitmade.herokuapp.com"
-		} : {
-	  serverUrl: "http://127.0.0.1:5000"
-	})
-  }
+  	// toggle between these 2 for local vs live testing
+	'Config': JSON.stringify({
+		// serverUrl: "http://0.0.0.0:5000"
+		serverUrl: "https://whereisitmade.herokuapp.com"
+		})
+	}
 };
 
 module.exports = config;

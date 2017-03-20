@@ -100,16 +100,18 @@ export default class AdminTools extends React.Component {
 		var table_headers = headers.map((header) => 
 				<th> {header} </th>
 			)
-
-
 		var table_entries = product_requests.map((request, index) => 
 				{	
-					var rows = request_variables.map((attr) =>
-							<td className = "admin-table-cell" id = {request['submission_id'] + "_" + attr} s_id = {request['submission_id']}
+					var rows = request_variables.map((attr) => {
+
+						var this_entry = request[attr]
+						if (this_entry == null) this_entry = ""
+						return	(<td className = "admin-table-cell" id = {request['submission_id'] + "_" + attr} s_id = {request['submission_id']}
 							attr = {attr} index = {index}
 							onClick = {() => this.toggleText.bind(this)(request['submission_id'], index, attr)}> 
-							{this.shortenText(request[attr].toString())} </td> 
+							{this.shortenText(this_entry.toString())} </td> 
 						)
+					})
 					rows.unshift(
 							<td className = "admin-table-cell" id = {request['submission_id'] + "_delete"} s_id = {request['submission_id']}
 							attr = "delete" index = {index}> 
