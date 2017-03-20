@@ -34,7 +34,7 @@ class AmazonManager:
 	# rules if it has the substrings 
 	# " us", "us ", "usa" , "america", "united states"
 	def isProductMadeInUsa(self, product):
-		raw_origin = product.get('origin')
+		raw_origin = product.get('final_origin')
 		if raw_origin == None:
 			return False
 		origin = raw_origin.lower()
@@ -62,12 +62,12 @@ class AmazonManager:
 		product = self.getProductInfoByAsin(asin)
 		return self.isProductMadeInUsa(asin)
 
-	def writeTableToCsv(self):
-		self.sql.writeTableToCsv()
+	def writeTableToXls(self):
+		self.sql.writeTableToXld()
 
-	def writeUsaProductsToCsv(self):
+	def writeUsaProductsToXls(self):
 		usa_products = self.getProductsMadeInUsa()
-		self.sql.writeDictToCsv("USA_PRODUCTS", usa_products)
+		self.sql.writeDictToXls("USA_PRODUCTS", usa_products)
 
 	def writeProductByUniqueBrand(self):
 		allProducts = self.getAmazonProducts()
@@ -80,10 +80,10 @@ class AmazonManager:
 			if this_brand_node not in existing_brand_nodes:
 				output_dict_list.append(product)
 				existing_brand_nodes.append(this_brand_node)
-		self.sql.writeDictToCsv("UNIQUE_BY_BRAND", output_dict_list)
+		self.sql.writeDictToXls("UNIQUE_BY_BRAND", output_dict_list)
 
 	def main(self):
-		self.writeProductByUniqueBrand()
+		self.writeUsaProductsToXls()
 		
 
 if __name__ == "__main__":

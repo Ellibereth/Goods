@@ -103,7 +103,14 @@ class AmazonWriter:
 		colnames = [desc[0] for desc in self.db.description]
 		return colnames
 
-	def updateEntryByAsin(self, asin, column_name, data):	
+	def updateEntriesWithProperty(self, target_column, target_property, column_name, data):
+		if column_name not in self.getColumnNames():
+			self.addColumnToScrapingTable(column_name)
+		sql = "UPDATE " + self.AMAZON_SCRAPING_TABLE + " SET " + column_name + " = %s " + " WHERE " + target_column + " = %s"
+		self.db.execute(self.db.mogrify(sql, (data, target_property)))
+
+
+	def updateEntryByAsin(self, asin, column_name, data):
 		if column_name not in self.getColumnNames():
 			self.addColumnToScrapingTable(column_name)
 		sql = "UPDATE " + self.AMAZON_SCRAPING_TABLE + " SET " + column_name + " = %s " + " WHERE " + Labels.Asin + " = %s"

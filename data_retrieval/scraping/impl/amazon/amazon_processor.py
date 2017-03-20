@@ -181,7 +181,7 @@ class AmazonProcessor():
 		usa_companies = self.getUsaCompaniesFromCsv()
 		usa_brand_node_list = list()
 		for row in usa_companies:
-			usa_node_list.append(row['node_id'])
+			usa_brand_node_list.append(row['node_id'])
 		return usa_brand_node_list
 
 	def getUrlsFromKeyWord(self, keyword):
@@ -193,10 +193,19 @@ class AmazonProcessor():
 		return url
 
 	def main(self):
-		self.getDataFromCategoryUrl(Url.AmericanApparelWomenStart, Url.AmericanApparelWomenEnd, pagination_start = 1, pagination_end = 22)
+		# self.getDataFromCategoryUrl(Url.AmericanApparelWomenStart, Url.AmericanApparelWomenEnd, pagination_start = 1, pagination_end = 22)
+		self.updateAmazonTableForUsaCompanies()
 
 	def updateAmazonTableForUsaCompanies(self):
 		usa_brand_node_list = self.getUsaCompanyBrandNodeIdList()
+		writer = AmazonWriter()
+		target_column = "brand_node_id"
+		column_name = "final_origin"
+		data = "USA"
+		for brand_node_id in usa_brand_node_list:
+			target_property = brand_node_id
+			writer.updateEntriesWithProperty(target_column, target_property, column_name, data)
+		writer.closeConnection()
 
 	def one_test(self):
 		asin = "B00O257IJA"

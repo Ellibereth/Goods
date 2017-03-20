@@ -109,6 +109,10 @@ class AmazonParser():
 			if key == Labels.Price:
 				trimmed_info = trimmed_info.replace("$", "")
 			product.addAttribute(key, trimmed_info)
+		product_details = product.getDetails()
 
+		## make the amazon origin the default origin
+		if product_details.get(Labels.AmazonOrigin) != None:
+			product.addAttribute(Labels.FinalOrigin, product_details.get(Labels.AmazonOrigin))	
 		return product
 

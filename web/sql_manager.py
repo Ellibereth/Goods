@@ -174,7 +174,7 @@ class SqlManager:
 			output[keys[i]] = row[i]
 		return output
 
-	def writeTableToCsv(self):
+	def writeTableToXls(self):
 		sql = "SELECT * FROM " + self.table_name
 		self.db.execute(sql)
 		if self.db.rowcount == 0:
@@ -191,7 +191,7 @@ class SqlManager:
 		wb.save("./web/output/sql_tables/" + self.table_name + ".xlsx")
 
 	# takes a file name which is the name of the output file
-	def writeDictToCsv(self, file_name, dictionary_list):
+	def writeDictToXls(self, file_name, dictionary_list):
 		if len(dictionary_list) == 0:
 			return
 		wb = openpyxl.Workbook()

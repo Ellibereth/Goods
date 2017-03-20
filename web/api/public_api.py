@@ -143,3 +143,11 @@ def isAsinMadeInUsa():
 	output = {}
 	output['isUsa'] = isUsa
 	return jsonify(output)
+
+@public_api.route('/getAmazonProductInformationFromAsin', methods = ['POST'])
+def getAmazonProductInformationFromAsin():
+	asin = request.json.get('asin')
+	amazon = AmazonManager()
+	product = amazon.getProductInfoByAsin(asin)
+	amazon.closeConnection()
+	return jsonify(product)
