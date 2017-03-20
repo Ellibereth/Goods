@@ -40,7 +40,7 @@ var config = {
   externals: {
 	'Config': JSON.stringify(process.env.ENV === 'production' ? {
 	  serverUrl: "https://whereisitmade.herokuapp.com"
-	} : {
+		} : {
 	  serverUrl: "http://127.0.0.1:5000"
 	})
   }
