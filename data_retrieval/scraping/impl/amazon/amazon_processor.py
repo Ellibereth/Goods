@@ -85,7 +85,7 @@ class AmazonProcessor():
 		writer = AmazonWriter()
 		self.processProductUrl(url, writer)
 		writer.closeConnection()
-		return True
+
 
 	# assumes a connection is open already and keeps it open
 	# use this one for multithreading
@@ -107,19 +107,18 @@ class AmazonProcessor():
 		# asin_list = self.crawler.getAsinFromHtml(html)
 		# for asin in asin_list:
 		# 	self.addAsinToQueue(asin)
-		try:
-			product = self.parser.getProductAttributes(html)
-			product.addAttribute(Labels.Asin, asin)
-		except:
-			with open('./logs/bad_url_list.log', 'a') as f:
-				f.write(url + "\n")
-			product = None
+		# try:
+		product = self.parser.getProductAttributes(html)
+		product.addAttribute(Labels.Asin, asin)
+		# except:
+		# 	with open('./impl/amazon/logs/bad_url_list.log', 'a') as f:
+		# 		f.write(url + "\n")
+		# 	product = None
 
 		product_details = product.getDetails()
 		time_2 = time.time()
 		writer.addProductEntryToDataTable(product_details)
 		time_3 = time.time()
-		return True
 
 	# if url = "amazon.com/dp/[asin]"
 	# will return [asin]
@@ -136,8 +135,8 @@ class AmazonProcessor():
 			return None
 		return asin
 
-	def getDataFromCategoryUrl(self, url_start, url_end):
-		for page_number in range(50, 150):
+	def getDataFromCategoryUrl(self, url_start, url_end = "", pagination_start = 1, pagination_end = 20):
+		for page_number in range(pagination_start, pagination_end):
 			time_0 = time.time()
 			url = url_start + str(page_number) + url_end
 			print("processing html")
@@ -160,26 +159,41 @@ class AmazonProcessor():
 		writer.writeTableToCsv()
 		writer.closeConnection()
 
+	# gets the us companies froma csv
+	def getUsaCompaniesFromCsv(self):
+		usa_company_list = list()
+		with open ("./scraping_tools/usa_companies.csv", encoding = "utf-8", errors='ignore') as f:
+
+			csv_reader = csv.reader(f)
+			for row in csv_reader:
+				usa_company_name = row[0]
+				usa_company_list.append(usa_company_name)
+		return usa_company_list
+
+	def getUrlsFromKeyWord(self, keyword):
+		url = "https://www.amazon.com/s/keywords=" + keyword
+		return url
+
+	def getDataFromBrandNodeId(self, brand_node_id):
+		url = "https://www.amazon.com/b/?node=" + brand_node_id + "&page="
+		self.getDataFromCategoryUrl(url)
+
 	def main(self):
-		# asin = "B00WB14DTA"
-		# url = "https://www.amazon.com/dp/" + asin
-		# self.oneTimeProcessProductUrl(url)
+		usa_company_list = self.getUsaCompaniesFromCsv()
+		for usa_company in usa_company_list:
+			url = self.getUrlsFromKeyWord(usa_company) 
+			url_start = url + "&page="
+			url_end = ""
+			self.getDataFromCategoryUrl(url_start, url_end, pagination_end = 5)
+		# print("starting to multithread")
+		# self.processAllUrlFromQueue()
+		# self.joinProcesses()
 
-		# bluetooth speakers
-		# start = "https://www.amazon.com/s/ref=sr_pg_2?fst=as%3Aon&rh=n%3A172282%2Ck%3ABluetooth+speakers&page="
-		# end = ""
-
-		start = "https://www.amazon.com/s/ref=lp_7073956011_pg_3?rh=n%3A172282%2Cn%3A%21493964%2Cn%3A172623%2Cn%3A689637011%2Cn%3A7073956011&page="
-		end = ""
-		self.getDataFromCategoryUrl(start,end)
-		self.writeTableToCsv()
-		
-	def test(self):
-		print("test_starting")
-		asin = "B00WB14DTA"
+	def one_test(self):
+		asin = "B00KLFYGCC"
 		url = "https://www.amazon.com/dp/" + asin
-		test_result = self.oneTimeProcessProductUrl(url)
-		return test_result
+		self.oneTimeProcessProductUrl(url)
+		self.writeTableToCsv()
 
 
 

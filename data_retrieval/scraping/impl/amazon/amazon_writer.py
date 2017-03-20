@@ -67,10 +67,8 @@ class AmazonWriter:
 		if len(keys) == 0:
 			return
 		# if there is no ASIN in there, it feels useless, figure out how to get the asin always
-		# log if this happens
 		if Labels.Asin not in keys:
 			return 
-
 		# insert an item if not already exists
 		if not self.tableHasAsin(product[Labels.Asin]):
 			sql = "INSERT INTO " + self.AMAZON_SCRAPING_TABLE + " (" + Labels.Asin + ") VALUES (%s) "
@@ -79,11 +77,16 @@ class AmazonWriter:
 		for key in keys:
 			self.updateEntryByAsin(product[Labels.Asin], key, product[key])
 
+	def getColumnNames(self):
+		sql = "Select * FROM " + self.AMAZON_SCRAPING_TABLE
+		self.db.execute(sql)
+		colnames = self.db.fetchall()
+		colnames = [desc[0] for desc in self.db.description]
+		return colnames
+
 	def updateEntryByAsin(self, asin, column_name, data):	
-		# try:
-		# 	self.addColumnToScrapingTable(column_name)
-		# except:
-		# 	print("column exists alredy")
+		if column_name not in self.getColumnNames():
+			self.addColumnToScrapingTable(column_name)
 		sql = "UPDATE " + self.AMAZON_SCRAPING_TABLE + " SET " + column_name + " = %s " + " WHERE " + Labels.Asin + " = %s"
 		self.db.execute(self.db.mogrify(sql, (data, asin)))
 
@@ -112,6 +115,9 @@ class AmazonWriter:
 		query = self.db.fetchall()
 		wb = openpyxl.Workbook()
 		ws = wb.active
+		headers = self.getColumnNames()
+		ws.append(headers)
+		
 		# Rows can also be appended
 		for row in query:
 			ws.append(row)

@@ -49,6 +49,20 @@ class AmazonParser():
 			price = price_tag.text
 			product.addAttribute(Labels.Price, price)
 
+		# get the brand name and the brand tag
+		brand_tag = soup.find("a", id = "brand")
+		if brand_tag != None:
+			brand = brand_tag.text
+			product.addAttribute(Labels.Brand, brand)
+			brand_href = brand_tag['href']
+			target = "&node="
+			href_end = ""
+			for i in range(0,len(brand_href)):
+				if brand_href[i: i + len(target)] == target:
+					href_end = brand_href[i + len(target):]
+			brand_node_id = href_end.split('&')[0]
+			product.addAttribute(Labels.BrandNodeId, brand_node_id)
+			
 		# here we get the category 
 		category_tags = soup.findAll("a" , {"class" : "a-link-normal a-color-tertiary"})
 		if category_tags != None:
@@ -95,8 +109,6 @@ class AmazonParser():
 			if key == Labels.Price:
 				trimmed_info = trimmed_info.replace("$", "")
 			product.addAttribute(key, trimmed_info)
-		return product
 
-	def main():
-		print("this is an amazon parser file ")
+		return product
 

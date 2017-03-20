@@ -17,8 +17,8 @@ class Labels:
 	AllLabels.append(CategoryNodeId)
 	Category = 'category'
 	AllLabels.append(Category)
-	Origin = 'origin'
-	AllLabels.append(Origin)
+	AmazonOrigin = 'amazon_origin'
+	AllLabels.append(AmazonOrigin)
 	Manufacturer = 'manufacturer'
 	AllLabels.append(Manufacturer)
 	Asin = 'asin'
@@ -30,9 +30,17 @@ class Labels:
 	ProductName = 'product_name'
 	AllLabels.append(ProductName)
 	Upc = 'upc'
+	AllLabels.append(Upc)
+	Brand = 'brand'
+	AllLabels.append(Brand)
 
-	AmazonDetailSearchTargets = [Origin, Manufacturer, Model, Asin, Upc]
+	BrandNodeId = 'brand_node_id'
+	AllLabels.append(BrandNodeId)
 
+	FinalOrigin = 'final_origin'
+	AllLabels.append(FinalOrigin)
+
+	AmazonDetailSearchTargets = [AmazonOrigin, Manufacturer, Model, Asin, Upc]
 	def getAmazonDetailSearchTargets():
 		return AmazonDetailSearchTargets
 
