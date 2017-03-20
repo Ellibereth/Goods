@@ -4,6 +4,8 @@ import AdminLogin from './AdminLogin.js'
 import AdminTools from './AdminTools.js'
 import AppActions from '../../actions/AppActions.js'
 import AppStore from '../../stores/AppStore.js'
+var Config = require('Config')
+var url = Config.serverUrl
 
 export default class AdminApp extends React.Component {
 	constructor(props) {
@@ -20,12 +22,10 @@ export default class AdminApp extends React.Component {
 			'username' : username,
 			'password' : password 
 		})
-		var real_url = "https://whereisitmade.herokuapp.com"
-		var test_url = "http://127.0.0.1:5000"
 		$.ajax({
 			type: "POST",
 			data: form_data,
-			url: real_url + "/checkAdminLogin",
+			url: url + "/checkAdminLogin",
 			success: function(data) {
 				if (data.success) {
 					AppActions.addCurrentUser({isAdmin : true})

@@ -2,13 +2,11 @@ from flask import Blueprint, jsonify, request
 import time
 from passlib.hash import argon2
 import base64
-from product_data_manager import ProductDataManager
+from product_submission_manager import ProductSubmissionManager
+from product_request_manager import ProductRequestManager
 from account_manager import AccountManager
 from feedback_manager import FeedbackManager
-
-# from py2neo import authenticate, Graph, Node
-# authenticate("localhost:7474", "neo4j", "powerplay")
-# graph = Graph()
+from amazon_manager import AmazonManager
 
 public_api = Blueprint('public_api', __name__)
 
@@ -16,20 +14,20 @@ public_api = Blueprint('public_api', __name__)
 ## this is the same as the submission variables in product_data_manager.py 
 ## should I just put these in a CSV?
 submission_keys = [
-							'submission_id', 
-							'image_id',
-							'time_stamp',
-							'manufacturer_name',
-							'url_link',
-							'contact_information',
-							'product_name',
-							'origin',
-							'barcode_upc',
-							'barcode_type',
-							'additional_info',
-							'verified',
-							'images'
-						 ]
+					'submission_id', 
+					'image_id',
+					'time_stamp',
+					'manufacturer_name',
+					'url_link',
+					'contact_information',
+					'product_name',
+					'origin',
+					'barcode_upc',
+					'barcode_type',
+					'additional_info',
+					'verified',
+					'images'
+				 ]
 
 request_keys = ['product_description',
 				'email',
@@ -47,32 +45,33 @@ def addProductSubmission():
 	submission = {}
 	for key in submission_keys:
 		submission[key] = request.json.get(key)
-	data_manager = ProductDataManager()
-	data_manager.addProductSubmission(submission)
-	data_manager.closeConnection()
+	submission_manager = ProductSubmissionManager()
+	submission_manager.addProductSubmission(submission)
+	submission_manager.closeConnection()
 	output = {"success" : False}
 	return jsonify(output)
 
 @public_api.route('/getProductSubmissions', methods =['POST'])
 def getProductSubmissions():
-	data_manager = ProductDataManager()
-	product_submissions = data_manager.getProductSubmissions()
-	data_manager.closeConnection()
+	submission_manager = ProductSubmissionManager()
+	product_submissions = submission_manager.getProductSubmissions()
+	submission_manager.closeConnection()
 	return jsonify(product_submissions)
 
+## HERE STILL
 @public_api.route('/getProductRequests', methods =['POST'])
 def getProductRequests():
-	data_manager = ProductDataManager()
-	product_requests = data_manager.getProductRequests()
-	data_manager.closeConnection()
+	request_manager = ProductRequestManager()
+	product_requests = request_manager.getProductRequests()
+	request_manager.closeConnection()
 	return jsonify(product_requests)
 
 @public_api.route('/verifyProductSubmission', methods =['POST'])
-def verifySubmission():
+def verifyProductSubmission():
 	submission_id = request.json.get("submission_id")
-	data_manager = ProductDataManager()
-	data_manager.verifyProductSubmission(submission_id)
-	data_manager.closeConnection()
+	submission_manager = ProductSubmissionManager()
+	submission_manager.verifyProductSubmission(submission_id)
+	submission_manager.closeConnection()
 	output = {}
 	output['success'] = False
 	return jsonify(output)
@@ -83,9 +82,9 @@ def addProductRequest():
 	output = {}
 	for key in request_keys:
 		product_requests[key] = request.json.get(key)
-	data_manager = ProductDataManager()
-	output = data_manager.addProductRequest(product_requests)
-	data_manager.closeConnection()
+	request_manager = ProductRequestManager()
+	output = request_manager.addProductRequest(product_requests)
+	request_manager.closeConnection()
 	return jsonify(output)
 
 @public_api.route('/addFeedback', methods = ['POST'])
@@ -113,9 +112,9 @@ def checkAdminLogin():
 @public_api.route('/confirmProductRequest', methods = ['POST'])
 def confirmProductRequest():
 	confirmation_id = request.json.get('confirmation_id')
-	product_manager = ProductDataManager()
-	output = product_manager.confirmProductRequest(confirmation_id)
-	product_manager.closeConnection()
+	request_manager = ProductRequestManager()
+	output = request_manager.confirmProductRequest(confirmation_id)
+	request_manager.closeConnection()
 	return jsonify(output)
 
 @public_api.route('/confirmEmail', methods = ['POST'])
@@ -130,11 +129,17 @@ def confirmEmail():
 @public_api.route('/softDeleteProductRequestBySubmissionId', methods = ['POST'])
 def softDeleteProductRequestBySubmissionId():
 	submission_id = request.json.get('submission_id')
-	print(submission_id)
-	product_manager = ProductDataManager()
-	output = product_manager.softDeleteProductRequestBySubmissionId(submission_id)
-	product_manager.closeConnection()
+	request_manager = ProductRequestManager()
+	output = request_manager.softDeleteProductRequestBySubmissionId(submission_id)
+	request_manager.closeConnection()
 	return jsonify(output)
 
-
-# @public_api.route('/isAsinMadeInUsa', methods = ['POST'])
+@public_api.route('/isAsinMadeInUsa', methods = ['POST'])
+def isAsinMadeInUsa():
+	asin = request.json.get('asin')
+	amazon = AmazonManager()
+	isUsa = amazon.isAsinMadeInUsa(asin)
+	amazon.closeConnection()
+	output = {}
+	output['isUsa'] = isUsa
+	return jsonify(output)

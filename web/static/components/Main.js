@@ -7,8 +7,6 @@ var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
-
-
 import HomeApp from './Home/HomeApp.js'
 import AdminApp from './Admin/AdminApp.js'
 import PageNotFound from './Misc/PageNotFound.js'
@@ -16,8 +14,6 @@ import EmailConfirmationPage from './Confirmation/EmailConfirmationPage.js'
 import RequestConfirmationPage from './Confirmation/RequestConfirmationPage.js'
 import TermsOfService from './Misc/TermsOfService.js'
 import PrivacyPolicy from './Misc/PrivacyPolicy.js'
-
-
 
 export default class Main extends React.Component {
 	render() {

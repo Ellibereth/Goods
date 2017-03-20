@@ -3,12 +3,13 @@ import string
 import random
 import time
 import psycopg2
+import openpyxl
 from credentials import credential
 						 
+
 class SqlManager:
-	def __init__(self):
-		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
-		self.USER_REQUEST_TABLE = "USER_REQUEST_TABLE"
+	def __init__(self, table_name):
+		self.table_name = table_name
 		database_credentials = credential.getDatabaseCredentials()
 		self.p_db = psycopg2.connect(
 		    database=database_credentials['database'],
@@ -25,14 +26,14 @@ class SqlManager:
 		self.p_db.close()
 
 	# creates a new table with columns submission_id and time_stamp
-	def createNewTableIfNotExists(self, table_name):
-		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + table_name + ' (time_stamp FLOAT)'
+	def createNewTableIfNotExists(self):
+		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + self.table_name + ' (time_stamp FLOAT)'
 		self.db.execute(createTableCode)		
 
 	# checks if the given table has an entry with data in that given column name	
-	def tableHasEntryWithProperty(self, table_name, column_name, entry_data):
+	def tableHasEntryWithProperty(self, column_name, entry_data):
 		try:
-			sql = "SELECT * FROM " + table_name + " WHERE " + column_name + " = %s"
+			sql = "SELECT * FROM " + self.table_name + " WHERE " + column_name + " = %s"
 			self.db.execute(self.db.mogrify(sql, (entry_data,)))
 		except:
 			return False
@@ -46,12 +47,12 @@ class SqlManager:
 
 	# given a table, outputs the table as a dictionary 
 	# sorts the table by timestamp if it is a column
-	def tableToDict(self, table_name):
-		keys = self.getColumnNames(table_name)
+	def tableToDict(self):
+		keys = self.getColumnNames()
 		if "time_stamp" in keys:
-			sql = "SELECT * FROM " + table_name + " ORDER BY time_stamp"
+			sql = "SELECT * FROM " + self.table_name + " ORDER BY time_stamp"
 		else:
-			sql = "SELECT * FROM " + table_name
+			sql = "SELECT * FROM " + self.table_name
 		self.db.execute(sql)
 		query = self.db.fetchall()
 		output_list = list()
@@ -64,8 +65,8 @@ class SqlManager:
 
 	# return true if a table has a given column
 	# false otherwise
-	def tableHasColumn(self, table_name, column_name):
-		colnames = self.getColumnNames(table_name)
+	def tableHasColumn(self, column_name):
+		colnames = self.getColumnNames()
 		return column_name in colnames
 
 
@@ -96,8 +97,8 @@ class SqlManager:
 	# insert row into table 
 	# we need a way to insert a generic row into a table, but I'm not sure how to do this yet
 	# this is a WIP
-	def insertIntoTableWithInitialValue(self, table_name, initial_column_name, initial_value):
-		sql = "INSERT INTO " + table_name + " (" + initial_column_name + ") VALUES (%s)"
+	def insertIntoTableWithInitialValue(self, initial_column_name, initial_value):
+		sql = "INSERT INTO " + self.table_name + " (" + initial_column_name + ") VALUES (%s)"
 		mogrified_sql = self.db.mogrify(sql, (initial_value,))
 		self.db.execute(mogrified_sql)
 
@@ -105,42 +106,42 @@ class SqlManager:
 	#  such that their entries in the column target_column_name have value data
 	#  if target_column_name doesn't exists, it creates it with value 
 	# this key is not necessarily unique!
-	def updateEntryByKey(self, table_name, key_column_name, key, target_column_name, data):	
-		if not self.tableHasColumn(table_name, target_column_name):
+	def updateEntryByKey(self, key_column_name, key, target_column_name, data):	
+		if not self.tableHasColumn(target_column_name):
 			data_type = self.getDataTypeString(data)
-			self.addColumnToTableIfNotExists(table_name, target_column_name, data_type = data_type)
-		sql = "UPDATE " + table_name + " SET " + target_column_name + " = %s " + " WHERE " + key_column_name + " = %s"
+			self.addColumnToTableIfNotExists(target_column_name, data_type = data_type)
+		sql = "UPDATE " + self.table_name + " SET " + target_column_name + " = %s " + " WHERE " + key_column_name + " = %s"
 		mogrified_sql = self.db.mogrify(sql, (data, key))
 		self.db.execute(mogrified_sql)
 
 	# adds a column to a given table if it does not already exist
-	def addColumnToTableIfNotExists(self, table_name, column_name, data_type = None):
-		if self.tableHasColumn(table_name, column_name):
+	def addColumnToTableIfNotExists(self, column_name, data_type = None):
+		if self.tableHasColumn(column_name):
 			return
 		if data_type == None:
 			data_type = "TEXT"
-		sql = "ALTER TABLE " + table_name + " ADD " + column_name + " " + data_type
+		sql = "ALTER TABLE " + self.table_name + " ADD " + column_name + " " + data_type
 		self.db.execute(self.db.mogrify(sql))
 
 	# returns the list of columns in a table given its name
-	def getColumnNames(self, table_name):
-		sql = "Select * FROM " + table_name
+	def getColumnNames(self):
+		sql = "Select * FROM " + self.table_name
 		self.db.execute(sql)
 		colnames = self.db.fetchall()
 		colnames = [desc[0] for desc in self.db.description]
 		return colnames
 
 	# deletes a row from a table by submission_id
-	def deleteRowFromTableByProperty(self, table_name, column_name, value):
-		sql = "DELETE FROM " + table_name + " WHERE " + column_name + " = %s"
+	def deleteRowFromTableByProperty(self, column_name, value):
+		sql = "DELETE FROM " + self.table_name + " WHERE " + column_name + " = %s"
 		mogrified_sql = self.db.mogrify(sql, (value,))
 		self.db.execute(mogrified_sql)
 
 	## returns a single row from a table given a unique property 
 	## returns the row as a dictionary
-	def getRowByUniqueProperty(self, table_name, column_name, value):
+	def getRowByUniqueProperty(self, column_name, value):
 		try:
-			sql = "SELECT * FROM " + table_name + " WHERE " + column_name + " = %s"
+			sql = "SELECT * FROM " + self.table_name + " WHERE " + column_name + " = %s"
 			mogrified_sql = self.db.mogrify(sql, (value,))
 			self.db.execute(mogrified_sql)
 		except:
@@ -151,10 +152,45 @@ class SqlManager:
 			return
 		row = query[0]
 		output = {}
-		keys = self.getColumnNames(table_name)
+		keys = self.getColumnNames()
 		for i in range(0, len(keys)):
 			output[keys[i]] = row[i]
 		return output
+
+	def writeTableToCsv(self):
+		sql = "SELECT * FROM " + self.table_name
+		self.db.execute(sql)
+		if self.db.rowcount == 0:
+			return 
+		query = self.db.fetchall()
+		wb = openpyxl.Workbook()
+		ws = wb.active
+		# Rows can also be appended
+		headers = self.getColumnNames()
+		ws.append(headers)
+		for row in query:
+			ws.append(row)
+		# Save the file
+		wb.save("./web/output/sql_tables/" + self.table_name + ".xlsx")
+
+	# takes a file name which is the name of the output file
+	def writeDictToCsv(self, file_name, dictionary_list):
+		if len(dictionary_list) == 0:
+			return
+		wb = openpyxl.Workbook()
+		ws = wb.active
+		# Rows can also be appended
+		headers = list(dictionary_list[0].keys())
+		headers.reverse()
+		ws.append(headers)
+		for item in dictionary_list:
+			this_row = list()
+			for key in headers:
+				this_row.append(item[key])
+			ws.append(this_row)
+
+		# Save the file
+		wb.save("./web/output/sql_tables/" + file_name + ".xlsx")
 
 	# merge sorts an output from tableToDict by time_stamp
 	def mergeSort(self, x):

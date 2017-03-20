@@ -3,8 +3,8 @@ var ReactDOM = require('react-dom');
 import {Button} from 'react-bootstrap'
 const request_variables = ['submission_id', 'name', 'email', 'product_description', 'price_range', 'confirmed', 'completed', 'time_stamp']
 const headers = ['Delete', 'Submission Id', 'Name', 'Email', 'Product Description', 'Price Range', 'Confirmed', 'Completed', 'Time Stamp']
-var real_url = "https://whereisitmade.herokuapp.com"
-var test_url = "http://127.0.0.1:5000"
+var Config = require('Config')
+var url = Config.serverUrl
 export default class AdminTools extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,7 +17,7 @@ export default class AdminTools extends React.Component {
 			var product_requests = []
 			$.ajax({
 			  type: "POST",
-			  url: real_url + "/getProductRequests",
+			  url: url + "/getProductRequests",
 			  success: function(data) {
 				this.setState({product_requests: data})
 			  }.bind(this),
@@ -76,7 +76,7 @@ export default class AdminTools extends React.Component {
 			var form_data = JSON.stringify({"submission_id": s_id})
 			$.ajax({
 				type: "POST",
-				url: real_url  + "/softDeleteProductRequestBySubmissionId",
+				url: url  + "/softDeleteProductRequestBySubmissionId",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
