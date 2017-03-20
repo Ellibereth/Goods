@@ -1,4 +1,6 @@
 from impl.amazon.amazon_processor import AmazonProcessor
 
-processor = AmazonProcessor(20)
-processor.main()
+
+if __name__ == "__main__":
+	processor = AmazonProcessor(10)
+	processor.main()

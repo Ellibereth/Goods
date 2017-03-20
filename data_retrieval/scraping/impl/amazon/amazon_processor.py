@@ -62,12 +62,13 @@ class AmazonProcessor():
 	def processNextUrlFromQueue(self):
 		writer = AmazonWriter()
 		while not self.queue.empty():
+
 			url = self.queue.get()
 			# try:
 			self.processProductUrl(url, writer)
 			# except:
+			# print("processed url : " + url)
 			# 	writer = AmazonWriter()
-			print("done with url : " + url)
 			sys.stdout.flush()
 			self.queue.task_done()
 		writer.closeConnection()
@@ -76,6 +77,7 @@ class AmazonProcessor():
 	def processAllUrlFromQueue(self):
 		# 20 is the number of threads
 		for i in range(0,self.numThreads):
+			print("this is a thread!")
 			thread = Thread(target = self.processNextUrlFromQueue)
 			thread.start()
 			
@@ -119,6 +121,7 @@ class AmazonProcessor():
 		time_2 = time.time()
 		writer.addProductEntryToDataTable(product_details)
 		time_3 = time.time()
+		print("completed asin : " + asin)
 
 	# if url = "amazon.com/dp/[asin]"
 	# will return [asin]
@@ -163,31 +166,45 @@ class AmazonProcessor():
 	def getUsaCompaniesFromCsv(self):
 		usa_company_list = list()
 		with open ("./scraping_tools/usa_companies.csv", encoding = "utf-8", errors='ignore') as f:
-
 			csv_reader = csv.reader(f)
 			for row in csv_reader:
-				usa_company_name = row[0]
-				usa_company_list.append(usa_company_name)
+				this_dict = {}
+				this_dict['name'] = row[0]
+				this_dict['node_id'] = row[1]
+				if this_dict['node_id'] != "":
+					usa_company_list.append(this_dict)
 		return usa_company_list
+
 
 	def getUrlsFromKeyWord(self, keyword):
 		url = "https://www.amazon.com/s/keywords=" + keyword
 		return url
 
-	def getDataFromBrandNodeId(self, brand_node_id):
+	def getUrlFromBrandNodeId(self, brand_node_id):
 		url = "https://www.amazon.com/b/?node=" + brand_node_id + "&page="
-		self.getDataFromCategoryUrl(url)
+		return url
 
 	def main(self):
-		usa_company_list = self.getUsaCompaniesFromCsv()
-		for usa_company in usa_company_list:
-			url = self.getUrlsFromKeyWord(usa_company) 
-			url_start = url + "&page="
-			url_end = ""
-			self.getDataFromCategoryUrl(url_start, url_end, pagination_end = 5)
-		# print("starting to multithread")
-		# self.processAllUrlFromQueue()
-		# self.joinProcesses()
+		usa_companies = self.getUsaCompaniesFromCsv()
+		count = 0
+		for company in usa_companies:
+			if count > 6:
+				url = self.getUrlFromBrandNodeId(company['node_id'])
+				# self.getDataFromCategoryUrl(url)
+				print("URL is  : " + url)
+				for i in range(1,20):
+					html = self.scraper.getHtml(url + str(i))
+					self.crawler.getAsinFromHtml(html)
+					asin_list = self.crawler.getAsinFromHtml(html)
+					for asin in asin_list:
+						self.addAsinToQueue(asin)
+				
+				print("Queue size for company \"" + str(company['name'])  + "\" is  : " + str(self.queue.qsize()))
+				self.processAllUrlFromQueue()
+				self.joinProcesses()
+				print("completed company : " + company['name'])
+			count = count + 1
+
 
 	def one_test(self):
 		asin = "B00KLFYGCC"

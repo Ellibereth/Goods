@@ -69,13 +69,27 @@ class AmazonManager:
 		usa_products = self.getProductsMadeInUsa()
 		self.sql.writeDictToCsv("USA_PRODUCTS", usa_products)
 
+	def writeProductByUniqueBrand(self):
+		allProducts = self.getAmazonProducts()
+		existing_brand_nodes = list()
+		output_dict_list = list()
+		for product in allProducts:
+			this_brand_node = product.get('brand_node_id')
+			if this_brand_node == None:
+				this_brand_node = ""
+			if this_brand_node not in existing_brand_nodes:
+				output_dict_list.append(product)
+				existing_brand_nodes.append(this_brand_node)
+		self.sql.writeDictToCsv("UNIQUE_BY_BRAND", output_dict_list)
+
 	def main(self):
-		asin = "B00THLYG8A"
-		product = self.getProductInfoByAsin(asin)
-		print(product)
+		self.writeProductByUniqueBrand()
 		
 
-
+if __name__ == "__main__":
+	amazon = AmazonManager()
+	amazon.main()
+	amazon.closeConnection()
 
 
 
