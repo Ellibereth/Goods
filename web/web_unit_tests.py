@@ -1,7 +1,7 @@
 import unittest
 import string
 import random
-from product_data_manager import ProductDataManager
+from product_request_manager import ProductRequestManager
 from account_manager import AccountManager
 
 def id_generator(size=5, chars=string.ascii_uppercase + string.digits):
@@ -36,7 +36,6 @@ def areQueriesEqual(this_query, that_query, keys = None):
 
 
 class TestWeb(unittest.TestCase):
-
 	## inserts some random requests into the datbase, checks the get by submissionId method if it works
 	## then deletes and after deletion verifies the initial query is same as at the end
 	## test, insert, get, delete, and getAll
@@ -54,17 +53,17 @@ class TestWeb(unittest.TestCase):
 					request[key] = id_generator()
 			request_list.append(request)
 
-		product_manager = ProductDataManager()
-		initial_list = product_manager.getProductRequests()
+		request_manager = ProductRequestManager()
+		initial_list = request_manager.getProductRequests()
 		for request in request_list:
-			output = product_manager.addProductRequest(request)
+			output = request_manager.addProductRequest(request)
 			submission_id = output['submission_id']
-			output_request = product_manager.getProductRequestBySubmissionId(submission_id)
+			output_request = request_manager.getProductRequestBySubmissionId(submission_id)
 			for key in keys:
 				self.assertEquals(request[key], output_request[key])
-			product_manager.deleteProductRequestBySubmissionId(submission_id)
-		end_list = product_manager.getProductRequests()
-		product_manager.closeConnection()
+			request_manager.deleteProductRequestBySubmissionId(submission_id)
+		end_list = request_manager.getProductRequests()
+		request_manager.closeConnection()
 		
 		# checks if both queries are the same length
 		self.assertTrue(areQueriesEqual(initial_list, end_list))

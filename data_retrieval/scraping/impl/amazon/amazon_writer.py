@@ -97,7 +97,7 @@ class AmazonWriter:
 
 
 	def getColumnNames(self):
-		sql = "Select * FROM " + self.AMAZON_SCRAPING_TABLE
+		sql = "Select * FROM " + self.AMAZON_SCRAPING_TABLE + " LIMIT 0"
 		self.db.execute(sql)
 		colnames = self.db.fetchall()
 		colnames = [desc[0] for desc in self.db.description]

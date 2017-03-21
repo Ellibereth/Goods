@@ -89,8 +89,7 @@ class ProductSubmissionManager:
 
 	# returns a dictionary with all product submission
 	def getProductSubmissions(self):
-		allProducts = self.sql.tableToDict()
-		return allProducts
+		return self.sql.tableToDict()
 	
 	# verifies a product submission by submission_id
 	def verifyProductSubmission(self, submission_id):

@@ -6,6 +6,9 @@ import base64
 import email_api
 import sys
 from sql_manager import SqlManager
+from utility import string_util 
+usa_origin_target_strings = [" us", "us ", "usa" , "america", "united states"]
+usa_origin_invalidating_strings = ['imported', 'australia', 'belarus', 'cyprus','mauritius','russia']
 
 # this class will only call information from Amazon
 class AmazonManager:
@@ -38,18 +41,8 @@ class AmazonManager:
 		if raw_origin == None:
 			return False
 		origin = raw_origin.lower()
-		found_target = False
-		target_strings = [" us", "us ", "usa" , "america", "united states"]
-		for target_string in target_strings:
-			index = origin.find(target_string)
-			if index != -1:
-				found_target = True
-		invalidated = False
-		invalidating_strings = ['imported', 'australia', 'belarus', 'cyprus','mauritius','russia']
-		for invalidating_string in invalidating_strings:
-			index = origin.find(invalidating_string)
-			if index != -1:
-				invalidated = True 
+		found_target = string_util.stringHasTargetStrings(origin, usa_origin_target_strings)
+		invalidated = string_util.stringHasTargetStrings(origin, usa_origin_invalidating_strings)
 		isUsa = found_target and not invalidated
 		return isUsa
 		
@@ -63,7 +56,7 @@ class AmazonManager:
 		return self.isProductMadeInUsa(asin)
 
 	def writeTableToXls(self):
-		self.sql.writeTableToXld()
+		self.sql.writeTableToXls()
 
 	def writeUsaProductsToXls(self):
 		usa_products = self.getProductsMadeInUsa()

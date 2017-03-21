@@ -193,8 +193,34 @@ class AmazonProcessor():
 		return url
 
 	def main(self):
-		# self.getDataFromCategoryUrl(Url.AmericanApparelWomenStart, Url.AmericanApparelWomenEnd, pagination_start = 1, pagination_end = 22)
-		self.updateAmazonTableForUsaCompanies()
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A2474937011%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=2474937011&ie=UTF8&qid=1490044297"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A1040658%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=1040658&ie=UTF8&qid=1490044298"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A679255011%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=679255011&ie=UTF8&qid=1490044299"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A679255011%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=679255011&ie=UTF8&qid=1490044299"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A2474936011%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=2474936011&ie=UTF8&qid=1490044303"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A679337011%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=679337011&ie=UTF8&qid=1490044304"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A7192394011%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=7192394011&ie=UTF8&qid=1490044305"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A9479199011%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=9479199011&ie=UTF8&qid=1490044307"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A15743631%2Cp_89%3AHarley-Davidson&page="
+		url_end = "&bbn=15743631&ie=UTF8&qid=1490044307"
+		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		
 
 	def updateAmazonTableForUsaCompanies(self):
 		usa_brand_node_list = self.getUsaCompanyBrandNodeIdList()

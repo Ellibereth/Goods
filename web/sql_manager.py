@@ -142,7 +142,7 @@ class SqlManager:
 
 	# returns the list of columns in a table given its name
 	def getColumnNames(self):
-		sql = "Select * FROM " + self.table_name
+		sql = "Select * FROM " + self.table_name + " LIMIT 0"
 		self.db.execute(sql)
 		colnames = self.db.fetchall()
 		colnames = [desc[0] for desc in self.db.description]
