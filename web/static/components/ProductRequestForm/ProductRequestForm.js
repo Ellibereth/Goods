@@ -37,7 +37,7 @@ export default class ProductRequestForm extends React.Component {
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
 		  cancelButtonText: "No",
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
 		function () {
@@ -62,7 +62,8 @@ export default class ProductRequestForm extends React.Component {
 					}
 					else {
 						this.props.toggleRequestFormModal()
-						swal("Thank you!", "You will receive a confirmation email regarding your product request", "success")
+						swal("Thank you!", "You will receive a confirmation email regarding your product request. You might have to check your spam fodler"
+							, "success")
 					}
 				}.bind(this),
 				error : function(){

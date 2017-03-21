@@ -120,10 +120,10 @@ class AmazonProcessor():
 		writer.addProductEntryToDataTableFast(product_details)
 		time_3 = time.time()
 		print("time to write to db for asin \"" + str(asin) + "\" : " + str(time_3 - time_2))
-		print("from thread : " + str(threading.get_ident()))
-		# print("completed asin : " + asin)
-		print("----------------------------") 
-		print("\n")
+		# print("from thread : " + str(threading.get_ident()))
+		# # print("completed asin : " + asin)
+		# print("----------------------------") 
+		# print("\n")
 
 	# if url = "amazon.com/dp/[asin]"
 	# will return [asin]
@@ -140,10 +140,12 @@ class AmazonProcessor():
 			return None
 		return asin
 
-	def getDataFromCategoryUrl(self, url_start, url_end = "", pagination_start = 1, pagination_end = 20):
+	def getDataFromCategoryUrl(self, url, pagination_start = 1, pagination_end = 20):
+		url_split = self.splitUrlByPage(url)
+		print(url_split)
 		for page_number in range(pagination_start, pagination_end):
 			time_0 = time.time()
-			url = url_start + str(page_number) + url_end
+			url = url_split['start'] + str(page_number) + url_split['end']
 			print("processing html")
 			html = self.scraper.getHtml(url)
 			print("html processed " + str(page_number))
@@ -156,6 +158,7 @@ class AmazonProcessor():
 			time_1 = time.time()
 			# print("time to add asins from search to queue : " + str(time_1 - time_0))
 		print("starting to multithread")
+		print("Queue Size : " + str(self.queue.qsize()))
 		self.processAllUrlFromQueue()
 		self.joinProcesses()
 
@@ -192,34 +195,32 @@ class AmazonProcessor():
 		url = "https://www.amazon.com/b/?node=" + brand_node_id + "&page="
 		return url
 
+	def splitUrlByPage(self, url):
+		index = url.find('page=')
+		url_start = url[0: index + 5]
+		url_end = ""
+		i = index + 6
+		page_ended = False
+		while i < len(url):
+			if not page_ended:
+				if not url[i].isdigit() or url[i] == "&":
+					url_end = url_end + url[i]
+					page_ended = True
+			else:
+				url_end = url_end + url[i]
+			i = i + 1
+		output = {}
+		output['start'] = url_start
+		output['end'] = url_end
+		return output
+
+	# add a function to just process one url
 	def main(self):
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A2474937011%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=2474937011&ie=UTF8&qid=1490044297"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A1040658%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=1040658&ie=UTF8&qid=1490044298"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A679255011%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=679255011&ie=UTF8&qid=1490044299"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147441011%2Cn%3A679255011%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=679255011&ie=UTF8&qid=1490044299"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A2474936011%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=2474936011&ie=UTF8&qid=1490044303"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A679337011%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=679337011&ie=UTF8&qid=1490044304"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A7192394011%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=7192394011&ie=UTF8&qid=1490044305"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A9479199011%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=9479199011&ie=UTF8&qid=1490044307"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
-		url_start = "https://www.amazon.com/s/ref=sr_pg_2?rh=n%3A7141123011%2Cn%3A7147440011%2Cn%3A15743631%2Cp_89%3AHarley-Davidson&page="
-		url_end = "&bbn=15743631&ie=UTF8&qid=1490044307"
-		self.getDataFromCategoryUrl(url_start, url_end, pagination_start = 1, pagination_end = 22)
+		url = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=node%3D11058711&field-keywords=made+in+usa&rh=n%3A3760911%2Cn%3A11058281%2Cn%3A11058691%2Cn%3A11058711%2Ck%3Amade+in+usa&page=1"
+		self.getDataFromCategoryUrl(url, pagination_start = 1, pagination_end = 170)
+		# url = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=blush&page=1"
+		# self.getDataFromCategoryUrl(url, pagination_start = 1, pagination_end = 170)
+		self.writeTableToCsv()
 		
 
 	def updateAmazonTableForUsaCompanies(self):

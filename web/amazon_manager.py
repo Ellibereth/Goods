@@ -76,6 +76,7 @@ class AmazonManager:
 		self.sql.writeDictToXls("UNIQUE_BY_BRAND", output_dict_list)
 
 	def main(self):
+		self.writeTableToXls()
 		self.writeUsaProductsToXls()
 		
 
