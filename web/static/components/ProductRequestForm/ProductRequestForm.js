@@ -62,7 +62,7 @@ export default class ProductRequestForm extends React.Component {
 					}
 					else {
 						this.props.toggleRequestFormModal()
-						swal("Thank you!", "You will receive a confirmation email regarding your product request. You might have to check your spam fodler"
+						swal("Thank you!", "You will receive a confirmation email regarding your product request. You might have to check your spam folder"
 							, "success")
 					}
 				}.bind(this),
