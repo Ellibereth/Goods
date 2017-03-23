@@ -5,6 +5,7 @@ import psycopg2
 import base64
 import api.utility.email_api
 from api.utility.sql_manager import SqlManager
+from api.utility import validation
 from passlib.hash import argon2
 
 user_info_columns = [
@@ -52,6 +53,7 @@ class AccountManager(SqlManager):
 	# this is a WIP and will be updated to handle the correct user information
 	def isUserCreationValid(self, user_info):
 		output ={}
+		email = user_info.
 		try:
 			email = input_email.lower()
 		except:
