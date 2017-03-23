@@ -5,13 +5,15 @@ import psycopg2
 import base64
 import api.utility.email_api
 from api.utility.sql_manager import SqlManager
-					
+from passlib.hash import argon2
 
 user_info_columns = [
 						{"name" : "time_stamp", "type" : "FLOAT"},
 						{"name" : "email",		"type" : "TEXT"},
 						{"name" : "email_confirmation_id", "type" : "TEXT"},
-						{"name" : "email_confirmed", "type": "BOOL"}
+						{"name" : "email_confirmed", "type": "BOOL"},
+						{"name" : "username", "type" : "TEXT"},
+						{"name" : "password", "type" : "TEXT"}
 					]
 
 class AccountManager(SqlManager):
@@ -28,9 +30,28 @@ class AccountManager(SqlManager):
 	# handles a new user email
 	# first checks if the email is in the table
 	# also checks if it's a real email too with a try/except in email_api.py
-	def addEmailToUserInfoTable(self, input_email):
+	# user_info is a dictioary right now
+	def addUser(self, user_info):
 		self.createNewTableIfNotExists()
+		is_valid_submission = self.isUserSubmissionValid(user_info)
+		if not valid_submission['success']:
+			return is_valid_submission
+
 		output = {}
+		# we hard code the email and username to lower case
+		user_info['password'] = argon2.using(rounds=4).hash(user_info['password'])
+		user_info['username'] = user_info['username'].lower()
+		user_info['email'] = user_info['email'].lower()
+		user_info['time_stamp'] = time_stamp = time.time()
+		user_info['email_confirmed'] = False
+		user_info['email_confirmation_id'] = email_confirmation_id
+		self.insertDictToTable(user_info)
+		output['success'] = True
+		return output
+
+	# this is a WIP and will be updated to handle the correct user information
+	def isUserCreationValid(self, user_info):
+		output ={}
 		try:
 			email = input_email.lower()
 		except:
@@ -38,7 +59,6 @@ class AccountManager(SqlManager):
 			output['error'] = "Email is not a string"
 			return output
 		email_confirmation_id = self.generateEmailConfirmationId()
-		print(self.tableHasEmail(email))
 		if self.tableHasEmail(email):
 			output['success'] = False
 			output['error'] = "No need to send an confirmation since this email exists!"
@@ -49,28 +69,13 @@ class AccountManager(SqlManager):
 			output['success'] = False
 			output['error'] = "Invalid Email Address"
 			return output
-		time_stamp = time.time()
-		self.addColumnToTableIfNotExists('email')
-		self.insertIntoTableWithInitialValue('email', email)
-		default_info = {}
-		default_info['time_stamp'] = time_stamp
-		default_info['email_confirmed'] = False
-		default_info['email_confirmation_id'] = email_confirmation_id
-		default_info['email'] = email
-		for col in user_info_columns:
-			key = col['name']
-			self.addColumnToTableIfNotExists(col['name'], col['type'])
-			self.updateEntryByKey('email', email, key, default_info[key])
 		output['success'] = True
-		return output
 
 	# generates a new email_confirmation_id
 	def generateEmailConfirmationId(self):
-		new_email_id = self.id_generator()
-		while self.tableHasConfirmationId(new_email_id):
-			new_email_id = self.id_generator()
-		return new_email_id
-
+		column_name = "email_confirmation_id"
+		return self.generateUniqueId(column_name)
+		
 	def tableHasConfirmationId(self, email_confirmation_id):
 		column_name = "email_confirmation_id"
 		entry_data = email_confirmation_id

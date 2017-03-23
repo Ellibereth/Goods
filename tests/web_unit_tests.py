@@ -1,8 +1,7 @@
 import unittest
 import string
 import random
-from product_request_manager import ProductRequestManager
-from account_manager import AccountManager
+from api.utility.product_request_manager import ProductRequestManager
 
 def id_generator(size=5, chars=string.ascii_uppercase + string.digits):
 		return ''.join(random.choice(chars) for _ in range(size))

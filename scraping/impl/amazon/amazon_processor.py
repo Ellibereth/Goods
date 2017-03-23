@@ -24,17 +24,14 @@ will use all of the above files and
 """
 
 class AmazonProcessor():
-	def __init__(self, numThreads = None):
+	def __init__(self, numThreads = 1):
 		self.crawler = AmazonCrawler()
 		self.scraper = HtmlScraper()
 		self.parser = AmazonParser()
 		self.queue = queue.LifoQueue()
 		# we don't have a writer here because multiple sql connections
 		# give malloc errors, so we define a new one each time
-		
-		self.numThreads = 1
-		if numThreads != None:
-			self.numThreads = numThreads
+		self.numThreads = numThreads
 
 	# function to handle any other tasks we want completed before joining the threads
 	def joinProcesses(self):
@@ -89,14 +86,27 @@ class AmazonProcessor():
 		asin = self.getAsinFromUrl(url)
 		if asin == None:
 			print("asin from the url is none : " + url)
-			return
+			return None
 		# for now if the asin is already in the table, just skip...
-		# in the future we will add the related asins to the queue still 
+		# in the future we may add the related asins to the queue still 
 		has_asin = writer.tableHasAsin(asin)
 		if has_asin:
 			print("table has asin : " + asin)
+			return None
+		product_details = self.getProductDetailsFromUrl(url, writer)
+		if product_details == None:
 			return
+		time_2 = time.time()
+		writer.addProductEntryToDataTableFast(product_details)
+		time_3 = time.time()
+		print("time to write to db for asin \"" + str(asin) + "\" : " + str(time_3 - time_2))
+		# print("from thread : " + str(threading.get_ident()))
+		# # print("completed asin : " + asin)
+		# print("----------------------------") 
+		# print("\n")
 
+	def getProductDetailsFromUrl(self, url, writer):
+		asin = self.getAsinFromUrl(url)
 		html = self.scraper.getHtml(url)
 		time_1 = time.time()
 		# asin_list = self.crawler.getAsinFromHtml(html)
@@ -109,16 +119,8 @@ class AmazonProcessor():
 		# 	with open('./impl/amazon/logs/bad_url_list.log', 'a') as f:
 		# 		f.write(url + "\n")
 		# 	product = None
-
 		product_details = product.getDetails()
-		time_2 = time.time()
-		writer.addProductEntryToDataTableFast(product_details)
-		time_3 = time.time()
-		print("time to write to db for asin \"" + str(asin) + "\" : " + str(time_3 - time_2))
-		# print("from thread : " + str(threading.get_ident()))
-		# # print("completed asin : " + asin)
-		# print("----------------------------") 
-		# print("\n")
+		return product_details
 
 	# if url = "amazon.com/dp/[asin]"
 	# will return [asin]
@@ -162,34 +164,7 @@ class AmazonProcessor():
 		writer.writeTableToCsv()
 		writer.closeConnection()
 
-	# gets the us companies froma csv
-	def getUsaCompaniesFromCsv(self):
-		usa_company_list = list()
-		with open ("./scraping_tools/usa_companies.csv", encoding = "utf-8", errors='ignore') as f:
-			csv_reader = csv.reader(f)
-			for row in csv_reader:
-				this_dict = {}
-				this_dict['name'] = row[0]
-				this_dict['node_id'] = row[1]
-				if this_dict['node_id'] != "":
-					usa_company_list.append(this_dict)
-		return usa_company_list
-
-	def getUsaCompanyBrandNodeIdList(self):
-		usa_companies = self.getUsaCompaniesFromCsv()
-		usa_brand_node_list = list()
-		for row in usa_companies:
-			usa_brand_node_list.append(row['node_id'])
-		return usa_brand_node_list
-
-	def getUrlsFromKeyWord(self, keyword):
-		url = "https://www.amazon.com/s/keywords=" + keyword
-		return url
-
-	def getUrlFromBrandNodeId(self, brand_node_id):
-		url = "https://www.amazon.com/b/?node=" + brand_node_id + "&page="
-		return url
-
+	# should methods like this be moved to another file?
 	def splitUrlByPage(self, url):
 		index = url.find('page=')
 		if index == -1:
@@ -216,21 +191,10 @@ class AmazonProcessor():
 
 	# add a function to just process one url
 	def main(self):
-		url = "https://www.amazon.com/gp/search/ref=sr_nr_p_36_6?rnid=2421885011&keywords=macbook+laptop&rh=n%3A172282%2Cn%3A541966%2Cn%3A13896617011%2Cn%3A565108%2Cn%3A13896615011%2Ck%3Amacbook+laptop&qid=1490159320&low-price=500&high-price=20000&x=9&y=13&page=2"
-		self.getDataFromCategoryUrl(url, pagination_start = 1, pagination_end = 5)
+		url = "https://www.amazon.com/s/ref=lp_330405011_pg_2?rh=n%3A172282%2Cn%3A%21493964%2Cn%3A502394%2Cn%3A281052%2Cn%3A330405011&page=2&ie=UTF8&qid=1490285654"
+		self.getDataFromCategoryUrl(url, pagination_start = 1, pagination_end = 240)
 		self.writeTableToCsv()
 		
-
-	def updateAmazonTableForUsaCompanies(self):
-		usa_brand_node_list = self.getUsaCompanyBrandNodeIdList()
-		writer = AmazonWriter()
-		target_column = "brand_node_id"
-		column_name = "final_origin"
-		data = "USA"
-		for brand_node_id in usa_brand_node_list:
-			target_property = brand_node_id
-			writer.updateEntriesWithProperty(target_column, target_property, column_name, data)
-		writer.closeConnection()
 
 	def one_test(self):
 		asin = "B00O257IJA"

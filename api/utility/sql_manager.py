@@ -86,8 +86,9 @@ class SqlManager:
 		sql = sql[0:len(sql) - 2]
 		sql = sql + ") VALUES ("
 		for key in keys:
-			value_list.append(dictionary.get(key))
-			sql = sql + "%s, "
+			if key in dictionary.keys():
+				value_list.append(dictionary.get(key))
+				sql = sql + "%s, "
 		sql = sql[0:len(sql) - 2]
 		sql = sql + ")"
 		value_tup = tuple(value_list)
@@ -129,13 +130,34 @@ class SqlManager:
 	#  given the table name, updates the entries that data key in the column key_column_name
 	#  such that their entries in the column target_column_name have value data
 	#  if target_column_name doesn't exists, it creates it with value 
-	# this key is not necessarily unique!
+	#  this key is not necessarily unique!
 	def updateEntryByKey(self, key_column_name, key, target_column_name, data):	
+		# should we add a column if it does not exist, or just not ignore these columns
 		if not self.tableHasColumn(target_column_name):
 			data_type = self.getDataTypeString(data)
 			self.addColumnToTableIfNotExists(target_column_name, data_type = data_type)
 		sql = "UPDATE " + self.table_name + " SET " + target_column_name + " = %s " + " WHERE " + key_column_name + " = %s"
 		mogrified_sql = self.db.mogrify(sql, (data, key))
+		self.db.execute(mogrified_sql)
+
+
+	def updateRowByKey(self, key_column_name, key, dictionary):
+		sql = "UPDATE " + self.table_name + " SET "
+		table_columns = self.getColumnNames()
+		value_list = list()
+		for col_name in dictionary.keys():
+			# might need to make this check not case sensitive
+			if col_name in table_columns:
+				sql = sql + col_name + " = %s, " 
+				value_list.append(dictionary.get(col_name))
+
+		# get rid of the ', ' at the end
+		sql = sql[0: len(sql) - 2]
+		sql = sql + " WHERE " + key_column_name  + " = %s" 
+		value_list.append(key)
+		value_tup = tuple(value_list)
+		mogrified_sql = self.db.mogrify(sql, (value_tup))
+		print(mogrified_sql)
 		self.db.execute(mogrified_sql)
 
 	# adds a column to a given table if it does not already exist
