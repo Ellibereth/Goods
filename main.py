@@ -18,7 +18,7 @@ app.secret_key = "powerplay"
 # app.register_blueprint(mobile_api)
 # from api.browser_api import browser_api
 # app.register_blueprint(browser_api)
-from api.general.public_api import public_api
+from api.general_api.public_api import public_api
 app.register_blueprint(public_api)
 
 @app.after_request
