@@ -32,18 +32,15 @@ product_request_submission_variables = [
 									]
 
 						 
-class ProductRequestManager:
+class ProductRequestManager(SqlManager):
 	def __init__(self):
 		self.USER_REQUEST_TABLE = "USER_REQUEST_TABLE"
-		self.sql = SqlManager(self.USER_REQUEST_TABLE)
+		SqlManager.__init__(self, self.USER_REQUEST_TABLE)
 		self.createProductRequestTable()
-
-	def closeConnection(self):
-		self.sql.closeConnection()	
 
 	# initializes the product request table
 	def createProductRequestTable(self):
-		self.sql.createNewTableIfNotExists()
+		self.createNewTableIfNotExists()
 
 	# returns a random alphanumric character with size 20
 	# used for generating submission_id
@@ -53,7 +50,7 @@ class ProductRequestManager:
 	# checks if the given table has the image id
 	def isImageIdTaken(self, image_id):
 		column_name = "image_id"
-		return self.sql.tableHasEntryWithProperty(column_name, image_id)
+		return self.tableHasEntryWithProperty(column_name, image_id)
 
 	# generates new image id for the given table
 	def generateNewImageId(self):
@@ -65,7 +62,7 @@ class ProductRequestManager:
 	# checks if the given table has the image id
 	def isSubmissionIdTaken(self, submission_id):
 		column_name = "submission_id"
-		return self.sql.tableHasEntryWithProperty(column_name, submission_id)
+		return self.tableHasEntryWithProperty(column_name, submission_id)
 	
 	# generates a new submission_id for the given table
 	def generateNewSubmissionId(self):
@@ -76,7 +73,7 @@ class ProductRequestManager:
 
 	def isConfirmationIdTaken(self, confirmation_id):
 		column_name = "confirmation_id"
-		return self.sql.tableHasEntryWithProperty(column_name, confirmation_id)
+		return self.tableHasEntryWithProperty(column_name, confirmation_id)
 
 	def generateNewConfirmationId(self):
 		confirmation_id = self.id_generator()
@@ -86,7 +83,7 @@ class ProductRequestManager:
 
 	# returns a dictionary with all request submissions, not including the soft_deleted ones
 	def getProductRequests(self):
-		allRequests = self.sql.tableToDict()
+		allRequests = self.tableToDict()
 		actualRequests = list()
 		for request in allRequests:
 			if not request['soft_deleted']:
@@ -114,16 +111,16 @@ class ProductRequestManager:
 		if send_email:
 			email_api.sendRequestEmail(request)
 		# initializes with the submission_id
-		self.sql.insertIntoTableWithInitialValue("submission_id", submission_id)
+		self.insertIntoTableWithInitialValue("submission_id", submission_id)
 		## update the other variables
-		self.sql.updateEntryByKey("submission_id", submission_id, 'time_stamp', time_stamp)
-		self.sql.updateEntryByKey("submission_id", submission_id, 'confirmed', False)
-		self.sql.updateEntryByKey("submission_id", submission_id, 'completed', False)
-		self.sql.updateEntryByKey("submission_id", submission_id, 'confirmation_id', confirmation_id)
-		self.sql.updateEntryByKey('submission_id', submission_id, 'soft_deleted', False)
+		self.updateEntryByKey("submission_id", submission_id, 'time_stamp', time_stamp)
+		self.updateEntryByKey("submission_id", submission_id, 'confirmed', False)
+		self.updateEntryByKey("submission_id", submission_id, 'completed', False)
+		self.updateEntryByKey("submission_id", submission_id, 'confirmation_id', confirmation_id)
+		self.updateEntryByKey('submission_id', submission_id, 'soft_deleted', False)
 		for key in submitted_keys:
 			if key != "submission_id":
-				self.sql.updateEntryByKey("submission_id", submission_id, key, request.get(key))
+				self.updateEntryByKey("submission_id", submission_id, key, request.get(key))
 		output['success'] = True
 		output['submission_id'] = submission_id
 		return output
@@ -132,7 +129,7 @@ class ProductRequestManager:
 	def getProductRequestBySubmissionId(self, submission_id):
 		if submission_id == None:
 			return None
-		this_submission = self.sql.getRowByUniqueProperty('submission_id', submission_id)
+		this_submission = self.getRowByUniqueProperty('submission_id', submission_id)
 		return this_submission
 
 	def confirmProductRequest(self, confirmation_id):
@@ -148,7 +145,7 @@ class ProductRequestManager:
 		key = confirmation_id
 		target_column_name = "confirmed"
 		data = True
-		self.sql.updateEntryByKey(key_column_name, key, target_column_name, data)
+		self.updateEntryByKey(key_column_name, key, target_column_name, data)
 		output = {}
 		output['success'] = True
 		return output
@@ -156,13 +153,13 @@ class ProductRequestManager:
 	## deletes a product request by id
 	def deleteProductRequestBySubmissionId(self, submission_id):
 		column_name = "submission_id"
-		self.sql.deleteRowFromTableByProperty(column_name, submission_id)
+		self.deleteRowFromTableByProperty(column_name, submission_id)
 
 	def softDeleteProductRequestBySubmissionId(self, submission_id):
 		column_name = "submission_id"
 		key = "soft_deleted"
 		value = True
-		self.sql.updateEntryByKey(column_name, submission_id, key, value)
+		self.updateEntryByKey(column_name, submission_id, key, value)
 		output = {}
 		output['success'] = True
 		return output

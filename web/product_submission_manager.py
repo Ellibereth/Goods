@@ -35,18 +35,15 @@ product_submission_database_columns = [
 							'additional_info'
 						 ]
 						 
-class ProductSubmissionManager:
+class ProductSubmissionManager(SqlManager):
 	def __init__(self):
 		self.USER_SUBMISSION_TABLE = "USER_SUBMISSION_TABLE"
-		self.sql = SqlManager(self.USER_SUBMISSION_TABLE)
+		SqlManager.__init__(self, self.USER_SUBMISSION_TABLE)
 		self.creatUserSubmissionTable()
-
-	def closeConnection(self):
-		self.sql.closeConnection()	
 
 	# initializes the product submission table
 	def creatUserSubmissionTable(self):
-		self.sql.createNewTableIfNotExists()
+		self.createNewTableIfNotExists()
 
 	# returns a random alphanumric character with size 20
 	# used for generating submission_id
@@ -56,7 +53,7 @@ class ProductSubmissionManager:
 	# checks if the given table has the image id
 	def isImageIdTaken(self, image_id):
 		column_name = "image_id"
-		return self.sql.tableHasEntryWithProperty(column_name, image_id)
+		return self.tableHasEntryWithProperty(column_name, image_id)
 
 	# generates new image id for the given table
 	def generateNewImageId(self):
@@ -68,7 +65,7 @@ class ProductSubmissionManager:
 	# checks if the given table has the image id
 	def isSubmissionIdTaken(self, submission_id):
 		column_name = "submission_id"
-		return self.sql.tableHasEntryWithProperty(column_name, submission_id)
+		return self.tableHasEntryWithProperty(column_name, submission_id)
 	
 	# generates a new submission_id for the given table
 	def generateNewSubmissionId(self):
@@ -79,7 +76,7 @@ class ProductSubmissionManager:
 
 	def isConfirmationIdTaken(self, confirmation_id):
 		column_name = "confirmation_id"
-		return self.sql.tableHasEntryWithProperty(column_name, confirmation_id)
+		return self.tableHasEntryWithProperty(column_name, confirmation_id)
 
 	def generateNewConfirmationId(self):
 		confirmation_id = self.id_generator()
@@ -89,7 +86,7 @@ class ProductSubmissionManager:
 
 	# returns a dictionary with all product submission
 	def getProductSubmissions(self):
-		return self.sql.tableToDict()
+		return self.tableToDict()
 	
 	# verifies a product submission by submission_id
 	def verifyProductSubmission(self, submission_id):
@@ -101,7 +98,7 @@ class ProductSubmissionManager:
 		else:
 			column_name = "verified"
 			data = True
-			self.sql.updateEntryByKey('submission_id', submission_id, column_name, data)
+			self.updateEntryByKey('submission_id', submission_id, column_name, data)
 
 	# takes submission dictionary as input then writes it to the database
 	# also sends the image as an email to darek@manaweb.com
@@ -138,17 +135,17 @@ class ProductSubmissionManager:
 		## insert into the database
 		time_stamp = time.time()
 		submission_id = self.generateNewSubmissionId()
-		self.sql.insertIntoTableWithInitialValue("submission_id", submission_id)
+		self.insertIntoTableWithInitialValue("submission_id", submission_id)
 		## update the other variables
-		self.sql.updateEntryByKey("submission_id", submission_id, 'time_stamp', time_stamp)
-		self.sql.updateEntryByKey("submission_id", submission_id, 'confirmed', False)
+		self.updateEntryByKey("submission_id", submission_id, 'time_stamp', time_stamp)
+		self.updateEntryByKey("submission_id", submission_id, 'confirmed', False)
 		for key in product_submission_variables:
 			if submission.get(key) != None:
-				self.sql.updateEntryByKey('submission_id', submission_id, key, submission[key])
+				self.updateEntryByKey('submission_id', submission_id, key, submission[key])
 
 	## deletes a product submission by id
 	def deleteProductSubmissionById(self, submission_id):
 		column_name = "submission_id"
-		self.sql.deleteRowFromTableByProperty(column_name, submission_id)
+		self.deleteRowFromTableByProperty(column_name, submission_id)
 
 

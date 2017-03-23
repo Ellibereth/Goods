@@ -197,6 +197,11 @@ class AmazonProcessor():
 
 	def splitUrlByPage(self, url):
 		index = url.find('page=')
+		if index == -1:
+			output = {}
+			output['start'] = url + "&page="
+			output['end'] = ""
+			return output
 		url_start = url[0: index + 5]
 		url_end = ""
 		i = index + 6
@@ -216,10 +221,8 @@ class AmazonProcessor():
 
 	# add a function to just process one url
 	def main(self):
-		url = "https://www.amazon.com/s/ref=nb_sb_noss_2?url=node%3D11058711&field-keywords=made+in+usa&rh=n%3A3760911%2Cn%3A11058281%2Cn%3A11058691%2Cn%3A11058711%2Ck%3Amade+in+usa&page=1"
-		self.getDataFromCategoryUrl(url, pagination_start = 1, pagination_end = 170)
-		# url = "https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=blush&page=1"
-		# self.getDataFromCategoryUrl(url, pagination_start = 1, pagination_end = 170)
+		url = "https://www.amazon.com/gp/search/ref=sr_nr_p_36_6?rnid=2421885011&keywords=macbook+laptop&rh=n%3A172282%2Cn%3A541966%2Cn%3A13896617011%2Cn%3A565108%2Cn%3A13896615011%2Ck%3Amacbook+laptop&qid=1490159320&low-price=500&high-price=20000&x=9&y=13&page=2"
+		self.getDataFromCategoryUrl(url, pagination_start = 1, pagination_end = 35)
 		self.writeTableToCsv()
 		
 

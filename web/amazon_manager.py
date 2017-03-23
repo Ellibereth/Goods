@@ -11,17 +11,13 @@ usa_origin_target_strings = [" us", "us ", "usa" , "america", "united states"]
 usa_origin_invalidating_strings = ['imported', 'australia', 'belarus', 'cyprus','mauritius','russia']
 
 # this class will only call information from Amazon
-class AmazonManager:
+class AmazonManager(SqlManager):
 	def __init__(self):
 		self.AMAZON_SCRAPING_TABLE = "AMAZON_SCRAPING_TABLE"
-		self.sql = SqlManager(self.AMAZON_SCRAPING_TABLE)
-		
-	# closes the connection to the postgre sql database
-	def closeConnection(self):
-		self.sql.closeConnection()
+		SqlManager.__init__(self, self.AMAZON_SCRAPING_TABLE)
 
 	def getAmazonProducts(self):
-		amazon_products = self.sql.tableToDict()
+		amazon_products = self.tableToDict()
 		return amazon_products
 
 	def getProductsMadeInUsa(self):
@@ -48,19 +44,16 @@ class AmazonManager:
 		
 	def getProductInfoByAsin(self, asin):
 		column_name = "asin"
-		product = self.sql.getRowByUniqueProperty(column_name, asin)
+		product = self.getRowByUniqueProperty(column_name, asin)
 		return product
 
 	def isAsinMadeInUsa(self, asin):
 		product = self.getProductInfoByAsin(asin)
 		return self.isProductMadeInUsa(asin)
 
-	def writeTableToXls(self):
-		self.sql.writeTableToXls()
-
 	def writeUsaProductsToXls(self):
 		usa_products = self.getProductsMadeInUsa()
-		self.sql.writeDictToXls("USA_PRODUCTS", usa_products)
+		self.writeDictToXls("USA_PRODUCTS", usa_products)
 
 	def writeProductByUniqueBrand(self):
 		allProducts = self.getAmazonProducts()
@@ -73,7 +66,7 @@ class AmazonManager:
 			if this_brand_node not in existing_brand_nodes:
 				output_dict_list.append(product)
 				existing_brand_nodes.append(this_brand_node)
-		self.sql.writeDictToXls("UNIQUE_BY_BRAND", output_dict_list)
+		self.writeDictToXls("UNIQUE_BY_BRAND", output_dict_list)
 
 	def main(self):
 		self.writeTableToXls()
