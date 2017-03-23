@@ -30,6 +30,7 @@ obj/
 [Dd]ebug*/
 [Rr]elease*/
 Ankh.NoLoad
+node_modules/
 
 #Tooling
 _ReSharper*/
