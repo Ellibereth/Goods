@@ -1,11 +1,3 @@
-
-import time
-import string
-import random
-import os
-import sys
-import time
-
 """ 
 this file has a list of the allowed tags on products 
 All the instance variables will be private

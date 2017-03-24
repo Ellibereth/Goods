@@ -36,6 +36,8 @@ request_keys = ['product_description',
 				'name'
 				]
 
+
+register_keys = ['name', 'email', 'password', 'password_confirm']
 feedback_keys = ['name' , 'email', 'feedback']
 
 admin_login_password = 'powerplay'
@@ -151,4 +153,26 @@ def getAmazonProductInformationFromAsin():
 	product = amazon.getProductInfoByAsin(asin)
 	amazon.closeConnection()
 	print(product)
+	return jsonify(product)
+
+@public_api.route('/registerUserAccount', methods = ['POST'])
+def registerUserAccount():
+	user_info = {}
+	output = {}
+	for key in register_keys:
+		user_info[key] = request.json.get(key)
+	account_manager = AccountManager()
+	output = account_manager.addUser(user_info)
+	account_manager.closeConnection()
+	return jsonify(product)
+
+@public_api.route('/checkLogin', methods = ['POST'])
+def checkLogin():
+	user_info = {}
+	output = {}
+	for key in register_keys:
+		user_info[key] = request.json.get(key)
+	account_manager = AccountManager()
+	output = account_manager.checkLogin(user_info)
+	account_manager.closeConnection()
 	return jsonify(product)

@@ -3,7 +3,7 @@ import string
 import random
 import psycopg2
 import base64
-import api.utility.email_api
+from api.utility import email_api
 from api.utility.sql_manager import SqlManager
 					
 
@@ -31,10 +31,7 @@ class FeedbackManager(SqlManager):
 
 	# generates a new email_confirmation_id
 	def generateFeedbackId(self):
-		new_f_id = self.id_generator()
-		while self.tableHasFeedbackId(new_f_id):
-			new_f_id = self.id_generator()
-		return new_f_id
+		return self.generateUniqueIdForColumn('f_id')
 
 	def tableHasFeedbackId(self, f_id):
 		column_name = "f_id"

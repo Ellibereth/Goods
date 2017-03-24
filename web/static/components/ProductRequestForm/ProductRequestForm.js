@@ -2,13 +2,10 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../TextInput/TextInput.js'
-
-
-var real_url = "https://whereisitmade.herokuapp.com"
-var test_url = "http://0.0.0.0:5000"
 const form_labels = ['What is your name?', "What is your email?", "Phone Number? (Optional)", "How much would you like to pay?", "What are you looking for?"]
 const form_inputs = ["name", "email", "phone_number", "price_range", "product_description"]
-
+var Config = require('Config')
+var url = Config.serverUrl
 
 export default class ProductRequestForm extends React.Component {
 	constructor(props) {
@@ -54,7 +51,7 @@ export default class ProductRequestForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: real_url  + "/addProductRequest",
+				url: url  + "/addProductRequest",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

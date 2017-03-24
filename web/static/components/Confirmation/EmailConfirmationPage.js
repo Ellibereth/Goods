@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 import {} from 'react-bootstrap';
+var Config = require('Config')
+var url = Config.serverUrl
 
 
 export default class EmailConfirmationPage extends React.Component {
@@ -14,15 +16,13 @@ export default class EmailConfirmationPage extends React.Component {
 	}
 	
 	componentDidMount(){	
-		var test_url = "http://127.0.0.1:5000"
-		var real_url = "https://whereisitmade.herokuapp.com"
 		var form_data = JSON.stringify({
 			"email_confirmation_id" : this.props.params.email_confirmation_id
 		})
 
 		$.ajax({
 			type: "POST",
-			url: real_url + "/confirmEmail",
+			url: url + "/confirmEmail",
 			data: form_data,
 			success: function(data) {
 				if (data.success){

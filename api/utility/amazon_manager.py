@@ -4,7 +4,7 @@ import random
 import psycopg2
 import base64
 import sys
-import api.utility.email_api
+from api.utility import email_api
 from api.utility.sql_manager import SqlManager
 from api.utility import string_util 
 usa_origin_target_strings = [" us", "us ", "usa" , "america", "united states"]

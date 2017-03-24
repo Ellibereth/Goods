@@ -17,6 +17,8 @@ from scraping.utility.product import Product
 from scraping.utility.labels import Labels
 from scraping.impl.amazon.url import Url
 
+START = "START"
+END = "END"
 """
 Dependendies ../scraper.py, ./amazon_parser.py, ./amazon_crawler.py, ./ amazon_writer.py
 
@@ -142,7 +144,7 @@ class AmazonProcessor():
 		print(url_split)
 		for page_number in range(pagination_start, pagination_end):
 			time_0 = time.time()
-			url = url_split['start'] + str(page_number) + url_split['end']
+			url = url_split[START] + str(page_number) + url_split[END]
 			print("processing html")
 			html = self.scraper.getHtml(url)
 			print("html processed " + str(page_number))
@@ -169,8 +171,8 @@ class AmazonProcessor():
 		index = url.find('page=')
 		if index == -1:
 			output = {}
-			output['start'] = url + "&page="
-			output['end'] = ""
+			output[START] = url + "&page="
+			output[END] = ""
 			return output
 		url_start = url[0: index + 5]
 		url_end = ""
@@ -185,8 +187,8 @@ class AmazonProcessor():
 				url_end = url_end + url[i]
 			i = i + 1
 		output = {}
-		output['start'] = url_start
-		output['end'] = url_end
+		output[START] = url_start
+		output[END] = url_end
 		return output
 
 	# add a function to just process one url

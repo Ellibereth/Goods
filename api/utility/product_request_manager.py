@@ -4,7 +4,7 @@ import random
 import time
 import psycopg2
 import base64
-import api.utility.email_api
+from api.utility import email_api
 from api.utility.sql_manager import SqlManager
 
 ## this is the same as the submission variables in product_data_manager.py 
@@ -42,23 +42,6 @@ class ProductRequestManager(SqlManager):
 	def createProductRequestTable(self):
 		self.createNewTableIfNotExists()
 
-	# returns a random alphanumric character with size 20
-	# used for generating submission_id
-	def id_generator(self, size=20, chars=string.ascii_uppercase + string.digits):
-		return ''.join(random.choice(chars) for _ in range(size))
-
-	# checks if the given table has the image id
-	def isImageIdTaken(self, image_id):
-		column_name = "image_id"
-		return self.tableHasEntryWithProperty(column_name, image_id)
-
-	# generates new image id for the given table
-	def generateNewImageId(self):
-		image_id = self.id_generator()
-		while self.isImageIdTaken(image_id):
-			image_id = self.id_generator()
-		return image_id
-
 	# checks if the given table has the image id
 	def isSubmissionIdTaken(self, submission_id):
 		column_name = "submission_id"
@@ -66,20 +49,14 @@ class ProductRequestManager(SqlManager):
 	
 	# generates a new submission_id for the given table
 	def generateNewSubmissionId(self):
-		submission_id = self.id_generator()
-		while self.isSubmissionIdTaken(submission_id):
-			submission_id = self.id_generator()
-		return submission_id
+		return self.generateUniqueIdForColumn('submission_id')
 
 	def isConfirmationIdTaken(self, confirmation_id):
 		column_name = "confirmation_id"
 		return self.tableHasEntryWithProperty(column_name, confirmation_id)
 
 	def generateNewConfirmationId(self):
-		confirmation_id = self.id_generator()
-		while self.isConfirmationIdTaken(confirmation_id):
-			confirmation_id = self.id_generator()
-		return confirmation_id
+		return self.generateUniqueIdForColumn('confirmation_id')
 
 	# returns a dictionary with all request submissions, not including the soft_deleted ones
 	def getProductRequests(self):

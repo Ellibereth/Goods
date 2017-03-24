@@ -2,8 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import ProductSubmissionTextInput from './ProductSubmissionTextInput.js'
 
-var real_url = "https://whereisitmade.herokuapp.com"
-var test_url = "http://0.0.0.0:5000"
+var Config = require('Config')
+var url = Config.serverUrl
 const form_inputs = ['product_name', 'url_link','location','manufacturer_name','contact_information','origin', 'barcode_upc','additional_info']
 const form_labels = ['Product Name', "Url Link", "Location", "Manufacturer", "Contact Information", "Origin", "Barcode Number", "Additional Information"]
 
@@ -58,7 +58,7 @@ export default class ProductSubmissionForm extends React.Component {
 				  	})
 				  	$.ajax({
 					  type: "POST",
-					  url: real_url  + "/submitProductInformation",
+					  url: url  + "/submitProductInformation",
 					  data: form_data,
 					  success: function() {
 					  		window.location.reload();
@@ -86,7 +86,7 @@ export default class ProductSubmissionForm extends React.Component {
 				  	})
 			$.ajax({
 					  type: "POST",
-					  url: real_url + "/browserSubmitInformation",
+					  url: url + "/browserSubmitInformation",
 					  data: form_data,
 					  success: function() {
 					  		window.location.reload();

@@ -4,8 +4,8 @@ import TextInput from '../TextInput/TextInput.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 
 
-var real_url = "https://whereisitmade.herokuapp.com"
-var test_url = "http://0.0.0.0:5000"
+var Config = require('Config')
+var url = Config.serverUrl
 const form_labels = ['What is your name?', "What is your email?", "What should we know?"]
 const form_inputs = ["name", "email", "feedback"]
 
@@ -52,7 +52,7 @@ export default class ProductRequestForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: real_url  + "/addFeedback",
+				url: url  + "/addFeedback",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
@@ -83,7 +83,7 @@ export default class ProductRequestForm extends React.Component {
 		return (
 			<Form horizontal>
 				{text_inputs}
-				<FormGroup controlId = "submit_buton">
+				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
 					<Button onClick = {this.onSubmitPress.bind(this)}>
 					Submit!

@@ -8,13 +8,10 @@ export default class RequestModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal_display: false
+
     }
   }
 
-  toggleRequestFormModal() {
-    this.setState({modal_display : !this.state.modal_display})
-  }
 
   onModalClosePress(){
         swal({
