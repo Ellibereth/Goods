@@ -17,7 +17,7 @@ export default class TopNavBar extends React.Component {
           <Navbar inverse collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="#">Remaura</a>
+                <a href="#">Edgar USA</a>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
