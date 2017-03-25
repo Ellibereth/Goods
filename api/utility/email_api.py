@@ -19,7 +19,7 @@ def sendImageEmail(image_name, image_data):
 	message = image_name
 	msg = MIMEMultipart()
 	msg['Subject'] = "Please find attached images " + image_name
-	msg['From'] = "noreply@manaweb.com"
+	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(recipients)
 	msg['Body'] = 'Image Submission ' + image_name
 	with open('./web/static/images/product_submissions/' + image_name, 'rb') as image:
@@ -46,7 +46,7 @@ def sendRequestEmail(request):
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Request!"
-	msg['From'] = "noreply@remaura.com"
+	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(recipients)
 	email = str(request.get('email'))
 	product_description = str(request.get('product_description'))
@@ -70,7 +70,7 @@ def sendRequestConfirmation(request, confirmation_id):
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Request!"
-	msg['From'] = "noreply@remaura.com"
+	msg['From'] = "noreply@edgarusa.com"
 	email = str(request.get('email'))
 	msg['To'] = email
 	product_description = str(request.get('product_description'))
@@ -101,7 +101,7 @@ def sendEmailConfirmation(email, email_confirmation_id):
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
 	msg['Subject'] = "Please Confirm Your Email!"
-	msg['From'] = "noreply@remaura.com"
+	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = email
 	url = "https://whereisitmade.herokuapp.com/confirmEmail/" + email_confirmation_id
 	body = "Click on the following link to confirm your e-mail \n " + url
@@ -128,7 +128,7 @@ def sendFeedbackEmailNotification(feedback):
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Feedback!"
-	msg['From'] = "noreply@remaura.com"
+	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(recipients)
 	email = str(feedback.get('email'))
 	product_description = str(feedback.get('feedback'))
