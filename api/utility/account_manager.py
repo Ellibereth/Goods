@@ -50,9 +50,7 @@ class AccountManager(SqlManager):
 		return self.generateUniqueIdForColumn(Labels.AccountId)
 
 	def tableHasFeedbackId(self, account_id):
-		column_name = Labels.AccountId
-		entry_data = account_id
-		return self.tableHasEntryWithProperty(column_name, entry_data)
+		return self.tableHasEntryWithProperty(Labels.AccountId, account_id)
 
 	# handles a new user email
 	# first checks if the email is in the table
@@ -63,36 +61,30 @@ class AccountManager(SqlManager):
 		is_valid_submission = self.isUserSubmissionValid(user_info)
 		if not valid_submission[Labels.Success]:
 			return is_valid_submission
-
-		output = {}
 		# we hard code the email and username to lower case
-		user_info[Lables.AccountId] = self.generateAccountId()
+		user_info[Labels.AccountId] = self.generateAccountId()
 		user_info[Labels.Password] = argon2.using(rounds=4).hash(user_info[Labels.Password])
 		user_info[Labels.Email] = user_info[Labels.Email].lower()
-		user_info[Labels.TimeStamp] = time_stamp = time.time()
+		user_info[Labels.TimeStamp] =  time.time()
 		user_info[Labels.EmailConfirmed] = False
 		user_info[Labels.EmailConfirmationId] = is_valid_submission[Lagels.EmailConfirmationId]
 		self.insertDictToTable(user_info)
-		output[Labels.Success] = True
-		return output
+		return {Labels.Success : True}
 
 	# this is a WIP and will be updated to handle the correct user information
-	def isUserCreationValid(self, user_info):
+	def isUserSubmissionValid(self, user_info):
 		output ={}
 		email = user_info.get(Labels.Email)
 		password = user_info.get(Labels.Password)
 		password_confirm = user_info.get(Labels.PasswordConfirm)
-
 		if password != password_confirm:
 			output[Labels.Success] = False
 			output[Labels.Error] = "Passwords do not match"
 			return output
-
 		if len(password) < MIN_PASSWORD_LENGTH:
 			output[Labels.Success] = False
 			output[Labels.Error] = "Password must be at least " + str(MIN_PASSWORD_LENGTH) + " characters"
 			return output
-
 		try:
 			email = input_email.lower()
 		except:
@@ -128,7 +120,7 @@ class AccountManager(SqlManager):
 			return output
 		output[Labels.Success] = True
 		output[Labels.UserInfo] = user_info
-		return output
+		return 
 
 	# gets the user info from email
 	# returns a dictionary of the row that matches the email given
@@ -155,22 +147,12 @@ class AccountManager(SqlManager):
 	# I understand the 'email' magic string, still thinking the best way to handle it right now
 	# how to make a Labels like class for all the db management
 	def isEmailConfirmed(self, email):
-		table_data = self.tableToDict()
-		is_confirmed = False
-		for row in table_data:
-			if row[Labels.Email] == email.lower():
-				if row[Labels.EmailConfirmed] == True:
-					is_confirmed = True
-					break
-		return is_confirmed
+		user_info = self.getUserInfoFromEmail(login_info[Labels.Email])
+		if user_info == None:
+			return None
+		return user_info[Labels.EmailConfirmed]
 
 	# sets the 'email_confirmed' column to true for this e-mail
 	def confirmEmail(self, email_confirmation_id):
-		key_column_name = Labels.EmailConfirmationId
-		key = email_confirmation_id
-		target_column_name = Lables.EmailConfirmed
-		data = True
-		self.updateEntryByKey(key_column_name, key, target_column_name, data)
-		output = {}
-		output[Labels.Success] = True
-		return output
+		self.updateEntryByKey(Labels.EmailConfirmationId, email_confirmation_id, Labels.EmailConfirmationId, True)
+		return {Labels.Success : True}
