@@ -38,7 +38,6 @@ class FeedbackManager(SqlManager):
 		entry_data = f_id
 		return self.tableHasEntryWithProperty(column_name, entry_data)
 
-
 	## adds feedback
 	def addFeedback(self, feedback):
 		output = {}
