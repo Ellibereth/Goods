@@ -20,9 +20,8 @@ export default class HomePageNewProduct extends React.Component {
 	return (
 		<div>
 			<center>
-				<h1> Amazon Extension </h1>	
-				<h5> Find more American goods </h5>
-				<h5> Compare international goods with American ones </h5>
+				<h1> Edgar USA </h1>
+				<h3> Full Store  </h3>
 				<h3> Coming soon! </h3>
 			</center>
 		</div>

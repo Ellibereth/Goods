@@ -32,7 +32,7 @@ class Labels:
 	UserInfo = "user_info"
 
 class AccountManager(SqlManager):
-	def __init__(self, test = True):
+	def __init__(self, test = False):
 		if test:
 			self.table_name = TestTables.UserInfoTable
 		else:
