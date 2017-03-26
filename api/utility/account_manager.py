@@ -32,11 +32,9 @@ class Labels:
 	UserInfo = "user_info"
 
 class AccountManager(SqlManager):
-	def __init__(self, test = False):
-		if test:
-			self.table_name = TestTables.UserInfoTable
-		else:
-			self.table_name = ProdTables.UserInfoTable
+	def __init__(self, table_name):
+		assert (table_name == ProdTables.UserInfoTable or table_name == TestTables.UserInfoTable)
+		self.table_name = table_name
 		SqlManager.__init__(self, self.table_name)
 
 	# initializes a user info table 
@@ -96,15 +94,13 @@ class AccountManager(SqlManager):
 			output[Labels.Error] = "This email exists already"
 			return output
 		email_confirmation_id = self.generateEmailConfirmationId()
-		output[Labels.EmailConfirmationId] = email_confirmation_id
 		try:
 			email_api.sendEmailConfirmation(email, email_confirmation_id)
 		except:
 			output[Labels.Success] = False
 			output[Labels.Error] = "Invalid Email Address"
 			return output
-		output[Labels.Success] = True
-		return output
+		return {Labels.Success : True, Labels.EmailConfirmationId : email_confirmation_id}
 
 	## login info is a dictionary where the fields are user "email" and "password"
 	def checkLogin(self, login_info):
@@ -118,9 +114,7 @@ class AccountManager(SqlManager):
 		if not password_matches:
 			output[Labels.Error] = "Password does not match provided email"
 			return output
-		output[Labels.Success] = True
-		output[Labels.UserInfo] = user_info
-		return 
+		return {Labels.Success : True, Labels.UserInfo : user_info}
 
 	# gets the user info from email
 	# returns a dictionary of the row that matches the email given
@@ -132,15 +126,11 @@ class AccountManager(SqlManager):
 		return self.generateUniqueIdForColumn(Labels.EmailConfirmationId)
 		
 	def tableHasConfirmationId(self, email_confirmation_id):
-		column_name = Labels.EmailConfirmationId
-		entry_data = email_confirmation_id
-		return self.tableHasEntryWithProperty(column_name, entry_data)
+		return self.tableHasEntryWithProperty(Labels.EmailConfirmationId, email_confirmation_id)
 
 	# returns true if the email is in the table
 	def tableHasEmail(self, email):
-		column_name = Labels.Email
-		entry_data = email
-		return self.tableHasEntryWithProperty(column_name, entry_data)
+		return self.tableHasEntryWithProperty(Labels.Email, email)
 
 	# returns true if the email is confirmed
 	# returns false if the email is not confirmed or does not exists
@@ -154,5 +144,5 @@ class AccountManager(SqlManager):
 
 	# sets the 'email_confirmed' column to true for this e-mail
 	def confirmEmail(self, email_confirmation_id):
-		self.updateEntryByKey(Labels.EmailConfirmationId, email_confirmation_id, Labels.EmailConfirmationId, True)
+		self.updateEntryByKey(Labels.EmailConfirmationId, email_confirmation_id, Labels.EmailConfirmed, True)
 		return {Labels.Success : True}

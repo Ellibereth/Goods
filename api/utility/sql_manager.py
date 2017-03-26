@@ -85,7 +85,8 @@ class SqlManager:
 		keys = self.getColumnNames()
 		value_list = list()
 		for key in keys:
-			sql = sql + key + ", "
+			if key in dictionary.keys():
+				sql = sql + key + ", "
 		sql = sql[0:len(sql) - 2]
 		sql = sql + ") VALUES ("
 		for key in keys:
@@ -143,8 +144,27 @@ class SqlManager:
 		mogrified_sql = self.db.mogrify(sql, (data, key))
 		self.db.execute(mogrified_sql)
 
+	# returns the rows with a certain property 
+	def getRowsByKey(self, key_column_name, key):
+		sql = "SELECT * FROM " + self.table_name + " WHERE " + key_column_name + " = %s"
+		mogrified_sql = self.db.mogrify(sql, (key,))
+		self.db.execute(mogrified_sql)
+		query = self.db.fetchall()
+		output_list = list()
+		for row in query:
+			output = {}
+			for i in range(0, len(keys)):
+				output[keys[i]] = row[i]
+			output_list.append(output)
+		return output_list
 
-	def updateRowByKey(self, key_column_name, key, dictionary):
+	# updates a row with a certain key
+	# note, the key must be unique!
+	# we throw an exception if it is not
+	def updateRowByUniqueKey(self, key_column_name, key, dictionary):
+		matching_rows = self.getRowsByKey(key_column_name, key)
+		if len(matching_rows) > 1:
+			raise Exception("This key is not unique!")
 		sql = "UPDATE " + self.table_name + " SET "
 		table_columns = self.getColumnNames()
 		value_list = list()
@@ -196,7 +216,6 @@ class SqlManager:
 		except:
 			return None
 		query = self.db.fetchall()
-
 		## return none if no matches
 		if len(query) == 0:
 			return None

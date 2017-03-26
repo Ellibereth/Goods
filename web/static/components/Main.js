@@ -14,6 +14,7 @@ import EmailConfirmationPage from './Confirmation/EmailConfirmationPage.js'
 import RequestConfirmationPage from './Confirmation/RequestConfirmationPage.js'
 import TermsOfService from './Misc/TermsOfService.js'
 import PrivacyPolicy from './Misc/PrivacyPolicy.js'
+import ProductApp from './Product/ProductApp.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -34,6 +35,7 @@ ReactDOM.render(
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			<Route path= "privacy" component={PrivacyPolicy}/>
 			<Route path= "terms" component={TermsOfService}/>
+			<Route path= "eg/:product_id" component={ProductApp}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

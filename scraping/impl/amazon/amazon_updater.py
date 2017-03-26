@@ -54,6 +54,6 @@ class AmazonUpdater():
 		processor = AmazonProcessor()
 		product = processor.getProductDetailsFromUrl(url, writer)
 		print(product)
-		writer.updateRowByKey('asin', asin, product)
+		writer.updateRowByUniqueKey('asin', asin, product)
 		writer.closeConnection()
 

@@ -7,6 +7,13 @@ from ..utility.product_request_manager import ProductRequestManager
 from ..utility.account_manager import AccountManager
 from ..utility.feedback_manager import FeedbackManager
 from ..utility.amazon_manager import AmazonManager
+from ..utility.stripe_api import StripeManager
+from ..utility.market_product import MarketProductManager
+from ..utility.table_names import ProdTables
+from ..utility.table_names import TestTables
+
+class Labels:
+	Success = "success"
 
 public_api = Blueprint('public_api', __name__)
 
@@ -41,6 +48,9 @@ register_keys = ['name', 'email', 'password', 'password_confirm']
 feedback_keys = ['name' , 'email', 'feedback']
 
 admin_login_password = 'powerplay'
+
+						
+market_product_keys = ['price', 'manufacturer', 'name', 'category', 'description' ,'brand']
 
 @public_api.route('/addProductSubmission', methods = ['POST'])
 def addProductSubmission():
@@ -87,6 +97,17 @@ def addProductRequest():
 	request_manager = ProductRequestManager()
 	output = request_manager.addProductRequest(product_requests)
 	request_manager.closeConnection()
+	return jsonify(output)
+
+@public_api.route('/addMarketProduct', methods = ['POST'])
+def addMarketProduct():
+	market_product = {}
+	output = {}
+	for key in market_product_keys:
+		market_product[key] = request.json.get(key)
+	market = MarketProductManager(ProdTables.MarketProductTable)
+	output = market.addMarketProduct(market_product)
+	market.closeConnection()
 	return jsonify(output)
 
 @public_api.route('/addFeedback', methods = ['POST'])
@@ -176,3 +197,30 @@ def checkLogin():
 	output = account_manager.checkLogin(user_info)
 	account_manager.closeConnection()
 	return jsonify(product)
+
+@public_api.route('/acceptStripePayment', methods = ['POST'])
+def acceptStripePayment():
+	# Token is created using Stripe.js or Checkout!
+	# Get the payment token submitted by the form:
+	token = request.POST['stripeToken'] # Using Flask
+	StripeManager.chargeCard(token)
+	return {Labels.Success : True}
+
+
+@public_api.route('/getMarketProducts', methods = ['POST'])
+def getMarketProducts():
+	market = MarketProductManager(ProdTables.MarketProductTable)
+	market_products = market.getMarketProducts()
+	market.closeConnection()
+	return jsonify(market_products)
+
+
+@public_api.route('/getMarketProductById', methods = ['POST'])
+def getMarketProductById():
+	## yes Ben I know this is a magic string / hard coded
+	## tell me how to make this better!
+	product_id = request.json.get("product_id")
+	market = MarketProductManager(ProdTables.MarketProductTable)
+	market_product = market.getMarketProductById(product_id)
+	market.closeConnection()
+	return jsonify(market_product)

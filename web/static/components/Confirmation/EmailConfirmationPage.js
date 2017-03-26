@@ -10,7 +10,7 @@ export default class EmailConfirmationPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			confirmation_id : this.props.params.email_confirmation_id,
+			email_confirmation_id : this.props.params.email_confirmation_id,
 			display : "failure"
 		}
 	}
