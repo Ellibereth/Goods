@@ -215,8 +215,8 @@ def getMarketProducts():
 	return jsonify(market_products)
 
 
-@public_api.route('/getMarketProductById', methods = ['POST'])
-def getMarketProductById():
+@public_api.route('/getMarketProductInfo', methods = ['POST'])
+def getMarketProductInfo():
 	## yes Ben I know this is a magic string / hard coded
 	## tell me how to make this better!
 	product_id = request.json.get("product_id")

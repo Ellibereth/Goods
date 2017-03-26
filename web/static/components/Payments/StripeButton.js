@@ -15,25 +15,24 @@ export default class StripeButton extends React.Component {
 	}
   }
 
-  onToken(token){
-    fetch(url + "/acceptStripePayment", 
-    {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-      });
-    });
-  }
+	onToken(token){
+		fetch(url + "/acceptStripePayment", {
+				method: 'POST',
+				body: JSON.stringify(token),
+			}).then(response => {
+	  			response.json().then(data => {
+				alert(`We are in business, ${data.email}`);
+			});
+		});
+	}
 
   render() {
 	return (
 		<StripeCheckout
-        token={this.onToken}
-        stripeKey= {strike_api_key}
-        amount={1000000}
-      	/>
+		token={this.onToken}
+		stripeKey= {strike_api_key}
+		amount={this.props.amount}
+		/>
 
 	);
   }
@@ -72,8 +71,8 @@ export default class StripeButton extends React.Component {
   triggerEvent="onTouchTap"
   >
   <button className="btn btn-primary">
-    Use your own child component, which gets wrapped in whatever
-    component you pass into as "ComponentClass" (defaults to span)
+	Use your own child component, which gets wrapped in whatever
+	component you pass into as "ComponentClass" (defaults to span)
   </button>
 </StripeCheckout>
 */
