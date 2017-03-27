@@ -6,36 +6,53 @@ import psycopg2
 import base64
 from api.utility import email_api
 from api.utility.sql_manager import SqlManager
+from api.utility.table_names import ProdTables
+from api.utility.table_names import TestTables
 
-## this is the same as the submission variables in product_data_manager.py 
-## should I just put these in a CSV?
+class Labels:
+	SubmissionId = "submission_id"
+	TimeStamp = "time_stamp"
+	ProductDescription = "product_description"
+	Name = "name"
+	Email = "email"
+	PhoneNumber = "phone_number"
+	Completed = "completed"
+	Confirmed = "confirmed"
+	ConfirmationId = "confirmation_id"
+	SoftDeleted = "soft_deleted"
+	PriceRange = "price_range"
+	PhoneNumber = "phone_number"
+	Success = "success"
+	Error = "error"
+
 product_request_database_columns = [
-								'submission_id',
-								'time_stamp',
-								'name',
-								'product_description',
-								'price_range',
-								'email',
-								'phone_number',
-								'completed',
-								'confirmed',
-								'confirmation_id',
-								'soft_deleted'
+								Labels.SubmissionId,
+								Labels.TimeStamp,
+								Labels.Name,
+								Labels.ProductDescription,
+								Labels.PriceRange,
+								Labels.Email,
+								Labels.PhoneNumber,
+								Labels.Completed,
+								Labels.Confirmed,
+								Labels.ConfirmationId,
+								Labels.SoftDeleted
 								]
 
 product_request_submission_variables = [
-									'name',
-									'product_description',
-									'price_range',
-									'email',
-									'phone_number',
+									Labels.Name,
+									Labels.ProductDescription,
+									Labels.PriceRange,
+									Labels.Email,
+									Labels.PhoneNumber,
 									]
 
 						 
 class ProductRequestManager(SqlManager):
-	def __init__(self):
-		self.USER_REQUEST_TABLE = "USER_REQUEST_TABLE"
-		SqlManager.__init__(self, self.USER_REQUEST_TABLE)
+	def __init__(self, table_name):
+		assert (table_name == ProdTables.UserRequestTable or table_name == TestTables.UserRequestTable)
+		self.table_name = table_name
+		SqlManager.__init__(self, self.table_name)
 		self.createProductRequestTable()
 
 	# initializes the product request table
@@ -44,108 +61,79 @@ class ProductRequestManager(SqlManager):
 
 	# checks if the given table has the image id
 	def isSubmissionIdTaken(self, submission_id):
-		column_name = "submission_id"
-		return self.tableHasEntryWithProperty(column_name, submission_id)
+		return self.tableHasEntryWithProperty(Labels.SubmissionId, submission_id)
 	
 	# generates a new submission_id for the given table
 	def generateNewSubmissionId(self):
-		return self.generateUniqueIdForColumn('submission_id')
+		return self.generateUniqueIdForColumn(Labels.SubmissionId)
 
 	def isConfirmationIdTaken(self, confirmation_id):
-		column_name = "confirmation_id"
-		return self.tableHasEntryWithProperty(column_name, confirmation_id)
+		return self.tableHasEntryWithProperty(Labels.ConfirmationId, confirmation_id)
 
 	def generateNewConfirmationId(self):
-		return self.generateUniqueIdForColumn('confirmation_id')
+		return self.generateUniqueIdForColumn(Labels.ConfirmationId)
 
 	# returns a dictionary with all request submissions, not including the soft_deleted ones
 	def getProductRequests(self):
 		allRequests = self.tableToDict()
 		actualRequests = list()
 		for request in allRequests:
-			if not request['soft_deleted']:
+			if not request[Labels.SoftDeleted]:
 				actualRequests.append(request)
 		return actualRequests
 
 	# adds a product request to the database
 	def addProductRequest(self, request, send_email = True):
-		if request.get('email') != None:
-			request['email'] = request['email'].lower()
-		output = {}
+		if request.get(Labels.Email) != None:
+			request[Labels.Email] = request[Labels.Email].lower()
 		submitted_keys = product_request_submission_variables
-		submission_id = self.generateNewSubmissionId()
+		
 		confirmation_id = self.generateNewConfirmationId()
-		time_stamp = time.time()
 		# send the user an email asking to confirm the request
 		try: 
 			email_api.sendRequestConfirmation(request, confirmation_id)
 		# otherwise there's an error in the email
 		except:
-			output['success'] = False
-			output['error'] = "This email is not valid"
-			return output
+			return {Labels.Success : False, Labels.Error : "This email is not valid"}
 		## add code to send us an email when this happens 
 		if send_email:
 			email_api.sendRequestEmail(request)
-		# initializes with the submission_id
-		self.insertIntoTableWithInitialValue("submission_id", submission_id)
-		## update the other variables
-		self.updateEntryByKey("submission_id", submission_id, 'time_stamp', time_stamp)
-		self.updateEntryByKey("submission_id", submission_id, 'confirmed', False)
-		self.updateEntryByKey("submission_id", submission_id, 'completed', False)
-		self.updateEntryByKey("submission_id", submission_id, 'confirmation_id', confirmation_id)
-		self.updateEntryByKey('submission_id', submission_id, 'soft_deleted', False)
-		for key in submitted_keys:
-			if key != "submission_id":
-				self.updateEntryByKey("submission_id", submission_id, key, request.get(key))
-		output['success'] = True
-		output['submission_id'] = submission_id
-		return output
+		submission_id = self.generateNewSubmissionId()
+		request[Labels.TimeStamp] = time.time()
+		request[Labels.Confirmed] = False
+		request[Labels.Completed] = False
+		request[Labels.ConfirmationId] = confirmation_id
+		request[Labels.SoftDeleted] = False
+		self.insertDictIntoTable(request)
+		return {Labels.Success : True, Labels.Error : submission_id}
 
 	# given a submission_id, we find the request as a dict from the database
 	def getProductRequestBySubmissionId(self, submission_id):
 		if submission_id == None:
 			return None
-		this_submission = self.getRowByUniqueProperty('submission_id', submission_id)
+		this_submission = self.getRowByUniqueProperty(Labels.SubmissionId, submission_id)
 		return this_submission
 
+	# confirms a product request
 	def confirmProductRequest(self, confirmation_id):
 		if confirmation_id == None:
-			output['success'] = False
-			output['error'] = "Confirmation id is None"
+			output[Labels.Success] = False
+			output[Labels.Error] = "Confirmation id is None"
 			return output
 		if len(confirmation_id) != 20:
-			output['success'] = False
-			output['error'] = "Confirmation id is not right length"
+			output[Labels.Success] = False
+			output[Labels.Error] = "Confirmation id is not right length"
 			return output
-		key_column_name = "confirmation_id"
-		key = confirmation_id
-		target_column_name = "confirmed"
-		data = True
-		self.updateEntryByKey(key_column_name, key, target_column_name, data)
-		output = {}
-		output['success'] = True
-		return output
+		self.updateEntryByKey(Labels.ConfirmationId, confirmation_id, Labels.Confirmed, True)
+		return {Labels.Success : True}
 
 	## deletes a product request by id
 	def deleteProductRequestBySubmissionId(self, submission_id):
-		column_name = "submission_id"
-		self.deleteRowFromTableByProperty(column_name, submission_id)
+		self.deleteRowFromTableByProperty(Labels.SubmissionId, submission_id)
 
 	def softDeleteProductRequestBySubmissionId(self, submission_id):
-		column_name = "submission_id"
-		key = "soft_deleted"
-		value = True
-		self.updateEntryByKey(column_name, submission_id, key, value)
-		output = {}
-		output['success'] = True
-		return output
+		self.updateEntryByKey(Labels.SubmissionId, submission_id, Labels.SoftDeleted, True)
 
 
-if __name__ == '__main__':
-	product_data_manager = ProductDataManager()
-	data = product_data_manager.getProductRequests()
-	for item in data:
-		print(item['submission_id'])
-	product_data_manager.closeConnection()
+
 

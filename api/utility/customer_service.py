@@ -8,28 +8,6 @@ from passlib.hash import argon2
 from api.utility.table_names import ProdTables
 from api.utility.table_names import TestTables
 
-# MIN_PASSWORD_LENGTH = 6
-customer_service_request_columns = [
-						{"name" : "request_id", "type" : "TEXT"},
-						{"name" : "time_stamp", "type" : "FLOAT"},
-						{"name" : "account_id", "type" : "TEXT"},
-						{"name" : "subject", "type" : "TEXT"},
-						{"name" : "body", "type" : "TEXT"},
-						{"name" : "date_resolved", "type" : "FLOAT"},
-						{"name" : "rating", "type" : "TEXT"},
-						{"name" : "email", "type" : "TEXT"},
-					]
-
-customer_service_message_columns = [
-						{"name" : "request_id", "type" : "TEXT"},
-						{"name" : "time_stamp", "type" : "FLOAT"},
-						{"name" : "account_id", "type" : "TEXT"},
-						{"name" : "subject", "type" : "TEXT"},
-						{"name" : "body", "type" : "TEXT"},
-						{"name" : "date_resolved", "type" : "FLOAT"},
-						{"name" : "rating", "type" : "TEXT"},
-						{"name" : "email", "type" : "TEXT"},
-					]
 
 class Labels:
 	Email = "email"
@@ -37,68 +15,89 @@ class Labels:
 	AccountId = "account_id"
 	Success = "success"
 	Error = "error"
-	RequestId = "request_id"
+	TicketId = "ticket_id"
 	DateResolved = "date_resolved"
 	Rating = "rating"
 	Subject = "subject"
+	Body = "body"
 
 
-## class to handle sql entires to manage replies to customer service requests
-## each request will have a message thread along with it
-class CustomerServiceMessage(SqlManager):
-	def __init__(self, test = False):
-		if test:
-			self.table_name = TestTables.CustomerServiceReplyTable
-		else:
-			self.table_name = ProdTables.CustomerServiceReplyTable
+# MIN_PASSWORD_LENGTH = 6
+customer_service_ticket_columns = [
+						{"name" : Labels.TicketId, "type" : "TEXT"},
+						{"name" : Labels.TimeStamp, "type" : "FLOAT"},
+						{"name" : Labels.AccountId, "type" : "TEXT"},
+						{"name" : Labels.Subject, "type" : "TEXT"},
+						{"name" : Labels.Body, "type" : "TEXT"},
+						{"name" : Labels.DateResolved, "type" : "FLOAT"},
+						{"name" : Labels.Rating, "type" : "TEXT"},
+						{"name" : Labels.Email, "type" : "TEXT"},
+					]
+
+customer_service_response_columns = [
+						{"name" : Lables.TicketId, "type" : "TEXT"},
+						{"name" : Labels.TimeStamp, "type" : "FLOAT"},
+						{"name" : Labels.AccountId, "type" : "TEXT"},
+						{"name" : Labels.Subject, "type" : "TEXT"},
+						{"name" : Labels.Body, "type" : "TEXT"},
+						{"name" : Labels.DateResolved, "type" : "FLOAT"},
+						{"name" : Labels.Rating, "type" : "TEXT"},
+						{"name" : Labels.Email, "type" : "TEXT"},
+					]
+
+## class to handle sql entires to manage replies to customer service tickets
+## each ticket will have a message thread along with it
+class CustomerServiceResponse(SqlManager):
+	def __init__(self, table_name):
+		assert (table_name == ProdTables.CustomerServiceResponseTable or table_name == TestTables.CustomerServiceResponseTable)
+		self.table_name = table_name
 		SqlManager.__init__(self, self.table_name)
+		self.createCustomerServiceResponseTable()
 
-	def createCustomerMessageTable(self):
+	def createCustomerServiceResponseTable(self):
 		self.createNewTableIfNotExists()
-		for col in customer_service_message_columns:
+		for col in customer_service_response_columns:
 			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
 
 
-## stores and manages the customer service requests
+## stores and manages the customer service inquiries
 ## think of a ticket for IT
-class CustomerServiceRequest(SqlManager):
-	def __init__(self, test = False):
-		if test:
-			self.table_name = TestTables.CustomerServiceTable
-		else:
-			self.table_name = ProdTables.CustomerServiceTable
+class CustomerServiceTicket(SqlManager):
+	def __init__(self, table_name):
+		assert (table_name == ProdTables.CustomerServiceTicketTable or table_name == TestTables.CustomerServiceTicketTable)
+		self.table_name = table_name
 		SqlManager.__init__(self, self.table_name)
+		self.createCustomerServiceTicketTable()
 
 	# initializes a user info table 
-	def createCustomerServiceTable(self):
+	def createCustomerServiceTicketTable(self):
 		self.createNewTableIfNotExists()
-		for col in customer_service_request_columns:
+		for col in customer_service_ticket_columns:
 			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
 
-	# returns a new request id
-	def generateRequestId(self):
-		return self.generateUniqueId(Labels.RequestId)
+	# returns a new ticket id
+	def generateTicketId(self):
+		return self.generateUniqueId(Labels.TicketId)
 
-	# given a request with the above columns, we add it to the database
-	def addCutomerServiceRequestToTable(self, request):
-		if request == None:
+	# given a ticket with the above columns, we add it to the database
+	def addCutomerServiceTicketToTable(self, ticket):
+		if ticket == None:
 			return
-		request[Labels.TimeStamp] = time.time()
-		request[Labesl.RequestId] = self.generateRequestId()
-		self.insertDictIntoTable(request)
+		ticket[Labels.TimeStamp] = time.time()
+		ticket[Labesl.TicketId] = self.generateTicketId()
+		self.insertDictIntoTable(ticket)
 
-	# resolves a customer request right now
-	def resolveCustomerServiceRequest(self, request_id):
-		now = time.time()
-		self.updateEntryByKey(Labels.RequestId, request_id, Labels.DateResolved, now)
+	# resolves a customer ticket right now
+	def resolveCustomerServiceTicket(self, ticket_id):
+		self.updateEntryByKey(Labels.TicketId, ticket_id, Labels.DateResolved, time.time())
 
-	# returns the entire request informatio by the request id
-	def getCustomerServiceRequestById(self, request_id):
-		return self.getRowByUniqueProperty(Labels.RequestId, request_id)
+	# returns the entire ticket informatio by the ticket id
+	def getCustomerServiceTicketById(self, ticket_id):
+		return self.getRowByUniqueProperty(Labels.TicketId, ticket_id)
 
-	# returns all requests that are not resolved
+	# returns all tickets that are not resolved
 	# make sure you test this so SQL knows what to do with it
-	def getUnresolvedRequests(self):
+	def getUnresolvedTickets(self):
 		return self.getRowsByKey(Labels.DateResolved, None)
 
 

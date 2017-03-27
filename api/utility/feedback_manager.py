@@ -5,22 +5,33 @@ import psycopg2
 import base64
 from api.utility import email_api
 from api.utility.sql_manager import SqlManager
-					
+from api.utility.table_names import ProdTables
+from api.utility.table_names import TestTables
+
+
+class Labels:
+	FeedbackId = "f_id"
+	TimeStamp = "time_stamp"
+	Email = "email"
+	Feedback = "feedback"
+	Name = "name"
+	Success = "success"
 
 feedback_table_columns = [
-						{"name" : "f_id", "type" : "TEXT"},
-						{"name" : "time_stamp", "type" : "FLOAT"},
-						{"name" : "email",		"type" : "TEXT"},
-						{"name" : "feedback", "type" : "TEXT"},
-						{"name" : "name", "type": "TEXT"}
+						{"name" : Labels.FeedbackId, "type" : "TEXT"},
+						{"name" : Labels.TimeStamp, "type" : "FLOAT"},
+						{"name" : Labels.Email,		"type" : "TEXT"},
+						{"name" : Labels.Feedback, "type" : "TEXT"},
+						{"name" : Labels.Name, "type": "TEXT"}
 					]
 
-feedback_inputs = ['email', 'name', 'feedback']
+feedback_inputs = [Labels.Email, Labels.Name, Labels.Feedback]
 
 class FeedbackManager(SqlManager):
-	def __init__(self):
-		self.FEEDBACK_TABLE = "FEEDBACK_TABLE"
-		SqlManager.__init__(self, self.FEEDBACK_TABLE)
+	def __init__(self, table_name):
+		assert (table_name == ProdTables.FeedbackTable or table_name == TestTables.FeedbackTable)
+		self.table_name = table_name
+		SqlManager.__init__(self, self.table_name)
 		self.createFeedbackTable()
 
 	# initializes a feedback table 
@@ -31,29 +42,25 @@ class FeedbackManager(SqlManager):
 
 	# generates a new email_confirmation_id
 	def generateFeedbackId(self):
-		return self.generateUniqueIdForColumn('f_id')
+		return self.generateUniqueIdForColumn(Labels.FeedbackId)
 
 	def tableHasFeedbackId(self, f_id):
-		column_name = "f_id"
-		entry_data = f_id
-		return self.tableHasEntryWithProperty(column_name, entry_data)
+		return self.tableHasEntryWithProperty(Labels.FeedbackId, f_id)
 
 	## adds feedback
 	def addFeedback(self, feedback):
-		output = {}
-		time_stamp = time.time()
-		f_id = self.generateFeedbackId()
-		self.addColumnToTableIfNotExists('email')
-		self.insertIntoTableWithInitialValue('f_id', f_id)
-		feedback['time_stamp'] = time_stamp
-		feedback['f_id'] = f_id
-		email_api.sendFeedbackEmailNotification(feedback)
-		for col in feedback_table_columns:
-			key = col['name']
-			self.addColumnToTableIfNotExists(col['name'], col['type'])
-			self.updateEntryByKey('f_id', f_id, key, feedback[key])
-		output['success'] = True
-		return output
+		feedback[Labels.TimeStamp] = time.time()
+		feedback[Labels.FeedbackId] = self.generateFeedbackId()
+		# we use this to confirm that the email the user submitted is valid
+		try:
+			email_api.sendFeedbackEmailNotification(feedback)
+		except:
+			output = {}
+			output[Labels.Success] = True
+			output[Labels.Error] = "User submitted bad email address"
+			return output
+		self.insertDictIntoTable(feedback)
+		return {Labels.Success : True}
 
 
 

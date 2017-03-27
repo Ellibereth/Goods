@@ -36,6 +36,7 @@ class AccountManager(SqlManager):
 		assert (table_name == ProdTables.UserInfoTable or table_name == TestTables.UserInfoTable)
 		self.table_name = table_name
 		SqlManager.__init__(self, self.table_name)
+		self.createUserInfoTable()
 
 	# initializes a user info table 
 	def createUserInfoTable(self):
@@ -134,8 +135,6 @@ class AccountManager(SqlManager):
 
 	# returns true if the email is confirmed
 	# returns false if the email is not confirmed or does not exists
-	# I understand the 'email' magic string, still thinking the best way to handle it right now
-	# how to make a Labels like class for all the db management
 	def isEmailConfirmed(self, email):
 		user_info = self.getUserInfoFromEmail(login_info[Labels.Email])
 		if user_info == None:
@@ -144,5 +143,8 @@ class AccountManager(SqlManager):
 
 	# sets the 'email_confirmed' column to true for this e-mail
 	def confirmEmail(self, email_confirmation_id):
-		self.updateEntryByKey(Labels.EmailConfirmationId, email_confirmation_id, Labels.EmailConfirmed, True)
-		return {Labels.Success : True}
+		try:
+			self.updateEntryByKey(Labels.EmailConfirmationId, email_confirmation_id, Labels.EmailConfirmed, True)
+			return {Labels.Success : True}
+		except:
+			return {Labels.Success : False}

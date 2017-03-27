@@ -7,14 +7,23 @@ import sys
 from api.utility import email_api
 from api.utility.sql_manager import SqlManager
 from api.utility import string_util 
+from api.utility.table_names import ProdTables
+from api.utility.table_names import TestTables
+
 usa_origin_target_strings = [" us", "us ", "usa" , "america", "united states"]
 usa_origin_invalidating_strings = ['imported', 'australia', 'belarus', 'cyprus','mauritius','russia']
 
+
+class Labels:
+	FinalOrigin = "final_origin"
+	BrandNodeId = "brand_node_id"
+
 # this class will only call information from Amazon
 class AmazonManager(SqlManager):
-	def __init__(self):
-		self.AMAZON_SCRAPING_TABLE = "AMAZON_SCRAPING_TABLE"
-		SqlManager.__init__(self, self.AMAZON_SCRAPING_TABLE)
+	def __init__(self, table_name):
+		assert (table_name == ProdTables.AmazonScrapingtable or table_name == TestTables.AmazonScrapingtable)
+		self.table_name = table_name
+		SqlManager.__init__(self, self.table_name)
 
 	def getAmazonProducts(self):
 		amazon_products = self.tableToDict()
@@ -33,7 +42,7 @@ class AmazonManager(SqlManager):
 	# rules if it has the substrings 
 	# " us", "us ", "usa" , "america", "united states"
 	def isProductMadeInUsa(self, product):
-		raw_origin = product.get('final_origin')
+		raw_origin = product.get(Labels.FinalOrigin)
 		if raw_origin == None:
 			return False
 		origin = raw_origin.lower()
@@ -60,7 +69,7 @@ class AmazonManager(SqlManager):
 		existing_brand_nodes = list()
 		output_dict_list = list()
 		for product in allProducts:
-			this_brand_node = product.get('brand_node_id')
+			this_brand_node = product.get(Labels.BrandNodeId)
 			if this_brand_node == None:
 				this_brand_node = ""
 			if this_brand_node not in existing_brand_nodes:

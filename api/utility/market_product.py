@@ -8,18 +8,7 @@ from api.utility.sql_manager import SqlManager
 from api.utility.table_names import ProdTables
 from api.utility.table_names import TestTables
 
-market_problem_columns = [
-						{"name" : "time_stamp", "type" : "FLOAT"},
-						{"name" : "price",		"type" : "TEXT"},
-						{"name" : "manufacturer", "type" : "TEXT"},
-						{"name" : "name", "type": "TEXT"},
-						{"name" : "product_id", "type" : "TEXT"},
-						{"name" : "category", "type" : "TEXT"},
-						{"name" : "description", "type" : "TEXT"},
-						{"name" : "brand", "type" : "TEXT"}
-						## rating tbd
-						# {"name" : "rating", "type" : "TEXT"}
-					]
+
 
 class Labels:
 	TimeStamp = "time_stamp"
@@ -30,9 +19,24 @@ class Labels:
 	Manufacturer = "manufacturer"
 	Price = "price"
 	Brand = "brand"
-	Desccription = "description"
+	Description = "description"
 	Category = "category"
 	Rating = "rating"
+	Name = "name"
+
+market_problem_columns = [
+						{"name" : Labels.TimeStamp, "type" : "FLOAT"},
+						{"name" : Labels.Price,		"type" : "TEXT"},
+						{"name" : Labels.Manufacturer, "type" : "TEXT"},
+						{"name" : Labels.Name, "type": "TEXT"},
+						{"name" : Labels.ProductId, "type" : "TEXT"},
+						{"name" : Labels.Category, "type" : "TEXT"},
+						{"name" : Labels.Description, "type" : "TEXT"},
+						{"name" : Labels.Brand, "type" : "TEXT"}
+						## rating tbd
+						# {"name" : "rating", "type" : "TEXT"}
+					]
+
 
 class MarketProductManager(SqlManager):
 	def __init__(self, table_name):

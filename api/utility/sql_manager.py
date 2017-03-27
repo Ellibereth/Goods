@@ -23,6 +23,10 @@ class SqlManager:
 		)
 		self.p_db.autocommit = True
 		self.db = self.p_db.cursor()
+		
+		# right now we defualt the query limit to 10000 so we don't get bogged down
+		# this probably won't matter for a while, but when it does we've gotten larger!
+		self.query_limit = 10000
 
 	def closeConnection(self):
 		self.db.close()
@@ -57,12 +61,14 @@ class SqlManager:
 
 	# given a table, outputs the table as a dictionary 
 	# sorts the table by timestamp if it is a column
-	def tableToDict(self):
+	def tableToDict(self, limit = None):
 		keys = self.getColumnNames()
 		if "time_stamp" in keys:
 			sql = "SELECT * FROM " + self.table_name + " ORDER BY time_stamp"
 		else:
 			sql = "SELECT * FROM " + self.table_name
+		if limit != None:
+			sql = sql + " LIMIT " + str(self.query_limit)
 		self.db.execute(sql)
 		query = self.db.fetchall()
 		output_list = list()
@@ -79,20 +85,24 @@ class SqlManager:
 		colnames = self.getColumnNames()
 		return column_name in colnames
 
+	# inserts a dictionary into the table
+	# if the one of the inputs keys is not in the table column
+	# then we throw an exception
 	def insertDictIntoTable(self, dictionary):
 		sql = "INSERT INTO " + self.table_name + " ("
 		# add the 
 		keys = self.getColumnNames()
 		value_list = list()
-		for key in keys:
-			if key in dictionary.keys():
+		for key in dictionary.keys():
+			if key not in keys:
+				raise Exception("Input key \'" + key  + "\' is not a column in \'" + self.table_name + "\'")
+			else:
 				sql = sql + key + ", "
 		sql = sql[0:len(sql) - 2]
 		sql = sql + ") VALUES ("
-		for key in keys:
-			if key in dictionary.keys():
-				value_list.append(dictionary.get(key))
-				sql = sql + "%s, "
+		for key in dictionary.keys():
+			value_list.append(dictionary.get(key))
+			sql = sql + "%s, "
 		sql = sql[0:len(sql) - 2]
 		sql = sql + ")"
 		value_tup = tuple(value_list)
