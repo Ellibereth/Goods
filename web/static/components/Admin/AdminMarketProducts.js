@@ -17,7 +17,6 @@ export default class AdminMarketProducts extends React.Component {
 	}
 
 	componentDidMount(){	
-			var product_requests = []
 			$.ajax({
 			  type: "POST",
 			  url: url + "/getMarketProducts",
@@ -32,25 +31,6 @@ export default class AdminMarketProducts extends React.Component {
 			});
 	}
 
-	// index isn't used right now, but might be used later
-	onAddMarketProductClick(){
-		swal({
-		  title: "Ready?",
-		  text: "Are you sure you want to delete this?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
-		function () {
-			var temp = this.state.product_requests
-			temp.splice(index, 1)
-			this.setState({product_requests : temp})
-			this.submitData.bind(this)(s_id)
-		}.bind(this))
-	}
 
 	toggleAddProductModal(){
 		this.setState({show_modal : !this.state.show_modal})

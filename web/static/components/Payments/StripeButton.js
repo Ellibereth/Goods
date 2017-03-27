@@ -13,14 +13,14 @@ export default class StripeButton extends React.Component {
 	this.state = {
 
 	}
-  }
-
+}
+	// we use a fetch here, since this is taken from stripe_api
 	onToken(token){
 		fetch(url + "/acceptStripePayment", {
 				method: 'POST',
 				body: JSON.stringify(token),
 			}).then(response => {
-	  			response.json().then(data => {
+				response.json().then(data => {
 				alert(`We are in business, ${data.email}`);
 			});
 		});
@@ -39,7 +39,7 @@ export default class StripeButton extends React.Component {
 }
 
 
-// for refernce
+// for refernce on props
 /*
 <StripeCheckout
   name="Three Comma Co."

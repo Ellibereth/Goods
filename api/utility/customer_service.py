@@ -99,7 +99,7 @@ class CustomerServiceRequest(SqlManager):
 	# returns all requests that are not resolved
 	# make sure you test this so SQL knows what to do with it
 	def getUnresolvedRequests(self):
-		return self.getRowsByKey(Lables.DateResolved, None)
+		return self.getRowsByKey(Labels.DateResolved, None)
 
 
 class CustomerServiceManager:

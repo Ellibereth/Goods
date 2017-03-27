@@ -7,7 +7,7 @@ var url = Config.serverUrl
 
 
 
-export default class ProductMainContinaer extends React.Component {
+export default class ProductMainContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

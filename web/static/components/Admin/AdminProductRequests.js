@@ -68,11 +68,11 @@ export default class AdminProductRequests extends React.Component {
 			var temp = this.state.product_requests
 			temp.splice(index, 1)
 			this.setState({product_requests : temp})
-			this.submitData.bind(this)(s_id)
+			this.softDeleteRequest.bind(this)(s_id)
 		}.bind(this))
 	}
 
-	submitData(s_id){
+	softDeleteRequest(s_id){
 			var form_data = JSON.stringify({"submission_id": s_id})
 			$.ajax({
 				type: "POST",
@@ -102,7 +102,7 @@ export default class AdminProductRequests extends React.Component {
 			)
 		var table_entries = product_requests.map((request, index) => 
 				{	
-					var rows = request_variables.map((attr) => {
+					var row = request_variables.map((attr) => {
 						var this_entry = request[attr]
 						if (this_entry == null) this_entry = ""
 						return	(<td className = "admin-table-cell" id = {request['submission_id'] + "_" + attr} s_id = {request['submission_id']}
@@ -111,7 +111,7 @@ export default class AdminProductRequests extends React.Component {
 							{this.shortenText(this_entry.toString())} </td> 
 						)
 					})
-					rows.unshift(
+					row.unshift(
 							<td className = "admin-table-cell" id = {request['submission_id'] + "_delete"} s_id = {request['submission_id']}
 							attr = "delete" index = {index}> 
 								<Button onClick = {() => this.onDeleteClick.bind(this)(request['submission_id'], index)}>
@@ -121,7 +121,7 @@ export default class AdminProductRequests extends React.Component {
 						)
 					return (
 						<tr>
-							{rows}
+							{row}
 						</tr>
 					)
 			})

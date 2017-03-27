@@ -10,7 +10,6 @@ from ..utility.amazon_manager import AmazonManager
 from ..utility.stripe_api import StripeManager
 from ..utility.market_product import MarketProductManager
 from ..utility.table_names import ProdTables
-from ..utility.table_names import TestTables
 
 class Labels:
 	Success = "success"
