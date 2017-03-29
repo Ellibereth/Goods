@@ -19,6 +19,23 @@ app.secret_key = "powerplay"
 # app.register_blueprint(browser_api)
 from api.general_api.public_api import public_api
 app.register_blueprint(public_api)
+from api.general_api.product_api import product_api
+app.register_blueprint(product_api)
+from api.general_api.customer_service_api import customer_service_api
+app.register_blueprint(customer_service_api)
+from api.general_api.product_request_api import product_request_api
+app.register_blueprint(product_request_api)
+from api.general_api.product_submission_api import product_submission_api
+app.register_blueprint(product_submission_api)
+from api.general_api.admin_api import admin_api
+app.register_blueprint(admin_api)
+from api.general_api.account_api import account_api
+app.register_blueprint(account_api)
+from api.general_api.payment_api import payment_api
+app.register_blueprint(payment_api)
+from api.general_api.amazon_data_api import amazon_data_api
+app.register_blueprint(amazon_data_api)
+
 
 @app.after_request
 def add_header(response):
