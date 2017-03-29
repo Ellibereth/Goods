@@ -1,6 +1,12 @@
-.admin-table-entry = {
+.admin-table-entry {
 	word-wrap : "break-word",
 	min-width : 160px,
 	max-width : 160px
 }
+
+.product-image {
+	width : 200px;
+	height : 200px;
+}
+
 body { padding-bottom: 70px; }

@@ -11,6 +11,7 @@ from ..utility.stripe_api import StripeManager
 from ..utility.market_product import MarketProductManager
 from ..utility.table_names import ProdTables
 
+
 class Labels:
 	Success = "success"
 	ProductId = "product_id"
@@ -46,6 +47,8 @@ class Labels:
 	Manufacturer = "manufacturer"
 	Email = "email"
 	PhoneNumber = "phone_number"
+	ImageData = "image_data"
+	Amount = "amount"
 
 public_api = Blueprint('public_api', __name__)
 
@@ -197,7 +200,6 @@ def getAmazonProductInformationFromAsin():
 	amazon = AmazonManager(ProdTables.AmazonScrapingTable)
 	product = amazon.getProductInfoByAsin(asin)
 	amazon.closeConnection()
-	print(product)
 	return jsonify(product)
 
 @public_api.route('/registerUserAccount', methods = ['POST'])
@@ -226,9 +228,10 @@ def checkLogin():
 def acceptStripePayment():
 	# Token is created using Stripe.js or Checkout!
 	# Get the payment token submitted by the form:
-	token = request.POST[Labels.StripeToken] # Using Flask
-	StripeManager.chargeCard(token)
-	return {Labels.Success : True}
+	token = request.json.get(Labels.StripeToken) # Using Flask
+	amount = int(request.json.get(Labels.Amount))
+	StripeManager.chargeCard(token, amount)
+	return jsonify({Labels.Success : True})
 
 
 @public_api.route('/getMarketProducts', methods = ['POST'])
@@ -248,3 +251,16 @@ def getMarketProductInfo():
 	market_product = market.getMarketProductById(product_id)
 	market.closeConnection()
 	return jsonify(market_product)
+
+@public_api.route('/uploadMarketProductImage', methods = ['POST'])
+def uploadMarketProductImage():
+	## yes Ben I know this is a magic string / hard coded
+	## tell me how to make this better!
+	product_id = request.json.get(Labels.ProductId)
+	image_data = request.json.get(Labels.ImageData)
+	image_bytes = image_data.encode('utf-8')
+	image_decoded = base64.decodestring(image_bytes)
+	market = MarketProductManager(ProdTables.MarketProductTable)
+	market.uploadMarketProductImage(product_id, image_decoded)
+	market.closeConnection()
+	return jsonify({Labels.Success : True})

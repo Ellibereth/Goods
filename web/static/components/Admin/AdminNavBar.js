@@ -7,7 +7,6 @@ export default class AdminNavBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			active_key : "requests"
 		}
 	}
 
@@ -16,14 +15,13 @@ export default class AdminNavBar extends React.Component {
 	}
 
 	handleSelect(selectedKey) {
-		this.setState({active_key : selectedKey})
 		this.props.switchTabs(selectedKey)
 	}	
 
 	render() {
 
 		return (
-			<Nav bsStyle="pills" activeKey={this.state.active_key} onSelect={this.handleSelect.bind(this)}>
+			<Nav bsStyle="pills" activeKey={this.props.selectedTab} onSelect={this.handleSelect.bind(this)}>
 			    <NavItem eventKey="requests"> Requests </NavItem>
 			    <NavItem eventKey="market_products"> Market Product</NavItem>	
 			  </Nav>

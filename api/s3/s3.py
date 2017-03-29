@@ -1,5 +1,7 @@
 import boto3
 import urllib.request
+import os
+
 # Let's use Amazon S3
 
 class Labels:
@@ -15,21 +17,34 @@ class S3Manager:
 
 	# takes photo_data input as a buffered reader
 	# see data = open('test.png', 'rb') data type
-	def uploadPhoto(self, bucket_name, photo_key, photo_data):
+	# gave up on writing the image byte string to a 
+	def uploadImage(self, bucket_name, image_key, image_data):
+		if image_data == None:
+			print("dude data")
+			return
+		transfer_dir = './api/s3/transfer/'
+		with open(transfer_dir + image_key, "wb") as f:
+			f.write(image_data)
+		image_file = open(transfer_dir + image_key, 'rb')
 		self.s3.Bucket(bucket_name).put_object(
-			Key= photo_key, 
-			Body=data
+			Key= image_key, 
+			Body=image_file
 		)
+		os.remove(transfer_dir + image_key)
 
-	def getAmazonUrl(self, bucket_name, photo_key):
-		return self.base_url + "/" + bucket_name + "/" + photo_key
-
+	# gets the photo of the image by ID
+	def getAmazonUrl(self, bucket_name, image_key):
+		return self.base_url + "/" + bucket_name + "/" + image_key + ".jpg"
 
 	# returns the data as a bytes object
-	def getPhotoByKey(self, bucket_name, photo_key):
-		market_bucket = self.s3.Object(bucket_name, photo_key).get()
-		data = market_bucket['Body'].read()
-		return data
+	# returns none if the bucket does not containt that key
+	def getImageByKey(self, bucket_name, image_key):
+		try:
+			market_bucket = self.s3.Object(bucket_name, image_key).get()
+			data = market_bucket['Body'].read()
+			return data
+		except:
+			return None
 
 
 

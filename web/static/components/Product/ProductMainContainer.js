@@ -42,6 +42,15 @@ export default class ProductMainContainer extends React.Component {
 
 
 	render() {
+		// something better needs to be done about bad pages, but I'll figure something out soon
+		var images = []
+		for (var i = 0; i < this.state.product.num_images; i++){
+			var src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" + this.state.product.product_id + "_" + i
+			images.push(
+				<img src = {src} className = "product-image"
+				/>
+			)
+		}
 		return (
 			<div className = "container" id = "product-page-container">
 				{this.state.invalid_product ?
@@ -55,10 +64,15 @@ export default class ProductMainContainer extends React.Component {
 						<h3> Price : {this.state.product.price} </h3>
 						<h3> Description : {this.state.product.description} </h3>
 						<h3> Manufacturer : {this.state.product.manufacturer} </h3>
-						<StripeButton amount = {Number(this.state.product.price)}/>
+						<h3> Images:  </h3>
+						<div>
+							{images}
+						</div>
+
+						<StripeButton product = {this.state.product}/>
 					</div>
-			}	
+				}	
 			</div>
-		);
+		)
 	}
 }

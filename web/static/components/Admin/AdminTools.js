@@ -10,7 +10,7 @@ export default class AdminTools extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selected_tab : "requests"
+			selected_tab : "market_products"
 		}
 	}
 
@@ -42,7 +42,7 @@ export default class AdminTools extends React.Component {
 
 		return (
 			<div>
-				<AdminNavBar  switchTabs = {this.switchTabs.bind(this)}/>
+				<AdminNavBar selectedTab = {this.state.selected_tab} switchTabs = {this.switchTabs.bind(this)}/>
 				{active_tab}
 			</div>
 		)
