@@ -16,13 +16,18 @@ export default class StripeButton extends React.Component {
 }
 	// we use a fetch here, since this is taken from stripe_api
 	onToken(token){
+		// fetch(url + '/acceptStripePayment', {
+		//   method: 'POST',
+		//   body: JSON.stringify(token),
+		// }).then(response => {
+		//   response.json().then(data => {
+		// 	alert(`We are in business, ${data.email}`);
+		//   });
+		// });
 		$.ajax({
 		  type: "POST",
 		  url: url + "/acceptStripePayment",
-		  data: JSON.stringify({
-		  	"stripeToken" : token,
-		  	"amount" : Number(this.props.product.price * 100)
-		  }),
+		  data: JSON.stringify({"stripeToken" : token, "product" : this.props.product}),
 		  success: function(data) {
 		  },
 		  error : function(){
@@ -37,7 +42,7 @@ export default class StripeButton extends React.Component {
 		var amount = Number(this.props.product.price) * 100
 		return (
 			<StripeCheckout
-			name= {this.props.product.name}
+			name= {"Edgar USA"}
 			description= {this.props.product.description}
 			shippingAddress = {true}
 			billingAddress={true}
@@ -73,7 +78,7 @@ export default class StripeButton extends React.Component {
   billingAddress={false}
   // Note: enabling both zipCode checks and billing or shipping address will
   // cause zipCheck to be pulled from billing address (set to shipping if none provided).
-  
+  zipCode={false}
   alipay
   bitcoin
   allowRememberMe

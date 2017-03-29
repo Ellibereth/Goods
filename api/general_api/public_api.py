@@ -49,6 +49,7 @@ class Labels:
 	PhoneNumber = "phone_number"
 	ImageData = "image_data"
 	Amount = "amount"
+	Product = "product"
 
 public_api = Blueprint('public_api', __name__)
 
@@ -229,8 +230,8 @@ def acceptStripePayment():
 	# Token is created using Stripe.js or Checkout!
 	# Get the payment token submitted by the form:
 	token = request.json.get(Labels.StripeToken) # Using Flask
-	amount = int(request.json.get(Labels.Amount))
-	StripeManager.chargeCard(token, amount)
+	product = request.json.get(Labels.Product)
+	StripeManager.chargeCard(token, product)
 	return jsonify({Labels.Success : True})
 
 

@@ -4,7 +4,6 @@ import os
 import random
 import requests
 
-
 # initialize app
 template_dir = os.path.abspath('./web/templates')
 static_dir = os.path.abspath('./web/static')
