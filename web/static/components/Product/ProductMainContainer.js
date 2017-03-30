@@ -4,6 +4,7 @@ import {} from 'react-bootstrap';
 import StripeButton from '../Payments/StripeButton.js'
 var Config = require('Config')
 var url = Config.serverUrl
+import ProductImageDisplay from './ProductImageDisplay.js'
 
 
 
@@ -25,10 +26,10 @@ export default class ProductMainContainer extends React.Component {
 		  url: url + "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
-		  	if (data == null){
-		  		this.setState({invalid_product : true})
+			if (data == null){
+				this.setState({invalid_product : true})
 
-		  	}
+			}
 			this.setState({product: data})
 		  }.bind(this),
 		  error : function(){
@@ -42,15 +43,7 @@ export default class ProductMainContainer extends React.Component {
 
 
 	render() {
-		// something better needs to be done about bad pages, but I'll figure something out soon
-		var images = []
-		for (var i = 0; i < this.state.product.num_images; i++){
-			var src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" + this.state.product.product_id + "_" + i
-			images.push(
-				<img src = {src} className = "product-image"
-				/>
-			)
-		}
+	
 		return (
 			<div className = "container" id = "product-page-container">
 				{this.state.invalid_product ?
@@ -66,7 +59,7 @@ export default class ProductMainContainer extends React.Component {
 						<h3> Manufacturer : {this.state.product.manufacturer} </h3>
 						<h3> Images:  </h3>
 						<div>
-							{images}
+							<ProductImageDisplay product = {this.state.product}/>
 						</div>
 
 						<StripeButton product = {this.state.product}/>
