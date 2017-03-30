@@ -1,18 +1,24 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import AdminLogin from './AdminLogin.js'
-import AdminTools from './AdminTools.js'
-import AppActions from '../../actions/AppActions.js'
-import AppStore from '../../stores/AppStore.js'
 var Config = require('Config')
 var url = Config.serverUrl
+
+import AppActions from '../../actions/AppActions.js'
+import AppStore from '../../stores/AppStore.js'
+
+import AdminLogin from './AdminLogin.js'
+import AdminTabs from './AdminTabs.js'
+import AdminProductRequests from './AdminProductRequests/AdminProductRequests.js'
+import AdminMarketProducts from './AdminMarketProducts/AdminMarketProducts.js'
+
 
 export default class AdminPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			access_granted : false,
-			current_user : {}
+			current_user : {},
+			selected_tab : "market_products"
 		}
 	}
 
@@ -41,6 +47,28 @@ export default class AdminPage extends React.Component {
 		})
 	}
 
+	switchTabs(tab){
+		this.setState({selected_tab : tab})
+	}
+	
+
+	getActiveTab(){
+		var active_tab;
+		switch(this.state.selected_tab) {
+		    case "requests":
+		        active_tab = <AdminProductRequests />
+		        break;
+		    case "market_products":
+		        active_tab = <AdminMarketProducts />
+		        break;
+		    default:
+		        active_tab = <AdminProductRequests />
+		        break;
+		}
+		return active_tab
+	}
+	
+
 	componentDidMount() {	
 		var current_user = AppStore.getCurrentUser()
 		this.setState({current_user : current_user})
@@ -52,10 +80,16 @@ export default class AdminPage extends React.Component {
 	}
 
 	render() {
+		var active_tab = this.getActiveTab.bind(this)()
 		return (
 			<div>
 				{ !this.state.access_granted && <AdminLogin onLoginSubmit = {this.onLoginSubmit.bind(this)}/> }
-				{ this.state.access_granted &&  <AdminTools /> }
+				{ this.state.access_granted &&  
+					<div>
+						<AdminTabs selectedTab = {this.state.selected_tab} switchTabs = {this.switchTabs.bind(this)}/>
+						{active_tab}
+					</div>
+				}
 			</div>
 		);
 	}

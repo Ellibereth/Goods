@@ -8,10 +8,10 @@ var browserHistory = require('react-router').browserHistory;
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
-import AdminPage from './Admin/AdminPAge.js'
+import AdminPage from './Admin/AdminPage.js'
 import PageNotFound from './Misc/PageNotFound.js'
-import EmailConfirmationPage from './Confirmation/EmailConfirmationPage.js'
-import RequestConfirmationPage from './Confirmation/RequestConfirmationPage.js'
+import EmailConfirmationPage from './Confirmation/EmailConfirmation/EmailConfirmationPage.js'
+import RequestConfirmationPage from './Confirmation/RequestConfirmation/RequestConfirmationPage.js'
 import TermsOfServicePage from './Misc/TermsOfServicePage.js'
 import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
 import ProductPage from './Product/ProductPage.js'

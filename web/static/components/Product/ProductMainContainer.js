@@ -1,9 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {} from 'react-bootstrap';
-import StripeButton from '../Payments/StripeButton.js'
 var Config = require('Config')
 var url = Config.serverUrl
+
+import {} from 'react-bootstrap';
+import StripeButton from './ProductPayment/StripeButton.js'
 import ProductImageDisplay from './ProductImageDisplay.js'
 
 

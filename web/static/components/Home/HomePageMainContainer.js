@@ -9,8 +9,7 @@ export default class HomePageMainContainer extends React.Component {
 
 		}
 	}
-
-
+	
 	render() {
 		var image_sources = []
 		var num_images = 4
@@ -20,7 +19,6 @@ export default class HomePageMainContainer extends React.Component {
 		var col_sizes = [4,4,4]
 		var col_size = 4
 		var bottom_col_size = 6
-
 
 		return (
 			<Grid>

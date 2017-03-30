@@ -1,13 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+
 import {} from 'react-bootstrap';
-import RequestModal from './RequestModal.js'
-import FeedbackModal from './FeedbackModal.js'
+import ProductRequestModal from '../Product/ProductRequest/ProductRequestModal.js'
+import FeedbackModal from '../CustomerService/Feedback/FeedbackModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'
-import TopNavBar from '../Navbar/TopNavBar.js'
+import TopNavBar from '../Misc/TopNavBar.js'
 import Footer from '../Misc/Footer.js'
-
-
 
 export default class HomePage extends React.Component {
   constructor(props) {

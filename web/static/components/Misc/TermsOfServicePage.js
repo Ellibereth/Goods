@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
-import TopNavBar from '../Navbar/TopNavBar.js'
+import TopNavBar from './TopNavBar.js'
 
 
 export default class TermsOfServicePage extends React.Component {

@@ -1,8 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import AdminLoginTextInput from './AdminLoginTextInput.js'
-import AdminTools from './AdminTools.js'
-
+import TextInput from '../Misc/Input/TextInput.js'
 
 export default class AdminLogin extends React.Component {
 	constructor(props) {
@@ -29,10 +27,10 @@ export default class AdminLogin extends React.Component {
 		return (
 			<div>
 				<h2> Heathcliffe required </h2>
-				<AdminLoginTextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
-					 value = {this.state.username} field = "username" type = "text"/>
-				<AdminLoginTextInput label = "Password" onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state.password} field = "password" type = "password"/>
+				<TextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
+					 value = {this.state.username} field = "username" input_type = "text"/>
+				<TextInput label = "Password" onTextInputChange = {this.onTextInputChange.bind(this)}
+				value = {this.state.password} field = "password" input_type = "password"/>
 				<div>
 					<button onClick = {this.onLoginSubmit.bind(this)}> Admin Login </button>
 				</div>

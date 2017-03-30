@@ -1,12 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {} from 'react-bootstrap';
-import StripeButton from '../Payments/StripeButton.js'
 var Config = require('Config')
 var url = Config.serverUrl
+
+import {} from 'react-bootstrap';
 import ProductImageDisplay from './ProductImageDisplay.js'
-
-
 
 export default class ProductMainContainer extends React.Component {
 	constructor(props) {
@@ -20,11 +18,9 @@ export default class ProductMainContainer extends React.Component {
 		this.setState({selected_image : i})
 	}
 
-
-
 	render() {
 		var product = this.props.product
-		if (product == null) return;
+		if (product == null || product.product_id == null) return <div/>;
 		// something better needs to be done about bad pages, but I'll figure something out soon
 		var images = []
 		for (var i = 0; i < product.num_images; i++){
@@ -36,7 +32,7 @@ export default class ProductMainContainer extends React.Component {
 
 		var big_image_scr = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" + product.product_id + "_" + this.state.selected_image
 		var big_image = <img src = {big_image_scr} className = "product-image"/>
-	
+		console.log(product)
 		return (
 			<div>
 				<div>
