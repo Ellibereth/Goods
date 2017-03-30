@@ -57,7 +57,7 @@ class ProductRequestManager(SqlManager):
 
 	# initializes the product request table
 	def createProductRequestTable(self):
-		self.createNewTableIfNotExists()
+		self.createTableIfNotExists()
 
 	# checks if the given table has the image id
 	def isSubmissionIdTaken(self, submission_id):
@@ -124,15 +124,15 @@ class ProductRequestManager(SqlManager):
 			output[Labels.Success] = False
 			output[Labels.Error] = "Confirmation id is not right length"
 			return output
-		self.updateEntryByKey(Labels.ConfirmationId, confirmation_id, Labels.Confirmed, True)
+		self.updateRowsByProperty(Labels.ConfirmationId, confirmation_id, Labels.Confirmed, True)
 		return {Labels.Success : True}
 
 	## deletes a product request by id
 	def deleteProductRequestBySubmissionId(self, submission_id):
-		self.deleteRowFromTableByProperty(Labels.SubmissionId, submission_id)
+		self.deleteRowsFromTableByProperty(Labels.SubmissionId, submission_id)
 
 	def softDeleteProductRequestBySubmissionId(self, submission_id):
-		self.updateEntryByKey(Labels.SubmissionId, submission_id, Labels.SoftDeleted, True)
+		self.updateRowsByProperty(Labels.SubmissionId, submission_id, Labels.SoftDeleted, True)
 
 
 

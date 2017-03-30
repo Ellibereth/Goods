@@ -51,7 +51,7 @@ class MarketProductManager(SqlManager):
 
 	# initializes a market product table 
 	def createMarketProductTable(self):
-		self.createNewTableIfNotExists()
+		self.createTableIfNotExists()
 		for col in market_problem_columns:
 			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
 
@@ -81,7 +81,7 @@ class MarketProductManager(SqlManager):
 		s3 = S3Manager()
 		s3.uploadImage(MARKET_PHOTO_STORAGE_BUCKET, photo_name, photo_data)
 		## update the number of photos 	
-		self.updateEntryByKey(Labels.ProductId, this_product[Labels.ProductId], Labels.NumImages, this_product[Labels.NumImages] + 1)
+		self.updateRowsByProperty(Labels.ProductId, this_product[Labels.ProductId], Labels.NumImages, this_product[Labels.NumImages] + 1)
 
 	# returns all market products as a dictionary
 	def getMarketProducts(self):

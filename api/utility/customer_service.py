@@ -55,7 +55,7 @@ class CustomerServiceResponse(SqlManager):
 		self.createCustomerServiceResponseTable()
 
 	def createCustomerServiceResponseTable(self):
-		self.createNewTableIfNotExists()
+		self.createTableIfNotExists()
 		for col in customer_service_response_columns:
 			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
 
@@ -89,7 +89,7 @@ class CustomerServiceTicket(SqlManager):
 
 	# resolves a customer ticket right now
 	def resolveCustomerServiceTicket(self, ticket_id):
-		self.updateEntryByKey(Labels.TicketId, ticket_id, Labels.DateResolved, time.time())
+		self.updateRowsByProperty(Labels.TicketId, ticket_id, Labels.DateResolved, time.time())
 
 	# returns the entire ticket informatio by the ticket id
 	def getCustomerServiceTicketById(self, ticket_id):
@@ -98,7 +98,7 @@ class CustomerServiceTicket(SqlManager):
 	# returns all tickets that are not resolved
 	# make sure you test this so SQL knows what to do with it
 	def getUnresolvedTickets(self):
-		return self.getRowsByKey(Labels.DateResolved, None)
+		return self.getRowsByProperty(Labels.DateResolved, None)
 
 
 class CustomerServiceManager:

@@ -36,7 +36,7 @@ class FeedbackManager(SqlManager):
 
 	# initializes a feedback table 
 	def createFeedbackTable(self):
-		self.createNewTableIfNotExists()
+		self.createTableIfNotExists()
 		for col in feedback_table_columns:
 			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
 

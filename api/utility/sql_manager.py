@@ -6,10 +6,8 @@ import psycopg2
 import openpyxl
 from api.utility import credential
 						 
-
 ## notes for next time, maybe include an assert or check to make sure
 ## that whenever something is added to a column, the column name is all lower case
-
 class SqlManager:
 	def __init__(self, table_name):
 		self.table_name = table_name
@@ -27,21 +25,24 @@ class SqlManager:
 		# right now we defualt the query limit to 10000 so we don't get bogged down
 		# this probably won't matter for a while, but when it does we've gotten larger!
 		self.query_limit = 10000
+		self.createTableIfNotExists()
 
 	def closeConnection(self):
 		self.db.close()
 		self.p_db.close()
 
 	# creates a new table with columns submission_id and time_stamp
-	def createNewTableIfNotExists(self):
+	def createTableIfNotExists(self):
 		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + self.table_name + ' (time_stamp FLOAT)'
 		self.db.execute(createTableCode)		
 
 	# checks if the given table has an entry with data in that given column name	
-	def tableHasEntryWithProperty(self, column_name, entry_data):
+	def tableHasEntryWithProperty(self, prop_name, prop):
+		if prop_name not in self.getColumnNames():
+			return False
 		try:
-			sql = "SELECT * FROM " + self.table_name + " WHERE " + column_name + " = %s"
-			self.db.execute(self.db.mogrify(sql, (entry_data,)))
+			sql = "SELECT * FROM " + self.table_name + " WHERE " + prop_name + " = %s"
+			self.db.execute(self.db.mogrify(sql, (prop,)))
 		except:
 			return False
 		query = self.db.fetchall()
@@ -52,12 +53,11 @@ class SqlManager:
 	def id_generator(self, size=20, chars=string.ascii_uppercase + string.digits):
 		return ''.join(random.choice(chars) for _ in range(size))
 
-	def generateUniqueIdForColumn(self, column_name):
+	def generateUniqueIdForColumn(self, column_name, size = 20):
 		unique_id = self.id_generator()
 		while self.tableHasEntryWithProperty(column_name, unique_id):
-			unique_id = self.id_generator()
+			unique_id = self.id_generator(size = size)
 		return unique_id
-
 
 	# given a table, outputs the table as a dictionary 
 	# sorts the table by timestamp if it is a column
@@ -115,6 +115,8 @@ class SqlManager:
 	# will return "BOOL"
 	# if our case work doesn't find it defaults to TEXT
 	def getDataTypeString(self, data):
+		if data == None:
+			return None
 		data_type = type(data)
 		output = "TEXT"
 		if data_type is int:
@@ -133,45 +135,39 @@ class SqlManager:
 			output = "TEXT"
 		return output
 
-	# insert row into table 
-	# we need a way to insert a generic row into a table, but I'm not sure how to do this yet
-	# this is a WIP
-	def insertIntoTableWithInitialValue(self, initial_column_name, initial_value):
-		sql = "INSERT INTO " + self.table_name + " (" + initial_column_name + ") VALUES (%s)"
-		mogrified_sql = self.db.mogrify(sql, (initial_value,))
-		self.db.execute(mogrified_sql)
-
-	#  given the table name, updates the entries that data key in the column key_column_name
+	#  given the table name, updates the entries that data property in the column property_column_name
 	#  such that their entries in the column target_column_name have value data
 	#  if target_column_name doesn't exists, it creates it with value 
-	#  this key is not necessarily unique!
-	def updateEntryByKey(self, key_column_name, key, target_column_name, data):	
+	#  this property is not necessarily unique!
+	def updateRowsByProperty(self, prop_name, prop, target_column_name, data):	
 		# should we add a column if it does not exist, or just not ignore these columns
+		# decided to throw an exception if the colum doesn't exist
 		if not self.tableHasColumn(target_column_name):
-			data_type = self.getDataTypeString(data)
-			self.addColumnToTableIfNotExists(target_column_name, data_type = data_type)
-		sql = "UPDATE " + self.table_name + " SET " + target_column_name + " = %s " + " WHERE " + key_column_name + " = %s"
-		mogrified_sql = self.db.mogrify(sql, (data, key))
+			raise Exception("Trying to insert a new column into table : " + self.table_name)
+		sql = "UPDATE " + self.table_name + " SET " + target_column_name + " = %s " + " WHERE " + prop_name + " = %s"
+		mogrified_sql = self.db.mogrify(sql, (data, prop))
 		self.db.execute(mogrified_sql)
 
 	# returns the rows with a certain property 
-	def getRowsByKey(self, key_column_name, key):
-		sql = "SELECT * FROM " + self.table_name + " WHERE " + key_column_name + " = %s"
-		mogrified_sql = self.db.mogrify(sql, (key,))
+	# returns an empty list of nothing
+	def getRowsByProperty(self, prop_name, prop):
+		sql = "SELECT * FROM " + self.table_name + " WHERE " + prop_name + " = %s"
+		mogrified_sql = self.db.mogrify(sql, (prop,))
 		self.db.execute(mogrified_sql)
 		query = self.db.fetchall()
 		output_list = list()
+		col_names = self.getColumnNames()
 		for row in query:
 			output = {}
-			for i in range(0, len(keys)):
-				output[keys[i]] = row[i]
+			for i in range(0, len(col_names)):
+				output[col_names[i]] = row[i]
 			output_list.append(output)
 		return output_list
 
 	# updates a row with a certain key
 	# note, the key must be unique!
 	# we throw an exception if it is not
-	def updateRowByUniqueKey(self, key_column_name, key, dictionary):
+	def updateRowByKey(self, key_column_name, key, dictionary):
 		matching_rows = self.getRowsByKey(key_column_name, key)
 		if len(matching_rows) > 1:
 			raise Exception("This key is not unique!")
@@ -183,8 +179,7 @@ class SqlManager:
 			if col_name in table_columns:
 				sql = sql + col_name + " = %s, " 
 				value_list.append(dictionary.get(col_name))
-
-		# get rid of the ', ' at the end
+		# done to get rid of the ', ' at the end
 		sql = sql[0: len(sql) - 2]
 		sql = sql + " WHERE " + key_column_name  + " = %s" 
 		value_list.append(key)
@@ -210,18 +205,18 @@ class SqlManager:
 		colnames = [desc[0] for desc in self.db.description]
 		return colnames
 
-	# deletes a row from a table by submission_id
-	def deleteRowFromTableByProperty(self, column_name, value):
-		sql = "DELETE FROM " + self.table_name + " WHERE " + column_name + " = %s"
-		mogrified_sql = self.db.mogrify(sql, (value,))
+	# deletes rows from a table by a property
+	def deleteRowsFromTableByProperty(self, prop_name, prop):
+		sql = "DELETE FROM " + self.table_name + " WHERE " + prop_name + " = %s"
+		mogrified_sql = self.db.mogrify(sql, (prop,))
 		self.db.execute(mogrified_sql)
 
 	## returns a single row from a table given a unique property 
 	## returns the row as a dictionary
-	def getRowByUniqueProperty(self, column_name, value):
+	def getRowByKey(self, key_name, key):
 		try:
-			sql = "SELECT * FROM " + self.table_name + " WHERE " + column_name + " = %s"
-			mogrified_sql = self.db.mogrify(sql, (value,))
+			sql = "SELECT * FROM " + self.table_name + " WHERE " + key_name + " = %s"
+			mogrified_sql = self.db.mogrify(sql, (key,))
 			self.db.execute(mogrified_sql)
 		except:
 			return None
@@ -270,7 +265,22 @@ class SqlManager:
 			for key in headers:
 				this_row.append(item[key])
 			ws.append(this_row)
-
 		# Save the file
 		wb.save("./web/output/sql_tables/" + file_name + ".xlsx")
 
+	# this method is just for testing, should almost never be used
+	# but it deletes all columns in the table
+	def clearTable(self):
+		sql = "DELETE FROM " + self.table_name
+		self.db.execute(self.db.mogrify(sql))
+		col_names = self.getColumnNames()
+		for col_name in col_names:
+			sql = "ALTER TABLE " + self.table_name + " DROP COLUMN " + col_name
+			self.db.execute(self.db.mogrify(sql))
+
+	# returns the number of rows in the table
+	def getNumRows(self):
+		sql = "SELECT COUNT(*) FROM " + self.table_name
+		self.db.execute(self.db.mogrify(sql))
+		num_rows = self.db.fetchone()
+		return num_rows[0]

@@ -44,7 +44,7 @@ class ProductSubmissionManager(SqlManager):
 
 	# initializes the product submission table
 	def creatUserSubmissionTable(self):
-		self.createNewTableIfNotExists()
+		self.createTableIfNotExists()
 
 	# checks if the given table has the image id
 	def isImageIdTaken(self, image_id):
@@ -85,7 +85,7 @@ class ProductSubmissionManager(SqlManager):
 		else:
 			column_name = "verified"
 			data = True
-			self.updateEntryByKey('submission_id', submission_id, column_name, data)
+			self.updateRowsByProperty('submission_id', submission_id, column_name, data)
 
 	# takes submission dictionary as input then writes it to the database
 	# also sends the image as an email to darek@manaweb.com
@@ -124,15 +124,15 @@ class ProductSubmissionManager(SqlManager):
 		submission_id = self.generateNewSubmissionId()
 		self.insertIntoTableWithInitialValue("submission_id", submission_id)
 		## update the other variables
-		self.updateEntryByKey("submission_id", submission_id, 'time_stamp', time_stamp)
-		self.updateEntryByKey("submission_id", submission_id, 'confirmed', False)
+		self.updateRowsByProperty("submission_id", submission_id, 'time_stamp', time_stamp)
+		self.updateRowsByProperty("submission_id", submission_id, 'confirmed', False)
 		for key in product_submission_variables:
 			if submission.get(key) != None:
-				self.updateEntryByKey('submission_id', submission_id, key, submission[key])
+				self.updateRowsByProperty('submission_id', submission_id, key, submission[key])
 
 	## deletes a product submission by id
 	def deleteProductSubmissionById(self, submission_id):
 		column_name = "submission_id"
-		self.deleteRowFromTableByProperty(column_name, submission_id)
+		self.deleteRowsFromTableByProperty(column_name, submission_id)
 
 

@@ -40,7 +40,7 @@ class AccountManager(SqlManager):
 
 	# initializes a user info table 
 	def createUserInfoTable(self):
-		self.createNewTableIfNotExists()
+		self.createTableIfNotExists()
 		for col in user_info_columns:
 			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
 
@@ -56,7 +56,6 @@ class AccountManager(SqlManager):
 	# also checks if it's a real email too with a try/except in email_api.py
 	# user_info is a dictioary right now
 	def addUser(self, user_info):
-		self.createNewTableIfNotExists()
 		is_valid_submission = self.isUserSubmissionValid(user_info)
 		if not valid_submission[Labels.Success]:
 			return is_valid_submission
@@ -144,7 +143,7 @@ class AccountManager(SqlManager):
 	# sets the 'email_confirmed' column to true for this e-mail
 	def confirmEmail(self, email_confirmation_id):
 		try:
-			self.updateEntryByKey(Labels.EmailConfirmationId, email_confirmation_id, Labels.EmailConfirmed, True)
+			self.updateRowsByProperty(Labels.EmailConfirmationId, email_confirmation_id, Labels.EmailConfirmed, True)
 			return {Labels.Success : True}
 		except:
 			return {Labels.Success : False}

@@ -28,4 +28,4 @@ class TestTables:
 	CustomerServiceTicketTable = TEST_PREFIX + ProdTables.CustomerServiceTicketTable
 	CustomerServiceResponseTable = TEST_PREFIX + ProdTables.CustomerServiceResponseTable
 	MarketProductTable = TEST_PREFIX + ProdTables.MarketProductTable
-	Sql = "TEST_SQL"
+	SqlTestTable = "TEST_SQL"
