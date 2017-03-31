@@ -9,4 +9,22 @@
 	height : 200px;
 }
 
-body { padding-bottom: 70px; }
+.top-buffer { margin-top:20px; }
+
+.product-preview-container {
+	background-color: white;
+	padding : 8px;
+
+}
+
+.black-border-shown{
+	border-style: solid;
+    border-color: black;
+}
+
+body { 
+	padding-bottom: 70px; 
+	background-color: lightgrey;
+	font-family: Helvetica;
+}
+

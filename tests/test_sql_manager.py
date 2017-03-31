@@ -74,15 +74,15 @@ class TestSqlManager(unittest.TestCase):
  	# generates a bunch of unit ids, and will ensure they are not already 
  	# in the database 
 	def testGenerateUniqueIdForColumn(self):
-		test_row = self.sql.getRowByKey("row_number" , 1)
-
-		self.sql.id_generator = MagicMock(return_value = random.choice([test_row['a'], "ABCDE"]))
 		num_tests = 10
+		test_row = self.sql.getRowByKey("row_number" , 1)
+		existingId = test_row['a']
+		testId = "ABCDE"
+		self.sql.id_generator = MagicMock(return_value = random.choice([existingId, testId]))
 		# we arbitrarily test on col a
 		for i in range(0, num_tests):
 			new_id = self.sql.generateUniqueIdForColumn('a', size = self.entry_length)
-			# make sure the new property never shows in the table
-			self.assertFalse(self.sql.tableHasEntryWithProperty('a', new_id))
+			self.assertEqual(new_id, testId)
 
 	def testGetRowByKey(self):
 		# test for a row we know exists
@@ -135,7 +135,6 @@ class TestSqlManager(unittest.TestCase):
 		self.assertEqual(self.sql.getDataTypeString(list()), None)
 		self.assertEqual(self.sql.getDataTypeString(dict()), None)
 
-
 	def testTableHasColumn(self):
 		self.assertTrue(self.sql.tableHasColumn("a"))
 		self.assertTrue(self.sql.tableHasColumn("b"))
@@ -144,7 +143,6 @@ class TestSqlManager(unittest.TestCase):
 		self.assertTrue(self.sql.tableHasColumn("twice_row_number"))
 		self.assertFalse(self.sql.tableHasColumn("bad_table_name_AJDJFJDFJA"))
 		self.assertFalse(self.sql.tableHasColumn(""))
-
 
 	def testTableHasEntryWithProperty(self):
 		# there should always be one with the value 1, only is 1 if table is empty

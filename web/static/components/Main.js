@@ -15,6 +15,7 @@ import RequestConfirmationPage from './Confirmation/RequestConfirmation/RequestC
 import TermsOfServicePage from './Misc/TermsOfServicePage.js'
 import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
 import ProductPage from './Product/ProductPage.js'
+import StorePage from './Store/StorePage.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -33,6 +34,7 @@ ReactDOM.render(
 			<Route path = 'admin' component = {AdminPage}/>
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
+			<Route path= "Store" component={StorePage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
 			<Route path= "eg/:product_id" component={ProductPage}/>

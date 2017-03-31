@@ -89,6 +89,6 @@ class MarketProductManager(SqlManager):
 
 	# returns the product by id
 	def getMarketProductById(self, product_id):
-		return self.getRowByUniqueProperty(Labels.ProductId, product_id)
+		return self.getRowByKey(Labels.ProductId, product_id)
 
 
