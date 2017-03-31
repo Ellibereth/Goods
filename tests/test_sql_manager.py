@@ -1,22 +1,27 @@
 import unittest
+from unittest.mock import MagicMock
+
 import string
 import random
 import time
 from api.utility.sql_manager import SqlManager
 from api.utility.table_names import TestTables
 
-def id_generator(size=5, chars=string.ascii_uppercase + string.digits):
-		return ''.join(random.choice(chars) for _ in range(size))
-
 class TestSqlManager(unittest.TestCase):
-	sql = SqlManager(TestTables.SqlTestTable)
-	num_columns = 20
-	entry_length = 5
-	col_names = ['a', 'b', 'c']
-	col_names.append('time_stamp')
-	col_names.append('row_number')
-	col_names.append('twice_row_number')
-	num_rows = 10
+
+	def setUp(self):		
+		self.sql = SqlManager(TestTables.SqlTestTable)
+		self.num_columns = 20
+		self.entry_length = 5
+		self.col_names = ['a', 'b', 'c']
+		self.col_names.append('time_stamp')
+		self.col_names.append('row_number')
+		self.col_names.append('twice_row_number')
+		self.num_rows = 10
+		self.initializeTestTable()
+
+	def tearDown(self):
+		self.sql.closeConnection()
 
 	# we genrate a random dictionary to insert into the table
 	def generateRandomDict(self):
@@ -64,11 +69,14 @@ class TestSqlManager(unittest.TestCase):
 		for i in range(0, num_tests):
 			random_size = random.randint(1, 10)
 			new_id = self.sql.id_generator(size = random_size)
-			self.assertTrue(len(new_id) == random_size)
+			self.assertEqual(len(new_id), random_size)
  
  	# generates a bunch of unit ids, and will ensure they are not already 
  	# in the database 
 	def testGenerateUniqueIdForColumn(self):
+		test_row = self.sql.getRowByKey("row_number" , 1)
+
+		self.sql.id_generator = MagicMock(return_value = random.choice([test_row['a'], "ABCDE"]))
 		num_tests = 10
 		# we arbitrarily test on col a
 		for i in range(0, num_tests):
