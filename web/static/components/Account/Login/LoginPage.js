@@ -18,10 +18,13 @@ export default class LoginPage extends React.Component {
 	render() {
 
 		return (
-			<div className = "container">
+			<div>
+
 				<TopNavBar />
-				<LoginForm />
-				<a href = "/register"> Don't have an account yet? </a>
+				<div className = "container">
+					<LoginForm />
+					<a href = "/register"> Don't have an account yet? </a>
+				</div>
 			</div>	
 		)
 	}

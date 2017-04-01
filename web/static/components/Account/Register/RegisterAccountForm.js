@@ -9,6 +9,7 @@ import TextInput from '../../Misc/Input/TextInput.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ['Name', "Email", "Password", "Confirm Password"]
 const form_inputs = ["name", "email", "password", "password_confirm"]
+const input_types = ['text', 'text', 'password', 'password']
 
 export default class RegisterAccountForm extends React.Component {
 	constructor(props) {
@@ -53,14 +54,15 @@ export default class RegisterAccountForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/addUserAccount",
+				url: url  + "/registerUserAccount",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error in your submission! Please try again!", "warning")
+						swal("Sorry!", "It seems there was an error in your submission! " + data.error 
+							+ ". Please try again!", "warning")
 					}
 					else {
-						AppStore
+						AppActions.addCurrentUser(data.user_info)
 						swal({
 							title: "Thank you!", 
 							text : "Your account has been created. You should receive a confirmation email shortly",
@@ -81,10 +83,11 @@ export default class RegisterAccountForm extends React.Component {
 		}
 
 	render() {
+
 		var text_inputs = form_inputs.map((form_input, index) => {
 			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_type}/>)
+				input_type = {input_types[index]}/>)
 		})
 
 		return (

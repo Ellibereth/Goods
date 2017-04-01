@@ -9,6 +9,7 @@ import AppActions from '../../../actions/AppActions.js';
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ["Email", "Password"]
 const form_inputs = ["email", "password"]
+const input_types = ['text', 'password']
 
 export default class RegisterAccountForm extends React.Component {
 	constructor(props) {
@@ -26,7 +27,7 @@ export default class RegisterAccountForm extends React.Component {
 		this.setState(obj)
 	}
 
-	onLoginAttempPress(){
+	onLoginAttemptPress(){
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -45,7 +46,7 @@ export default class RegisterAccountForm extends React.Component {
 						AppActions.addCurrentUser(data.user_info)
 						// returns to whatever page they were on? 
 						// or should we just go to the home page?
-						browserHistory.pop()
+						browserHistory.push('/')
 					}
 				}.bind(this),
 				error : function(){
@@ -57,10 +58,11 @@ export default class RegisterAccountForm extends React.Component {
 		}
 
 	render() {
+		var input_type = "text"
 		var text_inputs = form_inputs.map((form_input, index) => {
 			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_type}/>)
+				input_type = {input_types[index]}/>)
 		})
 
 		return (
@@ -68,8 +70,8 @@ export default class RegisterAccountForm extends React.Component {
 				{text_inputs}
 				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
-					Log In!
+					<Button onClick = {this.onLoginAttemptPress.bind(this)}>
+						Log In!
 					</Button>
 				</Col>
 				</FormGroup>

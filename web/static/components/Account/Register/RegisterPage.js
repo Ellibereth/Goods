@@ -18,10 +18,12 @@ export default class RegisterPage extends React.Component {
 	render() {
 
 		return (
-			<div className = "container">
+			<div>
 				<TopNavBar />
-				<RegisterAccountForm/>
-				<a href = "/login"> Already have an account? </a>
+				<div className = "container">
+					<RegisterAccountForm/>
+					<a href = "/login"> Already have an account? </a>
+				</div>
 			</div>	
 		)
 	}

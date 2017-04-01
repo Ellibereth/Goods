@@ -27,21 +27,26 @@ export default class TopNavBar extends React.Component {
 	handleLogout(){
 		this.setState({current_user : null})
 		AppActions.removeCurrentUser()
+		console.log("current user removed")
 		browserHistory.push('/')
 
 	}
 
 	getSignInButton() {
 		var current_user = this.state.current_user
-		if (current_user == null){
-			<Nav pullRight>
-				<NavItem eventKey={1}> <Link to="/register">Sign In</Link> </NavItem>
-			</Nav>	
+		if (current_user == null || current_user == {} || !current_user){
+			return (
+				<Nav pullRight>
+					<NavItem eventKey={1}> <Link to="/login">Sign In</Link> </NavItem>
+				</Nav>	
+			)
 		}
 		else {
-			<Nav pullRight>
-				<NavItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </NavItem>
-			</Nav>
+			return (
+				<Nav pullRight>
+					<NavItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </NavItem>
+				</Nav>
+			)
 		}	
 	}
 
