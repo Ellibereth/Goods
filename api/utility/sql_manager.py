@@ -25,7 +25,7 @@ class SqlManager:
 		# right now we defualt the query limit to 10000 so we don't get bogged down
 		# this probably won't matter for a while, but when it does we've gotten larger!
 		self.query_limit = 10000
-		self.createTableIfNotExists()
+		# self.createTableIfNotExists()
 
 	def closeConnection(self):
 		self.db.close()
@@ -57,6 +57,7 @@ class SqlManager:
 		unique_id = self.id_generator()
 		while self.tableHasEntryWithProperty(column_name, unique_id):
 			unique_id = self.id_generator(size = size)
+			print(unique_id)
 		return unique_id
 
 	# given a table, outputs the table as a dictionary 
@@ -135,9 +136,15 @@ class SqlManager:
 			output = "TEXT"
 		return output
 
+	def isKeyUnique(self, key_name, key):
+		matching_rows = self.getRowsByProperty(key_name, key)
+		if len(matching_rows) > 1:
+			return False
+		else:
+			return True
+
 	#  given the table name, updates the entries that data property in the column property_column_name
 	#  such that their entries in the column target_column_name have value data
-	#  if target_column_name doesn't exists, it creates it with value 
 	#  this property is not necessarily unique!
 	def updateRowsByProperty(self, prop_name, prop, target_column_name, data):	
 		# should we add a column if it does not exist, or just not ignore these columns
@@ -146,6 +153,19 @@ class SqlManager:
 			raise Exception("Trying to insert a new column into table : " + self.table_name)
 		sql = "UPDATE " + self.table_name + " SET " + target_column_name + " = %s " + " WHERE " + prop_name + " = %s"
 		mogrified_sql = self.db.mogrify(sql, (data, prop))
+		self.db.execute(mogrified_sql)
+
+	#  given the table name, updates the entries that data property in the column property_column_name
+	#  such that their entries in the column target_column_name have value data
+	def updateRowByKey(self, key_name, key, target_column_name, data):	
+		if not self.isKeyUnique(key_name, key):
+			raise Exception("Key is not unique!")
+		# should we add a column if it does not exist, or just not ignore these columns
+		# decided to throw an exception if the colum doesn't exist
+		if not self.tableHasColumn(target_column_name):
+			raise Exception("Trying to insert a new column into table : " + self.table_name)
+		sql = "UPDATE " + self.table_name + " SET " + target_column_name + " = %s " + " WHERE " + key_name + " = %s"
+		mogrified_sql = self.db.mogrify(sql, (data, key))
 		self.db.execute(mogrified_sql)
 
 	# returns the rows with a certain property 
@@ -165,11 +185,11 @@ class SqlManager:
 		return output_list
 
 	# updates a row with a certain key
+	# for every key,value in the victionary if it is in the table
 	# note, the key must be unique!
 	# we throw an exception if it is not
-	def updateRowByKey(self, key_column_name, key, dictionary):
-		matching_rows = self.getRowsByKey(key_column_name, key)
-		if len(matching_rows) > 1:
+	def updateEntireRowByKey(self, key_name, key, dictionary):
+		if not self.isKeyUnique(key_name, key):
 			raise Exception("This key is not unique!")
 		sql = "UPDATE " + self.table_name + " SET "
 		table_columns = self.getColumnNames()
@@ -181,12 +201,14 @@ class SqlManager:
 				value_list.append(dictionary.get(col_name))
 		# done to get rid of the ', ' at the end
 		sql = sql[0: len(sql) - 2]
-		sql = sql + " WHERE " + key_column_name  + " = %s" 
+		sql = sql + " WHERE " + key_name  + " = %s" 
 		value_list.append(key)
 		value_tup = tuple(value_list)
 		mogrified_sql = self.db.mogrify(sql, (value_tup))
 		print(mogrified_sql)
 		self.db.execute(mogrified_sql)
+
+
 
 	# adds a column to a given table if it does not already exist
 	def addColumnToTableIfNotExists(self, column_name, data_type = None):
@@ -284,3 +306,4 @@ class SqlManager:
 		self.db.execute(self.db.mogrify(sql))
 		num_rows = self.db.fetchone()
 		return num_rows[0]
+		

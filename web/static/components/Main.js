@@ -16,6 +16,8 @@ import TermsOfServicePage from './Misc/TermsOfServicePage.js'
 import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
 import ProductPage from './Product/ProductPage.js'
 import StorePage from './Store/StorePage.js'
+import RegisterPage from './Account/Register/RegisterPage.js'
+import LoginPage from './Account/Login/LoginPage.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -38,6 +40,8 @@ ReactDOM.render(
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
 			<Route path= "eg/:product_id" component={ProductPage}/>
+			<Route path = "register" component = {RegisterPage}/>
+			<Route path = "login" component = {LoginPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

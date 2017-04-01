@@ -1,12 +1,14 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import TextInput from '../TextInput/TextInput.js'
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-const form_labels = ['Name', "Email", "Password", "Confirm Password"]
-const form_inputs = ["name", "email", "password", "password_confirm"]
 var Config = require('Config')
 var url = Config.serverUrl
 
+var browserHistory = require('react-router').browserHistory;
+import AppActions from '../../../actions/AppActions.js';
+import TextInput from '../../Misc/Input/TextInput.js'
+import {Form, Col, FormGroup, Button} from 'react-bootstrap'
+const form_labels = ['Name', "Email", "Password", "Confirm Password"]
+const form_inputs = ["name", "email", "password", "password_confirm"]
 
 export default class RegisterAccountForm extends React.Component {
 	constructor(props) {
@@ -58,8 +60,15 @@ export default class RegisterAccountForm extends React.Component {
 						swal("Sorry!", "It seems there was an error in your submission! Please try again!", "warning")
 					}
 					else {
-						this.props.toggleFeedbackModal()
-						swal("Thank you!", "Your account has been created. You should receive a confirmation email shortly", "success")
+						AppStore
+						swal({
+							title: "Thank you!", 
+							text : "Your account has been created. You should receive a confirmation email shortly",
+							type: "success"},
+							function () {
+								browserHistory.push("/")
+							}.bind(this)
+						)
 					}
 
 				}.bind(this),

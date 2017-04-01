@@ -12,6 +12,7 @@ from api.utility.table_names import TestTables
 MIN_PASSWORD_LENGTH = 6
 user_info_columns = [
 						{"name" : "time_stamp", "type" : "FLOAT"},
+						{"name" : "name", "type" : "TEXT"},
 						{"name" : "email",		"type" : "TEXT"},
 						{"name" : "email_confirmation_id", "type" : "TEXT"},
 						{"name" : "email_confirmed", "type": "BOOL"},
@@ -48,16 +49,22 @@ class AccountManager(SqlManager):
 	def generateAccountId(self):
 		return self.generateUniqueIdForColumn(Labels.AccountId)
 
-	def tableHasFeedbackId(self, account_id):
+	def tableHasAccountId(self, account_id):
 		return self.tableHasEntryWithProperty(Labels.AccountId, account_id)
 
 	# handles a new user email
 	# first checks if the email is in the table
 	# also checks if it's a real email too with a try/except in email_api.py
 	# user_info is a dictioary right now
-	def addUser(self, user_info):
+	# only takes a password, email and name as input
+	def addUser(self, user_submission):
+		if user_submission == None:
+			return None
+		user_info = {}
+		for key in user_submission.keys():
+			user_info[key] = user_submission[key]
 		is_valid_submission = self.isUserSubmissionValid(user_info)
-		if not valid_submission[Labels.Success]:
+		if not is_valid_submission[Labels.Success]:
 			return is_valid_submission
 		# we hard code the email and username to lower case
 		user_info[Labels.AccountId] = self.generateAccountId()
@@ -65,16 +72,26 @@ class AccountManager(SqlManager):
 		user_info[Labels.Email] = user_info[Labels.Email].lower()
 		user_info[Labels.TimeStamp] =  time.time()
 		user_info[Labels.EmailConfirmed] = False
-		user_info[Labels.EmailConfirmationId] = is_valid_submission[Lagels.EmailConfirmationId]
-		self.insertDictToTable(user_info)
-		return {Labels.Success : True}
+		user_info[Labels.EmailConfirmationId] = is_valid_submission[Labels.EmailConfirmationId]
+		user_info.pop(Labels.PasswordConfirm, None)
+		self.insertDictIntoTable(user_info)
+		user = self.getRowByKey(Labels.Email, user_info[Labels.Email])
+		return {Labels.Success : True, Labels.UserInfo : user}
 
 	# this is a WIP and will be updated to handle the correct user information
+	# right now it requires the 
+	# 1. passwords match
+	# 2. email is a string (not sure why this wouldn't happen but it's there anyways)
+	# 3. Email doesn't already exists
+	# 4. password is at least 6 characters
+	# 5. If the email address is real (based on smtplib email)
 	def isUserSubmissionValid(self, user_info):
 		output ={}
-		email = user_info.get(Labels.Email)
+		input_email = user_info.get(Labels.Email)
 		password = user_info.get(Labels.Password)
 		password_confirm = user_info.get(Labels.PasswordConfirm)
+		print(password)
+		print(type(password))
 		if password != password_confirm:
 			output[Labels.Success] = False
 			output[Labels.Error] = "Passwords do not match"
@@ -100,15 +117,16 @@ class AccountManager(SqlManager):
 			output[Labels.Success] = False
 			output[Labels.Error] = "Invalid Email Address"
 			return output
+		
 		return {Labels.Success : True, Labels.EmailConfirmationId : email_confirmation_id}
 
 	## login info is a dictionary where the fields are user "email" and "password"
 	def checkLogin(self, login_info):
 		output = {}
-		output[Labels.Succss] = False
+		output[Labels.Success] = False
 		user_info = self.getUserInfoFromEmail(login_info[Labels.Email])
 		if user_info == None:
-			output[Labels.Error] = "Email does not exist"
+			output[Labels.Error] = "Email \'" + login_info[Labels.Email] + "\'  does not exist"
 			return output
 		password_matches = argon2.verify(login_info[Labels.Password], user_info[Labels.Password])
 		if not password_matches:
@@ -119,7 +137,7 @@ class AccountManager(SqlManager):
 	# gets the user info from email
 	# returns a dictionary of the row that matches the email given
 	def getUserInfoFromEmail(self, email):
-		return self.getRowByUniqueProperty(Labels.Email, email)
+		return self.getRowByKey(Labels.Email, email)
 
 	# generates a new email_confirmation_id
 	def generateEmailConfirmationId(self):
@@ -135,7 +153,7 @@ class AccountManager(SqlManager):
 	# returns true if the email is confirmed
 	# returns false if the email is not confirmed or does not exists
 	def isEmailConfirmed(self, email):
-		user_info = self.getUserInfoFromEmail(login_info[Labels.Email])
+		user_info = self.getUserInfoFromEmail(email)
 		if user_info == None:
 			return None
 		return user_info[Labels.EmailConfirmed]
@@ -147,3 +165,6 @@ class AccountManager(SqlManager):
 			return {Labels.Success : True}
 		except:
 			return {Labels.Success : False}
+
+	def deleteUserByEmail(self, email):
+		self.deleteRowsFromTableByProperty(Labels.Email, email)

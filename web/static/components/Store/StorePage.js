@@ -55,11 +55,15 @@ export default class StorePage extends React.Component {
 					  		</Col>
 					  	</Row>
 					  	<Row className = "top-buffer row-eq-height">
-					  		<Col xs = {6} s = {6} md = {6} lg= {6}>
+					  		<Col xs = {6} s = {6} md = {6} lg= {6} 
+					  		// className = "nopadding"
+					  		>
 					  			<StoreProductPreview product_id = {product_id_1} />
 					  		</Col>
 
-							<Col xs = {6} s = {6} md = {6} lg = {6}>
+							<Col xs = {6} s = {6} md = {6} lg = {6}
+							 // className = "nopadding"
+							 >
 								<StoreProductPreview product_id = {product_id_2} />
 					  		</Col>			  	
 					  	</Row>
