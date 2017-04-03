@@ -71,11 +71,12 @@ class TestOrderManager(unittest.TestCase):
 		expected_num_rows = self.sql.getNumRows()
 		return (expected_num_rows == self.num_rows)
 
-	def testAtFirstInitializeTestTable(self):
+	# also tests addUser function through initialization
+	def testAddUser(self):
 		self.assertTrue(self.initializeTestTable())
 
-	# tests get transcations and add orders
-	def testAddAndGetOrder(self):
+	# tests get transcations 
+	def testGetOrder(self):
 		# make sure there are none to start with
 		# which there shouldn't!
 		self.assertEqual(len(self.sql.getUserOrders(test_user)), 0)

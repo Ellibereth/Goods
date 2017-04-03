@@ -138,11 +138,8 @@ class SqlManager:
 
 	def isKeyUnique(self, key_name, key):
 		matching_rows = self.getRowsByProperty(key_name, key)
-		if len(matching_rows) > 1:
-			return False
-		else:
-			return True
-
+		return len(matching_rows) > 1
+			
 	#  given the table name, updates the entries that data property in the column property_column_name
 	#  such that their entries in the column target_column_name have value data
 	#  this property is not necessarily unique!

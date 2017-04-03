@@ -44,10 +44,10 @@ class S3Manager:
 		bucket = self.s3.Bucket(Labels.PUBLIC_PHOTOS)
 		bucket_has_image = True
 		this_image_key = image_key
-		while bucket_has_photo:
+		while bucket_has_image:
 			this_image = self.getImageByKey(Labels.PUBLIC_PHOTOS, this_image_key)
 			if this_image == None:
-				bucket_has_photo == False
+				bucket_has_image == False
 			else:
 				this_image_key = self.incrementImageKey(this_image_key)
 

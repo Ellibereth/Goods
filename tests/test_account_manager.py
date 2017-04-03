@@ -68,14 +68,15 @@ class TestAccountManager(unittest.TestCase):
 		return (expected_num_rows == self.num_rows)
 
 	# makes sure initialization works
+	# also tests adding function
 	# the at First is to make sure this method gets run in the beginning 
 	# because unit tests are ordered alphabetically 
 	# to get around this I could initialize a new table everytime
-	def testAtFirstInitializeTestTable(self):
+	def testAddUser(self):
 		self.assertTrue(self.initializeTestTable())
 
-	# tests get user and add user 
-	def testAddAndGetUser(self):
+	# tests get user 
+	def testGetUser(self):
 		self.assertTrue(self.sql.getUserInfoFromEmail(in_user[Email]) == None)
 		self.sql.isUserSubmissionValid = MagicMock(return_value = 
 				{Success: True, EmailConfirmationId : self.sql.generateUniqueIdForColumn(EmailConfirmationId)}

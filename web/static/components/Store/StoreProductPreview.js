@@ -24,7 +24,7 @@ export default class StorePage extends React.Component {
 		  url: url + "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
-			if (data == null){
+			if (!data){
 				this.setState({invalid_product : true})
 
 			}
