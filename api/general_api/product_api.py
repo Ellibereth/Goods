@@ -43,8 +43,6 @@ def getMarketProducts():
 
 @product_api.route('/getMarketProductInfo', methods = ['POST'])
 def getMarketProductInfo():
-	## yes Ben I know this is a magic string / hard coded
-	## tell me how to make this better!
 	product_id = request.json.get(Labels.ProductId)
 	market = MarketProductManager(ProdTables.MarketProductTable)
 	market_product = market.getMarketProductById(product_id)

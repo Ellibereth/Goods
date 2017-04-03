@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 
-import { Navbar, Nav, NavItem} from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 var Link = require('react-router').Link;
 
 import AppStore from '../../stores/AppStore.js';
@@ -32,37 +32,42 @@ export default class TopNavBar extends React.Component {
 
 	}
 
-	getSignInButton() {
+	getRightNav() {
 		var current_user = this.state.current_user
 		if (current_user == null || current_user == {} || !current_user){
 			return (
 				<Nav pullRight>
 					<NavItem eventKey={1}> <Link to="/login">Sign In</Link> </NavItem>
-				</Nav>	
+				</Nav>
 			)
 		}
 		else {
 			return (
 				<Nav pullRight>
+					<NavDropdown title="Settings" id="nav-dropdown">
+						  <MenuItem href = "orders"> Order History </MenuItem>
+						  <MenuItem divider />
+						  <MenuItem href = "settings"> Change Settings </MenuItem>
+					</NavDropdown>
 					<NavItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </NavItem>
 				</Nav>
+				
 			)
 		}	
 	}
 
 	render() {
-		var sign_in_button = this.getSignInButton()
+		var right_nav = this.getRightNav()
 		return (
-			<Navbar inverse collapseOnSelect>
+			<Navbar bsStyle="pills" inverse collapseOnSelect>
 				<Navbar.Header>
 					<Navbar.Brand>
 						<a href="/">Edgar USA</a>
 					</Navbar.Brand>
 					<Navbar.Toggle />
 				</Navbar.Header>
-				<Navbar.Collapse>
-					{sign_in_button}
-				</Navbar.Collapse> 
+				{right_nav}
+				
 			</Navbar>
 		);
 	}

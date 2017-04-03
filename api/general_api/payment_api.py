@@ -3,7 +3,7 @@ import time
 import base64
 
 from ..utility.stripe_api import StripeManager
-from ..utility.transaction_manager import TransactionManager
+from ..utility.order_manager import OrderManager
 from ..utility.table_names import ProdTables
 
 
@@ -12,6 +12,7 @@ class Labels:
 	Product = "product"
 	StripeToken = "stripeToken"
 	User = "user"
+	Orders = "orders"
 
 payment_api = Blueprint('payment_api', __name__)
 
@@ -23,8 +24,15 @@ def acceptStripePayment():
 	product = request.json.get(Labels.Product)
 	user = request.json.get(Labels.User)
 	charge = StripeManager.chargeCustomer(token, user, product)
-	transaction_manager = TransactionManager(ProdTables.TransactionTable)
-	transaction_manager.addTransaction(user, product, charge)
-	transaction_manager.closeConnection()
-
+	order_manager = OrderManager(ProdTables.OrderTable)
+	order_manager.addOrder(user, product, charge)
+	order_manager.closeConnection()
 	return jsonify({Labels.Success : True})
+
+@payment_api.route('/getUserOrders', methods = ['POST'])
+def getUserOrders():
+	user = request.json.get(Labels.User)
+	order_manager = OrderManager(ProdTables.OrderTable)
+	this_user_orders = order_manager.getUserOrders(user)
+	order_manager.closeConnection()
+	return jsonify({Labels.Success : True, Labels.Orders : this_user_orders})

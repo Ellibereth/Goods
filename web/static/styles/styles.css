@@ -22,6 +22,11 @@
     border-color: black;
 }
 
+.past-order {
+	border-color : black;
+	border-style: solid;
+}
+
 body { 
 	padding-bottom: 70px; 
 	background-color: lightgrey;

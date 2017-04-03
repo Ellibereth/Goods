@@ -13,10 +13,10 @@ class StripeManager:
 		amount = int(float(product['price'])) * 100
 		try:
 			# update the customer information 
-			customer = stripe.Customer.retrieve(user['stripe_id'])
+			customer = stripe.Customer.retrieve(user['stripe_customer_id'])
 			customer.source = stripe_token['id']
 			customer.save()
-			customer = stripe.Customer.retrieve(user['stripe_id'])
+			customer = stripe.Customer.retrieve(user['stripe_customer_id'])
 
 			# then charge the customer
 			charge = stripe.Charge.create(

@@ -25,7 +25,7 @@ class Labels:
 	Success = "success"
 	Error = "error"
 	UserInfo = "user_info"
-	CustomerStripeId = "customer_stripe_id"
+	StripeCustomerId = "stripe_customer_id"
 	Name = "name"
 
 user_info_columns = [
@@ -36,7 +36,7 @@ user_info_columns = [
 						{"name" : Labels.EmailConfirmed, "type": "BOOL"},
 						{"name" : Labels.Password, "type" : "TEXT"},
 						{"name" : Labels.AccountId, "type" : "TEXT"},
-						{"name" : Labels.CustomerStripeId, "type" : "TEXT"}
+						{"name" : Labels.StripeCustomerId, "type" : "TEXT"}
 					]
 
 
@@ -80,7 +80,7 @@ class AccountManager(SqlManager):
 		user_info[Labels.TimeStamp] =  time.time()
 		user_info[Labels.EmailConfirmed] = False
 		user_info[Labels.EmailConfirmationId] = is_valid_submission[Labels.EmailConfirmationId]
-		user_info[Labels.CustomerStripeId] = StripeManager.createCustomerFromUser(user_info)
+		user_info[Labels.StripeCustomerId] = StripeManager.createCustomerFromUser(user_info)
 		user_info.pop(Labels.PasswordConfirm, None)
 		self.insertDictIntoTable(user_info)
 		user = self.getRowByKey(Labels.Email, user_info[Labels.Email])

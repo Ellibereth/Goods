@@ -56,6 +56,7 @@ export default class StripeButton extends React.Component {
 			token={this.onToken.bind(this)}
 			stripeKey= {strike_api_key}
 			amount={amount}
+			allowRememberMe = {true}
 			// panelLabel= "Buy Now!"
 			// email="info@vidhub.co"
 
