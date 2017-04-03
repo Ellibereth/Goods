@@ -3,6 +3,7 @@ from unittest.mock import MagicMock
 import string
 import random
 import time
+import copy
 from api.utility.account_manager import AccountManager
 from api.utility.table_names import TestTables
 
@@ -40,10 +41,7 @@ class TestAccountManager(unittest.TestCase):
 		self.sql.closeConnection()
 
 	def getDefensiveCopyOfInUser(self):
-		test_user = {}
-		for key in in_user.keys():
-			test_user[key] = in_user[key]
-		return test_user
+		return copy.deepcopy(in_user)
 
 	# we genrate a random dictionary to insert into the table
 	def generateRandomUser(self):

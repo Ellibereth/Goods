@@ -19,12 +19,13 @@ class StripeManager:
 			customer = stripe.Customer.retrieve(user['stripe_id'])
 
 			# then charge the customer
-			stripe.Charge.create(
+			charge = stripe.Charge.create(
 				customer = customer,
 				amount = int(float(product['price'])) * 100,
 				currency= "usd",
 				description = product['price']
 			)
+			return charge
 
 		# do something better with this exception later
 		except Exception as e:

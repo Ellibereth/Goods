@@ -13,6 +13,7 @@ class ProdTables:
 	CustomerServiceTicketTable = "CUSTOMER_SERVICE_TICKET_TABLE"
 	CustomerServiceResponseTable = "CUSTOMER_SERVICE_RESPONSE_TABLE"
 	MarketProductTable = "MARKET_PRODUCT_TABLE"
+	TransactionTable = "TRANSACTION_TABLE"
 
 """ 
 this file has a list of the allowed tags on products 
@@ -28,4 +29,5 @@ class TestTables:
 	CustomerServiceTicketTable = TEST_PREFIX + ProdTables.CustomerServiceTicketTable
 	CustomerServiceResponseTable = TEST_PREFIX + ProdTables.CustomerServiceResponseTable
 	MarketProductTable = TEST_PREFIX + ProdTables.MarketProductTable
+	TransactionTable = TEST_PREFIX + ProdTables.TransactionTable
 	SqlTestTable = "TEST_SQL"

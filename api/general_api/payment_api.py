@@ -3,6 +3,7 @@ import time
 import base64
 
 from ..utility.stripe_api import StripeManager
+from ..utility.transaction_manager import TransactionManager
 from ..utility.table_names import ProdTables
 
 
@@ -21,5 +22,9 @@ def acceptStripePayment():
 	token = request.json.get(Labels.StripeToken) # Using Flask
 	product = request.json.get(Labels.Product)
 	user = request.json.get(Labels.User)
-	StripeManager.chargeCustomer(token, user, product)
+	charge = StripeManager.chargeCustomer(token, user, product)
+	transaction_manager = TransactionManager(ProdTables.TransactionTable)
+	transaction_manager.addTransaction(user, product, charge)
+	transaction_manager.closeConnection()
+
 	return jsonify({Labels.Success : True})

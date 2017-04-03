@@ -13,16 +13,6 @@ from api.utility.table_names import TestTables
 from api.utility.stripe_api import StripeManager
 
 MIN_PASSWORD_LENGTH = 6
-user_info_columns = [
-						{"name" : "time_stamp", "type" : "FLOAT"},
-						{"name" : "name", "type" : "TEXT"},
-						{"name" : "email",		"type" : "TEXT"},
-						{"name" : "email_confirmation_id", "type" : "TEXT"},
-						{"name" : "email_confirmed", "type": "BOOL"},
-						{"name" : "password", "type" : "TEXT"},
-						{"name" : "account_id", "type" : "TEXT"},
-						{"name" : "stripe_id", "type" : "TEXT"}
-					]
 
 class Labels:
 	Email = "email"
@@ -35,7 +25,20 @@ class Labels:
 	Success = "success"
 	Error = "error"
 	UserInfo = "user_info"
-	StripeId = "stripe_id"
+	CustomerStripeId = "customer_stripe_id"
+	Name = "name"
+
+user_info_columns = [
+						{"name" : Labels.TimeStamp, "type" : "FLOAT"},
+						{"name" : Labels.Name, "type" : "TEXT"},
+						{"name" : Labels.Email,		"type" : "TEXT"},
+						{"name" : Labels.EmailConfirmationId, "type" : "TEXT"},
+						{"name" : Labels.EmailConfirmed, "type": "BOOL"},
+						{"name" : Labels.Password, "type" : "TEXT"},
+						{"name" : Labels.AccountId, "type" : "TEXT"},
+						{"name" : Labels.CustomerStripeId, "type" : "TEXT"}
+					]
+
 
 class AccountManager(SqlManager):
 	def __init__(self, table_name):
@@ -77,7 +80,7 @@ class AccountManager(SqlManager):
 		user_info[Labels.TimeStamp] =  time.time()
 		user_info[Labels.EmailConfirmed] = False
 		user_info[Labels.EmailConfirmationId] = is_valid_submission[Labels.EmailConfirmationId]
-		user_info[Labels.StripeId] = StripeManager.createCustomerFromUser(user_info)
+		user_info[Labels.CustomerStripeId] = StripeManager.createCustomerFromUser(user_info)
 		user_info.pop(Labels.PasswordConfirm, None)
 		self.insertDictIntoTable(user_info)
 		user = self.getRowByKey(Labels.Email, user_info[Labels.Email])
