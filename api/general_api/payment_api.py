@@ -10,6 +10,7 @@ class Labels:
 	Success = "success"
 	Product = "product"
 	StripeToken = "stripeToken"
+	User = "user"
 
 payment_api = Blueprint('payment_api', __name__)
 
@@ -19,5 +20,6 @@ def acceptStripePayment():
 	# Get the payment token submitted by the form:
 	token = request.json.get(Labels.StripeToken) # Using Flask
 	product = request.json.get(Labels.Product)
-	StripeManager.chargeCard(token, product)
+	user = request.json.get(Labels.User)
+	StripeManager.chargeCustomer(token, user, product)
 	return jsonify({Labels.Success : True})

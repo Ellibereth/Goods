@@ -12,6 +12,9 @@ class Labels:
 	Email = "email"
 	Password = "password"
 	PasswordConfirm = "password_confirm"
+	NewSettings = "new_settings"
+	User = "user"
+	AccountId = "account_id"
 	
 register_keys = [Labels.Name, Labels.Email, Labels.Password, Labels.PasswordConfirm]
 
@@ -49,3 +52,12 @@ def confirmEmail():
 	output = account_manager.confirmEmail(email_confirmation_id)
 	account_manager.closeConnection()
 	return jsonify(output)
+
+@account_api.route('/updateSettings', methods = ['POST'])
+def updateSettings():
+	user = request.json.get(Labels.User)
+	new_settings = request.json.get(Labels.NewSettings)
+	account_manager = AccountManager(ProdTables.UserInfoTable)
+	output = account_manager.updateSettings(user[Labels.AccountId], new_settings)
+	account_manager.closeConnection()
+

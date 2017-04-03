@@ -18,6 +18,7 @@ import ProductPage from './Product/ProductPage.js'
 import StorePage from './Store/StorePage.js'
 import RegisterPage from './Account/Register/RegisterPage.js'
 import LoginPage from './Account/Login/LoginPage.js'
+import SettingsPage from './Account/Settings/SettingsPage.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -42,6 +43,7 @@ ReactDOM.render(
 			<Route path= "eg/:product_id" component={ProductPage}/>
 			<Route path = "register" component = {RegisterPage}/>
 			<Route path = "login" component = {LoginPage}/>
+			<Route path = "settings" component = {SettingsPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

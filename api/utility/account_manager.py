@@ -3,11 +3,14 @@ import string
 import random
 import psycopg2
 import base64
+import copy
 from api.utility import email_api
 from api.utility.sql_manager import SqlManager
 from passlib.hash import argon2
 from api.utility.table_names import ProdTables
 from api.utility.table_names import TestTables
+
+from api.utility.stripe_api import StripeManager
 
 MIN_PASSWORD_LENGTH = 6
 user_info_columns = [
@@ -17,7 +20,8 @@ user_info_columns = [
 						{"name" : "email_confirmation_id", "type" : "TEXT"},
 						{"name" : "email_confirmed", "type": "BOOL"},
 						{"name" : "password", "type" : "TEXT"},
-						{"name" : "account_id", "type" : "TEXT"}
+						{"name" : "account_id", "type" : "TEXT"},
+						{"name" : "stripe_id", "type" : "TEXT"}
 					]
 
 class Labels:
@@ -31,6 +35,7 @@ class Labels:
 	Success = "success"
 	Error = "error"
 	UserInfo = "user_info"
+	StripeId = "stripe_id"
 
 class AccountManager(SqlManager):
 	def __init__(self, table_name):
@@ -60,9 +65,8 @@ class AccountManager(SqlManager):
 	def addUser(self, user_submission):
 		if user_submission == None:
 			return None
-		user_info = {}
-		for key in user_submission.keys():
-			user_info[key] = user_submission[key]
+		user_info = copy.deepcopy(user_submission)
+
 		is_valid_submission = self.isUserSubmissionValid(user_info)
 		if not is_valid_submission[Labels.Success]:
 			return is_valid_submission
@@ -73,6 +77,7 @@ class AccountManager(SqlManager):
 		user_info[Labels.TimeStamp] =  time.time()
 		user_info[Labels.EmailConfirmed] = False
 		user_info[Labels.EmailConfirmationId] = is_valid_submission[Labels.EmailConfirmationId]
+		user_info[Labels.StripeId] = StripeManager.createCustomerFromUser(user_info)
 		user_info.pop(Labels.PasswordConfirm, None)
 		self.insertDictIntoTable(user_info)
 		user = self.getRowByKey(Labels.Email, user_info[Labels.Email])
@@ -90,8 +95,6 @@ class AccountManager(SqlManager):
 		input_email = user_info.get(Labels.Email)
 		password = user_info.get(Labels.Password)
 		password_confirm = user_info.get(Labels.PasswordConfirm)
-		print(password)
-		print(type(password))
 		if password != password_confirm:
 			output[Labels.Success] = False
 			output[Labels.Error] = "Passwords do not match"
@@ -168,3 +171,10 @@ class AccountManager(SqlManager):
 
 	def deleteUserByEmail(self, email):
 		self.deleteRowsFromTableByProperty(Labels.Email, email)
+
+	# takes a dict with new settings
+	# and updates the account with these new settings
+	def updateSettings(self, account_id, new_settings):
+		self.updateEntireRowByKey(Labels.AccountId, account_id, new_settings)
+
+

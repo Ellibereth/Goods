@@ -2,9 +2,12 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import StripeCheckout from 'react-stripe-checkout';
 import {} from 'react-bootstrap';
+import AppStore from '../../../stores/AppStore.js'
+
 var Config = require('Config')
 var url = Config.serverUrl
 const strike_api_key = "pk_test_8EWYuAcsnEEfUqVe2m91mTXB"
+
 
 // takes the price of the good as prop for now
 export default class StripeButton extends React.Component {
@@ -27,7 +30,11 @@ export default class StripeButton extends React.Component {
 		$.ajax({
 		  type: "POST",
 		  url: url + "/acceptStripePayment",
-		  data: JSON.stringify({"stripeToken" : token, "product" : this.props.product}),
+		  data: JSON.stringify({
+		  	"stripeToken" : token, 
+		  	"product" : this.props.product, 
+		  	"user" : AppStore.getCurrentUser()
+		  }),
 		  success: function(data) {
 		  },
 		  error : function(){
