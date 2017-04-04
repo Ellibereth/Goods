@@ -23,7 +23,7 @@ class TestSqlManager(unittest.TestCase):
 		self.sql = SqlManager(TestTables.SqlTestTable)
 		self.num_columns = 20
 		self.entry_length = 5
-		self.col_names = [A, B, B]
+		self.col_names = [A, B, C]
 		self.col_names.append('time_stamp')
 		self.col_names.append(ROW_NUMBER)
 		self.col_names.append(TWICE_ROW_NUMBER)

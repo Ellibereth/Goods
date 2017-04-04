@@ -16,19 +16,20 @@ PasswordConfirm = "password_confirm"
 Name = "name"
 EmailConfirmationId = "email_confirmation_id"
 EmailConfirmed = "email_confirmed"
-
+CONFIRM = "CONFIRM"
 
 # this user will not be randomly generated
-in_user = {
+
+
+class TestAccountManager(unittest.TestCase):
+
+	def setUp(self):		
+		self.in_user = {
 				Name : "bob",
 				Email : "spallstar28@gmail.com",
 				Password : "bobbob",
 				PasswordConfirm : "bobbob"
 			}
-
-class TestAccountManager(unittest.TestCase):
-
-	def setUp(self):		
 		self.sql = AccountManager(TestTables.UserInfoTable)
 		self.entry_length = 5
 		self.col_names = [Name, Email, Password]
@@ -40,8 +41,6 @@ class TestAccountManager(unittest.TestCase):
 	def tearDown(self):
 		self.sql.closeConnection()
 
-	def getDefensiveCopyOfInUser(self):
-		return copy.deepcopy(in_user)
 
 	# we genrate a random dictionary to insert into the table
 	def generateRandomUser(self):
@@ -55,6 +54,8 @@ class TestAccountManager(unittest.TestCase):
 	# initializes a random table 
 	def initializeTestTable(self):
 		self.sql.clearTable()
+		self.sql.createUserInfoTable()
+
 		self.sql.isUserSubmissionValid = MagicMock(return_value = 
 			{Success: True, EmailConfirmationId : self.sql.generateUniqueIdForColumn(EmailConfirmationId)})
 		self.sql.createUserInfoTable()
@@ -77,18 +78,18 @@ class TestAccountManager(unittest.TestCase):
 
 	# tests get user 
 	def testGetUser(self):
-		self.assertTrue(self.sql.getUserInfoFromEmail(in_user[Email]) == None)
+		self.assertIsNone(self.sql.getUserInfoFromEmail(self.in_user[Email]))
 		self.sql.isUserSubmissionValid = MagicMock(return_value = 
 				{Success: True, EmailConfirmationId : self.sql.generateUniqueIdForColumn(EmailConfirmationId)}
 			)
 		# add a user to the list
 		old_size = self.sql.getNumRows()
-		self.sql.addUser(self.getDefensiveCopyOfInUser())
+		self.sql.addUser(self.in_user)
 		new_size = self.sql.getNumRows()
 		self.assertEqual(new_size, old_size + 1)
-		out_user = self.sql.getUserInfoFromEmail(in_user[Email])
-		self.assertEqual(in_user[Email], out_user[Email])
-		self.assertEqual(in_user[Name], out_user[Name])
+		out_user = self.sql.getUserInfoFromEmail(self.in_user[Email])
+		self.assertEqual(self.in_user[Email], out_user[Email])
+		self.assertEqual(self.in_user[Name], out_user[Name])
 
 
 	# we need to add a bunch of bad inputs and see what happens :3 
@@ -98,87 +99,80 @@ class TestAccountManager(unittest.TestCase):
 	# 4. Email doesn't already exists
 	# 5. If the email address is real (based on smtplib email)	def testIsUserSubmissionValid(self):
 	def testIsUserSubmissionValidGoodSubmission(self):
-		test_user = self.getDefensiveCopyOfInUser()
-		self.assertTrue(self.sql.isUserSubmissionValid(test_user)[Success])
+		self.assertTrue(self.in_user[Success])
 
 	def testIsUserSubmissionValidPasswordMatch(self):
 		# password mismatch
-		test_user = self.getDefensiveCopyOfInUser()
-		test_user[PasswordConfirm] = test_user[Password] + "ANYTHING TO MAKE IT NOT MATCH"
-		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
+		self.in_user[PasswordConfirm] = self.in_user[Password] + "ANYTHING TO MAKE IT NOT MATCH"
+		self.assertFalse(self.sql.isUserSubmissionValid(self.in_user)[Success])
 
 		
 	def testIsUserSubmissionValidPasswordLength(self):
 		# password is less than 6 characters
 		short_password = "bro"
-		test_user = self.getDefensiveCopyOfInUser()
-		test_user[Password] = short_password
-		test_user[PasswordConfirm] = short_password
-		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
+		self.in_user[Password] = short_password
+		self.in_user[PasswordConfirm] = short_password
+		self.assertFalse(self.sql.isUserSubmissionValid(self.in_user)[Success])
 
 		
 	def testIsUserSubmissionValidEmailIsString(self):
 		invalid_email = False
 		# email is invalid data type
-		test_user = self.getDefensiveCopyOfInUser()
-		test_user[Email] = invalid_email
-		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
+		self.in_user[Email] = invalid_email
+		self.assertFalse(self.sql.isUserSubmissionValid(self.in_user)[Success])
 
 	
 	def testIsUserSubmissionValidEmailExists(self):
 		# email already exists
-		self.sql.addUser(self.getDefensiveCopyOfInUser())
-		test_user = self.getDefensiveCopyOfInUser()
-		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
+		self.sql.addUser(self.in_user)
+		self.assertFalse(self.sql.isUserSubmissionValid(self.in_user)[Success])
 
 	def testIsUserSubmissionValidEmailCanSend(self):
 		# email is invalid format 
 		bad_email = "brovogre"
-		test_user = self.getDefensiveCopyOfInUser()
-		test_user[Email] = bad_email
-		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
+		self.in_user[Email] = bad_email
+		self.assertFalse(self.sql.isUserSubmissionValid(self.in_user)[Success])
 
 	# login info is a dictionary where the fields are user Email and Password
 	def testCheckLogin(self):
-		test_user = self.getDefensiveCopyOfInUser()
-		self.sql.addUser(test_user)
-		login_info = {Email : in_user[Email], Password : in_user[Password]}
+		self.sql.addUser(self.in_user)
+		login_info = {Email : self.in_user[Email], Password : self.in_user[Password]}
 		output = self.sql.checkLogin(login_info)
 		self.assertTrue(output[Success])
-		bad_login_info= {Email : in_user[Email], Password : "something that is certainly not his password"}
+		bad_login_info= {Email : self.in_user[Email], Password : "something that is certainly not his password"}
 		output = self.sql.checkLogin(bad_login_info)
 		self.assertFalse(output[Success])
 		
 	def testTableHasConfirmationId(self):
-		self.sql.generateEmailConfirmationId = MagicMock(return_value = "CONFIRM")
+		self.sql.generateEmailConfirmationId = MagicMock(return_value = CONFIRM)
 		# this should not come up from initialization
 		# since they are to be length 20 
-		self.assertFalse(self.sql.tableHasConfirmationId("CONFIRM"))
-		self.sql.addUser(in_user)
-		self.assertTrue(self.sql.tableHasConfirmationId("CONFIRM"))
+		self.assertFalse(self.sql.tableHasConfirmationId(CONFIRM))
+		self.sql.addUser(self.in_user)
+		self.assertTrue(self.sql.tableHasConfirmationId(CONFIRM))
 
 	# returns true if the email is in the table
 	def testTableHasEmail(self):
-		self.assertFalse(self.sql.tableHasEmail(in_user[Email]))
-		self.sql.addUser(in_user)
-		self.assertTrue(self.sql.tableHasEmail(in_user[Email]))
+		self.assertFalse(self.sql.tableHasEmail(self.in_user[Email]))
+		self.sql.addUser(self.in_user)
+		self.assertTrue(self.sql.tableHasEmail(self.in_user[Email]))
 
 	# returns true if the email is confirmed
 	# returns false if the email is not confirmed or does not exists
 	def testIsEmailConfirmed(self):
-		self.assertFalse(self.sql.isEmailConfirmed(in_user[Email]))
-		self.sql.addUser(in_user)
-		self.assertFalse(self.sql.isEmailConfirmed(in_user[Email]))
-		self.sql.updateRowByKey(Email, in_user[Email], EmailConfirmed, True)
-		self.assertTrue(self.sql.isEmailConfirmed(in_user[Email]))
+		self.assertFalse(self.sql.isEmailConfirmed(self.in_user[Email]))
+		self.sql.addUser(self.in_user)
+		self.assertFalse(self.sql.isEmailConfirmed(self.in_user[Email]))
+		self.sql.updateRowByKey(Email, self.in_user[Email], EmailConfirmed, True)
+		self.assertTrue(self.sql.isEmailConfirmed(self.in_user[Email]))
 		
 	# sets the EmailConfirmed column to true for this e-mail
 	def testConfirmEmail(self):
-		self.sql.addUser(in_user)
-		self.assertFalse(self.sql.isEmailConfirmed(in_user[Email]))
-		out_user = self.sql.getUserInfoFromEmail(in_user[Email])
+		self.sql.addUser(self.in_user)
+		self.assertFalse(self.sql.isEmailConfirmed(self.in_user[Email]))
+		out_user = self.sql.getUserInfoFromEmail(self.in_user[Email])
 		self.sql.confirmEmail(out_user[EmailConfirmationId])
-		self.assertTrue(self.sql.isEmailConfirmed(in_user[Email]))
+		self.assertTrue(self.sql.isEmailConfirmed(self.in_user[Email]))
 
 
 		

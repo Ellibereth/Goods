@@ -8,8 +8,8 @@ sys.stderr = open('./tests/logs/err_log.log', 'w')
 
 
 if __name__ == '__main__':
-	suite = unittest.TestLoader().loadTestsFromTestCase(TestSqlManager)
-	unittest.TextTestRunner(verbosity=2).run(suite)
+	# suite = unittest.TestLoader().loadTestsFromTestCase(TestSqlManager)
+	# unittest.TextTestRunner(verbosity=2).run(suite)
 
 	suite = unittest.TestLoader().loadTestsFromTestCase(TestAccountManager)
 	unittest.TextTestRunner(verbosity=2).run(suite)

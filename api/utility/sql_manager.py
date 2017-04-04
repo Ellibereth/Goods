@@ -288,13 +288,20 @@ class SqlManager:
 
 	# this method is just for testing, should almost never be used
 	# but it deletes all columns in the table
+	# then deletes the table
 	def clearTable(self):
-		sql = "DELETE FROM " + self.table_name
-		self.db.execute(self.db.mogrify(sql))
-		col_names = self.getColumnNames()
-		for col_name in col_names:
-			sql = "ALTER TABLE " + self.table_name + " DROP COLUMN " + col_name
+		try:
+			sql = "DELETE FROM " + self.table_name
 			self.db.execute(self.db.mogrify(sql))
+			col_names = self.getColumnNames()
+			for col_name in col_names:
+				sql = "ALTER TABLE " + self.table_name + " DROP COLUMN " + col_name
+				self.db.execute(self.db.mogrify(sql))
+			sql = "DROP TABLE " + self.table_name
+			self.db.execute(sql)
+		except:
+			print("table " + self.table_name + " does not exist")
+		self.createTableIfNotExists()
 
 	# returns the number of rows in the table
 	def getNumRows(self):
