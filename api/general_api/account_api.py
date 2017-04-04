@@ -23,7 +23,6 @@ account_api = Blueprint('account_api', __name__)
 @account_api.route('/checkLogin', methods = ['POST'])
 def checkLogin():
 	user_info = {}
-	output = {}
 	for key in register_keys:
 		if request.json.get(key) != None:
 			user_info[key] = request.json.get(key)
@@ -36,7 +35,6 @@ def checkLogin():
 @account_api.route('/registerUserAccount', methods = ['POST'])
 def registerUserAccount():
 	user_info = {}
-	output = {}
 	for key in register_keys:
 		if request.json.get(key) != None:
 			user_info[key] = request.json.get(key)
@@ -58,6 +56,7 @@ def updateSettings():
 	user = request.json.get(Labels.User)
 	new_settings = request.json.get(Labels.NewSettings)
 	account_manager = AccountManager(ProdTables.UserInfoTable)
-	output = account_manager.updateSettings(user[Labels.AccountId], new_settings)
+	output = account_manager.updateSettings(user, new_settings)
 	account_manager.closeConnection()
+	return jsonify(output)
 

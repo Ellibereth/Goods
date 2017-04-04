@@ -27,6 +27,7 @@ class Labels:
 	UserInfo = "user_info"
 	StripeCustomerId = "stripe_customer_id"
 	Name = "name"
+	User = "user"
 
 user_info_columns = [
 						{"name" : Labels.TimeStamp, "type" : "FLOAT"},
@@ -130,15 +131,15 @@ class AccountManager(SqlManager):
 	def checkLogin(self, login_info):
 		output = {}
 		output[Labels.Success] = False
-		user_info = self.getUserInfoFromEmail(login_info[Labels.Email])
-		if user_info == None:
+		user = self.getUserInfoFromEmail(login_info[Labels.Email])
+		if user == None:
 			output[Labels.Error] = "Email \'" + login_info[Labels.Email] + "\'  does not exist"
 			return output
-		password_matches = argon2.verify(login_info[Labels.Password], user_info[Labels.Password])
+		password_matches = argon2.verify(login_info[Labels.Password], user[Labels.Password])
 		if not password_matches:
 			output[Labels.Error] = "Password does not match provided email"
 			return output
-		return {Labels.Success : True, Labels.UserInfo : user_info}
+		return {Labels.Success : True, Labels.User : user}
 
 	# gets the user info from email
 	# returns a dictionary of the row that matches the email given
@@ -177,7 +178,9 @@ class AccountManager(SqlManager):
 
 	# takes a dict with new settings
 	# and updates the account with these new settings
-	def updateSettings(self, account_id, new_settings):
-		self.updateEntireRowByKey(Labels.AccountId, account_id, new_settings)
+	def updateSettings(self, user, new_settings):
+		self.updateEntireRowByKey(Labels.AccountId, user[Labels.AccountId], new_settings)
+		updated_user = self.getRowByKey(Labels.AccountId, user[Labels.AccountId])
+		return {Labels.Success : True, Labels.User : updated_user}
 
 

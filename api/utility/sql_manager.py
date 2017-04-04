@@ -57,7 +57,6 @@ class SqlManager:
 		unique_id = self.id_generator()
 		while self.tableHasEntryWithProperty(column_name, unique_id):
 			unique_id = self.id_generator(size = size)
-			print(unique_id)
 		return unique_id
 
 	# given a table, outputs the table as a dictionary 
@@ -136,9 +135,10 @@ class SqlManager:
 			output = "TEXT"
 		return output
 
+	# returns false if the key occurs more than once
 	def isKeyUnique(self, key_name, key):
 		matching_rows = self.getRowsByProperty(key_name, key)
-		return len(matching_rows) > 1
+		return len(matching_rows) == 1 or len(matching_rows) == 0
 			
 	#  given the table name, updates the entries that data property in the column property_column_name
 	#  such that their entries in the column target_column_name have value data
@@ -156,7 +156,7 @@ class SqlManager:
 	#  such that their entries in the column target_column_name have value data
 	def updateRowByKey(self, key_name, key, target_column_name, data):	
 		if not self.isKeyUnique(key_name, key):
-			raise Exception("Key is not unique!")
+			raise Exception("In column \'" + key_name + "\', key \'" + key  + "\'' is not unique!")
 		# should we add a column if it does not exist, or just not ignore these columns
 		# decided to throw an exception if the colum doesn't exist
 		if not self.tableHasColumn(target_column_name):
@@ -187,7 +187,7 @@ class SqlManager:
 	# we throw an exception if it is not
 	def updateEntireRowByKey(self, key_name, key, dictionary):
 		if not self.isKeyUnique(key_name, key):
-			raise Exception("This key is not unique!")
+			raise Exception("In column \'" + key_name + "\', key \'" + key  + "\'' is not unique!")
 		sql = "UPDATE " + self.table_name + " SET "
 		table_columns = self.getColumnNames()
 		value_list = list()
@@ -202,7 +202,6 @@ class SqlManager:
 		value_list.append(key)
 		value_tup = tuple(value_list)
 		mogrified_sql = self.db.mogrify(sql, (value_tup))
-		print(mogrified_sql)
 		self.db.execute(mogrified_sql)
 
 

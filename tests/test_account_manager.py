@@ -68,7 +68,7 @@ class TestAccountManager(unittest.TestCase):
 		return (expected_num_rows == self.num_rows)
 
 	# makes sure initialization works
-	# also tests adding function
+	# also tests addUser function
 	# the at First is to make sure this method gets run in the beginning 
 	# because unit tests are ordered alphabetically 
 	# to get around this I could initialize a new table everytime
@@ -96,47 +96,48 @@ class TestAccountManager(unittest.TestCase):
 	# 2. password is at least 6 characters
 	# 3. email is a string (not sure why this wouldn't happen but it's there anyways)
 	# 4. Email doesn't already exists
-	# 5. If the email address is real (based on smtplib email)
-	def testIsUserSubmissionValid(self):
-		# make a defensive copy
+	# 5. If the email address is real (based on smtplib email)	def testIsUserSubmissionValid(self):
+	def testIsUserSubmissionValidGoodSubmission(self):
 		test_user = self.getDefensiveCopyOfInUser()
-		good_password = "bromigo555"
-		short_password = "bro"
-		good_email = "bro@gmail.com"
-		bad_email = "brovogre"
-		invalid_email = False
-
-		# a good submision
-		# print("test_user : " +str(test_user))
-		print(self.sql.isUserSubmissionValid(test_user))
 		self.assertTrue(self.sql.isUserSubmissionValid(test_user)[Success])
 
+	def testIsUserSubmissionValidPasswordMatch(self):
 		# password mismatch
 		test_user = self.getDefensiveCopyOfInUser()
-		test_user[PasswordConfirm] = test_user[Password] + "ANYTHING"
+		test_user[PasswordConfirm] = test_user[Password] + "ANYTHING TO MAKE IT NOT MATCH"
 		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
 
+		
+	def testIsUserSubmissionValidPasswordLength(self):
 		# password is less than 6 characters
+		short_password = "bro"
 		test_user = self.getDefensiveCopyOfInUser()
 		test_user[Password] = short_password
 		test_user[PasswordConfirm] = short_password
 		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
 
+		
+	def testIsUserSubmissionValidEmailIsString(self):
+		invalid_email = False
 		# email is invalid data type
 		test_user = self.getDefensiveCopyOfInUser()
 		test_user[Email] = invalid_email
 		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
 
+	
+	def testIsUserSubmissionValidEmailExists(self):
 		# email already exists
 		self.sql.addUser(self.getDefensiveCopyOfInUser())
 		test_user = self.getDefensiveCopyOfInUser()
 		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
 
+	def testIsUserSubmissionValidEmailCanSend(self):
 		# email is invalid format 
+		bad_email = "brovogre"
 		test_user = self.getDefensiveCopyOfInUser()
 		test_user[Email] = bad_email
 		self.assertFalse(self.sql.isUserSubmissionValid(test_user)[Success])
-		
+
 	# login info is a dictionary where the fields are user Email and Password
 	def testCheckLogin(self):
 		test_user = self.getDefensiveCopyOfInUser()
