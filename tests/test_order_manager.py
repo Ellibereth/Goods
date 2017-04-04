@@ -81,7 +81,6 @@ class TestOrderManager(unittest.TestCase):
 		# which there shouldn't!
 		self.assertEqual(len(self.sql.getUserOrders(test_user)), 0)
 		old_size = self.sql.getNumRows()
-
 		self.sql.addOrder(test_user, test_product, test_charge)
 		new_size = self.sql.getNumRows()
 		self.assertEqual(new_size, old_size + 1)

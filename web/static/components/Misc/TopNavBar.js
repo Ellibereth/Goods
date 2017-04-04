@@ -40,17 +40,15 @@ export default class TopNavBar extends React.Component {
 		if (current_user == {} || !current_user){
 			return (
 				<Nav pullRight>
-					<NavItem eventKey={1}> <Button><Link to="/login">Sign In</Link> </Button> </NavItem>
+					<NavItem eventKey={1}>  <Link to="/login">Sign In</Link> </NavItem>
 				</Nav>
 			)
 		}
 		else {
 			return (
 				<Nav className = "nav-pills" pullRight>
-					<NavDropdown title="Settings" id="nav-dropdown">
-						  <MenuItem href = "orders"> Order History </MenuItem>
-						  <MenuItem divider />
-						  <MenuItem href = "settings"> Change Settings </MenuItem>
+					<NavDropdown title="Account" id="nav-dropdown">
+						  <MenuItem href = "settings"> Account Settings </MenuItem>
 						  <MenuItem divider />
 						  <MenuItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </MenuItem>
 					</NavDropdown>

@@ -3,8 +3,8 @@ var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
 import AppStore from '../../../stores/AppStore.js';
-import TopNavBar from '../../Misc/TopNavBar'
-import PastOrdersDisplay from './PastOrdersDisplay.js'
+import TopNavBar from '../../Misc/TopNavBar.js'
+import OrderDisplay from './OrderDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 
 export default class OrderHistoryPage extends React.Component {
@@ -44,12 +44,27 @@ export default class OrderHistoryPage extends React.Component {
 	}
 
 	render() {
+		var orders = this.state.past_orders
+		if (order.length == 0){
+			var order_display = <h1> You haven't bought anything on <a href = "/"> Edgar USA </a> yet.</h1>
+		}
+		else {
+			var order_display = orders.map((order, index) => 
+				<Row>
+					<OrderDisplay order = {order} index = {index} />
+				</Row>
+			)	
+		}
+		
+
 		return (
 			<div>
 				<TopNavBar />
 				<div className = "container">
 					 {/* <SettingsFormPersonal /> */}
-					 <PastOrdersDisplay past_orders = {this.state.past_orders}/>
+					<Grid title = "Your Past Orders">
+						{order_display}
+					</Grid>
 				</div>
 			</div>	
 		)
