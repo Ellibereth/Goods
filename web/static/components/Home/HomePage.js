@@ -30,10 +30,12 @@ export default class HomePage extends React.Component {
   } 
 
   render() {
+    console.log(this.props.has_login)
     return (
         <div id = "home-page-container">
-              <TopNavBar/>
-              <HomePageMainContainer toggleFeedbackModal ={this.toggleFeedbackModal.bind(this)}
+              <TopNavBar no_login = {this.props.no_login}/>
+              <HomePageMainContainer  
+              toggleFeedbackModal ={this.toggleFeedbackModal.bind(this)}
               toggleRequestFormModal = {this.toggleRequestFormModal.bind(this)}/>
              {/*  <Footer/> */}
               <ProductRequestModal show = {this.state.show_request_modal} toggleRequestFormModal = {this.toggleRequestFormModal.bind(this)} />

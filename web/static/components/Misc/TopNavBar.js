@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Button, Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 var Link = require('react-router').Link;
 
 import AppStore from '../../stores/AppStore.js';
@@ -33,23 +33,27 @@ export default class TopNavBar extends React.Component {
 	}
 
 	getRightNav() {
+		if (this.props.no_login) {
+			return <div/>
+		}
 		var current_user = this.state.current_user
 		if (current_user == {} || !current_user){
 			return (
 				<Nav pullRight>
-					<NavItem eventKey={1}> <Link to="/login">Sign In</Link> </NavItem>
+					<NavItem eventKey={1}> <Button><Link to="/login">Sign In</Link> </Button> </NavItem>
 				</Nav>
 			)
 		}
 		else {
 			return (
-				<Nav pullRight>
+				<Nav className = "nav-pills" pullRight>
 					<NavDropdown title="Settings" id="nav-dropdown">
 						  <MenuItem href = "orders"> Order History </MenuItem>
 						  <MenuItem divider />
 						  <MenuItem href = "settings"> Change Settings </MenuItem>
+						  <MenuItem divider />
+						  <MenuItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </MenuItem>
 					</NavDropdown>
-					<NavItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </NavItem>
 				</Nav>
 				
 			)
@@ -59,7 +63,7 @@ export default class TopNavBar extends React.Component {
 	render() {
 		var right_nav = this.getRightNav()
 		return (
-			<Navbar bsStyle="pills" inverse collapseOnSelect>
+			<Navbar className = "navbar-fixed-top top-nav-bar" bsStyle="pills" inverse collapseOnSelect>
 				<Navbar.Header>
 					<Navbar.Brand>
 						<a href="/">Edgar USA</a>

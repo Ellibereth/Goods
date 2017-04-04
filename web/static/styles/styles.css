@@ -37,3 +37,16 @@ body {
    padding: 0 !important;
    margin: 0 !important;
 }
+
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+  position: relative; /* this can also be static */
+}
+
+.navbar-brand,
+.navbar-nav li a{
+    line-height: 80px;
+    height: 80px;
+    padding-top: 0;
+    font-size : 140%;
+}

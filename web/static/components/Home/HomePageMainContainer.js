@@ -23,69 +23,40 @@ export default class HomePageMainContainer extends React.Component {
 		return (
 			<Grid>
 				<Row className="show-grid">
-					<Col xs = {8} md={8}>
+					<Col xs = {12} md={12}>
 						<div>
 							<center>
 								<div id = "text-part">	
 									<h1>
 										<b>
-										It can be hard to buy American
+											Weekly Deals on American Made Products
 										</b>
 									</h1>
-									<h3>
-										Find the things you want,
-										<br/>
-										at the prices you want
-									</h3>
+									
 								</div>
 								<br/>
-							<Button onClick = {this.props.toggleRequestFormModal}>
-								Start a request
-							</Button>        
+							      
 							</center>
 						</div>
-					</Col>
-					<Col xs = {4} md={4}>
-						<div>
-							<h3> Send a request </h3>
-							<h3> We'll get back to you with an American selection  </h3>
-							<h3> We'll talk until you're happy  </h3>
-						</div>
-					</Col>
-				</Row>
-				<hr/>
-				<Row className = "show-grid">
-					<Col md={col_size} style = {{overflow : "hidden"}}> 
-						<h1 className="text-center"> Free </h1>
-						<h3 className="text-center"> No payments necessary! </h3>
-					</Col>
-					<Col md={col_size} style = {{overflow : "hidden"}}> 
-						<h1 className="text-center"> Fast </h1>
-						<h3 className="text-center"> We'll respond within 12 hours </h3>
-					</Col>
-					<Col md={col_size} style = {{overflow : "hidden"}}> 
-						<h1 className="text-center"> Privacy </h1>
-						<h3 className="text-center"> Your information will be confidential </h3>
 					</Col>
 				</Row>
 				<hr/>
 				<Row className = "show-grid">
 					<Col md={bottom_col_size} style = {{overflow : "hidden"}}> 
 						<center>
-							<h1> Edgar USA </h1>
-							<h3> Full Store  </h3>
-							<h3> Coming soon! </h3>
+							<h1> Let us know what you want! </h1>
+							<Button onClick = {this.props.toggleFeedbackModal}>
+									Tell us!
+								</Button>
 						</center>
 					</Col>
 					<Col md={bottom_col_size} style = {{overflow : "hidden"}}> 
 						<div>
 							<center>
-								<h1> Feedback </h1>	
-								<h3> Any questions or suggestions? </h3>
-								<br/>
-								<Button onClick = {this.props.toggleFeedbackModal}>
-									Let us know!
-								</Button>
+								<h1>  Looking for anything right now? </h1>	
+								<Button onClick = {this.props.toggleRequestFormModal}>
+									Start a request
+								</Button>  
 							</center>
 						</div>
 					</Col>

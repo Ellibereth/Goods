@@ -35,7 +35,8 @@ export default class Main extends React.Component {
 ReactDOM.render(  
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
-			<IndexRoute component={HomePage} />
+			<IndexRoute  component={() => <HomePage no_login = {true} />} />
+			<Route path = 'test' component = {HomePage}/>
 			<Route path = 'admin' component = {AdminPage}/>
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
