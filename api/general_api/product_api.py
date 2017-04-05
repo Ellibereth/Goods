@@ -5,7 +5,7 @@ import base64
 
 from ..utility.market_product import MarketProductManager
 from ..utility.table_names import ProdTables
-
+from ..utility.product_tag_manager import ProductTagManager
 
 class Labels:
 	Success = "success"
@@ -17,6 +17,8 @@ class Labels:
 	Category = "category"
 	Description = "description"
 	Brand = "brand"
+	Tags = "tags"
+	MarketProduct = "market_product"
 
 
 market_product_keys = [Labels.Price, Labels.Manufacturer, Labels.Name, Labels.Category, Labels.Description , Labels.Brand]
@@ -25,12 +27,19 @@ product_api = Blueprint('product_api', __name__)
 
 @product_api.route('/addMarketProduct', methods = ['POST'])
 def addMarketProduct():
-	market_product = {}
-	for key in market_product_keys:
-		market_product[key] = request.json.get(key)
+	market_product = request.json.get(Labels.MarketProduct)
+	tags = request.json.get(Labels.Tags)
 	market = MarketProductManager(ProdTables.MarketProductTable)
 	output = market.addMarketProduct(market_product)
 	market.closeConnection()
+
+	# add tags here, will change depending on front end input
+	# only update tags if adding the product was a success
+	if output[Labels.Success] and tags != None:
+		tag_manager = ProductTagManager(ProdTables.ProductTagTable)
+		for tag in tags:
+			tag_manager.addProductTag(output[Labels.ProductId], tag)
+		tag_manager.closeConnection()
 	return jsonify(output)
 
 @product_api.route('/getMarketProducts', methods = ['POST'])

@@ -9,25 +9,11 @@ from api.utility.sql_manager import SqlManager
 from passlib.hash import argon2
 from api.utility.table_names import ProdTables
 from api.utility.table_names import TestTables
-
 from api.utility.stripe_api import StripeManager
+from api.utility.labels import UserLabels as Labels
 
 MIN_PASSWORD_LENGTH = 6
 
-class Labels:
-	Email = "email"
-	TimeStamp = "time_stamp"
-	EmailConfirmationId = "email_confirmation_id"
-	EmailConfirmed = "email_confirmed"
-	Password = "password"
-	PasswordConfirm = "password_confirm"
-	AccountId = "account_id"
-	Success = "success"
-	Error = "error"
-	UserInfo = "user_info"
-	StripeCustomerId = "stripe_customer_id"
-	Name = "name"
-	User = "user"
 
 user_info_columns = [
 						{"name" : Labels.TimeStamp, "type" : "FLOAT"},
@@ -48,11 +34,10 @@ class AccountManager(SqlManager):
 		SqlManager.__init__(self, self.table_name)
 		self.createUserInfoTable()
 
-	# initializes a user info table 
 	def createUserInfoTable(self):
-		self.createTableIfNotExists()
-		for col in user_info_columns:
-			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
+		self.createTableIfNotExists(user_info_columns, primary_key = Labels.AccountId)
+		self.addIndexIfNotExists(Labels.AccountId)
+		self.addIndexIfNotExists(Labels.StripeCustomerId)
 
 	# generates a new email_confirmation_id
 	def generateAccountId(self):

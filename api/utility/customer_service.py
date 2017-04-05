@@ -52,7 +52,7 @@ class CustomerServiceResponse(SqlManager):
 		assert (table_name == ProdTables.CustomerServiceResponseTable or table_name == TestTables.CustomerServiceResponseTable)
 		self.table_name = table_name
 		SqlManager.__init__(self, self.table_name)
-		self.createCustomerServiceResponseTable()
+		self.createCustomerServiceResponseTable(cust_)
 
 	def createCustomerServiceResponseTable(self):
 		self.createTableIfNotExists()

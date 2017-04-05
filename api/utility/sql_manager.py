@@ -5,7 +5,9 @@ import time
 import psycopg2
 import openpyxl
 from api.utility import credential
-						 
+
+TimeStamp = "time_stamp"
+
 ## notes for next time, maybe include an assert or check to make sure
 ## that whenever something is added to a column, the column name is all lower case
 class SqlManager:
@@ -31,10 +33,51 @@ class SqlManager:
 		self.db.close()
 		self.p_db.close()
 
+
 	# creates a new table with columns submission_id and time_stamp
-	def createTableIfNotExists(self):
-		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + self.table_name + ' (time_stamp FLOAT)'
-		self.db.execute(createTableCode)		
+	def createTableIfNotExists(self, columns = None, primary_key = None):
+		createTableCode = 'CREATE TABLE IF NOT EXISTS ' + self.table_name + ' (' + TimeStamp + ' FLOAT)'
+		self.db.execute(createTableCode)
+		if columns != None:
+			for col in columns:
+				self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
+		self.addPrimaryKey(primary_key)
+
+	# testing to see if this is faster. It is much better for creating new tables, but really only important for testing
+	# in practice since we won't make new tables very often, this is not that important
+	# the reason this would be faster is that creating a tble and adding each column is less efficient than just 
+	# having them at initialization
+	def createTableIfNotExistsFast(self, columns = None, primary_key = None):
+		if columns == None:
+			createTableCode = 'CREATE TABLE IF NOT EXISTS ' + self.table_name + ' (' + TimeStamp + ' FLOAT)'
+		else:
+			createTableCode = 'CREATE TABLE IF NOT EXISTS ' + self.table_name + ' (' + TimeStamp + ' FLOAT '
+			for col in columns:
+				if col['name'] != TimeStamp:
+					createTableCode =  createTableCode + ", " + col['name'] + ' ' + col['type']
+			createTableCode = createTableCode + ')'
+		self.db.execute(createTableCode)
+		print(self.getColumnNames())
+		self.addPrimaryKey(primary_key)
+
+	# adds a primary key to a table
+	def addPrimaryKey(self, primary_key):
+		if primary_key == None:
+			return
+		try:
+			sql = "ALTER TABLE " + self.table_name + " ADD PRIMARY KEY (" + primary_key + ")"
+			self.db.execute(sql)
+		except:
+			return
+			# this is nothing too bad, you just can't add an extra primary key to an SQL table. If this happens \
+			# that just means the table already has a primary key. Looking for a better way than this though :3 \
+			# Didn't really want to dwell on this too long though
+
+
+	# adds an index if it does not exist
+	def addIndexIfNotExists(self, column_name):
+		sql = 'CREATE INDEX IF NOT EXISTS ' + column_name + ' ON ' + self.table_name + ' (' + column_name + ')'
+		self.db.execute(sql)
 
 	# checks if the given table has an entry with data in that given column name	
 	def tableHasEntryWithProperty(self, prop_name, prop):

@@ -14,6 +14,9 @@ class ProdTables:
 	CustomerServiceResponseTable = "CUSTOMER_SERVICE_RESPONSE_TABLE"
 	MarketProductTable = "MARKET_PRODUCT_TABLE"
 	OrderTable = "ORDER_TABLE"
+	ImageTable = "IMAGE_TABLE"
+	ProductTagTable = "PRODUCT_TAG_TABLE"
+
 
 """ 
 this file has a list of the allowed tags on products 
@@ -30,4 +33,6 @@ class TestTables:
 	CustomerServiceResponseTable = TEST_PREFIX + ProdTables.CustomerServiceResponseTable
 	MarketProductTable = TEST_PREFIX + ProdTables.MarketProductTable
 	OrderTable = TEST_PREFIX + ProdTables.OrderTable
+	ImageTable = TEST_PREFIX + ProdTables.ImageTable
+	ProductTagTable = TEST_PREFIX + ProdTables.ProductTagTable
 	SqlTestTable = "TEST_SQL"

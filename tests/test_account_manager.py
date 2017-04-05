@@ -99,7 +99,7 @@ class TestAccountManager(unittest.TestCase):
 	# 4. Email doesn't already exists
 	# 5. If the email address is real (based on smtplib email)	def testIsUserSubmissionValid(self):
 	def testIsUserSubmissionValidGoodSubmission(self):
-		self.assertTrue(self.in_user[Success])
+		self.assertTrue(self.sql.isUserSubmissionValid(self.in_user)[Success])
 
 	def testIsUserSubmissionValidPasswordMatch(self):
 		# password mismatch

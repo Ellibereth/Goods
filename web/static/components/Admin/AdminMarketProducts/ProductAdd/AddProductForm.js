@@ -3,11 +3,12 @@ var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
 
-const form_inputs = ['name', 'description', 'manufacturer', 'brand', 'price', 'category']
-const form_labels = ["Product Name", "Product Description", "Manufacturer", "Brand", "Price", "Category"]
+const form_inputs = ['name', 'description', 'manufacturer', 'brand', 'price', 'category', 'inventory']
+const form_labels = ["Product Name", "Product Description", "Manufacturer", "Brand", "Price", "Category", "Inventory"]
 
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../../../Misc/Input/TextInput.js'
+import TagsInput from 'react-tagsinput'
 
 export default class AddProductForm extends React.Component {
 	constructor(props) {
@@ -18,15 +19,24 @@ export default class AddProductForm extends React.Component {
 			phone_number : "",
 			price_range: "",
 			product_description : "",
+			brand : "",
+			price : "",
+			category : "",
+			inventory : "",
+			tags : []
 		}
 	}
 
 	// handle the text input changes
-	onTextInputChange(field, value){
+	onInputChange(field, value){
 		var obj = {}
 		obj[field] = value
 		this.setState(obj)
 	}
+
+	handleTagsChange(tags) {
+    	this.setState({tags})
+ 	}
 
 	onSubmitPress(){
 		swal({
@@ -46,18 +56,22 @@ export default class AddProductForm extends React.Component {
 
 	submitData(){
 			var data = {}
+			var market_product = {}
 			for (var i = 0; i < form_inputs.length; i++){
-				var key = form_inputs[i]
-				data[key] = this.state[key]
+				market_product[form_inputs[i]] = this.state[form_inputs[i]]
 			}
-			var form_data = JSON.stringify(data)
+
+			var form_data = JSON.stringify({
+				market_product : market_product,
+				tags : this.state.tags
+			})
 			$.ajax({
 				type: "POST",
 				url: url  + "/addMarketProduct",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "Something went wrong!", "warning")
+						swal("Sorry!", "Something went wrong! \n Error : " + data.error, "warning")
 					}
 					else {
 						this.props.toggleAddProductModal()
@@ -76,15 +90,28 @@ export default class AddProductForm extends React.Component {
 	render() {
 		var text_inputs = form_inputs.map((form_input, index) => {
 			var input_type = form_input == "description" ? "textarea" : "text"
-			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+			return (<TextInput onTextInputChange = {this.onInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
 				input_type = {input_type}/>
 			)
 		})
 
+		var tag_input = (
+						<div className="form-group">
+							<div className="col-sm-10">
+								Tags
+							</div>
+							<div className ="col-sm-10">
+								<TagsInput 
+								 value={this.state.tags} onChange={this.handleTagsChange.bind(this)}/>
+							</div>
+						</div>
+			)
+		
 		return (
 			<Form horizontal>
 				{text_inputs}
+				{tag_input}
 				<FormGroup controlId = "submit_buton">
 				<Col smOffset={0} sm={10}>
 					<Button onClick = {this.onSubmitPress.bind(this)}>

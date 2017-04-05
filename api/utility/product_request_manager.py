@@ -26,17 +26,17 @@ class Labels:
 	Error = "error"
 
 product_request_database_columns = [
-								Labels.SubmissionId,
-								Labels.TimeStamp,
-								Labels.Name,
-								Labels.ProductDescription,
-								Labels.PriceRange,
-								Labels.Email,
-								Labels.PhoneNumber,
-								Labels.Completed,
-								Labels.Confirmed,
-								Labels.ConfirmationId,
-								Labels.SoftDeleted
+								{"name" :  Labels.SubmissionId, "type" : "TEXT"},
+								{"name" :  Labels.TimeStamp, "type" : "FLOAT"},
+								{"name" :  Labels.Name, "type" : "TEXT"},
+								{"name" :  Labels.ProductDescription, "type" : "TEXT"},
+								{"name" :  Labels.PriceRange, "type" : "TEXT"},
+								{"name" :  Labels.Email, "type" : "TEXT"},
+								{"name" :  Labels.PhoneNumber, "type" : "TEXT"},
+								{"name" :  Labels.Completed, "type" : "BOOL"},
+								{"name" :  Labels.Confirmed, "type" : "BOOL"},
+								{"name" :  Labels.ConfirmationId, "type" : "TEXT"},
+								{"name" :  Labels.SoftDeleted, "type" : "BOOL"},
 								]
 
 product_request_submission_variables = [
@@ -57,7 +57,8 @@ class ProductRequestManager(SqlManager):
 
 	# initializes the product request table
 	def createProductRequestTable(self):
-		self.createTableIfNotExists()
+		self.createTableIfNotExists(product_request_database_columns)
+		self.addIndexIfNotExists(Labels.SubmissionId)
 
 	# checks if the given table has the image id
 	def isSubmissionIdTaken(self, submission_id):

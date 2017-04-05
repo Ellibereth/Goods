@@ -34,11 +34,9 @@ class FeedbackManager(SqlManager):
 		SqlManager.__init__(self, self.table_name)
 		self.createFeedbackTable()
 
-	# initializes a feedback table 
 	def createFeedbackTable(self):
-		self.createTableIfNotExists()
-		for col in feedback_table_columns:
-			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
+		self.createTableIfNotExists(feedback_table_columns)
+		self.addIndexIfNotExists(Labels.FeedbackId)
 
 	# generates a new email_confirmation_id
 	def generateFeedbackId(self):

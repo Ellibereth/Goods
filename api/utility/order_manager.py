@@ -46,10 +46,9 @@ class OrderManager(SqlManager):
 		self.createOrderTable()
 
 	# initializes a user info table 
+	# we don't add indices since we need to keep additions quick
 	def createOrderTable(self):
-		self.createTableIfNotExists()
-		for col in table_columns:
-			self.addColumnToTableIfNotExists(column_name = col['name'], data_type = col['type'])
+		self.createTableIfNotExists(table_columns)
 
 	# generates a new email_confirmation_id
 	def generateOrderId(self):
@@ -72,8 +71,7 @@ class OrderManager(SqlManager):
 		order[Labels.StripeChargeId] = charge[Labels.Id]
 		order[Labels.RefundDate] = None
 		self.insertDictIntoTable(order)
-		output_order = self.getRowByKey(Labels.OrderId, order[Labels.OrderId])
-		return output_order
+		return order
 
 	# get all orders for this user
 	# do you think the input should be the whole user or just the account_id? 
