@@ -6,7 +6,7 @@ import AppStore from '../../../stores/AppStore.js'
 
 var Config = require('Config')
 var url = Config.serverUrl
-const strike_api_key = "pk_test_8EWYuAcsnEEfUqVe2m91mTXB"
+const stripe_api_key = "pk_test_8EWYuAcsnEEfUqVe2m91mTXB"
 
 
 // takes the price of the good as prop for now
@@ -54,15 +54,17 @@ export default class StripeButton extends React.Component {
 			shippingAddress = {true}
 			billingAddress={true}
 			token={this.onToken.bind(this)}
-			stripeKey= {strike_api_key}
+			stripeKey= {stripe_api_key}
 			amount={amount}
 			allowRememberMe = {true}
 			// panelLabel= "Buy Now!"
 			// email="info@vidhub.co"
 
 			>
-				<button className="btn-large btn-primary">
-				    Buy it now!
+				<button className="btn btn-xlarge btn-primary">
+					<div id = "buy_now_button_text">
+				    	Buy it $<b>{this.props.product.price}</b>
+				    </div>
 				</button>
 			</StripeCheckout>
 

@@ -13,9 +13,10 @@ export default class TextInput extends React.Component {
   }
 
   render() {
+  	var colSize = this.props.colSize ? this.props.colSize : "8"
 	var input_type = this.props.input_type ? this.props.input_type : "text"
 	var input_div = (
-					<div className ="col-sm-10">
+					<div className = {"col-sm-" + colSize}>
 					  <input placeholder="" id="name" type = {input_type}
 					   className="form-control" value = {this.props.value}  onChange = {this.handleChange.bind(this)} />
 					</div>

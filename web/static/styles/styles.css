@@ -80,14 +80,53 @@ body {
 .product-image-carousel {
 	width : 100%;
 	padding: 10px;
+	height: 300px;
+	background-color : white;
 	
 }
 
-.product-image-carousel > img {
-	background-size:100% auto;
-    width: 70%;
-    margin: auto;
+.product-image {
+	max-height: 90%;
+	height: 270px !important;
+	margin: auto;	
 }
 
+.product-name-text{
+	font-size : 48px;
+	display: block
+}
+.product-price-text {
+	font-weight : bold;
+	font-size : 36px;
+	display: block
+}
+.product-description-text {
+	font-size : 24px;
+	display: block
+}
+.product-manufacturer-text {
+	font-size : 24px;
+	display: block
+}
 
+.btn-xlarge {
+	margin-top : 16px;
+	padding: 18px 42px;
+    font-size: 22px;
+    line-height: normal;
+    background-color: skyblue	
+    border-color: black
+}
+
+.product-page-left {
+	
+}
+
+#buy_now_button_text {
+	color : white;
+}
+
+#settings-header {
+	font-size: 24px;
+}
 	

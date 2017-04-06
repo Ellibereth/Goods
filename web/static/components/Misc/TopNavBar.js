@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 
-import {Button, Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Button, Row, Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 var Link = require('react-router').Link;
 
 import AppStore from '../../stores/AppStore.js';
@@ -62,12 +62,12 @@ export default class TopNavBar extends React.Component {
 	render() {
 		var right_nav = this.getRightNav()
 		return (
-			<Navbar className = "navbar-fixed-top top-nav-bar" bsStyle="pills" inverse collapseOnSelect>
+			<Navbar className = "navbar-fixed-top top-nav-bar" bsStyle="pills" inverse>
 				<Navbar.Header>
 					<Navbar.Brand>
 						<a href="/">Edgar USA</a>
 					</Navbar.Brand>
-					<Navbar.Toggle />
+					{/* <Navbar.Toggle />*/}
 				</Navbar.Header>
 				<Nav className = "nav-search-bar">
 					<NavItem>
