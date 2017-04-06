@@ -57,19 +57,16 @@ export default class ProductMainContainer extends React.Component {
 
 					<Grid className = "fluid">
 						<Row>
-							<Col className = "text-center" md = {6} lg = {6}>
+							<Col className = "text-center" md = {4} lg = {4}>
 								<ProductImageDisplay product = {this.state.product}/>
 								<StripeButton product = {this.state.product}/>
 							</Col>
-							<Col md = {6} lg = {6}>
-								<h3> Name : {this.state.product.name} </h3>
-								<h3> Price : {this.state.product.price} </h3>
-								<h3> Description : {this.state.product.description} </h3>
-								<h3> Manufacturer : {this.state.product.manufacturer} </h3>
-								<h3> Images:  </h3>
+							<Col md = {8} lg = {8}>
+								<div> {this.state.product.name} </div>
+								<div> $ {this.state.product.price} </div>
+								<div> Product Description : {this.state.product.description} </div>
+								<div> Manufacturer : {this.state.product.manufacturer} </div>
 							</Col>
-
-						
 						</Row>
 					</Grid>
 				}	
