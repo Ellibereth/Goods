@@ -4,10 +4,6 @@
 	max-width : 160px
 }
 
-.product-image {
-	width : 200px;
-	height : 200px;
-}
 
 .top-buffer { margin-top:20px; }
 
@@ -82,14 +78,15 @@ body {
 }
 
 .product-image-carousel {
-	width : 180px;
-	height: : 180px !important;
+	width : 100%;
+	padding: 10px;
 }
 
 .product-image-carousel > img {
-  height: 100%;
-  height: 180px;
-  width: 160px;
+	background-size:100% auto;
+    width: 70%;
+    margin: auto;
 }
+
 
 	

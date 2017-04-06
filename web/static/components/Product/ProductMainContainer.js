@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
 
-import {} from 'react-bootstrap';
+import {Grid, Row, Col} from 'react-bootstrap';
 import StripeButton from './ProductPayment/StripeButton.js'
 import ProductImageDisplay from './ProductImageDisplay.js'
 
@@ -53,18 +53,25 @@ export default class ProductMainContainer extends React.Component {
 					</h3>
 
 				:
-					<div>
-						<h3> Name : {this.state.product.name} </h3>
-						<h3> Price : {this.state.product.price} </h3>
-						<h3> Description : {this.state.product.description} </h3>
-						<h3> Manufacturer : {this.state.product.manufacturer} </h3>
-						<h3> Images:  </h3>
-						<div>
-							<ProductImageDisplay product = {this.state.product}/>
-						</div>
 
-						<StripeButton product = {this.state.product}/>
-					</div>
+
+					<Grid className = "fluid">
+						<Row>
+							<Col className = "text-center" md = {6} lg = {6}>
+								<ProductImageDisplay product = {this.state.product}/>
+								<StripeButton product = {this.state.product}/>
+							</Col>
+							<Col md = {6} lg = {6}>
+								<h3> Name : {this.state.product.name} </h3>
+								<h3> Price : {this.state.product.price} </h3>
+								<h3> Description : {this.state.product.description} </h3>
+								<h3> Manufacturer : {this.state.product.manufacturer} </h3>
+								<h3> Images:  </h3>
+							</Col>
+
+						
+						</Row>
+					</Grid>
 				}	
 			</div>
 		)

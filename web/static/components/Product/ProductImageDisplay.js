@@ -82,7 +82,7 @@ export default class ProductMainContainer extends React.Component {
 			})
 		
 		return (
-			<div>
+			<div className = "product-image-carousel-container">
 			  <div id="myCarousel" className="product-image-carousel carousel slide" data-ride="carousel">
 				<ol className="carousel-indicators">
 				  {carousel_indicator}
