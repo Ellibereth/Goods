@@ -16,10 +16,6 @@ export default class ProductMainContainer extends React.Component {
 		}
 	}
 
-	selectImage(i){
-		this.setState({selected_image : i})
-	}
-
 	componentDidMount(){
 		this.setState({product : this.props.product})
 		var product = this.state.product
@@ -61,25 +57,52 @@ export default class ProductMainContainer extends React.Component {
 		if (product.images.length == 0) return <h4> No images are listed for this product </h4>
 		// something better needs to be done about bad pages, but I'll figure something out soon
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-		var images = product.images.map((image, index) =>
-				<img src = {src_base + image.image_id} height = {30} width = {30} id = {index} onClick = {this.selectImage.bind(this, index)}/>
-			)
+		var carousel_images = product.images.map((image, index) => {
+			if (image.main_image){
+				return (	
+					<div className="item active">
+						<img src= {src_base + image.image_id} id = {index} className = "product-image"/>
+					</div>
+				)
+			}
+			else {
+				return  (
+					<div className="item">
+						<img src= {src_base + image.image_id} id = {index} className = "product-image"/>
+					</div>
+					)
+				}
+			})
 
-		if (this.state.selected_image == -1){
-			var big_image = <div/>
-		}
-		else {
-			var big_image_src = src_base + product.images[this.state.selected_image].image_id
-			var big_image = <img src = {big_image_src} className = "product-image"/>
-		}
+		var carousel_indicator = product.images.map((image, index) => {
+			if (image.main_image) return <li data-target="#myCarousel" data-slide-to= {index} className="active"/>
+			else {
+				return  <li data-target="#myCarousel" data-slide-to= {index}/>
+				}
+			})
+		
 		return (
 			<div>
-				<div>
-					{big_image}
+			  <div id="myCarousel" className="product-image-carousel carousel slide" data-ride="carousel">
+				<ol className="carousel-indicators">
+				  {carousel_indicator}
+				</ol>
+
+				{/* images  */}
+				<div className="carousel-inner" role="listbox">
+				  {carousel_images}
 				</div>
-				<div>
-					{images}
-				</div>
+
+				{/* Left and right buttons */}
+				<a className="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+				  <span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				  <span className="sr-only">Previous</span>
+				</a>
+				<a className="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+				  <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				  <span className="sr-only">Next</span>
+				</a>
+			  </div>
 			</div>
 		)
 	}

@@ -33,13 +33,11 @@ export default class UpdateSettingsPreview extends React.Component {
 			<div>
 				<Grid>
 					<Row>
-						<Col lg = {10} md = {10} className = "pull-left">
-							<h3> Your Info </h3>
+						<Col sm = {10} lg = {10} md = {10}>
+							<h4> Your Info </h4>
 						</Col>
-						<Col lg ={2} md = {2} className = "pull-right">
-							<span className = "align-middle">
-								<Button onClick = {() => browserHistory.push('/updateSettings')} > Edit </Button>
-							</span>
+						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
+							<Button onClick = {() => browserHistory.push('/updateSettings')} > Edit </Button>
 						</Col>
 					</Row>
 					<Row>

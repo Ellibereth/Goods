@@ -60,7 +60,11 @@ export default class StripeButton extends React.Component {
 			// panelLabel= "Buy Now!"
 			// email="info@vidhub.co"
 
-			/>
+			>
+				<button className="btn btn-primary">
+				    Buy it now!
+				</button>
+			</StripeCheckout>
 
 	);
   }

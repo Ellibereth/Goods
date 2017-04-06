@@ -17,7 +17,7 @@ export default class TextInput extends React.Component {
 	var input_div = (
 					<div className ="col-sm-10">
 					  <input placeholder="" id="name" type = {input_type}
-					   className="form-control"  onChange = {this.handleChange.bind(this)} />
+					   className="form-control" value = {this.props.value}  onChange = {this.handleChange.bind(this)} />
 					</div>
 					)
 	if (input_type == "textarea"){

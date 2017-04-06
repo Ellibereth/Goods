@@ -12,16 +12,17 @@ export default class TopNavBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			current_user : null
+			current_user : null,
+			search_input : ""
 		}
-	}
-
-	handleChange(event) {
-		this.props.onTextInputChange(this.props.key, event.value)
 	}
 
 	componentDidMount(){
 		this.setState({current_user : AppStore.getCurrentUser()})
+	}
+
+	onSearchBoxChange(event){
+		this.setState({search_input: event.target.value})
 	}
 
 	handleLogout(){
@@ -39,14 +40,14 @@ export default class TopNavBar extends React.Component {
 		var current_user = this.state.current_user
 		if (current_user == {} || !current_user){
 			return (
-				<Nav pullRight>
+				<Nav className = "main-nav-item" pullRight>
 					<NavItem eventKey={1}>  <Link to="/login">Sign In</Link> </NavItem>
 				</Nav>
 			)
 		}
 		else {
 			return (
-				<Nav className = "nav-pills" pullRight>
+				<Nav className = "main-nav-item nav-pills" pullRight>
 					<NavDropdown title="Account" id="nav-dropdown">
 						  <MenuItem href = "settings"> Account Settings </MenuItem>
 						  <MenuItem divider />
@@ -68,6 +69,18 @@ export default class TopNavBar extends React.Component {
 					</Navbar.Brand>
 					<Navbar.Toggle />
 				</Navbar.Header>
+				<Nav className = "nav-search-bar">
+					<NavItem>
+						<form className="navbar-form" role="search">
+							<div className="input-group">
+								<input type="text" onChange = {this.onSearchBoxChange.bind(this)} className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+								<div className="input-group-btn">
+									<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+								</div>
+							</div>
+						</form>
+					</NavItem>
+				</Nav>
 				{right_nav}
 				
 			</Navbar>

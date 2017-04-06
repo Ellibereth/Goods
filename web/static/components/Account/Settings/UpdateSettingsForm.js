@@ -7,7 +7,7 @@ var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions.js';
 import AppStore from '../../../stores/AppStore.js';
 import TextInput from '../../Misc/Input/TextInput.js'
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
+import {Form, Col, FormGroup, Button, ControlLabel} from 'react-bootstrap'
 const form_labels = ['Name', "Email", "New Password" , "Confirm New Password", "Confirm Old Password"]
 const form_inputs = ["name", "email", "new_password" , "new_password_confirm", "old_password"]
 const input_types = ['text', 'text', 'password', 'password', 'password']
@@ -45,6 +45,12 @@ export default class SettingsFormPersonal extends React.Component {
 		function () {
 			this.submitData.bind(this)()
 		}.bind(this))
+	}
+
+	componentDidMount(){
+		var current_user = AppStore.getCurrentUser()
+		this.setState({name : current_user.name})
+		this.setState({email : current_user.email})
 	}
 
 	updateSettings(){
@@ -122,6 +128,8 @@ export default class SettingsFormPersonal extends React.Component {
 
 		return (
 			<Form horizontal>
+				<ControlLabel> <h2> You must confirm your password to make any changes to your account </h2> </ControlLabel>
+				<br/>
 				{text_inputs}
 				
 				<FormGroup controlId = "submit_button">
