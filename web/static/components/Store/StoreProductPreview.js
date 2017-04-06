@@ -11,7 +11,9 @@ export default class StorePage extends React.Component {
   	constructor(props) {
 		super(props);
 		this.state = {
-			product : {}
+			product : {},
+			invalid_product : true
+
 		}
   	}
 
@@ -24,11 +26,15 @@ export default class StorePage extends React.Component {
 		  url: url + "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
-			if (!data){
+			if (!data.success){
 				this.setState({invalid_product : true})
-
 			}
-			this.setState({product: data})
+			else {
+				this.setState({product: data.product})
+				this.setState({invalid_product : false})
+				
+			}
+			
 		  }.bind(this),
 		  error : function(){
 			console.log("error")
@@ -54,8 +60,9 @@ export default class StorePage extends React.Component {
 
   	render() {
   		// hard coded for now
+  		console.log(this.state.product)
   		var date = new Date("April 13, 2017 12:00:00")
-
+  		if (this.state.invalid_product) return <div/>
 		return (
 			<div 
 			onMouseOver = {this.onMouseOver.bind(this)}
@@ -64,7 +71,8 @@ export default class StorePage extends React.Component {
 				<Grid>
 					<Col xs = {2} s = {2} md = {2} lg= {2}>
 						<img 
-						src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" + this.state.product.product_id + "_0"}
+						src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
+						+ this.state.product.images[0].image_id}
 						className = "img-responsive img-rounded"/>
 					</Col>
 

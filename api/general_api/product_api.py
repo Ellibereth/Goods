@@ -19,6 +19,7 @@ class Labels:
 	Brand = "brand"
 	Tags = "tags"
 	MarketProduct = "market_product"
+	Product = "product"
 
 
 market_product_keys = [Labels.Price, Labels.Manufacturer, Labels.Name, Labels.Category, Labels.Description , Labels.Brand]
@@ -56,7 +57,10 @@ def getMarketProductInfo():
 	market = MarketProductManager(ProdTables.MarketProductTable)
 	market_product = market.getMarketProductById(product_id)
 	market.closeConnection()
-	return jsonify(market_product)
+	if market_product == None:
+		return jsonify({Labels.Success : False, Labels.Error : "Error retrieving product information"})
+	else:
+		return jsonify({Labels.Success: True, Labels.Product : market_product})
 
 @product_api.route('/uploadMarketProductImage', methods = ['POST'])
 def uploadMarketProductImage():

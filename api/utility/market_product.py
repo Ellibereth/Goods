@@ -77,11 +77,14 @@ class MarketProductManager(SqlManager):
 
 	# returns the product by id
 	def getMarketProductById(self, product_id):
-		market_product = self.getRowByKey(Labels.ProductId, product_id)
-		image_manager = ImageManager(ProdTables.ImageTable)
-		market_product[Labels.Images] = image_manager.getImagesForProduct(product_id)
-		image_manager.closeConnection()
-		return market_product
+		try:
+			market_product = self.getRowByKey(Labels.ProductId, product_id)
+			image_manager = ImageManager(ProdTables.ImageTable)
+			market_product[Labels.Images] = image_manager.getImagesForProduct(product_id)
+			image_manager.closeConnection()
+			return market_product
+		except:
+			return None
 
 	# this method will tell if a market submission is valid
 	# 1. Inventory must be an string that is parseable as an integer

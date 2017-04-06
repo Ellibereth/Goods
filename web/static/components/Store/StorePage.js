@@ -25,7 +25,6 @@ export default class StorePage extends React.Component {
   	render() {
 	  	var product_id_1 = "P5OWK2GQGTEC83YAWJF9"
 	  	var product_id_2 = "XND4K7UJ9XK4GCPRVSK8"
-	  	console.log(this.state.product)
 		return (
 			<div id = "store-page-container">
 				<TopNavBar/>	

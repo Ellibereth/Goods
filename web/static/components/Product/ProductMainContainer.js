@@ -14,7 +14,7 @@ export default class ProductMainContainer extends React.Component {
 		super(props);
 		this.state = {
 			product : {},
-			invalid_product: false
+			invalid_product: true
 		}
 	}
 
@@ -27,11 +27,15 @@ export default class ProductMainContainer extends React.Component {
 		  url: url + "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
-			if (data == null){
+			if (!data.success){
 				this.setState({invalid_product : true})
-
 			}
-			this.setState({product: data})
+			else {
+				this.setState({invalid_product : false})
+				this.setState({product: data.product})
+			}
+			
+			
 		  }.bind(this),
 		  error : function(){
 			console.log("error")
@@ -44,7 +48,6 @@ export default class ProductMainContainer extends React.Component {
 
 
 	render() {
-	
 		return (
 			<div className = "container" id = "product-page-container">
 				{this.state.invalid_product ?
@@ -66,13 +69,9 @@ export default class ProductMainContainer extends React.Component {
 								<span className = "product-price-text"> ${this.state.product.price} </span>
 								<hr/>
 								<span className = "product-description-text"> PRODUCT DESCRIPTION </span>
-								<div className="panel panel-info">
 									<div className="panel-body">{this.state.product.description}</div>
-								</div>
 								<span className = "product-manufacturer-text"> MANUFACTURER</span>
-								<div className="panel panel-info">
 									<div className="panel-body">{this.state.product.manufacturer}</div>
-								</div>
 							</Col>
 						</Row>
 					</Grid>

@@ -49,7 +49,7 @@ export default class TopNavBar extends React.Component {
 			return (
 				<Nav className = "main-nav-item nav-pills" pullRight>
 					<NavDropdown title="Account" id="nav-dropdown">
-						  <MenuItem href = "settings"> Account Settings </MenuItem>
+						  <MenuItem> <Link to = "/settings"> Account Settings </Link> </MenuItem>
 						  <MenuItem divider />
 						  <MenuItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </MenuItem>
 					</NavDropdown>
@@ -65,7 +65,7 @@ export default class TopNavBar extends React.Component {
 			<Navbar className = "navbar-fixed-top top-nav-bar" bsStyle="pills" inverse>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="/">Edgar USA</a>
+						<Link to = "/"> Edgar USA </Link>
 					</Navbar.Brand>
 					{/* <Navbar.Toggle />*/}
 				</Navbar.Header>
