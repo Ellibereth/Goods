@@ -62,13 +62,14 @@ export default class RegisterAccountForm extends React.Component {
 							+ ". Please try again!", "warning")
 					}
 					else {
-						AppActions.addCurrentUser(data.user_info)
+						AppActions.addCurrentUser(data.user)
 						swal({
 							title: "Thank you!", 
 							text : "Your account has been created. You should receive a confirmation email shortly",
 							type: "success"},
 							function () {
-								browserHistory.push("/")
+								console.log(data.user)
+								// browserHistory.push("/")
 							}.bind(this)
 						)
 					}

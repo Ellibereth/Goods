@@ -129,4 +129,8 @@ body {
 #settings-header {
 	font-size: 24px;
 }
+
+.react-router-link {
+	color : black;
+}
 	

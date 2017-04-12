@@ -12,11 +12,11 @@ if __name__ == '__main__':
 	# suite = unittest.TestLoader().loadTestsFromTestCase(TestSqlManager)
 	# unittest.TextTestRunner(verbosity=2).run(suite)
 
-	# suite = unittest.TestLoader().loadTestsFromTestCase(TestAccountManager)
-	# unittest.TextTestRunner(verbosity=2).run(suite)
+	suite = unittest.TestLoader().loadTestsFromTestCase(TestAccountManager)
+	unittest.TextTestRunner(verbosity=2).run(suite)
 
 	# suite = unittest.TestLoader().loadTestsFromTestCase(TestOrderManager)
 	# unittest.TextTestRunner(verbosity=2).run(suite)
 
-	suite = unittest.TestLoader().loadTestsFromTestCase(TestMarketProductManager)
-	unittest.TextTestRunner(verbosity=2).run(suite)
+	# suite = unittest.TestLoader().loadTestsFromTestCase(TestMarketProductManager)
+	# unittest.TextTestRunner(verbosity=2).run(suite)

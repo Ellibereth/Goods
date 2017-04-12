@@ -44,10 +44,11 @@ class StripeManager:
 			return None
 
 
-	# creates a customer object just from the users name. No payment information yet
+	# creates a customer object just from the user's name. No payment information yet
 	# returns the customer stripe id
-	def createCustomerFromUser(user):
+	def createCustomer(name, email):
 		customer = stripe.Customer.create(
-				description= user[Name]
+				description = name,
+				email = email
 			)
 		return customer[Id]

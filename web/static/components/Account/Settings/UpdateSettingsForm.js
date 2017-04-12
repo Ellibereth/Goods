@@ -8,9 +8,9 @@ import AppActions from '../../../actions/AppActions.js';
 import AppStore from '../../../stores/AppStore.js';
 import TextInput from '../../Misc/Input/TextInput.js'
 import {Grid, Form, Row, Col, FormGroup, Button, ControlLabel} from 'react-bootstrap'
-const form_labels = ['Name', "Email", "Confirm Old Password"]
-const form_inputs = ["name", "email", "old_password"]
-const input_types = ['text', 'text', 'password', 'password', 'password']
+const form_labels = ['Name', "Email", "Confirm Password"]
+const form_inputs = ["name", "email", "password"]
+const input_types = ['text', 'text', 'password']
 
 export default class SettingsFormPersonal extends React.Component {
 	constructor(props) {
@@ -18,9 +18,7 @@ export default class SettingsFormPersonal extends React.Component {
 		this.state = {
 			name: "",
 			email: "",
-			new_password: "",
-			new_password_confirm : "",
-			old_password : ""
+			password : ""
 		}
 	}
 
@@ -57,15 +55,16 @@ export default class SettingsFormPersonal extends React.Component {
 			var new_settings = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
-				if (key != "old_password"){
+				if (key != "password"){
 					if (this.state[key] && this.state[key] != "") {
 					new_settings[key] = this.state[key]
 					}	
 				}
 			}
 			var form_data = JSON.stringify({
-				"user" : AppStore.getCurrentUser(),
-				"new_settings" : new_settings
+				"email" : AppStore.getCurrentUser().email,
+				"new_settings" : new_settings,
+				"password" : this.state.password
 			})
 			$.ajax({
 				type: "POST",
@@ -91,7 +90,7 @@ export default class SettingsFormPersonal extends React.Component {
 			});
 		}
 	updatePassword() {
-		browserHistory.push(`/`)
+		browserHistory.push(`/changePassword`)
 	}
 
 
@@ -99,7 +98,7 @@ export default class SettingsFormPersonal extends React.Component {
 		// first check the password
 		var form_data = JSON.stringify({
 			"email" : AppStore.getCurrentUser()['email'],
-			"password" : this.state.old_password
+			"password" : this.state.password
 		})
 		$.ajax({
 				type: "POST",

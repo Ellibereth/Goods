@@ -15,6 +15,8 @@ class UserLabels:
 	StripeCustomerId = "stripe_customer_id"
 	Name = "name"
 	User = "user"
+	NewSettings = "new_settings"
+	OldPassword = "old_password"
 
 class ImageManagerLabels:
 	TimeStamp = "time_stamp"

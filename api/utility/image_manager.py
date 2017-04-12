@@ -62,7 +62,12 @@ class ImageManager(SqlManager):
 	# do you think the argument for this should be a product dict/object as input or just the product_id?
 	# returns a list of images
 	def getImagesForProduct(self, product_id):
-		return self.getRowsByProperty(Labels.ProductId, product_id)
+		all_images = self.getRowsByProperty(Labels.ProductId, product_id)
+		output_list = list()
+		for image in all_images:
+			if image[Labels.DeletedDate] == None:
+				output_list.append(image)
+		return output_list
 		
 	# returns true if the product has any images
 	# used for assigning the first as the main image
@@ -75,6 +80,10 @@ class ImageManager(SqlManager):
 		self.updateRowByKey(Labels.ImageId, image_id, Labels.MainImage, True)
 
 		
+	# deletes the image at this time (but we keep it saved :P)
+	def deleteImage(self, image_id):
+		self.updateRowByKey(Labels.ImageId, image_id, Labels.DeletedDate, time.time())
+
 
 
 

@@ -30,8 +30,7 @@ export default class StorePage extends React.Component {
 				this.setState({invalid_product : true})
 			}
 			else {
-				this.setState({product: data.product})
-				this.setState({invalid_product : false})
+				this.setState({product: data.product, invalid_product : false})
 				
 			}
 			

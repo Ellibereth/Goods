@@ -61,7 +61,7 @@ class AccountManager(SqlManager):
 			return is_valid_submission
 		# we hard code the email and username to lower case
 		user_info[Labels.AccountId] = self.generateAccountId()
-		user_info[Labels.Password] = argon2.using(rounds=4).hash(user_info[Labels.Password])
+		user_info[Labels.Password] = self.argonHash(user_info[Labels.Password])
 		user_info[Labels.Email] = user_info[Labels.Email].lower()
 		user_info[Labels.TimeStamp] =  time.time()
 		user_info[Labels.EmailConfirmed] = False
@@ -88,10 +88,9 @@ class AccountManager(SqlManager):
 			output[Labels.Success] = False
 			output[Labels.Error] = "Passwords do not match"
 			return output
-		if len(password) < MIN_PASSWORD_LENGTH:
-			output[Labels.Success] = False
-			output[Labels.Error] = "Password must be at least " + str(MIN_PASSWORD_LENGTH) + " characters"
-			return output
+		is_password_valid = self.isPasswordValid(password)
+		if not is_password_valid[Labels.Success]:
+			return is_password_valid
 		try:
 			email = input_email.lower()
 		except:
@@ -120,7 +119,7 @@ class AccountManager(SqlManager):
 		if user == None:
 			output[Labels.Error] = "Email \'" + login_info[Labels.Email] + "\'  does not exist"
 			return output
-		password_matches = argon2.verify(login_info[Labels.Password], user[Labels.Password])
+		password_matches = self.argonCheck(login_info[Labels.Password], user[Labels.Password])
 		if not password_matches:
 			output[Labels.Error] = "Password does not match provided email"
 			return output
@@ -163,9 +162,29 @@ class AccountManager(SqlManager):
 
 	# takes a dict with new settings
 	# and updates the account with these new settings
-	def updateSettings(self, user, new_settings):
+	def updateSettings(self, user, password, new_settings):
+		if not argon2.verify(password, user[Labels.Password]):
+			return {Labels.Success: False, Labels.Error : "Password is invalid"}
 		self.updateEntireRowByKey(Labels.AccountId, user[Labels.AccountId], new_settings)
 		updated_user = self.getRowByKey(Labels.AccountId, user[Labels.AccountId])
 		return {Labels.Success : True, Labels.User : updated_user}
 
+
+	# only current restriction is that passwords are a mininum of 6 characters 
+	def isPasswordValid(self, password):
+		if len(password) < MIN_PASSWORD_LENGTH:
+			return {Labels.Success : False, Labels.Error : "Password must be at least " + str(MIN_PASSWORD_LENGTH) + " characters"}
+		return {Labels.Success : True}
+
+	def changePassword(self, user, old_password, password, password_confirm):
+		# validate password submission
+		if password != password_confirm:
+			return {Labels.Success : False, Labels.Error : "Passwords don't match"}
+		is_password_valid = self.isPasswordValid(password)
+		if not isPasswordValid[Labels.Success]:
+			return is_password_valid
+		# update with new password
+		hashed_password = self.argonHash(password) 
+		self.updateRowByKey(Labels.AccountId, user[Labels.AccountId], Labels.Password, hashed_password)
+		return {Labels.Success : True}
 

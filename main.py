@@ -3,20 +3,24 @@ import time
 import os
 import random
 import requests
+from flask_sqlalchemy import SQLAlchemy
+from api.models.shared_models import db
 
 # initialize app
 template_dir = os.path.abspath('./web/templates')
 static_dir = os.path.abspath('./web/static')
 app = Flask(__name__, template_folder=template_dir, static_folder = static_dir)
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
+
+
 
 # NOTE !!!!  this should definitely be randomly generated and look like some crazy impossible to guess hash
 # but for now we'll keep is simple and easy to remember
 app.secret_key = "powerplay"
 
-# from api.mobile_api import mobile_api
-# app.register_blueprint(mobile_api)
-# from api.browser_api import browser_api
-# app.register_blueprint(browser_api)
 from api.general_api.public_api import public_api
 app.register_blueprint(public_api)
 from api.general_api.product_api import product_api
@@ -37,6 +41,11 @@ from api.general_api.amazon_data_api import amazon_data_api
 app.register_blueprint(amazon_data_api)
 
 
+@app.before_first_request
+def create_database():
+	# db.drop_all()
+	db.create_all()
+
 @app.after_request
 def add_header(response):
 	"""
@@ -54,17 +63,17 @@ def add_header(response):
 
 @app.route('/static/<path:path>', methods = ['GET'])
 def send_static(path):
-    return send_from_directory('static', path)
+	return send_from_directory('static', path)
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-    return render_template("index.html")
+	return render_template("index.html")
 
 if __name__ == '__main__':
-    app.debug = True
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+	app.debug = True
+	port = int(os.environ.get("PORT", 5000))
+	app.run(host='0.0.0.0', port=port)
 
 
 

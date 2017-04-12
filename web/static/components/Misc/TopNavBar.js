@@ -49,7 +49,7 @@ export default class TopNavBar extends React.Component {
 			return (
 				<Nav className = "main-nav-item nav-pills" pullRight>
 					<NavDropdown title="Account" id="nav-dropdown">
-						  <MenuItem> <Link to = "/settings"> Account Settings </Link> </MenuItem>
+						  <MenuItem> <Link to = "/settings"> <div className = "react-router-link"> Account Settings </div> </Link> </MenuItem>
 						  <MenuItem divider />
 						  <MenuItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </MenuItem>
 					</NavDropdown>

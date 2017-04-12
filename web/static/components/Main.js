@@ -21,7 +21,8 @@ import LoginPage from './Account/Login/LoginPage.js'
 import SettingsPage from './Account/Settings/SettingsPage.js'
 import UpdateSettingsPage from './Account/Settings/UpdateSettingsPage.js'
 import OrderHistoryPage from './Account/Settings/OrderHistoryPage.js'
-
+import ChangePasswordPage from './Account/Settings/ChangePasswordPage.js'
+import LogoutPage from './Misc/LogoutPage.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -49,8 +50,9 @@ ReactDOM.render(
 			<Route path = "login" component = {LoginPage}/>
 			<Route path = "settings" component = {SettingsPage}/>
 			<Route path = "updateSettings" component = {UpdateSettingsPage}/>
-
+			<Route path = "changePassword" component = {ChangePasswordPage}/>
 			<Route path = "orders" component = {OrderHistoryPage}/>
+			<Route path= "logout" component={LogoutPage} />
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 
