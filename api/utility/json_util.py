@@ -6,5 +6,8 @@ class JsonUtil:
 		return jsonify({"success" : False, "error" : error_message})
 
 	@staticmethod
-	def success(key, data):
-		return jsonify({"success" : True, key : data})
+	def success(key = None, data = None):
+		if key == None:
+			return jsonify({"success" : True})
+		else:	
+			return jsonify({"success" : True, key : data})

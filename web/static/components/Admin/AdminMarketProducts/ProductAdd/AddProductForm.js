@@ -3,9 +3,9 @@ var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
 
-const form_inputs = ['name', 'description', 'manufacturer', 'brand', 'price', 'category', 'inventory']
-const form_labels = ["Product Name", "Product Description", "Manufacturer", "Brand", "Price", "Category", "Inventory"]
-
+const form_inputs = ['name', 'description', 'manufacturer', 'price', 'category', 'inventory', 'sale_end_date']
+const form_labels = ["Product Name", "Product Description", "Manufacturer", "Price", "Category", "Inventory", "Sale End Date"]
+const input_types = ['text', 'textarea', 'text', 'text', 'text', 'text', 'datetime-local']
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../../../Misc/Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
@@ -89,10 +89,10 @@ export default class AddProductForm extends React.Component {
 
 	render() {
 		var text_inputs = form_inputs.map((form_input, index) => {
-			var input_type = form_input == "description" ? "textarea" : "text"
+
 			return (<TextInput onTextInputChange = {this.onInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_type}/>
+				input_type = {input_types[index]}/>
 			)
 		})
 

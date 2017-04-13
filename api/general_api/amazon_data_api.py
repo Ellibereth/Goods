@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-from ..utility.feedback_manager import FeedbackManager
 from ..utility.table_names import ProdTables
 
 

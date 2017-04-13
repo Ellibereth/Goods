@@ -1,10 +1,5 @@
 from flask import Blueprint, jsonify, request
-import time
-from passlib.hash import argon2
-import base64
-
-from ..utility.account_manager import AccountManager
-from ..utility.table_names import ProdTables
+from api.utility.json_util import JsonUtil
 
 
 class Labels:
@@ -20,9 +15,8 @@ def checkAdminLogin():
 	password = request.json.get(Labels.Password)
 	output = {}
 	if password == admin_login_password:
-		output[Labels.Success] = True
+		return JsonUtil.success()
 	else:
-		output[Labels.Success] = False
-	return jsonify(output)
+		return JsonUtil.failire("Invalid Credentials")
 
 

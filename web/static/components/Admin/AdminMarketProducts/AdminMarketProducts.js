@@ -7,8 +7,8 @@ import AddProductModal from './ProductAdd/AddProductModal.js'
 import UploadMarketPhoto from './ProductAdd/UploadMarketPhoto.js'
 import {Button} from 'react-bootstrap'
 
-const product_variables = ['product_id', 'name', 'product_description', 'manufacturer', 'brand', 'price',  'num_images', 'time_stamp']
-const headers = ['Product Id', 'Name', 'Description', 'Manufacturer', 'Brand', 'Price', '# of Images', 'Time Stamp']
+const product_variables = ['name', 'description', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date']
+const headers = ['Name', 'Description', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
 
 export default class AdminMarketProducts extends React.Component {
 	constructor(props) {

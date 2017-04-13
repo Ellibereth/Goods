@@ -7,7 +7,7 @@ import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 var Config = require('Config')
 var url = Config.serverUrl
 const form_labels = ['What is your name?', "What is your email?", "What should we know?"]
-const form_inputs = ["name", "email", "feedback"]
+const form_inputs = ["name", "email", "feedback_content"]
 
 
 export default class ProductRequestForm extends React.Component {
@@ -16,7 +16,7 @@ export default class ProductRequestForm extends React.Component {
 		this.state = {
 			name: "",
 			email: "",
-			feedback: ""
+			feedback_content: ""
 		}
 	}
 

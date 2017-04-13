@@ -1,27 +1,22 @@
 from flask import Blueprint, jsonify, request
-from ..utility.feedback_manager import FeedbackManager
-from ..utility.table_names import ProdTables
-
-
-class Labels:
-	Success = "success"
-	Password = "password"
-	Name = "name"
-	Email = "email"
-	Feedback = "feedback"
-	
+from api.utility.table_names import ProdTables
+from api.models.feedback import Feedback
+from api.models.shared_models import db
+from api.utility.labels import FeedbackLabels as Labels
 
 customer_service_api = Blueprint('customer_service_api', __name__)
 
-feedback_keys = [Labels.Name , Labels.Email, Labels.Feedback]
 
 @customer_service_api.route('/addFeedback', methods = ['POST'])
 def addFeedback():
-	feedback = {}
-	for key in feedback_keys:
-		feedback[key] = request.json.get(key)
-	feedback_manager = FeedbackManager(ProdTables.FeedbackTable)
-	output = feedback_manager.addFeedback(feedback)
-	feedback_manager.closeConnection()
-	return jsonify(output)
+	email = request.json.get(Labels.Email)
+	name = request.json.get(Labels.Name)
+	feedback_content = request.json.get(Labels.FeedbackContent)
+	this_feedback = Feedback(email, name, feedback_content)
+	db.session.add(this_feedback)
+	db.session.commit()
+
+	# then email us about the feedback
+	email_api.sendFeedbackEmailNotification(this_feedback)
+	return JsonUtil.success()
 

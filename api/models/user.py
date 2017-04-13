@@ -24,20 +24,16 @@ class User(db.Model):
 	password_hash = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
 	stripe_customer_id = db.Column(db.String, unique = True)
+	is_admin = db.Column(db.Boolean, default = False)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-
-	# name,email, password all come from user inputs
-	# email_confirmation_id, stripe_customer_id will be generated with try statements 
 	def __init__(self, name, email, password, email_confirmation_id):
 		self.name = name
 		self.email = email
 		self.password_hash = User.argonHash(password)
 		self.email_confirmation_id = email_confirmation_id
-		# self.stripe_customer_id = stripe_customer_id
-		self.time_stamp = time.time()
 		self.email_confirmed = False
 		db.Model.__init__(self)
 		
@@ -78,12 +74,13 @@ class User(db.Model):
 		return {Labels.Success: True}
 
 	def toPublicDict(self):
-		user_dict = {}
-		user_dict['name'] = self.name
-		user_dict['email'] = self.email
-		user_dict['email_confirmed'] = self.email_confirmed
-		user_dict['account_id'] = self.account_id
-		return user_dict
+		public_dict = {}
+		public_dict['name'] = self.name
+		public_dict['email'] = self.email
+		public_dict['email_confirmed'] = self.email_confirmed
+		public_dict['account_id'] = self.account_id
+		public_dict['is_admin'] = self.is_admin
+		return public_dict
 
 	# do you think these methods should be static or instance?
 	# here is an example implementation for static 

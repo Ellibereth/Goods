@@ -18,7 +18,7 @@ class UserLabels:
 	NewSettings = "new_settings"
 	OldPassword = "old_password"
 
-class ImageManagerLabels:
+class ProductImageLabels:
 	TimeStamp = "time_stamp"
 	ImageId = "image_id"
 	ProductId = "product_id"
@@ -44,9 +44,22 @@ class MarketProductLabels:
 	MainImage = "main_image"
 	Inventory = "inventory"
 	SoftDeleted = "soft_deleted"
+	MarketProduct = "market_product"
+	SaleEndDate = "sale_end_date"
+	Tags = "tags"
 
 class ProductTagLabels:
 	ProductId = "product_id"
 	Tag = "tag"
 	TimeStamp = "time_stamp"
 	ProductTagId = "product_tag_id"
+
+class FeedbackLabels:
+	FeedbackId = "f_id"
+	TimeStamp = "time_stamp"
+	Email = "email"
+	FeedbackContent = "feedback_content"
+	Name = "name"
+	Success = "success"
+	AccountId = "account_id"
+

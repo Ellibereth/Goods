@@ -1,66 +1,69 @@
+import datetime
 from flask import Blueprint, jsonify, request
-import time
-from passlib.hash import argon2
-import base64
+from api.utility.table_names import ProdTables
+from api.utility.labels import MarketProductLabels as Labels
 
-from ..utility.market_product import MarketProductManager
-from ..utility.table_names import ProdTables
-from ..utility.product_tag_manager import ProductTagManager
+from api.utility.json_util import JsonUtil
+from api.s3.s3_api import S3
 
-class Labels:
-	Success = "success"
-	ProductId = "product_id"
-	ImageData = "image_data"
-	Price = "price"
-	Manufacturer = "manufacturer"
-	Name = "name"
-	Category = "category"
-	Description = "description"
-	Brand = "brand"
-	Tags = "tags"
-	MarketProduct = "market_product"
-	Product = "product"
+from api.models.shared_models import db
+from api.models.market_product import MarketProduct
+from api.models.product_tags import ProductTag
+from api.models.product_image import ProductImage
 
-
-market_product_keys = [Labels.Price, Labels.Manufacturer, Labels.Name, Labels.Category, Labels.Description , Labels.Brand]
 
 product_api = Blueprint('product_api', __name__)
 
 @product_api.route('/addMarketProduct', methods = ['POST'])
 def addMarketProduct():
 	market_product = request.json.get(Labels.MarketProduct)
+	if market_product == None:
+		return JsonUtil.failure("Invalid submission")
+	name = market_product.get(Labels.Name)
+	try:
+		print(market_product.get(Labels.Price))
+		price = float(market_product.get(Labels.Price))
+	except:
+		return JsonUtil.failure("Price is not a valid float")
+	category = market_product.get(Labels.Category)
+	description = market_product.get(Labels.Description)
+	manufacturer = market_product.get(Labels.Manufacturer)
+	inventory = market_product.get(Labels.Inventory)
+	sale_end_date_string = market_product.get(Labels.SaleEndDate)
+	"2018-08-29T21:09"
+	date_format = '%Y-%m-%dT%H:%M'
+	sale_end_date = datetime.datetime.strptime(sale_end_date_string, date_format)
+	new_product = MarketProduct(name, price, category, description, manufacturer, inventory, sale_end_date)
+	db.session.add(new_product)
 	tags = request.json.get(Labels.Tags)
-	market = MarketProductManager(ProdTables.MarketProductTable)
-	output = market.addMarketProduct(market_product)
-	market.closeConnection()
-
 	# add tags here, will change depending on front end input
 	# only update tags if adding the product was a success
-	if output[Labels.Success] and tags != None:
-		tag_manager = ProductTagManager(ProdTables.ProductTagTable)
+	if tags != None:
 		for tag in tags:
-			tag_manager.addProductTag(output[Labels.ProductId], tag)
-		tag_manager.closeConnection()
-	return jsonify(output)
+			new_tag = ProductTag(new_product.product_id, tag)
+			db.session.add(new_product)
+
+	db.session.commit()
+	return JsonUtil.success()
 
 @product_api.route('/getMarketProducts', methods = ['POST'])
 def getMarketProducts():
-	market = MarketProductManager(ProdTables.MarketProductTable)
-	market_products = market.getMarketProducts()
-	market.closeConnection()
-	return jsonify(market_products)
+	market_products = MarketProduct.query.all()
+	output = list()
+	for product in market_products:
+		output.append(product.toPublicDict())
+	print(output)
+	return jsonify(output)
 
 
 @product_api.route('/getMarketProductInfo', methods = ['POST'])
 def getMarketProductInfo():
 	product_id = request.json.get(Labels.ProductId)
-	market = MarketProductManager(ProdTables.MarketProductTable)
-	market_product = market.getMarketProductById(product_id)
-	market.closeConnection()
+	market_product = MarketProduct.query.filter_by(product_id = product_id)
 	if market_product == None:
-		return jsonify({Labels.Success : False, Labels.Error : "Error retrieving product information"})
+		return JsonUtil.failure("Error retrieving product information")
 	else:
-		return jsonify({Labels.Success: True, Labels.Product : market_product})
+		return JsonUtil.success(Labels.Product, market_product)
 
 @product_api.route('/uploadMarketProductImage', methods = ['POST'])
 def uploadMarketProductImage():
@@ -70,9 +73,20 @@ def uploadMarketProductImage():
 	image_data = request.json.get(Labels.ImageData)
 	image_bytes = image_data.encode('utf-8')
 	image_decoded = base64.decodestring(image_bytes)
-	market = MarketProductManager(ProdTables.MarketProductTable)
-	market.uploadMarketProductImage(product_id, image_decoded)
-	market.closeConnection()
-	return jsonify({Labels.Success : True})
+
+	# increment the number of images for the product
+	this_product = MarketProduct.query.filter_by(product_id = product_id)
+	this_product.num_images = this_product.num_images + 1
+	db.session.add(this_product)
+
+	# record the image_id in the database
+	image_record = ProductImage()
+	db.session.add(image_record)
+	# upload the image to S3
+	S3.uploadProductImage(image_record.image_id, image_decoded)
+
+	# commit to database
+	db.session.commit()
+	return JsonUtil.success()
 
 
