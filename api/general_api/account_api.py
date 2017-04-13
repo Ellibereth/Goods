@@ -6,6 +6,7 @@ from api.utility import email_api
 from api.models.shared_models import db
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
+from api.utility.json_util import JsonUtil
 
 	
 register_keys = [Labels.Name, Labels.Email, Labels.Password, Labels.PasswordConfirm]
@@ -18,10 +19,12 @@ def checkLogin():
 	email = request.json.get(Labels.Email)
 	input_password = request.json.get(Labels.Password)
 	this_user = User.query.filter_by(email = email).first()
+	if this_user == None:
+		return JsonUtil.failure("Not a real user")
 	if this_user.checkLogin(input_password):
-		return jsonify({Labels.Success : True, Labels.User : this_user.toPublicDict()})
+		return JsonUtil.success(Labels.User, this_user.toPublicDict())
 	else:
-		return jsonify({Labels.Success : False, Labels.Error: "Password is not correct"})
+		return JsonUtil.failure("Password is not correct")
 
 # registers a user
 @account_api.route('/registerUserAccount', methods = ['POST'])
@@ -32,21 +35,21 @@ def registerUserAccount():
 	password_confirm = request.json.get(Labels.PasswordConfirm)
 	old_user = User.query.filter_by(email = email).first()
 	if old_user != None:
-		return jsonify({Labels.Success : False, Lables.Error : "Email already exists"})
+		return JsonUtil.failure("Email already exists")
 	if password != password_confirm:
-		return jsonify({Labels.Success : False, Labels.Error : "Passwords do not match"})
+		return JsonUtil.failure("Passwords do not match")
 	try:
 		email_confirmation_id = User.generateEmailConfirmationId()
 		email_api.sendEmailConfirmation(email, email_confirmation_id)
 	except:
-		return jsonify({Labels.Success : False, Labels.Erorr : "Invald Email"})
+		return JsonUtil.failure("Invald Email")
 	new_user = User(name = name, email = email, password = password, 
 		email_confirmation_id =email_confirmation_id)
 	db.session.add(new_user)
 	stripe_customer_id = StripeManager.createCustomer(name, email)
 	new_user.stripe_customer_id = stripe_customer_id
 	db.session.commit()
-	return jsonify({Labels.Success : True, Labels.User : new_user.toPublicDict()})
+	return JsonUtil.success(Labels.User, new_user.toPublicDict())
 	
 
 
@@ -56,9 +59,9 @@ def confirmEmail():
 	email_confirmation_id = request.json.get(Labels.EmailConfirmationId)
 	this_user = User.query.filter_by(email_confirmation_id = email_confirmation_id).first()
 	if this_user == None:
-		return jsonify({Labels.Success : False, Labels.Error : "Email confirmation id doesn't go with any user"})
+		return JsonUtil.failure("Email confirmation id doesn't go with any user")
 	this_user.confirmEmail()
-	return jsonify({Labels.Success : True, Labels.User : this_user.toPublicDict()})
+	return JsonUtil.success(Labels.User, this_user.toPublicDict())
 
 
 # updates the user's settings
@@ -69,11 +72,11 @@ def updateSettings():
 	password = request.json.get(Labels.Password)
 	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
-		return jsonify({Labels.Success : False , Labels.Error : "Not a real user"})
+		return JsonUtil.failure("Not a real user")
 	if not this_user.checkLogin(password):
-		return jsonify({Labels.Success : False, Labels.Error: "Password is not correct"})
+		return JsonUtil.failure("Password is not correct")
 	this_user.updateSettings(new_settings)
-	return jsonify({Labels.Success : True, Labels.User : this_user.toPublicDict()})
+	return JsonUtil.success(Labels.User, this_user.toPublicDict())
 
 
 @account_api.route('/changePassword', methods = ['POST'])
@@ -85,10 +88,10 @@ def changePassword():
 	if new_password == new_password_confirm:
 		this_user = User.query.filter_by(email = email).first()
 		valid_password = this_user.changePassword(old_password, new_password)
-		if not valid_password:
-			return jsonify({Labels.Success : False, Labels.Error : "Password is invalid"})
+		if valid_password:
+			return JsonUtil.success(Labels.User, this_user.toPublicDict())
 		else:
-			return jsonify({Labels.Success : True, Labels.User : this_user.toPublicDict()})
+			return JsonUtil.failure("Password is invalid")
 	else:
-		return jsonify({Labels.Success : False, Labels.Error : "Passwords don't match"})
+		return JsonUtil.failure("Passwords don't match")
 

@@ -12,6 +12,8 @@ from api.utility.labels import UserLabels as Labels
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
 
+MIN_PASSWORD_LENGTH = 6
+
 ## user object class
 class User(db.Model):
 	__tablename__ = TestTables.UserInfoTable
@@ -19,7 +21,7 @@ class User(db.Model):
 	email = db.Column(db.String, unique = True, nullable = False)
 	email_confirmation_id = db.Column(db.String, unique = True, nullable = False)
 	email_confirmed = db.Column(db.Boolean)
-	password = db.Column(db.String, nullable = False)
+	password_hash = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
 	stripe_customer_id = db.Column(db.String, unique = True)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
@@ -32,7 +34,7 @@ class User(db.Model):
 	def __init__(self, name, email, password, email_confirmation_id):
 		self.name = name
 		self.email = email
-		self.password = User.argonHash(password)
+		self.password_hash = User.argonHash(password)
 		self.email_confirmation_id = email_confirmation_id
 		# self.stripe_customer_id = stripe_customer_id
 		self.time_stamp = time.time()
@@ -67,14 +69,12 @@ class User(db.Model):
 	# this will be used when user's are typing in their inputs on the screen too
 	@staticmethod
 	def validatePasswordSubimssion(password):
-		if len(password) < 6:
-			return {Labels.Success: False, Labels.Error : "Password must be at least 6 characters"}
+		if len(password) < MIN_PASSWORD_LENGTH:
+			return {Labels.Success: False, Labels.Error : "Password must be at least " + str(MIN_PASSWORD_LENGTH) + " characters"}
 		return {Labels.Success: True}
 
 	@staticmethod
 	def validateEmail(email):
-		# if len(password) < 6:
-		# 	return {Labels.Success: False, Labels.Error : "Password must be at least 6 characters"}
 		return {Labels.Success: True}
 
 	def toPublicDict(self):
@@ -106,14 +106,14 @@ class User(db.Model):
 	# return true if they do match
 	# returns false if they do not
 	def checkLogin(self, input_password):
-		return User.argonCheck(input_password, self.password)
+		return User.argonCheck(input_password, self.password_hash)
 
 	# changes the password of the user
 	# returns True if old password is correct
 	# return False if not
 	def changePassword(self, old_password, new_password):
 		if self.checkLogin(old_password):
-			self.password = User.argonHash(new_password)
+			self.password_hash = User.argonHash(new_password)
 			db.session.commit()
 			return True
 		else:
