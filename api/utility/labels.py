@@ -80,7 +80,7 @@ class RequestLabels:
 	DateCompleted = "date_completed"
 	Request = "request"
 
-class OrderLabels:
+class PaymentLabels:
 	StripeCustomerId = "stripe_customer_id"
 	AccountId = "account_id"
 	Success = "success"
@@ -94,4 +94,5 @@ class OrderLabels:
 	Product = "product"
 	StripeToken = "stripeToken"
 	Orders = "orders"
+
 

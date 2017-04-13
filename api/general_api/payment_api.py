@@ -11,6 +11,7 @@ from api.models.order import Order
 from api.models.user import User
 from api.models.market_product import MarketProduct
 from api.utility.json_util import JsonUtil
+from api.utility.labels import PaymentLabels as Labels
 
 
 
@@ -24,12 +25,15 @@ def acceptStripePayment():
 	token = request.json.get(Labels.StripeToken) # Using Flask
 	product_id = request.json.get(Labels.ProductId)
 	account_id = request.json.get(Labels.AccountId)
-
 	this_product = MarketProduct.query.filter_by(product_id = product_id)
-	this_user = User.query.filter_by(account_id = account_id)
+	this_user = User.query.filter_by(account_id = account_id).first()
+	if this_user == None:
+		return JsonUtil.failure("User does not exist")
 	charge = StripeManager.chargeCustomer(token, this_product, this_user)
 
 	new_order = Order(user, this_user, charge)
+	db.session.add(new_order)
+	db.session.commit()
 	return JsonUtil.success()
 
 @payment_api.route('/getUserOrders', methods = ['POST'])

@@ -8,9 +8,6 @@ from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.json_util import JsonUtil
 
-	
-register_keys = [Labels.Name, Labels.Email, Labels.Password, Labels.PasswordConfirm]
-
 account_api = Blueprint('account_api', __name__)
 
 # checks the login information from a user 

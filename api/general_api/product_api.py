@@ -57,7 +57,6 @@ def getMarketProducts():
 def getMarketProductInfo():
 	product_id = request.json.get(Labels.ProductId)
 	market_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	print(market_product.toPublicDict())
 	if market_product == None:
 		return JsonUtil.failure("Error retrieving product information")
 	else:

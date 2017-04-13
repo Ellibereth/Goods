@@ -5,7 +5,7 @@ from api.models.shared_models import db
 import time
 import random
 import string
-from api.utility.labels import OrderLabels as Labels
+from api.utility.labels import PaymentLabels as Labels
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see

@@ -23,8 +23,8 @@ export default class StorePage extends React.Component {
 	}
 
   	render() {
-	  	var product_id_1 = "P5OWK2GQGTEC83YAWJF9"
-	  	var product_id_2 = "XND4K7UJ9XK4GCPRVSK8"
+	  	var product_id_1 = 1
+	  	var product_id_2 = 1
 		return (
 			<div id = "store-page-container">
 				<TopNavBar/>	
