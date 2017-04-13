@@ -25,19 +25,7 @@ class Labels:
 	Success = "success"
 	Error = "error"
 
-product_request_database_columns = [
-								{"name" :  Labels.SubmissionId, "type" : "TEXT"},
-								{"name" :  Labels.TimeStamp, "type" : "FLOAT"},
-								{"name" :  Labels.Name, "type" : "TEXT"},
-								{"name" :  Labels.ProductDescription, "type" : "TEXT"},
-								{"name" :  Labels.PriceRange, "type" : "TEXT"},
-								{"name" :  Labels.Email, "type" : "TEXT"},
-								{"name" :  Labels.PhoneNumber, "type" : "TEXT"},
-								{"name" :  Labels.Completed, "type" : "BOOL"},
-								{"name" :  Labels.Confirmed, "type" : "BOOL"},
-								{"name" :  Labels.ConfirmationId, "type" : "TEXT"},
-								{"name" :  Labels.SoftDeleted, "type" : "BOOL"},
-								]
+
 
 product_request_submission_variables = [
 									Labels.Name,

@@ -7,7 +7,7 @@ import TextInput from '../../Misc/Input/TextInput.js'
 
 
 const form_labels = ['What is your name?', "What is your email?", "Phone Number? (Optional)", "How much would you like to pay?", "What are you looking for?"]
-const form_inputs = ["name", "email", "phone_number", "price_range", "product_description"]
+const form_inputs = ["name", "email", "phone_number", "price_range", "description"]
 
 
 export default class ProductRequestForm extends React.Component {
@@ -18,7 +18,7 @@ export default class ProductRequestForm extends React.Component {
 			email: "",
 			phone_number : "",
 			price_range: "",
-			product_description : "",
+			description : "",
 		}
 	}
 

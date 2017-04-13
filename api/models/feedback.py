@@ -34,11 +34,11 @@ class Feedback(db.Model):
 		
 
 	def toPublicDict(self):
-		user_dict = {}
-		user_dict['name'] = self.name
-		user_dict['email'] = self.email
-		user_dict['feedback_content'] = self.feedback_content
-		return user_dict
+		public_dict = {}
+		public_dict['name'] = self.name
+		public_dict['email'] = self.email
+		public_dict['feedback_content'] = self.feedback_content
+		return public_dict
 
 
 

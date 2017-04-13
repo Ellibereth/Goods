@@ -47,6 +47,9 @@ class MarketProductLabels:
 	MarketProduct = "market_product"
 	SaleEndDate = "sale_end_date"
 	Tags = "tags"
+	Product = "product"
+	DateCreated = "date_created"
+	ImageData = "image_data"
 
 class ProductTagLabels:
 	ProductId = "product_id"
@@ -62,4 +65,33 @@ class FeedbackLabels:
 	Name = "name"
 	Success = "success"
 	AccountId = "account_id"
+
+class RequestLabels:
+	Success = "success"
+	RequestId = "request_id"
+	ConfirmationId = "confirmation_id"
+	ImageData = "image_data"
+	Description = "description"
+	Email = "email"
+	PriceRange = "price_range"
+	Name = "name"
+	PhoneNumber = "phone_number"
+	DateCreated = "date_created"
+	DateCompleted = "date_completed"
+	Request = "request"
+
+class OrderLabels:
+	StripeCustomerId = "stripe_customer_id"
+	AccountId = "account_id"
+	Success = "success"
+	Error = "error"
+	StripeId = "stripe_id"
+	OrderId = "order_id"
+	ProductId = "product_id"
+	RefundDate = "refund_date"
+	StripeChargeId = "stripe_charge_id"
+	Id = "id"
+	Product = "product"
+	StripeToken = "stripeToken"
+	Orders = "orders"
 

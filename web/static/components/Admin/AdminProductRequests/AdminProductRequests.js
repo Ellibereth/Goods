@@ -4,8 +4,8 @@ var Config = require('Config')
 var url = Config.serverUrl
 
 import {Button} from 'react-bootstrap'
-const request_variables = ['submission_id', 'name', 'email', 'product_description', 'price_range', 'confirmed', 'completed', 'time_stamp']
-const headers = ['Delete', 'Submission Id', 'Name', 'Email', 'Product Description', 'Price Range', 'Confirmed', 'Completed', 'Time Stamp']
+const request_variables = ['request_id', 'name', 'email', 'description', 'price_range', 'confirmed', 'completed', 'date_created', 'date_completed']
+const headers = ['Delete', 'Request Id', 'Name', 'Email', 'Description', 'Price Range', 'Confirmed', 'Completed', 'Date Created', 'Date Completed']
 
 export default class AdminProductRequests extends React.Component {
 	constructor(props) {
@@ -34,7 +34,7 @@ export default class AdminProductRequests extends React.Component {
 
 
 	// index isn't used right now, but might be used later
-	onDeleteClick(s_id, index){
+	onDeleteClick(r_id, index){
 		swal({
 		  title: "Ready?",
 		  text: "Are you sure you want to delete this?",
@@ -49,15 +49,15 @@ export default class AdminProductRequests extends React.Component {
 			var temp = this.state.product_requests
 			temp.splice(index, 1)
 			this.setState({product_requests : temp})
-			this.softDeleteRequest.bind(this)(s_id)
+			this.softDeleteRequest.bind(this)(r_id)
 		}.bind(this))
 	}
 
-	softDeleteRequest(s_id){
-			var form_data = JSON.stringify({"submission_id": s_id})
+	softDeleteRequest(r_id){
+			var form_data = JSON.stringify({"request_id": r_id})
 			$.ajax({
 				type: "POST",
-				url: url  + "/softDeleteProductRequestBySubmissionId",
+				url: url  + "/softDeleteProductRequestByRequestId",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
@@ -99,7 +99,7 @@ export default class AdminProductRequests extends React.Component {
 					row.unshift(
 							<td className = "admin-table-cell-short" id = {request['submission_id'] + "_delete"} s_id = {request['submission_id']}
 							attr = "delete" index = {index}> 
-								<Button onClick = {() => this.onDeleteClick.bind(this)(request['submission_id'], index)}>
+								<Button onClick = {() => this.onDeleteClick.bind(this)(request['request_id'], index)}>
 									Delete!
 								</Button>
 							 </td> 

@@ -48,11 +48,9 @@ def sendRequestEmail(request):
 	msg['Subject'] = "User Request!"
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(recipients)
-	email = str(request.get('email'))
-	product_description = str(request.get('product_description'))
 	price_range = str(request.get('price_range'))
-	body = 'Here is a request from ' + email + "\n" + "Looking for a " + product_description + \
-		" in the price range : " + price_range
+	body = 'Here is a request from ' + request.email + "\n" + "Looking for a " + request.description + \
+		" in the price range : " + request.price_range
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
@@ -65,17 +63,17 @@ def sendRequestEmail(request):
 
 
 ## sends an email to the user to confirm the request
-def sendRequestConfirmation(request, confirmation_id):
+def sendRequestConfirmation(request):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Request!"
 	msg['From'] = "noreply@edgarusa.com"
-	email = str(request.get('email'))
+	email = str(request.email)
 	msg['To'] = email
 	product_description = str(request.get('product_description'))
 	price_range = str(request.get('price_range'))
-	url = "https://whereisitmade.herokuapp.com/confirmRequest/" + confirmation_id
+	url = "https://whereisitmade.herokuapp.com/confirmRequest/" + request.confirmation_id
 	body = 'This email is to confirm that you submitted a request on Remaura \n' \
 		+ "Please click the following link to confirm : " + url + "\n"  \
 		"If you did not submit a request, please ignore this email"

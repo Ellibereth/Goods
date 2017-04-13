@@ -16,9 +16,16 @@ class ProductImage(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-	def __init__(self):
+	def __init__(self, product_id):
+		self.product_id = product_id
 		self.image_id = ProductImage.generateImageId()
+		self.main_image = ProductImage.isFirstImageForProduct(product_id)
 		db.Model.__init__(self)
+
+	@staticmethod
+	def isFirstImageForProduct(product_id):
+		return ProductImage.query.filter_by(product_id = product_id).first() == None
+
 
 	@staticmethod
 	def id_generator(size=20, chars=string.ascii_uppercase + string.digits):
@@ -27,11 +34,11 @@ class ProductImage(db.Model):
 	@staticmethod
 	def generateImageId():
 		new_image_id = ProductImage.id_generator()
-		missing = User.query.filter_by(image_id = new_image_id).first()
+		missing = ProductImage.query.filter_by(image_id = new_image_id).first()
 		while missing is not None:
 			new_image_id = ProductImage.id_generator()
-			missing = User.query.filter_by(image_id = new_image_id).first()
-		return new_confirmation_id
+			missing = ProductImage.query.filter_by(image_id = new_image_id).first()
+		return new_image_id
 
 	def toPublicDict(self):
 		public_dict = {}

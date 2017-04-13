@@ -2,13 +2,12 @@ import datetime
 from flask import Blueprint, jsonify, request
 from api.utility.table_names import ProdTables
 from api.utility.labels import MarketProductLabels as Labels
-
+import base64
 from api.utility.json_util import JsonUtil
 from api.s3.s3_api import S3
-
 from api.models.shared_models import db
 from api.models.market_product import MarketProduct
-from api.models.product_tags import ProductTag
+from api.models.product_tag import ProductTag
 from api.models.product_image import ProductImage
 
 
@@ -21,7 +20,6 @@ def addMarketProduct():
 		return JsonUtil.failure("Invalid submission")
 	name = market_product.get(Labels.Name)
 	try:
-		print(market_product.get(Labels.Price))
 		price = float(market_product.get(Labels.Price))
 	except:
 		return JsonUtil.failure("Price is not a valid float")
@@ -52,18 +50,18 @@ def getMarketProducts():
 	output = list()
 	for product in market_products:
 		output.append(product.toPublicDict())
-	print(output)
 	return jsonify(output)
 
 
 @product_api.route('/getMarketProductInfo', methods = ['POST'])
 def getMarketProductInfo():
 	product_id = request.json.get(Labels.ProductId)
-	market_product = MarketProduct.query.filter_by(product_id = product_id)
+	market_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	print(market_product.toPublicDict())
 	if market_product == None:
 		return JsonUtil.failure("Error retrieving product information")
 	else:
-		return JsonUtil.success(Labels.Product, market_product)
+		return JsonUtil.success(Labels.Product, market_product.toPublicDict())
 
 @product_api.route('/uploadMarketProductImage', methods = ['POST'])
 def uploadMarketProductImage():
@@ -74,16 +72,18 @@ def uploadMarketProductImage():
 	image_bytes = image_data.encode('utf-8')
 	image_decoded = base64.decodestring(image_bytes)
 
-	# increment the number of images for the product
-	this_product = MarketProduct.query.filter_by(product_id = product_id)
-	this_product.num_images = this_product.num_images + 1
-	db.session.add(this_product)
-
 	# record the image_id in the database
-	image_record = ProductImage()
+	image_record = ProductImage(product_id)
 	db.session.add(image_record)
 	# upload the image to S3
 	S3.uploadProductImage(image_record.image_id, image_decoded)
+	
+	# increment the number of images for the product
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	this_product.num_images = len(ProductImage.query.filter_by(product_id = product_id).all())
+	db.session.add(this_product)
+
+	
 
 	# commit to database
 	db.session.commit()

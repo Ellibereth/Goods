@@ -4,7 +4,9 @@ from api.models.shared_models import db
 import time
 import random
 import string
+
 from api.utility.labels import MarketProductLabels as Labels
+from api.models.product_image import ProductImage
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
@@ -30,7 +32,7 @@ class MarketProduct(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-	# an example to add relationships 
+	# add relationships 
 	tag = db.relationship("ProductTag", backref = TestTables.ProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = TestTables.ImageTable, lazy='dynamic')
 
@@ -45,18 +47,27 @@ class MarketProduct(db.Model):
 		self.sale_end_date = sale_end_date
 		db.Model.__init__(self)
 		
+	def getProductImages(self):
+		images = ProductImage.query.filter_by(product_id = self.product_id).all()
+		image_list = list()
+		for image in images:
+			# if image.deleted_date == None:
+			image_list.append(image.toPublicDict())
+		return image_list
 
 	def toPublicDict(self):
 		public_dict = {}
-		public_dict['name'] = self.name
-		public_dict['price'] = self.price
-		public_dict['category'] = self.category
-		public_dict['description'] = self.description
-		public_dict['manufacturer'] = self.manufacturer
-		public_dict['name'] = self.inventory
-		public_dict['sale_end_date'] = self.sale_end_date
-		public_dict['date_created'] = self.date_created
-		public_dict['num_images'] = self.num_images
+		public_dict[Labels.Name] = self.name
+		public_dict[Labels.Price] = self.price
+		public_dict[Labels.Category] = self.category
+		public_dict[Labels.Description] = self.description
+		public_dict[Labels.Manufacturer] = self.manufacturer
+		public_dict[Labels.Inventory] = self.inventory
+		public_dict[Labels.SaleEndDate] = self.sale_end_date
+		public_dict[Labels.DateCreated] = self.date_created
+		public_dict[Labels.NumImages] = self.num_images
+		public_dict[Labels.ProductId] = self.product_id
+		public_dict[Labels.Images] = self.getProductImages()
 		return public_dict
 
 

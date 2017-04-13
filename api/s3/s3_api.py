@@ -5,16 +5,14 @@ import os
 # Let's use Amazon S3
 
 PUBLIC_PHOTOS = "publicmarketproductphotos"
-
-class S3:
-	s3 = boto3.resource('s3',
+s3 = boto3.resource('s3',
 			aws_access_key_id="AKIAJDIH6XBW42FXQX2Q",
 			aws_secret_access_key="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"
 		)
-	base_url = "https://s3-us-west-2.amazonaws.com"
+base_url = "https://s3-us-west-2.amazonaws.com"
 
-		
 
+class S3:
 	# takes photo_data input as a buffered reader
 	# see data = open('test.png', 'rb') data type
 	# gave up on writing the image byte string to a 
@@ -29,7 +27,7 @@ class S3:
 			f.write(image_data)
 			
 		image_file = open(transfer_dir + image_key, 'rb')
-		self.s3.Bucket(bucket_name).put_object(
+		s3.Bucket(bucket_name).put_object(
 			Key= image_key, 
 			Body=image_file
 		)

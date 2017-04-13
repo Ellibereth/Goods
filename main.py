@@ -29,8 +29,6 @@ from api.general_api.customer_service_api import customer_service_api
 app.register_blueprint(customer_service_api)
 from api.general_api.product_request_api import product_request_api
 app.register_blueprint(product_request_api)
-from api.general_api.product_submission_api import product_submission_api
-app.register_blueprint(product_submission_api)
 from api.general_api.admin_api import admin_api
 app.register_blueprint(admin_api)
 from api.general_api.account_api import account_api

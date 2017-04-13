@@ -6,70 +6,72 @@ import base64
 from ..utility.product_request_manager import ProductRequestManager
 from ..utility.table_names import ProdTables
 
-
-class Labels:
-	Success = "success"
-	ProductId = "product_id"
-	ConfirmationId = "confirmation_id"
-	ImageData = "image_data"
-	ProductDescription = "product_description"
-	Email = "email"
-	PriceRange = "price_range"
-	Name = "name"
-	PhoneNumber = "phone_number"
-
+from api.utility import email_api
+from api.models.shared_models import db
+from api.models.request import Request
+from api.utility.labels import RequestLabels as Labels
+from api.utility.json_util import JsonUtil
 
 product_request_api = Blueprint('product_request_api', __name__)
 
-request_keys = [Labels.ProductDescription,
-				Labels.Email,
-				Labels.PhoneNumber,
-				Labels.PriceRange,
-				Labels.Name
-				]
 
 
 ## soft deletes a product request
-@product_request_api.route('/softDeleteProductRequestBySubmissionId', methods = ['POST'])
-def softDeleteProductRequestBySubmissionId():
-	submission_id = request.json.get(Labels.SubmissionId)
-	request_manager = ProductRequestManager(ProdTables.UserRequestTable)
-	output = request_manager.softDeleteProductRequestBySubmissionId(submission_id)
-	request_manager.closeConnection()
-	return jsonify(output)
+@product_request_api.route('/softDeleteProductRequestByRequestId', methods = ['POST'])
+def softDeleteProductRequestByRequestId():
+	request_id = request.json.get(Labels.RequestId)
+	if request_id == None:
+		return JsonUtil.failure("Bad input")
+	this_request = Request.query.filter_by(request_id = request_id).first()
+	if request_id == None:
+		return JsonUtil.failure("This request id doesn't exist")
+	this_request.soft_deleted = True
+	db.session.commit()
+	return JsonUtil.success()
 
 @product_request_api.route('/getProductRequests', methods =['POST'])
 def getProductRequests():
-	request_manager = ProductRequestManager(ProdTables.UserRequestTable)
-	product_requests = request_manager.getProductRequests()
-	request_manager.closeConnection()
-	return jsonify(product_requests)
+	all_requests = Request.query.all()
+	output_list = list()
+	for req in all_requests:
+		output_list.append(req.toPublicDict())
+	return jsonify(output_list)
 
-@product_request_api.route('/verifyProductSubmission', methods =['POST'])
-def verifyProductSubmission():
-	submission_id = request.json.get(Labels.SubmissionId)
-	submission_manager = ProductSubmissionManager()
-	submission_manager.verifyProductSubmission(submission_id)
-	submission_manager.closeConnection()
-	output = {}
-	output[Labels.Success] = False
-	return jsonify(output)
 
 @product_request_api.route('/addProductRequest', methods = ['POST'])
 def addProductRequest():
-	product_requests = {}
-	for key in request_keys:
-		product_requests[key] = request.json.get(key)
-	request_manager = ProductRequestManager(ProdTables.UserRequestTable)
-	output = request_manager.addProductRequest(product_requests)
-	request_manager.closeConnection()
-	return jsonify(output)
+	email = request.json.get(Labels.Email)
+	name = request.json.get(Labels.Name)
+	description = request.json.get(Labels.Description)
+	price_range = request.json.get(Labels.PriceRange)
+	# this is optional for now, but might add later
+	# account_id = request.json.get(Labels.AccountId)
+
+	# send the confirmation email to all
+	new_request = Request(email, name, description, price_range)
+	try: 
+		email_api.sendRequestConfirmation(new_request)
+		# otherwise there's an error in the email
+	except:
+		return JsonUtil.failure("This email is not valid")
+	# now send us the email too
+	email_api.sendRequestEmail(request)
+
+	# once this is all good, we can commit to database
+	db.session.add(new_request)
+	db.session.commit()
+	return JsonUtil.success(Labels.Request, new_request.toPublicDict())
 
 ## confirms a request 
 @product_request_api.route('/confirmProductRequest', methods = ['POST'])
 def confirmProductRequest():
 	confirmation_id = request.json.get(Labels.ConfirmationId)
-	request_manager = ProductRequestManager(ProdTables.UserRequestTable)
-	output = request_manager.confirmProductRequest(confirmation_id)
-	request_manager.closeConnection()
-	return jsonify(output)
+	if confirmation_id == None:
+		return JsonUtil.failure("No confirmation id sent or bad input")
+	this_request = Request.query.filter_by(confirmation_id = confirmation_id).first()
+	if this_request == None:
+		return JsonUtil.failure("Bad confirmation id")
+
+	this_request.confirmed = True
+	db.session.commit()
+	return JsonUtil.success()

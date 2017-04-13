@@ -53,6 +53,7 @@ export default class ProductMainContainer extends React.Component {
 	render() {
 
 		var product = this.state.product
+		console.log(product)
 		if (product == null || product.product_id == null) return <div/>;
 		if (product.images.length == 0) return <h4> No images are listed for this product </h4>
 		// something better needs to be done about bad pages, but I'll figure something out soon
