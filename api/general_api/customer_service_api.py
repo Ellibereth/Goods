@@ -3,6 +3,8 @@ from api.utility.table_names import ProdTables
 from api.models.feedback import Feedback
 from api.models.shared_models import db
 from api.utility.labels import FeedbackLabels as Labels
+from api.utility import email_api
+from api.utility.json_util import JsonUtil
 
 customer_service_api = Blueprint('customer_service_api', __name__)
 

@@ -15,7 +15,6 @@ export default class TextInput extends React.Component {
   render() {
   	var colSize = this.props.colSize ? this.props.colSize : "8"
 	var input_type = this.props.input_type ? this.props.input_type : "text"
-	console.log(input_type)
 	var input_div = (
 					<div className = {"col-sm-" + colSize}>
 					  <input placeholder="" id="name" type = {input_type}

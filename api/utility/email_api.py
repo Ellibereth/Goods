@@ -35,20 +35,12 @@ def sendImageEmail(image_name, image_data):
 
 ## informs darek@manaweb.com of the incoming request 
 def sendRequestEmail(request):
-	#to send from temporary gmail 
-	"""
-	sender = "manaweb.noreply@gmail.com"
-	passW = "powerplay"
-	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
-	"""	
-	# to send from manaweb
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Request!"
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(recipients)
-	price_range = str(request.get('price_range'))
 	body = 'Here is a request from ' + request.email + "\n" + "Looking for a " + request.description + \
 		" in the price range : " + request.price_range
 	textPart = MIMEText(body, 'plain')
@@ -71,10 +63,10 @@ def sendRequestConfirmation(request):
 	msg['From'] = "noreply@edgarusa.com"
 	email = str(request.email)
 	msg['To'] = email
-	product_description = str(request.get('product_description'))
-	price_range = str(request.get('price_range'))
+	product_description = request.description
+	price_range = request.price_range
 	url = "https://whereisitmade.herokuapp.com/confirmRequest/" + request.confirmation_id
-	body = 'This email is to confirm that you submitted a request on Remaura \n' \
+	body = 'This email is to confirm that you submitted a request on Edgar USA \n' \
 		+ "Please click the following link to confirm : " + url + "\n"  \
 		"If you did not submit a request, please ignore this email"
 	textPart = MIMEText(body, 'plain')
@@ -132,7 +124,7 @@ def sendFeedbackEmailNotification(feedback):
 	msg['Subject'] = "User Feedback!"
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(recipients)
-	name = str(feedback.get('name'))
+	name = feedback.name
 	body = "Name: " + feedback.name + "\n Email: " + feedback.email + \
 			"\n Content: " + feedback.feedback_content
 	textPart = MIMEText(body, 'plain')

@@ -6,6 +6,7 @@ import time
 import random
 import string
 from api.utility.labels import FeedbackLabels as Labels
+from api.utility.json_util import JsonUtil
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
@@ -15,7 +16,7 @@ from api.utility.labels import FeedbackLabels as Labels
 class Feedback(db.Model):
 	__tablename__ = TestTables.FeedbackTable
 	feedback_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-	email = db.Column(db.String, unique = True, nullable = False)
+	email = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
 	feedback_content = db.Column(db.String, nullable = False)
 	account_id = db.Column(db.String, nullable = True)

@@ -59,7 +59,7 @@ export default class StorePage extends React.Component {
 
   	render() {
   		// hard coded for now
-  		console.log(this.state.product.sale_end_date)
+  		console.log(this.state.product.sale_end_datew)
   		var date = this.state.product.sale_end_date
   		if (this.state.invalid_product) return <div/>
 		return (

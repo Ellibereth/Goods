@@ -14,10 +14,11 @@ from api.utility.labels import RequestLabels as Labels
 class Request(db.Model):
 	__tablename__ = TestTables.UserRequestTable
 	request_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-	email = db.Column(db.String, unique = True, nullable = False)
+	email = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
 	description = db.Column(db.String)
 	price_range = db.Column(db.String)
+	phone_number = db.Column(db.String)
 	completed = db.Column(db.Boolean, default = False)
 	confirmed = db.Column(db.Boolean, default = False)
 	confirmation_id = db.Column(db.String, unique = True)
@@ -31,12 +32,13 @@ class Request(db.Model):
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, email, name, description, price_range, account_id = None):
+	def __init__(self, email, name, description, price_range, phone_number, account_id = None):
 		self.confirmation_id = Request.generateConfirmationId()
 		self.name = name
 		self.email = email
 		self.description = description
 		self.price_range = price_range
+		self.phone_number = phone_number
 		self.account_id = account_id
 		db.Model.__init__(self)
 	
@@ -60,7 +62,7 @@ class Request(db.Model):
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.PriceRange] = self.price_range
 		public_dict[Labels.Confirmed] = self.confirmed
-		public_dict[Labels.competed] = self.completed
+		public_dict[Labels.Completed] = self.completed
 		public_dict[Labels.DateCreated] = self.date_created
 		public_dict[Labels.RequestId] = self.request_id
 		public_dict[Labels.DateCompleted] = self.date_completed

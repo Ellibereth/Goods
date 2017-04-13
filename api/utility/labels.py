@@ -79,6 +79,8 @@ class RequestLabels:
 	DateCreated = "date_created"
 	DateCompleted = "date_completed"
 	Request = "request"
+	Confirmed = "confirmed"
+	Completed = "completed"
 
 class PaymentLabels:
 	StripeCustomerId = "stripe_customer_id"
