@@ -76,11 +76,11 @@ def sendRequestConfirmation(request):
 	smtpserver.starttls()
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
-	try:
-		smtpserver.send_message(msg)
-		output = {Success : True, Labels.EmailConfirmationId : confirmation_id}
-	except:
-		output = {"success" : False}
+	# try:
+	smtpserver.send_message(msg)
+	# 	output = {Success : True, Labels.EmailConfirmationId : confirmation_id}
+	# except:
+	# 	output = {"success" : False}
 	smtpserver.close()
 
 def sendEmailConfirmation(email, email_confirmation_id):

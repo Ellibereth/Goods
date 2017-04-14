@@ -69,8 +69,9 @@ class User(db.Model):
 			return {Labels.Success: False, Labels.Error : "Password must be at least " + str(MIN_PASSWORD_LENGTH) + " characters"}
 		return {Labels.Success: True}
 
+	# WIP
 	@staticmethod
-	def validateEmail(email):
+	def validateEmailSubmission(email):
 		return {Labels.Success: True}
 
 	def toPublicDict(self):

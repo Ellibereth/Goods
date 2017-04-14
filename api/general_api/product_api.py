@@ -28,7 +28,6 @@ def addMarketProduct():
 	manufacturer = market_product.get(Labels.Manufacturer)
 	inventory = market_product.get(Labels.Inventory)
 	sale_end_date_string = market_product.get(Labels.SaleEndDate)
-	"2018-08-29T21:09"
 	date_format = '%Y-%m-%dT%H:%M'
 	sale_end_date = datetime.datetime.strptime(sale_end_date_string, date_format)
 	new_product = MarketProduct(name, price, category, description, manufacturer, inventory, sale_end_date)
@@ -40,7 +39,6 @@ def addMarketProduct():
 		for tag in tags:
 			new_tag = ProductTag(new_product.product_id, tag)
 			db.session.add(new_product)
-
 	db.session.commit()
 	return JsonUtil.success()
 
