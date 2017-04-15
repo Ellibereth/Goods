@@ -4,8 +4,9 @@ var Config = require('Config')
 var url = Config.serverUrl
 
 import AddProductModal from './ProductAdd/AddProductModal.js'
-import UploadMarketPhoto from './ProductAdd/UploadMarketPhoto.js'
+
 import {Button} from 'react-bootstrap'
+var Link = require('react-router').Link;
 
 const product_variables = ['name', 'product_id', 'description', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date']
 const headers = ['Name', 'Product Id', 'Description', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
@@ -67,12 +68,13 @@ export default class AdminMarketProducts extends React.Component {
 							 {product[attr]} </td> 
 							)
 						})
+				
 					row.unshift(
-							<td className = "admin-table-cell-short" s_id = {product['product_id']}
-							attr = "addPhoto" index = {index}> 
-								<UploadMarketPhoto product = {product}/>
-							 </td> 
-						)
+						<td className = "admin-table-cell-short" id = {product['product_id']}
+						attr = "go_to" index = {index}>
+							<Link to = {"/adminEditProduct/" + product.product_id}> Go to! </Link>
+						</td>
+					)
 					return (
 						<tr>
 							{row}

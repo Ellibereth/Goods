@@ -5,13 +5,14 @@ var url = Config.serverUrl
 
 import {} from 'react-bootstrap';
 import TopNavBar from '../../Misc/TopNavBar.js'
+var browserHistory = require('react-router').browserHistory;
 
 export default class EmailConfirmationPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			email_confirmation_id : this.props.params.email_confirmation_id,
-			display : "failure"
+			valid_user : false
 		}
 	}
 	
@@ -27,12 +28,13 @@ export default class EmailConfirmationPage extends React.Component {
 			success: function(data) {
 				if (data.success){
 					// maybe do something to display if not confirmed
-					this.setState({display : "confirmed"})
+					this.setState({valid_user : true})
 				}
 				// redirect if something is wrong 
 				else {
 					// redirect to '/'
-					console.log("redirect to index")
+					browserHistory.push(`/miscPage`)
+					this.setState({valid_user : false})
 				}
 			},
 			error: function(){

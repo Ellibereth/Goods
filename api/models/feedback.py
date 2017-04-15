@@ -6,7 +6,7 @@ import time
 import random
 import string
 from api.utility.labels import FeedbackLabels as Labels
-from api.utility.json_util import JsonUtil
+
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see

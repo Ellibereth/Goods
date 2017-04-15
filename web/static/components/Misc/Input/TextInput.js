@@ -24,10 +24,11 @@ export default class TextInput extends React.Component {
 	if (input_type == "textarea"){
 		input_div = (
 		  <div className="col-sm-12">
-			  <textarea placeholder="" id="name" rows = "12" className="form-control" onChange = {this.handleChange.bind(this)} />
+			  <textarea placeholder="" value = {this.props.value} id="name" rows = "12" className="form-control" onChange = {this.handleChange.bind(this)} />
 		  </div>
 		  )
 	}
+
 	return (
 	  <div className="form-group">
 		  <div className="col-sm-10">

@@ -8,7 +8,7 @@ var browserHistory = require('react-router').browserHistory;
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
-import AdminPage from './Admin/AdminPage.js'
+import AdminLoginPage from './Admin/AdminLoginPage.js'
 import PageNotFound from './Misc/PageNotFound.js'
 import EmailConfirmationPage from './Confirmation/EmailConfirmation/EmailConfirmationPage.js'
 import RequestConfirmationPage from './Confirmation/RequestConfirmation/RequestConfirmationPage.js'
@@ -23,6 +23,9 @@ import UpdateSettingsPage from './Account/Settings/UpdateSettingsPage.js'
 import OrderHistoryPage from './Account/Settings/OrderHistoryPage.js'
 import ChangePasswordPage from './Account/Settings/ChangePasswordPage.js'
 import LogoutPage from './Misc/LogoutPage.js'
+import AdminEditProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminEditProductPage.js'
+import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
+import AdminToolsPage from './Admin/AdminToolsPage.js'
 
 export default class Main extends React.Component {
 	render() {
@@ -33,25 +36,48 @@ export default class Main extends React.Component {
 	}
 }
 
+const checkConfirmedUser = (nextState, replace) => {
+	var thisUser = AppStore.getCurrentUser();
+	if (!thisUser) {
+		replace(`/`)
+	}
+	else if (thisUser.confirmed) {
+		replace(`/pleaseConfirm`);
+	}
+}
+
+const checkAdmin = (nextState, replace) => {
+	var thisUser = AppStore.getCurrentUser();
+	if (!thisUser) {
+		replace(`/`)
+	}
+	if (!thisUser.isAdmin) {
+		replace(`/`);
+	}
+}
+
 
 ReactDOM.render(  
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
 			<IndexRoute  component={HomePage} />
-			<Route path = 'admin' component = {AdminPage}/>
+			<Route path = 'adminLogin' component = {AdminLoginPage}/>
+			<Route path = 'adminTools' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
-			<Route path= "Store" component={StorePage}/>
+			<Route path= "store" component={StorePage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
 			<Route path= "eg/:product_id" component={ProductPage}/>
 			<Route path = "register" component = {RegisterPage}/>
 			<Route path = "login" component = {LoginPage}/>
-			<Route path = "settings" component = {SettingsPage}/>
-			<Route path = "updateSettings" component = {UpdateSettingsPage}/>
-			<Route path = "changePassword" component = {ChangePasswordPage}/>
-			<Route path = "orders" component = {OrderHistoryPage}/>
+			<Route path = "settings" onEnter = {checkConfirmedUser} component = {SettingsPage}/>
+			<Route path = "updateSettings" onEnter = {checkConfirmedUser} component = {UpdateSettingsPage}/>
+			<Route path = "changePassword" onEnter = {checkConfirmedUser} component = {ChangePasswordPage}/>
+			<Route path = "orders" onEnter = {checkConfirmedUser} component = {OrderHistoryPage}/>
 			<Route path= "logout" component={LogoutPage} />
+			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
+			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminEditProductPage} />
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

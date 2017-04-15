@@ -60,6 +60,67 @@ def getMarketProductInfo():
 	else:
 		return JsonUtil.success(Labels.Product, market_product.toPublicDict())
 
+@product_api.route('/setMainProductPhoto', methods = ['POST'])
+def setMainProductPhoto():
+	product_id = request.json.get(Labels.ProductId)
+	image_id = request.json.get(Labels.ImageId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Error retrieving product information")
+
+	this_image = ProductImage.query.filter_by(image_id = image_id).first()
+	if this_image == None:
+		return JsonUtil.failure("Error retrieving image")
+
+	# set all other images main_image to false
+	this_product_images = ProductImage.query.filter_by(product_id = product_id).all()
+	for img in this_product_images:
+		img.main_image = False
+	this_image.main_image = True
+	db.session.commit()
+	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
+
+@product_api.route('/deleteProductPhoto', methods = ['POST'])
+def deleteProductPhoto():
+	product_id = request.json.get(Labels.ProductId)
+	image_id = request.json.get(Labels.ImageId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Error retrieving product information")
+	this_image = ProductImage.query.filter_by(image_id = image_id).first()
+	if this_image == None:
+		return JsonUtil.failure("Error retrieving image")
+	this_image.soft_deleted = True
+	db.session.commit()
+	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
+
+@product_api.route('/updateProductInfo', methods = ['POST'])
+def updateProductInfo():
+	product_id = request.json.get(Labels.ProductId)
+	product = request.json.get(Labels.Product)
+	name = request.json.get(Labels.Name)
+
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Error retrieving product information")
+	price = request.json.get(Labels.Price)
+	description = request.json.get(Labels.Description)
+	manufacturer = request.json.get(Labels.Manufacturer)
+	sale_end_date = request.json.get(Labels.SaleEndDate)
+	if price != None:
+		this_product.price = price
+	if description != None:
+		this_product.description = description
+	if manufacturer != None:
+		this_product.manufacturer = manufacturer
+	if sale_end_date != None:
+		this_product.sale_end_date = sale_end_date
+	if name != None:
+		this_product.name = name
+	db.session.commit()
+	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
+
+
 @product_api.route('/uploadMarketProductImage', methods = ['POST'])
 def uploadMarketProductImage():
 	## yes Ben I know this is a magic string / hard coded
@@ -79,9 +140,6 @@ def uploadMarketProductImage():
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	this_product.num_images = len(ProductImage.query.filter_by(product_id = product_id).all())
 	db.session.add(this_product)
-
-	
-
 	# commit to database
 	db.session.commit()
 	return JsonUtil.success()

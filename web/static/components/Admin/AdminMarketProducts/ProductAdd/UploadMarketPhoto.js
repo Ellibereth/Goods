@@ -79,6 +79,9 @@ export default class ProductRequestForm extends React.Component {
 		var product = this.props.product
 		return (
 			<Form horizontal>
+				<div className="col-sm-4">
+			  		Upload a photo!
+		  		</div>
 				<input type = "file" placeholder="Image" id= {product.product_id + "_upload"} className="form-control"
 				accept="image/*" 
 				onChange = {() => this.handleImageChange.bind(this)(product.product_id)} />

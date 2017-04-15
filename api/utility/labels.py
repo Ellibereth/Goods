@@ -50,6 +50,7 @@ class MarketProductLabels:
 	Product = "product"
 	DateCreated = "date_created"
 	ImageData = "image_data"
+	ImageId = "image_id"
 
 class ProductTagLabels:
 	ProductId = "product_id"

@@ -12,6 +12,7 @@ class ProductImage(db.Model):
 	image_id = db.Column(db.String, primary_key = True)
 	main_image = db.Column(db.Boolean)
 	product_id = db.Column(db.Integer, db.ForeignKey(TestTables.MarketProductTable + '.' + Labels.ProductId))
+	soft_deleted = db.Column(db.Boolean, default = False)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())

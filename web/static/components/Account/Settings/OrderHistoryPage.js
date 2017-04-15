@@ -15,13 +15,7 @@ export default class OrderHistoryPage extends React.Component {
 		}
 	}
 
-	// no need to be on settings if no one is logged in
-	componentWillMount(){
-		var current_user = AppStore.getCurrentUser()
-		if (current_user == null || !current_user || current_user == {}){
-			browserHistory.push('/')
-		}
-	}
+	
 
 
 	componentDidMount(){

@@ -4,6 +4,7 @@ from api.models.shared_models import db
 import time
 import random
 import string
+import json
 
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
@@ -48,10 +49,9 @@ class MarketProduct(db.Model):
 		db.Model.__init__(self)
 		
 	def getProductImages(self):
-		images = ProductImage.query.filter_by(product_id = self.product_id).all()
+		images = ProductImage.query.filter_by(product_id = self.product_id, soft_deleted = False).all()
 		image_list = list()
 		for image in images:
-			# if image.deleted_date == None:
 			image_list.append(image.toPublicDict())
 		return image_list
 
@@ -63,7 +63,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.Manufacturer] = self.manufacturer
 		public_dict[Labels.Inventory] = self.inventory
-		public_dict[Labels.SaleEndDate] = self.sale_end_date
+		public_dict[Labels.SaleEndDate] = self.sale_end_date.strftime('%Y-%m-%dT%H:%M:%S')
 		public_dict[Labels.DateCreated] = self.date_created
 		public_dict[Labels.NumImages] = self.num_images
 		public_dict[Labels.ProductId] = self.product_id
