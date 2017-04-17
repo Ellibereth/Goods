@@ -11,10 +11,12 @@ var _ip = ""
 function _loadCurrentUser(data, jwt) {
   	_currentUser = data;
   	localStorage.CurrentUser = JSON.stringify(_currentUser);
+  	localStorage.jwt = jwt;
 }	
 function _removeCurrentUser() {
   	_currentUser = "";
   	localStorage.CurrentUser = JSON.stringify(_currentUser);
+  	localStorage.jwt = "";
 }
 function _addIp(data) {
 	_ip = data;

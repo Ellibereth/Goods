@@ -5,7 +5,7 @@ import time
 import random
 import string
 from api.utility.labels import RequestLabels as Labels
-
+from api.utility.id_util import IdUtil
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
 
@@ -29,7 +29,6 @@ class Request(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
 	def __init__(self, email, name, description, price_range, phone_number, account_id = None):
@@ -41,17 +40,13 @@ class Request(db.Model):
 		self.phone_number = phone_number
 		self.account_id = account_id
 		db.Model.__init__(self)
-	
-	@staticmethod
-	def id_generator(size=20, chars=string.ascii_uppercase + string.digits):
-		return ''.join(random.choice(chars) for _ in range(size))
 
 	@staticmethod
 	def generateConfirmationId():
-		new_confirmation_id = Request.id_generator()
+		new_confirmation_id = IdUtil.id_generator()
 		missing = Request.query.filter_by(confirmation_id = new_confirmation_id).first()
 		while missing is not None:
-			new_confirmation_id = User.id_generator()
+			new_confirmation_id = IdUtil.id_generator()
 			missing = Request.query.filter_by(confirmation_id = new_confirmation_id).first()
 		return new_confirmation_id
 

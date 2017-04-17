@@ -30,7 +30,6 @@ export default class HomePage extends React.Component {
   } 
 
   render() {
-    console.log(this.props.has_login)
     return (
         <div id = "home-page-container">
               <TopNavBar no_login = {this.props.no_login}/>

@@ -55,7 +55,8 @@ export default class SettingsFormPersonal extends React.Component {
 				"email" : AppStore.getCurrentUser().email,
 				"password" : this.state.password,
 				"password_confirm" : this.state.password_confirm,
-				"old_password" : this.state.old_password
+				"old_password" : this.state.old_password,
+				"jwt" : localStorage.jwt
 			})
 			$.ajax({
 				type: "POST",

@@ -2,10 +2,11 @@ var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var AppConstants = require('../constants/AppConstants.js');
 
 var AppActions = {
-    addCurrentUser: function(data){
+    addCurrentUser: function(data, jwt){
         AppDispatcher.handleViewAction({
           actionType: AppConstants.ADD_CURRENTUSER,
           data: data,
+          jwt: jwt
         })
     },
     removeCurrentUser: function(){

@@ -5,21 +5,25 @@ import random
 import requests
 from flask_sqlalchemy import SQLAlchemy
 from api.models.shared_models import db
+from api.utility.jwt_util import JwtUtil
+
+from base64 import b64encode
 
 # initialize app
 template_dir = os.path.abspath('./web/templates')
 static_dir = os.path.abspath('./web/static')
 app = Flask(__name__, template_folder=template_dir, static_folder = static_dir)
+# this was generated with os.urandom(24) but we can change this occasionally for more security
+secret_key = b64encode(b'L=\xbf=_\xa5P \xc5+\x9b3\xa4\xfdZ\x8fN\xc6\xd5\xb7/\x0f\xbe\x1b')
+secret_key = secret_key.decode('utf-8')
+app.config['SECRET_KEY'] = secret_key
+os.environ['SECRET_KEY'] = secret_key
+
+
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-
-
-
-# NOTE !!!!  this should definitely be randomly generated and look like some crazy impossible to guess hash
-# but for now we'll keep is simple and easy to remember
-app.secret_key = "powerplay"
 
 from api.general_api.public_api import public_api
 app.register_blueprint(public_api)

@@ -36,10 +36,20 @@ def acceptStripePayment():
 	db.session.commit()
 	return JsonUtil.success()
 
-@payment_api.route('/getUserOrders', methods = ['POST'])
-def getUserOrders():
+@payment_api.route('/getAllOrders', methods = ['POST'])
+def getAllOrders():
 	all_orders = Order.query.all()
 	output_list = list()
 	for order in all_orders:
+		output_list.append(order.toPublicDict())
+	return jsonify(output_list)
+
+
+@payment_api.route('/getUserOrders', methods = ['POST'])
+def getUserOrders():
+	account_id = request.json.get(Labels.AccountId)
+	this_user_orders = Order.query.filter_by(account_id = account_id).all()
+	output_list = list()
+	for order in this_user_orders:
 		output_list.append(order.toPublicDict())
 	return jsonify(output_list)

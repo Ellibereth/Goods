@@ -17,6 +17,7 @@ class UserLabels:
 	User = "user"
 	NewSettings = "new_settings"
 	OldPassword = "old_password"
+	Jwt = "jwt"
 
 class ProductImageLabels:
 	TimeStamp = "time_stamp"

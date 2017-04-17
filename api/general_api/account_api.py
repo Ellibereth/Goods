@@ -7,6 +7,7 @@ from api.models.shared_models import db
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.json_util import JsonUtil
+from api.utility.jwt_util import JwtUtil
 
 account_api = Blueprint('account_api', __name__)
 
@@ -19,7 +20,8 @@ def checkLogin():
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
 	if this_user.checkLogin(input_password):
-		return JsonUtil.success(Labels.User, this_user.toPublicDict())
+		output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+		return JsonUtil.successWithOutput(output)
 	else:
 		return JsonUtil.failure("Password is not correct")
 
@@ -64,16 +66,20 @@ def confirmEmail():
 # updates the user's settings
 @account_api.route('/updateSettings', methods = ['POST'])
 def updateSettings():
+	jwt = request.json.get(Labels.Jwt)
 	email = request.json.get(Labels.Email)
 	new_settings = request.json.get(Labels.NewSettings)
 	password = request.json.get(Labels.Password)
 	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
+	if not JwtUtil.validateJwtUser(jwt, this_user.account_id):
+		return JsonUtil.jwt_failure()
 	if not this_user.checkLogin(password):
 		return JsonUtil.failure("Password is not correct")
 	this_user.updateSettings(new_settings)
-	return JsonUtil.success(Labels.User, this_user.toPublicDict())
+	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+	return JsonUtil.successWithOutput(output)
 
 
 @account_api.route('/changePassword', methods = ['POST'])
@@ -82,11 +88,18 @@ def changePassword():
 	old_password = request.json.get(Labels.OldPassword)
 	new_password = request.json.get(Labels.Password)
 	new_password_confirm = request.json.get(Labels.PasswordConfirm)
+	this_user = User.query.filter_by(email = email).first()
+	if this_user == None:
+		return JsonUtil.failure("Not a real user")
+
+	if not JwtUtil.validateJwtUser(jwt, this_user.account_id):
+		return JsonUtil.jwt_failure
+
 	if new_password == new_password_confirm:
-		this_user = User.query.filter_by(email = email).first()
 		valid_password = this_user.changePassword(old_password, new_password)
 		if valid_password:
-			return JsonUtil.success(Labels.User, this_user.toPublicDict())
+			output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+			return JsonUtil.successWithOutput(output)
 		else:
 			return JsonUtil.failure("Password is invalid")
 	else:

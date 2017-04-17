@@ -8,6 +8,7 @@ import string
 from api.utility import email_api
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
+from api.utility.id_util import IdUtil
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
@@ -38,11 +39,6 @@ class User(db.Model):
 		db.Model.__init__(self)
 		
 	@staticmethod
-	def id_generator(size=20, chars=string.ascii_uppercase + string.digits):
-		return ''.join(random.choice(chars) for _ in range(size))
-
-
-	@staticmethod
 	def argonHash(pre_hash):
 		return argon2.using(rounds=4).hash(pre_hash)
 
@@ -52,10 +48,10 @@ class User(db.Model):
 
 	@staticmethod
 	def generateEmailConfirmationId():
-		new_confirmation_id = User.id_generator()
+		new_confirmation_id = IdUtil.id_generator()
 		missing = User.query.filter_by(email_confirmation_id = new_confirmation_id).first()
 		while missing is not None:
-			new_confirmation_id = User.id_generator()
+			new_confirmation_id = IdUtil.id_generator()
 			missing = User.query.filter_by(email_confirmation_id = new_confirmation_id).first()
 		return new_confirmation_id
 

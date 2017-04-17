@@ -5,6 +5,7 @@ import time
 import random
 import string
 from api.utility.labels import ProductImageLabels as Labels
+from api.utility.id_util import IdUtil
 
 ## user object class
 class ProductImage(db.Model):
@@ -27,17 +28,12 @@ class ProductImage(db.Model):
 	def isFirstImageForProduct(product_id):
 		return ProductImage.query.filter_by(product_id = product_id).first() == None
 
-
-	@staticmethod
-	def id_generator(size=20, chars=string.ascii_uppercase + string.digits):
-		return ''.join(random.choice(chars) for _ in range(size))
-
 	@staticmethod
 	def generateImageId():
-		new_image_id = ProductImage.id_generator()
+		new_image_id = IdUtil.id_generator()
 		missing = ProductImage.query.filter_by(image_id = new_image_id).first()
 		while missing is not None:
-			new_image_id = ProductImage.id_generator()
+			new_image_id = IdUtil.id_generator()
 			missing = ProductImage.query.filter_by(image_id = new_image_id).first()
 		return new_image_id
 

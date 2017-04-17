@@ -64,7 +64,8 @@ export default class SettingsFormPersonal extends React.Component {
 			var form_data = JSON.stringify({
 				"email" : AppStore.getCurrentUser().email,
 				"new_settings" : new_settings,
-				"password" : this.state.password
+				"password" : this.state.password,
+				"jwt" : localStorage.jwt
 			})
 			$.ajax({
 				type: "POST",
@@ -78,7 +79,7 @@ export default class SettingsFormPersonal extends React.Component {
 					}
 					else {
 						AppActions.removeCurrentUser()
-						AppActions.addCurrentUser(data.user)
+						AppActions.addCurrentUser(data.user, data.jwt)
 						swal({title: "Thank you!", text : "Your changes have been made",type: "success"})
 					}
 				}.bind(this),
