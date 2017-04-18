@@ -15,7 +15,7 @@ def checkAdminLogin():
 	password = request.json.get(Labels.Password)
 	if password == admin_login_password:
 		admin_jwt = JwtUtil.create_admin_jwt()
-		return JsonUtil.successWithOutput({"jwt" : admin_jwt})
+		return JsonUtil.successWithOutput({"user" : {'is_admin' : True}, "jwt" : admin_jwt})
 	else:
 		return JsonUtil.failire("Invalid Credentials")
 

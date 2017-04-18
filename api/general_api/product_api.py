@@ -16,7 +16,7 @@ product_api = Blueprint('product_api', __name__)
 
 @product_api.route('/addMarketProduct', methods = ['POST'])
 def addMarketProduct():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 	market_product = request.json.get(Labels.MarketProduct)
@@ -48,7 +48,7 @@ def addMarketProduct():
 
 @product_api.route('/getMarketProducts', methods = ['POST'])
 def getMarketProducts():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 
@@ -70,7 +70,7 @@ def getMarketProductInfo():
 
 @product_api.route('/setMainProductPhoto', methods = ['POST'])
 def setMainProductPhoto():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 
@@ -94,7 +94,7 @@ def setMainProductPhoto():
 
 @product_api.route('/deleteProductPhoto', methods = ['POST'])
 def deleteProductPhoto():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 	product_id = request.json.get(Labels.ProductId)
@@ -111,7 +111,7 @@ def deleteProductPhoto():
 
 @product_api.route('/updateProductInfo', methods = ['POST'])
 def updateProductInfo():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 	product_id = request.json.get(Labels.ProductId)
@@ -141,7 +141,7 @@ def updateProductInfo():
 
 @product_api.route('/uploadMarketProductImage', methods = ['POST'])
 def uploadMarketProductImage():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 	## yes Ben I know this is a magic string / hard coded

@@ -76,7 +76,7 @@ const checkAdmin = (nextState, replace) => {
 	if (!thisUser) {
 		replace(`/`)
 	}
-	if (!thisUser.isAdmin) {
+	if (!thisUser.is_admin) {
 		replace(`/`);
 	}
 }

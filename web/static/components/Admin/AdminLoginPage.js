@@ -39,7 +39,7 @@ export default class AdminLoginPage extends React.Component {
 			url: url + "/checkAdminLogin",
 			success: function(data) {
 				if (data.success) {
-					AppActions.addCurrentUser({isAdmin : true})
+					AppActions.addCurrentUser(data.user, data.jwt)
 					browserHistory.push('/adminTools')
 				}
 				else {

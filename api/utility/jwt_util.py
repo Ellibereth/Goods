@@ -37,7 +37,7 @@ class JwtUtil:
 		return this_jwt.decode('utf-8')
 
 	@staticmethod
-	def valudateJwtAdmin(jwt_str):
+	def validateJwtAdmin(jwt_str):
 		encoded = jwt_str.encode('utf-8')
 		decoded = jwt.decode(encoded, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
 		return decoded.get('is_admin')

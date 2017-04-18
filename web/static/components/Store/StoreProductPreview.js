@@ -56,10 +56,9 @@ export default class StorePage extends React.Component {
   		// event.target.classList.toggle("black-border-shown")
   	}
 
-
   	render() {
   		// hard coded for now
-  		console.log(this.state.product.sale_end_datew)
+  		console.log(this.state.product.sale_end_date)
   		var date = this.state.product.sale_end_date
   		if (this.state.invalid_product) return <div/>
 		return (
