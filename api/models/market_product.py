@@ -24,6 +24,7 @@ class MarketProduct(db.Model):
 	category = db.Column(db.String)
 	description = db.Column(db.String)
 	num_images = db.Column(db.Integer, nullable = False, default = 0)
+	main_image = db.Column(db.String)
 	inventory = db.Column(db.Integer, nullable = False)
 	soft_deleted = db.Column(db.Boolean, default = False)
 	manufacturer = db.Column(db.String)
@@ -49,11 +50,26 @@ class MarketProduct(db.Model):
 		db.Model.__init__(self)
 		
 	def getProductImages(self):
-		images = ProductImage.query.filter_by(product_id = self.product_id, soft_deleted = False).all()
+		images = ProductImage.query.filter_by(product_id = self.product_id).all()
 		image_list = list()
 		for image in images:
-			image_list.append(image.toPublicDict())
+			image_dict = image.toPublicDict()
+			image_dict[Labels.MainImage] = (self.main_image == image.image_id)
+			image_list.append(image_dict)
 		return image_list
+
+	def addProductImage(self, image_decoded):
+		# record the image_id in the database
+		image_record = ProductImage(self.product_id)
+		db.session.add(image_record)
+		# upload the image to S3
+		S3.uploadProductImage(image_record.image_id, image_decoded)
+		# sets this image to main image if does not exist
+		if self.num_images == 0:
+			self.main_image = image_record.image_id
+		self.num_images = ProductImage.query.filter_by(product_id = self.product_id).count()
+		# commit to database
+		db.session.commit()
 
 	def toPublicDict(self):
 		public_dict = {}

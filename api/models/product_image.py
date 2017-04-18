@@ -11,7 +11,6 @@ from api.utility.id_util import IdUtil
 class ProductImage(db.Model):
 	__tablename__ = ProdTables.ImageTable
 	image_id = db.Column(db.String, primary_key = True)
-	main_image = db.Column(db.Boolean)
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	soft_deleted = db.Column(db.Boolean, default = False)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
@@ -21,12 +20,7 @@ class ProductImage(db.Model):
 	def __init__(self, product_id):
 		self.product_id = product_id
 		self.image_id = ProductImage.generateImageId()
-		self.main_image = ProductImage.isFirstImageForProduct(product_id)
 		db.Model.__init__(self)
-
-	@staticmethod
-	def isFirstImageForProduct(product_id):
-		return ProductImage.query.filter_by(product_id = product_id).first() == None
 
 	@staticmethod
 	def generateImageId():
@@ -40,7 +34,6 @@ class ProductImage(db.Model):
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict['product_id'] = self.product_id
-		public_dict['main_image'] = self.main_image
 		public_dict['image_id'] = self.image_id
 		return public_dict
 

@@ -28,7 +28,7 @@ def softDeleteProductRequestByRequestId():
 	if request_id == None:
 		return JsonUtil.failure("Bad input")
 	this_request = Request.query.filter_by(request_id = request_id).first()
-	if request_id == None:
+	if this_request == None:
 		return JsonUtil.failure("This request id doesn't exist")
 	this_request.soft_deleted = True
 	db.session.commit()

@@ -84,11 +84,7 @@ def setMainProductPhoto():
 	if this_image == None:
 		return JsonUtil.failure("Error retrieving image")
 
-	# set all other images main_image to false
-	this_product_images = ProductImage.query.filter_by(product_id = product_id).all()
-	for img in this_product_images:
-		img.main_image = False
-	this_image.main_image = True
+	this_product.main_image = image_id
 	db.session.commit()
 	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
 
@@ -144,25 +140,16 @@ def uploadMarketProductImage():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
-	## yes Ben I know this is a magic string / hard coded
-	## tell me how to make this better!
 	product_id = request.json.get(Labels.ProductId)
 	image_data = request.json.get(Labels.ImageData)
 	image_bytes = image_data.encode('utf-8')
 	image_decoded = base64.decodestring(image_bytes)
-
-	# record the image_id in the database
-	image_record = ProductImage(product_id)
-	db.session.add(image_record)
-	# upload the image to S3
-	S3.uploadProductImage(image_record.image_id, image_decoded)
-	
 	# increment the number of images for the product
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	this_product.num_images = len(ProductImage.query.filter_by(product_id = product_id).all())
-	db.session.add(this_product)
-	# commit to database
-	db.session.commit()
+	if this_product == None:
+		return JsonUtil.failure("Product doesn't exist")
+	this_product.addProductImage(image_decoded)
+	
 	return JsonUtil.success()
 
 
