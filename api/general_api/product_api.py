@@ -9,12 +9,16 @@ from api.models.shared_models import db
 from api.models.market_product import MarketProduct
 from api.models.product_tag import ProductTag
 from api.models.product_image import ProductImage
+from api.utility.jwt_util import JwtUtil
 
 
 product_api = Blueprint('product_api', __name__)
 
 @product_api.route('/addMarketProduct', methods = ['POST'])
 def addMarketProduct():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
 	market_product = request.json.get(Labels.MarketProduct)
 	if market_product == None:
 		return JsonUtil.failure("Invalid submission")
@@ -44,6 +48,10 @@ def addMarketProduct():
 
 @product_api.route('/getMarketProducts', methods = ['POST'])
 def getMarketProducts():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+
 	market_products = MarketProduct.query.all()
 	output = list()
 	for product in market_products:
@@ -62,6 +70,10 @@ def getMarketProductInfo():
 
 @product_api.route('/setMainProductPhoto', methods = ['POST'])
 def setMainProductPhoto():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+
 	product_id = request.json.get(Labels.ProductId)
 	image_id = request.json.get(Labels.ImageId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -82,6 +94,9 @@ def setMainProductPhoto():
 
 @product_api.route('/deleteProductPhoto', methods = ['POST'])
 def deleteProductPhoto():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
 	product_id = request.json.get(Labels.ProductId)
 	image_id = request.json.get(Labels.ImageId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -96,6 +111,9 @@ def deleteProductPhoto():
 
 @product_api.route('/updateProductInfo', methods = ['POST'])
 def updateProductInfo():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
 	product_id = request.json.get(Labels.ProductId)
 	product = request.json.get(Labels.Product)
 	name = request.json.get(Labels.Name)
@@ -123,6 +141,9 @@ def updateProductInfo():
 
 @product_api.route('/uploadMarketProductImage', methods = ['POST'])
 def uploadMarketProductImage():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
 	## yes Ben I know this is a magic string / hard coded
 	## tell me how to make this better!
 	product_id = request.json.get(Labels.ProductId)

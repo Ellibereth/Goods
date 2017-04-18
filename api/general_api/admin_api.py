@@ -14,9 +14,8 @@ admin_login_password = "powerplay"
 def checkAdminLogin():
 	password = request.json.get(Labels.Password)
 	if password == admin_login_password:
-		output = {}
-		admin_jwt = JwtUtil.create_jwt({'is_admin' : True})
-		return JsonUtil.successWithOutput("jwt" : admin_jwt)
+		admin_jwt = JwtUtil.create_admin_jwt()
+		return JsonUtil.successWithOutput({"jwt" : admin_jwt})
 	else:
 		return JsonUtil.failire("Invalid Credentials")
 

@@ -32,6 +32,7 @@ def registerUserAccount():
 	email = request.json.get(Labels.Email)
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
+
 	old_user = User.query.filter_by(email = email).first()
 	if old_user != None:
 		return JsonUtil.failure("Email already exists")
@@ -50,8 +51,6 @@ def registerUserAccount():
 	db.session.commit()
 	return JsonUtil.success(Labels.User, new_user.toPublicDict())
 	
-
-
 # confirms the user email if that route is visited
 @account_api.route('/confirmEmail', methods = ['POST'])
 def confirmEmail():
@@ -91,10 +90,8 @@ def changePassword():
 	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
-
 	if not JwtUtil.validateJwtUser(jwt, this_user.account_id):
 		return JsonUtil.jwt_failure
-
 	if new_password == new_password_confirm:
 		valid_password = this_user.changePassword(old_password, new_password)
 		if valid_password:
@@ -105,3 +102,13 @@ def changePassword():
 	else:
 		return JsonUtil.failure("Passwords don't match")
 
+# use this to refresh user information on mounting of main.js
+@account_api.route('/getUserInfo', methods = ['POST'])
+def getUserInfo():
+	jwt = request.json.get("jwt")
+	if jwt == None or jwt == "" or "undefined":
+		return JsonUtil.jwt_failure()
+	jwt_user = JwtUtil.getUserInfoFromJwt(jwt)
+	if jwt_user == None:
+		return JsonUtil.jwt_failure()
+	return JsonUtil.successWithOutput({Labels.User : jwt_user, Labels.Jwt : JwtUtil.create_jwt(jwt_user)})

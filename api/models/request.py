@@ -1,5 +1,4 @@
 from api.utility.table_names import ProdTables
-from api.utility.table_names import TestTables
 from api.models.shared_models import db
 import time
 import random
@@ -12,7 +11,7 @@ from api.utility.id_util import IdUtil
 
 ## user object class
 class Request(db.Model):
-	__tablename__ = TestTables.UserRequestTable
+	__tablename__ = ProdTables.UserRequestTable
 	request_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	email = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)

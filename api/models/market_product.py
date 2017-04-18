@@ -17,7 +17,7 @@ MARKET_PHOTO_STORAGE_BUCKET = "publicmarketproductphotos"
 
 ## user object class
 class MarketProduct(db.Model):
-	__tablename__ = TestTables.MarketProductTable
+	__tablename__ = ProdTables.MarketProductTable
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	name = db.Column(db.String, nullable = False)
 	price = db.Column(db.Float, nullable = False)

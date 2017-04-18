@@ -69,7 +69,7 @@ export default class RegisterAccountForm extends React.Component {
 							type: "success"},
 							function () {
 								console.log(data.user)
-								// browserHistory.push("/")
+								browserHistory.push("/")
 							}.bind(this)
 						)
 					}

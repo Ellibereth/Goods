@@ -17,7 +17,7 @@ MIN_PASSWORD_LENGTH = 6
 
 ## user object class
 class User(db.Model):
-	__tablename__ = TestTables.UserInfoTable
+	__tablename__ = ProdTables.UserInfoTable
 	account_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
 	email = db.Column(db.String, unique = True, nullable = False)
 	email_confirmation_id = db.Column(db.String, unique = True, nullable = False)

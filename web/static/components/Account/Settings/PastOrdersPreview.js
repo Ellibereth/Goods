@@ -20,6 +20,7 @@ export default class PastOrdersPreview extends React.Component {
 
 	componentDidMount(){
 			var request_data = JSON.stringify({
+				"jwt" : localStorage.jwt,
 				"user" : AppStore.getCurrentUser()
 			})
 			$.ajax({

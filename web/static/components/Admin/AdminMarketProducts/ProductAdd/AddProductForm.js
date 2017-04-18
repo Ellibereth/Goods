@@ -63,7 +63,8 @@ export default class AddProductForm extends React.Component {
 
 			var form_data = JSON.stringify({
 				market_product : market_product,
-				tags : this.state.tags
+				tags : this.state.tags,
+				jwt  : localStorage.jwt
 			})
 			$.ajax({
 				type: "POST",

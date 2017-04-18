@@ -17,9 +17,13 @@ export default class AdminProductRequests extends React.Component {
 
 	componentDidMount(){	
 			var product_requests = []
+			var form_data = JSON.stringify({
+				"jwt" : localStorage.jwt
+			})
 			$.ajax({
 			  type: "POST",
 			  url: url + "/getProductRequests",
+			  data : form_data,
 			  success: function(data) {
 				this.setState({product_requests: data})
 			  }.bind(this),

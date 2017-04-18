@@ -5,6 +5,8 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
+var Config = require('Config')
+var url = Config.serverUrl
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
@@ -28,11 +30,34 @@ import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
 
 export default class Main extends React.Component {
+	componentWillMount() {
+		var form_data =  JSON.stringify({
+			jwt : localStorage.jwt
+		})
+		$.ajax({
+			type: "POST",
+			url: url  + "/getUserInfo",
+			data: form_data,
+			success: function(data) {
+				if (data.success) {
+					AppActions.removeCurrentUser()
+					AppActions.addCurrentUser(data.user, data.jwt)
+				}
+			}.bind(this),
+			error : function(){
+				console.log("error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+	}
+
 	render() {
 		return (
 			<div>
 				{this.props.children}
-			</div>);
+			</div>
+		);
 	}
 }
 

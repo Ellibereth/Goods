@@ -23,7 +23,8 @@ export default class AdminProductMainContainer extends React.Component {
 	setMainPhoto(image_id, index){
 		var form_data = JSON.stringify({
 			"product_id" : this.props.product.product_id,
-			"image_id" : image_id
+			"image_id" : image_id,
+			"jwt" : localStorage.jwt
 		})
 
 		$.ajax({

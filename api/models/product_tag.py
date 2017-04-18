@@ -13,10 +13,10 @@ MARKET_PHOTO_STORAGE_BUCKET = "publicmarketproductphotos"
 
 ## user object class
 class ProductTag(db.Model):
-	__tablename__ = TestTables.ProductTagTable
+	__tablename__ = ProdTables.ProductTagTable
 	product_tag_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	tag = db.Column(db.String)
-	product_id = db.Column(db.Integer, db.ForeignKey(TestTables.MarketProductTable + '.' + Labels.ProductId))
+	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())

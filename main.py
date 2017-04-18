@@ -19,11 +19,9 @@ secret_key = secret_key.decode('utf-8')
 app.config['SECRET_KEY'] = secret_key
 os.environ['SECRET_KEY'] = secret_key
 
-
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
-
 
 from api.general_api.public_api import public_api
 app.register_blueprint(public_api)

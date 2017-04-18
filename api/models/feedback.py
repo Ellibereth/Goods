@@ -14,7 +14,7 @@ from api.utility.labels import FeedbackLabels as Labels
 
 ## user object class
 class Feedback(db.Model):
-	__tablename__ = TestTables.FeedbackTable
+	__tablename__ = ProdTables.FeedbackTable
 	feedback_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	email = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)

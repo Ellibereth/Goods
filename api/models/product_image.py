@@ -9,10 +9,10 @@ from api.utility.id_util import IdUtil
 
 ## user object class
 class ProductImage(db.Model):
-	__tablename__ = TestTables.ImageTable
+	__tablename__ = ProdTables.ImageTable
 	image_id = db.Column(db.String, primary_key = True)
 	main_image = db.Column(db.Boolean)
-	product_id = db.Column(db.Integer, db.ForeignKey(TestTables.MarketProductTable + '.' + Labels.ProductId))
+	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	soft_deleted = db.Column(db.Boolean, default = False)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),

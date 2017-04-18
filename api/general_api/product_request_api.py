@@ -11,6 +11,7 @@ from api.models.shared_models import db
 from api.models.request import Request
 from api.utility.labels import RequestLabels as Labels
 from api.utility.json_util import JsonUtil
+from api.utility.jwt_util import JwtUtil
 
 product_request_api = Blueprint('product_request_api', __name__)
 
@@ -19,6 +20,10 @@ product_request_api = Blueprint('product_request_api', __name__)
 ## soft deletes a product request
 @product_request_api.route('/softDeleteProductRequestByRequestId', methods = ['POST'])
 def softDeleteProductRequestByRequestId():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+
 	request_id = request.json.get(Labels.RequestId)
 	if request_id == None:
 		return JsonUtil.failure("Bad input")
@@ -31,6 +36,9 @@ def softDeleteProductRequestByRequestId():
 
 @product_request_api.route('/getProductRequests', methods =['POST'])
 def getProductRequests():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
 	all_requests = Request.query.all()
 	output_list = list()
 	for req in all_requests:

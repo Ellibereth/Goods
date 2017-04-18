@@ -50,7 +50,8 @@ export default class ProductRequestForm extends React.Component {
 	uploadImage(){
 			var data = {
 				"image_data" : this.state.image_data,
-				"product_id" : this.props.product.product_id
+				"product_id" : this.props.product.product_id,
+				"jwt" : localStorage.jwt
 			}
 			
 			var form_data = JSON.stringify(data)

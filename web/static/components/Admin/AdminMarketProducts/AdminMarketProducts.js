@@ -20,10 +20,14 @@ export default class AdminMarketProducts extends React.Component {
 		}
 	}
 
-	componentDidMount(){	
+	componentDidMount(){
+		var form_data = JSON.stringify({
+			"jwt" : localStorage.jwt
+		})
 			$.ajax({
 			  type: "POST",
 			  url: url + "/getMarketProducts",
+			  data : form_data,
 			  success: function(data) {
 				this.setState({market_products: data})
 			  }.bind(this),

@@ -12,7 +12,7 @@ from api.utility.labels import PaymentLabels as Labels
 		
 ## user object class
 class Order(db.Model):
-	__tablename__ = TestTables.OrderTable
+	__tablename__ = ProdTables.OrderTable
 	order_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	price = db.Column(db.Float)
 	stripe_customer_id = db.Column(db.String, unique = True, nullable = False)
@@ -22,8 +22,8 @@ class Order(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-	product_id = db.Column(db.Integer, db.ForeignKey(TestTables.MarketProductTable + '.' + Labels.ProductId))
-	account_id = db.Column(db.Integer, db.ForeignKey(TestTables.UserInfoTable + '.' + Labels.AccountId))
+	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
+	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 

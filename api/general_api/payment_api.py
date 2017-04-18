@@ -12,6 +12,7 @@ from api.models.user import User
 from api.models.market_product import MarketProduct
 from api.utility.json_util import JsonUtil
 from api.utility.labels import PaymentLabels as Labels
+from api.utility.jwt_util import JwtUtil
 
 
 
@@ -22,13 +23,16 @@ payment_api = Blueprint('payment_api', __name__)
 def acceptStripePayment():
 	# Token is created using Stripe.js or Checkout!
 	# Get the payment token submitted by the form:
-	token = request.json.get(Labels.StripeToken) # Using Flask
+	jwt = request.json.get(Labels.Jwt)
+	token = request.json.get(Labels.StripeToken) 
 	product_id = request.json.get(Labels.ProductId)
 	account_id = request.json.get(Labels.AccountId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id)
 	this_user = User.query.filter_by(account_id = account_id).first()
 	if this_user == None:
 		return JsonUtil.failure("User does not exist")
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
 	charge = StripeManager.chargeCustomer(token, this_product, this_user)
 
 	new_order = Order(user, this_user, charge)
@@ -38,6 +42,9 @@ def acceptStripePayment():
 
 @payment_api.route('/getAllOrders', methods = ['POST'])
 def getAllOrders():
+	jwt = request.json.get(Lables.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
 	all_orders = Order.query.all()
 	output_list = list()
 	for order in all_orders:
@@ -48,6 +55,10 @@ def getAllOrders():
 @payment_api.route('/getUserOrders', methods = ['POST'])
 def getUserOrders():
 	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	
 	this_user_orders = Order.query.filter_by(account_id = account_id).all()
 	output_list = list()
 	for order in this_user_orders:

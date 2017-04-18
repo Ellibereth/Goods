@@ -55,7 +55,8 @@ export default class AdminEditProductInformation extends React.Component {
 	submitTextData(){
 		var form_data = JSON.stringify({
 			"product_id" : this.props.product_id,
-			"product" : this.state.product
+			"product" : this.state.product,
+			"jwt" : localStorage.jwt
 		})
 		$.ajax({
 		type: "POST",

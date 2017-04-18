@@ -1,4 +1,5 @@
 import string
+import random
 
 class IdUtil:
 	def id_generator(size=20, chars=string.ascii_uppercase + string.digits):

@@ -52,12 +52,14 @@ class MarketProductLabels:
 	DateCreated = "date_created"
 	ImageData = "image_data"
 	ImageId = "image_id"
+	Jwt = "jwt"
 
 class ProductTagLabels:
 	ProductId = "product_id"
 	Tag = "tag"
 	TimeStamp = "time_stamp"
 	ProductTagId = "product_tag_id"
+	Jwt = "jwt"
 
 class FeedbackLabels:
 	FeedbackId = "f_id"
@@ -83,8 +85,10 @@ class RequestLabels:
 	Request = "request"
 	Confirmed = "confirmed"
 	Completed = "completed"
+	Jwt = "jwt"
 
 class PaymentLabels:
+	Jwt = "jwt"
 	StripeCustomerId = "stripe_customer_id"
 	AccountId = "account_id"
 	Success = "success"
@@ -98,5 +102,6 @@ class PaymentLabels:
 	Product = "product"
 	StripeToken = "stripeToken"
 	Orders = "orders"
+	Jwt = "jwt"
 
 
