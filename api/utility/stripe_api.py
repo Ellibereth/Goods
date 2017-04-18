@@ -1,5 +1,4 @@
 import stripe
-from flask import jsonify
 # Set your secret key: remember to change this to your live secret key in production
 # See your keys here: https://dashboard.stripe.com/account/apikeys
 stripe.api_key = "sk_test_B0VTmo1cTi1WfnlKEQjgVsjm"
@@ -11,23 +10,24 @@ Name = "name"
 Id = "id"
 
 class StripeManager:
-	def chargeCustomer(stripe_token, user, product):
+	def chargeCustomer(user, price, token = None):
 		# multiply by 100 since stripe works in pennies
 		# this casting is super lame, but can't cast "5.00" to an int apparently
 		# so I have to cast to float then int...there must be a better way but it's 7 am 
-		amount = int(float(product.price) * 100) 
+		amount = int(float(price) * 100) 
 		try:
-			# update the customer information 
+			# update the customer information if there is a token, otherwise 
+			# just use previous information
 			customer = stripe.Customer.retrieve(user.stripe_customer_id)
-			customer.source = stripe_token[Id]
-			customer.save()
+			if token != None:
+				customer.source = stripe_token[Id]
+				customer.save()
 
 			# then charge the customer
 			charge = stripe.Charge.create(
 				customer = customer,
 				amount = amount,
-				currency= "usd",
-				description = product.description
+				currency= "usd"
 			)
 			return charge
 

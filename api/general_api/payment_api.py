@@ -19,6 +19,8 @@ from api.utility.jwt_util import JwtUtil
 
 payment_api = Blueprint('payment_api', __name__)
 
+# this handles a charge for a single object 
+# sort of like a buy now option
 @payment_api.route('/acceptStripePayment', methods = ['POST'])
 def acceptStripePayment():
 	# Token is created using Stripe.js or Checkout!
@@ -33,9 +35,8 @@ def acceptStripePayment():
 		return JsonUtil.failure("User does not exist")
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
-	charge = StripeManager.chargeCustomer(token, this_product, this_user)
-
-	new_order = Order(user, this_user, charge)
+	charge = StripeManager.chargeCustomer(this_user, this_product.price)
+	new_order = Order(user, this_product, charge, num_items = 1)
 	db.session.add(new_order)
 	db.session.commit()
 	return JsonUtil.success()
@@ -64,3 +65,4 @@ def getUserOrders():
 	for order in this_user_orders:
 		output_list.append(order.toPublicDict())
 	return jsonify(output_list)
+

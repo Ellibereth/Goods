@@ -15,6 +15,7 @@ class Order(db.Model):
 	__tablename__ = ProdTables.OrderTable
 	order_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	price = db.Column(db.Float)
+	num_items = db.Column(db.Integer)
 	stripe_customer_id = db.Column(db.String, unique = True, nullable = False)
 	stripe_charge_id = db.Column(db.String, unique = True, nullable = False)
 	refund_date = db.Column(db.DateTime)
@@ -27,10 +28,13 @@ class Order(db.Model):
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, user, product, stripe_charge_id):
+	def __init__(self, user, product , stripe_charge, num_items = 1):
 		self.price = product.price
+		self.num_items = num_items
+		self.product_id = product.product_id
+		self.account_id = user.account_id
 		self.stripe_customer_id = user.stripe_customer_id
-		self.stripe_charge_id = stripe_charge_id
+		self.stripe_charge_id = stripe_charge[Labels.Id]
 		db.Model.__init__(self)
 		
 
@@ -42,6 +46,8 @@ class Order(db.Model):
 		public_dict['stripe_customer_id'] = self.stripe_customer_id
 		public_dict['stripe_charge_id'] = self.stripe_charge_id
 		public_dict['order_id'] = self.order_id
+		public_dict[Labels.AccountId] = self.account_id
+
 		return public_dict
 
 

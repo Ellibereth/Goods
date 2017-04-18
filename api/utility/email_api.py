@@ -4,34 +4,8 @@ from email.mime.image import MIMEImage
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-recipients = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
 
-def sendImageEmail(image_name, image_data):
-	#to send from temporary gmail 
-	"""
-	sender = "manaweb.noreply@gmail.com"
-	passW = "powerplay"
-	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
-	"""
-	# to send from manaweb
-	sender = 'darek@manaweb.com'
-	passW = "sqwcc23mrbnnjwcz"
-	message = image_name
-	msg = MIMEMultipart()
-	msg['Subject'] = "Please find attached images " + image_name
-	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = ", ".join(recipients)
-	msg['Body'] = 'Image Submission ' + image_name
-	with open('./web/static/images/product_submissions/' + image_name, 'rb') as image:
-		img = MIMEImage(image.read())
-	msg.attach(img)
-	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
-	smtpserver.ehlo()
-	smtpserver.starttls()
-	smtpserver.ehlo
-	smtpserver.login(sender, passW)
-	smtpserver.send_message(msg)
-	smtpserver.close()
+recipients = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
 
 ## informs darek@manaweb.com of the incoming request 
 def sendRequestEmail(request):
@@ -127,6 +101,56 @@ def sendFeedbackEmailNotification(feedback):
 	name = feedback.name
 	body = "Name: " + feedback.name + "\n Email: " + feedback.email + \
 			"\n Content: " + feedback.feedback_content
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	smtpserver.send_message(msg)
+	smtpserver.close()
+
+def sendPurchaseNotification(user, cart):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	# the first part notifies us
+	msg['Subject'] = "User Order!"
+	msg['From'] = "noreply@edgarusa.com"
+	msg['To'] = ", ".join(recipients)
+	body = "From \n Name: " + user.name + "\n Email: " + user.email + "\n"
+
+	for product in cart.getProductsAsDict():
+		body = body + "\n Name : " + product[Labels.Name]
+		body = body + "\n Product ID : " + product[Labels.ProductId]
+		body = body + "\n Unit Price : " + product[Labels.Price]
+		body = body + "\n Quantity : " + product[Labels.NumItems]
+		body = body + "\n \n Moving on to Next Item \n \n ------------------------------"
+
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	smtpserver.send_message(msg)
+
+	# send the customer confirmation msg = MIMEMultipart()
+	# this will be changed but is a fun place holder!
+	msg['Subject'] = "User Order!"
+	msg['From'] = "noreply@edgarusa.com"
+	msg['To'] = user.email
+	body = "Thank you for ordering with Edgar USA! Below is a summary if your order!"
+
+	for product in cart.getProductsAsDict():
+		body = body + "\n Name : " + product[Labels.Name]
+		body = body + "\n Product ID : " + product[Labels.ProductId]
+		body = body + "\n Unit Price : " + product[Labels.Price]
+		body = body + "\n Quantity : " + product[Labels.NumItems]
+		body = body + "\n \n Moving on to Next Item \n \n ------------------------------"
+
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)

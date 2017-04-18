@@ -102,6 +102,20 @@ class PaymentLabels:
 	Product = "product"
 	StripeToken = "stripeToken"
 	Orders = "orders"
+
+class CartLabels:
+	StripeCustomerId = "stripe_customer_id"
+	AccountId = "account_id"
+	Success = "success"
+	Error = "error"
+	StripeId = "stripe_id"
+	OrderId = "order_id"
+	ProductId = "product_id"
+	Id = "id"
+	Product = "product"
+	StripeToken = "stripeToken"
 	Jwt = "jwt"
+	NumItems = "num_items"
+	CartId = "cart_id"
 
 
