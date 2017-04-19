@@ -53,10 +53,7 @@ def getMarketProducts():
 		return JsonUtil.jwt_failure()
 
 	market_products = MarketProduct.query.all()
-	output = list()
-	for product in market_products:
-		output.append(product.toPublicDict())
-	return jsonify(output)
+	return jsonify([product.toPublicDict() for product in market_products])
 
 
 @product_api.route('/getMarketProductInfo', methods = ['POST'])

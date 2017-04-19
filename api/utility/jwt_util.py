@@ -5,17 +5,20 @@ import os
 
 
 class JwtUtil:
-	
+	UTF8 = "utf-8"
+	algorithm = "HS256"
+	IsAdmin = "is_admin"
+	AccountId = "account_id"
+	SECRET_KEY = "SECRET_KEY"
 	
 	# payload is a dictionary to pass as well
 	# although it will usually be empty
 	# what should go in the payload?
 	@staticmethod
 	def create_jwt(payload = {}):
-		secret_key = os.environ.get('SECRET_KEY')
-		algorithm = "HS256"
+		secret_key = os.environ.get(SECRET_KEY)
 		this_jwt = jwt.encode(payload, secret_key, algorithm= algorithm)
-		return this_jwt.decode('utf-8')
+		return this_jwt.decode(UTF8)
 
 	# @staticmethod
 	# def create_user_jwt():
@@ -24,29 +27,28 @@ class JwtUtil:
 	@staticmethod
 	# still figuring out the best stuff to put in the payload
 	def validateJwtUser(jwt_str, account_id):
-		encoded = jwt_str.encode('utf-8')
-		decoded = jwt.decode(encoded, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-		return decoded.get('account_id') == account_id
+		encoded = jwt_str.encode(UTF8)
+		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
+		return decoded.get(AccountId) == account_id
 
 	@staticmethod
 	def create_admin_jwt():
-		secret_key = os.environ.get('SECRET_KEY')
-		algorithm = "HS256"
-		payload = {'is_admin' : True}
+		secret_key = os.environ.get(SECRET_KEY)
+		payload = {IsAdmin : True}
 		this_jwt = jwt.encode(payload, secret_key, algorithm= algorithm)
-		return this_jwt.decode('utf-8')
+		return this_jwt.decode(UTF8)
 
 	@staticmethod
 	def validateJwtAdmin(jwt_str):
-		encoded = jwt_str.encode('utf-8')
-		decoded = jwt.decode(encoded, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-		return decoded.get('is_admin')
+		encoded = jwt_str.encode(UTF8)
+		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
+		return decoded.get(IsAdmin)
 
 	@staticmethod
 	def getUserInfoFromJwt(jwt_str):
-		encoded = jwt_str.encode('utf-8')
-		decoded = jwt.decode(encoded, os.environ.get('SECRET_KEY'), algorithms=['HS256'])
-		account_id = decoded.get('account_id')
+		encoded = jwt_str.encode(UTF8)
+		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
+		account_id = decoded.get(AccountId)
 		if account_id == None:
 			return None
 		jwt_user = User.query.filter_by(account_id = account_id).first()

@@ -47,11 +47,7 @@ def getAllOrders():
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 	all_orders = Order.query.all()
-	output_list = list()
-	for order in all_orders:
-		output_list.append(order.toPublicDict())
-	return jsonify(output_list)
-
+	return jsonify([order.toPublicDict() for order in all_orders])
 
 @payment_api.route('/getUserOrders', methods = ['POST'])
 def getUserOrders():
@@ -61,8 +57,6 @@ def getUserOrders():
 		return JsonUtil.jwt_failure()
 	
 	this_user_orders = Order.query.filter_by(account_id = account_id).all()
-	output_list = list()
-	for order in this_user_orders:
-		output_list.append(order.toPublicDict())
-	return jsonify(output_list)
+	return jsonify([order.toPublicDict() for order in this_user_orders])
+	
 

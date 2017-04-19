@@ -40,10 +40,7 @@ def getProductRequests():
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 	all_requests = Request.query.all()
-	output_list = list()
-	for req in all_requests:
-		output_list.append(req.toPublicDict())
-	return jsonify(output_list)
+	return jsonify([req.toPublicDict() for req in all_requests])
 
 
 @product_request_api.route('/addProductRequest', methods = ['POST'])

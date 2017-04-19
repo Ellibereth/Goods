@@ -5,7 +5,6 @@ class Labels:
 	Success = "success"
 	Password = "password"
 	
-
 admin_api = Blueprint('admin_api', __name__)
 admin_login_password = "powerplay"
 

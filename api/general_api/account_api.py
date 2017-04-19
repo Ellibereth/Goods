@@ -138,7 +138,6 @@ def addCreditCard():
 		user.addCreditCard(user, address_city, address_country, address_line1, address_line2, 
 			address_zip, exp_month, exp_year, number, cvc, name)
 		return JsonUtil.success()
-
 	except Exception as e:
 		return JsonUtil.failure("Somehing went wrong \n " + e)
 
@@ -151,8 +150,6 @@ def getUserCards():
 	user = User.query.filter_by(account_id = account_id).first()
 	cards = user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Cards : cards})
-
-
 
 @account_api.route('/addUserAddress', methods = ['POST'])
 def addUserAddress():
