@@ -23,7 +23,7 @@ class UserLabels:
 	AddressCity = "address_city"
 	AddressCountry = "address_country"
 	AddressLine1 = "address_line1"
-	AddressLine1 = "address_line2"
+	AddressLine2 = "address_line2"
 	AddressZip = "address_zip"
 	AddressState = "address_state"
 	Cvc = "cvc"
@@ -31,6 +31,7 @@ class UserLabels:
 	ExpMonth = "exp_month"
 	ExpYear = "exp_year"
 	Addresses = "addresses"
+	Description = "description"
 
 
 class ProductImageLabels:

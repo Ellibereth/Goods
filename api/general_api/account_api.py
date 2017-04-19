@@ -111,8 +111,6 @@ def getUserInfo():
 	jwt_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if jwt_user == None:
 		return JsonUtil.jwt_failure()
-	print(jwt_user)
-	print(JwtUtil.create_jwt(jwt_user))
 	return JsonUtil.successWithOutput({Labels.User : jwt_user, Labels.Jwt : JwtUtil.create_jwt(jwt_user)})
 
 
@@ -127,9 +125,9 @@ def addCreditCard():
 	name = request.json.get(Labels.Name)
 	address_city = request.json.get(Labels.AddressCity)
 	address_country = request.json.get(Labels.AddressCountry)
-	address_line1 = request.json.get(Lables.AddressLine1)
+	address_line1 = request.json.get(Labels.AddressLine1)
 	address_line2 = request.json.get(Labels.AddressLine2)
-	address_zip = request.json.get(Lables.AddressZip)
+	address_zip = request.json.get(Labels.AddressZip)
 	exp_month = request.json.get(Labels.ExpMonth)
 	exp_year = request.json.get(Labels.ExpYear)
 	number = request.json.get(Labels.Number)
@@ -151,8 +149,8 @@ def getUserCards():
 	cards = user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Cards : cards})
 
-@account_api.route('/addUserAddress', methods = ['POST'])
-def addUserAddress():
+@account_api.route('/addUserAddresses', methods = ['POST'])
+def addUserAddresses():
 	account_id = request.json.get(Labels.AccountId)
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtUser(jwt, account_id):
@@ -166,17 +164,17 @@ def addUserAddress():
 	description = request.json.get(Labels.Description)
 	address_city = request.json.get(Labels.AddressCity)
 	address_country = request.json.get(Labels.AddressCountry)
-	address_line1 = request.json.get(Lables.AddressLine1)
+	address_line1 = request.json.get(Labels.AddressLine1)
 	address_line2 = request.json.get(Labels.AddressLine2)
-	address_zip = request.json.get(Lables.AddressZip)
+	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
 	try:
-		user.addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
+		user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country)
 		return JsonUtil.success()
 
 	except Exception as e:
-		return JsonUtil.failure("Somehing went wrong \n " + e)
+		return JsonUtil.failure("Somehing went wrong \n " + str(e))
 
 @account_api.route("/getUserAddress", methods = ['POST'])
 def getUserAddress():

@@ -30,6 +30,8 @@ import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
 import UpdateBillingPage from './Account/Settings/UpdateBillingPage.js'
 import ManageCardsPage from './Account/Settings/ManageCardsPage.js'
+import UpdateShippingPage from './Account/Settings/UpdateShippingPage.js'
+import ManageAddressPage from './Account/Settings/ManageAddressPage.js'
 
 export default class Main extends React.Component {
 	componentWillMount() {
@@ -107,6 +109,8 @@ ReactDOM.render(
 			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminEditProductPage} />
 			<Route path = "billing" onEnter = {checkConfirmedUser} component = {UpdateBillingPage} />
 			<Route path = "yourCards" onEnter = {checkConfirmedUser} component = {ManageCardsPage} />
+			<Route path = "shipping" onEnter = {checkConfirmedUser} component = {UpdateShippingPage}/>
+			<Route path = "yourPlaces" onEnter = {checkConfirmedUser} component = {ManageAddressPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

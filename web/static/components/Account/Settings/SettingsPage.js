@@ -7,6 +7,7 @@ import TopNavBar from '../../Misc/TopNavBar'
 import UpdateSettingsPreview from './UpdateSettingsPreview.js'
 import BillingPreview from './BillingPreview.js'
 import PastOrdersPreview from './PastOrdersPreview.js'
+import ShippingPreview from './ShippingPreview'
 var browserHistory = require('react-router').browserHistory;
 
 export default class SettingsPage extends React.Component {
@@ -30,6 +31,9 @@ export default class SettingsPage extends React.Component {
 
 					<BillingPreview />
 					<br />
+
+					<ShippingPreview />
+					<br/>
 
 					{/* <PastOrdersPreview /> */}
 					

@@ -3,14 +3,13 @@ import jwt
 import os
 
 
+UTF8 = "utf-8"
+algorithm = "HS256"
+IsAdmin = "is_admin"
+AccountId = "account_id"
+SECRET_KEY = "SECRET_KEY"
 
-class JwtUtil:
-	UTF8 = "utf-8"
-	algorithm = "HS256"
-	IsAdmin = "is_admin"
-	AccountId = "account_id"
-	SECRET_KEY = "SECRET_KEY"
-	
+class JwtUtil:	
 	# payload is a dictionary to pass as well
 	# although it will usually be empty
 	# what should go in the payload?

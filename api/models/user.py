@@ -130,25 +130,22 @@ class User(db.Model):
 	# adds a credit card with billing and shipping information to stripe 
 	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
 			exp_month, exp_year, number, cvc, name, address_country = "US"):
-		try:
-			card = StripeManager.addCardForCustomer(user, address_city, address_line1, address_line2, 
-				address_zip, exp_month, exp_year, number, cvc, name, address_country = "US")
-			return card
-		except Exception as e:
-			return e
+		card = StripeManager.addCardForCustomer(user, address_city, address_line1, address_line2, 
+			address_zip, exp_month, exp_year, number, cvc, name, address_country = "US")
+		return card
+		
 
 	def getCreditCards(self):
 		return StripeManager.getUserCards(self)
 
 	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
-			address_zip, address_country, phone = ""):
-		try:
-			address = Lob.addUserAddress(self, description = "", name = "", address_line1 = "", address_line2 = "", address_city = "",
-					address_state = "", address_zip = "", address_country = "US", phone = "")
-			return address
-		except Exception as e:
-			return e
-
+			address_zip, address_country):
+		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
+			, address_line2 = address_line2, address_city = address_city,
+				address_state = address_state, address_zip = address_zip,
+				 address_country = address_country)
+		return address
+		
 	def getAddresses(self):
 		addresses = Lob.getUserAddresses(self)
 		return addresses
