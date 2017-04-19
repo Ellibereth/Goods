@@ -32,8 +32,9 @@ export default class StripeButton extends React.Component {
 		  url: url + "/acceptStripePayment",
 		  data: JSON.stringify({
 		  	"stripeToken" : token, 
-		  	"product" : this.props.product, 
-		  	"user" : AppStore.getCurrentUser()
+		  	"product_id" : this.props.product.product_id, 
+		  	"account_id" : AppStore.getCurrentUser().account_id,
+		  	"jwt" : localStorage.jwt
 		  }),
 		  success: function(data) {
 		  },

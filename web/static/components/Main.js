@@ -28,6 +28,8 @@ import LogoutPage from './Misc/LogoutPage.js'
 import AdminEditProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminEditProductPage.js'
 import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
+import UpdateBillingPage from './Account/Settings/UpdateBillingPage.js'
+import ManageCardsPage from './Account/Settings/ManageCardsPage.js'
 
 export default class Main extends React.Component {
 	componentWillMount() {
@@ -103,6 +105,8 @@ ReactDOM.render(
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminEditProductPage} />
+			<Route path = "billing" onEnter = {checkConfirmedUser} component = {UpdateBillingPage} />
+			<Route path = "yourCards" onEnter = {checkConfirmedUser} component = {ManageCardsPage} />
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

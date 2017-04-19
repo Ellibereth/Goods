@@ -28,7 +28,7 @@ class Order(db.Model):
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, user, product , stripe_charge, num_items = 1):
+	def __init__(self, user, product, stripe_charge, num_items = 1):
 		self.price = product.price
 		self.num_items = num_items
 		self.product_id = product.product_id

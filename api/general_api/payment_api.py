@@ -29,14 +29,14 @@ def acceptStripePayment():
 	token = request.json.get(Labels.StripeToken) 
 	product_id = request.json.get(Labels.ProductId)
 	account_id = request.json.get(Labels.AccountId)
-	this_product = MarketProduct.query.filter_by(product_id = product_id)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	this_user = User.query.filter_by(account_id = account_id).first()
 	if this_user == None:
 		return JsonUtil.failure("User does not exist")
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
-	charge = StripeManager.chargeCustomer(this_user, this_product.price)
-	new_order = Order(user, this_product, charge, num_items = 1)
+	charge = StripeManager.chargeCustomer(this_user, this_product.price, token)
+	new_order = Order(this_user, this_product, charge, num_items = 1)
 	db.session.add(new_order)
 	db.session.commit()
 	return JsonUtil.success()

@@ -20,7 +20,7 @@ class StripeManager:
 			# just use previous information
 			customer = stripe.Customer.retrieve(user.stripe_customer_id)
 			if token != None:
-				customer.source = stripe_token[Id]
+				customer.source = token[Id]
 				customer.save()
 
 			# then charge the customer
@@ -52,3 +52,27 @@ class StripeManager:
 				email = email
 			)
 		return customer[Id]
+
+	# adds a new credit card for a customer
+	def addCardForCustomer(user, address_city, address_line1, address_line2, address_zip,
+		exp_month, exp_year, number, cvc, name, address_country = "US"):
+		customer = stripe.Customer.retrieve(user.stripe_customer_id)
+		new_card = {}
+		new_card['object'] = "card"
+		new_card["address_city"] = address_city
+		new_card["address_line1"] = address_line1
+		new_card["address_line2"] = address_line2
+		new_card['address_zip'] = address_zip
+		new_card['exp_month'] = exp_month
+		new_card['exp_year'] = exp_year
+		new_card['number'] = number
+		new_card['cvc'] = cvc
+		new_card['name'] = name
+		new_card["address_country"] = address_country
+		customer.sources.create(card = new_card)
+
+	def getUserCards(user):
+		customer = stripe.Customer.retrieve(user.stripe_customer_id)
+		return [this_card for this_card in customer.sources.data]
+
+

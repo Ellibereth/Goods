@@ -9,6 +9,8 @@ from api.utility import email_api
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.id_util import IdUtil
+from api.utility.lob import Lob
+
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
@@ -124,6 +126,33 @@ class User(db.Model):
 			else:
 				raise Exception("Invalid setting submission!")
 		db.session.commit()
+
+	# adds a credit card with billing and shipping information to stripe 
+	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
+			exp_month, exp_year, number, cvc, name, address_country = "US"):
+		try:
+			card = StripeManager.addCardForCustomer(user, address_city, address_line1, address_line2, 
+				address_zip, exp_month, exp_year, number, cvc, name, address_country = "US")
+			return card
+		except Exception as e:
+			return e
+
+	def getCreditCards(self):
+		return StripeManager.getUserCards(self)
+
+	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
+			address_zip, address_country, phone = ""):
+		try:
+			address = Lob.addUserAddress(self, description = "", name = "", address_line1 = "", address_line2 = "", address_city = "",
+					address_state = "", address_zip = "", address_country = "US", phone = "")
+			return address
+		except Exception as e:
+			return e
+
+	def getAddresses(self):
+		addresses = Lob.getUserAddresses(self)
+		return addresses
+
 
 
 

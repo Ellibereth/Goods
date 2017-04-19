@@ -19,7 +19,8 @@ export default class LoginPage extends React.Component {
 
 	componentWillMount() {
 		var current_user = AppStore.getCurrentUser()
-		if (current_user || current_user != {}){
+		console.log(current_user)
+		if (current_user){
 			browserHistory.push(`/`)
 		}
 	}

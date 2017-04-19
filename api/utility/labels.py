@@ -18,6 +18,20 @@ class UserLabels:
 	NewSettings = "new_settings"
 	OldPassword = "old_password"
 	Jwt = "jwt"
+	Cards = "cards"
+	Name = "name"
+	AddressCity = "address_city"
+	AddressCountry = "address_country"
+	AddressLine1 = "address_line1"
+	AddressLine1 = "address_line2"
+	AddressZip = "address_zip"
+	AddressState = "address_state"
+	Cvc = "cvc"
+	Number = "number"
+	ExpMonth = "exp_month"
+	ExpYear = "exp_year"
+	Addresses = "addresses"
+
 
 class ProductImageLabels:
 	TimeStamp = "time_stamp"
@@ -117,5 +131,18 @@ class CartLabels:
 	Jwt = "jwt"
 	NumItems = "num_items"
 	CartId = "cart_id"
+
+class AddressLabels:
+	AddressId = "address_id"
+	AccountId = "account_id"
+	Name = "name"
+	AddressCity = "address_city"
+	AddressCountry = "address_country"
+	AddressLine1 = "address_line1"
+	AddressLine1 = "address_line2"
+	AddressZip = "address_zip"
+	AddressState = "address_state"
+	Jwt = "jwt"
+
 
 

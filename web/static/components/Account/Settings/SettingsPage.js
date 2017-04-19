@@ -5,6 +5,7 @@ var url = Config.serverUrl
 import AppStore from '../../../stores/AppStore.js';
 import TopNavBar from '../../Misc/TopNavBar'
 import UpdateSettingsPreview from './UpdateSettingsPreview.js'
+import BillingPreview from './BillingPreview.js'
 import PastOrdersPreview from './PastOrdersPreview.js'
 var browserHistory = require('react-router').browserHistory;
 
@@ -14,15 +15,6 @@ export default class SettingsPage extends React.Component {
 		this.state = {
 			
 		}
-	}
-
-	// no need to be on settings if no one is logged in
-	componentWillMount(){
-		var current_user = AppStore.getCurrentUser()
-		if (current_user == null || !current_user || current_user == {}){
-			browserHistory.push('/')
-		}
-
 	}
 
 	render() {
@@ -36,7 +28,11 @@ export default class SettingsPage extends React.Component {
 					<UpdateSettingsPreview />
 					<br/>
 
+					<BillingPreview />
+					<br />
+
 					{/* <PastOrdersPreview /> */}
+					
 
 				</div>
 			</div>	

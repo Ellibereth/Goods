@@ -91,7 +91,7 @@ def changePassword():
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
 	if not JwtUtil.validateJwtUser(jwt, this_user.account_id):
-		return JsonUtil.jwt_failure
+		return JsonUtil.jwt_failure()
 	if new_password == new_password_confirm:
 		valid_password = this_user.changePassword(old_password, new_password)
 		if valid_password:
@@ -105,10 +105,98 @@ def changePassword():
 # use this to refresh user information on mounting of main.js
 @account_api.route('/getUserInfo', methods = ['POST'])
 def getUserInfo():
-	jwt = request.json.get("jwt")
+	jwt = request.json.get(Labels.Jwt)
 	if jwt == None or jwt == "" or "undefined":
 		return JsonUtil.jwt_failure()
 	jwt_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if jwt_user == None:
 		return JsonUtil.jwt_failure()
+	print(jwt_user)
+	print(JwtUtil.create_jwt(jwt_user))
 	return JsonUtil.successWithOutput({Labels.User : jwt_user, Labels.Jwt : JwtUtil.create_jwt(jwt_user)})
+
+
+@account_api.route('/addCreditCard', methods = ['POST'])
+def addCreditCard():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+
+	user = User.query.filter_by(account_id = account_id).first()
+	name = request.json.get(Labels.Name)
+	address_city = request.json.get(Labels.AddressCity)
+	address_country = request.json.get(Labels.AddressCountry)
+	address_line1 = request.json.get(Lables.AddressLine1)
+	address_line2 = request.json.get(Labels.AddressLine2)
+	address_zip = request.json.get(Lables.AddressZip)
+	exp_month = request.json.get(Labels.ExpMonth)
+	exp_year = request.json.get(Labels.ExpYear)
+	number = request.json.get(Labels.Number)
+	cvc = request.json.get(Labels.Cvc)
+	try:
+		user.addCreditCard(user, address_city, address_country, address_line1, address_line2, 
+			address_zip, exp_month, exp_year, number, cvc, name)
+		return JsonUtil.success()
+
+	except Exception as e:
+		return JsonUtil.failure("Somehing went wrong \n " + e)
+
+@account_api.route("/getUserCards", methods = ['POST'])
+def getUserCards():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	user = User.query.filter_by(account_id = account_id).first()
+	cards = user.getCreditCards()
+	return JsonUtil.successWithOutput({Labels.Cards : cards})
+
+
+
+@account_api.route('/addUserAddress', methods = ['POST'])
+def addUserAddress():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+
+	user = User.query.filter_by(account_id = account_id).first()
+	if user == None:
+		return JsonUtil.failure("User does not exist")
+
+	name = request.json.get(Labels.Name)
+	description = request.json.get(Labels.Description)
+	address_city = request.json.get(Labels.AddressCity)
+	address_country = request.json.get(Labels.AddressCountry)
+	address_line1 = request.json.get(Lables.AddressLine1)
+	address_line2 = request.json.get(Labels.AddressLine2)
+	address_zip = request.json.get(Lables.AddressZip)
+	address_state = request.json.get(Labels.AddressState)
+	try:
+		user.addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
+			address_zip, address_country)
+		return JsonUtil.success()
+
+	except Exception as e:
+		return JsonUtil.failure("Somehing went wrong \n " + e)
+
+@account_api.route("/getUserAddress", methods = ['POST'])
+def getUserAddress():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	user = User.query.filter_by(account_id = account_id).first()
+	if user == None:
+		return JsonUtil.failure("User does not exist")
+
+	addresses = user.getAddresses()
+	return JsonUtil.successWithOutput({Labels.Addresses : addresses})
+
+
+
+
+
+	
+
