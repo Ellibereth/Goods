@@ -26,7 +26,7 @@ export default class ShippingPreview extends React.Component {
 							<h4> Your Addresses </h4>
 						</Col>
 						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
-							<Button onClick = {() => browserHistory.push('/shipping')} > Edit </Button>
+							<Button onClick = {() => browserHistory.push('/shipping')} > Add </Button>
 						</Col>
 					</Row>
 					<Row>

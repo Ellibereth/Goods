@@ -18,7 +18,6 @@ export default class UpdateShippingPage extends React.Component {
 	render() {
 		return (
 			<div>
-
 				<TopNavBar />
 				<div className = "container">
 					 {/* <SettingsFormPersonal /> */}

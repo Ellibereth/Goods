@@ -57,3 +57,7 @@ class Lob:
 	def getUserAddresses(user):
 		metadata = {AccountId : user.account_id}
 		return lob.Address.list(metadata = metadata).data
+
+	@staticmethod
+	def deleteAddress(address_id):
+		lob.Address.delete(address_id)

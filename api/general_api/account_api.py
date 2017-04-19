@@ -189,9 +189,49 @@ def getUserAddress():
 	addresses = user.getAddresses()
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses})
 
+@account_api.route('/editUserAddress', methods = ['POST'])
+def editUserAddress():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	user = User.query.filter_by(account_id = account_id).first()
+	if user == None:
+		return JsonUtil.failure("User does not exist")
+	address_id = request.json.get(Labels.AddressId)
+	name = request.json.get(Labels.Name)
+	description = request.json.get(Labels.Description)
+	address_city = request.json.get(Labels.AddressCity)
+	address_country = request.json.get(Labels.AddressCountry)
+	address_line1 = request.json.get(Labels.AddressLine1)
+	address_line2 = request.json.get(Labels.AddressLine2)
+	address_zip = request.json.get(Labels.AddressZip)
+	address_state = request.json.get(Labels.AddressState)
+	try:
+		user.editAddress(address_id, description, name, address_line1, address_line2, address_city, address_state,
+			address_zip, address_country)
+		return JsonUtil.success()
 
+	except Exception as e:
+		return JsonUtil.failure("Somehing went wrong \n " + str(e))
 
+@account_api.route('/deleteUserAddress', methods = ['POST'])
+def deleteUserAddress():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	user = User.query.filter_by(account_id = account_id).first()
+	if user == None:
+		return JsonUtil.failure("User does not exist")
+	address_id = request.json.get(Labels.AddressId)
+	
+	try:
+		user.deleteAddress(address_id)
+		return JsonUtil.success()
 
+	except Exception as e:
+		return JsonUtil.failure("Somehing went wrong \n " + str(e))
 
 	
 

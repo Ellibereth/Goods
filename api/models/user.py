@@ -28,6 +28,7 @@ class User(db.Model):
 	name = db.Column(db.String, nullable = False)
 	stripe_customer_id = db.Column(db.String, unique = True)
 	is_admin = db.Column(db.Boolean, default = False)
+	soft_deleted = db.Column(db.Boolean, default = False)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -140,6 +141,7 @@ class User(db.Model):
 
 	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
+
 		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
 			, address_line2 = address_line2, address_city = address_city,
 				address_state = address_state, address_zip = address_zip,
@@ -149,6 +151,23 @@ class User(db.Model):
 	def getAddresses(self):
 		addresses = Lob.getUserAddresses(self)
 		return addresses
+
+	# in actuality this method deletes the previous address with the id and then recreates one
+	def editAddress(self, address_id, description, name, address_line1, address_line2, address_city, address_state,
+			address_zip, address_country):
+
+		Lob.deleteAddress(address_id)
+		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
+			, address_line2 = address_line2, address_city = address_city,
+				address_state = address_state, address_zip = address_zip,
+				 address_country = address_country)
+		return address
+
+
+	def deleteAddress(self, address_id):
+		Lob.deleteAddress(address_id)
+
+
 
 
 

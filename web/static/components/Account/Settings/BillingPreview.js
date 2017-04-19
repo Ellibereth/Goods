@@ -26,7 +26,7 @@ export default class BillingPreview extends React.Component {
 							<h4> Billing and Shipping </h4>
 						</Col>
 						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
-							<Button onClick = {() => browserHistory.push('/billing')} > Edit </Button>
+							<Button onClick = {() => browserHistory.push('/billing')} > Add </Button>
 						</Col>
 					</Row>
 					<Row>

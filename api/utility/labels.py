@@ -32,6 +32,7 @@ class UserLabels:
 	ExpYear = "exp_year"
 	Addresses = "addresses"
 	Description = "description"
+	AddressId = "address_id"
 
 
 class ProductImageLabels:

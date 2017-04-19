@@ -5,13 +5,16 @@ var url = Config.serverUrl
 import AppStore from '../../../stores/AppStore.js';
 import TopNavBar from '../../Misc/TopNavBar'
 import UserAddressDisplay from './UserAddressDisplay.js'
+import EditAddressModal from './EditAddressModal.js'
 var browserHistory = require('react-router').browserHistory;
 
 export default class ManageAddressPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			addresses : []	
+			addresses : [],
+			modal_show : false,
+			modal_address : null
 		}
 	}
 
@@ -41,9 +44,16 @@ export default class ManageAddressPage extends React.Component {
 
 	}
 
+	toggleEditModal(address) {
+		this.setState({
+			modal_show : !this.state.modal_show,
+			modal_address : address
+		})
+	}
+
 	render() {
 		var address_display = this.state.addresses.map((address, index) => 
-					<UserAddressDisplay address = {address}/>
+					<UserAddressDisplay address = {address} toggleModal = {this.toggleEditModal.bind(this)}/>
 				)
 
 		return (
@@ -52,9 +62,9 @@ export default class ManageAddressPage extends React.Component {
 				<TopNavBar />
 				<div className = "container">
 					{address_display}
-
-					
 				</div>
+				<EditAddressModal show = {this.state.modal_show} address = {this.state.modal_address} 
+					toggleModal = {this.toggleEditModal.bind(this)}/>
 			</div>	
 		)
 	}
