@@ -167,6 +167,8 @@ class User(db.Model):
 	def deleteAddress(self, address_id):
 		Lob.deleteAddress(address_id)
 
+	def deleteCreditCard(self, card_id):
+		StripeManager.deleteCreditCard(self, card_id)
 
 
 

@@ -33,6 +33,7 @@ class UserLabels:
 	Addresses = "addresses"
 	Description = "description"
 	AddressId = "address_id"
+	StripeCardId = "stripe_card_id"
 
 
 class ProductImageLabels:

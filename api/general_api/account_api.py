@@ -234,4 +234,27 @@ def deleteUserAddress():
 		return JsonUtil.failure("Somehing went wrong \n " + str(e))
 
 	
+@account_api.route('/deleteUserCreditCard', methods = ['POST'])
+def deleteUserCreditCard():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	user = User.query.filter_by(account_id = account_id).first()
+	if user == None:
+		return JsonUtil.failure("User does not exist")
+	card_id = request.json.get(Labels.StripeCardId)
+	try:
+		user.deleteCreditCard(card_id)
+		return JsonUtil.success()
+	except Exception as e:
+		return JsonUtil.failure("Somehing went wrong \n " + str(e))
+
+
+
+
+
+
+
+
 

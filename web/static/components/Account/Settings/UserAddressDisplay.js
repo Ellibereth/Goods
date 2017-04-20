@@ -76,7 +76,7 @@ export default class UserAddressDisplay extends React.Component {
 		// will be updating this to have a better display in the near future
 		var address = this.props.address
 		return (
-			<div>
+			<div className = "row">
 				<div>
 					<p> Name : {address.name} </p>
 					<p> Address : {address.address_line1} </p>

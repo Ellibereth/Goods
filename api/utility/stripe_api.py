@@ -75,4 +75,7 @@ class StripeManager:
 		customer = stripe.Customer.retrieve(user.stripe_customer_id)
 		return [this_card for this_card in customer.sources.data]
 
+	def deleteCreditCard(user, card_id):
+		customer = stripe.Customer.retrieve(user.stripe_customer_id)
+		customer.sources.retrieve(card_id).delete()
 
