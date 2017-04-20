@@ -137,7 +137,7 @@ def addCreditCard():
 			address_zip, exp_month, exp_year, number, cvc, name)
 		return JsonUtil.success()
 	except Exception as e:
-		return JsonUtil.failure("Somehing went wrong \n " + e)
+		return JsonUtil.failure("Somehing went wrong \n " + str(e))
 
 @account_api.route("/getUserCards", methods = ['POST'])
 def getUserCards():
