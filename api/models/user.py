@@ -131,8 +131,8 @@ class User(db.Model):
 	# adds a credit card with billing and shipping information to stripe 
 	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
 			exp_month, exp_year, number, cvc, name, address_country = "US"):
-	
-		card = StripeManager.addCardForCustomer(user, address_city, address_line1, address_line2, 
+
+		card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 
 			address_zip, exp_month, exp_year, number, cvc, name, address_country = "US")
 		return card
 		
