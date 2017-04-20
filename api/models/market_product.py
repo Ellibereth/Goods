@@ -58,7 +58,7 @@ class MarketProduct(db.Model):
 			image_list.append(image_dict)
 		return image_list
 
-	def addProductImage(self, image_decoded):
+	def addProductImage(self, image_decoded, set_as_main_image = False):
 		# record the image_id in the database
 		image_record = ProductImage(self.product_id)
 		db.session.add(image_record)
@@ -69,6 +69,10 @@ class MarketProduct(db.Model):
 			self.main_image = image_record.image_id
 		self.num_images = ProductImage.query.filter_by(product_id = self.product_id).count()
 		# commit to database
+
+		if set_as_main_image:
+			self.main_image = image_decoded.image_id
+
 		db.session.commit()
 
 	def toPublicDict(self):

@@ -3,9 +3,10 @@ var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
 
-import {Grid, Row, Col} from 'react-bootstrap';
+import {Button, Grid, Row, Col} from 'react-bootstrap';
 import StripeButton from './ProductPayment/StripeButton.js'
 import ProductImageDisplay from './ProductImageDisplay.js'
+import AddToCartButton from './ProductPayment/AddToCartButton.js'
 
 
 
@@ -45,6 +46,36 @@ export default class ProductMainContainer extends React.Component {
 		});
 	}
 
+	addToCart(){
+		var form_data = JSON.stringify({
+			"product_id" : this.props.product_id,
+			"jwt" : localStorage.jwt,
+			"account_id" : AppStore.getCurrentUser()
+		})
+		$.ajax({
+		  type: "POST",
+		  url: url + "/getMarketProductInfo",
+		  data: form_data,
+		  success: function(data) {
+			if (!data.success){
+				this.setState({invalid_product : true})
+			}
+			else {
+				this.setState({invalid_product : false})
+				this.setState({product: data.product})
+			}
+			
+			
+		  }.bind(this),
+		  error : function(){
+			console.log("error")
+		  },
+		  dataType: "json",
+		  contentType : "application/json; charset=utf-8"
+		});
+
+	}
+
 
 
 	render() {
@@ -62,6 +93,7 @@ export default class ProductMainContainer extends React.Component {
 								<div className = "product-page-left "> 
 									<ProductImageDisplay product = {this.state.product}/>
 									<StripeButton product = {this.state.product}/>
+									<AddToCartButton product = {this.state.product}/>
 								</div>
 							</Col>
 							<Col sm = {6} md = {6} lg = {6}>

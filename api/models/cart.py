@@ -29,12 +29,12 @@ class Cart:
 		self.items.delete()
 		db.session.commit()
 
-	def getProductsAsDict(self):
+	def toPublicDict(self):
 		product_list = list()
 		for cart_item in self.items:
-			product = MarketProduct.query.fliter_by(product_id = cart_item.product_id).first().toPublicDict()
-			product[Labels.num_items] = cart_item.num_items
-			product_list.apppend(product)
+			product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().toPublicDict()
+			product[Labels.NumItems] = cart_item.num_items
+			product_list.append(product)
 		return product_list
 
 ## user object class

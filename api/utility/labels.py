@@ -134,6 +134,9 @@ class CartLabels:
 	Jwt = "jwt"
 	NumItems = "num_items"
 	CartId = "cart_id"
+	Cart = "cart"
+	Items = "items"
+	Price = "price"
 
 class AddressLabels:
 	AddressId = "address_id"

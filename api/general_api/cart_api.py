@@ -23,9 +23,10 @@ cart_api = Blueprint('cart_api', __name__)
 def addItemToCart():
 	account_id = request.json.get(Labels.AccountId)
 	product_id = request.json.get(Labels.ProductId)
-	if not JwtUtil.validateJwtUser(account_id):
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
-	existing_cart_item = CartItem.query.fitler_by(account_id = account_id, product_id = product_id).first()
+	existing_cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
 	if existing_cart_item == None:
 		new_cart_item = CartItem(account_id, product_id, num_items = 1)
 		db.session.add(new_cart_item)
@@ -37,12 +38,14 @@ def addItemToCart():
 # checkout cart
 @cart_api.route('/checkoutCart', methods = ['POST'])
 def checkoutCart():
-	if not JwtUtil.validateJwtUser(account_id):
-		return JsonUtil.jwt_failure()
 	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	
 	this_cart = Cart(account_id)
 	price = this_cart.price
-	this_user = User.query.fitler_by(account_id = account_id).first()
+	this_user = User.query.filter_by(account_id = account_id).first()
 	# charge this price to the customer via stripe
 	charge = StripeManager.chargeCustomer(this_user, price)
 	# record this transaction for each product (enabling easier refunds), but group by quantity 
@@ -59,4 +62,14 @@ def checkoutCart():
 	return JsonUtil.success()
 
 
+@cart_api.route('/getUserCart', methods = ['POST'])
+def getUserCart():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
 	
+	this_cart = Cart(account_id)
+	price = this_cart.price
+	return JsonUtil.success(Labels.Cart, {Labels.Price: price, Labels.Items : this_cart.toPublicDict()})
+
