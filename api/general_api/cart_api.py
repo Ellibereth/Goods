@@ -14,6 +14,7 @@ from api.utility.labels import CartLabels as Labels
 from api.utility.jwt_util import JwtUtil
 from api.utility import email_api 
 from api.models.order import Order
+from api.utility.lob import Lob
 
 cart_api = Blueprint('cart_api', __name__)
 
@@ -42,22 +43,35 @@ def checkoutCart():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
-	
+	card_id = request.json.get(Labels.CardId)
+	address_id = request.json.get(Labels.AddressId)
+	address = Lob.getAddressById(address_id)
+
+	if int(address.metadata[Labels.AccountId]) != account_id:
+		return JsonUtil.failure("Address does not go with this user")
+
 	this_cart = Cart(account_id)
 	price = this_cart.price
 	this_user = User.query.filter_by(account_id = account_id).first()
+
 	# charge this price to the customer via stripe
-	charge = StripeManager.chargeCustomer(this_user, price)
+	# stripe automatically checks if the card matches the customer 
+	try:
+		charge = StripeManager.chargeCustomerCard(this_user, card_id ,price)
+	except Exception as e:
+		return JsonUtil.failure("Something went wrong " + str(e))
+
 	# record this transaction for each product (enabling easier refunds), but group by quantity 
 	for cart_item in this_cart.items:
 		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-		new_order = Order(this_user, this_product, cart_item.num_items)
+		new_order = Order(this_user, this_product, address, charge, cart_item.num_items)
 		db.session.add(new_order)
 
+	db.session.commit()
 	# send email confirmations
-	email_api.sendPurchaseNotification(this_user, this_cart)
+	# email_api.sendPurchaseNotification(this_user, this_cart, address)
 	
-	# clear the cart
+	# # clear the cart
 	this_cart.clearCart()
 	return JsonUtil.success()
 
@@ -71,5 +85,21 @@ def getUserCart():
 	
 	this_cart = Cart(account_id)
 	price = this_cart.price
-	return JsonUtil.success(Labels.Cart, {Labels.Price: price, Labels.Items : this_cart.toPublicDict()})
+	return JsonUtil.success(Labels.Cart, this_cart.toPublicDict())
+
+
+@cart_api.route('/getCheckoutInformation', methods = ['POST'])
+def getCheckoutInformation():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	
+	this_cart = Cart(account_id)
+	price = this_cart.price
+	this_user = User.query.filter_by(account_id = account_id).first()
+	addresses = this_user.getAddresses()
+	cards = this_user.getCreditCards()
+	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
+		Labels.Cart : this_cart.toPublicDict()})
 

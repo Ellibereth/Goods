@@ -26,16 +26,22 @@ class Cart:
 		db.session.commit()
 
 	def clearCart(self):
-		self.items.delete()
-		db.session.commit()
+		for cart_item in self.items:
+			cart_item.deleteItem()
+		self.items = list()
+		self.price = 0
 
 	def toPublicDict(self):
+		public_dict = {}
 		product_list = list()
 		for cart_item in self.items:
-			product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().toPublicDict()
-			product[Labels.NumItems] = cart_item.num_items
-			product_list.append(product)
-		return product_list
+			if cart_item.num_items != 0:
+				product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().toPublicDict()
+				product[Labels.NumItems] = cart_item.num_items
+				product_list.append(product)
+		public_dict[Labels.Items] = product_list
+		public_dict[Labels.Price] = self.price
+		return public_dict
 
 ## user object class
 class CartItem(db.Model):
@@ -54,6 +60,9 @@ class CartItem(db.Model):
 		self.num_items = num_items
 		db.Model.__init__(self)		
 
+	def deleteItem(self):
+		CartItem.query.filter_by(cart_id = self.cart_id).delete()
+		db.session.commit()
 
 	def toPublicDict(self):
 		public_dict = {}

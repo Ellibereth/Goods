@@ -23,6 +23,7 @@ export default class UserAddressDisplay extends React.Component {
 			<div className = "row">
 				<div>
 					<p> Name : {item.name} </p>
+					<p> Quantity : {item.num_items} </p>
 				</div>	
 				
 			</div>

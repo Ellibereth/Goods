@@ -61,3 +61,8 @@ class Lob:
 	@staticmethod
 	def deleteAddress(address_id):
 		lob.Address.delete(address_id)
+
+	@staticmethod 
+	def getAddressById(address_id):
+		address = lob.Address.retrieve(address_id)
+		return address

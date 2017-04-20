@@ -137,6 +137,18 @@ class CartLabels:
 	Cart = "cart"
 	Items = "items"
 	Price = "price"
+	Addresses  = "addresses"
+	Cards = "cards"
+	CardId = "card_id"
+	AddressId = "address_id"
+	Name = "name"
+	Description = "description"
+	AddressCity = "address_city"
+	AddressCountry = "address_country"
+	AddressLine1 = "address_line1"
+	AddressLine1 = "address_line2"
+	AddressZip = "address_zip"
+	AddressState = "address_state"
 
 class AddressLabels:
 	AddressId = "address_id"

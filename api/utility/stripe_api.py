@@ -79,3 +79,16 @@ class StripeManager:
 		customer = stripe.Customer.retrieve(user.stripe_customer_id)
 		customer.sources.retrieve(card_id).delete()
 
+	def chargeCustomerCard(user, card_id, price):
+		amount = int(float(price) * 100)
+		customer = stripe.Customer.retrieve(user.stripe_customer_id)
+		charge = stripe.Charge.create(
+				customer = customer,
+				amount = amount,
+				source = card_id,
+				currency= "usd"
+			)
+		return charge
+
+
+
