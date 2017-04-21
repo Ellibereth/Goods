@@ -103,3 +103,26 @@ def getCheckoutInformation():
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
 		Labels.Cart : this_cart.toPublicDict()})
 
+
+@cart_api.route('/updateCartQuantity', methods = ['POST'])
+def updateCartQuantity():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+
+	product_id = request.json.get(Labels.ProductId)
+	new_num_items = int(request.json.get(Labels.NewNumItems))
+	cart_item = CartItem.query.filter_by(product_id = product_id, account_id = account_id).first()
+	if cart_item == None:
+		return JsonUtil.failure("Cart item doesn't exist")
+
+	assert(new_num_items % 1 == 0)
+	if new_num_items == 0:
+		cart_item.deleteItem()
+	else:
+		cart_item.num_items = new_num_items
+	db.session.commit()
+	return JsonUtil.success()
+
+

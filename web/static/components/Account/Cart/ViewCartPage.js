@@ -25,8 +25,8 @@ export default class ViewCartPage extends React.Component {
 		}
 	}
 
-	componentDidMount(){
-			var form_data = JSON.stringify({
+	refreshProductInfo(){
+		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt
 			})
@@ -55,6 +55,10 @@ export default class ViewCartPage extends React.Component {
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});
+	}
+
+	componentDidMount(){
+		this.refreshProductInfo.bind(this)()
 	}
 
 	setCard(card){
@@ -133,7 +137,7 @@ export default class ViewCartPage extends React.Component {
 						Your Cart! 
 					</h2>
 
-					<CartDisplay items = {this.state.items}/>
+					<CartDisplay refreshProductInfo = {this.refreshProductInfo.bind(this)} items = {this.state.items}/>
 					{this.state.items.length > 0 &&
 						<div>
 						<CheckoutCardSelect setCard = {this.setCard.bind(this)} cards = {this.state.cards} />

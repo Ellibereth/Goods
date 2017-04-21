@@ -35,10 +35,9 @@ class Cart:
 		public_dict = {}
 		product_list = list()
 		for cart_item in self.items:
-			if cart_item.num_items != 0:
-				product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().toPublicDict()
-				product[Labels.NumItems] = cart_item.num_items
-				product_list.append(product)
+			product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().toPublicDict()
+			product[Labels.NumItems] = cart_item.num_items
+			product_list.append(product)
 		public_dict[Labels.Items] = product_list
 		public_dict[Labels.Price] = self.price
 		return public_dict

@@ -85,13 +85,13 @@ export default class ProductMainContainer extends React.Component {
 					<h3>
 						You've reached a bad product page! Click <a href = "/"> here </a> to return home.
 					</h3>
-
 				:
 					<Grid className = "fluid">
 						<Row>
 							<Col className = "text-center"  sm = {4} md = {4} lg = {4}>
 								<div className = "product-page-left "> 
 									<ProductImageDisplay product = {this.state.product}/>
+									<br/>
 									<StripeButton product = {this.state.product}/>
 									<AddToCartButton product = {this.state.product}/>
 								</div>

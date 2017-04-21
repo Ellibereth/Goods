@@ -18,7 +18,7 @@ export default class CartDisplay extends React.Component {
 
 	render() {
 		var item_display = this.props.items.map((item, index) =>
-				<CartItemDisplay item = {item} />
+				<CartItemDisplay refreshProductInfo = {this.props.refreshProductInfo} item = {item} />
 			)
 
 

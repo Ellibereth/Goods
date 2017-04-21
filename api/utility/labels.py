@@ -149,6 +149,7 @@ class CartLabels:
 	AddressLine1 = "address_line2"
 	AddressZip = "address_zip"
 	AddressState = "address_state"
+	NewNumItems = "new_num_items"
 
 class AddressLabels:
 	AddressId = "address_id"
