@@ -4,9 +4,9 @@ var Config = require('Config')
 var url = Config.serverUrl
 
 var browserHistory = require('react-router').browserHistory;
-import AppStore from '../../../stores/AppStore.js';
-import AppActions from '../../../actions/AppActions.js';
-import TextInput from '../../Misc/Input/TextInput.js'
+import AppStore from '../../../../stores/AppStore.js';
+import AppActions from '../../../../actions/AppActions.js';
+import TextInput from '../../../Misc/Input/TextInput.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ["Name", "Description", "City","State", "Country", "Address Line 1", 
 						"Address Line 2", "Zip Code"]

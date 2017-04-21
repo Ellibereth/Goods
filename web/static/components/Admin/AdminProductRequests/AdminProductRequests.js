@@ -25,6 +25,7 @@ export default class AdminProductRequests extends React.Component {
 			  url: url + "/getProductRequests",
 			  data : form_data,
 			  success: function(data) {
+			  	console.log(data)
 				this.setState({product_requests: data})
 			  }.bind(this),
 			  error : function(){
@@ -93,11 +94,14 @@ export default class AdminProductRequests extends React.Component {
 				{	
 					var row = request_variables.map((attr) => {
 						var this_entry = request[attr]
-						if (this_entry == null) this_entry = ""
+						if (this_entry == null) {
+							this_entry = ""
+						}
+						console.log(attr, this_entry)
 						var id = request['submission_id'] + "_" + attr
 						return	(<td className = "admin-table-cell-short" id = {id} s_id = {request['submission_id']}
 							attr = {attr} index = {index}
-							onClick = {this.toggleClass.bind(this, id)}> {request[attr]} </td> 
+							onClick = {this.toggleClass.bind(this, id)}> {this_entry.toString()} </td> 
 						)
 					})
 					row.unshift(

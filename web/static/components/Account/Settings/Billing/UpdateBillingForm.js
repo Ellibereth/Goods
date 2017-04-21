@@ -4,45 +4,32 @@ var Config = require('Config')
 var url = Config.serverUrl
 
 var browserHistory = require('react-router').browserHistory;
-import AppStore from '../../../stores/AppStore.js';
-import AppActions from '../../../actions/AppActions.js';
-import TextInput from '../../Misc/Input/TextInput.js'
+import AppStore from '../../../../stores/AppStore.js';
+import AppActions from '../../../../actions/AppActions.js';
+import TextInput from '../../../Misc/Input/TextInput.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-const form_labels = ["Name", "Description", "City","State", "Country", "Address Line 1", 
-						"Address Line 2", "Zip Code"]
-const form_inputs = ["name", "description", "address_city", "address_state", "address_country",
+const form_labels = ["Full Name on Card", "Card Number", "Expiration Month", "Expiration Year", "CVC", "City", 
+					"Country", "Address Line 1", "Address Line 2", "Zip Code"]
+const form_inputs = ["name", "number", "exp_month", "exp_year", "cvc", "address_city", "address_country",
 					"address_line1", "address_line2", "address_zip"]
 
-const input_types = ["text", "text", "text", "text", "text", "text", "text", "text"]
+const input_types = ["text", "text", "text", "text", "text", "text", "text", "text", "text", "text"]
 
-export default class EditAddressForm extends React.Component {
+export default class UpdateBillingForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			name : "",
-			description : "",
-			address_state: "",
+			number: "",
+			exp_year : "",
+			exp_month :"",
+			cvc : "",
 			address_city : "",
 			address_country : "",
 			address_line1 : "",
 			address_line2 : "",
 			address_zip : ""
 		}
-	}
-
-	// initialize address values
-	componentDidMount(){
-		var address = this.props.address
-		this.setState({
-			name : address.name,
-			description : address.description,
-			address_state : address.address_state,
-			address_city : address.address_city,
-			address_country : address.address_country,
-			address_line1 : address.address_line1,
-			address_line2 : address.address_line2,
-			address_zip : address.address_zip
-		})
 	}
 
 	// handle the text input changes
@@ -76,15 +63,14 @@ export default class EditAddressForm extends React.Component {
 			}
 			data["jwt"] = localStorage.jwt
 			data["account_id"] = AppStore.getCurrentUser().account_id
-			data["address_id"] = this.props.address.id
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/editUserAddress",
+				url: url  + "/addCreditCard",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error with your address! " + data.error 
+						swal("Sorry!", "It seems there was an error with your card! " + data.error 
 							+ ". Please try again!", "warning")
 					}
 					else {
@@ -94,7 +80,6 @@ export default class EditAddressForm extends React.Component {
 								text : "Your changes have been made",
 								type: "success"
 							})
-						this.props.toggleModal(null)
 					}
 
 				}.bind(this),

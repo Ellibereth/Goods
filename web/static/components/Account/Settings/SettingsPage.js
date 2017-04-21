@@ -4,10 +4,10 @@ var Config = require('Config')
 var url = Config.serverUrl
 import AppStore from '../../../stores/AppStore.js';
 import TopNavBar from '../../Misc/TopNavBar'
-import UpdateSettingsPreview from './UpdateSettingsPreview.js'
-import BillingPreview from './BillingPreview.js'
-import PastOrdersPreview from './PastOrdersPreview.js'
-import ShippingPreview from './ShippingPreview'
+import UpdateSettingsPreview from './Personal/UpdateSettingsPreview.js'
+import BillingPreview from './Billing/BillingPreview.js'
+import PastOrdersPreview from './Orders/PastOrdersPreview.js'
+import ShippingPreview from './Shipping/ShippingPreview'
 var browserHistory = require('react-router').browserHistory;
 
 export default class SettingsPage extends React.Component {

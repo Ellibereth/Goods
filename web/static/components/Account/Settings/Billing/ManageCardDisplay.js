@@ -2,30 +2,29 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
-import AppStore from '../../../stores/AppStore.js';
+import AppStore from '../../../../stores/AppStore.js';
 var browserHistory = require('react-router').browserHistory;
 import {Button} from 'react-bootstrap'
 
-
-export default class UserAddressDisplay extends React.Component {
+export default class ManageCardDisplay extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			
 		}
 	}
+	
 
 	// will do this with a modal
-	editAddress(){
-		this.props.toggleModal(this.props.address)
+	editCard(){
+		this.props.toggleModal(this.props.card)
 	}
 
 	onDeletePress(){
-		console.log("bro")
-		var address = this.props.address
+		var card = this.props.card
 		swal({
 		  title: "Ready?",
-		  text: "Are you sure you want to delete : " + address.address_line1 + "?",
+		  text: "Are you sure you want to delete card ending in " + card.last4 + "?",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
@@ -34,25 +33,25 @@ export default class UserAddressDisplay extends React.Component {
 		  closeOnCancel: true
 		},
 		function () {
-			this.deleteAddress.bind(this)()
+			this.deleteCard.bind(this)()
 		}.bind(this))
 	}
 
 	// shows a preview of the address 
 	// then asks the user if they want to delete it
-	deleteAddress(){
+	deleteCard(){
 			var data = {}
 			data["jwt"] = localStorage.jwt
 			data["account_id"] = AppStore.getCurrentUser().account_id
-			data["address_id"] = this.props.address.id
+			data["stripe_card_id"] = this.props.card.id
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/deleteUserAddress",
+				url: url  + "/deleteUserCreditCard",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error deleting your address! " + data.error 
+						swal("Sorry!", "It seems there was an error deleting your credit card! " + data.error 
 							+ ". Please try again!", "warning")
 					}
 					else {
@@ -72,20 +71,16 @@ export default class UserAddressDisplay extends React.Component {
 			});
 	}
 
+
 	render() {
 		// will be updating this to have a better display in the near future
-		var address = this.props.address
+		var card = this.props.card
 		return (
 			<div className = "row">
-				<div>
-					<p> Name : {address.name} </p>
-					<p> Address : {address.address_line1} </p>
-					<p> City : {address.address_city} </p>
-					<p> Zip : {address.address_zip} </p>
-				</div>	
-				<Button onClick = {this.editAddress.bind(this)}> Edit </Button>
+				<p> Card ending in : {card.last4} </p>
+				{/* <Button onClick = {this.editCard.bind(this)}> Edit </Button> */}
 				<Button onClick = {this.onDeletePress.bind(this)}> Delete </Button>
-			</div>
+			</div>	
 		)
 	}
 }

@@ -4,21 +4,21 @@ var Config = require('Config')
 var url = Config.serverUrl
 
 var browserHistory = require('react-router').browserHistory;
-import AppActions from '../../../actions/AppActions.js';
-import AppStore from '../../../stores/AppStore.js';
-import TextInput from '../../Misc/Input/TextInput.js'
+import AppActions from '../../../../actions/AppActions.js';
+import AppStore from '../../../../stores/AppStore.js';
+import TextInput from '../../../Misc/Input/TextInput.js'
 import {Grid, Form, Row, Col, FormGroup, Button, ControlLabel} from 'react-bootstrap'
-const form_labels = ['New Password', "Confirm Your New Password", "Confirm Current Password"]
-const form_inputs = ["password", "password_confirm", "old_password"]
-const input_types = ['password', 'password', 'password']
+const form_labels = ['Name', "Email", "Confirm Password"]
+const form_inputs = ["name", "email", "password"]
+const input_types = ['text', 'text', 'password']
 
 export default class SettingsFormPersonal extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			password: "",
-			password_confirm : "",
-			old_password : ""
+			name: "",
+			email: "",
+			password : ""
 		}
 	}
 
@@ -32,7 +32,7 @@ export default class SettingsFormPersonal extends React.Component {
 	onSubmitPress(){
 		swal({
 		  title: "Ready?",
-		  text: "Are you sure you want to change your password?",
+		  text: "Is all your information correct?",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
@@ -47,31 +47,40 @@ export default class SettingsFormPersonal extends React.Component {
 
 	componentDidMount(){
 		var current_user = AppStore.getCurrentUser()
-		this.setState({name : current_user.name, email : current_user.email})
+		this.setState({name : current_user.name})
+		this.setState({email : current_user.email})
 	}
 
-	updatePassword(){
+	updateSettings(){
+			var new_settings = {}
+			for (var i = 0; i < form_inputs.length; i++){
+				var key = form_inputs[i]
+				if (key != "password"){
+					if (this.state[key] && this.state[key] != "") {
+					new_settings[key] = this.state[key]
+					}	
+				}
+			}
 			var form_data = JSON.stringify({
 				"email" : AppStore.getCurrentUser().email,
+				"new_settings" : new_settings,
 				"password" : this.state.password,
-				"password_confirm" : this.state.password_confirm,
-				"old_password" : this.state.old_password,
 				"jwt" : localStorage.jwt
 			})
 			$.ajax({
 				type: "POST",
-				url: url  + "/changePassword",
+				url: url  + "/updateSettings",
 				data: form_data,
 				success: function(data) {
 					console.log(data)
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error! " + data.error 
+						swal("Sorry!", "It seems there was an error in your submission! " + data.error 
 							+ ". Please try again!", "warning")
 					}
 					else {
 						AppActions.removeCurrentUser()
-						AppActions.addCurrentUser(data.user)
-						swal({title: "Thank you!", text : "Your password has been updated!",type: "success"})
+						AppActions.addCurrentUser(data.user, data.jwt)
+						swal({title: "Thank you!", text : "Your changes have been made",type: "success"})
 					}
 				}.bind(this),
 				error : function(){
@@ -81,18 +90,16 @@ export default class SettingsFormPersonal extends React.Component {
 				contentType : "application/json; charset=utf-8"
 			});
 		}
-
-	changeSettings(){
-		browserHistory.push(`/updateSettings`)
+	updatePassword() {
+		browserHistory.push(`/changePassword`)
 	}
 
 
-
-	submitData() {
+	onSubmitPress() {
 		// first check the password
 		var form_data = JSON.stringify({
 			"email" : AppStore.getCurrentUser()['email'],
-			"password" : this.state.old_password
+			"password" : this.state.password
 		})
 		$.ajax({
 				type: "POST",
@@ -103,7 +110,7 @@ export default class SettingsFormPersonal extends React.Component {
 						swal("Sorry!", "Your password was incorrect. Please try again!", "warning")
 					}
 					else {
-						this.updatePassword.bind(this)()
+						this.updateSettings.bind(this)()
 						// swal(title: "Thank you!", text : "Your changes have been made",type: "success")
 					}
 				}.bind(this),
@@ -130,6 +137,7 @@ export default class SettingsFormPersonal extends React.Component {
 					<br/>
 					{text_inputs}
 					
+
 					<FormGroup controlId = "update_password">
 						
 							<Col sm = {4} lg = {4} md = {4}>
@@ -138,8 +146,8 @@ export default class SettingsFormPersonal extends React.Component {
 								</Button>
 							</Col>
 							<Col pullRight className = "text-right" sm = {4} lg = {4} md = {4}>
-								<Button onClick = {this.changeSettings.bind(this)}>
-									Change other Settings
+								<Button onClick = {this.updatePassword.bind(this)}>
+									Click to Update Password!
 								</Button>
 							</Col>
 					</FormGroup>

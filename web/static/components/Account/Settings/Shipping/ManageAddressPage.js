@@ -2,9 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
-import AppStore from '../../../stores/AppStore.js';
-import TopNavBar from '../../Misc/TopNavBar'
-import UserAddressDisplay from './UserAddressDisplay.js'
+import AppStore from '../../../../stores/AppStore.js';
+import TopNavBar from '../../../Misc/TopNavBar'
+import UserAddressDisplay from './ManageAddressDisplay.js'
 import EditAddressModal from './EditAddressModal.js'
 var browserHistory = require('react-router').browserHistory;
 

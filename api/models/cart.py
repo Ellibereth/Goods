@@ -19,12 +19,6 @@ class Cart:
 	def getCartPrice(self, account_id):
 		return Pricing.getCartPrice(self.items)
 
-	# confirm num_items is an integer
-	def updateCartItemQuantity(self, product_id, num_items):
-		assert(num_items % 1 == 0)
-		self.items.query.filter_by(product_id = product_id).first().num_items = num_items
-		db.session.commit()
-
 	def clearCart(self):
 		for cart_item in self.items:
 			cart_item.deleteItem()
@@ -49,6 +43,7 @@ class CartItem(db.Model):
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	num_items = db.Column(db.Integer)
+	num_items_limit = db.Column(db.Integer)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -57,7 +52,22 @@ class CartItem(db.Model):
 		self.account_id = account_id
 		self.product_id = product_id
 		self.num_items = num_items
+		self.num_items_limit = MarketProduct.query.filter_by(product_id = product_id).first().num_items_limit
 		db.Model.__init__(self)		
+
+
+	# called with a try statement
+	def updateCartQuantity(self, new_num_items):
+		# confirm num_items is an integer
+		assert(new_num_items >= 0)
+		assert(new_num_items % 1 == 0)
+		if new_num_items == 0:
+			self.deleteItem()
+		elif new_num_items > self.num_items_limit:
+			raise Exception("You've reached your limit for this product (" + str(self.num_items_limit))
+		else:
+			self.num_items = new_num_items
+		db.session.commit()
 
 	def deleteItem(self):
 		CartItem.query.filter_by(cart_id = self.cart_id).delete()

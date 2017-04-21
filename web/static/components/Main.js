@@ -21,19 +21,18 @@ import StorePage from './Store/StorePage.js'
 import RegisterPage from './Account/Register/RegisterPage.js'
 import LoginPage from './Account/Login/LoginPage.js'
 import SettingsPage from './Account/Settings/SettingsPage.js'
-import UpdateSettingsPage from './Account/Settings/UpdateSettingsPage.js'
-import OrderHistoryPage from './Account/Settings/OrderHistoryPage.js'
-import ChangePasswordPage from './Account/Settings/ChangePasswordPage.js'
+import UpdateSettingsPage from './Account/Settings/Personal/UpdateSettingsPage.js'
+import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
+import ChangePasswordPage from './Account/Settings/Personal/ChangePasswordPage.js'
 import LogoutPage from './Misc/LogoutPage.js'
 import AdminEditProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminEditProductPage.js'
 import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
-import UpdateBillingPage from './Account/Settings/UpdateBillingPage.js'
-import ManageCardsPage from './Account/Settings/ManageCardsPage.js'
-import UpdateShippingPage from './Account/Settings/UpdateShippingPage.js'
-import ManageAddressPage from './Account/Settings/ManageAddressPage.js'
+import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
+import ManageCardsPage from './Account/Settings/Billing/ManageCardsPage.js'
+import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
+import ManageAddressPage from './Account/Settings/Shipping/ManageAddressPage.js'
 import ViewCartPage from './Account/Cart/ViewCartPage.js'
-import CheckoutPage from './Account/Cart/CheckoutPage.js'
 
 export default class Main extends React.Component {
 	componentWillMount() {
@@ -114,7 +113,6 @@ ReactDOM.render(
 			<Route path = "shipping" onEnter = {checkConfirmedUser} component = {UpdateShippingPage}/>
 			<Route path = "yourPlaces" onEnter = {checkConfirmedUser} component = {ManageAddressPage}/>
 			<Route path = "myCart" onEnter = {checkConfirmedUser} component = {ViewCartPage} />
-			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

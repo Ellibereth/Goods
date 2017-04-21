@@ -28,6 +28,7 @@ class MarketProduct(db.Model):
 	inventory = db.Column(db.Integer, nullable = False)
 	soft_deleted = db.Column(db.Boolean, default = False)
 	manufacturer = db.Column(db.String)
+	num_items_limit = db.Column(db.Integer)
 	# figure out input for this
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
@@ -39,7 +40,7 @@ class MarketProduct(db.Model):
 	image_id = db.relationship("ProductImage", backref = TestTables.ImageTable, lazy='dynamic')
 
 	
-	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date):
+	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, num_items_limit = 10):
 		self.price = price
 		self.name = name
 		self.category = category
@@ -47,6 +48,8 @@ class MarketProduct(db.Model):
 		self.manufacturer = manufacturer
 		self.inventory = inventory
 		self.sale_end_date = sale_end_date
+		self.num_items_limit = num_items_limit
+		self.main_image = None
 		db.Model.__init__(self)
 		
 	def getProductImages(self):

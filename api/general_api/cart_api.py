@@ -27,13 +27,13 @@ def addItemToCart():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
-	existing_cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
-	if existing_cart_item == None:
-		new_cart_item = CartItem(account_id, product_id, num_items = 1)
-		db.session.add(new_cart_item)
-	else:
-		existing_cart_item.num_items = existing_cart_item.num_items + 1
-	db.session.commit()
+	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
+	if cart_item == None:
+		return JsonUtil.failure("Cart item does not exist")
+	try:
+		cart_item.updateCartQuantity(cart_item.num_items + 1)
+	except Exception as e:
+		return JsonUtil.failure("Something went wrong. " + str(e))
 	return JsonUtil.success()
 
 # checkout cart
@@ -94,10 +94,11 @@ def getCheckoutInformation():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
-	
+	this_user = User.query.filter_by(account_id = account_id).first()
+	if this_user == None:
+		return JsonUtil.failure("User does not exist")
 	this_cart = Cart(account_id)
 	price = this_cart.price
-	this_user = User.query.filter_by(account_id = account_id).first()
 	addresses = this_user.getAddresses()
 	cards = this_user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
@@ -113,16 +114,11 @@ def updateCartQuantity():
 
 	product_id = request.json.get(Labels.ProductId)
 	new_num_items = int(request.json.get(Labels.NewNumItems))
-	cart_item = CartItem.query.filter_by(product_id = product_id, account_id = account_id).first()
-	if cart_item == None:
-		return JsonUtil.failure("Cart item doesn't exist")
-
-	assert(new_num_items % 1 == 0)
-	if new_num_items == 0:
-		cart_item.deleteItem()
-	else:
-		cart_item.num_items = new_num_items
-	db.session.commit()
+	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
+	try:
+		cart_item.updateCartQuantity(new_num_items)
+	except Exception as e:
+		return JsonUtil.failure("Something went wrong : " + str(e))
 	return JsonUtil.success()
 
 

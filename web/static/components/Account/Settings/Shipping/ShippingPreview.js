@@ -4,10 +4,10 @@ var Config = require('Config')
 var url = Config.serverUrl
 var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
-import AppStore from '../../../stores/AppStore.js';
+import AppStore from '../../../../stores/AppStore.js';
 import {Grid, Row, Button, Col} from 'react-bootstrap'
 
-export default class UpdateSettingsPreview extends React.Component {
+export default class ShippingPreview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -23,17 +23,17 @@ export default class UpdateSettingsPreview extends React.Component {
 				<Grid>
 					<Row>
 						<Col sm = {10} lg = {10} md = {10}>
-							<h4> Your Info </h4>
+							<h4> Your Addresses </h4>
 						</Col>
 						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
-							<Button onClick = {() => browserHistory.push('/updateSettings')} > Edit </Button>
+							<Button onClick = {() => browserHistory.push('/shipping')} > Add </Button>
 						</Col>
 					</Row>
 					<Row>
 						<div className = "setting-preview-box">
 							<h5>
-								<p>  Name : {current_user.name} </p>
-								<p>   Email : {current_user.email} </p>
+								<p> Placeholder for now </p>
+								<p> <Link to = "/yourPlaces"> Manage Addresses </Link> </p>
 							</h5>
 						</div>
 					</Row>

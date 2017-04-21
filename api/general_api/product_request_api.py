@@ -20,7 +20,7 @@ product_request_api = Blueprint('product_request_api', __name__)
 ## soft deletes a product request
 @product_request_api.route('/softDeleteProductRequestByRequestId', methods = ['POST'])
 def softDeleteProductRequestByRequestId():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 
@@ -36,7 +36,7 @@ def softDeleteProductRequestByRequestId():
 
 @product_request_api.route('/getProductRequests', methods =['POST'])
 def getProductRequests():
-	jwt = request.json.get(Lables.Jwt)
+	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
 	all_requests = Request.query.all()

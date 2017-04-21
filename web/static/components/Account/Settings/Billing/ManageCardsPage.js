@@ -2,9 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Config = require('Config')
 var url = Config.serverUrl
-import AppStore from '../../../stores/AppStore.js';
-import TopNavBar from '../../Misc/TopNavBar'
-import UserCardDisplay from './UserCardDisplay.js'
+import AppStore from '../../../../stores/AppStore.js';
+import TopNavBar from '../../../Misc/TopNavBar'
+import UserCardDisplay from './ManageCardDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 
 export default class UpdateBillingPage extends React.Component {
