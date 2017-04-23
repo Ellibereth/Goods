@@ -14,8 +14,43 @@ export default class SettingsPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			cards : [],
+			addresses : []
 		}
+	}
+
+	refreshProductInfo(){
+	var form_data = JSON.stringify({
+			"account_id" : AppStore.getCurrentUser().account_id,
+			"jwt" : localStorage.jwt
+		})
+		$.ajax({
+			type: "POST",
+			url: url  + "/getCheckoutInformation",
+			data: form_data,
+			success: function(data) {
+				console.log(data)
+				if (data.success) {
+					console.log(data)
+					this.setState({
+						cards : data.cards,
+						addresses : data.addresses, 
+					})
+				}
+				else {
+					console.log("an error")
+				}
+			}.bind(this),
+			error : function(){
+				console.log("an internal server error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+	}
+
+	componentDidMount(){
+		this.refreshProductInfo.bind(this)()
 	}
 
 	render() {
@@ -26,13 +61,13 @@ export default class SettingsPage extends React.Component {
 					<h1> Your Account </h1> 
 					<br/>
 
-					<UpdateSettingsPreview />
+					<UpdateSettingsPreview  />
 					<br/>
 
-					<BillingPreview />
+					<BillingPreview  cards = {this.state.cards} />
 					<br />
 
-					<ShippingPreview />
+					<ShippingPreview  addresses = {this.state.addresses}/>
 					<br/>
 
 					{/* <PastOrdersPreview /> */}

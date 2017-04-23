@@ -137,7 +137,7 @@ def addCreditCard():
 			address_zip, exp_month, exp_year, number, cvc, name, address_country)
 		return JsonUtil.success()
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong \n " + str(e))
+		return JsonUtil.failure("Something went wrong while adding credit card \n " + str(e))
 
 @account_api.route("/getUserCards", methods = ['POST'])
 def getUserCards():
@@ -213,7 +213,7 @@ def editUserAddress():
 		return JsonUtil.success()
 
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong \n " + str(e))
+		return JsonUtil.failure("Something went wrong while editing address \n " + str(e))
 
 @account_api.route('/deleteUserAddress', methods = ['POST'])
 def deleteUserAddress():
@@ -231,7 +231,7 @@ def deleteUserAddress():
 		return JsonUtil.success()
 
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong \n " + str(e))
+		return JsonUtil.failure("Something went wrong while deleting address \n " + str(e))
 
 	
 @account_api.route('/deleteUserCreditCard', methods = ['POST'])
@@ -248,7 +248,7 @@ def deleteUserCreditCard():
 		user.deleteCreditCard(card_id)
 		return JsonUtil.success()
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong \n " + str(e))
+		return JsonUtil.failure("Something went wrong while delting credit card \n " + str(e))
 
 
 

@@ -52,7 +52,19 @@ export default class UserAddressDisplay extends React.Component {
 
 	render() {
 		// will be updating this to have a better display in the near future
+		// need photo, price, etc
 		var item = this.props.item
+
+		console.log(item)
+
+		if(item.images.length == 0) {
+			var image_display = <div> No Image Exists for this product </div>
+		}
+
+		else {
+			var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+			var image_display = <img className = "cart-image-display" src = {src_base + item.main_image} />
+		}
 
 		var max_items = 10
 		var num_items_options = []
@@ -65,22 +77,25 @@ export default class UserAddressDisplay extends React.Component {
 			}
 		}	
 		return (
-			<div className = "row">
-				<div>
-					<p> Name : {item.name} </p>
-					<form>
-						<div class="form-group">
-						  <label> Quantity </label>
-						  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
-						    {num_items_options}
-						    <option value = {0}> Delete </option>
-						   
-						  </select>
-						</div>
-					</form>
-				</div>	
-				
-			</div>
+			<div className = "row cart-checkout-preview">
+					<div className = "col-xs-4 col-md-4 col-lg-4 col-sm-4">
+						{image_display}
+					</div>
+					<div className = "col-xs-4 col-md-4 col-lg-4 col-sm-4">
+						<div> Name : {item.name} by {item.manufacturer} </div>
+						<div> Price : {item.price} </div>
+						<form>
+							<div class="form-group">
+							  <label> Quantity </label>
+							  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
+							    {num_items_options}
+							    <option value = {0}> Delete </option>
+							  </select>
+							</div>
+						</form>
+
+					</div>
+			</div>	
 		)
 	}
 }

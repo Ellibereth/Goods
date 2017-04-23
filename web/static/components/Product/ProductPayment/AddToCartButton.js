@@ -38,7 +38,11 @@ export default class AddToCartButton extends React.Component {
 	render() {
 		// var user = AppStore.getCurrentUser()
 		return (
-			<Button onClick = {this.addToCart.bind(this)}> Add To Cart </Button>
+				<button onClick = {this.addToCart.bind(this)} className="btn btn-xlarge btn-primary">
+					<div id = "buy_now_button_text">
+				    	<b> Add to cart </b>
+				    </div>
+				</button>
 		);
   	}
 }

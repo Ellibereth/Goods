@@ -20,18 +20,20 @@ export default class CheckoutAddressSelect extends React.Component {
 		this.props.setAddress(this.props.addresses[event.target.value])
 	}
 
+	
+
 
 	render() {
 		var addresses = this.props.addresses
 		var address_display = addresses.map((address, index) => 
 				<div>
-					<input type="radio" value= {index} name="gender"/> {address.address_line1} {address.address_line2}
+					<input type="radio" value= {index} name="gender"/> {this.props.addressToString(address)}
 				</div>
 			)
 
 
 		return (
-			<div>
+			<div className = "row address-checkout-preview">
 				<h2> Select an address </h2>
 				<form>
 					<div onChange={this.setAddress.bind(this)}>

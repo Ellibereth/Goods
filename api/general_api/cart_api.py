@@ -29,11 +29,14 @@ def addItemToCart():
 		return JsonUtil.jwt_failure()
 	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
 	if cart_item == None:
-		return JsonUtil.failure("Cart item does not exist")
+		new_cart_item = CartItem(account_id, product_id, num_items = 1)
+		db.session.add(new_cart_item)
+		db.session.commit()
+		return JsonUtil.success()
 	try:
 		cart_item.updateCartQuantity(cart_item.num_items + 1)
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong. " + str(e))
+		return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
 	return JsonUtil.success()
 
 # checkout cart
@@ -59,7 +62,7 @@ def checkoutCart():
 	try:
 		charge = StripeManager.chargeCustomerCard(this_user, card_id ,price)
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong " + str(e))
+		return JsonUtil.failure("Something went wrong while trying to process payment information " + str(e))
 
 	# record this transaction for each product (enabling easier refunds), but group by quantity 
 	for cart_item in this_cart.items:
@@ -69,7 +72,7 @@ def checkoutCart():
 
 	db.session.commit()
 	# send email confirmations
-	# email_api.sendPurchaseNotification(this_user, this_cart, address)
+	email_api.sendPurchaseNotification(this_user, this_cart, address)
 	
 	# # clear the cart
 	this_cart.clearCart()
@@ -118,7 +121,7 @@ def updateCartQuantity():
 	try:
 		cart_item.updateCartQuantity(new_num_items)
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong : " + str(e))
+		return JsonUtil.failure("Something went wrong while updating cart quantity : " + str(e))
 	return JsonUtil.success()
 
 

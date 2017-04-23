@@ -141,4 +141,22 @@ body {
 .react-router-link {
 	color : black;
 }
+
+.cart-image-display {
+	height: 80;
+	width: 80px;
+
+}
+
+.cart-checkout-preview {
+	padding: 16px;
+	border-color : black;
+	border-radius: 10px;
+	border-width: 3px;
+	border-style : double
+}
+
+.address-checkout-preview {
+	padding: 10px;
+}
 	

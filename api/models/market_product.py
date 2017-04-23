@@ -8,6 +8,7 @@ import json
 
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
+from api.s3.s3_api import S3
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
@@ -91,6 +92,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.NumImages] = self.num_images
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.Images] = self.getProductImages()
+		public_dict[Labels.MainImage] = self.main_image
 		return public_dict
 
 

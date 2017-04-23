@@ -9,8 +9,8 @@ class Lob:
 		# we don't do international right now
 		if address_country != "US":
 			raise Exception("Address must be in US!")
-		# try: 
-		address = lob.Address.create(
+		try: 
+			address = lob.Address.create(
 		  description= description,
 		  name= name,
 		  company='Lob',
@@ -25,9 +25,9 @@ class Lob:
 		  	AccountId : user.account_id
 		  }
 		)
-		return address
-		# except Exception as e:
-		# 	return e
+			return address
+		except Exception as e:
+			raise Exception("Error adding address : " + str(e))
 
 
 	@staticmethod

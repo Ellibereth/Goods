@@ -18,19 +18,30 @@ export default class CartDisplay extends React.Component {
 
 	render() {
 		var item_display = this.props.items.map((item, index) =>
-				<CartItemDisplay refreshProductInfo = {this.props.refreshProductInfo} item = {item} />
+				<div>
+					<CartItemDisplay refreshProductInfo = {this.props.refreshProductInfo} item = {item} />
+					<div className = "top-buffer"/>
+				</div>
 			)
 
 
 		return (
 			<div>
-				{item_display.length == 0 && 
+				{item_display.length == 0 ? 
 					<div>
 						<h2> There are no items in your cart! Check out our store 
 						 <Link to = "/store"> here </Link> </h2>
 					</div>
+				:
+				<div className = "col-xs-8 col-sm-8 col-md-8 col-lg-8">
+						{item_display}
+				
+					<br/>
+					<div>
+						<b> Total Cart Price: {this.props.price} </b>
+					</div>
+				</div>
 				}
-				{item_display}
 			</div>	
 		)
 	}

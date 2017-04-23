@@ -32,7 +32,7 @@ export default class ShippingPreview extends React.Component {
 					<Row>
 						<div className = "setting-preview-box">
 							<h5>
-								<p> Placeholder for now </p>
+								<p> You have {this.props.addresses.length} addresses </p>
 								<p> <Link to = "/yourPlaces"> Manage Addresses </Link> </p>
 							</h5>
 						</div>

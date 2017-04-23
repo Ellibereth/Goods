@@ -20,21 +20,52 @@ export default class ViewCartPage extends React.Component {
 		this.props.setCard(this.props.cards[event.target.value])
 	}
 
+	getCardInput(card, index){
+		
+					
+				
+		return (
+
+			<span>
+				<div className = "row">
+					<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3">
+						<input type="radio" value= {index} name="gender"/> 
+						<b> {card.brand} </b> ending in {card.last4} 
+					</div>
+					<div className = "col-md-2 col-xs-2 col-sm-2 col-lg-2">
+						{card.name}
+					</div>
+					<div className = "col-md-2 col-xs-2 col-sm-2 col-lg-2">
+						{card.exp_month}/{card.exp_year}
+					</div>
+				</div>
+			</span>
+		)
+	}
+
 
 	render() {
 		var cards = this.props.cards
 		var card_display = cards.map((card, index) => 
-				<div>
-					<input type="radio" value= {index} name="gender"/> Card ending in {card.last4}
-				</div>
+				this.getCardInput(card, index)
 			)
 
 
 		return (
 			<div>
-				<h2> Select a card </h2>
 				<form>
 					<div onChange={this.setCard.bind(this)}>
+						<div className = "row">
+							<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4">
+								Your Credit Cards
+							</div>
+							<div className = "col-md-2 col-xs-2 col-sm-2 col-lg-2">
+								Name on Card
+							</div>
+							<div className = "col-md-2 col-xs-2 col-sm-2 col-lg-2">
+								Expiration Date
+							</div>
+						</div>
 						{card_display}		
 			      	</div>
 			    </form>

@@ -93,6 +93,7 @@ export default class ProductMainContainer extends React.Component {
 									<ProductImageDisplay product = {this.state.product}/>
 									<br/>
 									<StripeButton product = {this.state.product}/>
+									<br/>
 									<AddToCartButton product = {this.state.product}/>
 								</div>
 							</Col>

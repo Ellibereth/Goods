@@ -7,7 +7,9 @@ import TopNavBar from '../../Misc/TopNavBar'
 import CartDisplay from './CartDisplay'
 import CheckoutCardSelect from './CheckoutCardSelect.js'
 import CheckoutAddressSelect from './CheckoutAddressSelect.js'
+import CheckoutConfirm from './CheckoutConfirm.js'
 import {Button} from 'react-bootstrap'
+
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
@@ -21,9 +23,12 @@ export default class ViewCartPage extends React.Component {
 			cards : [],
 			addresses : [],
 			selected_card : null,
-			selected_address : null
+			selected_address : null,
+			step : 1,
+			num_steps : 4
 		}
 	}
+
 
 	refreshProductInfo(){
 		var form_data = JSON.stringify({
@@ -57,7 +62,7 @@ export default class ViewCartPage extends React.Component {
 			});
 	}
 
-	componentDidMount(){
+	componentWillMount(){
 		this.refreshProductInfo.bind(this)()
 	}
 
@@ -119,38 +124,87 @@ export default class ViewCartPage extends React.Component {
 			});
 	}	
 
-	
+	navigateToNextStep(){
+		if (this.state.step + 1 < 5){
+			this.setState({step : this.state.step + 1})
+		}
+	}	
 
-	
+	navigateToLastStep(){
+		if (this.state.step - 1 > 0){
+			this.setState({step : this.state.step - 1})
+		}
+	}
 
+	getThisStep(step){
+		switch (step) {
+			case 1:
+				return <CartDisplay 
+					refreshProductInfo = {this.refreshProductInfo.bind(this)}
+					price = {this.state.price}
+					 items = {this.state.items}/>
+			case 2:
+				return <CheckoutAddressSelect setAddress = {this.setAddress.bind(this)}
+						addresses = {this.state.addresses}
+						addressToString = {this.addressToString} />
+			case 3:
+				return <CheckoutCardSelect setCard = {this.setCard.bind(this)} cards = {this.state.cards} />
+			case 4:
+				return <CheckoutConfirm selected_address = {this.state.selected_address}
+						 selected_card = {this.state.selected_card}
+						 items = {this.state.items}
+						 price = {this.state.price}
+						 addressToString = {this.addressToString}
+						 />
+		}
+	}
+
+	addressToString(address){
+		// Darek Johnson 3900 City Avenue, M619, Philadelphia, PA, 19131 United States
+		return ( 
+			<span>
+				<b> {address.name} </b> {address.address_line1}, {address.address_line2}, {address.address_city}, {address.address_state}, {address.address_zip} {address.address_country}
+			</span>
+		)
+	}
+
+	getChangeStepButtons(step){
+		var has_error = this.hasCheckoutError.bind(this)()
+		if (step == 1) {
+			return (
+				<div>
+					<Button onClick = {this.navigateToNextStep.bind(this)}> Proceed to Checkout </Button>
+				</div>
+			)	
+		}
+		else if (step == 4){
+			return (
+				<div>
+					<Button onClick = {this.navigateToLastStep.bind(this)}> Back </Button>
+					<Button disabled = {has_error} onClick = {this.onCheckoutClick.bind(this)}> Checkout! </Button>
+				</div>
+			)	
+		}
+		else {
+			return (
+				<div>
+					<Button onClick = {this.navigateToLastStep.bind(this)}> Back </Button>
+					<Button onClick = {this.navigateToNextStep.bind(this)}> Next </Button>
+				</div>
+			)
+		}
+		
+	}	
 
 	render() {
-
-		var has_error = this.hasCheckoutError.bind(this)()
+		var this_step = this.getThisStep.bind(this)(this.state.step)
+		var change_step_buttons = this.getChangeStepButtons.bind(this)(this.state.step)
 		return (
 			<div>
-
 				<TopNavBar />
-
 				<div className = "container">
-					<h2> 
-						Your Cart! 
-					</h2>
-
-					<CartDisplay refreshProductInfo = {this.refreshProductInfo.bind(this)} items = {this.state.items}/>
-					{this.state.items.length > 0 &&
-						<div>
-						<CheckoutCardSelect setCard = {this.setCard.bind(this)} cards = {this.state.cards} />
-						<CheckoutAddressSelect setAddress = {this.setAddress.bind(this)}
-						addresses = {this.state.addresses} />
-
-					
-					
-						<hr/>
-						<Button disabled = {has_error}
-						onClick = {this.onCheckoutClick.bind(this)}> Checkout! </Button>
-						</div>
-					}
+					{this_step}
+					{change_step_buttons}
 				</div>
 			</div>	
 		)

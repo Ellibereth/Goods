@@ -32,7 +32,7 @@ export default class BillingPreview extends React.Component {
 					<Row>
 						<div className = "setting-preview-box">
 							<h5>
-								<p> Placeholder for other previews for now</p>
+								<p> You have {this.props.cards.length} cards </p>
 								<p> <Link to = "/yourCards"> Manage Cards </Link> </p>
 							</h5>
 						</div>

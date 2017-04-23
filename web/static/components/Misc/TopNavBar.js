@@ -48,7 +48,10 @@ export default class TopNavBar extends React.Component {
 		else {
 			return (
 				<Nav className = "main-nav-item nav-pills" pullRight>
-					<NavDropdown title="Account" id="nav-dropdown">
+				<NavItem className = "main-nav-item" pullRight> 
+					<Link to = "/myCart"> <span className="glyphicon glyphicon-shopping-cart"></span> </Link>
+				</NavItem>
+					<NavDropdown title= {"Hello, " + this.state.current_user.name.split(" ")[0]} id="nav-dropdown">
 						  <MenuItem> <Link to = "/settings"> <div className = "react-router-link"> Account Settings </div> </Link> </MenuItem>
 						  <MenuItem> <Link to = "/myCart"> <div className = "react-router-link"> View Cart </div> </Link> </MenuItem>
 						  <MenuItem divider />
