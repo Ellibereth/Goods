@@ -170,14 +170,14 @@ export default class ViewCartPage extends React.Component {
 		var has_error = this.hasCheckoutError.bind(this)()
 		if (step == 1) {
 			return (
-				<div>
+				<div className = "row">
 					<Button onClick = {this.navigateToNextStep.bind(this)}> Proceed to Checkout </Button>
 				</div>
 			)	
 		}
 		else if (step == 4){
 			return (
-				<div>
+				<div className = "row">
 					<Button onClick = {this.navigateToLastStep.bind(this)}> Back </Button>
 					<Button disabled = {has_error} onClick = {this.onCheckoutClick.bind(this)}> Checkout! </Button>
 				</div>
@@ -185,7 +185,7 @@ export default class ViewCartPage extends React.Component {
 		}
 		else {
 			return (
-				<div>
+				<div className = "row">
 					<Button onClick = {this.navigateToLastStep.bind(this)}> Back </Button>
 					<Button onClick = {this.navigateToNextStep.bind(this)}> Next </Button>
 				</div>

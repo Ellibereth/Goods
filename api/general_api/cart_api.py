@@ -67,8 +67,10 @@ def checkoutCart():
 	# record this transaction for each product (enabling easier refunds), but group by quantity 
 	for cart_item in this_cart.items:
 		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+		this_product.inventory = this_product.inventory - cart_item.num_items
 		new_order = Order(this_user, this_product, address, charge, cart_item.num_items)
 		db.session.add(new_order)
+		db.session.commit()
 
 	db.session.commit()
 	# send email confirmations

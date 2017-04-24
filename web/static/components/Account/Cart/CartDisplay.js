@@ -31,7 +31,7 @@ export default class CartDisplay extends React.Component {
 						 <Link to = "/store"> here </Link> </h2>
 					</div>
 				:
-				<div className = "col-xs-8 col-sm-8 col-md-8 col-lg-8">
+				<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						{item_display}
 				
 					<br/>
