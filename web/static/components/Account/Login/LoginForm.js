@@ -36,7 +36,7 @@ export default class RegisterAccountForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/checkLogin",
+				url: "/checkLogin",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
