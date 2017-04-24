@@ -23,7 +23,7 @@ class User(db.Model):
 	account_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
 	email = db.Column(db.String, unique = True, nullable = False)
 	email_confirmation_id = db.Column(db.String, unique = True, nullable = False)
-	email_confirmed = db.Column(db.Boolean)
+	email_confirmed = db.Column(db.Boolean, default = False)
 	password_hash = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
 	stripe_customer_id = db.Column(db.String, unique = True)

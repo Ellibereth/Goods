@@ -3,8 +3,6 @@ var ReactDOM = require('react-dom');
 
 import {Grid, Col, Row} from 'react-bootstrap';
 import Countdown from 'react-cntdwn';
-var Config = require('Config')
-var url = Config.serverUrl
 
 
 export default class StorePage extends React.Component {
@@ -23,7 +21,7 @@ export default class StorePage extends React.Component {
 			})
 		$.ajax({
 		  type: "POST",
-		  url: url + "/getMarketProductInfo",
+		  url: "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
 			if (!data.success){

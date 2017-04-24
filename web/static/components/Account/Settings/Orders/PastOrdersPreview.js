@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
@@ -25,7 +23,7 @@ export default class PastOrdersPreview extends React.Component {
 			})
 			$.ajax({
 			  type: "POST",
-			  url: url + "/getUserOrders",
+			  url: "/getUserOrders",
 			  data : request_data,
 			  success: function(data) {
 				this.setState({past_orders: data.orders})

@@ -1,8 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
-
 var browserHistory = require('react-router').browserHistory;
 import TextInput from '../../Misc/Input/TextInput.js'
 import AppActions from '../../../actions/AppActions.js';

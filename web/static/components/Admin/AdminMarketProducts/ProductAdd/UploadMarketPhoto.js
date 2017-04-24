@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 
@@ -57,7 +55,7 @@ export default class ProductRequestForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/uploadMarketProductImage",
+				url: "/uploadMarketProductImage",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

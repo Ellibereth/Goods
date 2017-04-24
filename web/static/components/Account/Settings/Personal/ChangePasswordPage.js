@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 import AppStore from '../../../../stores/AppStore.js';
 import ChangePasswordForm from './ChangePasswordForm.js'
 import TopNavBar from '../../../Misc/TopNavBar'

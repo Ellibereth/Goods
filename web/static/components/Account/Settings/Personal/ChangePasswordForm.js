@@ -1,8 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
-
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../../actions/AppActions.js';
 import AppStore from '../../../../stores/AppStore.js';
@@ -60,7 +57,7 @@ export default class SettingsFormPersonal extends React.Component {
 			})
 			$.ajax({
 				type: "POST",
-				url: url  + "/changePassword",
+				url: "/changePassword",
 				data: form_data,
 				success: function(data) {
 					console.log(data)

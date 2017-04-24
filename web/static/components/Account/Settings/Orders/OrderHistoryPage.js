@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 import AppStore from '../../../../stores/AppStore.js';
 import TopNavBar from '../../../Misc/TopNavBar.js'
 import OrderDisplay from './OrderDisplay.js'
@@ -25,7 +23,7 @@ export default class OrderHistoryPage extends React.Component {
 			})
 			$.ajax({
 			  type: "POST",
-			  url: url + "/getUserOrders",
+			  url: "/getUserOrders",
 			  data : request_data,
 			  success: function(data) {
 				this.setState({past_orders: data.orders})

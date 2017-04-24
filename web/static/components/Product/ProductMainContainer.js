@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import {Button, Grid, Row, Col} from 'react-bootstrap';
 import StripeButton from './ProductPayment/StripeButton.js'
@@ -25,7 +23,7 @@ export default class ProductMainContainer extends React.Component {
 		})
 		$.ajax({
 		  type: "POST",
-		  url: url + "/getMarketProductInfo",
+		  url: "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
 			if (!data.success){
@@ -54,7 +52,7 @@ export default class ProductMainContainer extends React.Component {
 		})
 		$.ajax({
 		  type: "POST",
-		  url: url + "/getMarketProductInfo",
+		  url: "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
 			if (!data.success){

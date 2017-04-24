@@ -3,8 +3,6 @@ var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
 import AppStore from '../../../stores/AppStore.js'
 import {Button} from 'react-bootstrap'
-var Config = require('Config')
-var url = Config.serverUrl
 
 
 // takes the price of the good as prop for now
@@ -18,7 +16,7 @@ export default class AddToCartButton extends React.Component {
 	addToCart(product){
 		$.ajax({
 		  type: "POST",
-		  url: url + "/addItemToCart",
+		  url: "/addItemToCart",
 		  data: JSON.stringify({
 		  	"product_id" : this.props.product.product_id, 
 		  	"account_id" : AppStore.getCurrentUser().account_id,

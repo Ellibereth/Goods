@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 import AppStore from '../../../../stores/AppStore.js';
 import TopNavBar from '../../../Misc/TopNavBar'
 import UserCardDisplay from './ManageCardDisplay.js'
@@ -23,7 +21,7 @@ export default class UpdateBillingPage extends React.Component {
 		})
 		$.ajax({
 				type: "POST",
-				url: url  + "/getUserCards",
+				url: "/getUserCards",
 				data: form_data,
 				success: function(data) {
 					this.setState({cards : data.cards})

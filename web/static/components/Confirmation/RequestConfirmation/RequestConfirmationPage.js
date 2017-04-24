@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import {} from 'react-bootstrap';
 import TopNavBar from '../../Misc/TopNavBar.js'
@@ -22,7 +20,7 @@ export default class EmailConfirmationPage extends React.Component {
 
 		$.ajax({
 			type: "POST",
-			url: url + "/confirmProductRequest",
+			url: "/confirmProductRequest",
 			data: form_data,
 			success: function(data) {
 				if (data.success){

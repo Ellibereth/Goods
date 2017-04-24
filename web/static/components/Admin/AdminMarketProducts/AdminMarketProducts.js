@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import AddProductModal from './ProductAdd/AddProductModal.js'
 
@@ -26,7 +24,7 @@ export default class AdminMarketProducts extends React.Component {
 		})
 			$.ajax({
 			  type: "POST",
-			  url: url + "/getMarketProducts",
+			  url: "/getMarketProducts",
 			  data : form_data,
 			  success: function(data) {
 				this.setState({market_products: data})

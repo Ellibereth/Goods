@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 var browserHistory = require('react-router').browserHistory;
 import LoginForm from './LoginForm'
 import TopNavBar from '../../Misc/TopNavBar'

@@ -2,10 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import TextInput from '../../Misc/Input/TextInput.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-
-
-var Config = require('Config')
-var url = Config.serverUrl
 const form_labels = ['What is your name?', "What is your email?", "What should we know?"]
 const form_inputs = ["name", "email", "feedback_content"]
 
@@ -52,7 +48,7 @@ export default class ProductRequestForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/addFeedback",
+				url: "/addFeedback",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

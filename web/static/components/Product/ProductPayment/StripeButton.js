@@ -4,8 +4,6 @@ import StripeCheckout from 'react-stripe-checkout';
 import {} from 'react-bootstrap';
 import AppStore from '../../../stores/AppStore.js'
 
-var Config = require('Config')
-var url = Config.serverUrl
 const stripe_api_key = "pk_test_8EWYuAcsnEEfUqVe2m91mTXB"
 
 
@@ -29,7 +27,7 @@ export default class StripeButton extends React.Component {
 		// });
 		$.ajax({
 		  type: "POST",
-		  url: url + "/acceptStripePayment",
+		  url: "/acceptStripePayment",
 		  data: JSON.stringify({
 		  	"stripeToken" : token, 
 		  	"product_id" : this.props.product.product_id, 

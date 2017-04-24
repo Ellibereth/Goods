@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 import AppStore from '../../../../stores/AppStore.js';
 var browserHistory = require('react-router').browserHistory;
 import {Button} from 'react-bootstrap'
@@ -48,7 +46,7 @@ export default class ManageAddressDisplay extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/deleteUserAddress",
+				url: "/deleteUserAddress",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

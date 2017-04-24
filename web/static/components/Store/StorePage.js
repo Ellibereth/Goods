@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import {Grid, Col, Row} from 'react-bootstrap';
 import TopNavBar from '../Misc/TopNavBar.js'

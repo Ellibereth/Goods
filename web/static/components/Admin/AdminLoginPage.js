@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../actions/AppActions'
 import TextInput from '../Misc/Input/TextInput.js'
@@ -36,7 +34,7 @@ export default class AdminLoginPage extends React.Component {
 		$.ajax({
 			type: "POST",
 			data: form_data,
-			url: url + "/checkAdminLogin",
+			url: "/checkAdminLogin",
 			success: function(data) {
 				if (data.success) {
 					AppActions.addCurrentUser(data.user, data.jwt)

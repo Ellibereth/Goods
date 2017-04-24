@@ -5,8 +5,6 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
-var Config = require('Config')
-var url = Config.serverUrl
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
@@ -41,7 +39,7 @@ export default class Main extends React.Component {
 		})
 		$.ajax({
 			type: "POST",
-			url: url  + "/getUserInfo",
+			url: "/getUserInfo",
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
@@ -50,7 +48,6 @@ export default class Main extends React.Component {
 				}
 			}.bind(this),
 			error : function(){
-				console.log("error")
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
@@ -71,7 +68,7 @@ const checkConfirmedUser = (nextState, replace) => {
 	if (!thisUser) {
 		replace(`/`)
 	}
-	else if (thisUser.confirmed) {
+	else if (!thisUser.email_confirmed) {
 		replace(`/pleaseConfirm`);
 	}
 }

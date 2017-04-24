@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import {Grid, Row, Col, Button} from 'react-bootstrap';
 import StripeButton from '../../../Product/ProductPayment/StripeButton.js'
@@ -29,7 +27,7 @@ export default class AdminProductMainContainer extends React.Component {
 
 		$.ajax({
 			type: "POST",
-			url: url + "/setMainProductPhoto",
+			url: "/setMainProductPhoto",
 			data: form_data,
 			success: function(data) {
 				var obj = this.props.product
@@ -56,7 +54,7 @@ export default class AdminProductMainContainer extends React.Component {
 
 		$.ajax({
 			type: "POST",
-			url: url + "/deleteProductPhoto",
+			url: "/deleteProductPhoto",
 			data: form_data,
 			success: function(data) {
 				var obj = this.props.product

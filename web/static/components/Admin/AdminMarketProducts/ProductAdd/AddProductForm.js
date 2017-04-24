@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 const form_inputs = ['name', 'description', 'manufacturer', 'price', 'category', 'inventory', 'sale_end_date']
 const form_labels = ["Product Name", "Product Description", "Manufacturer", "Price", "Category", "Inventory", "Sale End Date"]
@@ -68,7 +66,7 @@ export default class AddProductForm extends React.Component {
 			})
 			$.ajax({
 				type: "POST",
-				url: url  + "/addMarketProduct",
+				url: "/addMarketProduct",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

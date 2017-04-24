@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
+
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../../Misc/Input/TextInput.js'
 
@@ -54,7 +53,7 @@ export default class ProductRequestForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/addProductRequest",
+				url: "/addProductRequest",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

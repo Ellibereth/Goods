@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 import AppStore from '../../../../stores/AppStore.js';
 import TopNavBar from '../../../Misc/TopNavBar'
 import UserAddressDisplay from './ManageAddressDisplay.js'
@@ -26,7 +24,7 @@ export default class ManageAddressPage extends React.Component {
 		})
 		$.ajax({
 				type: "POST",
-				url: url  + "/getUserAddress",
+				url: "/getUserAddress",
 				data: form_data,
 				success: function(data) {
 					if (data) {

@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import AppActions from '../../actions/AppActions.js'
 import AppStore from '../../stores/AppStore.js'

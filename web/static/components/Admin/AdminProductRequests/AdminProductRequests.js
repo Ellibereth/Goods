@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 import {Button} from 'react-bootstrap'
 const request_variables = ['request_id', 'name', 'email', 'description', 'price_range', 'confirmed', 'completed', 'date_created', 'date_completed']
@@ -22,7 +20,7 @@ export default class AdminProductRequests extends React.Component {
 			})
 			$.ajax({
 			  type: "POST",
-			  url: url + "/getProductRequests",
+			  url: "/getProductRequests",
 			  data : form_data,
 			  success: function(data) {
 			  	console.log(data)
@@ -62,7 +60,7 @@ export default class AdminProductRequests extends React.Component {
 			var form_data = JSON.stringify({"request_id": r_id})
 			$.ajax({
 				type: "POST",
-				url: url  + "/softDeleteProductRequestByRequestId",
+				url: "/softDeleteProductRequestByRequestId",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

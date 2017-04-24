@@ -1,8 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
-
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions.js';
 import TextInput from '../../Misc/Input/TextInput.js'
@@ -54,7 +51,7 @@ export default class RegisterAccountForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: url  + "/registerUserAccount",
+				url: "/registerUserAccount",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

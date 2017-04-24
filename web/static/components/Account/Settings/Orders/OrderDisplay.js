@@ -1,7 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Config = require('Config')
-var url = Config.serverUrl
 
 export default class PastOrdersDisplay extends React.Component {
 	constructor(props) {
@@ -19,7 +17,7 @@ export default class PastOrdersDisplay extends React.Component {
 		})
 			$.ajax({
 			  type: "POST",
-			  url: url + "/getMarketProductInfo",
+			  url: "/getMarketProductInfo",
 			  data: request_data,
 			  success: function(data) {
 				this.setState({product: data})
