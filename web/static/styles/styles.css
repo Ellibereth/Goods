@@ -146,11 +146,11 @@ body {
 }
 
 .cart-checkout-preview {
-	padding: 16px;
+	/*padding: 16px;*/
 	border-color : black;
-	border-radius: 10px;
+	/*border-radius: 10px;
 	border-width: 3px;
-	border-style : double
+	border-style : double*/
 }
 
 .address-checkout-preview {
@@ -167,8 +167,32 @@ body {
 	width : 100px;
 }
 
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
 
 
+.hcenter {
+    text-align: center;
+}
+
+.cart-item-price-text  {
+	color : green;
+}
 	
+
+.cart-remove-item-icon {
+	color : red;
+}
+
+.cart-title {
+	font-size: 36px
+}
+
+.span-block {
+	display: block;
+}
 
 

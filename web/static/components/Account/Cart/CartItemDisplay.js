@@ -5,7 +5,7 @@ var browserHistory = require('react-router').browserHistory;
 import {Button} from 'react-bootstrap'
 
 
-export default class UserAddressDisplay extends React.Component {
+export default class CartItemDisplay extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,13 +13,11 @@ export default class UserAddressDisplay extends React.Component {
 		}
 	}
 
-	handleQuantityChange(event){
-		var new_num_items = event.target.value
-
+	serverUpdateQuantity(new_quantity){
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt,
-				"new_num_items" : new_num_items,
+				"new_num_items" : new_quantity,
 				"product_id" : this.props.item.product_id
 
 			})
@@ -29,7 +27,7 @@ export default class UserAddressDisplay extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						swal("Success!")	
+						swal("Success! Quantity successfully updated")	
 					}
 					else {
 						swal("Sorry", "Something went wrong." + data.error, "error")
@@ -42,8 +40,20 @@ export default class UserAddressDisplay extends React.Component {
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});
-		this.props.refreshProductInfo()
+		this.props.refreshCheckoutInformation()
 	}
+
+	handleQuantityChange(event){
+		var new_num_items = event.target.value
+		this.serverUpdateQuantity.bind(this)(new_num_items)
+	}
+
+	// removing item is the same as setting quatity to zero
+	removeItem(){
+		this.serverUpdateQuantity.bind(this)(0)
+	}
+
+
 
 
 
@@ -75,24 +85,35 @@ export default class UserAddressDisplay extends React.Component {
 			}
 		}	
 		return (
-			<div className = "row cart-checkout-preview">
-					<div className = "col-xs-4 col-md-4 col-lg-4 col-sm-4">
-						{image_display}
-					</div>
-					<div className = "col-xs-4 col-md-4 col-lg-4 col-sm-4">
-						<div> Name : {item.name} by {item.manufacturer} </div>
-						<div> Price : {item.price} </div>
-						<form>
-							<div class="form-group">
-							  <label> Quantity </label>
-							  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
-							    {num_items_options}
-							    <option value = {0}> Delete </option>
-							  </select>
-							</div>
-						</form>
+				<div className = "row cart-checkout-preview"> 
+					<hr/>
+					<div className = "top-buffer"/>
+						<div className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 vcenter">
+							{image_display} {item.name}
+						</div>
 
-					</div>
+						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
+							${item.price}
+						</div>
+
+						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
+							<form>
+								<div class="form-group">
+								  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
+								    {num_items_options}
+								    <option value = {0}> Delete </option>
+								  </select>
+								</div>
+							</form>
+						</div>
+						<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 cart-item-price-text vcenter hcenter">
+							${item.price *  item.num_items} 
+						</div>
+						<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 vcenter hcenter">
+							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />
+						</div>
+						
+					<div className = "top-buffer"/>
 			</div>	
 		)
 	}

@@ -28,7 +28,7 @@ export default class ViewCartPage extends React.Component {
 	}
 
 
-	refreshProductInfo(){
+	refreshCheckoutInformation(){
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt
@@ -61,7 +61,7 @@ export default class ViewCartPage extends React.Component {
 	}
 
 	componentWillMount(){
-		this.refreshProductInfo.bind(this)()
+		this.refreshCheckoutInformation.bind(this)()
 	}
 
 	setCard(card){
@@ -138,21 +138,32 @@ export default class ViewCartPage extends React.Component {
 		switch (step) {
 			case 1:
 				return <CartDisplay 
-					refreshProductInfo = {this.refreshProductInfo.bind(this)}
+					navigateToNextStep = {this.navigateToNextStep.bind(this)}
+					refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 					price = {this.state.price}
-					 items = {this.state.items}/>
+					items = {this.state.items}
+					/>
 			case 2:
+				return <CheckoutCardSelect 
+						
+						navigateToNextStep = {this.navigateToNextStep.bind(this)}
+						navigateToLastStep = {this.navigateToLastStep.bind(this)}
+						setCard = {this.setCard.bind(this)} cards = {this.state.cards} />
+			case 3:
 				return <CheckoutAddressSelect setAddress = {this.setAddress.bind(this)}
+						navigateToNextStep = {this.navigateToNextStep.bind(this)}
+						navigateToLastStep = {this.navigateToLastStep.bind(this)}
 						addresses = {this.state.addresses}
 						addressToString = {this.addressToString} />
-			case 3:
-				return <CheckoutCardSelect setCard = {this.setCard.bind(this)} cards = {this.state.cards} />
 			case 4:
-				return <CheckoutConfirm selected_address = {this.state.selected_address}
-						 selected_card = {this.state.selected_card}
+				return <CheckoutConfirm 
+						 onCheckoutClick = {this.onCheckoutClick.bind(this)}
+						 address = {this.state.selected_address}
+						 card = {this.state.selected_card}
 						 items = {this.state.items}
 						 price = {this.state.price}
 						 addressToString = {this.addressToString}
+						 refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 						 />
 		}
 	}
@@ -168,14 +179,7 @@ export default class ViewCartPage extends React.Component {
 
 	getChangeStepButtons(step){
 		var has_error = this.hasCheckoutError.bind(this)()
-		if (step == 1) {
-			return (
-				<div className = "row">
-					<Button onClick = {this.navigateToNextStep.bind(this)}> Proceed to Checkout </Button>
-				</div>
-			)	
-		}
-		else if (step == 4){
+		if (step == 4){
 			return (
 				<div className = "row">
 					<Button onClick = {this.navigateToLastStep.bind(this)}> Back </Button>
@@ -195,14 +199,14 @@ export default class ViewCartPage extends React.Component {
 	}	
 
 	render() {
+		console.log(this.state.selected_address)
 		var this_step = this.getThisStep.bind(this)(this.state.step)
-		var change_step_buttons = this.getChangeStepButtons.bind(this)(this.state.step)
+		// var change_step_buttons = this.getChangeStepButtons.bind(this)(this.state.step)
 		return (
 			<div>
 				<TopNavBar />
 				<div className = "container">
 					{this_step}
-					{change_step_buttons}
 				</div>
 			</div>	
 		)
