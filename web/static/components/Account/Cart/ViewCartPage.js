@@ -11,6 +11,10 @@ import {Button} from 'react-bootstrap'
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
+const ADDRESS_INDEX = 0
+const BILLING_INDEX = 1
+const CART_INDEX = 2
+
 
 export default class ViewCartPage extends React.Component {
 	constructor(props){
@@ -22,10 +26,24 @@ export default class ViewCartPage extends React.Component {
 			addresses : [],
 			selected_card : null,
 			selected_address : null,
-			step : 1,
-			num_steps : 4
+			can_edit : [true, true, true]
 		}
 	}
+
+
+	// closes all other ones
+	openEditable(index){
+		var can_edit = this.state.can_edit
+		can_edit[index] = true
+		this.setState({can_edit : can_edit})
+	}
+
+	closeEditable(index){
+		var can_edit = this.state.can_edit
+		can_edit[index] = false
+		this.setState({can_edit : can_edit})	
+	}
+
 
 
 	refreshCheckoutInformation(){
@@ -122,52 +140,6 @@ export default class ViewCartPage extends React.Component {
 			});
 	}	
 
-	navigateToNextStep(){
-		if (this.state.step + 1 < 5){
-			this.setState({step : this.state.step + 1})
-		}
-	}	
-
-	navigateToLastStep(){
-		if (this.state.step - 1 > 0){
-			this.setState({step : this.state.step - 1})
-		}
-	}
-
-	getThisStep(step){
-		switch (step) {
-			case 1:
-				return <CartDisplay 
-					navigateToNextStep = {this.navigateToNextStep.bind(this)}
-					refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-					price = {this.state.price}
-					items = {this.state.items}
-					/>
-			case 2:
-				return <CheckoutCardSelect 
-						
-						navigateToNextStep = {this.navigateToNextStep.bind(this)}
-						navigateToLastStep = {this.navigateToLastStep.bind(this)}
-						setCard = {this.setCard.bind(this)} cards = {this.state.cards} />
-			case 3:
-				return <CheckoutAddressSelect setAddress = {this.setAddress.bind(this)}
-						navigateToNextStep = {this.navigateToNextStep.bind(this)}
-						navigateToLastStep = {this.navigateToLastStep.bind(this)}
-						addresses = {this.state.addresses}
-						addressToString = {this.addressToString} />
-			case 4:
-				return <CheckoutConfirm 
-						 onCheckoutClick = {this.onCheckoutClick.bind(this)}
-						 address = {this.state.selected_address}
-						 card = {this.state.selected_card}
-						 items = {this.state.items}
-						 price = {this.state.price}
-						 addressToString = {this.addressToString}
-						 refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-						 />
-		}
-	}
-
 	addressToString(address){
 		// Darek Johnson 3900 City Avenue, M619, Philadelphia, PA, 19131 United States
 		return ( 
@@ -177,36 +149,52 @@ export default class ViewCartPage extends React.Component {
 		)
 	}
 
-	getChangeStepButtons(step){
-		var has_error = this.hasCheckoutError.bind(this)()
-		if (step == 4){
-			return (
-				<div className = "row">
-					<Button onClick = {this.navigateToLastStep.bind(this)}> Back </Button>
-					<Button disabled = {has_error} onClick = {this.onCheckoutClick.bind(this)}> Checkout! </Button>
-				</div>
-			)	
-		}
-		else {
-			return (
-				<div className = "row">
-					<Button onClick = {this.navigateToLastStep.bind(this)}> Back </Button>
-					<Button onClick = {this.navigateToNextStep.bind(this)}> Next </Button>
-				</div>
-			)
-		}
-		
-	}	
 
 	render() {
-		console.log(this.state.selected_address)
-		var this_step = this.getThisStep.bind(this)(this.state.step)
-		// var change_step_buttons = this.getChangeStepButtons.bind(this)(this.state.step)
 		return (
 			<div>
 				<TopNavBar />
 				<div className = "container">
-					{this_step}
+					<div className = "col-sm-10 col-md-10 col-lg-10">
+						<CheckoutAddressSelect 
+							setAddress = {this.setAddress.bind(this)}
+							addresses = {this.state.addresses}
+							addressToString = {this.addressToString} 
+							can_edit = {this.state.can_edit[ADDRESS_INDEX]}
+							openEditable = {() => this.openEditable.bind(this)(ADDRESS_INDEX)}
+							closeEditable = {() => this.closeEditable.bind(this)(ADDRESS_INDEX)}
+							address = {this.state.selected_address}
+							/>
+
+						<hr/>
+
+						<CheckoutCardSelect 
+						setCard = {this.setCard.bind(this)} 
+						cards = {this.state.cards} 
+						card = {this.state.selected_card}
+						can_edit = {this.state.can_edit[BILLING_INDEX]}
+						openEditable = {() => this.openEditable.bind(this)(BILLING_INDEX)}
+						closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
+						/>
+
+
+						<hr/>
+
+						<CartDisplay 
+						refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+						price = {this.state.price}
+						items = {this.state.items}
+						/>
+
+
+
+					</div>
+
+					<div className = "col-sm-2 col-md-2 col-lg-2">
+						<Button onClick = {this.onCheckoutClick.bind(this)}>
+							Place your order!
+						</Button>
+					</div>
 				</div>
 			</div>	
 		)

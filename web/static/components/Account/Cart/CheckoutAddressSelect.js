@@ -11,26 +11,32 @@ export default class CheckoutAddressSelect extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			selected_address : 0
 		}
 	}
 
 
-	setAddress(index){
-		this.props.setAddress(this.props.addresses[index])
+	setAddress(){
+		this.props.setAddress(this.props.addresses[this.state.selected_address])
+		this.props.closeEditable()
 	}
 
-	
+	onAddressChange(index){
+		this.setState({selected_address : index})
+	}
+
 
 
 	render() {
 		var addresses = this.props.addresses
+		var address = this.props.address
 		var address_display = addresses.map((address, index) => 
 				<div className = "row">
 					<div className = "top-buffer"/>
 					<hr/>
 					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1">
 						<input type="radio" 
-						onClick = {this.setAddress.bind(this, index)}
+						onClick = {this.onAddressChange.bind(this, index)}
 						value= {index} name="gender"/>
 					</div>
 					<div className = "col-xs-11 col-sm-11 col-md-11 col-lg-11 vcenter">
@@ -42,33 +48,59 @@ export default class CheckoutAddressSelect extends React.Component {
 
 		return (
 			<div>
-					<div className = "row">
-						<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12 cart-title hcenter">
-								Choose an Address 
+				{this.props.can_edit ? 
+					<div>
+						{/* }
+						<div className = "row">
+							<div className = "col-md-5 col-lg-5 col-sm-5 checkout-item-label-editable">
+								<b> 1. Select an Address </b>
+							</div>
+							<div className = "col-md-5 col-lg-5 col-sm-5" />
+							<div className = "col-md-2 col-lg-2 col-sm-2">
+								<div onClick = {this.props.closeEditable}> 
+									Close 
+									<span className = "glyphicon glyphicon-remove small"/>
+								</div>
+							</div>
 						</div>
-					</div>
+					*/}
 
-					<div className = "row">
-						<div className = "col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<b> Your addresses </b>
+						<div className = "row">
+							<div className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
+								<b> 1. Select an Address </b>
+							</div>
 						</div>
-					</div>
-						<form>
-						{address_display}
-						</form>
+							<form>
+							{address_display}
+							</form>
 						<hr/>
 
 						<div className = "row">
-							<div className = "col-xs-3 col-sm-3 col-md-3 col-lg-3 vcenter">
-								<Button onClick = {this.props.navigateToLastStep.bind(this)}> Return to Billing </Button>
-							</div>
-
-							<div className = "col-xs-3 col-sm-3 col-md-3 col-lg-3 vcenter">
-								<Button onClick = {this.props.navigateToNextStep.bind(this)}> Proceed to Checkout </Button>
-							</div>
-
-							
+							<Button onClick = {this.setAddress.bind(this)}>
+								Use this address
+							</Button>
 						</div>
+					</div>
+				:
+					<div>
+						<div className = "row">
+							<div className = "col-md-5 col-lg-5 col-sm-5">
+								<b> 1. Shipping Address </b>
+							</div>
+							<div className = "col-md-6 col-lg-6 col-sm-6">
+								<span className = "span-block"> {address.name} </span>
+								<span className = "span-block"> {address.address_line1} {address.address_line2} </span> 
+								<span className = "span-block"> {address.address_city}, {address.address_state} {address.address_zip} </span>
+							</div>
+							<div className = "col-md-1 col-sm-1 col-lg-1">
+								<div onClick = {this.props.openEditable}>
+									Change
+								</div>
+							</div>
+							<div className = "top-buffer"/>
+						</div>
+					</div>
+				}
 			</div>
 			
 		)

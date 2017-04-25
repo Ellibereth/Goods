@@ -20,7 +20,6 @@ export default class CartDisplay extends React.Component {
 				<CartItemDisplay refreshCheckoutInformation = {this.props.refreshCheckoutInformation} item = {item} />
 			)
 
-
 		return (
 			<div id = "cart_display">
 				{item_display.length == 0 ? 
@@ -30,9 +29,10 @@ export default class CartDisplay extends React.Component {
 					</div>
 				:
 					<div>
+
 						<div className = "row">
-							<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12 cart-title hcenter">
-								Your Cart
+							<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<b> 3. Your Cart </b>
 							</div>
 						</div>
 						<div className = "row">
@@ -58,18 +58,6 @@ export default class CartDisplay extends React.Component {
 							{item_display}
 					
 						<hr/>
-							<div className = "row">
-								<div className = "col-xs-8 col-sm-8 col-md-8 col-lg-8 vcenter">
-									<Button onClick = {this.props.navigateToNextStep.bind(this)}> Proceed to Checkout </Button>
-								</div>
-								<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter vcenter">
-									Subtotal
-								</div>
-								<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 hcenter vcenter cart-item-price-text">
-									<b> ${this.props.price} </b>
-								</div>	
-							</div>
-						
 					</div>
 				}
 			</div>	

@@ -119,8 +119,8 @@ body {
 	padding: 8px 18px;
     font-size: 16px;
     line-height: normal;
-    background-color: skyblue	
-    border-color: black
+    background-color: green;	
+    border-color: white
 }
 
 .product-page-left {
@@ -195,4 +195,7 @@ body {
 	display: block;
 }
 
+.checkout-item-selected{
+	color: red;
+}
 

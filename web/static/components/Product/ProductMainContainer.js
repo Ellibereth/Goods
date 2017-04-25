@@ -122,9 +122,9 @@ export default class ProductMainContainer extends React.Component {
 									<AddToCartButton product = {this.state.product}/>
 								</span>
 								<hr/>
-								<span className = "product-description-text"> PRODUCT DESCRIPTION </span>
+								<span className = "product-description-text"> Product Description </span>
 									<div className="panel-body">{this.state.product.description}</div>
-								<span className = "product-manufacturer-text"> MANUFACTURER</span>
+								<span className = "product-manufacturer-text"> Manufacturer </span>
 									<div className="panel-body">{this.state.product.manufacturer}</div>
 								<hr/>
 								<span className = "product-more-images-header"> More Images </span>
