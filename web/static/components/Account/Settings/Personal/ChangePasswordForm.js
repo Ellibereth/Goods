@@ -59,7 +59,6 @@ export default class SettingsFormPersonal extends React.Component {
 				url: "/changePassword",
 				data: form_data,
 				success: function(data) {
-					console.log(data)
 					if (!data.success) {
 						swal("Sorry!", "It seems there was an error! " + data.error 
 							+ ". Please try again!", "warning")

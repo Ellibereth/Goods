@@ -24,6 +24,7 @@ cart_api = Blueprint('cart_api', __name__)
 def addItemToCart():
 	account_id = request.json.get(Labels.AccountId)
 	product_id = request.json.get(Labels.ProductId)
+	quantity = int(request.json.get(Labels.Quantity))
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
@@ -34,7 +35,7 @@ def addItemToCart():
 		db.session.commit()
 		return JsonUtil.success()
 	try:
-		cart_item.updateCartQuantity(cart_item.num_items + 1)
+		cart_item.updateCartQuantity(cart_item.num_items + quantity)
 	except Exception as e:
 		return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
 	return JsonUtil.success()

@@ -31,6 +31,7 @@ import ManageCardsPage from './Account/Settings/Billing/ManageCardsPage.js'
 import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
 import ManageAddressPage from './Account/Settings/Shipping/ManageAddressPage.js'
 import ViewCartPage from './Account/Cart/ViewCartPage.js'
+import CheckoutPage from './Account/Cart/CheckoutPage.js'
 
 export default class Main extends React.Component {
 	
@@ -111,6 +112,7 @@ ReactDOM.render(
 			<Route path = "shipping" onEnter = {checkConfirmedUser} component = {UpdateShippingPage}/>
 			<Route path = "yourPlaces" onEnter = {checkConfirmedUser} component = {ManageAddressPage}/>
 			<Route path = "myCart" onEnter = {checkConfirmedUser} component = {ViewCartPage} />
+			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

@@ -95,14 +95,10 @@ export default class UpdateBillingForm extends React.Component {
 		}
 
 	render() {
-		console.log(this.state.name)
-		console.log(this.state.name)
-		console.log(this.state.expiry)
-		console.log(this.state.cvc)
 		return (
 			<div className = "col-sm-12 col-md-12 col-lg-12">
+			<h2> Add a Payment Form </h2>
 			<Form horizontal>
-				
 				<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
 				<AddressForm onTextInputChange  = {this.onTextInputChange.bind(this)} />
 

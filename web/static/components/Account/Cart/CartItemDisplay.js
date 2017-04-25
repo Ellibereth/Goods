@@ -50,7 +50,19 @@ export default class CartItemDisplay extends React.Component {
 
 	// removing item is the same as setting quatity to zero
 	removeItem(){
-		this.serverUpdateQuantity.bind(this)(0)
+		swal({
+		  title: "You sure?",
+		  text: "Removing it now will be a pain if you change your mind later",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: false,
+		  closeOnCancel: true
+		},
+		function () {
+			this.serverUpdateQuantity.bind(this)(0)
+		}.bind(this))	
 	}
 
 
@@ -63,7 +75,6 @@ export default class CartItemDisplay extends React.Component {
 		// need photo, price, etc
 		var item = this.props.item
 
-		console.log(item)
 
 		if(item.images.length == 0) {
 			var image_display = <div> No Image Exists for this product </div>
@@ -88,7 +99,7 @@ export default class CartItemDisplay extends React.Component {
 				<div className = "row cart-checkout-preview"> 
 					<hr/>
 					<div className = "top-buffer"/>
-						<div className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 vcenter">
+						<div onClick = {() => browserHistory.push(`/eg/` + this.props.item.product_id)}  className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 vcenter">
 							{image_display} {item.name}
 						</div>
 

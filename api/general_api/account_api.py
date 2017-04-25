@@ -80,7 +80,6 @@ def confirmEmail():
 		this_user.confirmEmail()
 		return JsonUtil.successWithOutput({Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())})
 
-
 # updates the user's settings
 @account_api.route('/updateSettings', methods = ['POST'])
 def updateSettings():
@@ -147,6 +146,7 @@ def addCreditCard():
 	address_country = request.json.get(Labels.AddressCountry)
 	address_line1 = request.json.get(Labels.AddressLine1)
 	address_line2 = request.json.get(Labels.AddressLine2)
+	address_state = request.json.get(Labels.AddressState)
 	address_zip = request.json.get(Labels.AddressZip)
 	exp_month = int(request.json.get(Labels.ExpMonth))
 	exp_year = int(request.json.get(Labels.ExpYear))
@@ -154,7 +154,7 @@ def addCreditCard():
 	cvc = request.json.get(Labels.Cvc)
 	try:
 		user.addCreditCard(address_city, address_line1, address_line2, 
-			address_zip, exp_month, exp_year, number, cvc, name, address_country)
+			address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country)
 		return JsonUtil.success()
 	except Exception as e:
 		return JsonUtil.failure("Something went wrong while adding credit card \n " + str(e))

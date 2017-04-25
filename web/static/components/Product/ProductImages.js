@@ -29,7 +29,6 @@ export default class ProductImages extends React.Component {
 		// something better needs to be done about bad pages, but I'll figure something out soon
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 		var product_images = product.images.map((image, index) => {
-				console.log(image)
 				return (
 						<img className = "col-xs-3 col-sm-3 col-md-3 col-lg-3 img-responsive product-image-more"
 						src= {src_base + image.image_id} id = {index} 

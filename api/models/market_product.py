@@ -40,8 +40,7 @@ class MarketProduct(db.Model):
 	tag = db.relationship("ProductTag", backref = TestTables.ProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = TestTables.ImageTable, lazy='dynamic')
 
-	
-	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, num_items_limit = 10):
+	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, num_items_limit = 50):
 		self.price = price
 		self.name = name
 		self.category = category

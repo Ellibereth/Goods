@@ -151,6 +151,8 @@ class CartLabels:
 	AddressZip = "address_zip"
 	AddressState = "address_state"
 	NewNumItems = "new_num_items"
+	Quantity = "quantity"
+	NumItemsLimit = "num_items_limit"
 
 class AddressLabels:
 	AddressId = "address_id"

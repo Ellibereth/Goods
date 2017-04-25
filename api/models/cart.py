@@ -31,6 +31,7 @@ class Cart:
 		for cart_item in self.items:
 			product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().toPublicDict()
 			product[Labels.NumItems] = cart_item.num_items
+			product[Labels.NumItemsLimit] = cart_item.num_items_limit
 			product_list.append(product)
 		public_dict[Labels.Items] = product_list
 		public_dict[Labels.Price] = self.price
@@ -64,7 +65,8 @@ class CartItem(db.Model):
 		if new_num_items == 0:
 			self.deleteItem()
 		elif new_num_items > self.num_items_limit:
-			raise Exception("You've reached your limit for this product (" + str(self.num_items_limit))
+			self.num_items = self.num_items_limit
+			raise Exception("You've reached your limit for this product (" + str(self.num_items_limit) + "). You are now at your limit.")
 		else:
 			self.num_items = new_num_items
 		db.session.commit()
@@ -79,6 +81,7 @@ class CartItem(db.Model):
 		public_dict[Labels.NumItems] = self.num_items
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.AccountId] = self.account_id
+		public_dict[Labels.NumItemsLimit] = self.num_items_limit
 		return public_dict
 
 

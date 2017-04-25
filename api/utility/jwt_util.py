@@ -8,6 +8,7 @@ algorithm = "HS256"
 IsAdmin = "is_admin"
 AccountId = "account_id"
 SECRET_KEY = "SECRET_KEY"
+EmailConfirmed = "email_confirmed"
 
 class JwtUtil:	
 	# payload is a dictionary to pass as well
@@ -28,7 +29,7 @@ class JwtUtil:
 	def validateJwtUser(jwt_str, account_id):
 		encoded = jwt_str.encode(UTF8)
 		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
-		return decoded.get(AccountId) == account_id
+		return decoded.get(AccountId) == account_id and decoded.get(EmailConfirmed)
 
 	@staticmethod
 	def create_admin_jwt():
