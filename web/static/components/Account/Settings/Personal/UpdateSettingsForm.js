@@ -99,12 +99,12 @@ export default class SettingsFormPersonal extends React.Component {
 	onSubmitPress() {
 		// first check the password
 		var form_data = JSON.stringify({
-			"email" : AppStore.getCurrentUser()['email'],
+			"jwt" : localStorage.jwt,
 			"password" : this.state.password
 		})
 		$.ajax({
 				type: "POST",
-				url: "/checkLogin",
+				url: "/checkPassword",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

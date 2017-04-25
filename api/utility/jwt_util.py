@@ -45,10 +45,13 @@ class JwtUtil:
 
 	@staticmethod
 	def getUserInfoFromJwt(jwt_str):
-		encoded = jwt_str.encode(UTF8)
-		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
-		account_id = decoded.get(AccountId)
-		if account_id == None:
+		try:
+			encoded = jwt_str.encode(UTF8)
+			decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
+			account_id = decoded.get(AccountId)
+			if account_id == None:
+				return None
+			jwt_user = User.query.filter_by(account_id = account_id).first()
+			return jwt_user
+		except:
 			return None
-		jwt_user = User.query.filter_by(account_id = account_id).first()
-		return jwt_user

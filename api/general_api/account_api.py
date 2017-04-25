@@ -14,8 +14,22 @@ account_api = Blueprint('account_api', __name__)
 # checks the login information from a user 
 @account_api.route('/checkLogin', methods = ['POST'])
 def checkLogin():
-	jwt = request.json.get(Labels.Jwt)
+	email = request.json.get(Labels.Email)
+	input_password = request.json.get(Labels.Password)
+	this_user = User.query.filter_by(email = email).first()
+	if this_user == None:
+		return JsonUtil.failure("Not a real user")
+	if this_user.checkLogin(input_password):
+		output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+		return JsonUtil.successWithOutput(output)
+	else:
+		return JsonUtil.failure("Password is not correct")
 
+
+# checks the login information from a user 
+@account_api.route('/checkPassword', methods = ['POST'])
+def checkPassword():
+	jwt = request.json.get(Labels.Jwt)
 	input_password = request.json.get(Labels.Password)
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if this_user == None:
@@ -25,6 +39,7 @@ def checkLogin():
 		return JsonUtil.successWithOutput(output)
 	else:
 		return JsonUtil.failure("Password is not correct")
+
 
 # registers a user
 @account_api.route('/registerUserAccount', methods = ['POST'])

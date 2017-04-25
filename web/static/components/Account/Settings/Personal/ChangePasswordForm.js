@@ -99,7 +99,7 @@ export default class SettingsFormPersonal extends React.Component {
 		})
 		$.ajax({
 				type: "POST",
-				url: "/checkLogin",
+				url: "/checkPassword",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
