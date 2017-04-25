@@ -8,18 +8,18 @@ export default class CreditCardInput extends React.Component {
 	}
 
 	handleChange(event) {
-		this.props.onTextInputChange(this.props.field, event.target.value)
-	}
-
-	componentDidMount(){
-
-
+		console.log(event.target.value)
+		this.props.onTextInputChange(event.target.name, event.target.value)
 	}
 
 	render() {
 		return (
+
 			<div>
-			<CardReactFormContainer
+				<div className = "card-wrapper" id="card-wrapper"></div>
+				
+
+				<CardReactFormContainer
 
 				// the id of the container element where you want to render the card element.
 				// the card component can be rendered anywhere (doesn't have to be in ReactCardFormContainer).
@@ -29,10 +29,10 @@ export default class CreditCardInput extends React.Component {
 				// every input must have a unique name prop.
 				formInputsNames={
 					{
-						number: 'CCnumber', // optional — default "number"
-						expiry: 'CCexpiry',// optional — default "expiry"
-						cvc: 'CCcvc', // optional — default "cvc"
-						name: 'CCname' // optional - default "name"
+						number: 'number', // optional — default "number"
+						expiry: 'expiry',// optional — default "expiry"
+						cvc: 'cvc', // optional — default "cvc"
+						name: 'name' // optional - default "name"
 					}
 				}
 
@@ -48,14 +48,41 @@ export default class CreditCardInput extends React.Component {
 				// specify whether you want to format the form inputs or not
 				formatting={true} // optional - default true
 			>
-				<input placeholder="Full name" type="text" name="CCname" />
-				<input placeholder="Card number" type="text" name="CCnumber" />
-				<input placeholder="MM/YY" type="text" name="CCexpiry" />
-				<input placeholder="CVC" type="text" name="CCcvc" />
+
+
+			<div className="form-group">
+			  <label className="col-md-2 control-label" for="State">Name on Card </label>  
+			  <div className="col-md-6">
+			  <input id = "card_name_input" className="form-control input-md"
+				 onChange = {this.handleChange.bind(this)} field = "name" placeholder="Full name" type="text" name="name" />
+			  </div>
+			</div>
+
+			<div className="form-group">
+			  <label className="col-md-2 control-label" > Card Number </label>  
+			  <div className="col-md-6">
+			  <input id = "card_input" className="form-control input-md" 
+				onChange = {this.handleChange.bind(this)}  field = "number" placeholder="Card number" type="text" name="number" />
+			  </div>
+			</div>
+
+			<div className="form-group">
+			  <label className="col-md-2 control-label" for="State"> Expiration </label>  
+			  <div className="col-md-2">
+			  <input className="form-control input-md" 
+				onChange = {this.handleChange.bind(this)} field = "expiry" placeholder="MM/YY" type="text" name="expiry" />
+			  </div>
+			  <label className="col-md-2 control-label" for="State"> CVC  </label>  
+			  <div className="col-md-2">
+			  	<input className="form-control input-md" 
+				onChange = {this.handleChange.bind(this)}  field = "cvc" placeholder="CVC" type="text" name="cvc" />
+			  </div>
+			</div>
+
 
 			</CardReactFormContainer>
 
-			<div className = "card-wrapper" id="card-wrapper"></div>
+			
 			</div>
 			
 

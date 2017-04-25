@@ -5,27 +5,29 @@ import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Misc/Input/TextInput.js'
 import CreditCardInput from '../../../Misc/Input/CreditCardInput.js'
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-const form_labels = ["City", "Country", "Address Line 1", "Address Line 2", "Zip Code"]
-const form_inputs = ["address_city", "address_country",
-					"address_line1", "address_line2", "address_zip"]
+import AddressForm from '../../../Misc/Input/AddressForm.js'
 
-const input_types = ["text", "text", "text", "text", "text", "text", "text", "text", "text", "text"]
+import {Form, Col, FormGroup, Button} from 'react-bootstrap'
+const form_inputs = ["address_city", "address_country",
+					"address_line1", "address_line2", "address_zip",
+					"addresss_name", "name", "number", "cvc"]
+
 
 export default class UpdateBillingForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			// name : "",
-			// number: "",
-			// exp_year : "",
-			// exp_month :"",
-			// cvc : "",
+			name : "",
+			number: "",
+			expiry: "",
+			cvc : "",
+			address_name : "",
 			address_city : "",
-			address_country : "",
+			address_country : "US",
 			address_line1 : "",
 			address_line2 : "",
-			address_zip : ""
+			address_zip : "",
+			addresss_state: ""
 		}
 	}
 
@@ -58,6 +60,9 @@ export default class UpdateBillingForm extends React.Component {
 				var key = form_inputs[i]
 				data[key] = this.state[key]
 			}
+			data['number'] = document.getElementById("card_input").value.toString().substring(0, 19)
+			data['exp_month'] = this.state['expiry'].split('/')[0]
+			data['exp_year'] = this.state['expiry'].split('/')[1]
 			data["jwt"] = localStorage.jwt
 			data["account_id"] = AppStore.getCurrentUser().account_id
 			var form_data = JSON.stringify(data)
@@ -90,17 +95,16 @@ export default class UpdateBillingForm extends React.Component {
 		}
 
 	render() {
-
-		var text_inputs = form_inputs.map((form_input, index) => {
-			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]}/>)
-		})
-
+		console.log(this.state.name)
+		console.log(this.state.name)
+		console.log(this.state.expiry)
+		console.log(this.state.cvc)
 		return (
+			<div className = "col-sm-12 col-md-12 col-lg-12">
 			<Form horizontal>
-				<CreditCardInput />
-				{text_inputs}
+				
+				<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
+				<AddressForm onTextInputChange  = {this.onTextInputChange.bind(this)} />
 
 				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
@@ -110,6 +114,7 @@ export default class UpdateBillingForm extends React.Component {
 				</Col>
 				</FormGroup>
 			</Form>
+			</div>
 		)
 	}
 }

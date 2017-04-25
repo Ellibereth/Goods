@@ -5,10 +5,11 @@ var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Misc/Input/TextInput.js'
+import AddressForm from '../../../Misc/Input/AddressForm.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ["Name", "Description", "City","State", "Country", "Address Line 1", 
 						"Address Line 2", "Zip Code"]
-const form_inputs = ["name", "description", "address_city", "address_state", "address_country",
+const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
 					"address_line1", "address_line2", "address_zip"]
 
 const input_types = ["text", "text", "text", "text", "text", "text", "text", "text"]
@@ -17,11 +18,11 @@ export default class UpdateShippingForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name : "",
+			address_name : "",
 			description : "",
 			address_state: "",
 			address_city : "",
-			address_country : "",
+			address_country : "US",
 			address_line1 : "",
 			address_line2 : "",
 			address_zip : ""
@@ -90,15 +91,13 @@ export default class UpdateShippingForm extends React.Component {
 
 	render() {
 
-		var text_inputs = form_inputs.map((form_input, index) => {
-			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]}/>)
-		})
+	
 
 		return (
 			<Form horizontal>
-				{text_inputs}
+				<AddressForm 
+				has_description = {true}
+				onTextInputChange = {this.onTextInputChange.bind(this)}/>
 				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
 					<Button onClick = {this.onSubmitPress.bind(this)}>

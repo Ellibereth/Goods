@@ -133,8 +133,8 @@ def addCreditCard():
 	address_line1 = request.json.get(Labels.AddressLine1)
 	address_line2 = request.json.get(Labels.AddressLine2)
 	address_zip = request.json.get(Labels.AddressZip)
-	exp_month = request.json.get(Labels.ExpMonth)
-	exp_year = request.json.get(Labels.ExpYear)
+	exp_month = int(request.json.get(Labels.ExpMonth))
+	exp_year = int(request.json.get(Labels.ExpYear))
 	number = request.json.get(Labels.Number)
 	cvc = request.json.get(Labels.Cvc)
 	try:
@@ -165,7 +165,7 @@ def addUserAddresses():
 	if user == None:
 		return JsonUtil.failure("User does not exist")
 
-	name = request.json.get(Labels.Name)
+	name = request.json.get(Labels.AddressName)
 	description = request.json.get(Labels.Description)
 	address_city = request.json.get(Labels.AddressCity)
 	address_country = request.json.get(Labels.AddressCountry)

@@ -20,6 +20,7 @@ class UserLabels:
 	Jwt = "jwt"
 	Cards = "cards"
 	Name = "name"
+	AddressName = "address_name"
 	AddressCity = "address_city"
 	AddressCountry = "address_country"
 	AddressLine1 = "address_line1"
