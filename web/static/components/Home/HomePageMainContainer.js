@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {Grid, Row, Col, Button} from 'react-bootstrap';
+import StoreProductPreview from '../Store/StoreProductPreview'
 
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
@@ -61,6 +62,12 @@ export default class HomePageMainContainer extends React.Component {
 						</div>
 					</Col>
 				</Row>
+				<hr/>
+				<div className = "row">
+					<div className = "col-sm-6 col-md-6 col-lg-6">
+						<StoreProductPreview product_id = {1}/>
+					</div>
+				</div>
 			</Grid>
 			);
 	}

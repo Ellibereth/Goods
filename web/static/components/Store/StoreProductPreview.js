@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 
 import {Grid, Col, Row} from 'react-bootstrap';
 import Countdown from 'react-cntdwn';
+var browserHistory = require('react-router').browserHistory;
 
 
 export default class StorePage extends React.Component {
@@ -13,6 +14,10 @@ export default class StorePage extends React.Component {
 			invalid_product : true
 
 		}
+  	}
+
+  	goToProduct(){
+  		browserHistory.push('https://edgarusa-testserver.herokuapp.com/eg/' + this.props.product_id)
   	}
 
   	componentDidMount(){
@@ -63,7 +68,9 @@ export default class StorePage extends React.Component {
 			<div 
 			onMouseOver = {this.onMouseOver.bind(this)}
 			onMouseOut = {this.onMouseOut.bind(this)}
-			id = {this.state.product.product_id} className = "product-preview-container">
+			id = {this.state.product.product_id} className = "product-preview-container"
+			onClick = {this.goToProduct.bind(this)}
+			>
 				<Grid>
 					<Col xs = {2} s = {2} md = {2} lg= {2}>
 					{this.state.product.images.length == 0 ? 
