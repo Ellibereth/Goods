@@ -76,6 +76,7 @@ export default class UpdateShippingForm extends React.Component {
 								text : "Your changes have been made",
 								type: "success"
 							})
+						browserHistory.push(`/settings`)
 					}
 
 				}.bind(this),

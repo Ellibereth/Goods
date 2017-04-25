@@ -4,10 +4,10 @@ var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Misc/Input/TextInput.js'
+import CreditCardInput from '../../../Misc/Input/CreditCardInput.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-const form_labels = ["Full Name on Card", "Card Number", "Expiration Month", "Expiration Year", "CVC", "City", 
-					"Country", "Address Line 1", "Address Line 2", "Zip Code"]
-const form_inputs = ["name", "number", "exp_month", "exp_year", "cvc", "address_city", "address_country",
+const form_labels = ["City", "Country", "Address Line 1", "Address Line 2", "Zip Code"]
+const form_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip"]
 
 const input_types = ["text", "text", "text", "text", "text", "text", "text", "text", "text", "text"]
@@ -16,11 +16,11 @@ export default class UpdateBillingForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name : "",
-			number: "",
-			exp_year : "",
-			exp_month :"",
-			cvc : "",
+			// name : "",
+			// number: "",
+			// exp_year : "",
+			// exp_month :"",
+			// cvc : "",
 			address_city : "",
 			address_country : "",
 			address_line1 : "",
@@ -77,6 +77,7 @@ export default class UpdateBillingForm extends React.Component {
 								text : "Your changes have been made",
 								type: "success"
 							})
+						browserHistory.push(`/settings`)
 					}
 
 				}.bind(this),
@@ -98,7 +99,9 @@ export default class UpdateBillingForm extends React.Component {
 
 		return (
 			<Form horizontal>
+				<CreditCardInput />
 				{text_inputs}
+
 				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
 					<Button onClick = {this.onSubmitPress.bind(this)}>

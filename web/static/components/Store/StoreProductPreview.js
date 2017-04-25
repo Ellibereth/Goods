@@ -47,7 +47,8 @@ export default class StorePage extends React.Component {
 	}
 
 	handleFinish(){
-	  	alert("Time's up!")
+	  	// alert("Time's up!")
+	  	console.log("time's up")
 	}
 
   	onMouseOver(event){

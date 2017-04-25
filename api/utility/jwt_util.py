@@ -51,4 +51,4 @@ class JwtUtil:
 		if account_id == None:
 			return None
 		jwt_user = User.query.filter_by(account_id = account_id).first()
-		return jwt_user.toPublicDict()
+		return jwt_user

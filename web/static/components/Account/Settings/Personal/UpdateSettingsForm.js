@@ -53,13 +53,11 @@ export default class SettingsFormPersonal extends React.Component {
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
 				if (key != "password"){
-					if (this.state[key] && this.state[key] != "") {
 					new_settings[key] = this.state[key]
-					}	
 				}
 			}
+
 			var form_data = JSON.stringify({
-				"email" : AppStore.getCurrentUser().email,
 				"new_settings" : new_settings,
 				"password" : this.state.password,
 				"jwt" : localStorage.jwt
@@ -78,6 +76,12 @@ export default class SettingsFormPersonal extends React.Component {
 						AppActions.removeCurrentUser()
 						AppActions.addCurrentUser(data.user, data.jwt)
 						swal({title: "Thank you!", text : "Your changes have been made",type: "success"})
+						this.setState({
+							name : data.user.name,
+							email : data.user.email,
+				 			password : ""
+						})
+						location.reload();
 					}
 				}.bind(this),
 				error : function(){

@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
 import TopNavBar from '../../Misc/TopNavBar.js'
 var browserHistory = require('react-router').browserHistory;
+import AppActions from '../../../actions/AppActions'
 
 export default class EmailConfirmationPage extends React.Component {
 	constructor(props) {
@@ -27,14 +28,17 @@ export default class EmailConfirmationPage extends React.Component {
 				if (data.success){
 					// maybe do something to display if not confirmed
 					this.setState({valid_user : true})
+					AppActions.addCurrentUser(data.user, data.jwt)
+					console.log(data)
 				}
+
 				// redirect if something is wrong 
 				else {
 					// redirect to '/'
 					browserHistory.push(`/miscPage`)
 					this.setState({valid_user : false})
 				}
-			},
+			}.bind(this),
 			error: function(){
 				console.log("error")
 			},

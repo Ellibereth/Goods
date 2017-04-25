@@ -32,6 +32,7 @@ var config = {
   target : 'node',
   plugins: [
 	new webpack.DefinePlugin({
+		'global': {}, // bizarre lodash(?) webpack workaround,
 		'process.env': {
 		  NODE_ENV: JSON.stringify('production')
 		}
@@ -42,8 +43,9 @@ var config = {
 	// // 'Config': JSON.stringify({
 	// 	// serverUrl: "http://0.0.0.0:5000"
 	// 	// serverUrl: "https://whereisitmade.herokuapp.com"
-	// 	})
+	// 	// })
 	// }
 };
 
+"use-strict"
 module.exports = config;

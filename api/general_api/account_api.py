@@ -14,9 +14,10 @@ account_api = Blueprint('account_api', __name__)
 # checks the login information from a user 
 @account_api.route('/checkLogin', methods = ['POST'])
 def checkLogin():
-	email = request.json.get(Labels.Email)
+	jwt = request.json.get(Labels.Jwt)
+
 	input_password = request.json.get(Labels.Password)
-	this_user = User.query.filter_by(email = email).first()
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
 	if this_user.checkLogin(input_password):
@@ -58,24 +59,30 @@ def confirmEmail():
 	this_user = User.query.filter_by(email_confirmation_id = email_confirmation_id).first()
 	if this_user == None:
 		return JsonUtil.failure("Email confirmation id doesn't go with any user")
-	this_user.confirmEmail()
-	return JsonUtil.success(Labels.User, this_user.toPublicDict())
+	if this_user.email_confirmed:
+		return JsonUtil.failure("Email already confirmed")
+	else:
+		this_user.confirmEmail()
+		return JsonUtil.successWithOutput({Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())})
 
 
 # updates the user's settings
 @account_api.route('/updateSettings', methods = ['POST'])
 def updateSettings():
 	jwt = request.json.get(Labels.Jwt)
-	email = request.json.get(Labels.Email)
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	new_settings = request.json.get(Labels.NewSettings)
 	password = request.json.get(Labels.Password)
-	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
 	if not JwtUtil.validateJwtUser(jwt, this_user.account_id):
 		return JsonUtil.jwt_failure()
 	if not this_user.checkLogin(password):
 		return JsonUtil.failure("Password is not correct")
+
+	if not User.isValidEmail(new_settings[Labels.Email]):
+		return JsonUtil.failure(new_settings[Labels.Email] + " is not a valid email address.")
+
 	this_user.updateSettings(new_settings)
 	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
 	return JsonUtil.successWithOutput(output)
@@ -83,15 +90,13 @@ def updateSettings():
 
 @account_api.route('/changePassword', methods = ['POST'])
 def changePassword():
-	email = request.json.get(Labels.Email)
+	jwt = request.json.get(Labels.Jwt)
 	old_password = request.json.get(Labels.OldPassword)
 	new_password = request.json.get(Labels.Password)
 	new_password_confirm = request.json.get(Labels.PasswordConfirm)
-	this_user = User.query.filter_by(email = email).first()
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
-	if not JwtUtil.validateJwtUser(jwt, this_user.account_id):
-		return JsonUtil.jwt_failure()
 	if new_password == new_password_confirm:
 		valid_password = this_user.changePassword(old_password, new_password)
 		if valid_password:
@@ -111,7 +116,7 @@ def getUserInfo():
 	jwt_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if jwt_user == None:
 		return JsonUtil.jwt_failure()
-	return JsonUtil.successWithOutput({Labels.User : jwt_user, Labels.Jwt : JwtUtil.create_jwt(jwt_user)})
+	return JsonUtil.successWithOutput({Labels.User : jwt_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(jwt_user)})
 
 
 @account_api.route('/addCreditCard', methods = ['POST'])

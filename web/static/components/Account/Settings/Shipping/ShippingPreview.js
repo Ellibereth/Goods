@@ -21,7 +21,7 @@ export default class ShippingPreview extends React.Component {
 				<Grid>
 					<Row>
 						<Col sm = {10} lg = {10} md = {10}>
-							<h4> Your Addresses </h4>
+							<h4> Shipping </h4>
 						</Col>
 						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
 							<Button onClick = {() => browserHistory.push('/shipping')} > Add </Button>
@@ -31,7 +31,12 @@ export default class ShippingPreview extends React.Component {
 						<div className = "setting-preview-box">
 							<h5>
 								<p> You have {this.props.addresses.length} addresses </p>
-								<p> <Link to = "/yourPlaces"> Manage Addresses </Link> </p>
+								{
+									this.props.addresses.length > 0 ?
+									<p> <Link to = "/yourPlaces"> Manage Addresses </Link> </p>
+									:
+									<p> Add an address first! </p>
+								}
 							</h5>
 						</div>
 					</Row>

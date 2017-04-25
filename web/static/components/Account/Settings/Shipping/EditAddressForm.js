@@ -92,6 +92,7 @@ export default class EditAddressForm extends React.Component {
 								type: "success"
 							})
 						this.props.toggleModal(null)
+						browserHistory.push(`/settings`)
 					}
 
 				}.bind(this),

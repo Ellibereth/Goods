@@ -49,7 +49,6 @@ export default class SettingsFormPersonal extends React.Component {
 
 	updatePassword(){
 			var form_data = JSON.stringify({
-				"email" : AppStore.getCurrentUser().email,
 				"password" : this.state.password,
 				"password_confirm" : this.state.password_confirm,
 				"old_password" : this.state.old_password,
@@ -67,8 +66,15 @@ export default class SettingsFormPersonal extends React.Component {
 					}
 					else {
 						AppActions.removeCurrentUser()
-						AppActions.addCurrentUser(data.user)
+						AppActions.addCurrentUser(data.user, data.jwt)
 						swal({title: "Thank you!", text : "Your password has been updated!",type: "success"})
+						this.setState({
+							password_confirm : "",
+							password : "",
+							old_password : ""
+						})
+						location.reload();
+						// browserHistory.push(`/updateSettings`)
 					}
 				}.bind(this),
 				error : function(){
@@ -88,12 +94,12 @@ export default class SettingsFormPersonal extends React.Component {
 	submitData() {
 		// first check the password
 		var form_data = JSON.stringify({
-			"email" : AppStore.getCurrentUser()['email'],
+			"jwt" : localStorage.jwt,
 			"password" : this.state.old_password
 		})
 		$.ajax({
 				type: "POST",
-				url: url  + "/checkLogin",
+				url: "/checkLogin",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {

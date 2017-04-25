@@ -11,19 +11,18 @@ class Lob:
 			raise Exception("Address must be in US!")
 		try: 
 			address = lob.Address.create(
-		  description= description,
-		  name= name,
-		  company='Lob',
-		  email= user.email,
-		  address_line1= address_line1,
-		  address_line2= address_line2,
-		  address_city= address_city,
-		  address_state = address_state,
-		  address_zip = address_zip,
-		  address_country= address_country,
-		  metadata = {
-		  	AccountId : user.account_id
-		  }
+			  description= description,
+			  name= name,
+			  company='Lob',
+			  address_line1= address_line1,
+			  address_line2= address_line2,
+			  address_city= address_city,
+			  address_state = address_state,
+			  address_zip = address_zip,
+			  address_country= address_country,
+			  metadata = {
+			  	AccountId : user.account_id
+			  }
 		)
 			return address
 		except Exception as e:

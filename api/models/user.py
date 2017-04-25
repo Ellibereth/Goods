@@ -10,6 +10,9 @@ from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.id_util import IdUtil
 from api.utility.lob import Lob
+import re
+
+
 
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
@@ -68,10 +71,12 @@ class User(db.Model):
 			return {Labels.Success: False, Labels.Error : "Password must be at least " + str(MIN_PASSWORD_LENGTH) + " characters"}
 		return {Labels.Success: True}
 
-	# WIP
 	@staticmethod
-	def validateEmailSubmission(email):
-		return {Labels.Success: True}
+	def isValidEmail(email):
+		if len(email) > 7:
+			if re.match("[^@]+@[^@]+\.[^@]+", email) != None:
+				return True
+		return False
 
 	def toPublicDict(self):
 		public_dict = {}

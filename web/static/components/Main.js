@@ -33,6 +33,7 @@ import ManageAddressPage from './Account/Settings/Shipping/ManageAddressPage.js'
 import ViewCartPage from './Account/Cart/ViewCartPage.js'
 
 export default class Main extends React.Component {
+	
 	componentWillMount() {
 		var form_data =  JSON.stringify({
 			jwt : localStorage.jwt
