@@ -18,6 +18,7 @@
     "object-assign": "^4.1.1",
     "payment": "^2.2.1",
     "react": "^15.4.2",
+    "react-activity-indicator": "^0.7.71",
     "react-addons-test-utils": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-cntdwn": "^0.3.0",

@@ -75,11 +75,14 @@ export default class ViewCartPage extends React.Component {
 							items = {this.state.items}
 							/>
 						</div>
+						{	this.state.items.length > 0 && 
 						<div className = "col-sm-3 col-md-3 col-lg-3">
 							<Button>
 								<Link to = "checkout"> Proceed to Checkout </Link>
 							</Button>
 						</div>
+						}
+						
 					</div>
 				</div>
 			</div>	

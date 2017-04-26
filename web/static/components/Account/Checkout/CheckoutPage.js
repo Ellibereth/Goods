@@ -28,7 +28,12 @@ export default class CheckoutPage extends React.Component {
 			can_edit : [false, false, false],
 			address_modal_open : false,
 			billing_modal_open: false,
+			is_loading: true
 		}
+
+		this.getSelectedCard = this.getSelectedCard.bind(this)
+		this.getSelectedAddress = this.getSelectedAddress.bind(this)
+		this.canCheckout = this.canCheckout.bind(this)
 	}
 
 	toggleAddressModal(){
@@ -41,10 +46,22 @@ export default class CheckoutPage extends React.Component {
 
 
 	getSelectedAddress(){
+		if (this.state.addresses.length == 0){
+			return null
+		}
+		if (this.state.addresses.length < this.state.selected_address_index){
+			return null
+		}
 		return this.state.addresses[this.state.selected_address_index]
 	}
 
 	getSelectedCard(){
+		if (this.state.cards.length == 0){
+			return null
+		}
+		if (this.state.cards.length < this.state.selected_card_index){
+			return null
+		}
 		return this.state.cards[this.state.selected_card_index]
 	}
 
@@ -98,6 +115,9 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	refreshCheckoutInformation(){
+		// this.setState({is_loading : true})
+		$('#checkout-container').addClass("faded");
+
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt
@@ -113,7 +133,9 @@ export default class CheckoutPage extends React.Component {
 							price : data.cart.price,
 							cards : data.cards,
 							addresses : data.addresses, 
+							is_loading : false
 						})
+						$('#checkout-container').removeClass("faded");
 					}
 					else {
 						console.log("an error")
@@ -213,15 +235,37 @@ export default class CheckoutPage extends React.Component {
 		)
 	}
 
+	// will allow checkout if possible 
+	canCheckout(){
+		if (this.getSelectedCard() == null) {
+			return false
+		}
+		if (this.getSelectedAddress() == null){
+			return false
+		}
+		if (this.state.items.length == 0) {
+			return false
+		}
+
+		if (this.state.can_edit[ADDRESS_INDEX] || this.state.can_edit[BILLING_INDEX]){
+			return false
+		}
+
+		return true
+	}	
+
 
 	render() {
-		console.log(this.state.selected_card_index)
-		console.log(this.getSelectedCard.bind(this)())
+
+		var can_checkout = this.canCheckout()
+
 		return (
 			<div>
 				<TopNavBar />
-				<div className = "container">
 
+				
+				<div id = "checkout-container" className = "container faded">
+		
 					<CheckoutAddBillingModal 
 						selected_address = {this.state.selected_address}
 						show = {this.state.billing_modal_open}
@@ -270,11 +314,14 @@ export default class CheckoutPage extends React.Component {
 
 
 					</div>
-
 					<div className = "col-sm-2 col-md-2 col-lg-2">
-						<Button onClick = {this.onCheckoutClick.bind(this)}>
+						<Button disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
 							Place your order!
 						</Button>
+						<hr/>
+						<div className = "order-total">
+							Order Total: {this.state.price}
+						</div>
 					</div>
 				</div>
 			</div>	

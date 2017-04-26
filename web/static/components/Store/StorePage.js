@@ -32,7 +32,6 @@ export default class StorePage extends React.Component {
 							<Col xs = {8} md={8}>
 								<ReactPlayer
 									url = "https://www.youtube.com/watch?v=0jgrCKhxE1s"
-									playing
 									className = "img-responsive"
 							  	/>
 					  		</Col>

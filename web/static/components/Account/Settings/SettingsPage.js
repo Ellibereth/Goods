@@ -13,7 +13,8 @@ export default class SettingsPage extends React.Component {
 		super(props);
 		this.state = {
 			cards : [],
-			addresses : []
+			addresses : [],
+			is_loading : true
 		}
 	}
 
@@ -38,6 +39,7 @@ export default class SettingsPage extends React.Component {
 				else {
 					console.log("an error")
 				}
+				this.setState({is_loading : false})
 			}.bind(this),
 			error : function(){
 				console.log("an internal server error")
@@ -62,11 +64,17 @@ export default class SettingsPage extends React.Component {
 					<UpdateSettingsPreview  />
 					<br/>
 
-					<BillingPreview  cards = {this.state.cards} />
-					<br />
+					{
+						this.state.is_loading && 
+						<div>
+							<BillingPreview  cards = {this.state.cards} />
+							<br />
 
-					<ShippingPreview  addresses = {this.state.addresses}/>
-					<br/>
+							<ShippingPreview  addresses = {this.state.addresses}/>
+							<br/>
+						</div>
+					}
+					
 
 					{/* <PastOrdersPreview /> */}
 					

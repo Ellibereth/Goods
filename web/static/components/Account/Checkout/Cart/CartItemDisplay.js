@@ -27,7 +27,7 @@ export default class CartItemDisplay extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						swal("Success! Quantity successfully updated")	
+						// swal("Success! Quantity successfully updated")	
 					}
 					else {
 						swal("Sorry", "Something went wrong." + data.error, "error")

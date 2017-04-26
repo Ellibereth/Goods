@@ -199,3 +199,23 @@ body {
 	color: red;
 }
 
+.clickable-text {
+	cursor:pointer;
+	color:blue;
+	
+}
+
+.clickable-text:hover {
+	text-decoration:none;
+	text-decoration:underline;
+    /*text-shadow: 1px 1px 1px ;*/
+}
+
+.checkout-container{
+	opacity : 1;
+}
+
+.faded{
+	opacity: 0.40
+}
+

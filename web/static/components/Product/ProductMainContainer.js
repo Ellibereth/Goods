@@ -17,7 +17,8 @@ export default class ProductMainContainer extends React.Component {
 			selected_image: null,
 			items : [],
 			price : null,
-			cart_item : []
+			cart_item : [],
+			is_loading : true
 
 		}
 	}
@@ -62,7 +63,7 @@ export default class ProductMainContainer extends React.Component {
 				 				selected_image :main_image_id
 				 			})
 			}
-			
+			this.setState({is_loading : false})
 			
 		  }.bind(this),
 		  error : function(){
@@ -74,6 +75,8 @@ export default class ProductMainContainer extends React.Component {
 	}
 
 	refreshUserInformation() {
+		// this.setState({is_loading : true})
+		$('#product-page-container').addClass("faded");
 			var form_data = JSON.stringify({
 			"account_id" : AppStore.getCurrentUser().account_id,
 			"jwt" : localStorage.jwt
@@ -92,11 +95,13 @@ export default class ProductMainContainer extends React.Component {
 							if (data.cart.items[i].product_id == this.state.product.product_id){
 								this.setState({cart_item : data.cart.items[i]})
 							}
-						}
+						}		
 					}
 					else {
 						console.log("an error")
 					}
+				$('#product-page-container').removeClass("faded");
+				this.setState({is_loading : false})
 				}.bind(this),
 				error : function(){
 					console.log("an internal server error")
@@ -117,9 +122,12 @@ export default class ProductMainContainer extends React.Component {
 
 	render() {
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-
+		if (this.state.is_loading){
+			return <div/>
+		}
+		
 		return (
-			<div className = "container" id = "product-page-container">
+			<div className = "container faded" id = "product-page-container">
 				{this.state.invalid_product ?
 					<h3>
 						You've reached a bad product page! Click <a href = "/"> here </a> to return home.

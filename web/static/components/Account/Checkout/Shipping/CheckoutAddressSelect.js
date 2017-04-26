@@ -48,6 +48,20 @@ export default class CheckoutAddressSelect extends React.Component {
 					</div>
 				</div>
 			)
+		if (address_display.length == 0){
+			address_display = (
+				<div className = "row">
+					<div className = "top-buffer"/>
+					<hr/>
+					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+					</div>
+					<div className = "col-xs-11 col-sm-11 col-md-11 col-lg-11 vcenter">
+						You have no addresses right now!
+					</div>
+				</div>
+			)
+		}
 		
 
 
@@ -87,12 +101,15 @@ export default class CheckoutAddressSelect extends React.Component {
 						<span onClick = {this.props.toggleModal}>
 							<span className = "gylphicon glyphicon-plus" /> Add Address
 						</span>
-
-						<div className = "row">
-							<Button onClick = {this.setAddress.bind(this)}>
-								Use this address
-							</Button>
-						</div>
+						{
+							this.props.addresses.length > 0 && 
+							<div className = "row">
+								<Button onClick = {this.setAddress.bind(this)}>
+									Use this address
+								</Button>
+							</div>	
+						}
+						
 					</div>
 				:
 					<CheckoutAddressPreview 

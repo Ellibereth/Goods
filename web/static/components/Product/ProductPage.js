@@ -21,6 +21,7 @@ export default class ProductPage extends React.Component {
     return (
         <div>
               <TopNavBar/>
+              
               <ProductMainContainer  product_id = {this.props.params.product_id}/>
              {/*  <Footer/> */}
         </div>

@@ -21,7 +21,7 @@ export default class CheckoutCardSelect extends React.Component {
 	}
 
 	onCardChange(index){
-		this.setState({selected_card : index})
+		this.setState({selected_carda : index})
 	}
 
 
@@ -55,6 +55,20 @@ export default class CheckoutCardSelect extends React.Component {
 				this.getCardInput(card, index)
 			)
 
+		if (card_display.length == 0){
+			<div className = "row">
+				<hr/>
+				<div className = "top-buffer"/>
+				<div className = "col-md-1 col-xs-1 col-sm-1 col-lg-1 hcenter vcenter">
+					
+				</div>
+				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4 hcenter vcenter">
+					 
+					You have no cards at this time!
+				</div>
+				<div className = "top-buffer"/>
+			</div>
+		}
 		var card = this.props.card
 
 		return (
@@ -79,12 +93,15 @@ export default class CheckoutCardSelect extends React.Component {
 						<span onClick = {this.props.toggleModal}>
 							<span className = "gylphicon glyphicon-plus" /> Add Payment Method
 						</span>
-
-						<div className = "row">
-							<Button onClick = {this.setCard.bind(this)}>
-								Use this card
-							</Button>
-						</div>
+						{
+							this.props.cards.length > 0 &&
+							<div className = "row">
+								<Button onClick = {this.setCard.bind(this)}>
+									Use this card
+								</Button>
+							</div>
+						}
+						
 					</div>
 				:
 					<CheckoutCardPreview 

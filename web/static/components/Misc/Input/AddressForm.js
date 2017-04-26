@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+import {Form, FormGroup, ControlLabel} from 'react-bootstrap'
 
 export default class CreditCardInput extends React.Component {
 	constructor(props) {
@@ -10,16 +11,21 @@ export default class CreditCardInput extends React.Component {
 		this.props.onTextInputChange(event.target.name, event.target.value)
 	}
 
+	componentDidMount(){
+		
+	}
+
 	render() {
+		var tab_index_start = this.props.tab_index ? this.props.tab_index : 0
 		return (
 
-		<form className="form-horizontal">
+		<form id = "address_form" className="form-horizontal">
 			<fieldset>
 
 			<div className="form-group">
-			    <label className="col-md-2 control-label" for="Name">Name on Address </label>    
+			    <label tabindex= {1 + tab_index_start} className="col-md-2 control-label" for="Name">Name on Address </label>    
 			    <div className="col-md-6">
-			    <input field = "address_name" onChange = {this.handleChange.bind(this)}
+			    <input  field = "address_name" onChange = {this.handleChange.bind(this)}
 			     id="Name" name="address_name" type="text" placeholder="Name on Address" className="form-control input-md" required=""/>
 			    </div>
 			</div>
@@ -29,7 +35,7 @@ export default class CreditCardInput extends React.Component {
 				<div className="form-group">
 				    <label className="col-md-2 control-label" for="Description"> Description </label>    
 				    <div className="col-md-6">
-				    <input field = "description" onChange = {this.handleChange.bind(this)}
+				    <input tabindex= {tab_index_start + 2} field = "description" onChange = {this.handleChange.bind(this)}
 				     id="Name" name="description" type="text" placeholder="Describe this address" className="form-control input-md" required=""/>
 				    </div>
 				</div>
@@ -39,7 +45,7 @@ export default class CreditCardInput extends React.Component {
 			<div className="form-group">
 			    <label className="col-md-2 control-label" for="Country">Country</label>
 			    <div className="col-md-5">
-				<select field = "address_country"    onChange = {this.handleChange.bind(this)}
+				<select tabindex= {tab_index_start + 3} field = "address_country"    onChange = {this.handleChange.bind(this)}
 				id="Country" name="address_country" className="form-control">
 				    <option selected value="US">United States</option>
 				</select>
@@ -51,7 +57,7 @@ export default class CreditCardInput extends React.Component {
 			    <label className="col-md-2 control-label" for="State">State</label>    
 			    <div className="col-md-6">
 
-			    <select field = "address_state"    onChange = {this.handleChange.bind(this)}
+			    <select tabindex= {tab_index_start + 4} field = "address_state"    onChange = {this.handleChange.bind(this)}
 				id="State" name="address_state" className="form-control">
 				    	<option value="AL">Alabama</option>
 					<option value="AK">Alaska</option>
@@ -114,7 +120,7 @@ export default class CreditCardInput extends React.Component {
 			<div className="form-group">
 			    <label className="col-md-2 control-label" for="city">City/Town</label>    
 			    <div className="col-md-6">
-			    <input field = "address_city" onChange = {this.handleChange.bind(this)}
+			    <input tabindex= {tab_index_start + 5} field = "address_city" onChange = {this.handleChange.bind(this)}
 			    id="city" name="address_city" type="text" placeholder="city or town" className="form-control input-md" required=""/>
 				
 			    </div>
@@ -123,7 +129,7 @@ export default class CreditCardInput extends React.Component {
 			<div className="form-group">
 			    <label className="col-md-2 control-label" for="address1">Address Line1</label>    
 			    <div className="col-md-8">
-			    <input field = "address_line1" onChange = {this.handleChange.bind(this)}
+			    <input tabindex= {tab_index_start + 6} field = "address_line1" onChange = {this.handleChange.bind(this)}
 			     id="address1" name="address_line1" type="text" placeholder="" className="form-control input-md"/>
 			    <span className="help-block">Street address, P.O. box, company name, c/o</span>    
 			    </div>
@@ -132,7 +138,7 @@ export default class CreditCardInput extends React.Component {
 			<div className="form-group">
 			    <label className="col-md-2 control-label" for="Address2">Address Line2</label>    
 			    <div className="col-md-8">
-			    <input field = "address_line2" onChange = {this.handleChange.bind(this)}
+			    <input  tabindex= {tab_index_start + 7} field = "address_line2" onChange = {this.handleChange.bind(this)}
 			    id="Address2" name="address_line2" type="text" placeholder="" className="form-control input-md"/>
 			    <span className="help-block">Apartment, suite , unit, building, floor, etc.</span>    
 			    </div>
@@ -141,7 +147,7 @@ export default class CreditCardInput extends React.Component {
 			<div className="form-group">
 			    <label className="col-md-2 control-label" for="zip">Zip/Postal code</label>    
 			    <div className="col-md-4">
-			    <input field = "address_zip" onChange = {this.handleChange.bind(this)}
+			    <input tabindex= {tab_index_start + 8} field = "address_zip" onChange = {this.handleChange.bind(this)}
 			    id="zip" name="address_zip" type="text" placeholder="zip or postal code" className="form-control input-md" required=""/>
 				
 			    </div>
