@@ -30,8 +30,8 @@ import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
 import ManageCardsPage from './Account/Settings/Billing/ManageCardsPage.js'
 import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
 import ManageAddressPage from './Account/Settings/Shipping/ManageAddressPage.js'
-import ViewCartPage from './Account/Cart/ViewCartPage.js'
-import CheckoutPage from './Account/Cart/CheckoutPage.js'
+import ViewCartPage from './Account/Checkout/ViewCartPage.js'
+import CheckoutPage from './Account/Checkout/CheckoutPage.js'
 
 export default class Main extends React.Component {
 	

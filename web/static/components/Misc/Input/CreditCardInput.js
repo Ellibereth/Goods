@@ -52,36 +52,41 @@ export default class CreditCardInput extends React.Component {
 				formatting={true} // optional - default true
 			>
 
-
-			<div className="form-group">
-			  <label className="col-md-2 control-label" for="State">Name on Card </label>  
-			  <div className="col-md-6">
-			  <input id = "card_name_input" className="form-control input-md"
-				 onChange = {this.handleChange.bind(this)} field = "name" placeholder="Full name" type="text" name="name" />
-			  </div>
+			<div className = "row">
+				<div className="form-group">
+				  <label className="col-md-2 control-label" for="State">Name on Card </label>  
+				  <div className="col-md-6">
+				  <input id = "card_name_input" className="form-control input-md"
+					 onChange = {this.handleChange.bind(this)} field = "name" placeholder="Full name" type="text" name="name" />
+				  </div>
+				</div>
 			</div>
 
-			<div className="form-group">
-			  <label className="col-md-2 control-label" > Card Number </label>  
-			  <div className="col-md-6">
-			  <input id = "card_input" className="form-control input-md" maxLength = "20"
-				onChange = {this.handleChange.bind(this)}  field = "number" placeholder="Card number" type="text" name="number" />
-			  </div>
+
+			<div className = "row">
+				<div className="form-group">
+				  <label className="col-md-2 control-label" > Card Number </label>  
+				  <div className="col-md-6">
+				  <input id = "card_input" className="form-control input-md" maxLength = "20"
+					onChange = {this.handleChange.bind(this)}  field = "number" placeholder="Card number" type="text" name="number" />
+				  </div>
+				</div>
 			</div>
 
-			<div className="form-group">
-			  <label className="col-md-2 control-label" for="State"> Expiration </label>  
-			  <div className="col-md-2">
-			  <input className="form-control input-md" maxLength = "7"
-				onChange = {this.handleChange.bind(this)} field = "expiry" placeholder="MM/YY" type="text" name="expiry" />
-			  </div>
-			  <label className="col-md-2 control-label" for="State"> CVC  </label>  
-			  <div className="col-md-2">
-			  	<input className="form-control input-md" maxLength = "3"
-				onChange = {this.handleChange.bind(this)}  field = "cvc" placeholder="CVC" type="text" name="cvc" />
-			  </div>
+			<div className = "row">
+				<div className="form-group">
+				  <label className="col-md-2 control-label" for="State"> Expiration </label>  
+				  <div className="col-md-2">
+				  <input className="form-control input-md" maxLength = "7"
+					onChange = {this.handleChange.bind(this)} field = "expiry" placeholder="MM/YY" type="text" name="expiry" />
+				  </div>
+				  <label className="col-md-2 control-label" for="State"> CVC  </label>  
+				  <div className="col-md-2">
+				  	<input className="form-control input-md" maxLength = "3"
+					onChange = {this.handleChange.bind(this)}  field = "cvc" placeholder="CVC" type="text" name="cvc" />
+				  </div>
+				</div>
 			</div>
-
 
 			</CardReactFormContainer>
 

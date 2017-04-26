@@ -74,6 +74,7 @@ export default class ManageCardDisplay extends React.Component {
 	render() {
 		// will be updating this to have a better display in the near future
 		var card = this.props.card
+		console.log(card)
 		return (
 			<div className = "row">
 				<p> Card ending in : {card.last4} </p>

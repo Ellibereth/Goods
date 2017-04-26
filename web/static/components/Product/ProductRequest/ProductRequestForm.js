@@ -85,7 +85,7 @@ export default class ProductRequestForm extends React.Component {
 		return (
 			<Form horizontal>
 				{text_inputs}
-				<FormGroup controlId = "submit_buton">
+				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
 					<Button onClick = {this.onSubmitPress.bind(this)}>
 					Submit!
