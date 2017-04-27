@@ -66,14 +66,23 @@ export default class SettingsFormPersonal extends React.Component {
 					else {
 						AppActions.removeCurrentUser()
 						AppActions.addCurrentUser(data.user, data.jwt)
-						swal({title: "Thank you!", text : "Your password has been updated!",type: "success"})
 						this.setState({
 							password_confirm : "",
 							password : "",
 							old_password : ""
 						})
-						location.reload();
-						// browserHistory.push(`/updateSettings`)
+						setTimeout(function() {
+							browserHistory.push(`/settings`)
+						}, 2000)
+
+						swal({
+						  title: "Thank you!",
+						  text: "Your password has been changed! You will be redirected to settings shortly...",
+						  type: "success",
+						  confirmButtonText: "Ok!",
+						  closeOnConfirm: true,
+						})
+
 					}
 				}.bind(this),
 				error : function(){

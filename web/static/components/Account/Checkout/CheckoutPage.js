@@ -23,8 +23,8 @@ export default class CheckoutPage extends React.Component {
 			price : null,
 			cards : [],
 			addresses : [],
-			selected_card_index : 0,
-			selected_address_index : 0,
+			selected_card_index : -1,
+			selected_address_index : -1,
 			can_edit : [false, false, false],
 			address_modal_open : false,
 			billing_modal_open: false,
@@ -46,6 +46,9 @@ export default class CheckoutPage extends React.Component {
 
 
 	getSelectedAddress(){
+		if (this.state.selected_address_index == -1){
+			return null
+		}
 		if (this.state.addresses.length == 0){
 			return null
 		}
@@ -56,6 +59,9 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	getSelectedCard(){
+		if (this.state.selected_card_index == -1){
+			return null
+		}
 		if (this.state.cards.length == 0){
 			return null
 		}
@@ -65,41 +71,39 @@ export default class CheckoutPage extends React.Component {
 		return this.state.cards[this.state.selected_card_index]
 	}
 
-
 	// handle the addition of new shipping address
 	// (in any case adds address to server)
-	// in all cases the new credit card must be selected 
+	// in all cases the new address card must be selected 
 	// case 0: using same address for shipping and billing with new CC 
 	//		 open new payment method modal without the address 
 	// case 1: not using same address but with existing CC
 	onAddingNewShippingAddress(value){
-		console.log(value)
 		if (value == 0){
 			this.refreshCheckoutInformation.bind(this)()
 			this.closeEditable.bind(this)(ADDRESS_INDEX)
 			this.setState({address_modal_open : false})
 			this.setState({billing_modal_open : true})
-			// we just increment one since the next card added will be at the end (I think)
-			this.setState({selected_address_index : this.state.addresses.length})
+			
 		}
 		else if (value == 1){
 			this.refreshCheckoutInformation.bind(this)()
 			this.openEditable.bind(this)(BILLING_INDEX)
 		}
+		// we just increment one since the next card added will be at the end (I think)
+		this.setState({selected_address_index : this.state.addresses.length})
 	}
-
 
 	// this method will fire after a new billing method is added 
 	// then that one will be selected
 	onAddingNewBillingMethod(){
 		this.refreshCheckoutInformation.bind(this)()
+		this.setState({selected_address_index : this.state.cards.length})
 	}
-
 
 	// closes all other ones
 	openEditable(index){
-		if (index == BILLING_INDEX && this.state.selected_address == []){
-			swal("Whoa!", "You must select a shipping address before continuing", "failure")
+		if (index == BILLING_INDEX && !this.getSelectedAddress()){
+			swal("Whoa!", "You must select a shipping address before continuing", "error")
 		}
 		else {
 			var can_edit = [false, false, false]
@@ -151,15 +155,14 @@ export default class CheckoutPage extends React.Component {
 
 	componentWillMount(){
 		this.refreshCheckoutInformation.bind(this)()
-		if (this.state.cards.length > 0){
-			this.setCard.bind(this)(0)
-		} 
-		if (this.state.addresses.length > 0){
-			this.setAddress.bind(this)(0)
-		} else {
-			this.openEditable.bind(this)(ADDRESS_INDEX)
-		}
-
+		// if (this.state.cards.length > 0){
+		// 	console.log("bro")
+		// 	this.setCard.bind(this)(0)
+		// } 
+		// if (this.state.addresses.length > 0){
+		// 	this.setAddress.bind(this)(0)
+		// } 
+		this.openEditable.bind(this)(ADDRESS_INDEX)
 	}
 
 	setCard(card_index){
@@ -214,7 +217,8 @@ export default class CheckoutPage extends React.Component {
 					swal("Sorry!", "Something went wrong + " + data.error, "warning")
 				}
 				else {
-					swal("Thank you!", "You will receive a confirmation email for this purchase"
+					swal("Thank you!", "You will receive a confirmation email for this purchase. \
+						This will take the user to a checkout page soon. Will have to write that huh?"
 						, "success")
 				}
 			}.bind(this),
@@ -256,9 +260,7 @@ export default class CheckoutPage extends React.Component {
 
 
 	render() {
-
 		var can_checkout = this.canCheckout()
-
 		return (
 			<div>
 				<TopNavBar />
@@ -267,15 +269,15 @@ export default class CheckoutPage extends React.Component {
 				<div id = "checkout-container" className = "container faded">
 		
 					<CheckoutAddBillingModal 
-						selected_address = {this.state.selected_address}
+						selected_address = {this.getSelectedAddress()}
 						show = {this.state.billing_modal_open}
 						toggleModal = {this.toggleBillingModal.bind(this)}
-						selected_address = {this.state.addresses[this.state.selected_address]}
 						onAddingNewBillingMethod = {this.onAddingNewBillingMethod.bind(this)}
 					/>
 
 					<div className = "col-sm-10 col-md-10 col-lg-10">
 						<CheckoutAddressSelect 
+							selected_address_index = {this.state.selected_address_index}
 							toggleModal = {this.toggleAddressModal.bind(this)}
 							address_modal_open = {this.state.address_modal_open}
 							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
@@ -283,7 +285,7 @@ export default class CheckoutPage extends React.Component {
 							addresses = {this.state.addresses}
 							addressToString = {this.addressToString} 
 							can_edit = {this.state.can_edit[ADDRESS_INDEX]}
-							openEditable = {() => this.openEditable.bind(this)(ADDRESS_INDEX)}
+							openEditable = {this.openEditable.bind(this)}
 							closeEditable = {() => this.closeEditable.bind(this)(ADDRESS_INDEX)}
 							address = {this.getSelectedAddress.bind(this)()}
 							onAddingNewShippingAddress = {this.onAddingNewShippingAddress.bind(this)}
@@ -292,13 +294,15 @@ export default class CheckoutPage extends React.Component {
 						<hr/>
 
 						<CheckoutCardSelect 
+						selected_card_index = {this.state.selected_card_index}
+						selected_address = {this.getSelectedAddress()}
 						toggleModal = {this.toggleBillingModal.bind(this)}
 						refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 						setCard = {this.setCard.bind(this)} 
 						cards = {this.state.cards} 
 						card = {this.getSelectedCard.bind(this)()}
 						can_edit = {this.state.can_edit[BILLING_INDEX]}
-						openEditable = {() => this.openEditable.bind(this)(BILLING_INDEX)}
+						openEditable = {this.openEditable.bind(this)}
 						closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
 						/>
 
@@ -306,6 +310,7 @@ export default class CheckoutPage extends React.Component {
 						<hr/>
 
 						<CartDisplay 
+						is_loading = {this.state.is_loading}
 						refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 						price = {this.state.price}
 						items = {this.state.items}

@@ -11,6 +11,10 @@ import {Button} from 'react-bootstrap'
 // requires props
 // openEditable
 // address
+const ADDRESS_INDEX = 0
+const BILLING_INDEX = 1
+const CART_INDEX = 2
+
 export default class CheckoutAddressPreview extends React.Component {
 	constructor(props){
 		super(props);
@@ -23,11 +27,11 @@ export default class CheckoutAddressPreview extends React.Component {
 
 		var address = this.props.address
 		if (address == null || address == []){
-			var address_display = <div className = "col-md-6 col-lg-6 col-sm-6"/>
+			var address_display = <div className = "col-md-5 col-lg-5 col-sm-5"/>
 		}
 		else {
 			var address_display = (
-				<div className = "col-md-6 col-lg-6 col-sm-6">
+				<div className = "col-md-5 col-lg-5 col-sm-5">
 					<span className = "span-block"> {address.name} </span>
 					<span className = "span-block"> {address.address_line1} {address.address_line2} </span> 
 					<span className = "span-block"> {address.address_city}, {address.address_state} {address.address_zip} </span>
@@ -41,8 +45,8 @@ export default class CheckoutAddressPreview extends React.Component {
 							<b> 1. Shipping Address </b>
 						</div>
 							{address_display}
-						<div className = "col-md-1 col-sm-1 col-lg-1">
-							<div className = "clickable-text" onClick = {this.props.openEditable}>
+						<div className = "col-md-2 col-sm-2 col-lg-2 text-right">
+							<div className = "clickable-text" onClick = {() => this.props.openEditable(ADDRESS_INDEX)}>
 								Change
 							</div>
 						</div>

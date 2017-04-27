@@ -99,7 +99,7 @@ export default class CartItemDisplay extends React.Component {
 				<div className = "row cart-checkout-preview"> 
 					<hr/>
 					<div className = "top-buffer"/>
-						<div onClick = {() => browserHistory.push(`/eg/` + this.props.item.product_id)}  className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 vcenter">
+						<div onClick = {() => browserHistory.push(`/eg/` + this.props.item.product_id)}  className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 clickable-text vcenter">
 							{image_display} {item.name}
 						</div>
 

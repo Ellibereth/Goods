@@ -29,7 +29,6 @@ export default class SettingsPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
-					console.log(data)
 					this.setState({
 						cards : data.cards,
 						addresses : data.addresses, 
@@ -53,7 +52,6 @@ export default class SettingsPage extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.is_loading)
 		return (
 			<div>
 				<TopNavBar />

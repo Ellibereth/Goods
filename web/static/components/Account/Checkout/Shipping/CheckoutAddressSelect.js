@@ -7,29 +7,32 @@ import CheckoutAddAddressModal from './CheckoutAddAddressModal'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
 import {Button} from 'react-bootstrap'
-
+const ADDRESS_INDEX = 0
+const BILLING_INDEX = 1
+const CART_INDEX = 2
 export default class CheckoutAddressSelect extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			selected_address : 0,
+			selected_address : -1,
 
 		}
 	}
 
-	
-
 
 	setAddress(){
-		this.props.setAddress(this.state.selected_address)
-		this.props.closeEditable()
+		if (this.state.selected_address == -1) {
+			swal("You haven't selected an address yet!", "You must do so before continuing", "error")
+		}
+		else {
+			this.props.openEditable(BILLING_INDEX)	
+		}
 	}
 
 	onAddressChange(index){
+		this.props.setAddress(index)
 		this.setState({selected_address : index})
 	}
-
-
 
 	render() {
 		var addresses = this.props.addresses
@@ -38,8 +41,9 @@ export default class CheckoutAddressSelect extends React.Component {
 				<div className = "row">
 					<div className = "top-buffer"/>
 					<hr/>
-					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1">
-						<input type="radio" 
+					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right">
+						<input type="radio"
+						checked = {index == this.props.selected_address_index}
 						onClick = {this.onAddressChange.bind(this, index)}
 						value= {index} name="gender"/>
 					</div>
@@ -48,6 +52,7 @@ export default class CheckoutAddressSelect extends React.Component {
 					</div>
 				</div>
 			)
+
 		if (address_display.length == 0){
 			address_display = (
 				<div className = "row">
@@ -66,7 +71,7 @@ export default class CheckoutAddressSelect extends React.Component {
 
 
 		return (
-			<div>
+			<div className="well">
 				<CheckoutAddAddressModal 
 				onAddingNewShippingAddress = {this.props.onAddingNewShippingAddress}
 				show = {this.props.address_modal_open} 
@@ -93,20 +98,28 @@ export default class CheckoutAddressSelect extends React.Component {
 								<b> 1. Select an Address </b>
 							</div>
 						</div>
-							<form>
-								{address_display}
-							</form>
+						<form>
+							{address_display}
+						</form>
 						<hr/>
 
-						<span onClick = {this.props.toggleModal}>
-							<span className = "gylphicon glyphicon-plus" /> Add Address
-						</span>
+						<div className = "row row-eq-height">
+							<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right">
+								<span className = "gylphicon glyphicon-plus btn-lg add-field-icon" onClick = {this.props.toggleModal} />
+							</div>
+							<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+								<span onClick = {this.props.toggleModal} className = "clickable-text add-field-text"> Add Address </span>
+							</div>
+						</div>
+						<hr/>
 						{
 							this.props.addresses.length > 0 && 
 							<div className = "row">
-								<Button onClick = {this.setAddress.bind(this)}>
-									Use this address
-								</Button>
+								<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+									<Button onClick = {this.setAddress.bind(this)}>
+										Use this address
+									</Button>
+								</div>
 							</div>	
 						}
 						

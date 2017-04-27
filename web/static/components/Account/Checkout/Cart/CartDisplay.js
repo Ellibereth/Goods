@@ -10,14 +10,26 @@ export default class CartDisplay extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			// this is only for the first loading
+			has_loaded : false
 		}
 	}
-
+	
+	componentWillReceiveProps(nextProps){
+		if (!nextProps.is_loading){
+			this.setState({has_loaded : true})
+		}
+	}
 
 	render() {
 		var item_display = this.props.items.map((item, index) =>
 				<CartItemDisplay refreshCheckoutInformation = {this.props.refreshCheckoutInformation} item = {item} />
 			)
+
+		if (!this.state.has_loaded) {
+			return <div/>
+		}
+
 
 		return (
 			<div id = "cart_display">

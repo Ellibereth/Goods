@@ -112,7 +112,6 @@ export default class CheckoutAddBilling extends React.Component {
 		}
 
 	render() {
-
 		return (
 			<div className = "row">
 				<div className = "col-sm-1 col-md-1 col-lg-1"/>
@@ -122,13 +121,19 @@ export default class CheckoutAddBilling extends React.Component {
 						<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
 					</div>
 					<div className = "row">
-						<div class="checkbox">
-						  <label><input id = "same_address_checkbox" name = "same_address"  onChange = {this.useSameAddressChange.bind(this)} type="checkbox"/> Use same address from shipping </label>
+						<div className="checkbox">
+						  <label><input disabled = {!this.props.selected_address} id = "same_address_checkbox" name = "same_address"  onChange = {this.useSameAddressChange.bind(this)} type="checkbox"/> Use same address from shipping </label>
 						</div>
+						{
+							!this.props.selected_address &&
+							<small>	
+								You must select an address before you can use this option. 
+							</small>
+						}
 					</div>
 
 
-					{(!this.state.use_same_as_shipping || this.props.selected_address != []) &&
+					{ !this.state.use_same_as_shipping &&
 						<div className = "row">
 							<AddressForm 
 							has_description = {false}

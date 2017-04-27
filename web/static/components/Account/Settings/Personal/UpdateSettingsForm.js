@@ -75,13 +75,28 @@ export default class SettingsFormPersonal extends React.Component {
 					else {
 						AppActions.removeCurrentUser()
 						AppActions.addCurrentUser(data.user, data.jwt)
-						swal({title: "Thank you!", text : "Your changes have been made",type: "success"})
 						this.setState({
 							name : data.user.name,
 							email : data.user.email,
 				 			password : ""
 						})
-						location.reload();
+						// reloads in 1 second
+						setTimeout(function() {
+							browserHistory.push(`/settings`)
+						}, 2000)
+
+						swal({
+						  title: "Thank you!",
+						  text: "Your changes have been saved! You will be returned to settings shortly...",
+						  type: "success",
+						  confirmButtonText: "Ok!",
+						  closeOnConfirm: true,
+						})
+
+						
+
+						
+						
 					}
 				}.bind(this),
 				error : function(){

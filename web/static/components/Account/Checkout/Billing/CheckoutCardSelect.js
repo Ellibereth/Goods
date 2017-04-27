@@ -6,23 +6,33 @@ var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
 import {Button} from 'react-bootstrap'
 
+const ADDRESS_INDEX = 0
+const BILLING_INDEX = 1
+const CART_INDEX = 2
+
 import CheckoutCardPreview from './CheckoutCardPreview'
 export default class CheckoutCardSelect extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			selected_card : 0
+			selected_card : -1
 		}
 	}
 
 	setCard(){
-		this.props.setCard(this.state.selected_card)
-		this.props.closeEditable()
+		if (this.state.selected_card == -1) {
+			swal("You haven't selected a card yet!", "You must do so before continuing", "error")
+		}
+		else {
+			this.props.openEditable(CART_INDEX)	
+		}
 	}
 
 	onCardChange(index){
-		this.setState({selected_carda : index})
+		this.props.setCard(index)
+		this.setState({selected_card : index})
 	}
+
 
 
 	getCardInput(card, index){
@@ -30,18 +40,19 @@ export default class CheckoutCardSelect extends React.Component {
 			<div className = "row">
 				<hr/>
 				<div className = "top-buffer"/>
-				<div className = "col-md-1 col-xs-1 col-sm-1 col-lg-1 hcenter vcenter">
+				<div className = "col-md-1 col-xs-1 col-sm-1 col-lg-1 text-right vcenter">
 					<input onClick = {this.onCardChange.bind(this, index)} 
+					checked = {index == this.props.selected_card_index}
 					type="radio" value= {index} name = "card"/>
 				</div>
-				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4 hcenter vcenter">
+				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4  vcenter">
 					 
 					<b> {card.brand} </b> ending in {card.last4} 
 				</div>
-				<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3 hcenter vcenter">
+				<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3  hcenter vcenter">
 					{card.name}
 				</div>
-				<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3 hcenter vcenter">
+				<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3  hcenter vcenter">
 					{card.exp_month}/{card.exp_year}
 				</div>
 				<div className = "top-buffer"/>
@@ -55,24 +66,26 @@ export default class CheckoutCardSelect extends React.Component {
 				this.getCardInput(card, index)
 			)
 
-		if (card_display.length == 0){
+		if (cards.length == 0){
+			var card_display = 
 			<div className = "row">
 				<hr/>
 				<div className = "top-buffer"/>
-				<div className = "col-md-1 col-xs-1 col-sm-1 col-lg-1 hcenter vcenter">
+				<div className = "col-md-1 col-xs-1 col-sm-1 col-lg-1  vcenter">
 					
 				</div>
-				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4 hcenter vcenter">
+				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4  vcenter">
 					 
 					You have no cards at this time!
 				</div>
 				<div className = "top-buffer"/>
 			</div>
 		}
+
 		var card = this.props.card
 
 		return (
-			<div>
+			<div className = "well">
 				{this.props.can_edit ?
 					<div>
 						<div className = "row">
@@ -89,16 +102,26 @@ export default class CheckoutCardSelect extends React.Component {
 						<form>
 							{card_display}	
 						</form>
+						<hr/>
 
-						<span onClick = {this.props.toggleModal}>
-							<span className = "gylphicon glyphicon-plus" /> Add Payment Method
-						</span>
+						<div className = "row row-eq-height">
+							<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right">
+								<span className = "gylphicon glyphicon-plus btn-lg add-field-icon" onClick = {this.props.toggleModal} />
+							</div>
+							<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+								<span onClick = {this.props.toggleModal} className = "clickable-text add-field-text"> Add Payment Method </span>
+							</div>
+						</div>
+						<hr/>
+
 						{
 							this.props.cards.length > 0 &&
 							<div className = "row">
-								<Button onClick = {this.setCard.bind(this)}>
-									Use this card
-								</Button>
+								<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+									<Button onClick = {this.setCard.bind(this)}>
+										Use this card
+									</Button>
+								</div>
 							</div>
 						}
 						

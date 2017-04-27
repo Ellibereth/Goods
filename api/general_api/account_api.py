@@ -97,6 +97,13 @@ def updateSettings():
 	if not User.isValidEmail(new_settings[Labels.Email]):
 		return JsonUtil.failure(new_settings[Labels.Email] + " is not a valid email address.")
 
+	if new_settings[Labels.Name] == "":
+		return JsonUtil.failure("Name cannot be blank")
+
+	
+	if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):	
+		return JsonUtil.failure("Name must only be letters and spaces")
+
 	this_user.updateSettings(new_settings)
 	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
 	return JsonUtil.successWithOutput(output)

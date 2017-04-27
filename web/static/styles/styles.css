@@ -173,7 +173,6 @@ body {
     float: none;
 }
 
-
 .hcenter {
     text-align: center;
 }
@@ -217,5 +216,19 @@ body {
 
 .faded{
 	opacity: 0.40
+}
+
+.add-field-icon {
+	color: blue;
+	/*font-size : 36px;*/
+}
+
+.add-field-icon:hover {
+	text-decoration:underline;
+	cursor:pointer;
+}
+
+.add-field-text {
+	font-size : 18px;
 }
 

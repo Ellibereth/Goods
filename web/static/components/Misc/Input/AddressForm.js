@@ -12,7 +12,14 @@ export default class CreditCardInput extends React.Component {
 	}
 
 	componentDidMount(){
-		
+		this.props.onTextInputChange("address_state", "AL")
+	}
+
+	isNumberKey(evt){
+	    var charCode = (evt.which) ? evt.which : event.keyCode
+	    if (charCode > 31 && (charCode < 48 || charCode > 57))
+	        return false;
+	    return true;
 	}
 
 	render() {
@@ -23,7 +30,7 @@ export default class CreditCardInput extends React.Component {
 			<fieldset>
 
 			<div className="form-group">
-			    <label tabindex= {1 + tab_index_start} className="col-md-2 control-label" for="Name">Name on Address </label>    
+			    <label tabindex= {1 + tab_index_start} className="col-md-2 control-label" for="Name">Name </label>    
 			    <div className="col-md-6">
 			    <input  field = "address_name" onChange = {this.handleChange.bind(this)}
 			     id="Name" name="address_name" type="text" placeholder="Name on Address" className="form-control input-md" required=""/>
@@ -113,7 +120,8 @@ export default class CreditCardInput extends React.Component {
 				</select>
 
 			    
-			    <span className="help-block">Enter Source state</span>    
+			     {/* <span className="help-block">Enter State</span> */}
+
 			    </div>
 			</div>
 
@@ -127,7 +135,7 @@ export default class CreditCardInput extends React.Component {
 			</div>
 
 			<div className="form-group">
-			    <label className="col-md-2 control-label" for="address1">Address Line1</label>    
+			    <label className="col-md-2 control-label" for="address1">Address Line 1</label>    
 			    <div className="col-md-8">
 			    <input tabindex= {tab_index_start + 6} field = "address_line1" onChange = {this.handleChange.bind(this)}
 			     id="address1" name="address_line1" type="text" placeholder="" className="form-control input-md"/>
@@ -136,18 +144,21 @@ export default class CreditCardInput extends React.Component {
 			</div>
 
 			<div className="form-group">
-			    <label className="col-md-2 control-label" for="Address2">Address Line2</label>    
+			    <label className="col-md-2 control-label" for="Address2">Address Line 2</label>    
 			    <div className="col-md-8">
 			    <input  tabindex= {tab_index_start + 7} field = "address_line2" onChange = {this.handleChange.bind(this)}
 			    id="Address2" name="address_line2" type="text" placeholder="" className="form-control input-md"/>
-			    <span className="help-block">Apartment, suite , unit, building, floor, etc.</span>    
+			    <span className="help-block">Apartment, suite, unit, building, floor, etc.</span>    
 			    </div>
 			</div>
 
 			<div className="form-group">
 			    <label className="col-md-2 control-label" for="zip">Zip/Postal code</label>    
 			    <div className="col-md-4">
-			    <input tabindex= {tab_index_start + 8} field = "address_zip" onChange = {this.handleChange.bind(this)}
+			    <input tabindex= {tab_index_start + 8}
+			    maxLength = {5} 
+			    onkeyenter = {this.isNumberKey}
+			    field = "address_zip" onChange = {this.handleChange.bind(this)}
 			    id="zip" name="address_zip" type="text" placeholder="zip or postal code" className="form-control input-md" required=""/>
 				
 			    </div>

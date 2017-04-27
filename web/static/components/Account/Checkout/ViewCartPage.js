@@ -14,11 +14,14 @@ export default class ViewCartPage extends React.Component {
 			items : [],
 			price : null,
 			cards : [],
-			addresses : []
+			addresses : [],
+			is_loading: true
 		}
 	}
 
 	refreshCheckoutInformation(){
+		this.setState({is_loading : true})
+		$('#view-cart-container').addClass("faded");
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt
@@ -39,6 +42,8 @@ export default class ViewCartPage extends React.Component {
 					else {
 						console.log("an error")
 					}
+					this.setState({is_loading : false})
+					$('#view-cart-container').removeClass("faded");
 				}.bind(this),
 				error : function(){
 					console.log("an internal server error")
@@ -61,7 +66,7 @@ export default class ViewCartPage extends React.Component {
 
 				<TopNavBar />
 
-				<div className = "container">
+				<div id = "view-cart-container" className = "container">
 					<div className = "row">
 						<div className = "row">
 							<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -70,6 +75,7 @@ export default class ViewCartPage extends React.Component {
 						</div>
 						<div className = "col-sm-9 col-md-9 col-lg-9">
 						<CartDisplay 
+							is_loading = {this.state.is_loading}
 							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 							price = {this.state.price}
 							items = {this.state.items}
