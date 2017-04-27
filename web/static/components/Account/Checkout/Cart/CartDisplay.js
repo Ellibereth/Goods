@@ -35,8 +35,8 @@ export default class CartDisplay extends React.Component {
 			<div id = "cart_display">
 				{item_display.length == 0 ? 
 					<div>
-						<h2> There are no items in your cart! Check out our store 
-						 <Link to = "/store"> here </Link> </h2>
+						<h4> There are no items in your cart! </h4>
+						<h4> Check out our store  <Link to = "/store"> here </Link> </h4>
 					</div>
 				:
 					<div>

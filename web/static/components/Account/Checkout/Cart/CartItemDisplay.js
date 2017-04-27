@@ -57,7 +57,7 @@ export default class CartItemDisplay extends React.Component {
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
 		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
 		function () {

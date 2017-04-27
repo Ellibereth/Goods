@@ -65,30 +65,40 @@ export default class ViewCartPage extends React.Component {
 			<div>
 
 				<TopNavBar />
-
 				<div id = "view-cart-container" className = "container">
+
 					<div className = "row">
-						<div className = "row">
-							<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<b> Your Cart </b>
+						<div className = "col-md-10 col-lg-10 col-sm-10 well">
+							<div className = "row">
+								<div className = "col-md-2 col-lg-2 col-sm-2 checkout-item-label-editable vcenter">
+									<b> Items </b>
+								</div>
+							</div>
+							<hr/>
+							<div className = "row">
+								<div className = "col-sm-9 col-md-9 col-lg-9">
+								<CartDisplay 
+									is_loading = {this.state.is_loading}
+									refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+									price = {this.state.price}
+									items = {this.state.items}
+									/>
+								</div>
+								
+								
 							</div>
 						</div>
-						<div className = "col-sm-9 col-md-9 col-lg-9">
-						<CartDisplay 
-							is_loading = {this.state.is_loading}
-							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-							price = {this.state.price}
-							items = {this.state.items}
-							/>
+						<div className = "col-md-2 col-lg-2 col-sm-2">
+								<Button disabled = {this.state.items.length == 0}>
+									<Link to = "checkout"> Proceed to Checkout </Link>
+								</Button>
+								{ this.state.items.length == 0 &&
+									<small>
+										Add items to cart before checkout
+									</small>
+								}
+								
 						</div>
-						{	this.state.items.length > 0 && 
-						<div className = "col-sm-3 col-md-3 col-lg-3">
-							<Button>
-								<Link to = "checkout"> Proceed to Checkout </Link>
-							</Button>
-						</div>
-						}
-						
 					</div>
 				</div>
 			</div>	

@@ -262,7 +262,7 @@ export default class CheckoutPage extends React.Component {
 	render() {
 		var can_checkout = this.canCheckout()
 		return (
-			<div>
+			<div >
 				<TopNavBar />
 
 				
@@ -309,12 +309,20 @@ export default class CheckoutPage extends React.Component {
 
 						<hr/>
 
-						<CartDisplay 
-						is_loading = {this.state.is_loading}
-						refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-						price = {this.state.price}
-						items = {this.state.items}
-						/>
+						<div className = "well" >
+							<div className = "row">
+								<div className = "col-md-2 col-lg-2 col-sm-2 checkout-item-label-editable vcenter">
+									<b> 3. Items </b>
+								</div>
+							</div>
+							<hr/>
+							<CartDisplay 
+							is_loading = {this.state.is_loading}
+							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+							price = {this.state.price}
+							items = {this.state.items}
+							/>
+						</div>
 
 
 

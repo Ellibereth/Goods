@@ -32,7 +32,6 @@ export default class AddToCartButton extends React.Component {
 		  		if (data.success){
 		  			swal("Succesfully added to your cart!")
 		  			this.props.refreshUserInformation.bind(this)()
-		  			location.reload()
 		  		}
 		  		else  {
 		  			swal({title: "Problem",   
