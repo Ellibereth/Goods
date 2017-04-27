@@ -76,7 +76,7 @@ export default class CheckoutAddBilling extends React.Component {
 				}	
 			}
 			
-			data['number'] = document.getElementById("card_input").value.toString().substring(0, 19)
+			data['number'] = this.state.number
 			data['exp_month'] = this.state['expiry'].split('/')[0]
 			data['exp_year'] = this.state['expiry'].split('/')[1]
 			data["jwt"] = localStorage.jwt

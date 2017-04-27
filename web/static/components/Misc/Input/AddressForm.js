@@ -46,7 +46,7 @@ export default class CreditCardInput extends React.Component {
 			    <label className="col-md-2 control-label" for="Country">Country</label>
 			    <div className="col-md-5">
 				<select tabindex= {tab_index_start + 3} field = "address_country"    onChange = {this.handleChange.bind(this)}
-				id="Country" name="address_country" className="form-control">
+				id="Country" name="address_country" className="form-control" disabled = {true}>
 				    <option selected value="US">United States</option>
 				</select>
 				<span className="help-block"> We only ship to the US for now! </span>    

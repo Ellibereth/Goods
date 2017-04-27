@@ -28,7 +28,6 @@ export default class SettingsPage extends React.Component {
 			url: "/getCheckoutInformation",
 			data: form_data,
 			success: function(data) {
-				console.log(data)
 				if (data.success) {
 					console.log(data)
 					this.setState({
@@ -54,6 +53,7 @@ export default class SettingsPage extends React.Component {
 	}
 
 	render() {
+		console.log(this.state.is_loading)
 		return (
 			<div>
 				<TopNavBar />
@@ -65,7 +65,7 @@ export default class SettingsPage extends React.Component {
 					<br/>
 
 					{
-						this.state.is_loading && 
+						!this.state.is_loading && 
 						<div>
 							<BillingPreview  cards = {this.state.cards} />
 							<br />
