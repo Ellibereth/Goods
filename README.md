@@ -6,13 +6,13 @@ sh setup
 
 ## Testing Locally
 Run the following commands in linux terminal
-# Windows
+
+#### Windows
 sh localtestwin
-# Mac
+#### Mac
 sh localtest
 
 ## Contributors
-
 Any questions can be sent to darekjohnson28@gmail.com
 
 ## License
