@@ -76,16 +76,19 @@ export default class ViewCartPage extends React.Component {
 							</div>
 							<hr/>
 							<div className = "row">
-								<div className = "col-sm-9 col-md-9 col-lg-9">
-								<CartDisplay 
-									is_loading = {this.state.is_loading}
-									refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-									price = {this.state.price}
-									items = {this.state.items}
-									/>
+								<div className = "col-md-12 col-lg-12">
+									<CartDisplay 
+										is_loading = {this.state.is_loading}
+										refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+										price = {this.state.price}
+										items = {this.state.items}
+										/>
 								</div>
-								
-								
+							</div>
+							<div className = "row">
+								<div className = "col-md-2 col-lg-2 pull-right">
+									<span> <b> Subtotal </b> ${this.state.price} </span>
+								</div>
 							</div>
 						</div>
 						<div className = "col-md-2 col-lg-2 col-sm-2">

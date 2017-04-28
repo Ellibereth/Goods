@@ -4,7 +4,6 @@ import AppStore from '../../../stores/AppStore.js';
 import TopNavBar from '../../Misc/TopNavBar'
 import UpdateSettingsPreview from './Personal/UpdateSettingsPreview.js'
 import BillingPreview from './Billing/BillingPreview.js'
-import PastOrdersPreview from './Orders/PastOrdersPreview.js'
 import ShippingPreview from './Shipping/ShippingPreview'
 var browserHistory = require('react-router').browserHistory;
 
@@ -18,7 +17,9 @@ export default class SettingsPage extends React.Component {
 		}
 	}
 
-	refreshProductInfo(){
+	refreshSettings(){
+	this.setState({is_loading : false})
+	$('#settings-container').addClass("faded");
 	var form_data = JSON.stringify({
 			"account_id" : AppStore.getCurrentUser().account_id,
 			"jwt" : localStorage.jwt
@@ -38,6 +39,7 @@ export default class SettingsPage extends React.Component {
 					console.log("an error")
 				}
 				this.setState({is_loading : false})
+				$('#settings-container').removeClass("faded");
 			}.bind(this),
 			error : function(){
 				console.log("an internal server error")
@@ -48,14 +50,14 @@ export default class SettingsPage extends React.Component {
 	}
 
 	componentDidMount(){
-		this.refreshProductInfo.bind(this)()
+		this.refreshSettings.bind(this)()
 	}
 
 	render() {
 		return (
 			<div>
 				<TopNavBar />
-				<div className = "container">
+				<div id = "settings-container" className = "container faded">
 					<h1> Your Account </h1> 
 					<br/>
 
@@ -70,6 +72,7 @@ export default class SettingsPage extends React.Component {
 
 							<ShippingPreview  addresses = {this.state.addresses}/>
 							<br/>
+
 						</div>
 					}
 					

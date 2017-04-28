@@ -99,7 +99,8 @@ export default class CartItemDisplay extends React.Component {
 				<div className = "row cart-checkout-preview"> 
 					<hr/>
 					<div className = "top-buffer"/>
-						<div onClick = {() => browserHistory.push(`/eg/` + this.props.item.product_id)}  className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 clickable-text vcenter">
+						<div onClick = {() => browserHistory.push(`/eg/` + this.props.item.product_id)}
+						className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 clickable-text vcenter">
 							{image_display} {item.name}
 						</div>
 
@@ -117,10 +118,10 @@ export default class CartItemDisplay extends React.Component {
 								</div>
 							</form>
 						</div>
-						<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 cart-item-price-text vcenter hcenter">
+						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
 							${item.price *  item.num_items} 
 						</div>
-						<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 vcenter hcenter">
+						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
 							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />
 						</div>
 						

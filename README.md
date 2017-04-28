@@ -1,7 +1,9 @@
-## Synopsis
+## Description
 Code base for Edgar USA
 
 ## Installation
+Install Node
+https://nodejs.org/en/download/
 Run the following in linux  
 (Windows power shell or Mac terminal)
 sh setup

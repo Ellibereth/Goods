@@ -42,7 +42,7 @@ export default class CartDisplay extends React.Component {
 					<div>
 
 						<div className = "row">
-							<div className = "col-xs-6 col-sm-6 col-md-6 col-lg-6">
+							<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4">
 								Item Description
 							</div>
 
@@ -53,16 +53,15 @@ export default class CartDisplay extends React.Component {
 							<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter">
 								Quantity 
 							</div>
-							<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 hcenter1">
+							<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter">
 								Item Total 
 							</div>
-							<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 hcenter">
+							<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter">
 								Remove
 							</div>
 						</div>	
 
 							{item_display}
-					
 						<hr/>
 					</div>
 				}

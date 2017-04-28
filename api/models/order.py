@@ -13,7 +13,8 @@ from api.utility.labels import PaymentLabels as Labels
 ## user object class
 class Order(db.Model):
 	__tablename__ = ProdTables.OrderTable
-	order_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+	primary_key = db.Column(db.Integer, primary_key = True, autoincrement = True)
+	order_id = db.Column(db.String)
 	price = db.Column(db.Float)
 	num_items = db.Column(db.Integer)
 	stripe_customer_id = db.Column(db.String, nullable = False)

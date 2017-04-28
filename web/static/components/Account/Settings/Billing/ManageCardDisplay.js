@@ -76,10 +76,19 @@ export default class ManageCardDisplay extends React.Component {
 		var card = this.props.card
 		console.log(card)
 		return (
-			<div className = "row">
-				<p> Card ending in : {card.last4} </p>
-				{/* <Button onClick = {this.editCard.bind(this)}> Edit </Button> */}
-				<Button onClick = {this.onDeletePress.bind(this)}> Delete </Button>
+			<div className = "row well">	
+				<div className=  "col-md-6 col-lg-6">
+					<span> {card.brand} ending in : {card.last4} </span>
+				</div>
+
+				<div className=  "col-md-4 col-lg-4">
+					<span> {card.exp_month} / {card.exp_year} </span>
+				</div>
+
+				<div className=  "col-md-2 col-lg-2">
+					<Button onClick = {this.onDeletePress.bind(this)}> Delete </Button>
+				</div>
+				<div className = "top-buffer"/>
 			</div>	
 		)
 	}

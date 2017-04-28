@@ -11,23 +11,7 @@ export default class PastOrdersDisplay extends React.Component {
 
 
 	componentDidMount(){
-		var request_data = JSON.stringify({
-			"jwt" : localStorage.jwt,
-			"product_id" : this.props.order.product_id
-		})
-			$.ajax({
-			  type: "POST",
-			  url: "/getMarketProductInfo",
-			  data: request_data,
-			  success: function(data) {
-				this.setState({product: data})
-			  }.bind(this),
-			  error : function(){
-				console.log("error")
-			  },
-			  dataType: "json",
-			  contentType : "application/json; charset=utf-8"
-			});
+
 	}
 
 
