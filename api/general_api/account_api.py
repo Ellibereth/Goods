@@ -278,8 +278,29 @@ def deleteUserCreditCard():
 		return JsonUtil.failure("Something went wrong while delting credit card \n " + str(e))
 
 
+@account_api.route('/getUserOrders', methods = ['POST'])
+def getUserOrders():
+	jwt = request.json.get(Labels.Jwt)
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	if this_user == None:
+		return JsonUtil.failure("Not a real user")
+	orders = this_user.getUserOrders()
+	return JsonUtil.successWithOutput({Labels.Orders : orders})
 
-
+@account_api.route('/getSettingsInformation', methods = ['POST'])
+def getSettingsInformation():
+	account_id = request.json.get(Labels.AccountId)
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtUser(jwt, account_id):
+		return JsonUtil.jwt_failure()
+	this_user = User.query.filter_by(account_id = account_id).first()
+	if this_user == None:
+		return JsonUtil.failure("User does not exist")
+	addresses = this_user.getAddresses()
+	cards = this_user.getCreditCards()
+	orders = this_user.getUserOrders()
+	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
+		Labels.Orders : orders})
 
 
 

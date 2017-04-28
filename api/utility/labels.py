@@ -35,6 +35,7 @@ class UserLabels:
 	Description = "description"
 	AddressId = "address_id"
 	StripeCardId = "stripe_card_id"
+	Orders = "orders"
 
 
 class ProductImageLabels:
@@ -120,6 +121,23 @@ class PaymentLabels:
 	Product = "product"
 	StripeToken = "stripeToken"
 	Orders = "orders"
+	LobAddressId = "lob_address_id"
+	TotalPrice = "total_price"
+	Product = "product"
+	Address = "address"
+	AddressName = "address_name"
+	AddressDescription = "addresss_description"
+	AddressCity = "address_city"
+	AddressCountry = "address_country"
+	AddressLine1 = "address_line1"
+	AddressLine2 = "address_line2"
+	AddressZip = "address_zip"
+	AddressState = "address_state"
+	NumItems = "num_items"
+	Price = "price"
+	DateCreated = "date_created"
+	Card = "card"
+
 
 class CartLabels:
 	StripeCustomerId = "stripe_customer_id"
@@ -147,12 +165,13 @@ class CartLabels:
 	AddressCity = "address_city"
 	AddressCountry = "address_country"
 	AddressLine1 = "address_line1"
-	AddressLine1 = "address_line2"
+	AddressLine2 = "address_line2"
 	AddressZip = "address_zip"
 	AddressState = "address_state"
 	NewNumItems = "new_num_items"
 	Quantity = "quantity"
 	NumItemsLimit = "num_items_limit"
+	Orders = "orders"
 
 class AddressLabels:
 	AddressId = "address_id"

@@ -91,5 +91,9 @@ class StripeManager:
 			)
 		return charge
 
+	def getCardFromChargeId(stripe_charge_id):
+		card = stripe.Charge.retrieve(stripe_charge_id).source
+		return card
+
 
 

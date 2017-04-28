@@ -9,43 +9,43 @@ export default class OrderHistoryPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			past_orders : []
+			orders : [],
+			is_loading : true
 		}
 	}
 
-	
-
-
 	componentDidMount(){
-			var request_data = JSON.stringify({
-				"jwt" : localStorage.jwt,
-				"user" : AppStore.getCurrentUser()
-			})
-			$.ajax({
-			  type: "POST",
-			  url: "/getUserOrders",
-			  data : request_data,
-			  success: function(data) {
-				this.setState({past_orders: data.orders})
-			  }.bind(this),
-			  error : function(){
-				console.log("error")
-			  },
-			  dataType: "json",
-			  contentType : "application/json; charset=utf-8"
-			});
+		$("#orders_container").addClass("faded")
+		var request_data = JSON.stringify({
+			"jwt" : localStorage.jwt,
+			"user" : AppStore.getCurrentUser()
+		})
+		$.ajax({
+		  type: "POST",
+		  url: "/getUserOrders",
+		  data : request_data,
+		  success: function(data) {
+			this.setState({orders: data.orders, is_loading : false})
+			$("#orders_container").removeClass("faded")
+		  }.bind(this),
+		  error : function(){
+			console.log("error")
+		  },
+		  dataType: "json",
+		  contentType : "application/json; charset=utf-8"
+		});
 	}
 
 	render() {
-		var orders = this.state.past_orders
-		if (order.length == 0){
-			var order_display = <h1> You haven't bought anything on <a href = "/"> Edgar USA </a> yet.</h1>
+		var orders = this.state.orders
+		if (orders.length == 0){
+			var order_display = <h3> You haven't bought anything on <a href = "/"> Edgar USA </a> yet.</h3>
 		}
 		else {
 			var order_display = orders.map((order, index) => 
-				<Row>
+				<div className = "row">
 					<OrderDisplay order = {order} index = {index} />
-				</Row>
+				</div>
 			)	
 		}
 		
@@ -53,11 +53,17 @@ export default class OrderHistoryPage extends React.Component {
 		return (
 			<div>
 				<TopNavBar />
-				<div className = "container">
-					 {/* <SettingsFormPersonal /> */}
-					<Grid title = "Your Past Orders">
-						{order_display}
-					</Grid>
+				<div id = "orders_container" className = "container faded">
+					<div className = "row">
+						Past Orders
+					</div>
+
+					<div className = "row">
+						<div className = "col-md-10 col-lg-10">
+							{order_display}
+						</div>
+					</div>
+					
 				</div>
 			</div>	
 		)

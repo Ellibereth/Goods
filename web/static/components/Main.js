@@ -104,7 +104,7 @@ ReactDOM.render(
 			<Route path = "settings" onEnter = {checkConfirmedUser} component = {SettingsPage}/>
 			<Route path = "updateSettings" onEnter = {checkConfirmedUser} component = {UpdateSettingsPage}/>
 			<Route path = "changePassword" onEnter = {checkConfirmedUser} component = {ChangePasswordPage}/>
-			<Route path = "orders" onEnter = {checkConfirmedUser} component = {OrderHistoryPage}/>
+			<Route path = "yourOrders" onEnter = {checkConfirmedUser} component = {OrderHistoryPage}/>
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminEditProductPage} />

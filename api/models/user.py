@@ -10,6 +10,7 @@ from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.id_util import IdUtil
 from api.utility.lob import Lob
+from api.models.order import Order
 import re
 
 
@@ -177,6 +178,14 @@ class User(db.Model):
 	def deleteCreditCard(self, card_id):
 		StripeManager.deleteCreditCard(self, card_id)
 
+	# gets all user orders
+	def getUserOrders(self):
+		user_orders = Order.query.filter_by(account_id = self.account_id).order_by(Order.date_created.desc()).all()
+		return [order.toPublicDict() for order in user_orders]
+
+
+
+		
 
 
 
