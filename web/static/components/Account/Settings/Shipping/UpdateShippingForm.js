@@ -94,18 +94,18 @@ export default class UpdateShippingForm extends React.Component {
 	
 
 		return (
-			<Form horizontal>
-				<AddressForm 
-				has_description = {true}
-				onTextInputChange = {this.onTextInputChange.bind(this)}/>
-				<FormGroup controlId = "submit_button">
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
-					Submit!
-					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+				<Form horizontal>
+					<AddressForm 
+					has_description = {true}
+					onTextInputChange = {this.onTextInputChange.bind(this)}/>
+					<div className = "form-group" id = "submit_button">
+						<Col lgOffset = {2} mdOffset={2} md={6} lg = {6}>
+							<Button onClick = {this.onSubmitPress.bind(this)}>
+							Submit!
+							</Button>
+						</Col>
+					</div>
+				</Form>
 		)
 	}
 }

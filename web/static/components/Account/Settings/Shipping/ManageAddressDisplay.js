@@ -75,15 +75,17 @@ export default class ManageAddressDisplay extends React.Component {
 		// will be updating this to have a better display in the near future
 		var address = this.props.address
 		return (
-			<div className = "row">
-				<div>
-					<p> Name : {address.name} </p>
-					<p> Address : {address.address_line1} </p>
-					<p> City : {address.address_city} </p>
-					<p> Zip : {address.address_zip} </p>
-				</div>	
-				<Button onClick = {this.editAddress.bind(this)}> Edit </Button>
-				<Button onClick = {this.onDeletePress.bind(this)}> Delete </Button>
+			<div className = "row well">
+				<div className = "col-md-10 col-lg-10 col-sm-10">
+					<span className = "span-block"> {address.name} </span>
+					<span className = "span-block"> {address.address_line1} {address.address_line2} </span> 
+					<span className = "span-block"> {address.address_city}, {address.address_state} {address.address_zip} </span>
+				</div>
+				
+				<div className = "col-md-2 col-lg-2 col-sm-2">
+					<Button onClick = {this.editAddress.bind(this)}> Edit </Button>
+					<Button onClick = {this.onDeletePress.bind(this)}> Delete </Button>
+				</div>
 			</div>
 		)
 	}

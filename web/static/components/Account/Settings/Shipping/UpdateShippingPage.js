@@ -18,8 +18,17 @@ export default class UpdateShippingPage extends React.Component {
 			<div>
 				<TopNavBar />
 				<div className = "container">
-					 {/* <SettingsFormPersonal /> */}
-					<UpdateShippingForm />
+					 
+					 {/* Option for styling a header here. This is for Eli to test with! 
+					 	Have fun :D
+					 <div className = "row">
+					 	<div className = "col-md-offset-1 col-md-8 col-lg-offset-1 col-lg-8">
+					 		<span className = "settings-title"> Add an address </span>
+					 	</div>
+					 </div> */}
+					 <div className = "row">
+					 	<UpdateShippingForm />
+					 </div>
 				</div>
 			</div>	
 		)

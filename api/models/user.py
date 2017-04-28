@@ -147,7 +147,8 @@ class User(db.Model):
 
 	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
-
+		if description == None:
+			description = ""
 		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
 			, address_line2 = address_line2, address_city = address_city,
 				address_state = address_state, address_zip = address_zip,
