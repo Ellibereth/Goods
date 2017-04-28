@@ -16,9 +16,10 @@ export default class AdminMarketProducts extends React.Component {
 			market_products : [],
 			show_modal : false
 		}
+		this.loadProducts = this.loadProducts.bind(this)
 	}
 
-	componentDidMount(){
+	loadProducts(){
 		var form_data = JSON.stringify({
 			"jwt" : localStorage.jwt
 		})
@@ -35,6 +36,10 @@ export default class AdminMarketProducts extends React.Component {
 			  dataType: "json",
 			  contentType : "application/json; charset=utf-8"
 			});
+	}
+
+	componentDidMount(){
+		this.loadProducts.bind(this)()
 	}
 
 
@@ -87,7 +92,7 @@ export default class AdminMarketProducts extends React.Component {
 
 		return (
 			<div className = "container">
-				<AddProductModal show = {this.state.show_modal} toggleAddProductModal = {this.toggleAddProductModal.bind(this)}/>
+				<AddProductModal loadProducts = {this.loadProducts} show = {this.state.show_modal} toggleAddProductModal = {this.toggleAddProductModal.bind(this)}/>
 				<div className="col-md-12">
 					<Button onClick = {this.toggleAddProductModal.bind(this)}>
 						Add a market product 

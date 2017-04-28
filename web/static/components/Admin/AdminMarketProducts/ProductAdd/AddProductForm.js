@@ -77,6 +77,7 @@ export default class AddProductForm extends React.Component {
 						swal("Nice man!", "You just added this product to the market"
 							, "success")
 					}
+					this.props.loadProducts()
 				}.bind(this),
 				error : function(){
 					console.log("error")

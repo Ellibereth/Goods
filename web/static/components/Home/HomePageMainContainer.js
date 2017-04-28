@@ -67,6 +67,9 @@ export default class HomePageMainContainer extends React.Component {
 					<div className = "col-sm-6 col-md-6 col-lg-6">
 						<StoreProductPreview product_id = {1}/>
 					</div>
+					<div className = "col-sm-6 col-md-6 col-lg-6">
+						<StoreProductPreview product_id = {2}/>
+					</div>
 				</div>
 			</Grid>
 			);

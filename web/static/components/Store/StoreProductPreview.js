@@ -46,10 +46,10 @@ export default class StorePage extends React.Component {
 		})
 	}
 
-	handleFinish(){
-	  	// alert("Time's up!")
-	  	console.log("time's up")
-	}
+	// handleFinish(){
+	//   	// alert("Time's up!")
+	//   	console.log("time's up")
+	// }
 
   	onMouseOver(event){
   		$("#" + this.state.product.product_id).toggleClass("black-border-shown")

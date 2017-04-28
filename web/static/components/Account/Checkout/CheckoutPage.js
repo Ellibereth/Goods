@@ -202,6 +202,7 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	checkout(){
+		$('#checkout-container').addClass("faded");
 		var form_data = JSON.stringify({
 				account_id : AppStore.getCurrentUser().account_id,
 				jwt : localStorage.jwt,
@@ -220,9 +221,14 @@ export default class CheckoutPage extends React.Component {
 					swal("Thank you!", "You will receive a confirmation email for this purchase. \
 						This will take the user to a checkout page soon. Will have to write that huh?"
 						, "success")
+					setTimeout(function() {
+						browserHistory.push(`/checkoutConfirmed`)
+					}, 2000)
+					$('#checkout-container').removeClass("faded");
 				}
 			}.bind(this),
 			error : function(){
+				swal("We're sorry!", "Please contact customer service to discuss what you tried to do.","error")
 				console.log("error")
 			},
 			dataType: "json",

@@ -92,7 +92,9 @@ export default class AddToCartButton extends React.Component {
 				<div>
 					<span>
 						<div>
-							{select_quantity}
+							<span> Quantity:  
+								{select_quantity}
+							</span>
 						</div>
 						<button onClick = {this.addToCart.bind(this)} className="btn btn-xlarge btn-primary">
 							<div id = "buy_now_button_text">

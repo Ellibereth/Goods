@@ -39,7 +39,7 @@ export default class AddProductModal extends React.Component {
 				<Modal.Title id="contained-modal-title-lg"> Tell us your thoughts!</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<AddProductForm toggleAddProductModal = {this.props.toggleAddProductModal} />
+				<AddProductForm loadProducts = {this.props.loadProducts} toggleAddProductModal = {this.props.toggleAddProductModal} />
 			</Modal.Body>
 		</Modal>
 		);

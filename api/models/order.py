@@ -6,6 +6,7 @@ import time
 import random
 import string
 from api.utility.labels import PaymentLabels as Labels
+from api.utility.id_util import IdUtil
 
 ## I understand there are magic strings in this, but not sure the best way to get around it right now
 ## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
@@ -37,7 +38,8 @@ class Order(db.Model):
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, user, product, address, stripe_charge, num_items = 1):
+	def __init__(self, order_id, user, product, address, stripe_charge, num_items = 1):
+		self.order_id = order_id
 		self.price = product.price
 		self.num_items = num_items
 		self.product_id = product.product_id
@@ -53,9 +55,18 @@ class Order(db.Model):
 		self.address_description = address.description
 		db.Model.__init__(self)
 		
+	@staticmethod
+	def generateOrderId():
+		new_order_id = IdUtil.id_generator()
+		missing = Order.query.filter_by(order_id = new_order_id).all()
+		while missing:
+			new_order_id = IdUtil.id_generator()
+			missing = Order.query.filter_by(order_id = new_order_id).all()
+		return new_order_id
 
 	def toPublicDict(self):
 		public_dict = {}
+		public_dict['order_id'] = self.order_id
 		public_dict['name'] = self.name
 		public_dict['price'] = self.price
 		public_dict['date_created'] = self.date_created

@@ -41,7 +41,7 @@ export default class TopNavBar extends React.Component {
 		if (current_user == {} || !current_user){
 			return (
 				<Nav className = "main-nav-item" pullRight>
-					<NavItem eventKey={1}>  <Link to="/login">Sign In</Link> </NavItem>
+					<NavItem eventKey={1}>  <Link to="/login"> Sign In</Link> </NavItem>
 				</Nav>
 			)
 		}
