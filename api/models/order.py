@@ -90,7 +90,7 @@ class Order(db.Model):
 			Labels.AddressState : self.address_state
 		}
 		public_dict[Labels.Address] = address
-		public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
+		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
 		return public_dict
 
 

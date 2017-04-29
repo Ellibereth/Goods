@@ -91,24 +91,25 @@ export default class AdminMarketProducts extends React.Component {
 
 
 		return (
-			<div className = "container">
-				<AddProductModal loadProducts = {this.loadProducts} show = {this.state.show_modal} toggleAddProductModal = {this.toggleAddProductModal.bind(this)}/>
-				<div className="col-md-12">
-					<Button onClick = {this.toggleAddProductModal.bind(this)}>
-						Add a market product 
-					</Button>     
-					<table className ="table table-bordered">
-						<thead>
-							<tr>
-								{table_headers}
-							</tr>
-						</thead>
-						<tbody>
-							{table_entries}
-						</tbody>
-					</table>
+
+				<div className = "container">
+					<AddProductModal loadProducts = {this.loadProducts} show = {this.state.show_modal} toggleAddProductModal = {this.toggleAddProductModal.bind(this)}/>
+					<div className="col-md-12">
+						<Button onClick = {this.toggleAddProductModal.bind(this)}>
+							Add a market product 
+						</Button>     
+						<table className ="table table-bordered">
+							<thead>
+								<tr>
+									{table_headers}
+								</tr>
+							</thead>
+							<tbody>
+								{table_entries}
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
 		);
 	}
 }

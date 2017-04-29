@@ -33,7 +33,7 @@ export default class ShippingPreview extends React.Component {
 								<p> You have {this.props.addresses.length} addresses </p>
 								{
 									this.props.addresses.length > 0 ?
-									<p> <Link to = "/yourPlaces"> Manage Addresses </Link> </p>
+									<p> <Link to = "/myPlaces"> Manage Addresses </Link> </p>
 									:
 									<p> Add an address first! </p>
 								}

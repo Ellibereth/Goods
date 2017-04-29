@@ -81,7 +81,7 @@ class CartItem(db.Model):
 		public_dict[Labels.NumItems] = self.num_items
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.NumItemsLimit] = self.num_items_limit
+		public_dict[Labels.NumItemsLimit] = min(self.num_items_limit, self.inventory)
 		return public_dict
 
 

@@ -33,7 +33,7 @@ export default class BillingPreview extends React.Component {
 								<p> You have {this.props.cards.length} cards </p>
 								{
 									this.props.cards.length > 0 ?
-										<p> <Link to = "/yourCards"> Manage Cards </Link> </p>
+										<p> <Link to = "/myCards"> Manage Cards </Link> </p>
 									:
 										<p> Add some cards first! </p>
 

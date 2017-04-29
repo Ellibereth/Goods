@@ -3,8 +3,8 @@ var ReactDOM = require('react-dom');
 
 import {Col, Form, FormControl, Grid, Row, FormGroup, Button} from 'react-bootstrap';
 
-const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date']
-const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date"]
+const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'inventory']
+const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Inventory']
 const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local']
 import TextInput from '../../../Misc/Input/TextInput.js'
 import UploadMarketPhoto from '../ProductAdd/UploadMarketPhoto.js'
@@ -52,7 +52,7 @@ export default class AdminEditProductInformation extends React.Component {
 
 	submitTextData(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product_id,
+			"product_id" : this.state.product.product_id,
 			"product" : this.state.product,
 			"jwt" : localStorage.jwt
 		})
@@ -64,6 +64,7 @@ export default class AdminEditProductInformation extends React.Component {
 			if (data.success){
 				this.setState({product : data.product})
 				this.props.updateProduct.bind(this)(data.product)
+				swal("Complete!", "Product successfully updated", "successi")
 			}
 			else {
 				swal("Something went wrong!", data.error, "error")

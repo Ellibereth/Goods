@@ -62,7 +62,6 @@ export default class AdminProductMainContainer extends React.Component {
 			  <Col className = "text-center"  sm = {4} md = {4} lg = {4}>
 				<div className = "product-page-left "> 
 				  <AdminProductImageDisplay product = {this.state.product}/>
-				  <StripeButton product = {this.state.product}/>
 				</div>
 			  </Col>
 			  <Col sm = {6} md = {6} lg = {6}>
@@ -78,7 +77,7 @@ export default class AdminProductMainContainer extends React.Component {
 
 		  	</Grid>
 			<hr/>
-			<AdminEditProductInformation product = {this.state.product} updateProduct = {this.updateProduct.bind(this)}/>
+			<AdminEditProductInformation  product = {this.state.product} updateProduct = {this.updateProduct.bind(this)}/>
 		  	</div>
 		} 
 	  </div>

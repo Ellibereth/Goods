@@ -30,7 +30,7 @@ def addItemToCart():
 		return JsonUtil.jwt_failure()
 	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
 	if cart_item == None:
-		new_cart_item = CartItem(account_id, product_id, num_items = 1)
+		new_cart_item = CartItem(account_id, product_id, num_items = quantity)
 		db.session.add(new_cart_item)
 		db.session.commit()
 		return JsonUtil.success()
@@ -110,22 +110,6 @@ def getCheckoutInformation():
 	cards = this_user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
 		Labels.Cart : this_cart.toPublicDict()})
-
-
-@cart_api.route('/getSettingsInformation', methods = ['POST'])
-def getSettingsInformation():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-	this_user = User.query.filter_by(account_id = account_id).first()
-	if this_user == None:
-		return JsonUtil.failure("User does not exist")
-	addresses = this_user.getAddresses()
-	cards = this_user.getCreditCards()
-	orders = this_user.getUserOrders()
-	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
-		Labels.Orders : orders})
 
 
 @cart_api.route('/updateCartQuantity', methods = ['POST'])

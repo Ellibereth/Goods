@@ -172,6 +172,7 @@ class CartLabels:
 	Quantity = "quantity"
 	NumItemsLimit = "num_items_limit"
 	Orders = "orders"
+	MainImage = "main_image"
 
 class AddressLabels:
 	AddressId = "address_id"

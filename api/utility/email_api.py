@@ -6,6 +6,8 @@ from email.mime.multipart import MIMEMultipart
 
 from api.utility.labels import CartLabels as Labels
 
+PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+
 recipients = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
 
 ## informs darek@manaweb.com of the incoming request 
@@ -121,14 +123,24 @@ def sendPurchaseNotification(user, cart, address):
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(recipients)
 	body = "From \n Name: " + user.name + "\n Email: " + user.email + "\n"
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
 
 	for product in cart.toPublicDict()['items']:
-		body = body + "\n Name : " + product[Labels.Name]
+		body = "\n Name : " + product[Labels.Name]
 		body = body + "\n Product ID : " + str(product[Labels.ProductId])
 		body = body + "\n Unit Price : " + str(product[Labels.Price])
 		body = body + "\n Quantity : " + str(product[Labels.NumItems])
-		body = body + "\n \n Moving on to Next Item \n \n ------------------------------"
+		textPart = MIMEText(body, 'plain')
+		msg.attach(textPart)
+		image_part = MIMEText('<img style = "height: 100px; width 100px" src="' 
+			+ PHOTO_SRC_BASE + product[Labels.MainImage] + '"/>', 'html')
+		msg.attach(image_part)
+		body = "\n \n Moving on to Next Item \n \n ------------------------------"
+		textPart = MIMEText(body, 'plain')
+		msg.attach(textPart)
 
+	body = "Thanks for ordering!"
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
@@ -145,15 +157,24 @@ def sendPurchaseNotification(user, cart, address):
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = user.email
 	body = "Thank you for ordering with Edgar USA! Below is a summary if your order!"
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
 
 	for product in cart.toPublicDict()['items']:
-		body = body + "\n Name : " + product[Labels.Name]
+		body = "\n Name : " + product[Labels.Name]
 		body = body + "\n Unit Price : " + str(product[Labels.Price])
 		body = body + "\n Quantity : " + str(product[Labels.NumItems])
-		body = body + "\n \n Moving on to Next Item \n \n ------------------------------"
+		textPart = MIMEText(body, 'plain')
+		msg.attach(textPart)
+		image_part = MIMEText('<img style = "height: 100px; width 100px" src="'
+			 + PHOTO_SRC_BASE + product[Labels.MainImage] + '"/>', 'html')
+		msg.attach(image_part)
+		body =  "\n \n Moving on to Next Item \n \n ------------------------------"
+		textPart = MIMEText(body, 'plain')
+		msg.attach(textPart)
 
 
-	body = body + "------------------------------------" + "\n All of this was sent to "
+	body = "------------------------------------" + "\n All of this was sent to "
 	body = body + "\n" + address.address_line1 + " " + address. address_line2
 	body = body + "\n " + address.address_city + ", " + address.address_state + " " + address.address_zip
 

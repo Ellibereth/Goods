@@ -71,6 +71,10 @@ export default class ManageAddressDisplay extends React.Component {
 			});
 	}
 
+	componentDidMount(){
+
+	}
+
 	render() {
 		// will be updating this to have a better display in the near future
 		var address = this.props.address

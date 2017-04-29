@@ -26,7 +26,7 @@ export default class CheckoutConfirmedPage extends React.Component {
 						<div className = "col-sm-10 col-md-10 col-lg-10">
 							<p> Thanks for ordering! </p>
 							<p> You will have received an email with details of your order at {AppStore.getCurrentUser().email} </p>
-							<p> You can always view your past orders <Link to = "orders"> here </Link> </p>
+							<p> You can always view your past orders <Link to = "/myOrders"> here </Link> </p>
 						</div>
 					</div>
 				</div>

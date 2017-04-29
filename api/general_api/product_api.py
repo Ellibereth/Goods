@@ -95,6 +95,7 @@ def deleteProductPhoto():
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if this_product == None:
 		return JsonUtil.failure("Error retrieving product information")
+
 	this_image = ProductImage.query.filter_by(image_id = image_id).first()
 	if this_image == None:
 		return JsonUtil.failure("Error retrieving image")
@@ -114,10 +115,11 @@ def updateProductInfo():
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if this_product == None:
 		return JsonUtil.failure("Error retrieving product information")
-	price = request.json.get(Labels.Price)
-	description = request.json.get(Labels.Description)
-	manufacturer = request.json.get(Labels.Manufacturer)
-	sale_end_date = request.json.get(Labels.SaleEndDate)
+	price = product.get(Labels.Price)
+	description = product.get(Labels.Description)
+	manufacturer = product.get(Labels.Manufacturer)
+	sale_end_date = product.get(Labels.SaleEndDate)
+	inventory = product.get(Labels.Inventory)
 	if price != None:
 		this_product.price = price
 	if description != None:
@@ -128,6 +130,8 @@ def updateProductInfo():
 		this_product.sale_end_date = sale_end_date
 	if name != None:
 		this_product.name = name
+	if inventory != None:
+		this_product.inventory = inventory
 	db.session.commit()
 	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
 
@@ -139,6 +143,8 @@ def uploadMarketProductImage():
 		return JsonUtil.jwt_failure()
 	product_id = request.json.get(Labels.ProductId)
 	image_data = request.json.get(Labels.ImageData)
+	if image_data == None:
+		return JsonUtil.failure("No image has been uploaded!")
 	image_bytes = image_data.encode('utf-8')
 	image_decoded = base64.decodestring(image_bytes)
 	# increment the number of images for the product

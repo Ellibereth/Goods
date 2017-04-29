@@ -127,40 +127,49 @@ export default class ProductMainContainer extends React.Component {
 		}
 		
 		return (
-			<div className = "container faded" id = "product-page-container">
+			<div className = "faded" id = "product-page-container">
 				{this.state.invalid_product ?
 					<h3>
 						You've reached a bad product page! Click <a href = "/"> here </a> to return home.
 					</h3>
 				:
-					<Grid className = "fluid">
-						<Row>
-							<Col className = "text-center"  sm = {4} md = {4} lg = {4}>
-								<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
-							</Col>
-							<Col sm = {6} md = {6} lg = {6}>
-								<span className = "product-name-text"> {this.state.product.name} </span>
-								<span className = "product-price-text"> 
-									${this.state.product.price} 
-									{/* <StripeButton product = {this.state.product}/> */}
-								</span>
-								<br/>
-								<span className = "product-add-cart-span">
-									<AddToCartButton cart_item = {this.state.cart_item}
-									refreshUserInformation = {this.refreshUserInformation.bind(this)}
-									product = {this.state.product}/>
-								</span>
-								<hr/>
-								<span className = "product-description-text"> Product Description </span>
-									<div className="panel-body">{this.state.product.description}</div>
-								<span className = "product-manufacturer-text"> Manufacturer </span>
-									<div className="panel-body">{this.state.product.manufacturer}</div>
-								<hr/>
-								<span className = "product-more-images-header"> More Images (Click to View) </span>
-								<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.state.product}/>
-							</Col>
-						</Row>
-					</Grid>
+					<div>
+						<div className = "contianer fluid">
+							<div className = "row">
+								<Col className = "text-center"  sm = {4} md = {4} lg = {4}>
+									<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
+								</Col>
+								<Col sm = {6} md = {6} lg = {6}>
+									<span className = "product-name-text"> {this.state.product.name} </span>
+									<span className = "product-price-text"> 
+										${this.state.product.price} 
+										{/* <StripeButton product = {this.state.product}/> */}
+									</span>
+									<br/>
+									<span className = "product-add-cart-span">
+										<AddToCartButton cart_item = {this.state.cart_item}
+										refreshUserInformation = {this.refreshUserInformation.bind(this)}
+										product = {this.state.product}/>
+									</span>
+									<hr/>
+									<span className = "product-description-text"> Product Description </span>
+										<div className="panel-body">{this.state.product.description}</div>
+									<span className = "product-manufacturer-text"> Manufacturer </span>
+										<div className="panel-body">{this.state.product.manufacturer}</div>
+									<hr/>
+									<span className = "product-more-images-header"> More Images (Click to View) </span>
+									<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.state.product}/>
+								</Col>
+							</div>
+						</div>
+						<div className ="row">
+							<div className = "top-buffer"/>
+						</div>
+						<div className = "row" id = "image_story">
+							<img className = "img-responsive product-story-image" src = "https://c.o0bg.com/rf/image_960w/Boston/2011-2020/2017/01/24/BostonGlobe.com/Metro/Images/davis_brady_2002_super_bowl.jpg" />
+						</div>
+					</div>
+
 				}	
 			</div>
 		)

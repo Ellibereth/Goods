@@ -104,14 +104,14 @@ ReactDOM.render(
 			<Route path = "settings" onEnter = {checkConfirmedUser} component = {SettingsPage}/>
 			<Route path = "updateSettings" onEnter = {checkConfirmedUser} component = {UpdateSettingsPage}/>
 			<Route path = "changePassword" onEnter = {checkConfirmedUser} component = {ChangePasswordPage}/>
-			<Route path = "yourOrders" onEnter = {checkConfirmedUser} component = {OrderHistoryPage}/>
+			<Route path = "myOrders" onEnter = {checkConfirmedUser} component = {OrderHistoryPage}/>
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminEditProductPage} />
 			<Route path = "billing" onEnter = {checkConfirmedUser} component = {UpdateBillingPage} />
-			<Route path = "yourCards" onEnter = {checkConfirmedUser} component = {ManageCardsPage} />
+			<Route path = "myCards" onEnter = {checkConfirmedUser} component = {ManageCardsPage} />
 			<Route path = "shipping" onEnter = {checkConfirmedUser} component = {UpdateShippingPage}/>
-			<Route path = "yourPlaces" onEnter = {checkConfirmedUser} component = {ManageAddressPage}/>
+			<Route path = "myPlaces" onEnter = {checkConfirmedUser} component = {ManageAddressPage}/>
 			<Route path = "myCart" onEnter = {checkConfirmedUser} component = {ViewCartPage} />
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>

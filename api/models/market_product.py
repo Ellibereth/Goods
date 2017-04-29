@@ -56,9 +56,10 @@ class MarketProduct(db.Model):
 		images = ProductImage.query.filter_by(product_id = self.product_id).all()
 		image_list = list()
 		for image in images:
-			image_dict = image.toPublicDict()
-			image_dict[Labels.MainImage] = (self.main_image == image.image_id)
-			image_list.append(image_dict)
+			if not image.soft_deleted:
+				image_dict = image.toPublicDict()
+				image_dict[Labels.MainImage] = (self.main_image == image.image_id)
+				image_list.append(image_dict)
 		return image_list
 
 	def addProductImage(self, image_decoded, set_as_main_image = False):

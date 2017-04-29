@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../actions/AppActions'
 import TextInput from '../Misc/Input/TextInput.js'
+import TopNavBar from '../Misc/TopNavBar'
 
 
 export default class AdminLoginPage extends React.Component {
@@ -52,13 +53,16 @@ export default class AdminLoginPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2> Heathcliffe required </h2>
-				<TextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
-					 value = {this.state.username} field = "username" input_type = "text"/>
-				<TextInput label = "Password" onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state.password} field = "password" input_type = "password"/>
-				<div>
-					<button onClick = {this.onLoginSubmit.bind(this)}> Admin Login </button>
+				<TopNavBar />
+				<div className = "container">
+					<h2> Heathcliffe required </h2>
+					<TextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
+						 value = {this.state.username} field = "username" input_type = "text"/>
+					<TextInput label = "Password" onTextInputChange = {this.onTextInputChange.bind(this)}
+					value = {this.state.password} field = "password" input_type = "password"/>
+					<div>
+						<button onClick = {this.onLoginSubmit.bind(this)}> Admin Login </button>
+					</div>
 				</div>
 			</div>
 		);

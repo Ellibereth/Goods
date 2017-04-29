@@ -180,7 +180,7 @@ class User(db.Model):
 
 	# gets all user orders
 	def getUserOrders(self):
-		user_orders = Order.query.filter_by(account_id = self.account_id).order_by(Order.date_created.desc()).all()
+		user_orders = Order.query.filter_by(account_id = self.account_id).order_by(Order.date_created.desc()).limit(10).all()
 		return [order.toPublicDict() for order in user_orders]
 
 

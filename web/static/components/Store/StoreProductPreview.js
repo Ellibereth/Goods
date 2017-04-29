@@ -17,7 +17,7 @@ export default class StorePage extends React.Component {
   	}
 
   	goToProduct(){
-  		browserHistory.push('https://edgarusa-testserver.herokuapp.com/eg/' + this.props.product_id)
+  		browserHistory.push('/eg/' + this.props.product_id)
   	}
 
   	componentDidMount(){
@@ -89,13 +89,7 @@ export default class StorePage extends React.Component {
 						<span className = "row-fluid"> Name : {this.state.product.name} </span> <br/>
 						<span className = "row-fluid"> Price : {this.state.product.price} </span> <br/>
 						<span className = "row-fluid"> Manufacturer : {this.state.product.manufacturer} </span> <br/>
-						<Countdown
-							targetDate={date}
-				        	startDelay={2000}
-							interval={1000}
-				        	timeSeparator={<br/>}
-				        	leadingZero
-				        	onFinished={this.handleFinish.bind(this)} />
+						
 					</Col>
 				</Grid>
 			</div>

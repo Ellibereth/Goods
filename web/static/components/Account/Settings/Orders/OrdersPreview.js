@@ -31,7 +31,7 @@ export default class OrdersPreview extends React.Component {
 								<p> You have {this.props.orders.length} orders </p>
 								{
 									this.props.orders.length > 0 ?
-									<p> <Link to = "/yourOrders"> View Orders </Link> </p>
+									<p> <Link to = "/myOrders"> View Orders </Link> </p>
 									:
 									<p> Buy something! </p>
 								}
