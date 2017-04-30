@@ -237,6 +237,25 @@ body {
 	font-size : 16px;
 }
 
-.product-story-image {
-	width :100%;
+
+.story-overlay-container {
+	position: relative;
+	top: 25%;
+	
 }
+
+.story-panel {
+	opacity: 0.85;
+	background-color : #367123;
+	border-width: 0;
+	padding: 12px;
+}
+
+.story-panel > div {
+	opacity:  1.0;
+	color : white;
+	font-size: 24px
+
+}
+
+

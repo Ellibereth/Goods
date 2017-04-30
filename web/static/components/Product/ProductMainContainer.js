@@ -125,6 +125,17 @@ export default class ProductMainContainer extends React.Component {
 		if (this.state.is_loading){
 			return <div/>
 		}
+
+		var STORY_PHOTO_SRC = "https://c.o0bg.com/rf/image_960w/Boston/2011-2020/2017/01/24/BostonGlobe.com/Metro/Images/davis_brady_2002_super_bowl.jpg"
+
+		var story_style = {
+			backgroundImage : "url(" + STORY_PHOTO_SRC + ")",
+			backgroundSize : "cover",
+			maxHeight : "700px",
+			height : "700px"
+		}
+
+	
 		
 		return (
 			<div className = "faded" id = "product-page-container">
@@ -165,8 +176,16 @@ export default class ProductMainContainer extends React.Component {
 						<div className ="row">
 							<div className = "top-buffer"/>
 						</div>
-						<div className = "row" id = "image_story">
-							<img className = "img-responsive product-story-image" src = "https://c.o0bg.com/rf/image_960w/Boston/2011-2020/2017/01/24/BostonGlobe.com/Metro/Images/davis_brady_2002_super_bowl.jpg" />
+						<div className = "row" style = {story_style} id = "image_story">
+
+							
+					        <div className ="col-md-6 col-lg-6 col-md-offset-2 col-lg-offset-2 story-overlay-container">
+								<div className = "panel panel-default story-panel">
+									<div> This is the story all about how great this product is. </div>
+									<div> Proudly made in America! </div>
+									<div> A sure buy! </div>
+								</div>
+							</div>
 						</div>
 					</div>
 
