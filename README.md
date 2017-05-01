@@ -5,22 +5,26 @@ Code base for Edgar USA.
 Server Side - Python 3.5.2 <br/>
 Client Side - NPM/Node (for ReactJS), ReactJS <br/> 
 Database Management - Flask SQL Alchemy <br/>
+Python Package Management - https://pip.pypa.io/en/stable/installing/ <br/>
+Python Dependencies - './requirements.txt' <br/>
 
 ## Security 
 Stores and handles payments with Stripe. https://stripe.com/ <br/>
 Stores addresses with Lob. https://lob.com/ <br/>
 All user requests are authenticated with JWT https://jwt.io/ <br/>
-Uses SSL for HTTPS
+Uses SSL for HTTPS connection <br/>
 
 ## Installation
-Install Node
-https://nodejs.org/en/download/
+Install Node <br/>
+https://nodejs.org/en/download/ <br/>
 Run the following in linux  
 (Windows power shell or Mac terminal)
 
 ```
 sh setup
 ```
+
+This will install reactjs, install react dependencies, and python dependencies
 
 
 ## Testing Locally
