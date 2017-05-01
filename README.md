@@ -3,7 +3,7 @@ Code base for Edgar USA.
 
 ## Dependencies 
 Server Side - Python 3.5.2 <br/>
-Client Side - NPM/Node (for ReactJS), ReactJS __ 
+Client Side - NPM/Node (for ReactJS), ReactJS <br/> 
 Database Management - Flask SQL Alchemy <br/>
 
 ## Security 
