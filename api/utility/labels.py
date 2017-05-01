@@ -72,6 +72,8 @@ class MarketProductLabels:
 	ImageData = "image_data"
 	ImageId = "image_id"
 	Jwt = "jwt"
+	StoryImageId = "story_image_id"
+	StoryText = "story_text"
 
 class ProductTagLabels:
 	ProductId = "product_id"

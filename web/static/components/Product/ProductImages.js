@@ -4,13 +4,13 @@ var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
 
 
+// props are
+// function : selectImage
+// dictionary : product
 export default class ProductImages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			product : {},
-			selected_image : null
-
 		}
 	}
 

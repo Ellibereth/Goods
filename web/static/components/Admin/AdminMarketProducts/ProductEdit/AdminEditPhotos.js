@@ -2,9 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import {Grid, Row, Col, Button} from 'react-bootstrap';
-import StripeButton from '../../../Product/ProductPayment/StripeButton.js'
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
-import AdminEditProductInformation from './AdminEditProductInformation.js'
 var browserHistory = require('react-router').browserHistory;
 
 export default class AdminProductMainContainer extends React.Component {

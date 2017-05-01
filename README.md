@@ -7,6 +7,8 @@ Client Side - NPM/Node (for ReactJS), ReactJS <br/>
 Database Management - Flask SQL Alchemy <br/>
 Python Package Management - https://pip.pypa.io/en/stable/installing/ <br/>
 Python Dependencies - './requirements.txt' <br/>
+React Version - 15.5.4 <br/>
+Webpack Version - "webpack": "^2.4.1" https://webpack.github.io/ <br/>
 
 ## Security 
 Stores and handles payments with Stripe. https://stripe.com/ <br/>

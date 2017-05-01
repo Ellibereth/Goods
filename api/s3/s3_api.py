@@ -4,7 +4,8 @@ import os
 
 # Let's use Amazon S3
 
-PUBLIC_PHOTOS = "publicmarketproductphotos"
+PRODUCT_PHOTOS = "publicmarketproductphotos"
+STORY_PHOTOS = "storyphotos"
 s3 = boto3.resource('s3',
 			aws_access_key_id="AKIAJDIH6XBW42FXQX2Q",
 			aws_secret_access_key="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"
@@ -13,14 +14,21 @@ base_url = "https://s3-us-west-2.amazonaws.com"
 
 
 class S3:
+
+	@staticmethod
+	def uploadStoryImage(image_key, image_data):
+		s3.uploadPhoto(STORY_PHOTOS, image_key, image_data)
+
+
 	# takes photo_data input as a buffered reader
 	# see data = open('test.png', 'rb') data type
 	# gave up on writing the image byte string to a 
 	@staticmethod
 	def uploadProductImage(image_key, image_data):
-		bucket_name = PUBLIC_PHOTOS
+		s3.uploadPhoto(PRODUCT_PHOTOS, image_key, image_data)
+
+	def uploadPhoto(bucket_name, image_key, image_data):
 		if image_data == None:
-			print("dude data")
 			return
 		transfer_dir = './api/s3/transfer/'
 		with open(transfer_dir + image_key, "wb") as f:
@@ -41,7 +49,13 @@ class S3:
 	# deletes the image with the given key in the bucket for product images
 	@staticmethod
 	def deleteProductImage(image_key):
-		bucket = s3.Bucket(PUBLIC_PHOTOS)
+		bucket = s3.Bucket(PRODUCT_PHOTOS)
+		bucket.delete_key(image_key)
+
+	# deletes the image with the given key in the bucket for product images
+	@staticmethod
+	def deleteStoryImage(image_key):
+		bucket = s3.Bucket(STORY_PHOTOS)
 		bucket.delete_key(image_key)
 
 	# returns the data as a bytes object
@@ -54,3 +68,7 @@ class S3:
 			return data
 		except:
 			return None
+
+	
+
+

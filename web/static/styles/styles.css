@@ -142,7 +142,6 @@ body {
 .cart-image-display {
 	height: 80;
 	width: 80px;
-
 }
 
 .cart-checkout-preview {
@@ -258,4 +257,10 @@ body {
 
 }
 
+
+.story-image {
+	background-size : contain,
+	max-height : 700px,
+	height : 700px,
+}
 

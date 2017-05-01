@@ -23,7 +23,7 @@ import UpdateSettingsPage from './Account/Settings/Personal/UpdateSettingsPage.j
 import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
 import ChangePasswordPage from './Account/Settings/Personal/ChangePasswordPage.js'
 import LogoutPage from './Misc/LogoutPage.js'
-import AdminEditProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminEditProductPage.js'
+import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
 import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
 import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
@@ -107,7 +107,7 @@ ReactDOM.render(
 			<Route path = "myOrders" onEnter = {checkConfirmedUser} component = {OrderHistoryPage}/>
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
-			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminEditProductPage} />
+			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
 			<Route path = "billing" onEnter = {checkConfirmedUser} component = {UpdateBillingPage} />
 			<Route path = "myCards" onEnter = {checkConfirmedUser} component = {ManageCardsPage} />
 			<Route path = "shipping" onEnter = {checkConfirmedUser} component = {UpdateShippingPage}/>

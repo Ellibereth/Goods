@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 
-export default class ProductRequestForm extends React.Component {
+export default class UploadMarketPhoto extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -79,7 +79,7 @@ export default class ProductRequestForm extends React.Component {
 		return (
 			<Form horizontal>
 				<div className="col-sm-4">
-			  		Upload a photo!
+			  		Upload a story photo!
 		  		</div>
 				<input type = "file" placeholder="Image" id= {product.product_id + "_upload"} className="form-control"
 				accept="image/*" 

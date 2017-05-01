@@ -9,22 +9,20 @@ import Footer from '../Misc/Footer.js'
 
 
 export default class ProductPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+	constructor(props) {
+		super(props);
+		this.state = {
 
-    }
-  }
+		}
+	}
 
 
-  render() {
-    return (
-        <div>
-              <TopNavBar/>
-              
-              <ProductMainContainer  product_id = {this.props.params.product_id}/>
-             {/*  <Footer/> */}
-        </div>
-    );
-  }
+	render() {
+		return (
+				<div>
+					<TopNavBar/>
+					<ProductMainContainer    product_id = {this.props.params.product_id}/>
+				</div>
+		);
+	}
 }

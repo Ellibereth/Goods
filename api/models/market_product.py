@@ -8,13 +8,8 @@ import json
 
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
+from api.models.story_image import StoryImage
 from api.s3.s3_api import S3
-
-## I understand there are magic strings in this, but not sure the best way to get around it right now
-## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
-
-MARKET_PHOTO_STORAGE_BUCKET = "publicmarketproductphotos" 	
-
 
 ## user object class
 class MarketProduct(db.Model):
@@ -27,10 +22,13 @@ class MarketProduct(db.Model):
 	num_images = db.Column(db.Integer, nullable = False, default = 0)
 	main_image = db.Column(db.String)
 	inventory = db.Column(db.Integer, nullable = False)
-	soft_deleted = db.Column(db.Boolean, default = False)
+	active = db.Column(db.Boolean, default = False)
 	manufacturer = db.Column(db.String)
 	num_items_limit = db.Column(db.Integer)
-	# figure out input for this
+
+	story_text = db.Column(db.String, default = "PUT IN SOME TEXT HERE ABOUT YOUR STORY")
+	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
+	
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -58,9 +56,18 @@ class MarketProduct(db.Model):
 		for image in images:
 			if not image.soft_deleted:
 				image_dict = image.toPublicDict()
-				image_dict[Labels.MainImage] = (self.main_image == image.image_id)
 				image_list.append(image_dict)
 		return image_list
+
+	@staticmethod
+	def getAllProducts():
+		products = MarketProduct.query.filter_by().all()
+		return [product.toPublicDict() for product in products]
+
+	@staticmethod
+	def getActiveProducts():
+		åctive_products = MarketProduct.query.filter_by(active = True).all()
+		return [product.toPublicDict() for product in active_products]
 
 	def addProductImage(self, image_decoded, set_as_main_image = False):
 		# record the image_id in the database
@@ -79,6 +86,27 @@ class MarketProduct(db.Model):
 
 		db.session.commit()
 
+	def addStoryImage(self, image_decoded):
+
+		# record the image_id in the database
+		story_image_record = StoryImage(self.product_id)
+		self.story_image_id = story_image_record.image_id
+		db.session.add(story_image_record)
+		db.session.commit()
+
+		# upload the image to S3
+		S3.uploadStoryImage(image_record.image_id, image_decoded)
+
+
+	def activateProduct(self):
+		self.active = True
+		db.session.commit()
+
+	def deactivateProduct(self):
+		self.active = False
+		db.session.commit()
+
+
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
@@ -93,6 +121,9 @@ class MarketProduct(db.Model):
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.Images] = self.getProductImages()
 		public_dict[Labels.MainImage] = self.main_image
+		public_dict[Labels.StoryImageId] = self.story_image_id
+		public_dict[Labels.StoryText] = self.story_text
+
 		return public_dict
 
 
