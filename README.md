@@ -2,14 +2,14 @@
 Code base for Edgar USA. 
 
 ## Dependencies 
-Server Side - Python 3.5.2
-Client Side - NPM/Node (for ReactJS), ReactJS
-Database Management - Flask SQL Alchemy
+Server Side - Python 3.5.2 <br/>
+Client Side - NPM/Node (for ReactJS), ReactJS __ 
+Database Management - Flask SQL Alchemy <br/>
 
 ## Security 
-Stores and handles payments with Stripe. https://stripe.com/
-Stores addresses with Lob. https://lob.com/
-All user requests are authenticated with JWT https://jwt.io/
+Stores and handles payments with Stripe. https://stripe.com/ <br/>
+Stores addresses with Lob. https://lob.com/ <br/>
+All user requests are authenticated with JWT https://jwt.io/ <br/>
 Uses SSL for HTTPS
 
 ## Installation
