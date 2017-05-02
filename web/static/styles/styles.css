@@ -27,6 +27,7 @@ body {
 	padding-bottom: 70px; 
 	background-color: white;
 	font-family: Helvetica;
+	overflow-x: hidden;
 }
 
 .nopadding {

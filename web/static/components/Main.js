@@ -15,7 +15,7 @@ import RequestConfirmationPage from './Confirmation/RequestConfirmation/RequestC
 import TermsOfServicePage from './Misc/TermsOfServicePage.js'
 import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
 import ProductPage from './Product/ProductPage.js'
-import StorePage from './Store/StorePage.js'
+// import StorePage from './Store/StorePage.js'
 import RegisterPage from './Account/Register/RegisterPage.js'
 import LoginPage from './Account/Login/LoginPage.js'
 import SettingsPage from './Account/Settings/SettingsPage.js'
@@ -95,7 +95,7 @@ ReactDOM.render(
 			<Route path = 'adminTools' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
-			<Route path= "store" component={StorePage}/>
+			{/* <Route path= "store" component={StorePage}/> */}
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
 			<Route path= "eg/:product_id" component={ProductPage}/>

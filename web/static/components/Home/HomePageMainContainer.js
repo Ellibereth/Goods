@@ -22,9 +22,9 @@ export default class HomePageMainContainer extends React.Component {
 		var bottom_col_size = 6
 
 		return (
-			<Grid>
-				<Row className="show-grid">
-					<Col xs = {12} md={12}>
+			<div className = "container">
+				<div className="row show-grid">
+					<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
 						<div>
 							<center>
 								<div id = "text-part">	
@@ -39,10 +39,10 @@ export default class HomePageMainContainer extends React.Component {
 							      
 							</center>
 						</div>
-					</Col>
-				</Row>
+					</div>
+				</div>
 				<hr/>
-				<Row className = "show-grid">
+				{/* <Row className = "show-grid">
 					<Col md={bottom_col_size} style = {{overflow : "hidden"}}> 
 						<center>
 							<h1> Let us know what you want! </h1>
@@ -61,8 +61,8 @@ export default class HomePageMainContainer extends React.Component {
 							</center>
 						</div>
 					</Col>
-				</Row>
-				<hr/>
+				</Row> 
+				<hr/> */}
 				<div className = "row">
 					<div className = "col-sm-6 col-md-6 col-lg-6">
 						<StoreProductPreview product_id = {1}/>
@@ -71,7 +71,7 @@ export default class HomePageMainContainer extends React.Component {
 						<StoreProductPreview product_id = {2}/>
 					</div>
 				</div>
-			</Grid>
+			</div>
 			);
 	}
 }
