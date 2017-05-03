@@ -19,6 +19,7 @@ export default class ProductPage extends React.Component {
 	}
 
 	getProductInformation(){
+		$('#product-page-container').addClass("faded");
 		var form_data = JSON.stringify({
 			"product_id" : this.props.params.product_id,
 			"jwt" : localStorage.jwt
@@ -38,7 +39,7 @@ export default class ProductPage extends React.Component {
 					is_loading : false
 	 			})
 			}
-			
+			$('#product-page-container').removeClass("faded");
 		  }.bind(this),
 		  error : function(){
 			console.log("error")
