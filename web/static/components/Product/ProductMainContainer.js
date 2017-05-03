@@ -97,12 +97,12 @@ export default class ProductMainContainer extends React.Component {
 	render() {
 		// keep in mind for the fade on loading
 		// this wasn't working last I checked
-		if (this.props.is_loading){
-			this.startLoading()
-		}
-		else {	
-			this.endLoading()
-		}
+		// if (this.props.is_loading){
+		// 	this.startLoading()
+		// }
+		// else {	
+		// 	this.endLoading()
+		// }
 
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 		if (this.props.is_loading){
