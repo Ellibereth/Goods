@@ -95,11 +95,25 @@ export default class AdminActivateProduct extends React.Component {
 		// this.getProductInformation.bind(this)()
 	}
 
-
+	getActiveText(product){
+		if (!product){
+			return "";
+		}
+		else if (product.active){
+			return "Your product is active"
+		}
+		else {
+			return "Your product is inactive"
+		}
+	}
 
 	render() {
+		var text = this.getActiveText(this.props.product)
 		return (
 			<div className = "container">
+				<div className = "row">
+					<h2> {text} </h2>
+				</div>
 				<div className = "row">
 					<Button onClick = {this.onDeactivatePress.bind(this)}> Deactivate </Button>
 					<Button onClick = {this.onActivatePress.bind(this)}> Activate </Button>

@@ -46,10 +46,7 @@ export default class StorePage extends React.Component {
 		})
 	}
 
-	// handleFinish(){
-	//   	// alert("Time's up!")
-	//   	console.log("time's up")
-	// }
+
 
   	onMouseOver(event){
   		$("#" + this.state.product.product_id).toggleClass("black-border-shown")
@@ -62,7 +59,6 @@ export default class StorePage extends React.Component {
 
   	render() {
   		// hard coded for now
-  		console.log(this.state.product)
   		var date = this.state.product.sale_end_date
   		if (this.state.invalid_product) return <div/>
 		return (

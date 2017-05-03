@@ -1,11 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Link = require('react-router').Link;
 
-import {Button, Grid, Row, Col} from 'react-bootstrap';
-import StripeButton from './ProductPayment/StripeButton.js'
-import AddToCartButton from './ProductPayment/AddToCartButton.js'
+import {Button} from 'react-bootstrap';
 import ProductImages from './ProductImages'
 import AppStore from '../../stores/AppStore'
+import AddToCartButton from './ProductPayment/AddToCartButton.js'
 
 
 
@@ -13,14 +13,21 @@ export default class ProductMainContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			product : {},
-			selected_image: null,
+			selected_image : null,
 			items : [],
 			price : null,
 			cart_item : [],
 			is_loading : true
-
 		}
+	}
+
+
+	startLoading(){
+		$('#product-page-container').addClass("faded")
+	}
+
+	endLoading(){
+		$('#product-page-container').removeClass("faded");
 	}
 
 	getMainImageId(product) {
@@ -38,40 +45,15 @@ export default class ProductMainContainer extends React.Component {
 	}
 
 	componentDidMount(){
-		this.initializeProductInformation.bind(this)()
 		this.refreshUserInformation.bind(this)()
-		
 	}
 
-	initializeProductInformation(){
-		var form_data = JSON.stringify({
-			"product_id" : this.props.product_id
-		})
-		$.ajax({
-		  type: "POST",
-		  url: "/getMarketProductInfo",
-		  data: form_data,
-		  success: function(data) {
-			if (!data.success){
-				this.setState({invalid_product : true})
-			}
-			else {
-				var main_image_id = this.getMainImageId(data.product)
-				this.setState({
-								invalid_product : false,
-								product: data.product,
-				 				selected_image :main_image_id
-				 			})
-			}
-			this.setState({is_loading : false})
-			
-		  }.bind(this),
-		  error : function(){
-			console.log("error")
-		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
-		});
+	selectImage(image_id){
+		this.setState({selected_image : image_id})
+	}
+
+	componentWillReceiveProps(nextProps){
+		this.setState({selected_image : this.getMainImageId(nextProps.product)})
 	}
 
 	refreshUserInformation() {
@@ -92,7 +74,7 @@ export default class ProductMainContainer extends React.Component {
 							price : data.cart.price,
 						})
 						for (var i = 0; i < data.cart.items.length; i++){
-							if (data.cart.items[i].product_id == this.state.product.product_id){
+							if (data.cart.items[i].product_id == this.props.product.product_id){
 								this.setState({cart_item : data.cart.items[i]})
 							}
 						}		
@@ -112,78 +94,129 @@ export default class ProductMainContainer extends React.Component {
 	}
 
 
-
-	
-
-
-	selectImage(image_id){
-		this.setState({selected_image : image_id})
-	}
-
 	render() {
+		// keep in mind for the fade on loading
+		// this wasn't working last I checked
+		if (this.props.is_loading){
+			this.startLoading()
+		}
+		else {	
+			this.endLoading()
+		}
+
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-		if (this.state.is_loading){
+		if (this.props.is_loading){
 			return <div/>
 		}
 
-		var STORY_PHOTO_SRC = "https://c.o0bg.com/rf/image_960w/Boston/2011-2020/2017/01/24/BostonGlobe.com/Metro/Images/davis_brady_2002_super_bowl.jpg"
-
+		var src_story_base = "https://s3-us-west-2.amazonaws.com/storyphotos/"
+		var STORY_PHOTO_SRC = src_story_base +  this.props.product.story_image_id
 		var story_style = {
 			backgroundImage : "url(" + STORY_PHOTO_SRC + ")",
-			backgroundSize : "cover",
 			maxHeight : "700px",
-			height : "700px"
+			height : "700px",
+			backgroundRepeat: "no-repeat",
+			backgroundSize: "100% 100%"
 		}
 
 	
 		
 		return (
-			<div className = "faded" id = "product-page-container">
-				{this.state.invalid_product ?
+			<div className = "" id = "product-page-container">
+				{this.props.invalid_product ?
 					<h3>
 						You've reached a bad product page! Click <a href = "/"> here </a> to return home.
 					</h3>
 				:
 					<div>
-						<div className = "contianer fluid">
+						<div className = "container-fluid">
 							<div className = "row">
-								<Col className = "text-center"  sm = {4} md = {4} lg = {4}>
+								<div className = "col-md-12 col-lg-12 text-center" >
+									<Link to = "/"> Home </Link>
+								</div>
+							</div>
+							<hr/>
+							<div className = "row">
+								<div className = "col-md-6 col-lg-6 text-center" >
 									<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
-								</Col>
-								<Col sm = {6} md = {6} lg = {6}>
-									<span className = "product-name-text"> {this.state.product.name} </span>
-									<span className = "product-price-text"> 
-										${this.state.product.price} 
-										{/* <StripeButton product = {this.state.product}/> */}
-									</span>
-									<br/>
-									<span className = "product-add-cart-span">
-										<AddToCartButton cart_item = {this.state.cart_item}
-										refreshUserInformation = {this.refreshUserInformation.bind(this)}
-										product = {this.state.product}/>
-									</span>
+								</div>
+
+								<div className = "col-sm-6 col-md-6 col-lg-6">
+									<div className = "row">
+										<div className = "col-md-10 col-lg-10">
+											<span className = "product-name-text">
+												{this.props.product.name} 
+											</span>
+										</div>
+									</div>
 									<hr/>
-									<span className = "product-description-text"> Product Description </span>
-										<div className="panel-body">{this.state.product.description}</div>
-									<span className = "product-manufacturer-text"> Manufacturer </span>
-										<div className="panel-body">{this.state.product.manufacturer}</div>
+									<div className = "row">
+										<div className = "col-md-10 col-lg-10">
+											{this.props.product.description}
+										</div>
+									</div>
+									<hr/>									
+									<div className = "row product-description-collapse-preview" data-toggle="collapse" data-target="#more_info_dropdown">
+										<div className = "col-md-6 col-lg-6">
+											More Information
+										</div>	
+										<div className = "col-md-6 col-lg-6">
+											<span className = "glyphicon glyphicon-chevron-down pull-right"/>
+										</div>	
+									</div>
+									<div className = "top-buffer"/>
+									<div className="row" >
+										<div className = "col-md-12 col-lg-12">
+											<div className = "collapse" id = "more_info_dropdown">
+												<div className = "card">
+													<div className = "card-block">
+														<span> Manufacturer : {this.props.product.manufacturer} </span> <br/>
+														<span> Inventory Remaining : {this.props.product.inventory} </span> <br/>
+														<span> Category : {this.props.product.category} </span> <br/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									
 									<hr/>
-									<span className = "product-more-images-header"> More Images (Click to View) </span>
-									<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.state.product}/>
-								</Col>
+									<div className = "row">
+										<div className = "col-md-4 col-lg-4">
+											<span className = "product-price-text"> 
+												${this.props.product.price} 
+											</span>
+										</div>
+										<div className = "col-md-8 col-lg-8">
+											<span className = "product-add-cart-span">
+												<AddToCartButton cart_item = {this.state.cart_item}
+												refreshUserInformation = {this.refreshUserInformation.bind(this)}
+												product = {this.props.product}/>
+											</span>
+										</div>
+									</div>
+									
+									<hr/>
+									<div className = "row">
+										<div className = "col-md-10 col-lg-10">
+											<span className = "product-more-images-header"> More Images (Click to View) </span>
+										</div>
+									</div>
+									<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
+								</div>
 							</div>
 						</div>
 						<div className ="row">
 							<div className = "top-buffer"/>
 						</div>
-						<div className = "row" style = {story_style} id = "image_story">
-
-							
-					        <div className ="col-md-6 col-lg-6 col-md-offset-2 col-lg-offset-2 story-overlay-container">
+						<div className = "row" 
+						//className = "story-image"
+						 style = {story_style} id = "image_story">
+							<div className ="col-md-4 col-lg-4 col-md-offset-2 col-lg-offset-2 story-overlay-container">
 								<div className = "panel panel-default story-panel">
-									<div> This is the story all about how great this product is. </div>
-									<div> Proudly made in America! </div>
-									<div> A sure buy! </div>
+									<div> 
+										{this.props.product.story_text} 
+									</div>
 								</div>
 							</div>
 						</div>

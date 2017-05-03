@@ -126,9 +126,7 @@ export default class AdminProductPreview extends React.Component {
 						 style = {story_style} id = "image_story">
 					        <div className ="col-md-4 col-lg-4 col-md-offset-2 col-lg-offset-2 story-overlay-container">
 								<div className = "panel panel-default story-panel">
-									<div> {"This is the story all about how great this product is.  \n \
-										Proudly made in America!  \n \
-										A sure buy!"} 
+									<div> {this.props.product.story_text} 
 									</div>
 								</div>
 							</div>

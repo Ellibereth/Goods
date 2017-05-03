@@ -92,7 +92,9 @@ body {
 	font-weight : bold;
 	font-size : 36px;
 	display: block,
+	color : green;
 }
+
 .product-description-text {
 	font-size : 24px;
 	display: block
@@ -158,13 +160,16 @@ body {
 }
 
 .product-image-main {
-	max-height: 450px;
+	max-height: 600px;
 	max-width: 100%;
+	width : 100%;
+	height: 100%
 }
 
 .product-image-more {
 	height : 100px;
 	width : 100px;
+
 }
 
 .vcenter {
@@ -265,3 +270,12 @@ body {
 	height : 700px,
 }
 
+
+.product-description-collapse-preview {
+	color : green;
+	cursor:pointer;
+}
+
+.product-description-collapse-preview:hover {
+	color: red !important;
+}
