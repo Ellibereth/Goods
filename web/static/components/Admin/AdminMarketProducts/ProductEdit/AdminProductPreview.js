@@ -95,7 +95,7 @@ export default class AdminProductPreview extends React.Component {
 							</div>
 							<hr/>
 							<div className = "row">
-								<div className = "col-sm-6 col-md-6 col-lg-6 text-center" >
+								<div className = "col-sm-6 col-md-6 col-lg-6" >
 									<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
 								</div>
 

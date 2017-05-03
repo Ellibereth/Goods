@@ -53,6 +53,10 @@ export default class AddToCartButton extends React.Component {
 		this.props.refreshUserInformation()
 	}
 
+	onNonUserClick(){
+		swal("You must sign in before you can add this to your cart!")	
+	}
+
 	render() {
 		var quantity_options = []
 		var num_in_cart = 0
@@ -87,9 +91,10 @@ export default class AddToCartButton extends React.Component {
 		}
 		
 		
-		// var user = AppStore.getCurrentUser()
+		var user = AppStore.getCurrentUser()
 		return (
-				<div>
+				<div>{ user ?
+
 					<span>
 						<div>
 							<span> Quantity:  
@@ -106,6 +111,15 @@ export default class AddToCartButton extends React.Component {
 						</div>
 						
 					</span>
+					:
+					<span>
+						<button onClick = {this.onNonUserClick.bind(this)} className="btn btn-xlarge btn-primary">
+							<div id = "buy_now_button_text">
+						    	<b> Add to cart </b> 
+						    </div>
+						</button>
+					</span>
+					}
 				</div>
 		);
   	}

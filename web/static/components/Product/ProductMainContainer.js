@@ -57,6 +57,9 @@ export default class ProductMainContainer extends React.Component {
 	}
 
 	refreshUserInformation() {
+		if (!AppStore.getCurrentUser()){
+			return
+		}
 		// this.setState({is_loading : true})
 		$('#product-page-container').addClass("faded");
 			var form_data = JSON.stringify({
@@ -82,7 +85,7 @@ export default class ProductMainContainer extends React.Component {
 					else {
 						console.log("an error")
 					}
-				this.
+				$('#product-page-container').removeClass("faded");
 				this.setState({is_loading : false})
 				}.bind(this),
 				error : function(){
