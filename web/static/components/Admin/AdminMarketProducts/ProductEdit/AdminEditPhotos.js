@@ -33,7 +33,7 @@ export default class AdminProductMainContainer extends React.Component {
 					obj.images[i].main_image = false
 				}
 				obj.images[index].main_image = true
-				this.props.updateProduct(obj)
+				this.props.getProductInformation(obj)
 			}.bind(this),
 			error : function(){
 				console.log("error")
@@ -58,7 +58,7 @@ export default class AdminProductMainContainer extends React.Component {
 			success: function(data) {
 				var obj = this.props.product
 				obj.images.splice(index, 1);
-				this.props.updateProduct(obj)
+				this.props.getProductInformation(obj)
 			}.bind(this),
 			error : function(){
 				console.log("error")
@@ -68,8 +68,8 @@ export default class AdminProductMainContainer extends React.Component {
 			});
 	}
 
-	updateProduct(){
-		this.props.reloadProduct.bind(this)(this.state.product)
+	getProductInformation(){
+		this.props.getProductInformation.bind(this)(this.state.product)
 	}
 
 
@@ -86,10 +86,18 @@ export default class AdminProductMainContainer extends React.Component {
 				var label = image.main_image ? "Main Image" : "Not Main"
 				return (	
 					<div className="item col-lg-3 col-md-3 col-sm-3">
-						<h3> {label} </h3>
-						<img src= {src_base + image.image_id} id = {index} className = "admin-product-image"/>
-						<Button onClick = {this.deletePhoto.bind(this, image.image_id, index)}> Delete Photo </Button>
-						<Button onClick = {this.setMainPhoto.bind(this, image.image_id, index)}> Set as Main Photo </Button>
+						<div className = "row">
+							<h3> {label} </h3>
+						</div>
+						<div className = "row">
+							<img src= {src_base + image.image_id} id = {index} className = "admin-product-image"/>
+						</div>
+						<div className = "row">
+							<Button onClick = {this.deletePhoto.bind(this, image.image_id, index)}> Delete Photo </Button>
+						</div>
+						<div className = "row">
+							<Button onClick = {this.setMainPhoto.bind(this, image.image_id, index)}> Set as Main Photo </Button>
+						</div>
 					</div>
 				)
 			})

@@ -1,8 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Link = require('react-router').Link
 
 import {Button, Grid, Row, Col} from 'react-bootstrap';
 import ProductImages from '../../../Product/ProductImages'
+
 
 
 
@@ -65,8 +67,6 @@ export default class AdminProductPreview extends React.Component {
 			return <div/>
 		}
 
-		console.log(this.props.product)
-
 		var src_story_base = "https://s3-us-west-2.amazonaws.com/storyphotos/"
 		var STORY_PHOTO_SRC = src_story_base +  this.props.product.story_image_id
 		var story_style = {
@@ -87,35 +87,82 @@ export default class AdminProductPreview extends React.Component {
 					</h3>
 				:
 					<div>
-						<div className = "contianer fluid">
+						<div className = "container-fluid">
 							<div className = "row">
-								<Col className = "text-center"  sm = {4} md = {4} lg = {4}>
+								<div className = "col-sm- 12 col-md-12 col-lg-12 text-center" >
+									<Link to = "/"> Home </Link>
+								</div>
+							</div>
+							<hr/>
+							<div className = "row">
+								<div className = "col-sm-6 col-md-6 col-lg-6 text-center" >
 									<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
-								</Col>
-								<Col sm = {6} md = {6} lg = {6}>
-									<span className = "product-name-text"> {this.props.product.name} </span>
-									<span className = "product-price-text"> 
-										${this.props.product.price} 
-										{/* <StripeButton product = {this.props.product}/> */}
-									</span>
-									<br/>
-									<span className = "product-add-cart-span">
-										{
-										
-										}
-										<Button onClick = {() => swal("This is a dummy add to cart button")}>
-											Add to Cart
-										</Button>	
-									</span>
+								</div>
+
+								<div className = "col-sm-6 col-md-6 col-lg-6">
+									<div className = "row">
+										<div className = "col-md-10 col-lg-10">
+											<span className = "product-name-text">
+												{this.props.product.name} 
+											</span>
+										</div>
+									</div>
 									<hr/>
-									<span className = "product-description-text"> Product Description </span>
-										<div className="panel-body">{this.props.product.description}</div>
-									<span className = "product-manufacturer-text"> Manufacturer </span>
-										<div className="panel-body">{this.props.product.manufacturer}</div>
+									<div className = "row">
+										<div className = "col-sm-10 col-md-10 col-lg-10">
+											{this.props.product.description}
+										</div>
+									</div>
+									<hr/>									
+									<div className = "row product-description-collapse-preview" data-toggle="collapse" data-target="#more_info_dropdown">
+										<div className = "col-sm-6 col-md-6 col-lg-6">
+											More Information
+										</div>	
+										<div className = "col-sm-6 col-md-6 col-lg-6">
+											<span className = "glyphicon glyphicon-chevron-down pull-right"/>
+										</div>	
+									</div>
+									<div className = "top-buffer"/>
+									<div className="row" >
+										<div className = "col-sm-12 col-md-12 col-lg-12">
+											<div className = "collapse" id = "more_info_dropdown">
+												<div className = "card">
+													<div className = "card-block">
+														<span> Manufacturer : {this.props.product.manufacturer} </span> <br/>
+														<span> Inventory Remaining : {this.props.product.inventory} </span> <br/>
+														<span> Category : {this.props.product.category} </span> <br/>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									
 									<hr/>
-									<span className = "product-more-images-header"> More Images (Click to View) </span>
+									<div className = "row">
+										<div className = "col-sm-4 col-md-4 col-lg-4">
+											<span className = "product-price-text"> 
+												${this.props.product.price} 
+											</span>
+										</div>
+										<div className = "col-sm-4 col-md-8 col-lg-8">
+											<span className = "product-add-cart-span">
+												<Button onClick = {() => swal("This is a dummy add to cart button")}>
+													Add to Cart!
+												</Button>
+											</span>
+										</div>
+									</div>
+									
+									<hr/>
+									<div className = "row">
+										<div className = "col-sm-10 col-md-10 col-lg-10">
+											<span className = "product-more-images-header"> More Images (Click to View) </span>
+										</div>
+										<div clasName = "top-buffer"/>
+									</div>
 									<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
-								</Col>
+								</div>
 							</div>
 						</div>
 						<div className ="row">
@@ -124,9 +171,10 @@ export default class AdminProductPreview extends React.Component {
 						<div className = "row" 
 						//className = "story-image"
 						 style = {story_style} id = "image_story">
-					        <div className ="col-md-4 col-lg-4 col-md-offset-2 col-lg-offset-2 story-overlay-container">
+							<div className ="col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 story-overlay-container">
 								<div className = "panel panel-default story-panel">
-									<div> {this.props.product.story_text} 
+									<div> 
+										{this.props.product.story_text} 
 									</div>
 								</div>
 							</div>

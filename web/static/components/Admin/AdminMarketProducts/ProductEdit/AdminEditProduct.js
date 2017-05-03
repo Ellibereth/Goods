@@ -91,31 +91,31 @@ export default class AdminEditProduct extends React.Component {
 				input_type = {input_types[index]}/>
 			)
 		return (
-			<Grid id = "admin_edit_product">
+			<div className = "container" id = "admin_edit_product">
 				<div className = "row" id = "add_story">
 					<UploadStoryPhoto product = {this.props.product}/>
 				</div>
 				
 				<hr/>
-				<Row id = "text_edit">
-				<Form horizontal>
-					{input_forms}
-					<FormGroup controlId = "submit_button">
-					<Col smOffset={0} sm={10}>
-						<Button onClick = {this.onTextSubmitPress.bind(this)}>
-						Submit!
-						</Button>
-					</Col>
-					</FormGroup>
-				</Form>
-				</Row>
+					<div className = "row" id = "text_edit">
+					<Form horizontal>
+						{input_forms}
+						<FormGroup controlId = "submit_button">
+						<Col smOffset={0} sm={10}>
+							<Button onClick = {this.onTextSubmitPress.bind(this)}>
+							Submit!
+							</Button>
+						</Col>
+						</FormGroup>
+					</Form>
+				</div>
 				
-				<Row id = "image_edit">
+				<div className = "row" id = "image_edit">
 					<UploadMarketPhoto product = {this.props.product}/>
-					<AdminEditPhotos updateProduct = {this.props.updateProduct} 
+					<AdminEditPhotos getProductInformation = {this.props.getProductInformation} 
 						product = {this.props.product}/>
-				</Row>
-			</Grid>
+				</div>
+			</div>
 		)
 	}
 }

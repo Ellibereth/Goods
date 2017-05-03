@@ -61,11 +61,19 @@ export default class AdminProductPage extends React.Component {
 		return (
 			<div>
 				<TopNavBar/>
-				<AdminActivateProduct product = {this.props.product}/>
-				<hr/>
+				
+				
 
 				<div className = "container">
-					<h2> This is how your product will appear on the market </h2>
+					<div className = "row">
+						<AdminActivateProduct product = {this.props.product}/>
+					</div>
+					<div className = "row">
+						<div className = "text-center">
+							<h2> This is how your product will appear on the market </h2>
+						</div>
+					</div>
+					<hr/>
 				</div>
 				<AdminProductPreview   
 				 product = {this.state.product} 
