@@ -118,6 +118,7 @@ def updateProductInfo():
 	manufacturer = product.get(Labels.Manufacturer)
 	sale_end_date = product.get(Labels.SaleEndDate)
 	inventory = product.get(Labels.Inventory)
+	template = product.get(Labels.Template)
 	if price != None:
 		this_product.price = price
 	if description != None:
@@ -130,6 +131,12 @@ def updateProductInfo():
 		this_product.name = name
 	if inventory != None:
 		this_product.inventory = inventory
+	if template != None:
+		try:
+			this_product.template = int(template)
+		except:
+			pass
+			
 	db.session.commit()
 	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
 

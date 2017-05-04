@@ -3,8 +3,8 @@ var ReactDOM = require('react-dom');
 
 import {Col, Form, FormControl, Grid, Row, FormGroup, Button} from 'react-bootstrap';
 
-const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'inventory', 'story_text']
-const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Inventory', 'Story Text']
+const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'inventory', 'story_text', 'template']
+const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Inventory', 'Story Text', 'Template']
 const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea']
 import TextInput from '../../../Misc/Input/TextInput.js'
 import UploadMarketPhoto from '../ProductAdd/UploadMarketPhoto.js'

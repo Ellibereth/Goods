@@ -40,7 +40,7 @@ export default class ProductImages extends React.Component {
 
 		
 		return (
-			<div id = "image_display" className = "row row-eq-height">
+			<div id = "image_display" className = "row row-eq-height product-image-more-row">
 				  {product_images} 	
 			</div>
 		)

@@ -308,3 +308,7 @@ body {
 	cursor:pointer;	
 	opacity: .5;
 }
+
+.product-image-more-row {
+	padding-bottom: 10px;
+}

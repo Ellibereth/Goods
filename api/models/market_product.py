@@ -28,6 +28,7 @@ class MarketProduct(db.Model):
 
 	story_text = db.Column(db.String, default = "PUT IN SOME TEXT HERE ABOUT YOUR STORY")
 	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
+	template = db.Column(db.Integer, default = 1)
 	
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
@@ -38,7 +39,7 @@ class MarketProduct(db.Model):
 	tag = db.relationship("ProductTag", backref = TestTables.ProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = TestTables.ImageTable, lazy='dynamic')
 
-	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, num_items_limit = 50):
+	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, template = 1, num_items_limit = 50):
 		self.price = price
 		self.name = name
 		self.category = category
@@ -48,6 +49,7 @@ class MarketProduct(db.Model):
 		self.sale_end_date = sale_end_date
 		self.num_items_limit = num_items_limit
 		self.main_image = None
+		self.template = template
 		db.Model.__init__(self)
 		
 	def getProductImages(self):
@@ -123,7 +125,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.MainImage] = self.main_image
 		public_dict[Labels.StoryImageId] = self.story_image_id
 		public_dict[Labels.StoryText] = self.story_text
-
+		public_dict[Labels.Template] = self.template
 		return public_dict
 
 

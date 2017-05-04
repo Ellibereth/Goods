@@ -74,6 +74,7 @@ class MarketProductLabels:
 	Jwt = "jwt"
 	StoryImageId = "story_image_id"
 	StoryText = "story_text"
+	Template = "template"
 
 class ProductTagLabels:
 	ProductId = "product_id"
