@@ -96,12 +96,12 @@ export default class AddToCartButton extends React.Component {
 				<div>
 					{ user ?
 					<div>
-						<div className = "col-md-4 col-sm-4 col-lg-4">
+						<div className = "col-md-2 col-sm-2 col-lg-2">
 							<span className = "product-price-text"> 
 								${this.props.product.price} 
 							</span>
 						</div>
-						<div className = "col-md-4 col-sm-4 col-lg-4">
+						<div className = "col-md-3 col-sm-3 col-lg-3">
 							
 							<button onClick = {this.addToCart.bind(this)} className="btn btn-xlarge btn-primary">
 								<div id = "buy_now_button_text">
@@ -110,18 +110,19 @@ export default class AddToCartButton extends React.Component {
 							</button>
 							
 						</div>
-						<div className = "col-md-4 col-sm-4 col-lg-4">
+						<div className = "col-md-2 col-sm-2 col-lg-2">
 							<span>
 								 Quantity: {select_quantity}
 							</span>
+						</div>
+						<div className = "col-md-4 col-sm-4 col-lg-4">
 							<span>
 								(Curretly {num_in_cart} in cart)
 							</span>
-
 						</div>
 					</div>
 					:
-					<div className = "well">
+					<div>
 						<span>
 							<button onClick = {this.onNonUserClick.bind(this)} className="btn btn-xlarge btn-primary">
 								<div id = "buy_now_button_text">
