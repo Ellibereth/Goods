@@ -93,32 +93,43 @@ export default class AddToCartButton extends React.Component {
 		
 		var user = AppStore.getCurrentUser()
 		return (
-				<div>{ user ?
-
-					<span>
-						<div>
-							<span> Quantity:  
-								{select_quantity}
+				<div>
+					{ user ?
+					<div>
+						<div className = "col-md-4 col-sm-4 col-lg-4">
+							<span className = "product-price-text"> 
+								${this.props.product.price} 
 							</span>
 						</div>
-						<button onClick = {this.addToCart.bind(this)} className="btn btn-xlarge btn-primary">
-							<div id = "buy_now_button_text">
-						    	<b> Add to cart </b> 
-						    </div>
-						</button>
-						<div>
-							(Curretly {num_in_cart} in cart)
+						<div className = "col-md-4 col-sm-4 col-lg-4">
+							
+							<button onClick = {this.addToCart.bind(this)} className="btn btn-xlarge btn-primary">
+								<div id = "buy_now_button_text">
+							    	<b> Add to cart </b> 
+							    </div>
+							</button>
+							
 						</div>
-						
-					</span>
+						<div className = "col-md-4 col-sm-4 col-lg-4">
+							<span>
+								 Quantity: {select_quantity}
+							</span>
+							<span>
+								(Curretly {num_in_cart} in cart)
+							</span>
+
+						</div>
+					</div>
 					:
-					<span>
-						<button onClick = {this.onNonUserClick.bind(this)} className="btn btn-xlarge btn-primary">
-							<div id = "buy_now_button_text">
-						    	<b> Add to cart </b> 
-						    </div>
-						</button>
-					</span>
+					<div className = "well">
+						<span>
+							<button onClick = {this.onNonUserClick.bind(this)} className="btn btn-xlarge btn-primary">
+								<div id = "buy_now_button_text">
+							    	<b> Add to cart </b> 
+							    </div>
+							</button>
+						</span>
+					</div>
 					}
 				</div>
 		);

@@ -115,7 +115,7 @@ export default class ProductMainContainer extends React.Component {
 		var src_story_base = "https://s3-us-west-2.amazonaws.com/storyphotos/"
 		var STORY_PHOTO_SRC = src_story_base +  this.props.product.story_image_id
 		var story_style = {
-			backgroundImage : "url(" + STORY_PHOTO_SRC + ")",
+			backgroundImage : "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(" + STORY_PHOTO_SRC + ")",
 			maxHeight : "700px",
 			height : "700px",
 			backgroundRepeat: "no-repeat",
@@ -133,35 +133,31 @@ export default class ProductMainContainer extends React.Component {
 				:
 					<div>
 						<div className = "container-fluid">
+							
 							<div className = "row">
-								<div className = "col-sm-12 col-md-12 col-lg-12 text-center" >
-									<Link to = "/"> Home </Link>
-								</div>
-							</div>
-							<hr/>
-							<div className = "row">
-								<div className = "col-sm-6 col-md-6 col-lg-6 product-image-main-container" >
-									<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
+								<div className = "col-sm-5 col-md-5 col-lg-5 product-image-main-container" >
+									<div className = "product-image-main-border">
+										<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
+									</div>
 								</div>
 
 								<div className = "col-sm-6 col-md-6 col-lg-6">
 									<div className = "row">
-										<div className = "col-sm-10 col-md-10 col-lg-10">
+										<div className = "well">
 											<span className = "product-name-text">
 												{this.props.product.name} 
 											</span>
 										</div>
 									</div>
-									<hr/>
 									<div className = "row">
-										<div className = "col-sm-10 col-md-10 col-lg-10">
+										<div className = "well">
 											{this.props.product.description}
 										</div>
 									</div>
-									<hr/>									
-									<div className = "row product-description-collapse-preview" data-toggle="collapse" data-target="#more_info_dropdown">
+
+									<div className = "row well product-description-collapse-preview" data-toggle="collapse" data-target="#more_info_dropdown">
 										<div className = "col-sm-6 col-md-6 col-lg-6">
-											More Information
+											More Information	
 										</div>	
 										<div className = "col-sm-6 col-md-6 col-lg-6">
 											<span className = "glyphicon glyphicon-chevron-down pull-right"/>
@@ -169,48 +165,45 @@ export default class ProductMainContainer extends React.Component {
 									</div>
 									<div className = "top-buffer"/>
 									<div className="row" >
-										<div className = "col-sm-12 col-md-12 col-lg-12">
-											<div className = "collapse" id = "more_info_dropdown">
-												<div className = "card">
-													<div className = "card-block">
-														<span> Manufacturer : {this.props.product.manufacturer} </span> <br/>
-														<span> Inventory Remaining : {this.props.product.inventory} </span> <br/>
-														<span> Category : {this.props.product.category} </span> <br/>
-													</div>
+										<div className = "collapse" id = "more_info_dropdown">
+											<div className = "card">
+												<div className = "card-block">
+													<span> Manufacturer : {this.props.product.manufacturer} </span> <br/>
+													<span> Category : {this.props.product.category} </span> <br/>
 												</div>
 											</div>
 										</div>
 									</div>
 
+									<div className = "top-buffer"/>
+
+									<div className = "row well">
+										
+											<AddToCartButton cart_item = {this.state.cart_item}
+											refreshUserInformation = {this.refreshUserInformation.bind(this)}
+											product = {this.props.product}/>
+										
+									</div>
+
+									<div className = "top-buffer"/>
 									
-									<hr/>
 									<div className = "row">
-										<div className = "col-sm-4 col-md-4 col-lg-4">
-											<span className = "product-price-text"> 
-												${this.props.product.price} 
-											</span>
-										</div>
-										<div className = "col-sm-8 col-md-8 col-lg-8">
-											<span className = "product-add-cart-span">
-												<AddToCartButton cart_item = {this.state.cart_item}
-												refreshUserInformation = {this.refreshUserInformation.bind(this)}
-												product = {this.props.product}/>
-											</span>
+										<div className = "panel panel-default">
+											<div className = "panel-heading">
+												<span className = "product-more-images-header">
+											 		More Images (Click to View) 
+												</span>
+											</div>
+											<div className = "panel-content">
+												<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
+											</div>
 										</div>
 									</div>
-									
-									<hr/>
-									<div className = "row">
-										<div className = "col-sm-10 col-md-10 col-lg-10">
-											<span className = "product-more-images-header"> More Images (Click to View) </span>
-										</div>
-										<div clasName = "top-buffer"/>
-									</div>
-									<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
 								</div>
 							</div>
 						</div>
 						<div className ="row">
+							<div className = "top-buffer"/>
 							<div className = "top-buffer"/>
 						</div>
 						<div className = "row" 

@@ -30,9 +30,11 @@ export default class ProductImages extends React.Component {
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 		var product_images = product.images.map((image, index) => {
 				return (
-						<img className = "col-xs-3 col-sm-3 col-md-3 col-lg-3 img-responsive product-image-more"
-						src= {src_base + image.image_id} id = {index} 
-						onClick = {this.selectImage.bind(this, image.image_id)}/>
+						<div className = "col-md-3 col-sm-3 col-lg-3 product-image-more-container">
+							<img className = "img-responsive product-image-more"
+							src= {src_base + image.image_id} id = {index} 
+							onClick = {this.selectImage.bind(this, image.image_id)}/>
+						</div>
 					)
 			})
 

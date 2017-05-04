@@ -46,6 +46,8 @@ from api.general_api.amazon_data_api import amazon_data_api
 app.register_blueprint(amazon_data_api)
 from api.general_api.cart_api import cart_api
 app.register_blueprint(cart_api)
+from api.general_api.analytics_api import analytics_api
+app.register_blueprint(analytics_api)
 
 
 @app.before_first_request
