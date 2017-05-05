@@ -118,7 +118,8 @@ def updateProductInfo():
 	manufacturer = product.get(Labels.Manufacturer)
 	sale_end_date = product.get(Labels.SaleEndDate)
 	inventory = product.get(Labels.Inventory)
-	template = product.get(Labels.Template)
+	story_template = product.get(Labels.StoryTemplate)
+	product_template = product.get(Labels.ProductTemplate)
 	if price != None:
 		this_product.price = price
 	if description != None:
@@ -131,11 +132,16 @@ def updateProductInfo():
 		this_product.name = name
 	if inventory != None:
 		this_product.inventory = inventory
-	if template != None:
+	if story_template != None:
 		try:
-			this_product.template = int(template)
+			this_product.story_template = int(story_template)
 		except:
-			pass
+			return JsonUtil.failure("Story template choice : " + str(story_template) + " is not an integer")
+	if product_template != None:
+		try:
+			this_product.product_template = int(product_template)
+		except:
+			return JsonUtil.failure("Product template choice : " + str(product_template) + " is not an integer")
 			
 	db.session.commit()
 	return JsonUtil.success(Labels.Product, this_product.toPublicDict())

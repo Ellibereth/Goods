@@ -8,7 +8,7 @@ from api.utility.labels import CartLabels as Labels
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
-OUR_RECIPIENTS = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
+ADMIN_RECIPIENTS = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
 
 ## informs darek@manaweb.com of the incoming request 
 def sendRequestEmail(request):
@@ -17,7 +17,7 @@ def sendRequestEmail(request):
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Request!"
 	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = ", ".join(OUR_RECIPIENTS)
+	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	body = 'Here is a request from ' + request.email + "\n" + "Looking for a " + request.description + \
 		" in the price range : " + request.price_range
 	textPart = MIMEText(body, 'plain')
@@ -100,7 +100,7 @@ def sendFeedbackEmailNotification(feedback):
 	msg = MIMEMultipart()
 	msg['Subject'] = "User Feedback!"
 	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = ", ".join(OUR_RECIPIENTS)
+	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	name = feedback.name
 	body = "Name: " + feedback.name + "\n Email: " + feedback.email + \
 			"\n Content: " + feedback.feedback_content
@@ -128,7 +128,7 @@ def sendPurchaseNotification(user, cart, address):
 
 	# send the customer confirmation msg = MIMEMultipart()
 	# this will be changed but is a fun place holder!
-	msg = generateCartEmailNotificationMime(OUR_RECIPIENTS, user, cart, address)
+	msg = generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address)
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
