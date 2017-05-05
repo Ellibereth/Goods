@@ -79,7 +79,7 @@ export default class UploadMarketPhoto extends React.Component {
 		return (
 			<Form horizontal>
 				<div className="col-sm-4">
-			  		Upload a story photo!
+			  		Upload a product photo!
 		  		</div>
 				<input type = "file" placeholder="Image" id= {product.product_id + "_upload"} className="form-control"
 				accept="image/*" 

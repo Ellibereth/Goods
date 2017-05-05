@@ -1,10 +1,10 @@
 .story-overlay-container {
 	position: relative;
-	top: 25%;
+	top: 15%;
 	
 }
 .story-panel {
-	opacity: 0.85;
+	opacity: 0.75;
 	background-color : #367123;
 	border-width: 0;
 	padding: 12px;
@@ -14,8 +14,8 @@
 	color : white;
 	font-size: 24px;
 }
-.story-image {
-	background-size : contain;
-	max-height : 700px;
-	height : 700px;
+
+.story-image-row {
+	
 }
+

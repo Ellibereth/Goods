@@ -99,7 +99,7 @@ class MarketProduct(db.Model):
 		db.session.commit()
 
 		# upload the image to S3
-		S3.uploadStoryImage(image_record.image_id, image_decoded)
+		S3.uploadStoryImage(story_image_record.image_id, image_decoded)
 
 
 	def activateProduct(self):

@@ -76,6 +76,7 @@ class MarketProductLabels:
 	StoryText = "story_text"
 	StoryTemplate = "story_template"
 	ProductTemplate = "product_template"
+	StoryText = "story_text"
 
 class ProductTagLabels:
 	ProductId = "product_id"

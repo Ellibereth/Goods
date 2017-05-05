@@ -29,7 +29,7 @@ export default class BottomNavBar extends React.Component {
 	render() {
 
 		return (
-			<div className="navbar navbar-inverse" role="navigation">	
+			<div className="navbar navbar-inverse bottom-navbar" role="navigation">	
 				<div className = "container-fluid">
 					<div className="collapse navbar-collapse">
 						<div className = "nav navbar-right">

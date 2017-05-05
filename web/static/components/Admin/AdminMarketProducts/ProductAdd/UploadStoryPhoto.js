@@ -47,8 +47,9 @@ export default class UploadStoryPhoto extends React.Component {
 	}
 
 	uploadImage(){
+
 			var data = {
-				"image_data" : this.story_state.image_data,
+				"image_data" : this.state.story_image_data,
 				"product_id" : this.props.product.product_id,
 				"jwt" : localStorage.jwt
 			}
@@ -83,7 +84,7 @@ export default class UploadStoryPhoto extends React.Component {
 		return (
 			<Form horizontal>
 				<div className="col-sm-4">
-			  		Upload a photo!
+			  		Upload story image!
 		  		</div>
 				<input type = "file" placeholder="Image" id= {product.product_id + "_upload_story_image"} className="form-control"
 				accept="image/*" 

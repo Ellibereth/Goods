@@ -17,7 +17,7 @@ class S3:
 
 	@staticmethod
 	def uploadStoryImage(image_key, image_data):
-		s3.uploadPhoto(STORY_PHOTOS, image_key, image_data)
+		S3.uploadPhoto(STORY_PHOTOS, image_key, image_data)
 
 
 	# takes photo_data input as a buffered reader
@@ -25,7 +25,7 @@ class S3:
 	# gave up on writing the image byte string to a 
 	@staticmethod
 	def uploadProductImage(image_key, image_data):
-		s3.uploadPhoto(PRODUCT_PHOTOS, image_key, image_data)
+		S3.uploadPhoto(PRODUCT_PHOTOS, image_key, image_data)
 
 	def uploadPhoto(bucket_name, image_key, image_data):
 		if image_data == None:

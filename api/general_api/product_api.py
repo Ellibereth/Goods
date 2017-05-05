@@ -120,6 +120,7 @@ def updateProductInfo():
 	inventory = product.get(Labels.Inventory)
 	story_template = product.get(Labels.StoryTemplate)
 	product_template = product.get(Labels.ProductTemplate)
+	story_text = product.get(Labels.StoryText)
 	if price != None:
 		this_product.price = price
 	if description != None:
@@ -132,6 +133,8 @@ def updateProductInfo():
 		this_product.name = name
 	if inventory != None:
 		this_product.inventory = inventory
+	if story_text:
+		this_product.story_text = story_text
 	if story_template != None:
 		try:
 			this_product.story_template = int(story_template)

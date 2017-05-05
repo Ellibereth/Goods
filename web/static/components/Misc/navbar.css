@@ -10,20 +10,34 @@
 	text-align: center;
 }
 
-.navbar-brand {
+.navbar-brand-with-user {
 	font-size: 24px;
-    padding-top: 24px;
-    padding-left: 24px
+    padding: 24px;
+}
+
+.navbar-brand-no-user {
+	font-size: 24px;
 }
 
 .navbar-right {
-	/*padding-top: 24px*/
+	/*height: 36px;*/
 }
 
 .top-navbar {
     margin-bottom: 0;
+	padding: 12px;
+}
+
+.bottom-navbar {
+	padding: 12px;
 }
 
 .navbar {
 	border-radius: 0 !important;
+}
+
+
+.no-user-link {
+	font-size: 20px;
+	padding: 24px;
 }

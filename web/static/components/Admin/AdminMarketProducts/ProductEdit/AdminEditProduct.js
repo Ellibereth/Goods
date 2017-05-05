@@ -3,9 +3,9 @@ var ReactDOM = require('react-dom');
 
 import {Col, Form, FormControl, Grid, Row, FormGroup, Button} from 'react-bootstrap';
 
-const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'inventory', 'story_text', 'template']
-const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Inventory', 'Story Text', 'Template']
-const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea']
+const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'inventory', 'story_text', 'story_template', 'product_template']
+const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Inventory', 'Story Text', 'Story Template', 'Product Template']
+const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea', 'text', 'text']
 import TextInput from '../../../Misc/Input/TextInput.js'
 import UploadMarketPhoto from '../ProductAdd/UploadMarketPhoto.js'
 import AdminEditPhotos from './AdminEditPhotos.js' 
@@ -43,7 +43,7 @@ export default class AdminEditProduct extends React.Component {
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
 		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
 		function () {

@@ -39,8 +39,8 @@ export default class TopNavBar extends React.Component {
 			return (
 				<div className="collapse navbar-collapse">
 					<ul className="nav navbar-nav navbar-right">
-						<li><Link href="/register">Register</Link></li>
-						<li><Link href="/login">Login</Link></li>
+						<li><Link href="/register" className = "no-user-link">Register</Link></li>
+						<li><Link href="/login" className = "no-user-link">Login</Link></li>
 					</ul>
 				</div>
 			)
@@ -74,6 +74,8 @@ export default class TopNavBar extends React.Component {
 							</a>
 
 							<ul className="dropdown-menu"> 
+								<li> <a> Hello, {current_user.name} </a> </li>
+								<li role="separator" className="divider"></li>
 								<li><Link to ="/settings"> Settings </Link> </li>
 								<li role="separator" className="divider"></li>
 								<li> <Link to = "/logout"> Logout </Link></li>
@@ -87,6 +89,8 @@ export default class TopNavBar extends React.Component {
 	}
 
 	render() {
+		var current_user = this.state.current_user
+		var brand_class = (current_user == {} || !current_user) ? "navbar-brand-no-user" : "navbar-brand-with-user"
 		var right_nav = this.getRightNav()
 		return (
 			<nav className="navbar navbar-inverse top-navbar">
