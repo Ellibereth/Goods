@@ -55,3 +55,48 @@
 .product-image-more-row {
 	padding-bottom: 10px;
 }
+
+
+.product-image-main {
+	max-height: 500px;
+	max-width: 100%;
+	width: auto;
+  	height: auto;
+  	padding : 20px;
+  	margin-left: auto;
+  	margin-right: auto;	
+}
+
+.product-image-main-border{
+	border-width: 14px;
+	border-style: ridge;
+}
+
+.product-image-main-container{
+	max-width: 100%;
+	height: 500px;
+}
+
+.product-name-text{
+	font-size : 48px;
+	display: block
+}
+.product-price-text {
+	font-weight : bold;
+	font-size : 36px;
+	display: block;
+	color : green;
+}
+
+.product-description-text {
+	font-size : 24px;
+	display: block;
+}
+.product-manufacturer-text {
+	font-size : 24px;
+	display: block;
+}
+.product-more-images-header {
+	font-size : 24px;
+	display: block;
+}

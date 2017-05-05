@@ -1,28 +1,31 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
-import TopNavBar from './TopNavBar.js'
+import PageContainer from './PageContainer'
 
 
 export default class TermsOfServicePage extends React.Component {
-  constructor(props) {
+	constructor(props) {
 	super(props);
 	this.state = {
-	  // show_modal: false
+		// show_modal: false
+		}
 	}
-  }
 
-
-  render() {
-	// class size 30 and centered 
-	return (
-		<div  id = "terms-service-container">
-			<TopNavBar/>
+	getComponent(){
+		return (
 			<div className = "container">
 				<h2> Terms of Service </h2>
 				<h5> Lorem Ipsum </h5>
 			</div>
-		</div>
-	);
-  }
+		)
+	}
+
+
+	render() {
+	var component = this.getComponent()
+		return (
+			<PageContainer component = {component}/>
+			);
+		}
 }

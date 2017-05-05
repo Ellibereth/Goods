@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
-import TopNavBar from '../../../Misc/TopNavBar'
+import TopNavBar from '../../../Misc/PageContainer'
 import ManageAddressDisplay from './ManageAddressDisplay.js'
 import EditAddressModal from './EditAddressModal.js'
 var browserHistory = require('react-router').browserHistory;
@@ -55,19 +55,18 @@ export default class ManageAddressPage extends React.Component {
 				)
 
 		return (
-			<div>
-
-				<TopNavBar />
+			<PageContainer component = {
 				<div className = "container">
+					<EditAddressModal show = {this.state.modal_show} address = {this.state.modal_address} 
+					toggleModal = {this.toggleEditModal.bind(this)}/>
 					<div className = "row">
 						<span> <b> Youre Address Book </b> </span>
 					</div>
 					{address_display}
 					
 				</div>
-				<EditAddressModal show = {this.state.modal_show} address = {this.state.modal_address} 
-					toggleModal = {this.toggleEditModal.bind(this)}/>
-			</div>	
+				
+			}/>
 		)
 	}
 }

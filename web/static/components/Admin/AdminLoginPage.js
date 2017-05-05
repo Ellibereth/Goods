@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../actions/AppActions'
 import TextInput from '../Misc/Input/TextInput.js'
-import TopNavBar from '../Misc/TopNavBar'
+import PageContainer from '../Misc/PageContainer'
 
 
 export default class AdminLoginPage extends React.Component {
@@ -52,8 +52,7 @@ export default class AdminLoginPage extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<TopNavBar />
+			<PageContainer component = {
 				<div className = "container">
 					<h2> Heathcliffe required </h2>
 					<TextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
@@ -64,7 +63,7 @@ export default class AdminLoginPage extends React.Component {
 						<button onClick = {this.onLoginSubmit.bind(this)}> Admin Login </button>
 					</div>
 				</div>
-			</div>
+			}/>
 		);
 	}
 }

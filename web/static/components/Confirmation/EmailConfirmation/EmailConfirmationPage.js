@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import {} from 'react-bootstrap';
-import TopNavBar from '../../Misc/TopNavBar.js'
+import PageContainer from '../../Misc/PageContainer.js'
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions'
 
@@ -50,14 +50,14 @@ export default class EmailConfirmationPage extends React.Component {
 	render() {
 
 		return (
-				<div id = "confirmation_page_container">
-					<TopNavBar />
+				<PageContainer component = {
 						<h1>
 							{this.props.params.email_confirmation_id} <br/>
 							Thank you for confirming your e-mail! <br/>
 							Click <a href ="/"> here </a> to return to the home page.
 						</h1>
-				</div>
+					}
+				/>
 		);
 	}
 }

@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
-import TopNavBar from '../../Misc/TopNavBar'
+import PageContainer from '../../Misc/PageContainer'
 import UpdateSettingsPreview from './Personal/UpdateSettingsPreview.js'
 import BillingPreview from './Billing/BillingPreview.js'
 import ShippingPreview from './Shipping/ShippingPreview'
@@ -58,15 +58,12 @@ export default class SettingsPage extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<TopNavBar />
+			<PageContainer component = {
 				<div id = "settings-container" className = "container faded">
 					<h1> Your Account </h1> 
 					<br/>
-
 					<UpdateSettingsPreview  />
 					<br/>
-
 					{
 						!this.state.is_loading && 
 						<div>
@@ -80,13 +77,8 @@ export default class SettingsPage extends React.Component {
 							<br/>
 						</div>
 					}
-					
-
-					
-					
-
 				</div>
-			</div>	
+			}/>
 		)
 	}
 }

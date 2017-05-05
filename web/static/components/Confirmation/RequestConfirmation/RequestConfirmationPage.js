@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import {} from 'react-bootstrap';
-import TopNavBar from '../../Misc/TopNavBar.js'
+import PageContainer from '../../Misc/PageContainer.js'
 
 export default class EmailConfirmationPage extends React.Component {
 	constructor(props) {
@@ -44,14 +44,14 @@ export default class EmailConfirmationPage extends React.Component {
 	render() {
 
 		return (
-				<div id = "confirmation_page_container">
-					<TopNavBar/>
+				<PageContainer component = {
 						<h3>
 							Thank you for sending us a request! <br/>
 							We'll get back to you as soon as possible with suggestions or further questions! <br/>
 							Click <a href ="/"> here </a> to return to the home page.
 						</h3>
-				</div>
+					}
+				/>
 		);
 	}
 }

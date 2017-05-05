@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
-import TopNavBar from '../../Misc/TopNavBar'
+import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import {Button} from 'react-bootstrap'
 var browserHistory = require('react-router').browserHistory;
@@ -62,9 +62,7 @@ export default class ViewCartPage extends React.Component {
 	
 	render() {
 		return (
-			<div>
-
-				<TopNavBar />
+			<PageContainer component = {
 				<div id = "view-cart-container" className = "container">
 
 					<div className = "row">
@@ -104,7 +102,8 @@ export default class ViewCartPage extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>	
+			}/>
+			
 		)
 	}
 }

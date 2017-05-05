@@ -8,7 +8,7 @@ import AdminTabs from './AdminTabs.js'
 import AdminProductRequests from './AdminProductRequests/AdminProductRequests.js'
 import AdminMarketProducts from './AdminMarketProducts/AdminMarketProducts.js'
 
-import TopNavBar from '../Misc/TopNavBar'
+import PageContainer from '../Misc/PageContainer'
 
 export default class AdminToolsPage extends React.Component {
 	constructor(props) {
@@ -56,13 +56,13 @@ export default class AdminToolsPage extends React.Component {
 	render() {
 		var active_tab = this.getActiveTab.bind(this)()
 		return (
-			<div>
-				<TopNavBar />
+			<PageContainer component = {
 				<div className = "container">
 					<AdminTabs selectedTab = {this.state.selected_tab} switchTabs = {this.switchTabs.bind(this)}/>
 					{active_tab}
 				</div>
-			</div>
+			}/>
+			
 		);
 	}
 }

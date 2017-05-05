@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import UpdateShippingForm from './UpdateShippingForm'
-import TopNavBar from '../../../Misc/TopNavBar'
+import PageContainer from '../../../Misc/PageContainer'
 var browserHistory = require('react-router').browserHistory;
 
 export default class UpdateShippingPage extends React.Component {
@@ -15,8 +15,7 @@ export default class UpdateShippingPage extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<TopNavBar />
+			<PageContainer component = {
 				<div className = "container">
 					 
 					 {/* Option for styling a header here. This is for Eli to test with! 
@@ -30,7 +29,7 @@ export default class UpdateShippingPage extends React.Component {
 					 	<UpdateShippingForm />
 					 </div>
 				</div>
-			</div>	
+			}/>
 		)
 	}
 }

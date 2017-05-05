@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
-import TopNavBar from '../../Misc/TopNavBar'
+import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import CheckoutCardSelect from './Billing/CheckoutCardSelect.js'
 import CheckoutAddressSelect from './Shipping/CheckoutAddressSelect.js'
@@ -268,8 +268,7 @@ export default class CheckoutPage extends React.Component {
 	render() {
 		var can_checkout = this.canCheckout()
 		return (
-			<div >
-				<TopNavBar />
+			<PageContainer component = {
 
 				
 				<div id = "checkout-container" className = "container faded">
@@ -343,7 +342,7 @@ export default class CheckoutPage extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>	
+			}/>	
 		)
 	}
 }

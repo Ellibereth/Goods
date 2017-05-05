@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
-import TopNavBar from '../../../Misc/TopNavBar'
+import PageContainer from '../../../Misc/PageContainer'
 import ManageCardDisplay from './ManageCardDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 
@@ -52,9 +52,7 @@ export default class UpdateBillingPage extends React.Component {
 
 
 		return (
-			<div>
-
-				<TopNavBar />
+			<PageContainer component = {
 				<div id = "settings_cards_container" className = "container faded">
 					<div className = "row">
 						<div className = "col-md-6 col-lg-6">
@@ -71,7 +69,7 @@ export default class UpdateBillingPage extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>	
+			}/>
 		)
 	}
 }

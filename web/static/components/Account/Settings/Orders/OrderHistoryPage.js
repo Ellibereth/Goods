@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
-import TopNavBar from '../../../Misc/TopNavBar.js'
+import PageContainer from '../../../Misc/PageContainer.js'
 import OrderDisplay from './OrderDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 
@@ -51,8 +51,7 @@ export default class OrderHistoryPage extends React.Component {
 		
 
 		return (
-			<div>
-				<TopNavBar />
+			<PageContainer component = {
 				<div id = "orders_container" className = "container faded">
 					<div className = "row">
 						Past Orders
@@ -63,9 +62,8 @@ export default class OrderHistoryPage extends React.Component {
 							{order_display}
 						</div>
 					</div>
-					
 				</div>
-			</div>	
+			}/>
 		)
 	}
 }

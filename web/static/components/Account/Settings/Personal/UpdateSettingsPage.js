@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import UpdateSettingsForm from './UpdateSettingsForm'
-import TopNavBar from '../../../Misc/TopNavBar'
+import PageContainer from '../../../Misc/PageContainer'
 var browserHistory = require('react-router').browserHistory;
 
 export default class UpdateSettings extends React.Component {
@@ -15,14 +15,13 @@ export default class UpdateSettings extends React.Component {
 
 	render() {
 		return (
-			<div>
-
-				<TopNavBar />
+			<PageContainer component = {
 				<div className = "container">
 					 {/* <SettingsFormPersonal /> */}
 					<UpdateSettingsForm />
 				</div>
-			</div>	
+			}/>
+			
 		)
 	}
 }

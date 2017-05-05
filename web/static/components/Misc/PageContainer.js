@@ -1,9 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
-import ProductTemplates from './ProductTemplates/ProductTemplates.js'
+import TopNavBar from '../Misc/TopNavBar.js'
+import Footer from '../Misc/Footer.js'
 
-import PageContainer from '../Misc/PageContainer'
 
 
 
@@ -20,9 +20,12 @@ export default class ProductPage extends React.Component {
 
 
 	render() {
-		var component = <ProductTemplates product_id = {this.props.params.product_id}/>
 		return (
-				<PageContainer component ={component}/>
+				<div>
+					<TopNavBar/>
+						{this.props.component}
+					<Footer/>
+				</div>
 		);
 	}
 }

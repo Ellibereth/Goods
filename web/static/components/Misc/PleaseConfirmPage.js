@@ -1,8 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
-import TopNavBar from './TopNavBar.js'
-import Footer from './Footer.js'
+import PageContainer from './PageContainer'
 
 
 export default class PleaseConfirmPage extends React.Component {
@@ -16,16 +15,15 @@ export default class PleaseConfirmPage extends React.Component {
 
   render() {
 	// class size 30 and centered 
-	return (
-		<div id = "please_confirm_page">
-			<TopNavBar/>
+	var component = (
 			<div className = "container">
 				<h2> Please confirm your account! </h2>
 				<h2> Check your e-mail </h2>
 				<h5> Then come back! </h5>
 			</div>
-			<Footer/>
-		</div>
+		)
+	return (
+		<PageContainer component = {component} />
 	);
   }
 }

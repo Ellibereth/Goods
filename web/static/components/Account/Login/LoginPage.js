@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import LoginForm from './LoginForm'
-import TopNavBar from '../../Misc/TopNavBar'
+import PageContainer from '../../Misc/PageContainer'
 import AppStore from '../../../stores/AppStore.js';
 
 
@@ -26,14 +26,12 @@ export default class LoginPage extends React.Component {
 	render() {
 
 		return (
-			<div>
-
-				<TopNavBar />
+			<PageContainer component = {
 				<div className = "container">
 					<LoginForm />
 					<a href = "/register"> Don't have an account yet? </a>
 				</div>
-			</div>	
+			}/>
 		)
 	}
 }

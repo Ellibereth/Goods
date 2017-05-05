@@ -3,8 +3,7 @@ var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
 import AdminProductPreview from './AdminProductPreview.js'
 import AdminEditProduct from './AdminEditProduct'
-import TopNavBar from '../../../Misc/TopNavBar.js'
-import Footer from '../../../Misc/Footer.js'
+import PageContainer from '../../../Misc/PageContainer.js'
 import AdminActivateProduct from './AdminActivateProduct'
 
 
@@ -59,36 +58,34 @@ export default class AdminProductPage extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<TopNavBar/>
-				
-				
+			<PageContainer component = 
 
-				<div className = "container">
-					<div className = "row">
-						<AdminActivateProduct product = {this.props.product}/>
-					</div>
-					<div className = "row">
-						<div className = "text-center">
-							<h2> This is how your product will appear on the market </h2>
+			{
+				<div>
+					<div className = "container">
+						<div className = "row">
+							<AdminActivateProduct product = {this.props.product}/>
 						</div>
+						<div className = "row">
+							<div className = "text-center">
+								<h2> This is how your product will appear on the market </h2>
+							</div>
+						</div>
+						<hr/>
 					</div>
-					<hr/>
+					<AdminProductPreview   
+					 product = {this.state.product} 
+					 invalid_product = {this.state.invalid_product}
+					 is_loading = {this.state.is_loading}
+					 />
+
+					 <hr/>
+
+					 <AdminEditProduct
+					 getProductInformation = {this.getProductInformation.bind(this)}
+					  product = {this.state.product}/>
 				</div>
-				<AdminProductPreview   
-				 product = {this.state.product} 
-				 invalid_product = {this.state.invalid_product}
-				 is_loading = {this.state.is_loading}
-				 />
-
-				 <hr/>
-
-				 <AdminEditProduct
-				 getProductInformation = {this.getProductInformation.bind(this)}
-				  product = {this.state.product}/>
-
-				{/*    <Footer/> */}
-			</div>
+			}/>
 		);
 	}
 }

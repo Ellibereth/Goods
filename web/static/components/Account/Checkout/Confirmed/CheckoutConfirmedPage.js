@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
-import TopNavBar from '../../../Misc/TopNavBar'
+import PageContainer from '../../../Misc/PageContainer'
 import {Button} from 'react-bootstrap'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
@@ -19,8 +19,7 @@ export default class CheckoutConfirmedPage extends React.Component {
 
 	render() {
 		return (
-			<div >
-				<TopNavBar />
+			<PageContainer component = {
 				<div id = "checkout-confirmed-container" className = "container">
 					<div className = "row">
 						<div className = "col-sm-10 col-md-10 col-lg-10">
@@ -30,7 +29,7 @@ export default class CheckoutConfirmedPage extends React.Component {
 						</div>
 					</div>
 				</div>
-			</div>	
+			}/>
 		)
 	}
 }

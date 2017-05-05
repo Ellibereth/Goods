@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import RegisterAccountForm from './RegisterAccountForm'
-import TopNavBar from '../../Misc/TopNavBar'
+import PageContainer from '../../Misc/PageContainer'
 
 
 export default class RegisterPage extends React.Component {
@@ -16,13 +16,13 @@ export default class RegisterPage extends React.Component {
 	render() {
 
 		return (
-			<div>
-				<TopNavBar />
+			<PageContainer component = {
 				<div className = "container">
 					<RegisterAccountForm/>
 					<a href = "/login"> Already have an account? </a>
 				</div>
-			</div>	
+			}/>
+			
 		)
 	}
 }

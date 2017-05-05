@@ -1,8 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
-import TopNavBar from './TopNavBar.js'
-import Footer from './Footer'
+import PageContainer from './PageContainer'
 
 
 export default class PrivacyPolicyPage extends React.Component {
@@ -16,15 +15,14 @@ export default class PrivacyPolicyPage extends React.Component {
 
   render() {
 	// class size 30 and centered 
-	return (
-		<div  id = "privacy-policy-container">
-			<TopNavBar/>
+	var component = (
 			<div className = "container">
 				<h2> Privacy Policy </h2>
 				<h5> Lorem Ipsum </h5>
 			</div>
-			<Footer />
-		</div>
+		)
+	return (
+		<PageContainer component = {component} />
 	);
   }
 }
