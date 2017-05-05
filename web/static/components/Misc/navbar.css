@@ -1,0 +1,33 @@
+.nav-icon {
+	display: block;
+	text-align: center;
+	padding-bottom: 4px;
+	height: 24px;
+}
+
+.nav-icon-text {
+	display: block;
+	text-align: center;
+}
+
+.navbar-brand {
+	font-size: 24px;
+    padding-top: 24px;
+    padding-left: 24px
+}
+
+.navbar-right {
+	/*padding-top: 24px*/
+}
+
+.top-navbar {
+    margin-bottom: 0;
+}
+
+.navbar {
+	border-radius: 0 !important;
+}
+
+.nav-search-bar {
+	margin-right: 0;
+}

@@ -2,8 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 
-import {Button, Row, Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
+// import {Button, Row, Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 var Link = require('react-router').Link;
+import styles from './navbar.css'
 
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
@@ -21,17 +22,13 @@ export default class TopNavBar extends React.Component {
 		this.setState({current_user : AppStore.getCurrentUser()})
 	}
 
-	onSearchBoxChange(event){
-		this.setState({search_input: event.target.value})
-	}
+	// handleLogout(){
+	// 	this.setState({current_user : null})
+	// 	AppActions.removeCurrentUser()
+	// 	console.log("current user removed")
+	// 	browserHistory.push('/')
 
-	handleLogout(){
-		this.setState({current_user : null})
-		AppActions.removeCurrentUser()
-		console.log("current user removed")
-		browserHistory.push('/')
-
-	}
+	// }
 
 	getRightNav() {
 		if (this.props.no_login) {
@@ -40,24 +37,50 @@ export default class TopNavBar extends React.Component {
 		var current_user = this.state.current_user
 		if (current_user == {} || !current_user){
 			return (
-				<Nav className = "main-nav-item" pullRight>
-					<NavItem eventKey={1}>  <Link to="/login"> Sign In</Link> </NavItem>
-				</Nav>
+				<div className="collapse navbar-collapse">
+					<ul className="nav navbar-nav navbar-right">
+						<li><Link href="/register">Register</Link></li>
+						<li><Link href="/login">Login</Link></li>
+					</ul>
+				</div>
 			)
 		}
 		else {
 			return (
-				<Nav className = "main-nav-item nav-pills" pullRight>
-				<NavItem className = "main-nav-item" pullRight> 
-					<Link to = "/myCart"> <span className="glyphicon glyphicon-shopping-cart"></span> </Link>
-				</NavItem>
-					<NavDropdown title= {"Hello, " + this.state.current_user.name.split(" ")[0]} id="nav-dropdown">
-						  <MenuItem> <Link to = "/settings"> <div className = "react-router-link"> Account Settings </div> </Link> </MenuItem>
-						  <MenuItem> <Link to = "/myCart"> <div className = "react-router-link"> View Cart </div> </Link> </MenuItem>
-						  <MenuItem divider />
-						  <MenuItem eventKey={1} onClick = {this.handleLogout.bind(this)}> Logout </MenuItem>
-					</NavDropdown>
-				</Nav>
+				<div className="collapse navbar-collapse">
+					<ul className="nav navbar-nav navbar-right">
+						
+						<li> 
+							<Link to = "/"> 
+								<span className = "glyphicon glyphicon-home nav-icon"/>
+								<span className = "nav-icon-text"> Home </span>
+							</Link>
+						</li>
+						<li> 
+							<Link to = "/"> 
+								<span className = "glyphicon glyphicon-shopping-cart nav-icon"/> 
+								<span className = "nav-icon-text"> Cart </span>
+							</Link>
+						</li>
+						<li>
+
+							<a href="#" className="dropdown-toggle" 
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"> 
+							 	<span className = "nav-icon">
+								 	<span className = "glyphicon glyphicon-user"/> 
+								</span>
+								<span className = "nav-icon-text"> You <span className = "caret"/> </span>
+							</a>
+
+							<ul className="dropdown-menu"> 
+								<li><Link to ="/settings"> Settings </Link> </li>
+								<li role="separator" className="divider"></li>
+								<li> <Link to = "/logout"> Logout </Link></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 				
 			)
 		}	
@@ -66,28 +89,23 @@ export default class TopNavBar extends React.Component {
 	render() {
 		var right_nav = this.getRightNav()
 		return (
-			<Navbar className = "navbar-fixed-top top-nav-bar" bsStyle="pills" inverse>
-				<Navbar.Header>
-					<Navbar.Brand>
-						<Link to = "/"> Edgar USA </Link>
-					</Navbar.Brand>
-					{/* <Navbar.Toggle />*/}
-				</Navbar.Header>
-				<Nav className = "nav-search-bar">
-					<NavItem>
-						<form className="navbar-form" role="search">
-							<div className="input-group">
-								<input type="text" onChange = {this.onSearchBoxChange.bind(this)} className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
-								<div className="input-group-btn">
-									<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
-								</div>
-							</div>
-						</form>
-					</NavItem>
-				</Nav>
-				{right_nav}
+			<nav className="navbar navbar-inverse top-navbar">
+				<div className="container-fluid">
 				
-			</Navbar>
+					<div className="navbar-header">
+						<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span className="sr-only">Toggle navigation</span>
+							<span className="icon-bar"></span>
+							<span className="icon-bar"></span>
+							<span className="icon-bar"></span>
+						</button>
+						<a className="navbar-brand" href="/">Edgar USA</a>
+					</div>
+
+					{right_nav}
+					
+				</div>
+			</nav>
 		);
 	}
 }

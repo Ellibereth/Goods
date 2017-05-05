@@ -22,7 +22,7 @@ export default class HomePageMainContainer extends React.Component {
 		var bottom_col_size = 6
 
 		return (
-			<div className = "container">
+			<div className = "container home-container">
 				<div className="row show-grid">
 					<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
 						<div>
