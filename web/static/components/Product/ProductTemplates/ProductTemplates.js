@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
 import {Button} from 'react-bootstrap';
-import ProductTemplate1 from './ProductTemplate1'
+import ProductTemplate1 from './Template1/ProductTemplate1'
 
 export default class ProductTemplates extends React.Component {
 	// takes props template number

@@ -23,8 +23,11 @@
 	border-style: solid;
 }
 
+/*html {
+	height: 100%;
+}*/
 body { 
-	padding-bottom: 70px; 
+	/*padding-bottom: 70px; */
 	background-color: white;
 	font-family: Helvetica;
 	overflow-x: hidden;
@@ -255,7 +258,7 @@ body {
 }
 
 
-.story-overlay-container {
+/*.story-overlay-container {
 	position: relative;
 	top: 25%;
 	
@@ -311,4 +314,4 @@ body {
 
 .product-image-more-row {
 	padding-bottom: 10px;
-}
+}*/

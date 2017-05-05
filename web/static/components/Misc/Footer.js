@@ -3,7 +3,7 @@ var Link = require('react-router').Link;
 export default class Footer extends React.Component {
 	render() {
 		return(
-			<div className="hidden-sm hidden-xs navbar navbar-default navbar-fixed-bottom">
+			<footer className = "footer">
 				<div className="container">
 					<div className="row">
 						<ul className ="nav navbar-nav">
@@ -14,7 +14,7 @@ export default class Footer extends React.Component {
 					    </ul>
 					</div>
 				</div>
-			</div>
+			</footer>
 		);
 	}
 }

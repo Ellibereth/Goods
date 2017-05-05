@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
 import TopNavBar from './TopNavBar.js'
+import Footer from './Footer'
 
 
 export default class PrivacyPolicyPage extends React.Component {
@@ -22,6 +23,7 @@ export default class PrivacyPolicyPage extends React.Component {
 				<h2> Privacy Policy </h2>
 				<h5> Lorem Ipsum </h5>
 			</div>
+			<Footer />
 		</div>
 	);
   }

@@ -27,6 +27,7 @@ export default class ProductPage extends React.Component {
 					<ProductTemplates   
 						product_id = {this.props.params.product_id}
 					/>
+					<Footer/>
 				</div>
 		);
 	}

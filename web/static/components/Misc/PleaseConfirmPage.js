@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
 import TopNavBar from './TopNavBar.js'
+import Footer from './Footer.js'
 
 
 export default class PleaseConfirmPage extends React.Component {
@@ -23,6 +24,7 @@ export default class PleaseConfirmPage extends React.Component {
 				<h2> Check your e-mail </h2>
 				<h5> Then come back! </h5>
 			</div>
+			<Footer/>
 		</div>
 	);
   }
