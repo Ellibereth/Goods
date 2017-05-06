@@ -1,8 +1,11 @@
 import stripe
 # Set your secret key: remember to change this to your live secret key in production
 # See your keys here: https://dashboard.stripe.com/account/apikeys
-stripe.api_key = "sk_test_B0VTmo1cTi1WfnlKEQjgVsjm"
+test_key = "sk_test_B0VTmo1cTi1WfnlKEQjgVsjm"
 prod_key = "sk_live_PW2L6feEEEciyHt2AR16V93u"
+
+stripe.api_key = prod_key
+
 
 StripeCustomerId = "stripe_customer_id"
 Price = "price"
