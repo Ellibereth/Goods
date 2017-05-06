@@ -75,21 +75,44 @@ export default class ManageCardDisplay extends React.Component {
 		// will be updating this to have a better display in the near future
 		var card = this.props.card
 		console.log(card)
-		return (
-			<div className = "row well">	
-				<div className=  "col-md-6 col-lg-6">
-					<span> {card.brand} ending in : {card.last4} </span>
-				</div>
+		return (	
+				<div className = "panel panel-default container-fluid">
+					<div className = "panel-heading row">
+						<div className=  "col-md-3 col-lg-3">
+							<span> Your card </span>
+						</div>
+						<div className=  "col-md-2 col-lg-2">
+							<span> Expiry </span>
+						</div>
+						<div className=  "col-md-3 col-lg-3">
+							<span> Address </span>
+						</div>
 
-				<div className=  "col-md-4 col-lg-4">
-					<span> {card.exp_month} / {card.exp_year} </span>
-				</div>
+						<div className=  "col-md-2 col-lg-2">
+							<span> Delete? </span>
+						</div>
+					</div>
+					<div className = "panel-body row">
+						<div className=  "col-md-3 col-lg-3">
+							<span className = "block-span"> {card.brand} ending in {card.last4} </span>
+							<span className = "block-span"> {card.name} </span>
+						</div>
 
-				<div className=  "col-md-2 col-lg-2">
-					<Button onClick = {this.onDeletePress.bind(this)}> Delete </Button>
+						<div className=  "col-md-2 col-lg-2">
+							<span> {card.exp_month} / {card.exp_year} </span>
+						</div>
+
+						<div className=  "col-md-3 col-lg-3">
+							<span className = "block-span"> {card.address_line1}</span>
+							<span className = "block-span"> {card.address_line2} </span>
+							<span className = "block-span"> {card.address_city}, {card.address_zip} </span>
+						</div>
+
+						<div className=  "col-md-2 col-lg-2">
+							<Button onClick = {this.onDeletePress.bind(this)}> Delete </Button>
+						</div>
+					</div>	
 				</div>
-				<div className = "top-buffer"/>
-			</div>	
 		)
 	}
 }

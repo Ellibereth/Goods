@@ -55,13 +55,10 @@ export default class UpdateBillingPage extends React.Component {
 			<PageContainer component = {
 				<div id = "settings_cards_container" className = "container faded">
 					<div className = "row">
-						<div className = "col-md-6 col-lg-6">
+						<div className = "col-md-12 col-lg-12">
 							<div className = "row">
 								<div className = "col-md-6 col-lg-6">
 									<span className = "settings-title"> These are your cards! </span>
-								</div>
-								<div className = "col-md-6 col-lg-6">
-									<span> Expiry </span>
 								</div>
 								<div className = "top-buffer"/>
 							</div>
