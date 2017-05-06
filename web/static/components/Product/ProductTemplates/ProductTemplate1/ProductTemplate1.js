@@ -117,10 +117,6 @@ export default class ProductTemplate1 extends React.Component {
 		if (this.props.is_loading){
 			return <div/>
 		}
-
-		console.log(this.props.product.description)
-
-		
 	
 		
 		return (	
@@ -160,13 +156,13 @@ export default class ProductTemplate1 extends React.Component {
 						</div>
 
 					
-						<div onClick = {() => this.setState({more_information_open : !this.state.more_information_open})}
+					{/* <div onClick = {() => this.setState({more_information_open : !this.state.more_information_open})}
 						 className = "row product-description-collapse-preview " data-toggle="collapse" data-target="#more_info_dropdown">
 								<span className = "product-more-information-text"> More Information	</span>
 								<span className = {this.state.more_information_open ? 
 									"glyphicon glyphicon-chevron-up product-more-information-icon"
 									 : "glyphicon glyphicon-chevron-down product-more-information-icon"}/>
-						</div>
+						</div> */}
 					
 
 						<div className = "small-buffer"/>

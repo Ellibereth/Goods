@@ -24,7 +24,6 @@ export default class ProductPage extends React.Component {
 		return (
 				<div>
 					<TopNavBar/>
-					<BottomNavBar />
 						{this.props.component}
 					<Footer/>
 				</div>

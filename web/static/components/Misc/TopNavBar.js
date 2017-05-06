@@ -39,6 +39,16 @@ export default class TopNavBar extends React.Component {
 			return (
 				<div className="collapse navbar-collapse">
 					<ul className="nav navbar-nav navbar-right">
+						<li>
+							<form className="navbar-form search-bar-no-user" role="search">
+								<div className="input-group nav-search-bar">
+									<input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+									<div className="input-group-btn">
+										<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+									</div>
+								</div>
+							</form>
+						</li>
 						<li><Link href="/register" className = "no-user-link">Register</Link></li>
 						<li><Link href="/login" className = "no-user-link">Login</Link></li>
 					</ul>
@@ -49,7 +59,16 @@ export default class TopNavBar extends React.Component {
 			return (
 				<div className="collapse navbar-collapse">
 					<ul className="nav navbar-nav navbar-right">
-						
+						<li>
+							<form className="navbar-form search-bar-with-user" role="search">
+								<div className="input-group nav-search-bar">
+									<input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+									<div className="input-group-btn">
+										<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+									</div>
+								</div>
+							</form>
+						</li>
 						<li> 
 							<Link to = "/"> 
 								<span className = "glyphicon glyphicon-home nav-icon"/>
@@ -90,10 +109,11 @@ export default class TopNavBar extends React.Component {
 
 	render() {
 		var current_user = this.state.current_user
-		var brand_class = (current_user == {} || !current_user) ? "navbar-brand-no-user" : "navbar-brand-with-user"
+		var brand_class = (current_user == {} || !current_user) ? "navbar-brand navbar-brand-no-user" : "navbar-brand navbar-brand-with-user"
 		var right_nav = this.getRightNav()
+
 		return (
-			<nav className="navbar navbar-inverse top-navbar">
+			<nav className="navbar navbar-edgarusa top-navbar">
 				<div className="container-fluid">
 				
 					<div className="navbar-header">
@@ -103,7 +123,7 @@ export default class TopNavBar extends React.Component {
 							<span className="icon-bar"></span>
 							<span className="icon-bar"></span>
 						</button>
-						<a className="navbar-brand" href="/">Edgar USA</a>
+						<a className= {brand_class} href="/">Edgar USA</a>
 					</div>
 
 					{right_nav}

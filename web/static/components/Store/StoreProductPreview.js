@@ -82,10 +82,9 @@ export default class StorePage extends React.Component {
 					</Col>
 
 					<Col xs = {4} s = {4} md = {4}lg = {4}>
-						<span className = "row-fluid"> Name : {this.state.product.name} </span> <br/>
-						<span className = "row-fluid"> Price : {this.state.product.price} </span> <br/>
-						<span className = "row-fluid"> Manufacturer : {this.state.product.manufacturer} </span> <br/>
-						
+						<span className = "row-fluid"> Name: {this.state.product.name} </span> <br/>
+						<span className = "row-fluid"> Price: ${this.state.product.price} </span> <br/>
+						<span className = "row-fluid"> Manufacturer: {this.state.product.manufacturer} </span> <br/>
 					</Col>
 				</Grid>
 			</div>

@@ -40,7 +40,6 @@ export default class RegisterAccountForm extends React.Component {
 						swal("Sorry!", "It seems there was an error in your submission! " + data.error + ". Please try again!", "warning")
 					}
 					else {
-						console.log(data)
 						AppActions.addCurrentUser(data.user, data.jwt)
 						// returns to whatever page they were on? 
 						// or should we just go to the home page?
