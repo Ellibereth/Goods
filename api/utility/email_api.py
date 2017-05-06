@@ -43,7 +43,7 @@ def sendRequestConfirmation(request):
 	msg['To'] = email
 	product_description = request.description
 	price_range = request.price_range
-	url = URL + request.confirmation_id
+	url = URL + "confirmRequest/" + request.confirmation_id
 	body = 'This email is to confirm that you submitted a request on Edgar USA \n' \
 		+ "Please click the following link to confirm : " + url + "\n"  \
 		"If you did not submit a request, please ignore this email"
@@ -75,7 +75,7 @@ def sendEmailConfirmation(email, email_confirmation_id):
 	msg['Subject'] = "Please Confirm Your Email!"
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = email
-	url = URL + email_confirmation_id
+	url = URL + "confirmEmail/" + email_confirmation_id
 	body = "Click on the following link to confirm your e-mail \n " + url
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)

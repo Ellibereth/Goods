@@ -95,7 +95,6 @@ ReactDOM.render(
 			<Route path = 'adminTools' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
-			{/* <Route path= "store" component={StorePage}/> */}
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
 			<Route path= "eg/:product_id" component={ProductPage}/>
