@@ -6,6 +6,7 @@
 
 
 .top-buffer { margin-top:20px; }
+.small-buffer { margin-top:10px; }
 
 .product-preview-container {
 	background-color: white;
@@ -66,7 +67,6 @@ body {
 
 .btn-xlarge {
 	margin-top : 8px;
-	margin-left : 4px;
 	padding: 8px 18px;
     font-size: 16px;
     line-height: normal;
@@ -191,4 +191,8 @@ body {
     height: 50px;
     padding-left: 140px;
     padding-right: 140px;
+}
+
+.block-span {
+	display: block;
 }

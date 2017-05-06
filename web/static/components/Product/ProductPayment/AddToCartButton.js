@@ -95,28 +95,20 @@ export default class AddToCartButton extends React.Component {
 		return (
 				<div >
 					{ user ?
-					<div className = "row row-eq-height">
-						<div className = "col-md-2 col-lg-2">
-							<span className = "product-price-text"> 
-								${this.props.product.price} 
-							</span>
-						</div>
-						<div className = "col-md-4 col-lg-4">
-							
-							<button onClick = {this.addToCart.bind(this)} className="btn btn-xlarge btn-primary">
-								<div id = "buy_now_button_text">
-							    	<b> Add to cart </b> 
-							    </div>
-							</button>
-							
-						</div>
-						<div className = "col-md-2 col-lg-2">
-							<span>
+					<div>
+						<div className = "row">
+							<span className = "block-span">
 								 Quantity: {select_quantity}
 							</span>
 						</div>
-						<div className = "col-md-4 col-lg-4">
-							(Curretly {num_in_cart} in cart)
+						<div className = "row">
+							<span className = "block-span">
+								<button onClick = {this.addToCart.bind(this)} className="btn btn-xlarge btn-primary">
+									<div id = "buy_now_button_text">
+								    	<b> Add to cart </b> 
+								    </div>
+								</button>
+							</span>
 						</div>
 					</div>
 					:

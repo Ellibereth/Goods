@@ -18,7 +18,8 @@ export default class ProductTemplate1 extends React.Component {
 			items : [],
 			price : null,
 			cart_item : [],
-			is_loading : true
+			is_loading : true,
+			more_information_open : false
 		}
 	}
 
@@ -117,40 +118,58 @@ export default class ProductTemplate1 extends React.Component {
 			return <div/>
 		}
 
+		console.log(this.props.product.description)
+
 		
 	
 		
-		return (		
-				<div className = "row">
-					<div className = "col-sm-5 col-md-5 col-lg-5 product-image-main-container" >
-						<div className = "product-image-main-border">
-							<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
+		return (	
+			<div className = "container">	
+					<div className = "col-sm-6 col-md-6 col-lg-6" >
+						<div className = "row">
+							<div className = "product-image-main-container">
+								<img src= {src_base + this.state.selected_image} className = "img-responsive product-image-main"/>
+							</div>
 						</div>
+
+						<div className = "top-buffer"/>
+
 					</div>
 
 					<div className = "col-sm-6 col-md-6 col-lg-6">
 						<div className = "row">
-							<div className = "well">
-								<span className = "product-name-text">
-									{this.props.product.name} 
-								</span>
-							</div>
+							<span className = "product-name-text">
+								{this.props.product.name} 
+							</span>
 						</div>
 						<div className = "row">
-							<div className = "well">
-								{this.props.product.description}
-							</div>
+							<span className = "product-price-text">
+								${this.props.product.price}
+							</span>
 						</div>
 
-						<div className = "row well product-description-collapse-preview" data-toggle="collapse" data-target="#more_info_dropdown">
-							<div className = "col-md-6 col-lg-6">
-								More Information	
-							</div>	
-							<div className = "col-md-6 col-lg-6">
-								<span className = "glyphicon glyphicon-chevron-down pull-right"/>
-							</div>	
+						<div className = "small-buffer"/>
+						<div className = "row">
+							<ul>
+							{this.props.product.description.split("\n").map(i => {
+					            return <li>{i}</li>;
+					        })}
+					        	<li> Manufactured by {this.props.product.manufacturer}  </li>
+					        	<li> Category: {this.props.product.category} </li>
+					        </ul>
 						</div>
-						<div className = "top-buffer"/>
+
+					
+						<div onClick = {() => this.setState({more_information_open : !this.state.more_information_open})}
+						 className = "row product-description-collapse-preview " data-toggle="collapse" data-target="#more_info_dropdown">
+								<span className = "product-more-information-text"> More Information	</span>
+								<span className = {this.state.more_information_open ? 
+									"glyphicon glyphicon-chevron-up product-more-information-icon"
+									 : "glyphicon glyphicon-chevron-down product-more-information-icon"}/>
+						</div>
+					
+
+						<div className = "small-buffer"/>
 						<div className="row" >
 							<div className = "collapse" id = "more_info_dropdown">
 								<div className = "card">
@@ -162,32 +181,23 @@ export default class ProductTemplate1 extends React.Component {
 							</div>
 						</div>
 
-						<div className = "top-buffer"/>
-
-						<div className = "row well">
+						<div className = "small-buffer"/>
 							
-								<AddToCartButton cart_item = {this.state.cart_item}
-								refreshUserInformation = {this.refreshUserInformation.bind(this)}
-								product = {this.props.product}/>
-							
-						</div>
+						<AddToCartButton cart_item = {this.state.cart_item}
+						refreshUserInformation = {this.refreshUserInformation.bind(this)}
+						product = {this.props.product}/>
 
-						<div className = "top-buffer"/>
+						<div className = "small-buffer"/>
 						
 						<div className = "row">
-							<div className = "panel panel-default">
-								<div className = "panel-heading">
-									<span className = "product-more-images-header">
-								 		More Images (Click to View) 
-									</span>
-								</div>
-								<div className = "panel-content">
-									<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
-								</div>
+							<div className = "panel-content">
+								<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
 							</div>
 						</div>
+					
+
 					</div>
-				</div>
+			</div>
 
 		)
 	}
