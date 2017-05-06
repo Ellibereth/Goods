@@ -8,7 +8,7 @@ from api.utility.labels import CartLabels as Labels
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
-ADMIN_RECIPIENTS = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
+ADMIN_RECIPIENTS = ['eli@edgarusa.com', 'darek@manaweb.com', 'darek@edgarusa.com']
 
 URL = "https://edgarusa-testserver.herokuapp.com/"
 ## informs darek@manaweb.com of the incoming request 
