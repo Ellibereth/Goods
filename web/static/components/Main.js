@@ -33,6 +33,7 @@ import ManageAddressPage from './Account/Settings/Shipping/ManageAddressPage.js'
 import ViewCartPage from './Account/Checkout/ViewCartPage.js'
 import CheckoutPage from './Account/Checkout/CheckoutPage.js'
 import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
+import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
 
 export default class Main extends React.Component {
 	
@@ -108,6 +109,7 @@ ReactDOM.render(
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
 			<Route path = "billing" onEnter = {checkConfirmedUser} component = {UpdateBillingPage} />
+			<Route path = "deleteAccount" onEnter = {checkConfirmedUser} component = {DeleteAccountPage} />
 			<Route path = "myCards" onEnter = {checkConfirmedUser} component = {ManageCardsPage} />
 			<Route path = "shipping" onEnter = {checkConfirmedUser} component = {UpdateShippingPage}/>
 			<Route path = "myPlaces" onEnter = {checkConfirmedUser} component = {ManageAddressPage}/>

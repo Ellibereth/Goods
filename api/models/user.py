@@ -25,7 +25,7 @@ MIN_PASSWORD_LENGTH = 6
 class User(db.Model):
 	__tablename__ = ProdTables.UserInfoTable
 	account_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
-	email = db.Column(db.String, unique = True, nullable = False)
+	email = db.Column(db.String, unique = True)
 	email_confirmation_id = db.Column(db.String, unique = True, nullable = False)
 	email_confirmed = db.Column(db.Boolean, default = False)
 	password_hash = db.Column(db.String, nullable = False)
@@ -33,6 +33,7 @@ class User(db.Model):
 	stripe_customer_id = db.Column(db.String, unique = True)
 	is_admin = db.Column(db.Boolean, default = False)
 	soft_deleted = db.Column(db.Boolean, default = False)
+	deleted_account_email = db.Column(db.String)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -184,12 +185,10 @@ class User(db.Model):
 		return [order.toPublicDict() for order in user_orders]
 
 
-
-		
-
-
-
-
-
-
+	# deletes the user and overwrites their email
+	def softDeleteAccount(self):
+		self.soft_deleted = True
+		self.deleted_account_email = self.email
+		self.email = None
+		db.session.commit()
 

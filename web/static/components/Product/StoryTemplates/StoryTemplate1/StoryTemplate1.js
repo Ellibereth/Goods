@@ -55,13 +55,20 @@ export default class StoryTemplate1 extends React.Component {
 		// console.log(this.state.height)
 		if (height != 0) {
 			var ratio = height / width
+			var story_text = (
+					<div className = "panel panel-default story-panel">
+						<div> 
+							{this.props.product.story_text} 
+						</div>
+					</div>
+				)
 		}
 		else {
 			var ratio = 0
+			var story_text = <div/>
 		}
 		var row_width = $("#image_story").width()
 		var row_height = Math.floor(row_width * ratio)
-		console.log(row_height)
 		var src_story_base = "https://s3-us-west-2.amazonaws.com/storyphotos/"
 		var STORY_PHOTO_SRC = src_story_base +  this.props.product.story_image_id
 		var story_style = {
@@ -80,11 +87,7 @@ export default class StoryTemplate1 extends React.Component {
 			//className = "story-image"
 			 style = {story_style} id = "image_story">
 				<div className ="col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 story-overlay-container">
-					<div className = "panel panel-default story-panel">
-						<div> 
-							{this.props.product.story_text} 
-						</div>
-					</div>
+					{story_text}
 				</div>
 			</div>
 		)

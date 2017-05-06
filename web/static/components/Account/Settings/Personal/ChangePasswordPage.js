@@ -5,7 +5,7 @@ import ChangePasswordForm from './ChangePasswordForm.js'
 import PageContainer from '../../../Misc/PageContainer'
 var browserHistory = require('react-router').browserHistory;
 
-export default class ChanagePasswordPage extends React.Component {
+export default class ChangePasswordPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

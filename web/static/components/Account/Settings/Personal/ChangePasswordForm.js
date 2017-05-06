@@ -9,7 +9,7 @@ const form_labels = ['New Password', "Confirm Your New Password", "Confirm Curre
 const form_inputs = ["password", "password_confirm", "old_password"]
 const input_types = ['password', 'password', 'password']
 
-export default class SettingsFormPersonal extends React.Component {
+export default class ChangePasswordForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

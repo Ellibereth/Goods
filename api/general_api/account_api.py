@@ -303,6 +303,21 @@ def getSettingsInformation():
 		Labels.Orders : orders})
 
 
+@account_api.route('/softDeleteAccount', methods = ['POST'])
+def softDeleteAccount():
+	jwt = request.json.get(Labels.Jwt)
+	password = request.json.get(Labels.Password)
+	password_confirm = request.json.get(Labels.PasswordConfirm)
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	if this_user == None:
+		return JsonUtil.failure("User does not exist")
+	if password != password_confirm:
+		return JsonUtil.failure("Passwords don't match")
+	if not this_user.checkLogin(password):
+		return JsonUtil.failure("Password is incorrect")
+
+	this_user.softDeleteAccount()
+	return JsonUtil.success()
 
 
 

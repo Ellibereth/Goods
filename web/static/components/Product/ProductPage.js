@@ -60,6 +60,7 @@ export default class ProductPage extends React.Component {
 	generateMainComponent (){
 		return (
 			<div class = "container-fluid">
+				<div className = "small-buffer"/>
 				<ProductTemplates 
 					product = {this.state.product}
 					is_loading = {this.state.is_loading}

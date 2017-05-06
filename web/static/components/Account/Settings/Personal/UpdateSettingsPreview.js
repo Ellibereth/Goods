@@ -20,8 +20,11 @@ export default class UpdateSettingsPreview extends React.Component {
 			<div>
 				<Grid>
 					<Row>
-						<Col sm = {10} lg = {10} md = {10}>
-							<h4> Your Info </h4>
+						<Col sm = {8} lg = {8} md = {8}>
+							<span> Your Info </span>
+						</Col>
+						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
+							<Button onClick = {() => browserHistory.push('/deleteAccount')} > Delete </Button>
 						</Col>
 						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
 							<Button onClick = {() => browserHistory.push('/updateSettings')} > Edit </Button>

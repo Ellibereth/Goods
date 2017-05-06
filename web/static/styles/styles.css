@@ -65,12 +65,12 @@ body {
 
 
 
-.btn-xlarge {
+.add-to-cart-button {
 	margin-top : 8px;
 	padding: 8px 18px;
     font-size: 16px;
     line-height: normal;
-    background-color: green;	
+    background-color: red;	
     border-color: white
 }
 
@@ -195,4 +195,8 @@ body {
 
 .block-span {
 	display: block;
+}
+
+.delete-account-button {
+	background-color : red;
 }
