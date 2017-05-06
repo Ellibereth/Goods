@@ -10,6 +10,7 @@ PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 ADMIN_RECIPIENTS = ['elichang@remaura.com', 'darek@manaweb.com', 'elichang@manaweb.com']
 
+URL = "https://edgarusa-testserver.herokuapp.com/"
 ## informs darek@manaweb.com of the incoming request 
 def sendRequestEmail(request):
 	sender = 'darek@manaweb.com'
@@ -42,7 +43,7 @@ def sendRequestConfirmation(request):
 	msg['To'] = email
 	product_description = request.description
 	price_range = request.price_range
-	url = "https://whereisitmade.herokuapp.com/confirmRequest/" + request.confirmation_id
+	url = URL + request.confirmation_id
 	body = 'This email is to confirm that you submitted a request on Edgar USA \n' \
 		+ "Please click the following link to confirm : " + url + "\n"  \
 		"If you did not submit a request, please ignore this email"
@@ -74,7 +75,7 @@ def sendEmailConfirmation(email, email_confirmation_id):
 	msg['Subject'] = "Please Confirm Your Email!"
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = email
-	url = "https://whereisitmade.herokuapp.com/confirmEmail/" + email_confirmation_id
+	url = URL + email_confirmation_id
 	body = "Click on the following link to confirm your e-mail \n " + url
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
