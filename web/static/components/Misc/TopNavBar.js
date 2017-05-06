@@ -57,7 +57,7 @@ export default class TopNavBar extends React.Component {
 							</Link>
 						</li>
 						<li> 
-							<Link to = "/"> 
+							<Link to = "/myCart"> 
 								<span className = "glyphicon glyphicon-shopping-cart nav-icon"/> 
 								<span className = "nav-icon-text"> Cart </span>
 							</Link>
