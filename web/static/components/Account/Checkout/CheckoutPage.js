@@ -28,7 +28,8 @@ export default class CheckoutPage extends React.Component {
 			can_edit : [false, false, false],
 			address_modal_open : false,
 			billing_modal_open: false,
-			is_loading: true
+			is_loading: true,
+			first_load_done : false
 		}
 
 		this.getSelectedCard = this.getSelectedCard.bind(this)
@@ -96,8 +97,10 @@ export default class CheckoutPage extends React.Component {
 	// this method will fire after a new billing method is added 
 	// then that one will be selected
 	onAddingNewBillingMethod(){
+		var length = this.state.cards.length
 		this.refreshCheckoutInformation.bind(this)()
-		this.setState({selected_address_index : this.state.cards.length})
+		this.setState({selected_card_index : length})
+		this.openEditable.bind(this)(CART_INDEX)
 	}
 
 	// closes all other ones
@@ -144,6 +147,9 @@ export default class CheckoutPage extends React.Component {
 					else {
 						console.log("an error")
 					}
+					if (!this.state.first_load_done) {
+						this.initializeInformation.bind(this)()
+					}
 				}.bind(this),
 				error : function(){
 					console.log("an internal server error")
@@ -155,14 +161,18 @@ export default class CheckoutPage extends React.Component {
 
 	componentWillMount(){
 		this.refreshCheckoutInformation.bind(this)()
-		// if (this.state.cards.length > 0){
-		// 	console.log("bro")
-		// 	this.setCard.bind(this)(0)
-		// } 
-		// if (this.state.addresses.length > 0){
-		// 	this.setAddress.bind(this)(0)
-		// } 
+		
+	}
+
+	initializeInformation(){
+		if (this.state.cards.length > 0){
+			this.setCard.bind(this)(0)
+		} 
+		if (this.state.addresses.length > 0){
+			this.setAddress.bind(this)(0)
+		} 
 		this.openEditable.bind(this)(ADDRESS_INDEX)
+		this.setState({first_load_done : true})
 	}
 
 	setCard(card_index){

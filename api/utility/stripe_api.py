@@ -4,7 +4,7 @@ import stripe
 test_key = "sk_test_B0VTmo1cTi1WfnlKEQjgVsjm"
 prod_key = "sk_live_PW2L6feEEEciyHt2AR16V93u"
 
-stripe.api_key = prod_key
+stripe.api_key = test_key
 
 
 StripeCustomerId = "stripe_customer_id"
