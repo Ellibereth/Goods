@@ -51,11 +51,13 @@ export default class EmailConfirmationPage extends React.Component {
 
 		return (
 				<PageContainer component = {
-						<h1>
-							{this.props.params.email_confirmation_id} <br/>
-							Thank you for confirming your e-mail! <br/>
-							Click <a href ="/"> here </a> to return to the home page.
-						</h1>
+						<div className = "container">
+							<h1>
+								{this.props.params.email_confirmation_id} <br/>
+								Thank you for confirming your e-mail! <br/>
+								Click <a href ="/"> here </a> to return to the home page.
+							</h1>
+						</div>
 					}
 				/>
 		);
