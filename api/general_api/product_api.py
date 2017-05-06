@@ -121,6 +121,7 @@ def updateProductInfo():
 	story_template = product.get(Labels.StoryTemplate)
 	product_template = product.get(Labels.ProductTemplate)
 	story_text = product.get(Labels.StoryText)
+	num_items_limit = product.get(Labels.NumItemsLimit)
 	if price != None:
 		this_product.price = price
 	if description != None:
@@ -135,6 +136,11 @@ def updateProductInfo():
 		this_product.inventory = inventory
 	if story_text:
 		this_product.story_text = story_text
+	if num_items_limit:
+		try:
+			this_product.num_items_limit = int(num_items_limit)
+		except:
+			return JsonUtil.failure("Item limit is not integer")
 	if story_template != None:
 		try:
 			this_product.story_template = int(story_template)

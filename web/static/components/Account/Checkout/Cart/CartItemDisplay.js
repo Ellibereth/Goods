@@ -87,7 +87,7 @@ export default class CartItemDisplay extends React.Component {
 
 		var max_items = 10
 		var num_items_options = []
-		for (var i = 1; i <= 10; i++){
+		for (var i = 1; i <= 100; i++){
 			if (this.props.item.num_items == i){
 				num_items_options.push(<option selected value = {i}> {i} </option>)
 			}

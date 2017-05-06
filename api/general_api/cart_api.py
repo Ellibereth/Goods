@@ -121,6 +121,7 @@ def updateCartQuantity():
 
 	product_id = request.json.get(Labels.ProductId)
 	new_num_items = int(request.json.get(Labels.NewNumItems))
+
 	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
 	try:
 		cart_item.updateCartQuantity(new_num_items)

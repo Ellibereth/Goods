@@ -103,7 +103,7 @@ export default class AddToCartButton extends React.Component {
 						</div>
 						<div className = "row">
 							<span className = "block-span">
-								<button onClick = {this.addToCart.bind(this)} className="btn add-to-cart-button btn-primary">
+								<button onClick = {this.addToCart.bind(this)} className="btn add-to-cart-button">
 									<div id = "buy_now_button_text">
 								    	<b> Add to cart </b> 
 								    </div>
@@ -114,7 +114,7 @@ export default class AddToCartButton extends React.Component {
 					:
 					<div>
 						<span>
-							<button onClick = {this.onNonUserClick.bind(this)} className="btn add-to-cart-button btn-primary">
+							<button onClick = {this.onNonUserClick.bind(this)} className="btn add-to-cart-button">
 								<div id = "buy_now_button_text">
 							    	<b> Add to cart </b> 
 							    </div>

@@ -11,12 +11,20 @@
 }
 
 .navbar-brand-with-user {
-	font-size: 24px;
-    padding: 24px;
+	line-height : 44px;
+	font-size: 36px;
+	color: white;
 }
 
+.navbar-brand-with-user:hover, .navbar-brand-with-user:focus,
+.navbar-brand-no-user:hover, .navbar-brand-no-user:focus {
+	color : skyblue;
+}
+
+
 .navbar-brand-no-user {
-	font-size: 24px;
+	font-size: 36px;
+	color: white;
 }
 
 .navbar-right {
@@ -43,17 +51,32 @@
 }
 
 .navbar-edgarusa {
-	background-color: skyblue;
+	background-color: blue;
 }
 
 .search-bar-with-user {
-	padding-top: 8px;
+	padding-top: 10px;
+}
+
+#srch-term {
+	width : 250px;
 }
 
 .search-bar-no-user {
 	padding-top: 0px;
 }
 
-.navbar-nav > li {
-	color : black;
+.navbar-right > li > a {
+	color : white;
 }
+
+.navbar-right > li > a:hover, .navbar-right > li > a:focus {
+	background-color: transparent;
+	color : skyblue;
+}
+
+#account_dropdown {
+    background-color: transparent;
+}
+
+

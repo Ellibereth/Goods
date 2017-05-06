@@ -37,7 +37,7 @@ export default class TopNavBar extends React.Component {
 		var current_user = this.state.current_user
 		if (current_user == {} || !current_user){
 			return (
-				<div className="collapse navbar-collapse">
+				
 					<ul className="nav navbar-nav navbar-right">
 						<li>
 							<form className="navbar-form search-bar-no-user" role="search">
@@ -49,15 +49,13 @@ export default class TopNavBar extends React.Component {
 								</div>
 							</form>
 						</li>
-						<li><Link href="/register" className = "no-user-link">Register</Link></li>
+						<li><Link href="/register" className = "no-user-link">Sign Up</Link></li>
 						<li><Link href="/login" className = "no-user-link">Login</Link></li>
 					</ul>
-				</div>
 			)
 		}
 		else {
 			return (
-				<div className="collapse navbar-collapse">
 					<ul className="nav navbar-nav navbar-right">
 						<li>
 							<form className="navbar-form search-bar-with-user" role="search">
@@ -69,21 +67,22 @@ export default class TopNavBar extends React.Component {
 								</div>
 							</form>
 						</li>
-						<li> 
+						{/* <li> 
 							<Link to = "/"> 
 								<span className = "glyphicon glyphicon-home nav-icon"/>
 								<span className = "nav-icon-text"> Home </span>
 							</Link>
-						</li>
+						</li> */}
 						<li> 
 							<Link to = "/myCart"> 
-								<span className = "glyphicon glyphicon-shopping-cart nav-icon"/> 
+								<span className = "nav-icon">
+									<span className = "glyphicon glyphicon-shopping-cart "/> 
+								</span>
 								<span className = "nav-icon-text"> Cart </span>
 							</Link>
 						</li>
 						<li>
-
-							<a href="#" className="dropdown-toggle" 
+							<a id = "account_dropdown" href="#" className="dropdown-toggle" 
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false"> 
 							 	<span className = "nav-icon">
@@ -93,15 +92,11 @@ export default class TopNavBar extends React.Component {
 							</a>
 
 							<ul className="dropdown-menu"> 
-								<li> <a> Hello, {current_user.name} </a> </li>
-								<li role="separator" className="divider"></li>
 								<li><Link to ="/settings"> Settings </Link> </li>
-								<li role="separator" className="divider"></li>
 								<li> <Link to = "/logout"> Logout </Link></li>
 							</ul>
 						</li>
 					</ul>
-				</div>
 				
 			)
 		}	
