@@ -25,6 +25,12 @@ class Cart:
 		self.items = list()
 		self.price = 0
 
+	def getCartSize(self):
+		total = 0
+		for item in self.items:
+			total = total + item.num_items
+		return total
+
 	def toPublicDict(self):
 		public_dict = {}
 		product_list = list()

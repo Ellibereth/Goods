@@ -33,7 +33,6 @@ export default class ProductTemplate1 extends React.Component {
 	}
 
 	getMainImageId(product) {
-		console.log(product)
 		if (product == null || product.product_id == null) return null;
 		if (product.images.length == 0) return null
 		// something better needs to be done about bad pages, but I'll figure something out soon
@@ -44,7 +43,6 @@ export default class ProductTemplate1 extends React.Component {
 		else {
 			var main_image_id = product.main_image
 		}
-		console.log(main_image_id)
 		return main_image_id
 	}
 
@@ -102,6 +100,28 @@ export default class ProductTemplate1 extends React.Component {
 	}
 
 
+	// input is float 
+	formatPrice(price){
+		if (!price) {
+			return ""
+		}
+		var decimal_splits = price.toString().split('.')
+		console.log(decimal_splits)
+		var dollars = decimal_splits[0]
+		var cents = decimal_splits[1]
+		if (!cents){
+			cents = "00"
+		}
+		else if (cents.length == 1) {
+			cents = cents + "0"
+		}
+
+		cents = cents.substring(0,2)
+		return dollars + "." + cents
+
+	}
+
+
 	render() {
 		// keep in mind for the fade on loading
 		// this wasn't working last I checked
@@ -140,7 +160,7 @@ export default class ProductTemplate1 extends React.Component {
 						</div>
 						<div className = "row">
 							<span className = "product-price-text">
-								${this.props.product.price}
+								${this.formatPrice(this.props.product.price)}
 							</span>
 						</div>
 

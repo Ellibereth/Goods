@@ -36,6 +36,7 @@ class UserLabels:
 	AddressId = "address_id"
 	StripeCardId = "stripe_card_id"
 	Orders = "orders"
+	CartSize = "cart_size"
 
 
 class ProductImageLabels:

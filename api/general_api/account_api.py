@@ -8,6 +8,7 @@ from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.json_util import JsonUtil
 from api.utility.jwt_util import JwtUtil
+from api.models.cart import Cart
 
 account_api = Blueprint('account_api', __name__)
 
@@ -132,12 +133,14 @@ def changePassword():
 @account_api.route('/getUserInfo', methods = ['POST'])
 def getUserInfo():
 	jwt = request.json.get(Labels.Jwt)
-	if jwt == None or jwt == "" or "undefined":
+	if jwt == None or jwt == "" or jwt == "undefined":
 		return JsonUtil.jwt_failure()
 	jwt_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if jwt_user == None:
 		return JsonUtil.jwt_failure()
-	return JsonUtil.successWithOutput({Labels.User : jwt_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(jwt_user)})
+	user_dict = jwt_user.toPublicDict()
+	user_dict[Labels.CartSize] = Cart(jwt_user.account_id).getCartSize()
+	return JsonUtil.successWithOutput({Labels.User : user_dict, Labels.Jwt : JwtUtil.create_jwt(jwt_user.toPublicDict())})
 
 
 @account_api.route('/addCreditCard', methods = ['POST'])

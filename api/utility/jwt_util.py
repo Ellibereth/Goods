@@ -1,6 +1,7 @@
 from api.models.user import User
 import jwt
 import os
+from flask import jsonify
 
 
 UTF8 = "utf-8"

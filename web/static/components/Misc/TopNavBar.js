@@ -59,7 +59,9 @@ export default class TopNavBar extends React.Component {
 							<Link to = "/myCart"> 
 								<span className = "nav-icon">
 									<span className = "glyphicon glyphicon-shopping-cart "/> 
+									{current_user.cart_size > 0 && <span className ="badge badge-notify cart-badge"> {current_user.cart_size} </span>}
 								</span>
+
 								<span className = "nav-icon-text"> Cart </span>
 							</Link>
 						</li>

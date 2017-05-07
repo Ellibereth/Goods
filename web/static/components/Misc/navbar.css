@@ -2,7 +2,7 @@
 	display: block;
 	text-align: center;
 	padding-bottom: 4px;
-	height: 24px;
+	font-size: x-large
 }
 
 .nav-icon-text {
@@ -28,7 +28,7 @@
 }
 
 .navbar-right {
-	/*height: 36px;*/
+	padding-right: 36px;
 }
 
 .top-navbar {
@@ -55,7 +55,7 @@
 }
 
 .search-bar-with-user {
-	/*padding-top: 10px;*/
+	padding-top: 10px;
 }
 
 #srch-term:focus {
@@ -82,6 +82,15 @@
 #account_dropdown {
     background-color: transparent;
 }
+
+.cart-badge {
+	font-size: x-small;
+    position: absolute;
+    left: 32px;
+    top: 8px;
+    background-color: red;
+}
+
 
 
 
