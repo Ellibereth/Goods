@@ -39,16 +39,6 @@ export default class TopNavBar extends React.Component {
 			return (
 				
 					<ul className="nav navbar-nav navbar-right">
-						<li>
-							<form className="navbar-form search-bar-no-user" role="search">
-								<div className="input-group nav-search-bar">
-									<input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
-									<div className="input-group-btn">
-										<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
-									</div>
-								</div>
-							</form>
-						</li>
 						<li><Link href="/register" className = "no-user-link">Sign Up</Link></li>
 						<li><Link href="/login" className = "no-user-link">Login</Link></li>
 					</ul>
@@ -57,16 +47,8 @@ export default class TopNavBar extends React.Component {
 		else {
 			return (
 					<ul className="nav navbar-nav navbar-right">
-						<li>
-							<form className="navbar-form search-bar-with-user" role="search">
-								<div className="input-group nav-search-bar">
-									<input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
-									<div className="input-group-btn">
-										<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
-									</div>
-								</div>
-							</form>
-						</li>
+						
+							
 						{/* <li> 
 							<Link to = "/"> 
 								<span className = "glyphicon glyphicon-home nav-icon"/>
@@ -110,20 +92,32 @@ export default class TopNavBar extends React.Component {
 		return (
 			<nav className="navbar navbar-edgarusa top-navbar">
 				<div className="container-fluid">
-				
-					<div className="navbar-header">
-						<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-							<span className="sr-only">Toggle navigation</span>
-							<span className="icon-bar"></span>
-							<span className="icon-bar"></span>
-							<span className="icon-bar"></span>
-						</button>
-						<a className= {brand_class} href="/">Edgar USA</a>
-					</div>
+					
+						<div className="navbar-header">
+							<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span className="sr-only">Toggle navigation</span>
+								<span className="icon-bar"></span>
+								<span className="icon-bar"></span>
+								<span className="icon-bar"></span>
+							</button>
+							<a className= {brand_class} href="/">Edgar USA</a>
+						</div>
+
+					<div className="collapse navbar-collapse">
+						
+						<form className="navbar-form navbar-left search-bar-with-user" role="search">
+							<div className="input-group nav-search-bar">
+								<input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+								<div className="input-group-btn nav-search-icon">
+									<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+								</div>
+							</div>
+						</form>
+						
 
 					{right_nav}
-					
-				</div>
+					</div>
+				</div>	
 			</nav>
 		);
 	}
