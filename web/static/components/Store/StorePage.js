@@ -4,7 +4,6 @@ var ReactDOM = require('react-dom');
 import {Grid, Col, Row} from 'react-bootstrap';
 import TopNavBar from '../Misc/TopNavBar.js'
 import Footer from '../Misc/Footer.js'
-import ReactPlayer from 'react-player'
 import StoreProductPreview from './StoreProductPreview.js'
 
 

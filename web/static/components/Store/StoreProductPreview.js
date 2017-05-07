@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import {Grid, Col, Row} from 'react-bootstrap';
-import Countdown from 'react-cntdwn';
 var browserHistory = require('react-router').browserHistory;
 
 
