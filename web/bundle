@@ -1,1 +1,1 @@
-node_modules/.bin/webpack -d
+node_modules/.bin/webpack  --progress -p -d

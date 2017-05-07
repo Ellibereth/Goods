@@ -3,45 +3,108 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
-import {Grid, Row, Button, Col} from 'react-bootstrap'
+import AddressPreview from './AddressPreview'
+import EditAddressModal from './EditAddressModal.js'
+import AddAddressButton from './AddAddressButton'
 
 export default class ShippingPreview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			modal_show : false,
+			modal_address : null
 		}
 	}
 
+	toggleModal(address) {
+		this.setState({
+			modal_show : !this.state.modal_show,
+			modal_address : address
+		})
+	}
+
+	deleteAddress(address){
+		var data = {}
+		data["jwt"] = localStorage.jwt
+		data["account_id"] = AppStore.getCurrentUser().account_id
+		data["address_id"] = address.id
+		var form_data = JSON.stringify(data)
+		$.ajax({
+			type: "POST",
+			url: "/deleteUserAddress",
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					swal("Sorry!", "It seems there was an error deleting your address! " + data.error 
+						+ ". Please try again!", "warning")
+				}
+				else {
+					// AppActions.addCurrentUser(data.user_info)
+					swal({
+							title: "Thank you!", 
+							text : "Your changes have been made",
+							type: "success"
+						})
+					this.props.refreshSettings()
+				}
+			}.bind(this),
+			error : function(){
+				console.log("error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+	}
+
+
+
 	render() {
 		var current_user = AppStore.getCurrentUser()
+		var addresses = this.props.addresses
+
+		var address_columns = addresses.map((address,index) => 
+				<AddressPreview address = {address} 
+				toggleModal = {this.toggleModal.bind(this)}
+				deleteAddress = {this.deleteAddress.bind(this)}/>
+			)
+
+		address_columns.push(
+				<AddAddressButton />
+			)
+
+		var address_rows = []
+		var num_rows = Math.floor((address_columns.length - 1) / 3 + 1)
+		for (var i = 0; i < num_rows; i++){
+			var this_row = []
+			for (var j = i * 3; j < address_columns.length && j < (i + 1) * 3; j++){
+				this_row.push(address_columns[j])
+			}
+			address_rows.push(
+				<div className = "row row-eq-height settings-preview-row">
+					{this_row}
+				</div>
+			)
+		}
+
+
+
+
 
 		return (
-			<div>
-				<Grid>
-					<Row>
-						<Col sm = {10} lg = {10} md = {10}>
-							<h4> Shipping </h4>
-						</Col>
-						<Col sm = {2} lg ={2} md = {2} className = "pull-right text-right">
-							<Button onClick = {() => browserHistory.push('/shipping')} > Add </Button>
-						</Col>
-					</Row>
-					<Row>
-						<div className = "setting-preview-box">
-							<h5>
-								<p> You have {this.props.addresses.length} addresses </p>
-								{
-									this.props.addresses.length > 0 ?
-									<p> <Link to = "/myPlaces"> Manage Addresses </Link> </p>
-									:
-									<p> Add an address first! </p>
-								}
-							</h5>
+				<div className = "container-fluid">
+					<EditAddressModal show = {this.state.modal_show} address = {this.state.modal_address} 
+					refreshSettings = {this.props.refreshSettings}
+					toggleModal = {this.toggleModal.bind(this)}/>
+
+					<div className="panel panel-default">
+						<div className = "panel-heading">
+							<div> Your Addresses </div>
 						</div>
-					</Row>
-				</Grid>
-			</div>	
+						<div className="panel-body">
+							{address_rows}
+						</div>
+					</div>
+				</div>
 		)
 	}
 }

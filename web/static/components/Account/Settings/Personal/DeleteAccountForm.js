@@ -104,7 +104,7 @@ export default class DeleteAccountForm extends React.Component {
 							<Col sm = {4} lg = {4} md = {4}>
 								<Button className = "delete-account-button"
 								onClick = {this.handleDeleteClick.bind(this)}>
-									Delete Account!
+									Delete Account
 								</Button>
 							</Col>
 							<Col pullRight className = "text-right" sm = {4} lg = {4} md = {4}>

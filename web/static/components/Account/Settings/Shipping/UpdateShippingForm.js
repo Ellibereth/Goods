@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
@@ -94,18 +94,22 @@ export default class UpdateShippingForm extends React.Component {
 	
 
 		return (
-				<Form horizontal>
-					<AddressForm 
-					has_description = {true}
-					onTextInputChange = {this.onTextInputChange.bind(this)}/>
-					<div className = "form-group" id = "submit_button">
-						<Col lgOffset = {2} mdOffset={2} md={6} lg = {6}>
-							<Button onClick = {this.onSubmitPress.bind(this)}>
-							Submit!
-							</Button>
-						</Col>
-					</div>
-				</Form>
+				<div>
+					<h3> Add an Address </h3>
+					<span> Click <Link to = "/settings"> here </Link> to return  </span>
+					<Form horizontal>
+						<AddressForm 
+						has_description = {true}
+						onTextInputChange = {this.onTextInputChange.bind(this)}/>
+						<div className = "form-group" id = "submit_button">
+							<Col lgOffset = {2} mdOffset={2} md={6} lg = {6}>
+								<Button onClick = {this.onSubmitPress.bind(this)}>
+								Submit
+								</Button>
+							</Col>
+						</div>
+					</Form>
+				</div>
 		)
 	}
 }

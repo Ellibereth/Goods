@@ -97,7 +97,8 @@ export default class UpdateBillingForm extends React.Component {
 	render() {
 		return (
 			<div className = "col-sm-12 col-md-12 col-lg-12">
-			<h2> Add a Payment Form </h2>
+			<h3> Add a Payment Method </h3>
+			<span> Click <Link to = "/settings"> here </Link> to return  </span>
 			<Form horizontal>
 				<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
 				<AddressForm onTextInputChange  = {this.onTextInputChange.bind(this)} />
@@ -105,7 +106,7 @@ export default class UpdateBillingForm extends React.Component {
 				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
 					<Button onClick = {this.onSubmitPress.bind(this)}>
-					Submit!
+					Submit
 					</Button>
 				</Col>
 				</FormGroup>

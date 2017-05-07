@@ -116,7 +116,7 @@ export default class CreditCardInput extends React.Component {
 	render() {
 		return (
 
-			<div>
+			<form id = "address_form" className="form-horizontal">
 
 			<div className = "row">
 				<div className= {this.state.name_error ? "form-group" : "form-group has-success"}>
@@ -172,7 +172,7 @@ export default class CreditCardInput extends React.Component {
 
 
 			
-			</div>
+			</form>
 			
 
 		)

@@ -17,6 +17,7 @@ export default class SettingsPage extends React.Component {
 			orders: [],
 			is_loading : true
 		}
+		this.refreshSettings = this.refreshSettings.bind(this)
 	}
 
 	refreshSettings(){
@@ -67,10 +68,10 @@ export default class SettingsPage extends React.Component {
 					{
 						!this.state.is_loading && 
 						<div>
-							<BillingPreview  cards = {this.state.cards} />
+							<BillingPreview refreshSettings = {this.refreshSettings} cards = {this.state.cards} />
 							<br />
 
-							<ShippingPreview  addresses = {this.state.addresses}/>
+							<ShippingPreview refreshSettings = {this.refreshSettings} addresses = {this.state.addresses}/>
 							<br/>
 
 							<OrdersPreview orders = {this.state.orders} />

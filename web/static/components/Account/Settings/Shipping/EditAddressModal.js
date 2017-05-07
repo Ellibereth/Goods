@@ -38,7 +38,9 @@ render() {
 			<Modal.Title id="contained-modal-title-lg"> Edit Address </Modal.Title>
 		</Modal.Header>
 			<Modal.Body>
-				<EditAddressForm address = {this.props.address} toggleModal = {this.props.toggleModal}/>
+				<EditAddressForm
+				refreshSettings = {this.props.refreshSettings}
+				 address = {this.props.address} toggleModal = {this.props.toggleModal}/>
 			</Modal.Body>
 		</Modal>
 		);

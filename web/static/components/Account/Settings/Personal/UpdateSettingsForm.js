@@ -149,7 +149,6 @@ export default class SettingsFormPersonal extends React.Component {
 		return (
 			<Grid>
 				<Form horizontal>
-					<ControlLabel> <span id = "settings-header"> You must confirm your password to make any changes to your account </span> </ControlLabel>
 					<br/>
 					{text_inputs}
 					
@@ -163,7 +162,7 @@ export default class SettingsFormPersonal extends React.Component {
 							</Col>
 							<Col pullRight className = "text-right" sm = {4} lg = {4} md = {4}>
 								<Button onClick = {this.updatePassword.bind(this)}>
-									Click to Update Password!
+									Click to change password
 								</Button>
 							</Col>
 					</FormGroup>

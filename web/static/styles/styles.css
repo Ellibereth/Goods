@@ -36,13 +36,6 @@ body {
    margin: 0 !important;
 }
 
-.setting-preview-box {
-	border-color : black;
-	border-style: solid;
-	border-width: 1px;
-	border-radius : 5px;
-	padding : 8px;
-}
 
 .bottom-column {
     vertical-align: bottom;
@@ -205,4 +198,38 @@ body {
 
 .delete-account-button {
 	background-color : red;
+}
+
+.settings-preview-row {
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+.settings-preview-column {
+	/*padding: 24px;*/
+}
+
+.add-setting-icon {
+	font-size: 36px;
+}	
+
+.add-settings-text {
+	font-size:  24px;
+}
+
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
+
+.add-settings-row:hover {
+	opacity : 0.70;
+	color: skyblue;
+}
+
+#edit-address-button {
+	margin-right: 8px;
 }

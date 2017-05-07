@@ -3,28 +3,33 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
-import TextInput from '../../../Misc/Input/TextInput.js'
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-const form_labels = ["Name", "Description", "City","State", "Country", "Address Line 1", 
-						"Address Line 2", "Zip Code"]
-const form_inputs = ["name", "description", "address_city", "address_state", "address_country",
-					"address_line1", "address_line2", "address_zip"]
+import EditAddressInput from '../../../Misc/Input/EditAddressInput.js'
+import {Button} from 'react-bootstrap'
 
-const input_types = ["text", "text", "text", "text", "text", "text", "text", "text"]
+const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
+					"address_line1", "address_line2", "address_zip"]
 
 export default class EditAddressForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			name : "",
+			address_name : "",
 			description : "",
 			address_state: "",
 			address_city : "",
-			address_country : "",
+			address_country : "US",
 			address_line1 : "",
 			address_line2 : "",
 			address_zip : ""
 		}
+	}
+
+	// handle the text input changes
+	onTextInputChange(field, value){
+		var obj = {}
+		obj[field] = value
+		this.setState(obj)
 	}
 
 	// initialize address values
@@ -49,35 +54,18 @@ export default class EditAddressForm extends React.Component {
 		this.setState(obj)
 	}
 
-	onSubmitPress(){
-		swal({
-		  title: "Ready?",
-		  text: "Is all your information correct?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
-		  closeOnCancel: true
-		},
-		function () {
-			this.submitData.bind(this)()
-		}.bind(this))
-	}
-
-	submitData(){
-			var data = {}
+	addAddress(){
+		var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
 				data[key] = this.state[key]
 			}
 			data["jwt"] = localStorage.jwt
 			data["account_id"] = AppStore.getCurrentUser().account_id
-			data["address_id"] = this.props.address.id
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: "/editUserAddress",
+				url: "/addUserAddresses",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
@@ -91,38 +79,36 @@ export default class EditAddressForm extends React.Component {
 								text : "Your changes have been made",
 								type: "success"
 							})
-						this.props.toggleModal(null)
-						browserHistory.push(`/settings`)
+						this.props.toggleModal()
+						this.props.refreshSettings()
 					}
 
 				}.bind(this),
 				error : function(){
-					console.log("error")
+
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});
-		}
+	}
 
 	render() {
 
-		var text_inputs = form_inputs.map((form_input, index) => {
-			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]}/>)
-		})
-
 		return (
-			<Form horizontal>
-				{text_inputs}
-				<FormGroup controlId = "submit_button">
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
-					Submit!
+			<div className = "row">
+				<div className = "col-sm-10 col-md-10 col-lg-10">
+					<EditAddressInput 
+					has_description = {false}
+					onTextInputChange = {this.onTextInputChange.bind(this)}
+					address = {this.props.address} />
+
+					
+					<Button onClick = {this.addAddress.bind(this)}>
+						Add Address
 					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+				
+				</div>
+			</div>
 		)
 	}
 }
