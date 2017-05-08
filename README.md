@@ -29,6 +29,8 @@ sh setup
 This will install reactjs, install react dependencies, and python dependencies
 
 
+
+
 ## Testing Locally
 Run the following commands in linux 
 
@@ -38,6 +40,25 @@ sh localtestwin
 ## Mac (terminal)
 sh localtest
 ```
+
+## Bundling for production
+Run the following in linux
+``` 
+cd web
+sh bundleprod
+cd ..
+```
+This will compile and bundle all cached vendor libraries.
+
+## Webpack Notes for Development
+'./web/bundlevendors'
+'./web/bundledev'
+
+bundlevendors compiles vendor libraries. This does not need to be run after changes are made to static folder.
+bundledev compiles modules in static. Must be run after changes are made.
+
+
+
 
 ## Contributors
 Any questions can be sent to darek@manaweb.com
