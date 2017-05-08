@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-import TextInput from '../../Misc/Input/TextInput.js'
+import TextInput from '../../Input/TextInput.js'
 
 
 const form_labels = ['What is your name?', "What is your email?", "Phone Number? (Optional)", "How much would you like to pay?", "What are you looking for?"]

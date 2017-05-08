@@ -72,6 +72,10 @@ export default class ShippingPreview extends React.Component {
 				<AddAddressButton />
 			)
 
+		if (this.props.is_loading){
+			address_columns = []
+		}
+
 		var col_per_row = 3;
 
 		var address_rows = []
@@ -95,6 +99,8 @@ export default class ShippingPreview extends React.Component {
 				</div>
 			)
 		}
+
+
 
 		
 

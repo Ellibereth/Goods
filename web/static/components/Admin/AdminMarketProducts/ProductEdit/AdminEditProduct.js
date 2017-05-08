@@ -6,7 +6,7 @@ import {Col, Form, FormControl, Grid, Row, FormGroup, Button} from 'react-bootst
 const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'inventory', 'story_text', 'story_template', 'product_template', 'num_items_limit']
 const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Inventory', 'Story Text', 'Story Template', 'Product Template', 'Item Limit']
 const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea', 'text', 'text', 'text']
-import TextInput from '../../../Misc/Input/TextInput.js'
+import TextInput from '../../../Input/TextInput.js'
 import UploadMarketPhoto from '../ProductAdd/UploadMarketPhoto.js'
 import AdminEditPhotos from './AdminEditPhotos.js' 
 import UploadStoryPhoto from '../ProductAdd/UploadStoryPhoto'

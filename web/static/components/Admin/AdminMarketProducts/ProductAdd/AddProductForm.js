@@ -5,7 +5,7 @@ const form_inputs = ['name', 'description', 'manufacturer', 'price', 'category',
 const form_labels = ["Product Name", "Product Description", "Manufacturer", "Price", "Category", "Inventory", "Sale End Date"]
 const input_types = ['text', 'textarea', 'text', 'text', 'text', 'text', 'datetime-local']
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
-import TextInput from '../../../Misc/Input/TextInput.js'
+import TextInput from '../../../Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
 
 export default class AddProductForm extends React.Component {

@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
-import TopNavBar from '../../../Misc/TopNavBar'
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link

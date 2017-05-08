@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../../actions/AppActions.js';
 import AppStore from '../../../../stores/AppStore.js';
-import TextInput from '../../../Misc/Input/TextInput.js'
+import TextInput from '../../../Input/TextInput.js'
 import {Grid, Form, Row, Col, FormGroup, Button, ControlLabel} from 'react-bootstrap'
 const form_labels = ['Password', 'Confirm Password']
 const form_inputs = ["password", "password_confirm"]

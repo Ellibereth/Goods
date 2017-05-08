@@ -21,7 +21,7 @@ export default class SettingsPage extends React.Component {
 	}
 
 	refreshSettings(){
-		this.setState({is_loading : false})
+		this.setState({is_loading : true})
 		$('#settings-container').addClass("faded");
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
@@ -68,10 +68,16 @@ export default class SettingsPage extends React.Component {
 					{
 						!this.state.is_loading && 
 						<div>
-							<BillingPreview refreshSettings = {this.refreshSettings} cards = {this.state.cards} />
+							<BillingPreview
+								is_loading  = {this.state.is_loading}
+								refreshSettings = {this.refreshSettings} 
+								cards = {this.state.cards} />
 							<br />
 
-							<ShippingPreview refreshSettings = {this.refreshSettings} addresses = {this.state.addresses}/>
+							<ShippingPreview 
+								is_loading = {this.state.is_loading}
+								refreshSettings = {this.refreshSettings}
+								addresses = {this.state.addresses}/>
 							<br/>
 
 							<OrdersPreview orders = {this.state.orders} />

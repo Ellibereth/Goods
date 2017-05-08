@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import {Button} from 'react-bootstrap'
-import AddressForm from '../../../Misc/Input/AddressForm.js'
+import AddressForm from '../../../Input/AddressForm.js'
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link

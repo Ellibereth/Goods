@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
-import EditAddressInput from '../../../Misc/Input/EditAddressInput.js'
+import EditAddressInput from '../../../Input/EditAddressInput.js'
 import {Button} from 'react-bootstrap'
 
 const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",

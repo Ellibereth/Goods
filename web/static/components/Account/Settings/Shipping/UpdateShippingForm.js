@@ -4,8 +4,8 @@ var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
-import TextInput from '../../../Misc/Input/TextInput.js'
-import AddressForm from '../../../Misc/Input/AddressForm.js'
+import TextInput from '../../../Input/TextInput.js'
+import AddressForm from '../../../Input/AddressForm.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ["Name", "Description", "City","State", "Country", "Address Line 1", 
 						"Address Line 2", "Zip Code"]
