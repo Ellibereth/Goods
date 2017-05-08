@@ -50,13 +50,13 @@ cd ..
 ```
 This will compile and bundle all cached vendor libraries.
 
-## Webpack Notes for Development
+## Webpack notes for development
 ```
 # bundlevendors compiles vendor libraries
 # This does not need to be run after changes are made to static folder
-sh ./web/bundlevendors
+cd web && sh bundlevendors
 # bundledev compiles modules in static. Must be run after changes are made
-sh './web/bundledev
+cd web && sh bundledev
 ```
 
 
