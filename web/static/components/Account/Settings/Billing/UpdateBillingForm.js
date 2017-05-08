@@ -1,11 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
+var Link = require('react-router').Link;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Misc/Input/TextInput.js'
 import CreditCardInput from '../../../Misc/Input/CreditCardInput.js'
 import AddressForm from '../../../Misc/Input/AddressForm.js'
+
 
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_inputs = ["address_city", "address_country",

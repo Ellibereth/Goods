@@ -78,16 +78,28 @@ export default class BillingPreview extends React.Component {
 				var current_user = AppStore.getCurrentUser()
 	
 
-		card_columns.push(
+		card_columns.unshift(
 				<AddCardButton />
 			)
 
 		var card_rows = []
-		var num_rows = Math.floor((card_columns.length - 1) / 3 + 1)
+
+		var col_per_row = 3;
+
+
+		var num_rows = Math.floor((card_columns.length - 1) / col_per_row + 1)
 			for (var i = 0; i < num_rows; i++){
 				var this_row = []
-				for (var j = i * 3; j < card_columns.length && j < (i + 1) * 3; j++){
-					this_row.push(card_columns[j])
+				for (var j = i * col_per_row; j < (i + 1) * col_per_row; j++){
+					if (j < card_columns.length){
+						this_row.push(card_columns[j])	
+					}
+					else {
+						this_row.push(
+							<div className = "col-sm-4 col-md-4 col-lg-4 settings-preview-column no-border"/>
+						)
+					}
+					
 				}
 				card_rows.push(
 					<div className = "row row-eq-height settings-preview-row">
@@ -101,10 +113,12 @@ export default class BillingPreview extends React.Component {
 					
 				<div className="panel panel-default">
 					<div className = "panel-heading">
-						<div> Your Cards </div>
+						<div> Payment Methods </div>
 					</div>
 					<div className="panel-body">
+						<div className = "container-fluid">
 							{card_rows}
+						</div>
 					</div>
 				</div>
 			</div>

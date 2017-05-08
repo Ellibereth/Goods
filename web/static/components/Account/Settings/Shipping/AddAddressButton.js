@@ -18,11 +18,11 @@ export default class AddAddressButton extends React.Component {
 	render() {
 
 		return (
-			<div className = "col-sm-4 col-md-4 col-lg-4 hcenter add-settings-row">
-				<div onClick = {this.onAddAddressClick} >
-					<span className = "glyphicon glyphicon-plus add-setting-icon block-span" />
-					<span className = "block-span add-settings-text"> Add an address </span>
-				</div>
+			<div onClick = {this.onAddAddressClick} className = "col-sm-4 col-md-4 col-lg-4 hcenter vcenter 
+			grey-dashed-border settings-preview-column add-settings-button">
+					<span className = "glyphicon glyphicon-plus add-setting-icon" /> <br/>
+					<span className = "add-settings-text"> Add new </span> <br/>
+					<span className = "add-settings-text"> shipping address </span> 
 			</div>
 		)
 	}

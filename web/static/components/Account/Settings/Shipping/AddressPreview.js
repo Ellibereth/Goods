@@ -46,12 +46,15 @@ export default class AddressPreview extends React.Component {
 		var address = this.props.address
 
 		return (
-			<div className = "col-sm-4 col-md-4 col-lg-4 text-center settings-preview-column">
+			<div className = "col-sm-4 col-md-4 col-lg-4 settings-preview-column grey-solid-border">
 				<span className = "block-span"> {address.name} </span>
 				<span className = "block-span">{address.address_line1}  </span>
 				{address.address_line2 && <span className = "block-span"> {address.address_line2}  </span> }
 				<span className = "block-span"> 
 					{address.address_city}, {address.address_state} {address.address_zip}
+				</span>
+				<span className = "block-span">
+					<div className = "small-buffer"/>
 				</span>
 				<span className = "block-span">
 					<button id = "edit-address-button" className = "btn btn-default btn-sm" onClick = {this.editAddress.bind(this)}>

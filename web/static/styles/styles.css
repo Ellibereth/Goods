@@ -140,8 +140,9 @@ body {
 .clickable-text {
 	cursor:pointer;
 	color:blue;
-	
 }
+
+
 
 .clickable-text:hover {
 	text-decoration:none;
@@ -201,12 +202,14 @@ body {
 }
 
 .settings-preview-row {
-	padding-top: 18px;
-	padding-bottom: 18px;
+	/*padding-top: 18px;
+	padding-bottom: 18px;*/
 }
 
 .settings-preview-column {
-	/*padding: 24px;*/
+	margin: 6px;
+	padding: 12px;
+	margin-right: 12px;
 }
 
 .add-setting-icon {
@@ -214,7 +217,7 @@ body {
 }	
 
 .add-settings-text {
-	font-size:  24px;
+	font-size:  16px;
 }
 
 .float-right {
@@ -225,11 +228,37 @@ body {
 	float: left;
 }
 
-.add-settings-row:hover {
-	opacity : 0.70;
-	color: skyblue;
+.grey-dashed-border {
+	border-style: dashed;
+	border-color: grey;
+	border-width: 1px;
 }
+
+.grey-solid-border {
+	border-style: solid;
+	border-color: grey;
+	border-width: 1px;
+}
+
+.no-border {
+	border-width: 0px;
+}
+
+
 
 #edit-address-button {
 	margin-right: 8px;
+}
+
+
+.add-settings-button {
+	cursor: pointer;
+	color: grey;
+	padding-top: 30px;
+}
+
+.add-settings-button:hover {
+	opacity: 0.7;
+	color: skyblue;
+	border-color: skyblue;
 }

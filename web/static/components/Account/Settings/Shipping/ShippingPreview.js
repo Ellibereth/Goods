@@ -68,16 +68,26 @@ export default class ShippingPreview extends React.Component {
 				deleteAddress = {this.deleteAddress.bind(this)}/>
 			)
 
-		address_columns.push(
+		address_columns.unshift(
 				<AddAddressButton />
 			)
 
+		var col_per_row = 3;
+
 		var address_rows = []
-		var num_rows = Math.floor((address_columns.length - 1) / 3 + 1)
+		var num_rows = Math.floor((address_columns.length - 1) / col_per_row + 1)
 		for (var i = 0; i < num_rows; i++){
 			var this_row = []
-			for (var j = i * 3; j < address_columns.length && j < (i + 1) * 3; j++){
-				this_row.push(address_columns[j])
+			for (var j = i * col_per_row; j < (i + 1) * col_per_row; j++){
+				if (j < address_columns.length){
+					this_row.push(address_columns[j])	
+				}
+				else {
+					this_row.push(
+							<div className = "col-sm-4 col-md-4 col-lg-4 settings-preview-column no-border"/>
+						)
+				}
+				
 			}
 			address_rows.push(
 				<div className = "row row-eq-height settings-preview-row">
@@ -85,6 +95,8 @@ export default class ShippingPreview extends React.Component {
 				</div>
 			)
 		}
+
+		
 
 
 
@@ -98,10 +110,12 @@ export default class ShippingPreview extends React.Component {
 
 					<div className="panel panel-default">
 						<div className = "panel-heading">
-							<div> Your Addresses </div>
+							<div> Shipping Address </div>
 						</div>
 						<div className="panel-body">
-							{address_rows}
+							<div className = "container-fluid">
+								{address_rows}
+							</div>
 						</div>
 					</div>
 				</div>
