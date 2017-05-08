@@ -16,10 +16,8 @@ export default class StoryTemplates extends React.Component {
 
 	getTemplate(product){
 		var template = product.story_template;
-		console.log(product)
 		switch (template){
 			case 1:
-				console.log("case 1")
 				return <StoryTemplate1 
 						product = {this.props.product}
 						is_loading = {this.props.is_loading}

@@ -14,27 +14,29 @@ export default class TopNavBar extends React.Component {
 		super(props);
 		this.state = {
 			current_user : null,
-			search_input : ""
+			search_input : "",
+			cart_badge: 0
 		}
 	}
 
 	componentDidMount(){
-		this.setState({current_user : AppStore.getCurrentUser()})
+		setInterval(function(){ 
+			var current_cart_size = AppStore.getCurrentUser().cart_size
+			if (current_cart_size != cart_badge){
+				this.setState({cart_badge : AppStore.getCurrentUser().cart_size})	
+			}
+		}.bind(this), 1000)
+		this.setState({cart_badge : AppStore.getCurrentUser().cart_size})
 	}
 
-	// handleLogout(){
-	// 	this.setState({current_user : null})
-	// 	AppActions.removeCurrentUser()
-	// 	console.log("current user removed")
-	// 	browserHistory.push('/')
 
-	// }
+
 
 	getRightNav() {
 		if (this.props.no_login) {
 			return <div/>
 		}
-		var current_user = this.state.current_user
+		var current_user = AppStore.getCurrentUser()
 		if (current_user == {} || !current_user){
 			return (
 				
@@ -59,7 +61,7 @@ export default class TopNavBar extends React.Component {
 							<Link to = "/myCart"> 
 								<span className = "nav-icon">
 									<span className = "glyphicon glyphicon-shopping-cart "/> 
-									{current_user.cart_size > 0 && <span className ="badge badge-notify cart-badge"> {current_user.cart_size} </span>}
+									{this.state.cart_badge > 0 && <span className ="badge badge-notify cart-badge"> {this.state.cart_badge} </span>}
 								</span>
 
 								<span className = "nav-icon-text"> Cart </span>
@@ -76,6 +78,7 @@ export default class TopNavBar extends React.Component {
 							</a>
 
 							<ul className="dropdown-menu"> 
+								<li> <a href = "#"> Hello, {current_user.name} </a> </li>
 								<li><Link to ="/settings"> Settings </Link> </li>
 								<li> <Link to = "/logout"> Logout </Link></li>
 							</ul>
@@ -87,7 +90,7 @@ export default class TopNavBar extends React.Component {
 	}
 
 	render() {
-		var current_user = this.state.current_user
+		var current_user = AppStore.getCurrentUser()
 		var brand_class = (current_user == {} || !current_user) ? "navbar-brand navbar-brand-no-user" : "navbar-brand navbar-brand-with-user"
 		var right_nav = this.getRightNav()
 

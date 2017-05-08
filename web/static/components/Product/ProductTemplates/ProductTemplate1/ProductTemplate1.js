@@ -106,7 +106,6 @@ export default class ProductTemplate1 extends React.Component {
 			return ""
 		}
 		var decimal_splits = price.toString().split('.')
-		console.log(decimal_splits)
 		var dollars = decimal_splits[0]
 		var cents = decimal_splits[1]
 		if (!cents){

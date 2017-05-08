@@ -20,12 +20,7 @@ export default class CheckoutCardSelect extends React.Component {
 	}
 
 	setCard(){
-		if (this.state.selected_card == -1) {
-			swal("You haven't selected a card yet!", "You must do so before continuing", "error")
-		}
-		else {
-			this.props.openEditable(CART_INDEX)	
-		}
+		this.props.openEditable(CART_INDEX)	
 	}
 
 	onCardChange(index){

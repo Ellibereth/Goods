@@ -38,7 +38,12 @@ def addItemToCart():
 		cart_item.updateCartQuantity(cart_item.num_items + quantity)
 	except Exception as e:
 		return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
-	return JsonUtil.success()
+
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	return JsonUtil.successWithOutput({
+			Labels.User : this_user.toPublicDict(),
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())
+		})
 
 # checkout cart
 @cart_api.route('/checkoutCart', methods = ['POST'])
@@ -80,7 +85,10 @@ def checkoutCart():
 	
 	# # clear the cart
 	this_cart.clearCart()
-	return JsonUtil.success()
+	return JsonUtil.successWithOutput({
+			Labels.User : this_user.toPublicDict(),
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())
+		})
 
 
 @cart_api.route('/getUserCart', methods = ['POST'])
@@ -119,6 +127,8 @@ def updateCartQuantity():
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
 
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+
 	product_id = request.json.get(Labels.ProductId)
 	new_num_items = int(request.json.get(Labels.NewNumItems))
 
@@ -127,6 +137,13 @@ def updateCartQuantity():
 		cart_item.updateCartQuantity(new_num_items)
 	except Exception as e:
 		return JsonUtil.failure("Something went wrong while updating cart quantity : " + str(e))
-	return JsonUtil.success()
+
+	return JsonUtil.successWithOutput({
+			Labels.User : this_user.toPublicDict(),
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())
+		})
+
+
+
 
 

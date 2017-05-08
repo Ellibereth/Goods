@@ -166,9 +166,11 @@ export default class CheckoutPage extends React.Component {
 
 	initializeInformation(){
 		if (this.state.cards.length > 0){
+			this.setState({selected_card_index : 0})
 			this.setCard.bind(this)(0)
 		} 
 		if (this.state.addresses.length > 0){
+			this.setState({selected_address_index : 0})
 			this.setAddress.bind(this)(0)
 		} 
 		this.openEditable.bind(this)(ADDRESS_INDEX)
@@ -278,7 +280,8 @@ export default class CheckoutPage extends React.Component {
 	render() {
 		var can_checkout = this.canCheckout()
 		return (
-			<PageContainer component = {
+			<PageContainer {...this.props}
+				component = {
 
 				
 				<div id = "checkout-container" className = "container faded">

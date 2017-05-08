@@ -11,6 +11,7 @@ from api.utility.labels import UserLabels as Labels
 from api.utility.id_util import IdUtil
 from api.utility.lob import Lob
 from api.models.order import Order
+from api.models.cart import Cart
 import re
 
 
@@ -87,6 +88,7 @@ class User(db.Model):
 		public_dict['email_confirmed'] = self.email_confirmed
 		public_dict['account_id'] = self.account_id
 		public_dict['is_admin'] = self.is_admin
+		public_dict['cart_size'] = Cart(self.account_id).getCartSize()
 		return public_dict
 
 	# do you think these methods should be static or instance?

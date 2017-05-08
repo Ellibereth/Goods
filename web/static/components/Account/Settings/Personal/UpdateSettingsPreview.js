@@ -29,6 +29,10 @@ export default class UpdateSettingsPreview extends React.Component {
 									onClick = {() => browserHistory.push('updateSettings')}>
 									Edit Settings
 								</button>
+								<button className = "btn btn-default" 
+									onClick = {() => browserHistory.push('deleteAccount')}>
+									Delete
+								</button>
 							</span>
 						</div>
 					</div>

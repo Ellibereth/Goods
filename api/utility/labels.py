@@ -180,6 +180,7 @@ class CartLabels:
 	NumItemsLimit = "num_items_limit"
 	Orders = "orders"
 	MainImage = "main_image"
+	User = "user"
 
 class AddressLabels:
 	AddressId = "address_id"

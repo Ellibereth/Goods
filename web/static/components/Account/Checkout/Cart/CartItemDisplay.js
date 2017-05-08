@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
+import AppActions from '../../../../actions/AppActions.js';
 var browserHistory = require('react-router').browserHistory;
 import {Button} from 'react-bootstrap'
 
@@ -27,7 +28,8 @@ export default class CartItemDisplay extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						// swal("Success! Quantity successfully updated")	
+						AppActions.removeCurrentUser()
+						AppActions.addCurrentUser(data.user, data.jwt)
 					}
 					else {
 						swal("Sorry", "Something went wrong." + data.error, "error")

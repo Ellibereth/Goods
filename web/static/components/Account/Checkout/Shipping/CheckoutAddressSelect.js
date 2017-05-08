@@ -21,12 +21,8 @@ export default class CheckoutAddressSelect extends React.Component {
 
 
 	setAddress(){
-		if (this.state.selected_address == -1) {
-			swal("You haven't selected an address yet!", "You must do so before continuing", "error")
-		}
-		else {
+	
 			this.props.openEditable(BILLING_INDEX)	
-		}
 	}
 
 	onAddressChange(index){

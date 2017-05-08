@@ -139,7 +139,6 @@ def getUserInfo():
 	if jwt_user == None:
 		return JsonUtil.jwt_failure()
 	user_dict = jwt_user.toPublicDict()
-	user_dict[Labels.CartSize] = Cart(jwt_user.account_id).getCartSize()
 	return JsonUtil.successWithOutput({Labels.User : user_dict, Labels.Jwt : JwtUtil.create_jwt(jwt_user.toPublicDict())})
 
 

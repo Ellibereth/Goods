@@ -35,7 +35,6 @@ export default class ProductTemplates extends React.Component {
 	}
 
 	render(){
-		console.log(this.props.product)
 		if (this.props.product){
 			var this_template = this.getTemplate.bind(this)(this.props.product)
 		}

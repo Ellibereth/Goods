@@ -2,7 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
 import AppStore from '../../../stores/AppStore.js'
+import AppActions from '../../../actions/AppActions.js'
 import {Button} from 'react-bootstrap'
+
 
 
 // takes the price of the good as prop for now
@@ -32,6 +34,8 @@ export default class AddToCartButton extends React.Component {
 		  		if (data.success){
 		  			swal("Succesfully added to your cart!")
 		  			this.props.refreshUserInformation.bind(this)()
+		  			AppActions.removeCurrentUser()
+		  			AppActions.addCurrentUser(data.user, data.jwt)
 		  		}
 		  		else  {
 		  			swal({title: "Problem",   

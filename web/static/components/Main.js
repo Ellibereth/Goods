@@ -38,6 +38,10 @@ import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
 export default class Main extends React.Component {
 	
 	componentWillMount() {
+		this.getUserInfo()
+	}
+
+	getUserInfo(){
 		var form_data =  JSON.stringify({
 			jwt : localStorage.jwt
 		})
