@@ -29,7 +29,8 @@ export default class UpdateBillingForm extends React.Component {
 			address_line1 : "",
 			address_line2 : "",
 			address_zip : "",
-			addresss_state: ""
+			addresss_state: "",
+			skip_shipping: false
 		}
 	}
 
@@ -54,6 +55,27 @@ export default class UpdateBillingForm extends React.Component {
 		function () {
 			this.submitData.bind(this)()
 		}.bind(this))
+	}
+
+	skipBillingAddress(event){
+		if (event.target.checked){
+			this.setState({
+				address_name : "",
+				address_city : "",
+				address_country : "US",
+				address_line1 : "",
+				address_line2 : "",
+				address_zip : "",
+				addresss_state: "",
+				skip_shipping: true
+			})
+		}
+		else {
+			this.setState({
+				skip_shipping : false
+			})
+		}
+		
 	}
 
 	submitData(){
@@ -120,7 +142,17 @@ export default class UpdateBillingForm extends React.Component {
 			<h3> Add a Payment Method </h3>
 			<Form horizontal>
 				<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
-				<AddressForm onTextInputChange  = {this.onTextInputChange.bind(this)} />
+				<div className = "row">
+					<div className="checkbox">
+						<label>
+							<input id = "skip_address_checkbox" name = "same_address"  onChange = {this.skipBillingAddress.bind(this)} type="checkbox"/> 
+							Skip billing address
+						</label>
+					</div>
+				</div>
+				{ !this.state.skip_shipping && 
+					<AddressForm onTextInputChange  = {this.onTextInputChange.bind(this)} />
+				}
 
 				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>

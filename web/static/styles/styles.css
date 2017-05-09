@@ -262,3 +262,13 @@ body {
 	color: skyblue;
 	border-color: skyblue;
 }
+
+.text-left {
+	text-align: left !important;
+}
+
+
+.form-group.required .control-label:after {
+	content:"*";
+	color:red;
+}

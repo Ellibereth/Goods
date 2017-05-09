@@ -119,8 +119,8 @@ export default class CreditCardInput extends React.Component {
 			<form id = "address_form" className="form-horizontal">
 
 			<div className = "row">
-				<div className= {this.state.name_error ? "form-group" : "form-group has-success"}>
-				  <label className="col-md-2 control-label" for="State">Name on Card </label>  
+				<div className= {this.state.name_error ? "form-group required" : "form-group required has-success"}>
+				  <label className="col-md-2 control-label text-left" for="State">Name on Card </label>  
 				  <div className="col-md-6">
 				  <input tabindex= {1} id = "card_name_input" 
 				  	className= {this.state.name_error ? "form-control input-md" : "form-control form-control-success input-md"} 
@@ -131,8 +131,8 @@ export default class CreditCardInput extends React.Component {
 
 
 			<div className = "row">
-				<div className= {this.state.number_error ? "form-group" : "form-group has-success"}>
-				  <label className="col-md-2 control-label" > Card Number </label>  
+				<div className= {this.state.number_error ? "form-group required" : "form-group required has-success"}>
+				  <label className="col-md-2 control-label text-left" > Card Number </label>  
 				  <div className="col-md-6">
 				  <input tabindex= {2} id = "card_input" onkeypress = {this.isNumberKey}
 				  className= {this.state.number_error ? "form-control input-md" : "form-control form-control-success input-md"} 
@@ -143,8 +143,8 @@ export default class CreditCardInput extends React.Component {
 			</div>
 
 			<div className = "row">
-				<div className = {this.state.expiry_error ? "form-group" : "form-group has-success"} >
-				  <label className="col-md-2 control-label" for="State"> Expiration </label>  
+				<div className = {this.state.expiry_error ? "form-group required" : "form-group required has-success"} >
+				  <label className="col-md-2 control-label text-left" for="State"> Expiration </label>  
 				  <div className="col-md-2">
 				  <input id = "expiry_input" tabindex= {3}  onkeypress = {this.isNumberKey}
 				  className= {this.state.expiry_error ? "form-control input-md" : "form-control form-control-success input-md"} 
@@ -155,8 +155,8 @@ export default class CreditCardInput extends React.Component {
 			</div>
 
 			<div className = "row">
-				<div className = {this.state.cvc_error ? "form-group" : "form-group has-success"}>
-				  <label className="col-md-2 control-label" for="State"> CVC  </label>  
+				<div className = {this.state.cvc_error ? "form-group required" : "form-group required has-success"}>
+				  <label className="col-md-2 control-label text-left" for="State"> CVC  </label>  
 				  <div className="col-md-2">
 				  	<input tabindex= {4} onkeypress = {this.isNumberKey}
 				  	className = {this.state.cvc_error ? "form-control input-md" : "form-control form-control-success input-md "}
