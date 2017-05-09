@@ -1,10 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Form, FormGroup, ControlLabel} from 'react-bootstrap'
+import {isNumberKey} from './Util.js'
 
-export default class AddressInput extends React.Component {
+export default class AddressForm extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			zip : ""
+		}
 	}
 
 	handleChange(event) {
@@ -15,12 +18,15 @@ export default class AddressInput extends React.Component {
 		this.props.onTextInputChange("address_state", "AL")
 	}
 
-	isNumberKey(evt){
-		var charCode = (evt.which) ? evt.which : event.keyCode
-		if (charCode > 31 && (charCode < 48 || charCode > 57))
-			return false;
-		return true;
-	}
+	onZipChange(event){
+		if (isNumberKey(event)) {
+			this.handleChange.bind(this)(event)
+			this.setState({
+				zip : event.target.value
+			})
+		}
+   	}
+
 
 
 	render() {
@@ -172,8 +178,9 @@ export default class AddressInput extends React.Component {
 					<div className="col-md-4">
 					<input tabindex= {tab_index_start + 8}
 					maxLength = {5} 
-					onkeyenter = {this.isNumberKey}
-					field = "address_zip" onChange = {this.handleChange.bind(this)}
+					field = "address_zip" 
+					value = {this.state.zip}
+					onChange = {this.onZipChange.bind(this)}
 					id="zip" name="address_zip" type="text" 
 					// placeholder="zip or postal code"
 					 className="form-control input-md" required=""/>

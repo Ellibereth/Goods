@@ -37,8 +37,12 @@ export default class CreditCardInput extends React.Component {
 				this.checkCvcError(value)
 				break;
 		}
+	}
 
-
+	isNumberKey(event) {
+		console.log(event.target.value)
+		const re = /^[0-9\b]+$/;
+		return (event.target.value == '' || re.test(event.target.value)) 
 	}
 
 	checkNameError(value){
@@ -153,7 +157,8 @@ export default class CreditCardInput extends React.Component {
 				<div className= {this.state.number_error ? "form-group required" : "form-group required has-success"}>
 				  <label className="col-md-2 control-label text-left" > Card Number </label>  
 				  <div className="col-md-6">
-				  <input tabindex= {2} id = "card_input" onkeypress = {this.isNumberKey}
+				  <input tabindex= {2} id = "card_input" 
+				  onKeyPress = {this.isNumberKey}
 				  className= {this.state.number_error ? "form-control input-md" : "form-control form-control-success input-md"} 
 				   maxLength = "19"
 					onChange = {this.handleChange.bind(this)}  field = "number" placeholder="Card number" type="text" name="number" />
@@ -165,7 +170,7 @@ export default class CreditCardInput extends React.Component {
 				<div className = {this.state.expiry_error ? "form-group required" : "form-group required has-success"} >
 				  <label className="col-md-2 control-label text-left" for="State"> Expiration </label>  
 				  <div className="col-md-2">
-				  <input id = "expiry_input" tabindex= {3}  onkeypress = {this.isNumberKey}
+				  <input id = "expiry_input" tabindex= {3}  onKeyPress = {this.isNumberKey}
 				  className= {this.state.expiry_error ? "form-control input-md" : "form-control form-control-success input-md"} 
 				  maxLength = "7"
 					onChange = {this.handleChange.bind(this)} field = "expiry" placeholder="MM/YY" type="text" name="expiry" />
@@ -177,10 +182,12 @@ export default class CreditCardInput extends React.Component {
 				<div className = {this.state.cvc_error ? "form-group required" : "form-group required has-success"}>
 				  <label className="col-md-2 control-label text-left" for="State"> CVC  </label>  
 				  <div className="col-md-2">
-				  	<input tabindex= {4} onkeypress = {this.isNumberKey}
+				  	<input tabindex= {4} 
+				  	onKeyPress = {this.isNumberKey}
 				  	className = {this.state.cvc_error ? "form-control input-md" : "form-control form-control-success input-md "}
 				  	maxLength = "3"
-					onChange = {this.handleChange.bind(this)}  field = "cvc" placeholder="CVC" type="text" name="cvc" />
+					// onChange = {this.handleChange.bind(this)}
+					  field = "cvc" placeholder="CVC" type="text" name="cvc" />
 					{/*
 						this.state.cvc_error &&
 						 <div className="form-control-feedback has-danger"> {this.state.cvc_error} </div>

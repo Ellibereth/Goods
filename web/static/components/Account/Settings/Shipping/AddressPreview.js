@@ -25,7 +25,7 @@ export default class AddressPreview extends React.Component {
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
+		  cancelButtonText: "No",
 		  closeOnConfirm: false,
 		  closeOnCancel: true
 		},

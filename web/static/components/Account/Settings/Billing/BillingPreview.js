@@ -22,7 +22,7 @@ export default class BillingPreview extends React.Component {
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
+		  cancelButtonText: "No",
 		  closeOnConfirm: false,
 		  closeOnCancel: true
 		},
@@ -45,13 +45,13 @@ export default class BillingPreview extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error deleting your credit card! " + data.error 
-							+ ". Please try again!", "warning")
+						swal("Sorry", "It seems there was an error deleting your credit card! " + data.error 
+							+ ". Please try again", "warning")
 					}
 					else {
 						// AppActions.addCurrentUser(data.user_info)
 							swal({
-								title: "Thank you!", 
+								title: "Thank you", 
 								text : "Your changes have been made",
 								type: "success"
 							})

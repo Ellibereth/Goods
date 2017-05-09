@@ -134,9 +134,9 @@ def updateProductInfo():
 		this_product.name = name
 	if inventory != None:
 		this_product.inventory = inventory
-	if story_text:
+	if story_text != None:
 		this_product.story_text = story_text
-	if num_items_limit:
+	if num_items_limit != None:
 		try:
 			this_product.num_items_limit = int(num_items_limit)
 		except:
