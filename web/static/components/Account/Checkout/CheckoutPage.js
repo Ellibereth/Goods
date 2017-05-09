@@ -267,7 +267,7 @@ export default class CheckoutPage extends React.Component {
 		// Darek Johnson 3900 City Avenue, M619, Philadelphia, PA, 19131 United States
 		return ( 
 			<span>
-				<b> {address.name} </b> {address.address_line1}, {address.address_line2}, {address.address_city}, {address.address_state}, {address.address_zip} {address.address_country}
+				<b> {address.name} </b> {address.address_line1}{address.address_line2 && " " + address.address_line2}, {address.address_city}, {address.address_state}, {address.address_zip} {address.address_country}
 			</span>
 		)
 	}

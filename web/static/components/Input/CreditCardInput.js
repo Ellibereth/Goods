@@ -114,10 +114,29 @@ export default class CreditCardInput extends React.Component {
 	}
 
 	render() {
+
+		var card_icon_base = "https://s3-us-west-2.amazonaws.com/edgarusapublicicons/cardicons/"
+
+		// VISA, Mastercard, Discover, AMEX
+		var card_types = ['light/1.png', 'light/2.png', 'light/14.png', 'light/22.png']
+		var card_icons = card_types.map((type, index) => 
+					<img className = "card-icon-md "
+						src = {card_icon_base + type} />
+				)
+
 		return (
 
 			<form id = "address_form" className="form-horizontal">
+			
 
+			<div className = "row">
+				<div className = "form-group">
+					<label className = "control-label col-sm-10 col-md-10 col-lg-10 text-left">
+						We accept 
+							{card_icons} 
+					</label>
+				</div>
+			</div>
 			<div className = "row">
 				<div className= {this.state.name_error ? "form-group required" : "form-group required has-success"}>
 				  <label className="col-md-2 control-label text-left" for="State">Name on Card </label>  

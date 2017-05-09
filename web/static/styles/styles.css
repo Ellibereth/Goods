@@ -272,3 +272,9 @@ body {
 	content:"*";
 	color:red;
 }
+
+.card-icon-md {
+	height: 36px;
+	width: auto;
+	margin: 8px;
+}
