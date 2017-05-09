@@ -41,8 +41,8 @@ export default class TopNavBar extends React.Component {
 			return (
 				
 					<ul className="nav navbar-nav navbar-right">
-						<li><Link href="/register" className = "no-user-link">Sign Up</Link></li>
-						<li><Link href="/login" className = "no-user-link">Login</Link></li>
+						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
+						<li><Link to ="/login" className = "no-user-link">Login</Link></li>
 					</ul>
 			)
 		}
@@ -79,6 +79,7 @@ export default class TopNavBar extends React.Component {
 
 							<ul className="dropdown-menu"> 
 								<li><Link to ="/settings"> Settings </Link> </li>
+								<li> <Link to = '/myOrders'> Past Orders </Link> </li>
 								<li> <Link to = "/logout"> Logout </Link></li>
 							</ul>
 						</li>

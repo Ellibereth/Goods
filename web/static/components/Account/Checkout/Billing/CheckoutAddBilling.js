@@ -113,40 +113,40 @@ export default class CheckoutAddBilling extends React.Component {
 
 	render() {
 		return (
-			<div className = "row">
-				<div className = "col-sm-1 col-md-1 col-lg-1"/>
-				<div className = "col-sm-9 col-md-9 col-lg-9">
-					<Form horizontal>
-					<div className = "row">
+			<div className = "container">
+				<div className = "row">
+					<div className = "col-sm-10 col-md-10 col-lg-10">
+						
+						
 						<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
-					</div>
-					<div className = "row">
-						<div className="checkbox">
-						  <label><input disabled = {!this.props.selected_address} id = "same_address_checkbox" name = "same_address"  onChange = {this.useSameAddressChange.bind(this)} type="checkbox"/> Use same address from shipping </label>
-						</div>
-						{
-							!this.props.selected_address &&
-							<small>	
-								You must select an address before you can use this option. 
-							</small>
-						}
-					</div>
-
-
-					{ !this.state.use_same_as_shipping &&
+						
 						<div className = "row">
-							<AddressForm 
-							has_description = {false}
-							onTextInputChange = {this.onTextInputChange.bind(this)}/>
+							<div className="checkbox">
+							  <label><input disabled = {!this.props.selected_address} id = "same_address_checkbox" name = "same_address"  onChange = {this.useSameAddressChange.bind(this)} type="checkbox"/> Use same address from shipping </label>
+							</div>
+							{
+								!this.props.selected_address &&
+								<small>	
+									You must select an address before you can use this option. 
+								</small>
+							}
 						</div>
-					}
-					
-					<div className = "row">
-						<Button onClick = {this.onSubmitPress.bind(this)}>
-							Add Billing Method
-						</Button>
+
+
+						{ !this.state.use_same_as_shipping &&
+							
+								<AddressForm 
+								has_description = {false}
+								onTextInputChange = {this.onTextInputChange.bind(this)}/>
+						}
+						
+						<div className = "row">
+							<Button onClick = {this.onSubmitPress.bind(this)}>
+								Add Billing Method
+							</Button>
+						</div>
+						
 					</div>
-					</Form>
 				</div>
 			</div>
 			

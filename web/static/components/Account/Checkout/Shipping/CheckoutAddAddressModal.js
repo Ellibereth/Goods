@@ -38,10 +38,10 @@ render() {
 			<Modal.Title id="contained-modal-title-lg"> Add an address </Modal.Title>
 		</Modal.Header>
 			<Modal.Body>
-			<CheckoutAddAddress
-				refreshCheckoutInformation = {this.props.refreshCheckoutInformation}
-				toggleModal = {this.props.toggleModal}
-				onAddingNewShippingAddress = {this.props.onAddingNewShippingAddress}/>
+					<CheckoutAddAddress
+						refreshCheckoutInformation = {this.props.refreshCheckoutInformation}
+						toggleModal = {this.props.toggleModal}
+						onAddingNewShippingAddress = {this.props.onAddingNewShippingAddress}/>
 			</Modal.Body>
 		</Modal>
 		);
