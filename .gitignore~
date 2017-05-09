@@ -25,6 +25,7 @@
 *.pyc
 *.xml
 *.key
+*.csr
 ipch/
 obj/
 [Bb]in

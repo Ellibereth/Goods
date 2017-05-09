@@ -161,14 +161,18 @@ class User(db.Model):
 		
 
 	def getCreditCards(self):
-		# try:
-		cards = StripeManager.getUserCards(self)
-		# print(cards)
-		# sorted_cards = sorted(cards,  key=lambda k: k['metadata'].get('date_created'))
-		return cards
-		# except Exception as e:
-		# 	print(e)
-		# 	return []
+		try:
+			cards = StripeManager.getUserCards(self)
+			# if you can sort them sort them, if not just return the standard. 
+			# this is because some accounts do not have time stamps
+			# but after 5/9/2017 they will
+			try:
+				sorted_cards = sorted(cards,  key=lambda k: k['metadata'].get('date_created'))
+				return sorted_cards
+			except:
+				return cards
+		except Exception as e:
+			return []
 
 	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
