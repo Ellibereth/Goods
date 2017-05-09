@@ -8,11 +8,7 @@
 .top-buffer { margin-top:20px; }
 .small-buffer { margin-top:10px; }
 
-.product-preview-container {
-	background-color: white;
-	padding : 8px;
 
-}
 
 .black-border-shown{
 	border-style: solid;
@@ -277,4 +273,20 @@ body {
 	height: 36px;
 	width: auto;
 	margin: 8px;
+}
+
+.product-preview-row {
+	margin-bottom: 12px;
+}
+
+.product-preview-home {
+	background-color: white;
+	padding : 8px;
+	/*margin: 14px;*/
+}
+
+.product-preview-image {
+	height: auto;
+	width: 100%;
+	/*max-width: ;*/
 }

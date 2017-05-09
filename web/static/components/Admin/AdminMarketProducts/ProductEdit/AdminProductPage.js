@@ -64,7 +64,7 @@ export default class AdminProductPage extends React.Component {
 				<div>
 					<div className = "container">
 						<div className = "row">
-							<AdminActivateProduct product = {this.props.product}/>
+							<AdminActivateProduct product = {this.state.product}/>
 						</div>
 						<div className = "row">
 							<div className = "text-center">

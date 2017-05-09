@@ -130,6 +130,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.StoryTemplate] = self.story_template
 		public_dict[Labels.ProductTemplate] = self.product_template
 		public_dict[Labels.NumItemsLimit] = self.num_items_limit
+		public_dict[Labels.Active] = self.active
 		return public_dict
 
 

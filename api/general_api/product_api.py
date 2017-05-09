@@ -175,8 +175,8 @@ def uploadMarketProductImage():
 	
 	return JsonUtil.success()
 
-@product_api.route('/activateMarketProduct', methods = ['POST'])
-def activateMarketProduct():
+@product_api.route('/activateProduct', methods = ['POST'])
+def activateProduct():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
@@ -186,7 +186,6 @@ def activateMarketProduct():
 		product.activateProduct()
 	else:
 		return JsonUtil.failure("product doesn't exist")
-
 	return JsonUtil.success("Successfully activated \'" + product.name)
 
 @product_api.route('/deactivateMarketProduct', methods = ['POST'])

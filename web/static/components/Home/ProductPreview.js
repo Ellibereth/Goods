@@ -5,7 +5,7 @@ import {Grid, Col, Row} from 'react-bootstrap';
 var browserHistory = require('react-router').browserHistory;
 
 
-export default class StorePage extends React.Component {
+export default class ProductPreview extends React.Component {
   	constructor(props) {
 		super(props);
 		this.state = {
@@ -60,15 +60,18 @@ export default class StorePage extends React.Component {
   		// hard coded for now
   		var date = this.state.product.sale_end_date
   		if (this.state.invalid_product) return <div/>
+  		var col_size = this.props.col_size
 		return (
+
 			<div 
 			onMouseOver = {this.onMouseOver.bind(this)}
 			onMouseOut = {this.onMouseOut.bind(this)}
-			id = {this.state.product.product_id} className = "product-preview-container"
+			id = {this.state.product.product_id} 
 			onClick = {this.goToProduct.bind(this)}
+			className = {"product-preview-home col-md-" + col_size + " col-lg-" + col_size}
 			>
-				<Grid>
-					<Col xs = {2} s = {2} md = {2} lg= {2}>
+				<div className = "row">
+					<Col xs = {4} s = {4} md = {4} lg= {4}>
 					{this.state.product.images.length == 0 ? 
 						<div> No Image For This Product </div>
 
@@ -76,16 +79,16 @@ export default class StorePage extends React.Component {
 						<img 
 						src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
 						+ this.state.product.images[0].image_id}
-						className = "img-responsive img-rounded"/>
+						className = "img-responsive img-rounded product-preview-image"/>
 					}
 					</Col>
 
-					<Col xs = {4} s = {4} md = {4}lg = {4}>
+					<Col xs = {8} s = {8} md = {8} lg = {8}>
 						<span className = "row-fluid"> Name: {this.state.product.name} </span> <br/>
 						<span className = "row-fluid"> Price: ${this.state.product.price} </span> <br/>
 						<span className = "row-fluid"> Manufacturer: {this.state.product.manufacturer} </span> <br/>
 					</Col>
-				</Grid>
+				</div>
 			</div>
 		);
 	}

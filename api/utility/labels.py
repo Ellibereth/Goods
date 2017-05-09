@@ -79,6 +79,7 @@ class MarketProductLabels:
 	ProductTemplate = "product_template"
 	StoryText = "story_text"
 	NumItemsLimit = "num_items_limit"
+	Active = "active"
 
 class ProductTagLabels:
 	ProductId = "product_id"
