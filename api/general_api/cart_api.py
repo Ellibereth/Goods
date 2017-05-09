@@ -28,21 +28,25 @@ def addItemToCart():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
 	if cart_item == None:
 		new_cart_item = CartItem(account_id, product_id, num_items = quantity)
 		db.session.add(new_cart_item)
 		db.session.commit()
-		return JsonUtil.success()
+		return JsonUtil.successWithOutput({
+			Labels.User : this_user.toPublicDict(),
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+		})
 	try:
 		cart_item.updateCartQuantity(cart_item.num_items + quantity)
 	except Exception as e:
 		return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
 
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	
 	return JsonUtil.successWithOutput({
 			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 		})
 
 # checkout cart
@@ -87,7 +91,7 @@ def checkoutCart():
 	this_cart.clearCart()
 	return JsonUtil.successWithOutput({
 			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 		})
 
 
@@ -113,7 +117,6 @@ def getCheckoutInformation():
 	if this_user == None:
 		return JsonUtil.failure("User does not exist")
 	this_cart = Cart(account_id)
-	price = this_cart.price
 	addresses = this_user.getAddresses()
 	cards = this_user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
@@ -140,7 +143,7 @@ def updateCartQuantity():
 
 	return JsonUtil.successWithOutput({
 			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 		})
 
 

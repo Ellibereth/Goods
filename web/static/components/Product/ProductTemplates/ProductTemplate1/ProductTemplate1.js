@@ -66,22 +66,21 @@ export default class ProductTemplate1 extends React.Component {
 		// this.setState({is_loading : true})
 		$('#product-page-container').addClass("faded");
 			var form_data = JSON.stringify({
-			"account_id" : AppStore.getCurrentUser().account_id,
 			"jwt" : localStorage.jwt
 			})
 			$.ajax({
 				type: "POST",
-				url: "/getCheckoutInformation",
+				url: "/getUserInfo",
 				data: form_data,
 				success: function(data) {
 					if (data.success) {
 						this.setState({
-							items: data.cart.items, 
-							price : data.cart.price,
+							items: data.user.cart.items, 
+							price : data.user.cart.price,
 						})
-						for (var i = 0; i < data.cart.items.length; i++){
-							if (data.cart.items[i].product_id == this.props.product.product_id){
-								this.setState({cart_item : data.cart.items[i]})
+						for (var i = 0; i < data.user.cart.items.length; i++){
+							if (data.user.cart.items[i].product_id == this.props.product.product_id){
+								this.setState({cart_item : data.user.cart.items[i]})
 							}
 						}		
 					}

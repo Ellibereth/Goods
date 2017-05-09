@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
+import AppActions from '../../../actions/AppActions.js';
 import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import CheckoutCardSelect from './Billing/CheckoutCardSelect.js'
@@ -122,8 +123,8 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	refreshCheckoutInformation(){
-		// this.setState({is_loading : true})
-		$('#checkout-container').addClass("faded");
+		this.setState({is_loading : true})
+		// $('#checkout-container').addClass("faded");
 
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
@@ -131,18 +132,20 @@ export default class CheckoutPage extends React.Component {
 			})
 			$.ajax({
 				type: "POST",
-				url: "/getCheckoutInformation",
+				url: "/getUserInfo",
 				data: form_data,
 				success: function(data) {
 					if (data.success) {
 						this.setState({
-							items: data.cart.items, 
-							price : data.cart.price,
-							cards : data.cards,
-							addresses : data.addresses, 
+							items: data.user.cart.items, 
+							price : data.user.cart.price,
+							cards : data.user.cards,
+							addresses : data.user.addresses, 
 							is_loading : false
 						})
-						$('#checkout-container').removeClass("faded");
+						AppActions.removeCurrentUser()
+						AppActions.addCurrentUser(data.user, data.jwt)
+						// $('#checkout-container').removeClass("faded");
 					}
 					else {
 						console.log("an error")
@@ -160,7 +163,16 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	componentWillMount(){
-		this.refreshCheckoutInformation.bind(this)()
+		// this.refreshCheckoutInformation.bind(this)()
+		this.setState({
+			cards : AppStore.getCurrentUser().cards,
+			addresses: AppStore.getCurrentUser().addresses,
+			price: AppStore.getCurrentUser().cart.price,
+			items : AppStore.getCurrentUser().cart.items,
+			is_loading: false
+			},
+			this.initializeInformation.bind(this)
+		)
 		
 	}
 
@@ -214,7 +226,8 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	checkout(){
-		$('#checkout-container').addClass("faded");
+		// $('#checkout-container').addClass("faded");
+		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
 				account_id : AppStore.getCurrentUser().account_id,
 				jwt : localStorage.jwt,
@@ -237,6 +250,8 @@ export default class CheckoutPage extends React.Component {
 						browserHistory.push(`/checkoutConfirmed`)
 					}, 2000)
 					$('#checkout-container').removeClass("faded");
+					AppActions.removeCurrentUser()
+					AppActions.addCurrentUser(data.user, data.jwt)
 				}
 			}.bind(this),
 			error : function(){
@@ -284,7 +299,9 @@ export default class CheckoutPage extends React.Component {
 				component = {
 
 				
-				<div id = "checkout-container" className = "container faded">
+				<div id = "checkout-container" 
+				className = {this.state.is_loading ? "container faded" : "container"}
+				>
 		
 					<CheckoutAddBillingModal 
 						selected_address = {this.getSelectedAddress()}

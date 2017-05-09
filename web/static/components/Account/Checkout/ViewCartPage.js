@@ -21,22 +21,21 @@ export default class ViewCartPage extends React.Component {
 
 	refreshCheckoutInformation(){
 		this.setState({is_loading : true})
-		$('#view-cart-container').addClass("faded");
+		// $('#view-cart-container').addClass("faded");
 		var form_data = JSON.stringify({
-				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt
 			})
 			$.ajax({
 				type: "POST",
-				url: "/getCheckoutInformation",
+				url: "/getUserInfo",
 				data: form_data,
 				success: function(data) {
 					if (data.success) {
 						this.setState({
-							items: data.cart.items, 
-							price : data.cart.price,
-							cards : data.cards,
-							addresses : data.addresses, 
+							items: data.user.cart.items, 
+							price : data.user.cart.price,
+							cards : data.user.cards,
+							addresses : data.user.addresses, 
 						})
 					}
 					else {
@@ -56,14 +55,26 @@ export default class ViewCartPage extends React.Component {
 	
 
 	componentWillMount(){
-		this.refreshCheckoutInformation.bind(this)()
+		// this.refreshCheckoutInformation.bind(this)()
+		var user = AppStore.getCurrentUser()
+		this.setState({
+				items: user.cart.items, 
+				price : user.cart.price,
+				cards : user.cards,
+				addresses : user.addresses, 
+				is_loading: false
+			})
 	}
 
 	
 	render() {
+		console.log(this.state.items)
+		console.log(this.state.is_loading)
 		return (
 			<PageContainer component = {
-				<div id = "view-cart-container" className = "container">
+				<div id = "view-cart-container" 
+				className = {this.state.is_loading ? "container faded" : "container"}
+				>
 
 					<div className = "row">
 						<div className = "col-md-10 col-lg-10 col-sm-10 well">

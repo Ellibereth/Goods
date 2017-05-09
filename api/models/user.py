@@ -81,6 +81,16 @@ class User(db.Model):
 				return True
 		return False
 
+	def toJwtDict(self):
+		public_dict = {}
+		public_dict['name'] = self.name
+		public_dict['email'] = self.email
+		public_dict['email_confirmed'] = self.email_confirmed
+		public_dict['account_id'] = self.account_id
+		public_dict['is_admin'] = self.is_admin
+		return public_dict
+
+
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict['name'] = self.name
@@ -89,6 +99,10 @@ class User(db.Model):
 		public_dict['account_id'] = self.account_id
 		public_dict['is_admin'] = self.is_admin
 		public_dict['cart_size'] = Cart(self.account_id).getCartSize()
+		public_dict['cart'] = Cart(self.account_id).toPublicDict()
+		public_dict['addresses'] = self.getAddresses()
+		public_dict['cards'] = self.getCreditCards()
+		public_dict['orders'] = self.getUserOrders()
 		return public_dict
 
 	# do you think these methods should be static or instance?
@@ -147,7 +161,10 @@ class User(db.Model):
 		
 
 	def getCreditCards(self):
-		return StripeManager.getUserCards(self)
+		try:
+			return StripeManager.getUserCards(self)
+		except:
+			return []
 
 	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
@@ -160,8 +177,11 @@ class User(db.Model):
 		return address
 		
 	def getAddresses(self):
-		addresses = Lob.getUserAddresses(self)
-		return addresses
+		try:
+			addresses = Lob.getUserAddresses(self)
+			return addresses
+		except:
+			return []
 
 	# in actuality this method deletes the previous address with the id and then recreates one
 	def editAddress(self, address_id, description, name, address_line1, address_line2, address_city, address_state,

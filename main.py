@@ -1,13 +1,21 @@
-from flask import Flask, render_template, request, url_for, redirect, send_from_directory
+from flask import Flask, g, render_template, request, url_for, redirect, send_from_directory
 import time
 import os
 import random
 import requests
+import csv
 from flask_sqlalchemy import SQLAlchemy
 from api.models.shared_models import db
 from api.utility.jwt_util import JwtUtil
 
 from base64 import b64encode
+
+
+# logging speed of requests
+# log_dir = "logs/"
+# logging.basicConfig(filename=(log_dir + 'request_speed.log'), 
+# 	level=logging.DEBUG, format='%(message)s')
+
 
 # initialize app
 template_dir = os.path.abspath('./web/templates')
@@ -78,6 +86,20 @@ def send_static(path):
 @app.route('/<path:path>')
 def catch_all(path):
 	return render_template("index.html")
+
+
+@app.before_request
+def before_request():
+	g.start = time.time()
+
+@app.teardown_request
+def teardown_request(exception=None):
+	diff = time.time() - g.start
+	with open("logs/request_speed.csv", "a") as f:
+		writer = csv.writer(f)
+		writer.writerow([request.method, request.path, diff])
+
+
 
 if __name__ == '__main__':
 	app.debug = True

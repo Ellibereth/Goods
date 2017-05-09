@@ -22,7 +22,7 @@ export default class TopNavBar extends React.Component {
 	componentDidMount(){
 		setInterval(function(){ 
 			var current_cart_size = AppStore.getCurrentUser().cart_size
-			if (current_cart_size != cart_badge){
+			if (current_cart_size != this.state.cart_badge){
 				this.setState({cart_badge : AppStore.getCurrentUser().cart_size})	
 			}
 		}.bind(this), 1000)
@@ -78,7 +78,7 @@ export default class TopNavBar extends React.Component {
 							</a>
 
 							<ul className="dropdown-menu"> 
-								<li> <a href = "#"> Hello, {current_user.name} </a> </li>
+								<li> <a href = "#"> Hello {current_user.name.split(' ')[0]}! </a> </li>
 								<li><Link to ="/settings"> Settings </Link> </li>
 								<li> <Link to = "/logout"> Logout </Link></li>
 							</ul>

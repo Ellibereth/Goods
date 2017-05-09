@@ -42,35 +42,7 @@ export default class CheckoutAddAddress extends React.Component {
 		this.setState({use_same_for_billing : event.target.value})
 	}
 
-	refreshCheckoutInformation(){
-		var form_data = JSON.stringify({
-				"account_id" : AppStore.getCurrentUser().account_id,
-				"jwt" : localStorage.jwt
-			})
-			$.ajax({
-				type: "POST",
-				url: "/getCheckoutInformation",
-				data: form_data,
-				success: function(data) {
-					if (data.success) {
-						this.setState({
-							items: data.cart.items, 
-							price : data.cart.price,
-							cards : data.cards,
-							addresses : data.addresses, 
-						})
-					}
-					else {
-						console.log("an error")
-					}
-				}.bind(this),
-				error : function(){
-					console.log("an internal server error")
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
-	}
+	
 
 	addAddress(){
 		var data = {}

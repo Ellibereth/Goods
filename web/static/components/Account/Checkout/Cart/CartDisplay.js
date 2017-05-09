@@ -14,6 +14,12 @@ export default class CartDisplay extends React.Component {
 			has_loaded : false
 		}
 	}
+
+	componentDidMount(){
+		if (!this.props.is_loading){
+			this.setState({has_loaded : true})
+		}
+	}
 	
 	componentWillReceiveProps(nextProps){
 		if (!nextProps.is_loading){
@@ -26,7 +32,7 @@ export default class CartDisplay extends React.Component {
 				<CartItemDisplay refreshCheckoutInformation = {this.props.refreshCheckoutInformation} item = {item} />
 			)
 
-		if (!this.state.has_loaded) {
+		if (!this.state.has_loaded){
 			return <div/>
 		}
 
@@ -36,7 +42,7 @@ export default class CartDisplay extends React.Component {
 				{item_display.length == 0 ? 
 					<div>
 						<h4> There are no items in your cart! </h4>
-						<h4> Check out our store  <Link to = "/store"> here </Link> </h4>
+						<h4> Check out some items  <Link to = "/"> here </Link> </h4>
 					</div>
 				:
 					<div>

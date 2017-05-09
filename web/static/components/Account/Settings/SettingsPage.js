@@ -22,28 +22,29 @@ export default class SettingsPage extends React.Component {
 
 	refreshSettings(){
 		this.setState({is_loading : true})
-		$('#settings-container').addClass("faded");
 		var form_data = JSON.stringify({
-				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt
 			})
 		$.ajax({
 			type: "POST",
-			url: "/getSettingsInformation",
+			url: "/getUserInfo",
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
+					AppActions.removeCurrentUser()
+					AppActions.addCurrentUser(data.user, data.jwt)
+
 					this.setState({
-						cards : data.cards,
-						addresses : data.addresses,
-						orders : data.orders 
+						cards : data.user.cards,
+						addresses : data.user.addresses,
+						orders : data.user.orders ,
+						cart: data.user.cart
 					})
 				}
 				else {
 					console.log("an error")
 				}
 				this.setState({is_loading : false})
-				$('#settings-container').removeClass("faded");
 			}.bind(this),
 			error : function(){
 				console.log("an internal server error")
@@ -54,13 +55,28 @@ export default class SettingsPage extends React.Component {
 	}
 
 	componentDidMount(){
-		this.refreshSettings.bind(this)()
+		// this.refreshSettings.bind(this)()
+		this.refreshDisplay.bind(this)()
+		this.setState({is_loading : false})
 	}
+
+	refreshDisplay() {
+		var current_user = AppStore.getCurrentUser()
+		this.setState({
+			cards : current_user.cards,
+			orders: current_user.orders,
+			addresses: current_user.addresses,
+			cart : current_user.cart
+		})
+	}
+
 
 	render() {
 		return (
 			<PageContainer component = {
-				<div id = "settings-container" className = "container faded">
+				<div id = "settings-container" 
+				className = {this.state.is_loading ? "container faded" : "container"}
+				>
 					<h1> Your Account </h1> 
 					<br/>
 					<UpdateSettingsPreview  />

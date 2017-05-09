@@ -77,7 +77,26 @@ export default class UpdateShippingForm extends React.Component {
 								text : "Your changes have been made",
 								type: "success"
 							})
-						browserHistory.push(`/settings`)
+
+						var form_data =  JSON.stringify({
+							jwt : localStorage.jwt
+							})
+							$.ajax({
+								type: "POST",
+								url: "/getUserInfo",
+								data: form_data,
+								success: function(data) {
+									if (data.success) {
+										AppActions.removeCurrentUser()
+										AppActions.addCurrentUser(data.user, data.jwt)
+									}
+									browserHistory.push(`/settings`)
+								}.bind(this),
+								error : function(){
+								},
+								dataType: "json",
+								contentType : "application/json; charset=utf-8"
+							});
 					}
 
 				}.bind(this),

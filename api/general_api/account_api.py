@@ -21,7 +21,8 @@ def checkLogin():
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
 	if this_user.checkLogin(input_password):
-		output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+		output = {Labels.User : this_user.toPublicDict(),
+		 Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
 		return JsonUtil.successWithOutput(output)
 	else:
 		return JsonUtil.failure("Password is not correct")
@@ -36,7 +37,8 @@ def checkPassword():
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
 	if this_user.checkLogin(input_password):
-		output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+		output = {Labels.User : this_user.toPublicDict(),
+		 Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
 		return JsonUtil.successWithOutput(output)
 	else:
 		return JsonUtil.failure("Password is not correct")
@@ -73,13 +75,18 @@ def registerUserAccount():
 def confirmEmail():
 	email_confirmation_id = request.json.get(Labels.EmailConfirmationId)
 	this_user = User.query.filter_by(email_confirmation_id = email_confirmation_id).first()
+
 	if this_user == None:
 		return JsonUtil.failure("Email confirmation id doesn't go with any user")
-	if this_user.email_confirmed:
-		return JsonUtil.failure("Email already confirmed")
+	# elif this_user.email_confirmed:
+	# 	print("Bro2")
+	# 	return JsonUtil.failure("Email already confirmed")
 	else:
 		this_user.confirmEmail()
-		return JsonUtil.successWithOutput({Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())})
+		return JsonUtil.successWithOutput({
+			Labels.User : this_user.toPublicDict(),
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+		})
 
 # updates the user's settings
 @account_api.route('/updateSettings', methods = ['POST'])
@@ -106,7 +113,7 @@ def updateSettings():
 		return JsonUtil.failure("Name must only be letters and spaces")
 
 	this_user.updateSettings(new_settings)
-	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
 	return JsonUtil.successWithOutput(output)
 
 
@@ -122,24 +129,12 @@ def changePassword():
 	if new_password == new_password_confirm:
 		valid_password = this_user.changePassword(old_password, new_password)
 		if valid_password:
-			output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toPublicDict())}
+			output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
 			return JsonUtil.successWithOutput(output)
 		else:
 			return JsonUtil.failure("Password is invalid")
 	else:
 		return JsonUtil.failure("Passwords don't match")
-
-# use this to refresh user information on mounting of main.js
-@account_api.route('/getUserInfo', methods = ['POST'])
-def getUserInfo():
-	jwt = request.json.get(Labels.Jwt)
-	if jwt == None or jwt == "" or jwt == "undefined":
-		return JsonUtil.jwt_failure()
-	jwt_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if jwt_user == None:
-		return JsonUtil.jwt_failure()
-	user_dict = jwt_user.toPublicDict()
-	return JsonUtil.successWithOutput({Labels.User : user_dict, Labels.Jwt : JwtUtil.create_jwt(jwt_user.toPublicDict())})
 
 
 @account_api.route('/addCreditCard', methods = ['POST'])
@@ -289,20 +284,16 @@ def getUserOrders():
 	orders = this_user.getUserOrders()
 	return JsonUtil.successWithOutput({Labels.Orders : orders})
 
-@account_api.route('/getSettingsInformation', methods = ['POST'])
-def getSettingsInformation():
-	account_id = request.json.get(Labels.AccountId)
+@account_api.route('/getUserInfo', methods = ['POST'])
+def getUserInfo():
 	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-	this_user = User.query.filter_by(account_id = account_id).first()
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if this_user == None:
-		return JsonUtil.failure("User does not exist")
-	addresses = this_user.getAddresses()
-	cards = this_user.getCreditCards()
-	orders = this_user.getUserOrders()
-	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
-		Labels.Orders : orders})
+		return JsonUtil.jwt_failure()
+	return JsonUtil.successWithOutput({
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
+			Labels.User : this_user.toPublicDict()
+		})
 
 
 @account_api.route('/softDeleteAccount', methods = ['POST'])

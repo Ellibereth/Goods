@@ -37,7 +37,7 @@ import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
 
 export default class Main extends React.Component {
 	
-	componentWillMount() {
+	componentDidMount() {
 		this.getUserInfo()
 	}
 
