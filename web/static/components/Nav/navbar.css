@@ -13,9 +13,9 @@
 .nav-greetings-text {
 	display: block;
 	text-align: center;
-	line-height : 44px;
-	font-size: 36px;
-
+	line-height : 72px;
+	font-size: 24px;
+	color: white;
 }
 
 .navbar-brand-with-user {

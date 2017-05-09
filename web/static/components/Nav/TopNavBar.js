@@ -83,11 +83,9 @@ export default class TopNavBar extends React.Component {
 							</ul>
 						</li>
 						<li>
-							<Link href = "#">
-								<span className = "nav-greetings-text">
-									 Hello {current_user.name.split(' ')[0]}! 
-								</span>
-							</Link> 
+							<span className = "nav-greetings-text">
+								 Hello {current_user.name.split(' ')[0]}! 
+							</span>
 						</li>
 					</ul>
 				
