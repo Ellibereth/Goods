@@ -118,7 +118,6 @@ export default class UpdateBillingForm extends React.Component {
 		return (
 			<div className = "col-sm-12 col-md-12 col-lg-12">
 			<h3> Add a Payment Method </h3>
-			<span> Click <Link to = "/settings"> here </Link> to return  </span>
 			<Form horizontal>
 				<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
 				<AddressForm onTextInputChange  = {this.onTextInputChange.bind(this)} />

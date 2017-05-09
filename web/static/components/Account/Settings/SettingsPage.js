@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
+import AppActions from '../../../actions/AppActions.js';
 import PageContainer from '../../Misc/PageContainer'
 import UpdateSettingsPreview from './Personal/UpdateSettingsPreview.js'
 import BillingPreview from './Billing/BillingPreview.js'

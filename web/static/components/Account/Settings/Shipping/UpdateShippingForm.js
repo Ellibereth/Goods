@@ -115,7 +115,7 @@ export default class UpdateShippingForm extends React.Component {
 		return (
 				<div>
 					<h3> Add an Address </h3>
-					<span> Click <Link to = "/settings"> here </Link> to return  </span>
+				
 					<Form horizontal>
 						<AddressForm 
 						has_description = {true}

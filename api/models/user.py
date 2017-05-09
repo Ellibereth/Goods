@@ -161,10 +161,14 @@ class User(db.Model):
 		
 
 	def getCreditCards(self):
-		try:
-			return StripeManager.getUserCards(self)
-		except:
-			return []
+		# try:
+		cards = StripeManager.getUserCards(self)
+		# print(cards)
+		# sorted_cards = sorted(cards,  key=lambda k: k['metadata'].get('date_created'))
+		return cards
+		# except Exception as e:
+		# 	print(e)
+		# 	return []
 
 	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
@@ -179,7 +183,8 @@ class User(db.Model):
 	def getAddresses(self):
 		try:
 			addresses = Lob.getUserAddresses(self)
-			return addresses
+			sorted_addresses = sorted(addresses,  key=lambda k: k['date_created'])
+			return sorted_addresses
 		except:
 			return []
 

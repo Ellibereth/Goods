@@ -1,4 +1,5 @@
 import stripe
+import time
 # Set your secret key: remember to change this to your live secret key in production
 # See your keys here: https://dashboard.stripe.com/account/apikeys
 test_key = "sk_test_B0VTmo1cTi1WfnlKEQjgVsjm"
@@ -73,6 +74,7 @@ class StripeManager:
 		new_card['name'] = name
 		new_card["address_country"] = address_country
 		new_card["adddress_stae"] = address_state
+		new_card['metadata'] = {"date_created" : time.time()}
 		customer.sources.create(card = new_card)
 
 	def getUserCards(user):
