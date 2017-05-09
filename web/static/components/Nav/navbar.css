@@ -10,6 +10,14 @@
 	text-align: center;
 }
 
+.nav-greetings-text {
+	display: block;
+	text-align: center;
+	line-height : 44px;
+	font-size: 36px;
+
+}
+
 .navbar-brand-with-user {
 	line-height : 44px;
 	font-size: 36px;
@@ -51,7 +59,8 @@
 }
 
 .navbar-edgarusa {
-	background-color: blue;
+	/*background-color: blue;*/
+	background-color: #002868;
 }
 
 .search-bar-with-user {

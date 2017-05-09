@@ -78,10 +78,16 @@ export default class TopNavBar extends React.Component {
 							</a>
 
 							<ul className="dropdown-menu"> 
-								<li> <a href = "#"> Hello {current_user.name.split(' ')[0]}! </a> </li>
 								<li><Link to ="/settings"> Settings </Link> </li>
 								<li> <Link to = "/logout"> Logout </Link></li>
 							</ul>
+						</li>
+						<li>
+							<Link href = "#">
+								<span className = "nav-greetings-text">
+									 Hello {current_user.name.split(' ')[0]}! 
+								</span>
+							</Link> 
 						</li>
 					</ul>
 				

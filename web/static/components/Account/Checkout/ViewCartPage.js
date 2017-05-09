@@ -104,11 +104,6 @@ export default class ViewCartPage extends React.Component {
 								<Button disabled = {this.state.items.length == 0}>
 									<Link to = "checkout"> Proceed to Checkout </Link>
 								</Button>
-								{ this.state.items.length == 0 &&
-									<small>
-										Add items to cart before checkout
-									</small>
-								}
 								
 						</div>
 					</div>
