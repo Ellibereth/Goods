@@ -16,7 +16,8 @@ export default class AdminEditProduct extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			product : {}
+			product : {},
+			variants : [],
 		}
 	}
 
@@ -25,6 +26,16 @@ export default class AdminEditProduct extends React.Component {
 		var obj = this.state.product
 		obj[field] = value
 		this.setState({product: obj})
+	}
+
+	onVariantInputChange(field, value){
+		var obj = this.state.variants
+		for (var i = 0; i < obj.length; i++){
+			if (obj[i]['variant_type'] == field){
+				obj[i]['inventory'] = value
+			}
+		}
+		this.setState({variants : obj})
 	}
 
 	componentDidMount(){
@@ -85,11 +96,23 @@ export default class AdminEditProduct extends React.Component {
 		// edit text fields
 		// delete / add images
 		// on image add/delete reload page
-		var input_forms = form_fields.map((field, index) =>
-				<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+		var input_forms = form_fields.map((field, index) => {
+				if (!this.state.product.has_variants && field != "inventory")
+				return <TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state.product[field]} field = {field} label = {form_labels[index]}
 				input_type = {input_types[index]}/>
-			)
+			})
+
+		if (this.state.product.variants){
+			var variant_inventory = this.state.product.variants.map((variant, index) =>
+					<TextInput onTextInputChange = {this.onVariantInputChange.bind(this)}
+					value = {variant.inventory} label = {variant.variant_type + " inventory"}/>
+				)
+		}
+		else {
+			var variant_inventory = <div/>
+		}
+
 		return (
 			<div className = "container" id = "admin_edit_product">
 				<div className = "row" id = "add_story">
@@ -100,6 +123,7 @@ export default class AdminEditProduct extends React.Component {
 					<div className = "row" id = "text_edit">
 					<Form horizontal>
 						{input_forms}
+						{variant_inventory}
 						<FormGroup controlId = "submit_button">
 						<Col smOffset={0} sm={10}>
 							<Button onClick = {this.onTextSubmitPress.bind(this)}>

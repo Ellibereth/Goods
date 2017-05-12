@@ -133,6 +133,15 @@ export default class CreditCardInput extends React.Component {
 			<form id = "address_form" className="form-horizontal">
 			
 
+			{this.props.header && 
+				<div className = "row">
+					<div className="form-group">
+						<label className="col-md-2 control-label text-left" for="Name">
+							<h2> Add a payment method </h2>
+						</label>    
+					</div>
+				</div>
+			}	
 			<div className = "row">
 				<div className = "form-group">
 					<label className = "control-label col-sm-10 col-md-10 col-lg-10 text-left">

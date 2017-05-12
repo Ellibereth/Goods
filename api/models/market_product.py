@@ -10,6 +10,8 @@ from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
 from api.models.story_image import StoryImage
 from api.s3.s3_api import S3
+from api.utility.variants import ProductVariants as Variants
+
 
 ## user object class
 class MarketProduct(db.Model):
@@ -21,10 +23,11 @@ class MarketProduct(db.Model):
 	description = db.Column(db.String)
 	num_images = db.Column(db.Integer, nullable = False, default = 0)
 	main_image = db.Column(db.String)
-	inventory = db.Column(db.Integer, nullable = False)
+	inventory = db.Column(db.Integer)
 	active = db.Column(db.Boolean, default = False)
 	manufacturer = db.Column(db.String)
 	num_items_limit = db.Column(db.Integer)
+	has_variants = db.Column(db.Boolean, default = False)
 
 	story_text = db.Column(db.String, default = "PUT IN SOME TEXT HERE ABOUT YOUR STORY")
 	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
@@ -40,7 +43,8 @@ class MarketProduct(db.Model):
 	tag = db.relationship("ProductTag", backref = TestTables.ProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = TestTables.ImageTable, lazy='dynamic')
 
-	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, num_items_limit = 50, product_template = 1, story_template = 1):
+
+	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, has_variants = False, num_items_limit = 50, product_template = 1, story_template = 1):
 		self.price = price
 		self.name = name
 		self.category = category
@@ -52,6 +56,7 @@ class MarketProduct(db.Model):
 		self.main_image = None
 		self.product_template = product_template
 		self.story_template = story_template
+		self.has_variants = has_variants
 		db.Model.__init__(self)
 		
 	def getProductImages(self):
@@ -110,6 +115,27 @@ class MarketProduct(db.Model):
 		self.active = False
 		db.session.commit()
 
+	def addProductVariant(self, variant_type):
+		# print(self.product_id)
+		# print(variant_type)
+		new_variant = ProductVariant(self.product_id, variant_type)
+		db.session.add(new_variant)
+
+	# example input
+	# colors = ['blue','green'], sizes = ['10 Men', '6.5 Women']
+	# if either one is empty just set it to None
+	def addProductVariants(self, variant_types):
+		# we can either check if it is a product that has variants
+		# or we can automatically make it one through this process
+		assert(self.has_variants)
+		assert(variant_types)
+		for variant_type in variant_types:
+			self.addProductVariant(variant_type)
+
+	def getProductVariants(self):
+		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
+		return variants
+
 
 	def toPublicDict(self):
 		public_dict = {}
@@ -131,7 +157,40 @@ class MarketProduct(db.Model):
 		public_dict[Labels.ProductTemplate] = self.product_template
 		public_dict[Labels.NumItemsLimit] = self.num_items_limit
 		public_dict[Labels.Active] = self.active
+		public_dict[Labels.HasVariants] = self.has_variants
+		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
+		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
 		return public_dict
+
+
+## user object class
+class ProductVariant(db.Model):
+	__tablename__ = ProdTables.ProductVariantTable
+	variant_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
+	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
+	inventory = db.Column(db.Integer, default = 0)
+	variant_type = db.Column(db.String)
+	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
+	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
+										   onupdate=db.func.current_timestamp())
+
+
+	def __init__(self, product_id, variant_type, inventory = 0):
+		self.product_id = product_id
+		self.variant_type = variant_type
+		self.inventory = inventory
+		db.Model.__init__(self)
+		
+
+	def toPublicDict(self):
+		public_dict = {}
+		public_dict[Labels.Inventory] = self.inventory
+		public_dict[Labels.VariantType] = self.variant_type
+		public_dict[Labels.ProductId] = self.product_id
+		public_dict[Labels.VariantId] = self.variant_id
+		return public_dict
+
+
 
 
 

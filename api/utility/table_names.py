@@ -19,6 +19,7 @@ class ProdTables:
 	ShoppingCartTable = "SHOPPING_CART_TABLE"
 	UserAddressTable = "USER_ADDRESS_TABLE"
 	StoryImageTable = "STORY_IMAGE_TABLE"
+	ProductVariantTable = "PRODUCT_VARIANT_TABLE"
 
 
 """ 
@@ -41,4 +42,5 @@ class TestTables:
 	ShoppingCartTable = TEST_PREFIX + ProdTables.ShoppingCartTable
 	UserAddressTable = TEST_PREFIX + ProdTables.UserAddressTable
 	StoryImageTable = TEST_PREFIX + ProdTables.StoryImageTable
+	ProductVariantTable = TEST_PREFIX + ProdTables.ProductVariantTable
 	SqlTestTable = "TEST_SQL"

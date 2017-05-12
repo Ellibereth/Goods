@@ -114,10 +114,8 @@ export default class UpdateShippingForm extends React.Component {
 
 		return (
 				<div>
-					<h3> Add an Address </h3>
-				
 					<Form horizontal>
-						<AddressForm 
+						<AddressForm header = {true}
 						has_description = {true}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 						<div className = "form-group" id = "submit_button">

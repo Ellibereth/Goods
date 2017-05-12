@@ -21,7 +21,9 @@ export default class AddProductForm extends React.Component {
 			price : "",
 			category : "",
 			inventory : "",
-			tags : []
+			has_variants : false,
+			tags : [],
+			variants : []
 		}
 	}
 
@@ -32,9 +34,20 @@ export default class AddProductForm extends React.Component {
 		this.setState(obj)
 	}
 
+	onVariantChange(event){
+		this.setState({
+			has_variants : !this.state.has_variants
+		})
+	}
+
 	handleTagsChange(tags) {
     	this.setState({tags})
  	}
+
+ 	handleVariantsChange(variants) {
+    	this.setState({variants})
+ 	}
+
 
 	onSubmitPress(){
 		swal({
@@ -62,6 +75,8 @@ export default class AddProductForm extends React.Component {
 			var form_data = JSON.stringify({
 				market_product : market_product,
 				tags : this.state.tags,
+				variant_types : this.state.variants,
+				has_variants : this.state.has_variants,
 				jwt  : localStorage.jwt
 			})
 			$.ajax({
@@ -70,6 +85,7 @@ export default class AddProductForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
+						console.log(data.error)
 						swal("Sorry!", "Something went wrong! \n Error : " + data.error, "warning")
 					}
 					else {
@@ -107,12 +123,53 @@ export default class AddProductForm extends React.Component {
 							</div>
 						</div>
 			)
+
+		var has_variants_input = (
+
+				<div className="form-group">
+					<div className ="col-sm-10">
+						<div className = "checkbox"> 
+						 	<label>
+						 		<input type= "checkbox" name = "has_variants" value={this.state.has_variants} onChange={this.onVariantChange.bind(this)}/>
+						 		Will this product have variants (colors, sizes, etc?)
+						 	</label>
+						</div>
+					</div>
+				</div>
+
+				)
+
+
+		var variants_input = (
+						<div className="form-group">
+							<div className="col-sm-10">
+								Variants
+							</div>
+							<div className ="col-sm-10">
+								<TagsInput 
+								 value={this.state.variants} onChange={this.handleVariantsChange.bind(this)}/>
+							</div>
+						</div>
+					)
 		
+
 		return (
 			<Form horizontal>
 				{text_inputs}
 				{tag_input}
+
+				{has_variants_input}
+
+				{ this.state.has_variants &&
+					<div>
+						{variants_input}
+					</div>
+				}
+
+				
+
 				<FormGroup controlId = "submit_buton">
+
 				<Col smOffset={0} sm={10}>
 					<Button onClick = {this.onSubmitPress.bind(this)}>
 					Submit!

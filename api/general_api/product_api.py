@@ -34,8 +34,17 @@ def addMarketProduct():
 	sale_end_date_string = market_product.get(Labels.SaleEndDate)
 	date_format = '%Y-%m-%dT%H:%M'
 	sale_end_date = datetime.datetime.strptime(sale_end_date_string, date_format)
-	new_product = MarketProduct(name, price, category, description, manufacturer, inventory, sale_end_date)
-	db.session.add(new_product)
+	has_variants = request.json.get(Labels.HasVariants)
+	variant_types = request.json.get(Labels.VariantTypes)
+	if has_variants:
+		new_product = MarketProduct(name, price, category, description, manufacturer, inventory, sale_end_date, has_variants = True)
+		db.session.add(new_product)
+		db.session.commit()
+		new_product.addProductVariants(variant_types)
+	else:
+		new_product = MarketProduct(name, price, category, description, manufacturer, inventory, sale_end_date)
+		db.session.add(new_product)
+		db.session.commit()
 	tags = request.json.get(Labels.Tags)
 	# add tags here, will change depending on front end input
 	# only update tags if adding the product was a success

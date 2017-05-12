@@ -139,9 +139,8 @@ export default class UpdateBillingForm extends React.Component {
 	render() {
 		return (
 			<div className = "col-sm-12 col-md-12 col-lg-12">
-			<h3> Add a Payment Method </h3>
 			<Form horizontal>
-				<CreditCardInput onTextInputChange = {this.onTextInputChange.bind(this)} />
+				<CreditCardInput header = {true} onTextInputChange = {this.onTextInputChange.bind(this)} />
 				<div className = "row">
 					<div className="checkbox">
 						<label>
@@ -151,7 +150,7 @@ export default class UpdateBillingForm extends React.Component {
 					</div>
 				</div>
 				{ !this.state.skip_shipping && 
-					<AddressForm onTextInputChange  = {this.onTextInputChange.bind(this)} />
+					<AddressForm header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
 				}
 
 				<FormGroup controlId = "submit_button">

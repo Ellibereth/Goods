@@ -80,6 +80,14 @@ class MarketProductLabels:
 	StoryText = "story_text"
 	NumItemsLimit = "num_items_limit"
 	Active = "active"
+	Color = "color"
+	Size = "size"
+	HasVariants = "has_variants"
+	VariantId = "variant_id"
+	Type = ""
+	Variants = "variants"
+	VariantType = "variant_type"
+	VariantTypes = "variant_types"
 
 class ProductTagLabels:
 	ProductId = "product_id"

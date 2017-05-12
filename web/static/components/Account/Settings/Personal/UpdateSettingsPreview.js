@@ -24,12 +24,13 @@ export default class UpdateSettingsPreview extends React.Component {
 						<div className ="panel-body">
 							<span className = "block-span"> Name: {current_user.name} </span>
 							<span className = "block-span"> Email: {current_user.email} </span>
+							<span className = "block-span"> <div className = "small-buffer"/></span>
 							<span className = "block-span"> 
-								<button className = "btn btn-default" 
+								<button className = "btn btn-default btn-sm" id = "edit-address-button"
 									onClick = {() => browserHistory.push('updateSettings')}>
-									Edit Settings
+									Edit
 								</button>
-								<button className = "btn btn-default" 
+								<button className = "btn btn-default btn-sm" 
 									onClick = {() => browserHistory.push('deleteAccount')}>
 									Delete
 								</button>

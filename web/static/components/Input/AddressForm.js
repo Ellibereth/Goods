@@ -36,6 +36,17 @@ export default class AddressForm extends React.Component {
 		<form id = "address_form" className="form-horizontal">
 			<fieldset>
 
+			{this.props.header && 
+				<div className = "row">
+					<div className="form-group">
+						<label className="col-md-2 control-label text-left" for="Name">
+							<h2> Add an address </h2>
+						</label>    
+					</div>
+				</div>
+			}	
+						
+
 			<div className = "row">
 				<div className="form-group required">
 					<label tabindex= {1 + tab_index_start} className="col-md-2 control-label text-left" for="Name">Name </label>    
@@ -46,7 +57,7 @@ export default class AddressForm extends React.Component {
 				</div>
 			</div>
 
-			{
+			{/*
 				this.props.has_description &&
 				<div className = "row">
 					<div className="form-group required">
@@ -57,7 +68,7 @@ export default class AddressForm extends React.Component {
 						</div>
 					</div>
 				</div>
-			}
+			*/}
 
 			<div className = "row">
 				<div className="form-group required">
