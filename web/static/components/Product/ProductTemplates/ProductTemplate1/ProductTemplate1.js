@@ -92,7 +92,7 @@ export default class ProductTemplate1 extends React.Component {
 						}		
 					}
 					else {
-						console.log("an error")
+						console.log(data.error)
 					}
 				$('#product-page-container').removeClass("faded");
 				this.setState({is_loading : false})

@@ -156,6 +156,7 @@ class PaymentLabels:
 	DateCreated = "date_created"
 	Card = "card"
 	VariantId = "variant_id"
+	MainImage = "main_image"
 
 
 class CartLabels:
@@ -210,5 +211,9 @@ class AddressLabels:
 	AddressState = "address_state"
 	Jwt = "jwt"
 
+class SearchLabels:
+	SearchInput = "search_input"
+	Product = "product"
+	Products = "products"
 
 

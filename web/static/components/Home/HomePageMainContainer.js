@@ -13,7 +13,7 @@ export default class HomePageMainContainer extends React.Component {
 	
 	render() {
 		
-		var product_ids = [1,2,3,4,5,6,7,8]
+		var product_ids = [1,2,3,4,5,6,7,8, 21]
 
 		var items_per_row = 3
 

@@ -34,6 +34,7 @@ import ViewCartPage from './Account/Checkout/ViewCartPage.js'
 import CheckoutPage from './Account/Checkout/CheckoutPage.js'
 import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
 import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
+import SearchPage from './Search/SearchPage'
 
 export default class Main extends React.Component {
 	
@@ -120,6 +121,7 @@ ReactDOM.render(
 			<Route path = "myCart" onEnter = {checkConfirmedUser} component = {ViewCartPage} />
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
+			<Route path = "search/:search_input" component = {SearchPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

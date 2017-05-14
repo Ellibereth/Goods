@@ -38,6 +38,8 @@ db.init_app(app)
 
 from api.general_api.public_api import public_api
 app.register_blueprint(public_api)
+from api.general_api.search_api import search_api
+app.register_blueprint(search_api)
 from api.general_api.product_api import product_api
 app.register_blueprint(product_api)
 from api.general_api.customer_service_api import customer_service_api

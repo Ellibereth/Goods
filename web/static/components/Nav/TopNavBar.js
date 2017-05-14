@@ -29,6 +29,9 @@ export default class TopNavBar extends React.Component {
 		this.setState({cart_badge : AppStore.getCurrentUser().cart_size})
 	}
 
+	onSearchChange(event){
+		this.setState({search_input : event.target.value})
+	}
 
 
 
@@ -94,15 +97,19 @@ export default class TopNavBar extends React.Component {
 		}	
 	}
 
+	searchProducts(event){
+		window.location.href = '/search/' + this.state.search_input
+		
+		event.preventDefault()
+	}
+
 	render() {
 		var current_user = AppStore.getCurrentUser()
 		var brand_class = (current_user == {} || !current_user) ? "navbar-brand navbar-brand-no-user" : "navbar-brand navbar-brand-with-user"
 		var right_nav = this.getRightNav()
-
 		return (
 			<nav className="navbar navbar-edgarusa top-navbar">
 				<div className="container-fluid">
-					
 						<div className="navbar-header">
 							<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 								<span className="sr-only">Toggle navigation</span>
@@ -115,9 +122,10 @@ export default class TopNavBar extends React.Component {
 
 					<div className="collapse navbar-collapse">
 						
-						<form className="navbar-form navbar-left search-bar-with-user" role="search">
+						<form onSubmit = {this.searchProducts.bind(this)}
+						 className="navbar-form navbar-left search-bar-with-user" role="search">
 							<div className="input-group nav-search-bar">
-								<input type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+								<input  onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
 								<div className="input-group-btn nav-search-icon">
 									<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
 								</div>

@@ -39,6 +39,7 @@ class Order(db.Model):
 	address_state = db.Column(db.String)
 	variant_id = db.Column(db.Integer)
 	name = db.Column(db.String)
+	main_image = db.Column(db.String)
 
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
@@ -100,6 +101,7 @@ class Order(db.Model):
 		public_dict[Labels.Address] = address
 		public_dict[Labels.VariantId] = self.variant_id
 		public_dict[Labels.Name] = self.name
+		public_dict[Labels.MainImage] = self.main_image
 
 		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
 		return public_dict

@@ -113,8 +113,13 @@ def checkoutCart():
 
 	# record this transaction for each product (enabling easier refunds), but group by quantity 
 	for cart_item in this_cart.items:
+		# update the inventory
 		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-		this_product.inventory = this_product.inventory - cart_item.num_items
+		if cart_item.variant_type:
+			this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
+			this_variant.inventory = this_variant.inventory - cart_item.num_items
+		else:
+			this_product.inventory = this_product.inventory - cart_item.num_items
 		new_order = Order(order_id, this_user, this_product, address, charge, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
 		db.session.add(new_order)
 		db.session.commit()
@@ -178,7 +183,6 @@ def updateCartQuantity():
 
 	if this_product.has_variants:
 		variant_id = this_cart_item.get(Labels.VariantId)
-		print(variant_id)
 		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id, variant_id = variant_id).first()
 		try:
 			cart_item.updateCartQuantity(new_num_items)
