@@ -37,17 +37,23 @@ class Order(db.Model):
 	address_name = db.Column(db.String)
 	address_description = db.Column(db.String)
 	address_state = db.Column(db.String)
+	variant_id = db.Column(db.Integer)
+	name = db.Column(db.String)
 
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, order_id, user, product, address, stripe_charge, num_items = 1):
+	def __init__(self, order_id, user, product, address, stripe_charge, num_items = 1, variant_id = None, variant_type = None):
 		self.order_id = order_id
 		self.price = product.price
 		self.num_items = num_items
 		self.product_id = product.product_id
+		if variant_type:
+			self.name = product.name + " - " + variant_type
+		else:
+			self.name = product.name
 		self.account_id = user.account_id
 		self.stripe_customer_id = user.stripe_customer_id
 		self.stripe_charge_id = stripe_charge[Labels.Id]
@@ -60,6 +66,9 @@ class Order(db.Model):
 		self.address_line2 = address.address_line2
 		self.address_zip = address.address_zip
 		self.address_state = address.address_state
+		self.variant_id = variant_id
+		self.main_image = product.main_image
+
 		db.Model.__init__(self)
 		
 	@staticmethod
@@ -74,7 +83,6 @@ class Order(db.Model):
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.OrderId] = self.order_id
-		public_dict[Labels.Product] = MarketProduct.query.filter_by(product_id = self.product_id).first().toPublicDict()
 		public_dict[Labels.NumItems] = self.num_items
 		public_dict[Labels.Price] = self.price
 		public_dict[Labels.TotalPrice] = self.price * self.num_items
@@ -90,6 +98,9 @@ class Order(db.Model):
 			Labels.AddressState : self.address_state
 		}
 		public_dict[Labels.Address] = address
+		public_dict[Labels.VariantId] = self.variant_id
+		public_dict[Labels.Name] = self.name
+
 		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
 		return public_dict
 

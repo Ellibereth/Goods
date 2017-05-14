@@ -82,8 +82,11 @@ export default class AdminProductMainContainer extends React.Component {
 		if (product.images.length == 0) return <h4> No images are listed for this product </h4>
 		// something better needs to be done about bad pages, but I'll figure something out soon
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+
 		var images = product.images.map((image, index) => {
-				var label = image.main_image ? "Main Image" : "Not Main"
+			console.log(image.image_id)
+			console.log(product.main_image)
+				var label = (image.image_id == product.main_image) ? "Main Image" : "Not Main"
 				return (	
 					<div className="item col-lg-3 col-md-3 col-sm-3">
 						<div className = "row">

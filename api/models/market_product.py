@@ -120,6 +120,7 @@ class MarketProduct(db.Model):
 		# print(variant_type)
 		new_variant = ProductVariant(self.product_id, variant_type)
 		db.session.add(new_variant)
+		db.session.commit()
 
 	# example input
 	# colors = ['blue','green'], sizes = ['10 Men', '6.5 Women']
@@ -170,6 +171,7 @@ class ProductVariant(db.Model):
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	inventory = db.Column(db.Integer, default = 0)
 	variant_type = db.Column(db.String)
+	active = db.Column(db.Boolean, default = False)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -181,6 +183,25 @@ class ProductVariant(db.Model):
 		self.inventory = inventory
 		db.Model.__init__(self)
 		
+	@staticmethod
+	def updateVariantInventory(variants):
+		for variant in variants:
+			this_variant = ProductVariant.query.filter_by(variant_id = variant[Labels.VariantId]).first()
+			if this_variant:
+				this_variant.inventory = variant[Labels.Inventory]
+				db.session.commit()
+
+	@staticmethod
+	def activateVariant(variant_id):
+		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
+		this_variant.active = True
+		db.sesion.commit()
+
+	@staticmethod
+	def deactivateVariant(variant_id):
+		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
+		this_variant.active = False
+		db.sesion.commit()
 
 	def toPublicDict(self):
 		public_dict = {}

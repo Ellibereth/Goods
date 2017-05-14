@@ -19,8 +19,7 @@ export default class CartItemDisplay extends React.Component {
 				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt,
 				"new_num_items" : new_quantity,
-				"product_id" : this.props.item.product_id
-
+				"cart_item" : this.props.item
 			})
 			$.ajax({
 				type: "POST",
@@ -76,8 +75,6 @@ export default class CartItemDisplay extends React.Component {
 		// will be updating this to have a better display in the near future
 		// need photo, price, etc
 		var item = this.props.item
-
-
 		if(item.images.length == 0) {
 			var image_display = <div> No Image Exists for this product </div>
 		}

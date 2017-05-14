@@ -166,7 +166,7 @@ def generateCartItemRow(product):
 		<span> Name: " + str(product[Labels.Name]) + " </span> <br/> \
 		<span> Unit Price : " + str(product[Labels.Price]) + "</span> <br/> \
 		<span> Quantity : " + str(product[Labels.NumItems]) + "</span> <br/> \
-		<img style = 'height: 100px; width 100px' src='" + PHOTO_SRC_BASE 
+		<img style = \"height: 100px; width 100px' src=\"" + PHOTO_SRC_BASE 
 	+ product[Labels.MainImage] + "'/> <br/> \
 		<hr/> <br/>"
 	)

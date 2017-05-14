@@ -88,6 +88,7 @@ class MarketProductLabels:
 	Variants = "variants"
 	VariantType = "variant_type"
 	VariantTypes = "variant_types"
+	NewVariantType = "new_variant_type"
 
 class ProductTagLabels:
 	ProductId = "product_id"
@@ -123,6 +124,7 @@ class RequestLabels:
 	Jwt = "jwt"
 
 class PaymentLabels:
+	Name = "name"
 	Jwt = "jwt"
 	StripeCustomerId = "stripe_customer_id"
 	AccountId = "account_id"
@@ -153,6 +155,7 @@ class PaymentLabels:
 	Price = "price"
 	DateCreated = "date_created"
 	Card = "card"
+	VariantId = "variant_id"
 
 
 class CartLabels:
@@ -190,6 +193,10 @@ class CartLabels:
 	Orders = "orders"
 	MainImage = "main_image"
 	User = "user"
+	VariantId = "variant_id"
+	CartItem = "cart_item"
+	VariantType = "variant_type"
+	Variant = "variant"
 
 class AddressLabels:
 	AddressId = "address_id"

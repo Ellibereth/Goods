@@ -13,11 +13,16 @@ export default class AddToCartButton extends React.Component {
 		super(props);
 		this.state = {
 			quantity : 1,
+			variant : null
 		}
 	}
 
 	handleQuantityChange (event){
 		this.setState({quantity : event.target.value})
+	}
+
+	handleVariantChange(event){
+		this.setState({variant : event.target.value})
 	}
 
 	addToCart(product){
@@ -28,7 +33,8 @@ export default class AddToCartButton extends React.Component {
 		  	"quantity" : this.state.quantity,
 		  	"product_id" : this.props.product.product_id, 
 		  	"account_id" : AppStore.getCurrentUser().account_id,
-		  	"jwt" : localStorage.jwt
+		  	"jwt" : localStorage.jwt,
+		  	"variant" : this.state.variant
 		  }),
 		  success: function(data) {
 		  		if (data.success){
@@ -55,6 +61,11 @@ export default class AddToCartButton extends React.Component {
 
 	componentDidMount(){
 		this.props.refreshUserInformation()
+		if (this.props.product.variants) {
+			this.setState({
+				variant : this.props.product.variants[0]
+			})
+		}
 	}
 
 	onNonUserClick(){
@@ -93,8 +104,21 @@ export default class AddToCartButton extends React.Component {
 					</select>
 				)
 		}
-		
-		
+
+
+		var variant_options = []
+		this.props.product.variants.map((variant, index) => 
+					variant_options.push(
+						<option value = {variant.variant_id}> {variant.variant_type} </option>
+					)
+			)
+
+		var variant_type_selector = (
+				<select onChange = {this.handleVariantChange.bind(this)}>
+					{variant_options}
+				</select>
+			)
+
 		var user = AppStore.getCurrentUser()
 		return (
 				<div >
@@ -114,6 +138,13 @@ export default class AddToCartButton extends React.Component {
 								</button>
 							</span>
 						</div>
+						{ this.props.product.has_variants &&
+						<div className = "row">
+							<span className = "block-span">
+								Type: {variant_type_selector}
+							</span>
+						</div>
+						}
 					</div>
 					:
 					<div>

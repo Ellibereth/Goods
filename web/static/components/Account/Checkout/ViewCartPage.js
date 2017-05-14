@@ -69,7 +69,6 @@ export default class ViewCartPage extends React.Component {
 	
 	render() {
 		console.log(this.state.items)
-		console.log(this.state.is_loading)
 		return (
 			<PageContainer component = {
 				<div id = "view-cart-container" 

@@ -35,11 +35,13 @@ export default class ProductPage extends React.Component {
 				this.setState({invalid_product : true})
 			}
 			else {
-				this.setState({
-					invalid_product : false,
-					product: data.product,
-					is_loading : false
-	 			})
+				if (data.product.active){
+					this.setState({
+						invalid_product : false,
+						product: data.product,
+						is_loading : false
+		 			})
+				}
 			}
 			$('#product-page-container').removeClass("faded");
 		  }.bind(this),

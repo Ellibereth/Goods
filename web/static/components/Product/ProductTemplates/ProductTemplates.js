@@ -4,6 +4,7 @@ var Link = require('react-router').Link;
 
 import {Button} from 'react-bootstrap';
 import ProductTemplate1 from './ProductTemplate1/ProductTemplate1'
+import ProductTemplate2 from './ProductTemplate2/ProductTemplate2'
 
 export default class ProductTemplates extends React.Component {
 	// takes props template number
@@ -25,6 +26,12 @@ export default class ProductTemplates extends React.Component {
 		switch (template){
 			case 1:
 				return <ProductTemplate1 
+					product = {this.props.product}
+					is_loading = {this.props.is_loading}
+					/>
+				break;
+			case 2:
+				return <ProductTemplate2
 					product = {this.props.product}
 					is_loading = {this.props.is_loading}
 					/>

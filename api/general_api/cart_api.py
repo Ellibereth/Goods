@@ -9,6 +9,7 @@ from api.models.user import User
 from api.models.cart import CartItem
 from api.models.cart import Cart
 from api.models.market_product import MarketProduct
+from api.models.market_product import ProductVariant
 from api.utility.json_util import JsonUtil
 from api.utility.labels import CartLabels as Labels
 from api.utility.jwt_util import JwtUtil
@@ -20,34 +21,69 @@ cart_api = Blueprint('cart_api', __name__)
 
 # default adds item to cart with num_items = 1
 # if the item already exists in the cart, increment the number by 1
+# might need to modularize this a little bit
 @cart_api.route('/addItemToCart', methods = ['POST'])
 def addItemToCart():
 	account_id = request.json.get(Labels.AccountId)
 	product_id = request.json.get(Labels.ProductId)
 	quantity = int(request.json.get(Labels.Quantity))
 	jwt = request.json.get(Labels.Jwt)
+
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
-	if cart_item == None:
-		new_cart_item = CartItem(account_id, product_id, num_items = quantity)
-		db.session.add(new_cart_item)
-		db.session.commit()
-		return JsonUtil.successWithOutput({
-			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-		})
-	try:
-		cart_item.updateCartQuantity(cart_item.num_items + quantity)
-	except Exception as e:
-		return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
-
 	
-	return JsonUtil.successWithOutput({
-			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-		})
+	variant = request.json.get(Labels.Variant)
+	variant_id = variant.get(Labels.VariantId)
+	if variant_id:
+		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
+
+		if this_variant:
+			variant_type = this_variant.variant_type
+			cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id,
+				variant_id = variant_id).first()
+
+			if cart_item == None:
+				new_cart_item = CartItem(account_id, product_id, num_items = quantity,
+					variant_id = variant_id, variant_type = variant_type)
+				db.session.add(new_cart_item)
+				db.session.commit()
+				return JsonUtil.successWithOutput({
+						Labels.User : this_user.toPublicDict(),
+						Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+					})
+			else:
+				try:
+					cart_item.updateCartQuantity(cart_item.num_items + quantity)
+				except Exception as e:
+					return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
+
+
+		else:
+			raise Exception("Error, there's a variant_id that's available, but no variant to go with it. \n \
+				This rogue variant_id is " + str(variant_id) + ")")
+
+	else:
+		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
+
+		if cart_item == None:
+			new_cart_item = CartItem(account_id, product_id, num_items = quantity)
+			db.session.add(new_cart_item)
+			db.session.commit()
+			return JsonUtil.successWithOutput({
+				Labels.User : this_user.toPublicDict(),
+				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+			})
+		else:
+			try:
+				cart_item.updateCartQuantity(cart_item.num_items + quantity)
+			except Exception as e:
+				return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
+
+		return JsonUtil.successWithOutput({
+				Labels.User : this_user.toPublicDict(),
+				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+			})
 
 # checkout cart
 @cart_api.route('/checkoutCart', methods = ['POST'])
@@ -79,7 +115,7 @@ def checkoutCart():
 	for cart_item in this_cart.items:
 		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
 		this_product.inventory = this_product.inventory - cart_item.num_items
-		new_order = Order(order_id, this_user, this_product, address, charge, cart_item.num_items)
+		new_order = Order(order_id, this_user, this_product, address, charge, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
 		db.session.add(new_order)
 		db.session.commit()
 
@@ -132,19 +168,35 @@ def updateCartQuantity():
 
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 
-	product_id = request.json.get(Labels.ProductId)
-	new_num_items = int(request.json.get(Labels.NewNumItems))
+	this_cart_item = request.json.get(Labels.CartItem)
+	product_id = this_cart_item.get(Labels.ProductId)
 
-	cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
-	try:
-		cart_item.updateCartQuantity(new_num_items)
-	except Exception as e:
-		return JsonUtil.failure("Something went wrong while updating cart quantity : " + str(e))
+	new_num_items = int(request.json.get(Labels.NewNumItems))
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if not this_product:
+		return JsonUtil.jwt_failure("Product doesn't exist")
+
+	if this_product.has_variants:
+		variant_id = this_cart_item.get(Labels.VariantId)
+		print(variant_id)
+		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id, variant_id = variant_id).first()
+		try:
+			cart_item.updateCartQuantity(new_num_items)
+		except Exception as e:
+			return JsonUtil.failure("Something went wrong while updating variant cart quantity : " + str(e))
+
+
+	else:
+		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
+		try:
+			cart_item.updateCartQuantity(new_num_items)
+		except Exception as e:
+			return JsonUtil.failure("Something went wrong while updating cart quantity : " + str(e))
 
 	return JsonUtil.successWithOutput({
-			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-		})
+				Labels.User : this_user.toPublicDict(),
+				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+			})	
 
 
 

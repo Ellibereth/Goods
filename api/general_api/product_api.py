@@ -7,6 +7,7 @@ from api.utility.json_util import JsonUtil
 from api.s3.s3_api import S3
 from api.models.shared_models import db
 from api.models.market_product import MarketProduct
+from api.models.market_product import ProductVariant
 from api.models.product_tag import ProductTag
 from api.models.product_image import ProductImage
 from api.utility.jwt_util import JwtUtil
@@ -242,4 +243,75 @@ def uploadProductStoryImage():
 	this_product.addStoryImage(image_decoded)
 	
 	return JsonUtil.success()
+
+
+@product_api.route('/addProductVariant', methods = ['POST'])
+def addProductVariant():
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+	product_id = request.json.get(Labels.ProductId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Invalid submission")
+	
+	new_variant_type = request.json.get(Labels.NewVariantType)
+	this_product.addProductVariant(new_variant_type)
+
+	return JsonUtil.successWithOutput({
+			Labels.Product : this_product.toPublicDict()
+		})
+
+
+@product_api.route('/updateVariantInventory', methods = ['POST'])
+def updateVariantInventory():
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+	product_id = request.json.get(Labels.ProductId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Invalid submission")
+
+	variants  = request.json.get(Labels.Variants)	
+	if not variants:
+		return JsonUtil.failure("No variants")
+
+	ProductVariant.updateVariantInventory(variants)
+
+	return JsonUtil.successWithOutput({
+			Labels.Product : this_product.toPublicDict()
+		})
+
+
+@product_api.route('/activateVariant', methods = ['POST'])
+def activateVariant():
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+	product_id = request.json.get(Labels.ProductId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Invalid submission")
+
+	vairant_id = reuqest.json.get(Labels.VariantId)
+	ProductVariant.activateVariant(variant_id)
+	return JsonUtil.success()
+
+
+@product_api.route('/deactivateVariant', methods = ['POST'])
+def deactivateVariant():
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+	product_id = request.json.get(Labels.ProductId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Invalid submission")
+
+	vairant_id = reuqest.json.get(Labels.VariantId)
+	ProductVariant.deactivateVariant(variant_id)
+	return JsonUtil.success()
+
+
 

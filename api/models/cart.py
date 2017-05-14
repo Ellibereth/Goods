@@ -38,6 +38,11 @@ class Cart:
 			product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().toPublicDict()
 			product[Labels.NumItems] = cart_item.num_items
 			product[Labels.NumItemsLimit] = cart_item.num_items_limit
+			product[Labels.VariantType] = cart_item.variant_type
+			product[Labels.VariantId] = cart_item.variant_id
+			if cart_item.variant_type != None:
+				product[Labels.Name] = product[Labels.Name]  + " - " + cart_item.variant_type
+			print(product[Labels.Name])
 			product_list.append(product)
 		public_dict[Labels.Items] = product_list
 		public_dict[Labels.Price] = self.price
@@ -51,14 +56,18 @@ class CartItem(db.Model):
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	num_items = db.Column(db.Integer)
 	num_items_limit = db.Column(db.Integer)
+	variant_id = db.Column(db.String)
+	variant_type = db.Column(db.String)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-	def __init__(self, account_id, product_id, num_items):
+	def __init__(self, account_id, product_id, num_items, variant_id = None, variant_type = None):
 		self.account_id = account_id
 		self.product_id = product_id
 		self.num_items = num_items
+		self.variant_id = variant_id
+		self.variant_type = variant_type
 		self.num_items_limit = MarketProduct.query.filter_by(product_id = product_id).first().num_items_limit
 		db.Model.__init__(self)		
 
@@ -88,6 +97,7 @@ class CartItem(db.Model):
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.AccountId] = self.account_id
 		public_dict[Labels.NumItemsLimit] = min(self.num_items_limit, self.inventory)
+		public_dict[Labels.VariantId] = self.variant_id
 		return public_dict
 
 
