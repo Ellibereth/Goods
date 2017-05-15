@@ -7,6 +7,7 @@ import FeedbackModal from '../CustomerService/Feedback/FeedbackModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'
 import PageContainer from '../Misc/PageContainer'
 
+
 export default class HomePage extends React.Component {
 	constructor(props) {
 		super(props);

@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import {Grid, Row, Col, Button} from 'react-bootstrap';
 import HomeProductPreview from './HomeProductPreview'
+import HomePageImageCarousel from './HomePageImageCarousel'
+
 
 const product_id_list = [1,2,3,4,5,6,7,8, 21]
 export default class HomePageMainContainer extends React.Component {
@@ -78,20 +80,7 @@ export default class HomePageMainContainer extends React.Component {
 			<div className = "container-fluid home-container">
 				<div className="row show-grid">
 					<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
-						<div>
-							<center>
-								<div id = "text-part">	
-									<h1>
-										<b>
-											Weekly Deals on American Made Products
-										</b>
-									</h1>
-									
-								</div>
-								<br/>
-							      
-							</center>
-						</div>
+						<HomePageImageCarousel />
 					</div>
 				</div>
 				
