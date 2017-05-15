@@ -347,3 +347,20 @@ body {
 .form-heading {
 	font-size: 24px;
 }
+
+.home-image-carousel{
+	height: 400px;
+}
+
+.home-image-carousel > .carousel-inner {
+	height: 100%;
+}
+
+.home-image-carousel > .carousel-inner >.item {
+	height: 100%;
+}
+
+.home-image-carousel > .carousel-inner > .item > img{
+	max-height: 100%;
+	width : auto;
+}

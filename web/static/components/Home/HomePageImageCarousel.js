@@ -17,7 +17,7 @@ export default class HomePageImageCarousel extends React.Component {
 	render() {
 		var images = image_names.map((image_name, index) =>
 				<div className= {index == 0 ? "item active" : "item"}>
-		            <img src= {base_url + image_name} index = {index}/>
+		            <img className = "home-images center-block" src= {base_url + image_name} index = {index}/>
 		        </div>
 			)
 
