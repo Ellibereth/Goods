@@ -9,6 +9,7 @@ import styles from './navbar.css'
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
 
+
 export default class SmallNavBar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -78,7 +79,7 @@ export default class SmallNavBar extends React.Component {
 							</a>
 
 							<ul className="dropdown-menu"> 
-								<li><Link to ="/settings"> Settings </Link> </li>
+								<li> <Link to ="/settings"> Settings </Link> </li>
 								<li> <Link to = '/myOrders'> Past Orders </Link> </li>
 								<li> <Link to = "/logout"> Logout </Link></li>
 							</ul>
@@ -104,7 +105,7 @@ export default class SmallNavBar extends React.Component {
 				<nav 
 				className={this.props.visible 
 					? "navbar navbar-edgarusa-small navbar-fixed-top" 
-					:  "none"}
+					:  "navbar navbar-edgarusa-small navbar-fixed-top none"}
 					>
 					<div className="container">
 							<div className="navbar-header">
@@ -127,7 +128,7 @@ export default class SmallNavBar extends React.Component {
 						</div>
 					</div>	
 				</nav>
-				<div className = {this.props.visible ? "nav-buffer" : "none"}/>
+				
 			</div>
 		);
 	}

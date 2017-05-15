@@ -15,7 +15,7 @@ export default class TopNavBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			current_nav : false
+			small_navbar_visible : false
 		}
 	}
 
@@ -30,9 +30,6 @@ export default class TopNavBar extends React.Component {
 				var threshold = change_height
 			}
 		    if ($(window).scrollTop() < threshold) {
-		    	if (this.state.small_navbar_visible) {
-					$('html,body').animate({ scrollTop: 0 }, 'slow');
-				}
 		        this.setState({
 		        	small_navbar_visible : false
 		        })

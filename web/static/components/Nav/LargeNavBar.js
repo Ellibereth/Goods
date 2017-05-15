@@ -9,6 +9,7 @@ import styles from './navbar.css'
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
 
+
 export default class LargeNavBar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -109,8 +110,8 @@ export default class LargeNavBar extends React.Component {
 		var right_nav = this.getRightNav()
 		return (
 			<nav 
-				className= {this.props.visible ? "navbar navbar-edgarusa top-navbar" 
-				: "navbar navbar-edgarusa top-navbar "}>
+				className= {this.props.visible ? "navbar navbar-fixed-top navbar-edgarusa top-navbar" 
+				: "navbar navbar-fixed-top navbar-edgarusa top-navbar none"}>
 				<div className="container-fluid">
 						<div className="navbar-header">
 							<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
