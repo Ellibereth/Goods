@@ -116,8 +116,6 @@ class MarketProduct(db.Model):
 		db.session.commit()
 
 	def addProductVariant(self, variant_type):
-		# print(self.product_id)
-		# print(variant_type)
 		new_variant = ProductVariant(self.product_id, variant_type)
 		db.session.add(new_variant)
 		db.session.commit()

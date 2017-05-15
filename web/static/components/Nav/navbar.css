@@ -105,4 +105,28 @@
 }
 
 
+.none {
+	display: none
+}
 
+.hidden {
+	display : hidden;
+}
+
+.navbar-edgarusa-small {
+	background-color: #002868;
+	 /*Look into this transition*/
+	-webkit-transition: 0.4s ease-in; 
+}
+
+.navbar-brand-small {
+	color: white;
+	font-size: 24px;
+}
+.navbar-brand-small:hover {
+	color: skyblue;
+}
+
+.nav-buffer {
+	padding-bottom: 50px;
+}

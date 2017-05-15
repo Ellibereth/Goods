@@ -84,7 +84,6 @@ export default class CartItemDisplay extends React.Component {
 			var image_display = <img className = "cart-image-display" src = {src_base + item.main_image} />
 		}
 
-		var max_items = 10
 		var num_items_options = []
 		for (var i = 1; i <= this.props.item.num_items_limit; i++){
 			if (this.props.item.num_items == i){

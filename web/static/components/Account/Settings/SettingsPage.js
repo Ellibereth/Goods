@@ -73,7 +73,6 @@ export default class SettingsPage extends React.Component {
 
 
 	render() {
-		console.log(this.state.addresses.length)
 		return (
 			<PageContainer component = {
 				<div id = "settings-container" 

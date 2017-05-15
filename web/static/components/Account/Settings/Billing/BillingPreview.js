@@ -45,7 +45,7 @@ export default class BillingPreview extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry", "It seems there was an error deleting your credit card! " + data.error 
+						swal("Sorry", "It seems there was an error deleting your credit card. " + data.error 
 							+ ". Please try again", "warning")
 					}
 					else {

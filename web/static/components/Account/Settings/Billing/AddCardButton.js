@@ -12,7 +12,7 @@ export default class AddCardButton extends React.Component {
 	}
 
 	onAddCardClick(){
-		browserHistory.push('/billing')
+		window.location.href = '/billing'
 	}
 
 	render() {

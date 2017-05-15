@@ -42,7 +42,6 @@ class Cart:
 			product[Labels.VariantId] = cart_item.variant_id
 			if cart_item.variant_type != None:
 				product[Labels.Name] = product[Labels.Name]  + " - " + cart_item.variant_type
-			print(product[Labels.Name])
 			product_list.append(product)
 		public_dict[Labels.Items] = product_list
 		public_dict[Labels.Price] = self.price

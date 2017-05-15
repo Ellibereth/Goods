@@ -12,7 +12,7 @@ export default class AddAddressButton extends React.Component {
 	}
 
 	onAddAddressClick(){
-		browserHistory.push('/shipping')
+		window.location.href = '/shipping'
 	}
 
 	render() {
