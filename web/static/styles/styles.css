@@ -141,7 +141,7 @@ body {
 
 
 .clickable-text:hover {
-	text-decoration:none;
+	/*text-decoration:none;*/
 	text-decoration:underline;
     /*text-shadow: 1px 1px 1px ;*/
 }
@@ -291,6 +291,10 @@ body {
 	cursor: pointer;
 }
 
+.home-product-preview:hover .home-product-preview-name {
+	text-decoration:underline;
+}
+
 .home-product-preview-image {
 	max-height: 100%
 }
@@ -312,9 +316,9 @@ body {
 }
 
 
-.home-prouct-preview-price {
+.home-product-preview-price {
 	font-size: 24px;
-	font-color : orange;
+	color : #FF7F50;
 }
 
 .home-product-preview-details{
@@ -324,11 +328,11 @@ body {
 }
 
 .home-product-preview-manufacturer {
-	font-size : 12px;
+	font-size : 18px;
 }
 
 .home-product-preview-name {
-	font-size : 12px;
+	font-size : 18px;
 }
 
 .red-text {

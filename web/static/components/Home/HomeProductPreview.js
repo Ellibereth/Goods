@@ -15,7 +15,7 @@ export default class ProductPreview extends React.Component {
   	}
 
   	goToProduct(){
-  		browserHistory.push('/eg/' + this.props.product_id)
+  		browserHistory.push('/eg/' + this.props.product.product_id)
   	}
 
 
@@ -45,10 +45,10 @@ export default class ProductPreview extends React.Component {
 					}
 				</div>
 				<div className = "row home-product-preview-details">
-						<span className = "row-fluid home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> <br/>
-						<span className = "row-fluid home-product-preview-name"> {this.props.product.name} </span> <br/>
+						<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> <br/>
+						<span className = "home-product-preview-name"> {this.props.product.name} </span> <br/>
 						
-						<span className = "row-fluid home-product-preview-manufacturer"> {this.props.product.manufacturer} </span> <br/>
+						<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
 				</div>
 			</div>
 		);
