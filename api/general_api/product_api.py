@@ -321,7 +321,6 @@ def getBatchedProductInformation():
 	market_products = MarketProduct.query.filter(MarketProduct.product_id.in_(product_id_list)
 		,MarketProduct.active).all()
 
-	print(market_products)
 	return JsonUtil.successWithOutput({
 			Labels.Products :  [market_product.toPublicDict() for market_product in market_products]
 		})

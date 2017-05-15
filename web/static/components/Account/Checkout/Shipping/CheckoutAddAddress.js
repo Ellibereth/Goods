@@ -114,9 +114,13 @@ export default class CheckoutAddAddress extends React.Component {
 						<hr/>
 
 						<div className = "row">
-							<Button onClick = {this.addAddress.bind(this)}>
-								Add Address
-							</Button>
+							<div className = "col-md-11 col-lg-11">
+								<Button
+									className = "pull-right" 
+									onClick = {this.addAddress.bind(this)}>
+									Add Address
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -19,7 +19,7 @@ export default class UpdateBillingForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name : "",
+			name: "",
 			number: "",
 			expiry: "",
 			cvc : "",
@@ -84,6 +84,7 @@ export default class UpdateBillingForm extends React.Component {
 				var key = form_inputs[i]
 				data[key] = this.state[key]
 			}
+			data['name'] = this.state.name
 			data['number'] = document.getElementById("card_input").value.toString().substring(0, 19)
 			data['exp_month'] = this.state['expiry'].split('/')[0]
 			data['exp_year'] = this.state['expiry'].split('/')[1]
@@ -140,7 +141,9 @@ export default class UpdateBillingForm extends React.Component {
 		return (
 			<div className = "col-sm-12 col-md-12 col-lg-12">
 			<Form horizontal>
-				<CreditCardInput header = {true} onTextInputChange = {this.onTextInputChange.bind(this)} />
+				<CreditCardInput 
+				header = {"Add a payment method"}
+				onTextInputChange = {this.onTextInputChange.bind(this)} />
 				<div className = "row">
 					<div className="checkbox">
 						<label>
@@ -155,11 +158,12 @@ export default class UpdateBillingForm extends React.Component {
 				}
 
 				<FormGroup controlId = "submit_button">
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
-					Submit
-					</Button>
-				</Col>
+					<div className = "col-md-10 col-lg-10">
+						<Button className = "pull-right"
+						 onClick = {this.onSubmitPress.bind(this)}>
+						Submit
+						</Button>
+					</div>
 				</FormGroup>
 			</Form>
 			</div>

@@ -141,9 +141,12 @@ export default class CheckoutAddBilling extends React.Component {
 						}
 						
 						<div className = "row">
-							<Button onClick = {this.onSubmitPress.bind(this)}>
-								Add Billing Method
-							</Button>
+							<div className = "col-md-11 col-lg-11 ">
+								<Button className = "pull-right"
+								onClick = {this.onSubmitPress.bind(this)}>
+									Add Billing Method
+								</Button>
+							</div>
 						</div>
 						
 					</div>

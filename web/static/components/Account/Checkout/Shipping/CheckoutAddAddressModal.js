@@ -35,7 +35,14 @@ render() {
 	return (
 		<Modal show = {this.props.show} bsSize="large" aria-labelledby="contained-modal-title-lg">
 		<Modal.Header closeButton onClick = {this.onModalClosePress.bind(this)}>
-			<Modal.Title id="contained-modal-title-lg"> Add an address </Modal.Title>
+			<Modal.Title id="contained-modal-title-lg">
+				<span> Add an address  </span>
+				<span className = "pull-right modal-header-right"> 
+					<span className = "red-text"> * </span>
+					<span className = "vcenter"> Required  </span>
+				</span>
+			</Modal.Title>
+
 		</Modal.Header>
 			<Modal.Body>
 					<CheckoutAddAddress

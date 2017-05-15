@@ -79,7 +79,6 @@ def confirmEmail():
 	if this_user == None:
 		return JsonUtil.failure("Email confirmation id doesn't go with any user")
 	# elif this_user.email_confirmed:
-	# 	print("Bro2")
 	# 	return JsonUtil.failure("Email already confirmed")
 	else:
 		this_user.confirmEmail()

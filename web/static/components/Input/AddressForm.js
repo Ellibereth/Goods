@@ -45,8 +45,12 @@ export default class AddressForm extends React.Component {
 			{this.props.header && 
 				<div className = "row">
 					<div className="form-group">
-						<label className="col-md-6 col-lg-6 control-label text-left" for="Name">
-							<h2> Add an address </h2>
+						<label className="col-md-10 col-lg-10 control-label text-left" for="Name">
+							<span className = "form-heading"> {this.props.header}   </span>
+							<span className = "pull-right modal-header-right"> 
+								<span className = "red-text"> * </span>
+								<span className = "vcenter"> Required  </span>
+							</span>
 						</label>    
 					</div>
 				</div>
@@ -57,7 +61,7 @@ export default class AddressForm extends React.Component {
 				<div className="form-group required">
 					<label tabindex= {1 + tab_index_start} className="col-md-2 control-label text-left" for="Name">Name </label>    
 					<div className="col-md-6">
-					<input value = {address ? address.name : ""} field = "address_name" onChange = {this.handleChange.bind(this)}
+					<input value = {address && address.name} field = "address_name" onChange = {this.handleChange.bind(this)}
 					 id="Name" name="address_name" type="text" placeholder="Name on Address" className="form-control input-md" required=""/>
 					</div>
 				</div>
@@ -93,7 +97,7 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="State">State</label>    
 					<div className="col-md-6">
 
-					<select value = {address ? address.address_state : ""} tabindex= {tab_index_start + 4} field = "address_state"    onChange = {this.handleChange.bind(this)}
+					<select value = {address && address.address_state} tabindex= {tab_index_start + 4} field = "address_state"    onChange = {this.handleChange.bind(this)}
 					id="State" name="address_state" className="form-control">
 							<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
@@ -161,7 +165,7 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="city">City/Town</label>    
 					<div className="col-md-6">
 					<input 
-					value = {address ? address.address_city : ""}
+					value = {address && address.address_city}
 					tabindex= {tab_index_start + 5} field = "address_city" onChange = {this.handleChange.bind(this)}
 					id="city" name="address_city" type="text" 
 					className="form-control input-md" required=""/>
@@ -174,7 +178,7 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="address1">Address Line 1</label>    
 					<div className="col-md-8">
 					<input 
-					value = {address ? address.address_line1 : ""}
+					value = {address && address.address_line1}
 					tabindex= {tab_index_start + 6} field = "address_line1" onChange = {this.handleChange.bind(this)}
 					 id="address1" name="address_line1" type="text" placeholder="" className="form-control input-md"/>
 					{/* <span className="help-block">Street address, P.O. box, company name, c/o</span>    */}
@@ -187,7 +191,7 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="Address2">Address Line 2</label>    
 					<div className="col-md-8">
 					<input 
-					value = {address ? address.address_line2 : ""}
+					value = {address && address.address_line2}
 					 tabindex= {tab_index_start + 7} field = "address_line2" onChange = {this.handleChange.bind(this)}
 					id="Address2" name="address_line2" type="text" placeholder="" className="form-control input-md"/>
 					{/* <span className="help-block">Apartment, suite, unit, building, floor, etc.</span> */}

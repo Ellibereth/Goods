@@ -35,7 +35,7 @@ export default class EditAddressForm extends React.Component {
 	componentDidMount(){
 		var address = this.props.address
 		this.setState({
-			address_name : address.address_name,
+			address_name : address.name,
 			description : address.description,
 			address_state : address.address_state,
 			address_city : address.address_city,
@@ -94,11 +94,16 @@ export default class EditAddressForm extends React.Component {
 					address = {this.props.address} />
 
 					
-					<Button onClick = {this.addAddress.bind(this)}>
-						Add Address
-					</Button>
-				
+					
 				</div>
+				<div className = "col-sm-9 col-md-9 col-lg-9">
+					<div className = "pull-right">
+						<Button onClick = {this.addAddress.bind(this)}>
+							Edit Address
+						</Button>
+					</div>
+				</div>
+				
 			</div>
 			</div>
 		)

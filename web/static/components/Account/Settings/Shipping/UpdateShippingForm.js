@@ -115,15 +115,16 @@ export default class UpdateShippingForm extends React.Component {
 		return (
 				<div>
 					<Form horizontal>
-						<AddressForm header = {true}
+						<AddressForm header = {"Add an address"}
 						has_description = {true}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 						<div className = "form-group" id = "submit_button">
-							<Col lgOffset = {0} mdOffset={0} md={6} lg = {6}>
-								<Button onClick = {this.onSubmitPress.bind(this)}>
-								Submit
+							<div className = "col-md-10 col-lg-10">
+								<Button className = "pull-right"
+								onClick = {this.onSubmitPress.bind(this)}>
+									Submit
 								</Button>
-							</Col>
+							</div>
 						</div>
 					</Form>
 				</div>

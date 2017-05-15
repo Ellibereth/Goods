@@ -330,3 +330,15 @@ body {
 .home-product-preview-name {
 	font-size : 12px;
 }
+
+.red-text {
+	color:red;
+}
+
+.modal-header-right {
+	margin-right: 6px;
+}
+
+.form-heading {
+	font-size: 24px;
+}
