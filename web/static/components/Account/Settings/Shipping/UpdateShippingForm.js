@@ -119,7 +119,7 @@ export default class UpdateShippingForm extends React.Component {
 						has_description = {true}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 						<div className = "form-group" id = "submit_button">
-							<Col lgOffset = {2} mdOffset={2} md={6} lg = {6}>
+							<Col lgOffset = {0} mdOffset={0} md={6} lg = {6}>
 								<Button onClick = {this.onSubmitPress.bind(this)}>
 								Submit
 								</Button>

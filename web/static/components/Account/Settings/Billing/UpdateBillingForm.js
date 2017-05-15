@@ -149,6 +149,7 @@ export default class UpdateBillingForm extends React.Component {
 						</label>
 					</div>
 				</div>
+				<div className = "small-buffer"/>
 				{ !this.state.skip_shipping && 
 					<AddressForm header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
 				}

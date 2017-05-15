@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
-import EditAddressInput from '../../../Input/EditAddressInput.js'
+import AddressForm from '../../../Input/AddressForm.js'
 import {Button} from 'react-bootstrap'
 
 const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
@@ -13,7 +13,6 @@ export default class EditAddressForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name : "",
 			address_name : "",
 			description : "",
 			address_state: "",
@@ -36,22 +35,14 @@ export default class EditAddressForm extends React.Component {
 	componentDidMount(){
 		var address = this.props.address
 		this.setState({
-			name : address.name,
+			address_name : address.address_name,
 			description : address.description,
 			address_state : address.address_state,
 			address_city : address.address_city,
-			address_country : address.address_country,
 			address_line1 : address.address_line1,
 			address_line2 : address.address_line2,
 			address_zip : address.address_zip
 		})
-	}
-
-	// handle the text input changes
-	onTextInputChange(field, value){
-		var obj = {}
-		obj[field] = value
-		this.setState(obj)
 	}
 
 	addAddress(){
@@ -62,10 +53,11 @@ export default class EditAddressForm extends React.Component {
 			}
 			data["jwt"] = localStorage.jwt
 			data["account_id"] = AppStore.getCurrentUser().account_id
+			data['address_id'] = this.props.address.id
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: "/addUserAddresses",
+				url: "/editUserAddress",
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
@@ -93,12 +85,11 @@ export default class EditAddressForm extends React.Component {
 	}
 
 	render() {
-
 		return (
+			<div className = "container">
 			<div className = "row">
 				<div className = "col-sm-10 col-md-10 col-lg-10">
-					<EditAddressInput 
-					has_description = {false}
+					<AddressForm 
 					onTextInputChange = {this.onTextInputChange.bind(this)}
 					address = {this.props.address} />
 
@@ -108,6 +99,7 @@ export default class EditAddressForm extends React.Component {
 					</Button>
 				
 				</div>
+			</div>
 			</div>
 		)
 	}

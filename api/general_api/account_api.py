@@ -223,7 +223,7 @@ def editUserAddress():
 	if user == None:
 		return JsonUtil.failure("User does not exist")
 	address_id = request.json.get(Labels.AddressId)
-	name = request.json.get(Labels.Name)
+	name = request.json.get(Labels.AddressName)
 	description = request.json.get(Labels.Description)
 	address_city = request.json.get(Labels.AddressCity)
 	address_country = request.json.get(Labels.AddressCountry)

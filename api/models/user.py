@@ -188,6 +188,8 @@ class User(db.Model):
 		try:
 			addresses = Lob.getUserAddresses(self)
 			sorted_addresses = sorted(addresses,  key=lambda k: k['date_created'])
+			# for address in sorted_addresses:
+			# 	print(address['address_zip'])
 			return sorted_addresses
 		except:
 			return []
@@ -195,7 +197,7 @@ class User(db.Model):
 	# in actuality this method deletes the previous address with the id and then recreates one
 	def editAddress(self, address_id, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
-
+		print(address_id)
 		Lob.deleteAddress(address_id)
 		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
 			, address_line2 = address_line2, address_city = address_city,
