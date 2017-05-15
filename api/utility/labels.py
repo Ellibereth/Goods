@@ -89,6 +89,8 @@ class MarketProductLabels:
 	VariantType = "variant_type"
 	VariantTypes = "variant_types"
 	NewVariantType = "new_variant_type"
+	ProductIdList = "product_id_list"
+	Products = "products"
 
 class ProductTagLabels:
 	ProductId = "product_id"

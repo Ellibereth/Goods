@@ -3,13 +3,26 @@ export function isNumberKey(event) {
 	return (event.target.value == '' || re.test(event.target.value)) 
 }
 
-// export function isNumeric(n) {
-// 	var x = parseInt(n)
-// 	var integers = [0,1,2,3,4,5,6,7,8,9]
-// 	if (integers.indexOf(x) == -1)
-// 		return false
-// 	else
-// 		return true
+// takes price as float, outputs it into USD currency
+export function formatPrice(price){
+		if (!price) {
+			if (price == 0) {
+				return "0.00"
+			}
+			else {
+				return ""	
+			}
+		}
+		var decimal_splits = price.toString().split('.')
+		var dollars = decimal_splits[0]
+		var cents = decimal_splits[1]
+		if (!cents){
+			cents = "00"
+		}
+		else if (cents.length == 1) {
+			cents = cents + "0"
+		}
 
-
-// }
+		cents = cents.substring(0,2)
+		return dollars + "." + cents
+}

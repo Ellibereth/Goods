@@ -7,6 +7,7 @@ import ProductImages from '../../ProductImages'
 import AppStore from '../../../../stores/AppStore'
 import AddToCartButton from '../../ProductPayment/AddToCartButton.js'
 import styles from './product_styles.css'
+import {formatPrice} from '../../../Input/Util'
 
 
 
@@ -106,32 +107,6 @@ export default class ProductTemplate1 extends React.Component {
 	}
 
 
-	// input is float 
-	formatPrice(price){
-		if (!price) {
-			if (price == 0) {
-				return "0.00"
-			}
-			else {
-				return ""	
-			}
-		}
-		var decimal_splits = price.toString().split('.')
-		var dollars = decimal_splits[0]
-		var cents = decimal_splits[1]
-		if (!cents){
-			cents = "00"
-		}
-		else if (cents.length == 1) {
-			cents = cents + "0"
-		}
-
-		cents = cents.substring(0,2)
-		return dollars + "." + cents
-
-	}
-
-
 	render() {
 		// keep in mind for the fade on loading
 		// this wasn't working last I checked
@@ -170,7 +145,7 @@ export default class ProductTemplate1 extends React.Component {
 						</div>
 						<div className = "row">
 							<span className = "product-price-text">
-								${this.formatPrice(this.props.product.price)}
+								${formatPrice(this.props.product.price)}
 							</span>
 						</div>
 

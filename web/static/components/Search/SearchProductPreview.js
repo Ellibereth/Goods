@@ -5,7 +5,7 @@ import {Grid, Col, Row} from 'react-bootstrap';
 var browserHistory = require('react-router').browserHistory;
 
 
-export default class ProductPreview extends React.Component {
+export default class SearchProductPreview extends React.Component {
   	constructor(props) {
 		super(props);
 		this.state = {
@@ -45,17 +45,6 @@ export default class ProductPreview extends React.Component {
 		})
 	}
 
-
-
-  	onMouseOver(event){
-  		$("#" + this.state.product.product_id).toggleClass("black-border-shown")
-  		// event.target.classList.toggle("black-border-shown")
-  	}
-  	onMouseOut(event){
-  		$("#" + this.state.product.product_id).toggleClass("black-border-shown")
-  		// event.target.classList.toggle("black-border-shown")
-  	}
-
   	render() {
   		// hard coded for now
   		var date = this.state.product.sale_end_date
@@ -64,8 +53,6 @@ export default class ProductPreview extends React.Component {
 		return (
 
 			<div 
-			onMouseOver = {this.onMouseOver.bind(this)}
-			onMouseOut = {this.onMouseOut.bind(this)}
 			id = {this.state.product.product_id} 
 			onClick = {this.goToProduct.bind(this)}
 			className = {"product-preview-home col-md-" + col_size + " col-lg-" + col_size}
@@ -78,7 +65,7 @@ export default class ProductPreview extends React.Component {
 							:
 						<img 
 						src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
-						+ this.state.product.images[0].image_id}
+						+ this.state.product.main_image}
 						className = "img-responsive img-rounded product-preview-image"/>
 					}
 					</Col>

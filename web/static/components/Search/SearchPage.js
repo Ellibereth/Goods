@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 
 import {} from 'react-bootstrap';
 import PageContainer from '../Misc/PageContainer'
-import ProductPreview from '../Home/ProductPreview'
+import SearchProductPreview from './SearchProductPreview'
 
 
 export default class HomePage extends React.Component {
@@ -54,7 +54,7 @@ export default class HomePage extends React.Component {
 			var products_display = products.map((product, index)=>
 				<div className = "row search-row">
 					<div className = "col-md-6 col-lg-6 col-sm-6"> 
-					<ProductPreview product_id = {product.product_id} index = {index}/>
+						<SearchProductPreview product_id = {product.product_id} index = {index}/>
 					</div>
 				</div>
 			)

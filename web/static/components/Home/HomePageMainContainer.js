@@ -1,24 +1,55 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {Grid, Row, Col, Button} from 'react-bootstrap';
-import ProductPreview from './ProductPreview'
+import HomeProductPreview from './HomeProductPreview'
 
+const product_id_list = [1,2,3,4,5,6,7,8, 21]
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			products : [],
 		}
+	}
+
+	componentDidMount(){
+		this.fetchProductInformation.bind(this)()
+	}
+
+
+	fetchProductInformation(){
+	  	var form_data = JSON.stringify({
+				"product_id_list" : product_id_list
+			})
+		$.ajax({
+		  type: "POST",
+		  url: "/getBatchedProductInformation",
+		  data: form_data,
+		  success: function(data) {
+			if (!data.success){
+				console.log(data.error)
+			}
+			else {
+				this.setState({products : data.products})
+			}
+		  }.bind(this),
+		  error : function(){
+			console.log("error")
+		  },
+		  dataType: "json",
+		  contentType : "application/json; charset=utf-8"
+		})
 	}
 	
 	render() {
+		// for now these are hard coded preview products
 		
-		var product_ids = [1,2,3,4,5,6,7,8, 21]
+		// make sure this is divides 12
+		var items_per_row = 4
 
-		var items_per_row = 3
 
-		var products = product_ids.map((product_id, index) =>
-				<ProductPreview col_size = {12 / items_per_row} product_id = {product_id}/>
+		var products = this.state.products.map((product, index) =>
+				<HomeProductPreview col_size = {12 / items_per_row} product = {product}/>
 			)
 
 		var product_rows = []
@@ -42,10 +73,9 @@ export default class HomePageMainContainer extends React.Component {
 			)
 		}
 
-		
 
 		return (
-			<div className = "container home-container">
+			<div className = "container-fluid home-container">
 				<div className="row show-grid">
 					<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
 						<div>
@@ -64,9 +94,12 @@ export default class HomePageMainContainer extends React.Component {
 						</div>
 					</div>
 				</div>
-				<hr/>
-
-				{product_rows}
+				
+				<div className = "container-fluid home-product-preview-container">
+					<div className = "container">
+						{product_rows}
+					</div>
+				</div>
 				
 			</div>
 			);

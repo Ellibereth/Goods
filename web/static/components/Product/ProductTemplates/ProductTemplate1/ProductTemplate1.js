@@ -7,7 +7,7 @@ import ProductImages from '../../ProductImages'
 import AppStore from '../../../../stores/AppStore'
 import AddToCartButton from '../../ProductPayment/AddToCartButton.js'
 import styles from './product_styles.css'
-
+import {formatPrice} from '../../../Input/Util'
 
 
 export default class ProductTemplate1 extends React.Component {
@@ -21,13 +21,6 @@ export default class ProductTemplate1 extends React.Component {
 			is_loading : true,
 			more_information_open : false
 		}
-
-
-		
-		// Ben's unit test :P
-		// var test_prices = [1.00, 2.12, 3.123, 0.1, 0, 1]
-
-		// test_prices.map((price) => console.log(this.formatPrice(price)))
 	}
 
 
@@ -106,30 +99,6 @@ export default class ProductTemplate1 extends React.Component {
 	}
 
 
-	// input is float 
-	formatPrice(price){
-		if (!price) {
-			if (price == 0) {
-				return "0.00"
-			}
-			else {
-				return ""	
-			}
-		}
-		var decimal_splits = price.toString().split('.')
-		var dollars = decimal_splits[0]
-		var cents = decimal_splits[1]
-		if (!cents){
-			cents = "00"
-		}
-		else if (cents.length == 1) {
-			cents = cents + "0"
-		}
-
-		cents = cents.substring(0,2)
-		return dollars + "." + cents
-
-	}
 
 
 	render() {
@@ -170,7 +139,7 @@ export default class ProductTemplate1 extends React.Component {
 						</div>
 						<div className = "row">
 							<span className = "product-price-text">
-								${this.formatPrice(this.props.product.price)}
+								${formatPrice(this.props.product.price)}
 							</span>
 						</div>
 
