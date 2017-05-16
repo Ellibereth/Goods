@@ -368,3 +368,48 @@ body {
 .home-large-buffer {
 	margin-top: 40px;
 }
+
+
+
+.order-border {
+	border-color: grey;
+	border-style: dashed;
+	border-width: 1px;
+}
+
+.grey-background {
+	background-color: lightgrey;
+}
+
+.order-preview-image {
+	height: 100px;
+	width: 100px;
+}
+
+.order-preview-table  > tbody > tr > td {
+	padding: 12px;
+}
+
+.order-preview-table  > tbody > tr > th {
+	padding: 8px;
+}
+
+.order-preview-table{
+	border-radius: 5px;
+}
+
+.noborder > th {
+	border: 0;
+}
+
+.light-grey-background {
+	background-color: lightgrey
+}
+
+.grey-text {
+	color : grey;
+}
+
+.table-header-vertical-align-center {
+ 	vertical-align: middle !important;
+}

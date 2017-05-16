@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import PageContainer from '../../../Misc/PageContainer.js'
 import OrderDisplay from './OrderDisplay.js'
+import OrdersPreviewDisplay from './OrdersPreviewDisplay'
 var browserHistory = require('react-router').browserHistory;
 
 export default class OrderHistoryPage extends React.Component {
@@ -43,8 +44,9 @@ export default class OrderHistoryPage extends React.Component {
 		}
 		else {
 			var order_display = orders.map((order, index) => 
-				<div className = "row">
-					<OrderDisplay order = {order} index = {index} />
+				<div>
+					<OrdersPreviewDisplay order = {order} index = {index} />
+					<hr/>
 				</div>
 			)	
 		}
@@ -53,14 +55,19 @@ export default class OrderHistoryPage extends React.Component {
 		return (
 			<PageContainer component = {
 				<div id = "orders_container" className = "container faded">
-					<div className = "row">
-						Past Orders
-					</div>
-
-					<div className = "row">
-						<div className = "col-md-10 col-lg-10">
-							{order_display}
+					<div className="panel panel-default">
+						<div className = "panel-heading">
+							<div> Past Orders </div>
 						</div>
+						
+
+						<div className = "panel-body">
+							<div className = "container">
+								{order_display}
+							</div>
+						</div>
+
+
 					</div>
 				</div>
 			}/>

@@ -84,8 +84,8 @@ export default class HomePageMainContainer extends React.Component {
 					</div>
 				</div>
 
-				<div className = "top-buffer"/>
-				<div className = "top-buffer"/>
+				<div className = "home-large-buffer"/>
+
 				
 				<div className = "container-fluid home-product-preview-container">
 					<div className = "container">
