@@ -67,11 +67,14 @@
 	padding-top: 10px;
 }
 
+
 #srch-term:focus {
 	width:400px;	
 }
 
 #srch-term {
+	/*width: 172px;*/
+	width: 400px !important;
 	transition: width 0.5s ease;
 }
 
