@@ -131,16 +131,15 @@ export default class ProductTemplate1 extends React.Component {
 
 						<div className = "row">
 							<div className = "panel-content">
-								<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
+								<ProductImages selectImage = {this.selectImage.bind(this)}
+								selected_image  = {this.state.selected_image}
+								 product = {this.props.product}/>
 							</div>
 						</div>
 
 						<div className = "small-buffer"/>
 
-						<AddToCartButton cart_item = {this.state.cart_item}
-						refreshUserInformation = {this.refreshUserInformation.bind(this)}
-						product = {this.props.product}/>
-
+						
 					</div>
 
 					<div className = "col-sm-6 col-md-6 col-lg-6">
@@ -187,12 +186,9 @@ export default class ProductTemplate1 extends React.Component {
 
 						<div className = "small-buffer"/>
 							
-						
-
-						<div className = "small-buffer"/>
-						
-						
-					
+						<AddToCartButton cart_item = {this.state.cart_item}
+						refreshUserInformation = {this.refreshUserInformation.bind(this)}
+						product = {this.props.product}/>
 
 					</div>
 			</div>

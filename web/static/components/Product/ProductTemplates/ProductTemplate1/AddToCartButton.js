@@ -125,21 +125,10 @@ export default class AddToCartButton extends React.Component {
 				<div >
 					{ user ?
 					<div>
-						{/* <div className = "row">
+						 <div className = "row">
 							<span className = "block-span">
 								 Quantity: {select_quantity}
 							</span>
-						</div> */}
-						<div className = "row text-center">
-								<button onClick = {this.addToCart.bind(this)} 
-								className="btn add-to-cart-button">
-									<span className = "add-to-cart-text block-span">
-								    	BUY IT <b> ${formatPrice(this.props.product.price)} </b>  <br/>
-								    </span>
-								    <span className = "add-to-cart-text block-span">
-								    	SAVE LOTS 
-								    </span>
-								</button>
 						</div>
 
 						{ this.props.product.has_variants &&
@@ -149,6 +138,20 @@ export default class AddToCartButton extends React.Component {
 							</span>
 						</div>
 						}
+						
+						<div className = "row ">
+							<button onClick = {this.addToCart.bind(this)} 
+							className="btn add-to-cart-button">
+								<span className = "add-to-cart-text block-span">
+							    	BUY IT <b> ${formatPrice(this.props.product.price)} </b>  <br/>
+							    </span>
+							    <span className = "add-to-cart-text block-span">
+							    	SAVE LOTS 
+							    </span>
+							</button>
+						</div>
+
+						
 					</div>
 					:
 					<div>
