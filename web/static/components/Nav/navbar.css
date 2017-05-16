@@ -108,20 +108,20 @@
 .none {
 	visibility: hidden;
 	opacity: 0;
-	-webkit-transition: all 0.8s ease;
+	-webkit-transition: all 0.4s ease;
 
 }
 
 .navbar-edgarusa {
 	/*background-color: blue;*/
 	background-color: #002868;
-	-webkit-transition: all 0.8s ease;
+	-webkit-transition: all 0.4s ease;
 }
 
 .navbar-edgarusa-small {
 	background-color: #002868;
 	 /*Look into this transition*/
-	-webkit-transition: all 0.8s ease;
+	-webkit-transition: all 0.4s ease;
 }
 
 .navbar-brand-small {

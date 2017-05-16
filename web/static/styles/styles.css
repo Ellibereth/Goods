@@ -349,7 +349,7 @@ body {
 }
 
 .home-image-carousel{
-	height: 400px;
+	height: 600px;
 }
 
 .home-image-carousel > .carousel-inner {
@@ -363,4 +363,8 @@ body {
 .home-image-carousel > .carousel-inner > .item > img{
 	max-height: 100%;
 	width : auto;
+}
+
+.home-large-buffer {
+	margin-top: 40px;
 }
