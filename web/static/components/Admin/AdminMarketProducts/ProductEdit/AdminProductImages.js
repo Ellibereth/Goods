@@ -25,7 +25,10 @@ export default class ProductImages extends React.Component {
 	render() {
 		var product = this.props.product
 		if (product == null || product.product_id == null) return <div/>;
-		if (product.images.length == 0) return <h4> No images are listed for this product </h4>
+
+		// only show the main image
+		if (product.images.length == 1 ) return <div/>
+		if (product.images.length == 0 ) return <h4> No images are listed for this product </h4>
 		// something better needs to be done about bad pages, but I'll figure something out soon
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 		var product_images = product.images.map((image, index) => {

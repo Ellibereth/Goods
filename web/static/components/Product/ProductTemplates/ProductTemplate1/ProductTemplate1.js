@@ -3,10 +3,10 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
 import {Button} from 'react-bootstrap';
-import ProductImages from '../../ProductImages'
+import ProductImages from './ProductImages'
 import AppStore from '../../../../stores/AppStore'
-import AddToCartButton from '../../ProductPayment/AddToCartButton.js'
-import styles from './product_styles.css'
+import AddToCartButton from './AddToCartButton.js'
+import styles from '..//product_styles.css'
 import {formatPrice} from '../../../Input/Util'
 
 
@@ -127,7 +127,19 @@ export default class ProductTemplate1 extends React.Component {
 							</div>
 						</div>
 
-						<div className = "top-buffer"/>
+						<div className = "small-buffer"/>
+
+						<div className = "row">
+							<div className = "panel-content">
+								<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
+							</div>
+						</div>
+
+						<div className = "small-buffer"/>
+
+						<AddToCartButton cart_item = {this.state.cart_item}
+						refreshUserInformation = {this.refreshUserInformation.bind(this)}
+						product = {this.props.product}/>
 
 					</div>
 
@@ -137,14 +149,11 @@ export default class ProductTemplate1 extends React.Component {
 								{this.props.product.name} 
 							</span>
 						</div>
-						<div className = "row">
-							<span className = "product-price-text">
-								${formatPrice(this.props.product.price)}
-							</span>
-						</div>
+						
 
 						<div className = "small-buffer"/>
 						<div className = "row">
+							<span className = "product-features-heading"> FEATURES </span>
 							<ul>
 							{this.props.product.description.split("\n").map(i => {
 					            return <li>{i}</li>;
@@ -178,17 +187,11 @@ export default class ProductTemplate1 extends React.Component {
 
 						<div className = "small-buffer"/>
 							
-						<AddToCartButton cart_item = {this.state.cart_item}
-						refreshUserInformation = {this.refreshUserInformation.bind(this)}
-						product = {this.props.product}/>
+						
 
 						<div className = "small-buffer"/>
 						
-						<div className = "row">
-							<div className = "panel-content">
-								<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
-							</div>
-						</div>
+						
 					
 
 					</div>

@@ -32,7 +32,7 @@ export default class OrdersPreview extends React.Component {
         							<th> <img className = "order-preview-image" src = {src_base + order.main_image} /> </th>
         							<th className = "table-header-vertical-align-center">  
         								<div> {order.name} </div>
-        								<div> Quantity: {order.num_items} @ ${order.price} </div>
+        								<div> Quantity: {order.num_items} @ ${formatPrice(order.price)} </div>
         							</th>
         						</tr>
         					</thead>
@@ -43,7 +43,7 @@ export default class OrdersPreview extends React.Component {
 	        					</tr>
 	        					<tr>
 	        						<td className = "light-grey-background grey-text">  PRICE  </td>
-        							<td>  ${order.total_price} </td>
+        							<td>  ${formatPrice(order.total_price)} </td>
 	        					</tr>
 	        					<tr>
 	        						<td className = "light-grey-background grey-text"> ORDER#  </td>

@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link
 
 import {Button, Grid, Row, Col} from 'react-bootstrap';
-import ProductImages from '../../../Product/ProductImages'
+import ProductImages from './AdminProductImages'
 
 
 
@@ -161,7 +161,7 @@ export default class AdminProductPreview extends React.Component {
 										</div>
 										<div clasName = "top-buffer"/>
 									</div>
-									<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
+									<AdminProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
 								</div>
 							</div>
 						</div>

@@ -1,9 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import {} from 'react-bootstrap';
-import AppStore from '../../../stores/AppStore.js'
-import AppActions from '../../../actions/AppActions.js'
+import AppStore from '../../../../stores/AppStore.js'
+import AppActions from '../../../../actions/AppActions.js'
 import {Button} from 'react-bootstrap'
+import {formatPrice} from '../../../Input/Util.js'
 
 
 
@@ -124,20 +125,23 @@ export default class AddToCartButton extends React.Component {
 				<div >
 					{ user ?
 					<div>
-						<div className = "row">
+						{/* <div className = "row">
 							<span className = "block-span">
 								 Quantity: {select_quantity}
 							</span>
-						</div>
-						<div className = "row">
-							<span className = "block-span">
-								<button onClick = {this.addToCart.bind(this)} className="btn add-to-cart-button">
-									<div id = "buy_now_button_text">
-								    	<b> Add to cart </b> 
-								    </div>
+						</div> */}
+						<div className = "row text-center">
+								<button onClick = {this.addToCart.bind(this)} 
+								className="btn add-to-cart-button">
+									<span className = "add-to-cart-text block-span">
+								    	BUY IT <b> ${formatPrice(this.props.product.price)} </b>  <br/>
+								    </span>
+								    <span className = "add-to-cart-text block-span">
+								    	SAVE LOTS 
+								    </span>
 								</button>
-							</span>
 						</div>
+
 						{ this.props.product.has_variants &&
 						<div className = "row">
 							<span className = "block-span">
@@ -149,7 +153,8 @@ export default class AddToCartButton extends React.Component {
 					:
 					<div>
 						<span>
-							<button onClick = {this.onNonUserClick.bind(this)} className="btn add-to-cart-button">
+							<button onClick = {this.onNonUserClick.bind(this)} 
+							className="btn add-to-cart-button">
 								<div id = "buy_now_button_text">
 							    	<b> Add to cart </b> 
 							    </div>

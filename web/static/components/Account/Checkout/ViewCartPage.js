@@ -4,6 +4,7 @@ import AppStore from '../../../stores/AppStore.js';
 import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import {Button} from 'react-bootstrap'
+import {formatPrice} from '../../Input/Util'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
 
@@ -95,7 +96,7 @@ export default class ViewCartPage extends React.Component {
 							</div>
 							<div className = "row">
 								<div className = "col-md-2 col-lg-2 pull-right">
-									<span> <b> Subtotal </b> ${this.state.price} </span>
+									<span> <b> Subtotal </b> ${formatPrice(this.state.price)} </span>
 								</div>
 							</div>
 						</div>

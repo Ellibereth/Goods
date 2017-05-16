@@ -3,15 +3,15 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
 import {Button} from 'react-bootstrap';
-import ProductImages from '../../ProductImages'
+import ProductImages from './ProductImages'
 import AppStore from '../../../../stores/AppStore'
-import AddToCartButton from '../../ProductPayment/AddToCartButton.js'
-import styles from './product_styles.css'
+import AddToCartButton from './AddToCartButton.js'
+import styles from '../product_styles.css'
 import {formatPrice} from '../../../Input/Util'
 
 
 
-export default class ProductTemplate1 extends React.Component {
+export default class ProductTemplate2 extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

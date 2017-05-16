@@ -7,6 +7,7 @@ import CartDisplay from './Cart/CartDisplay'
 import CheckoutCardSelect from './Billing/CheckoutCardSelect.js'
 import CheckoutAddressSelect from './Shipping/CheckoutAddressSelect.js'
 import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
+import {formatPrice} from '../../Input/Util'
 import {Button} from 'react-bootstrap'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
@@ -354,7 +355,7 @@ export default class CheckoutPage extends React.Component {
 							<CartDisplay 
 							is_loading = {this.state.is_loading}
 							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-							price = {this.state.price}
+							price = {formatPrice(this.state.price)}
 							items = {this.state.items}
 							/>
 						</div>
@@ -368,7 +369,7 @@ export default class CheckoutPage extends React.Component {
 						</Button>
 						<hr/>
 						<div className = "order-total">
-							Order Total: {this.state.price}
+							Order Total: {formatPrice(this.state.price)}
 						</div>
 					</div>
 				</div>
