@@ -20,7 +20,7 @@ export default class TopNavBar extends React.Component {
 	}
 
 	componentDidMount(){
-		var change_height = 80; //number of pixels before modifying styles
+		var change_height = 400; //number of pixels before modifying styles
 		var small_nav_height = 50; // bootstrap default nav height, currently using this for small nav
 		$(window).bind('scroll', function () {
 			if (this.state.current_nav){
