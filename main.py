@@ -80,13 +80,15 @@ def add_header(response):
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
 
 
-	# we will need to adjust for caching every file EXCEPT bundle.js
-	# uncomment this to cache everything
-	# response.headers['Cache-Control'] = 'public, max-age=' + str(CACHE_MAX_AGE)
-	# right_now = datetime.datetime.now()
-	# expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
-	# print(expire_time)
-	# response.headers['Expires'] = str(expire_time)
+	path_splits = request.path.split('/')
+	# print(path_splits)
+	# cache everything int he static/web_scripts folder
+	if len(path_splits) > 2:
+		if path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
+			response.headers['Cache-Control'] = 'public, max-age=' + str(CACHE_MAX_AGE)
+			right_now = datetime.datetime.now()
+			expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
+			response.headers['Expires'] = str(expire_time)
 
 	
 
