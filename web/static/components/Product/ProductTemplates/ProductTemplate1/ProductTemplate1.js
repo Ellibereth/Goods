@@ -8,6 +8,7 @@ import AppStore from '../../../../stores/AppStore'
 import AddToCartButton from './AddToCartButton.js'
 import styles from '..//product_styles.css'
 import {formatPrice} from '../../../Input/Util'
+import ProductDescriptionTab from './ProductDescriptionTab'
 
 
 export default class ProductTemplate1 extends React.Component {
@@ -137,7 +138,7 @@ export default class ProductTemplate1 extends React.Component {
 							</div>
 						</div>
 
-						<div className = "small-buffer"/>
+
 
 						
 					</div>
@@ -155,16 +156,15 @@ export default class ProductTemplate1 extends React.Component {
 							</span>
 						</div>
 
-						<div className = "small-buffer"/>
 
 
 						<AddToCartButton cart_item = {this.state.cart_item}
 						refreshUserInformation = {this.refreshUserInformation.bind(this)}
 						product = {this.props.product}/>
 
-						
-
-						<div className = "small-buffer"/>
+						<div className = 'small-buffer'/>
+						<ProductDescriptionTab product = {this.props.product}/>
+						{/* <div className = "small-buffer"/>
 						<div className = "row">
 							<span className = "product-features-heading"> FEATURES </span>
 							<ul>
@@ -174,16 +174,9 @@ export default class ProductTemplate1 extends React.Component {
 					        	<li> Manufactured by {this.props.product.manufacturer}  </li>
 					        	<li> Category: {this.props.product.category} </li>
 					        </ul>
-						</div>
+						</div> */}
 
 					
-					{/* <div onClick = {() => this.setState({more_information_open : !this.state.more_information_open})}
-						 className = "row product-description-collapse-preview " data-toggle="collapse" data-target="#more_info_dropdown">
-								<span className = "product-more-information-text"> More Information	</span>
-								<span className = {this.state.more_information_open ? 
-									"glyphicon glyphicon-chevron-up product-more-information-icon"
-									 : "glyphicon glyphicon-chevron-down product-more-information-icon"}/>
-						</div> */}
 					
 
 

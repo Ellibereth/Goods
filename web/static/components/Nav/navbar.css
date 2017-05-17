@@ -69,12 +69,12 @@
 
 
 #srch-term:focus {
-	width:240px;	
+	width: 240px;	
 }
 
 #srch-term {
 	/*width: 172px;*/
-	width: 240 !important;
+	width: 240px !important;
 	transition: width 0.5s ease;
 }
 

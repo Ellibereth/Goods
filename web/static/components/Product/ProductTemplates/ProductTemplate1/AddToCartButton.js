@@ -148,7 +148,7 @@ export default class AddToCartButton extends React.Component {
 							<button onClick = {this.addToCart.bind(this)} 
 							className="btn add-to-cart-button">
 								<span className = "add-to-cart-text block-span">
-							    	BUY IT <b> ${formatPrice(this.props.product.price)} </b>  <br/>
+							    	<b> BUY IT  </b>  <br/>
 							    </span>
 							</button>
 						</div>
