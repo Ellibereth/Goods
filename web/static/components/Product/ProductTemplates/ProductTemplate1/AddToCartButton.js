@@ -87,9 +87,17 @@ export default class AddToCartButton extends React.Component {
 					)
 			}	
 			var select_quantity = (
-					<select className = "selectpicker" id = "test_id" onChange = {this.handleQuantityChange.bind(this)}>
-						{quantity_options}
-					</select>
+					<div className ="form-group row row-eq-height">
+						<label for = "quantity" className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
+							Qty
+						</label>
+						<div className = "col-md-6 col-lg-6 col-sm-6">
+							<select id = "quantity" className ="form-control"
+							 onChange = {this.handleQuantityChange.bind(this)}>
+						  		{quantity_options}
+							</select>
+						</div>
+					</div>
 				)
 		}
 
@@ -101,11 +109,11 @@ export default class AddToCartButton extends React.Component {
 			}	
 			var select_quantity = (
 					<div className ="form-group row row-eq-height">
-						<label className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter">
+						<label for = "quantity" className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
 							Qty
 						</label>
 						<div className = "col-md-6 col-lg-6 col-sm-6">
-							<select className ="form-control"
+							<select id = "quantity" className ="form-control"
 							 onChange = {this.handleQuantityChange.bind(this)}>
 						  		{quantity_options}
 							</select>

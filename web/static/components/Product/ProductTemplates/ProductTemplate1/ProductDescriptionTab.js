@@ -33,18 +33,23 @@ export default class ProuctDescriptionTab extends React.Component {
 		var product = this.props.product
 
 		var description = (
-				<ul>
-				{this.props.product.description.split("\n").map(i => {
-					return <li>{i}</li>;
-				})}
-					<li> Manufactured by {this.props.product.manufacturer}        </li>
-					<li> Category: {this.props.product.category} </li>
-				</ul>
+				<div className = "product-info-tab">
+					<ul className = "features-list">
+					{this.props.product.description.split("\n").map(i => {
+						return <li>{i}</li>;
+					})}
+						<li> Manufactured by {this.props.product.manufacturer}        </li>
+						<li> Category: {this.props.product.category} </li>
+					</ul>
+				</div>
 		)
 
 		var maker = (
-				<div>
-					MEET YOUR MAKER
+				<div className = "product-info-tab">
+					<span className = "block-span"> MEET YOUR MAKER </span>
+					<span className = "block-span"> MEET YOUR MAKER </span>
+					<span className = "block-span"> MEET YOUR MAKER </span>
+					<span className = "block-span"> MEET YOUR MAKER </span>
 				</div> 
 			)
 	
@@ -60,8 +65,6 @@ export default class ProuctDescriptionTab extends React.Component {
 							<a onClick = {this.selectTab.bind(this, 1)}> Maker </a>
 						</li>
 					</ul>
-					<div className = "small-buffer"/>
-					<hr/>
 					<div className = "small-buffer"/>
 					{ this.state.selected_tab == 0 && description}
 					{ this.state.selected_tab == 1 && maker}

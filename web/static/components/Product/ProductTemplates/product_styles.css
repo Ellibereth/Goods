@@ -160,14 +160,51 @@
 	color : white;
 }
 
+.product-page-tabs {
+	border-bottom: solid 1px lightgrey;
+	padding-bottom: 2px;
+	cursor: pointer;
+}
+
 .product-page-tabs > li.active > a {
-	text-decoration:underline;
-	color : skyblue;
+	/*color : skyblue;*/
+	border-bottom: solid 4px blue;
 }
 
 
 .product-page-tabs > li > a {
+	color : black;
+	padding-bottom: 10px;
+	font-size : 24px;
+	text-decoration: none;
+}
+
+.product-page-tabs > li  {
 	color : grey;
+	padding-bottom: 8px;
+	padding-right: 36px;
+	/*width: 96px;*/
+	/*margin : 0;*/
+}
+
+.quantity-label{
+	font-size: 16px;
+	padding-top : 6px;
+	padding-left: 0px;
+}
+
+.product-info-tab {
+	font-size: 16px;
+	/* this wasn't working last, will try agian*/
+	/*font-weight: lighter*/
+}
+
+.features-list{
+
+}
+
+.features-list > li {
+	/*font-size: 24px;*/
 }
 
 
