@@ -72,7 +72,7 @@ def add_header(response):
 	and also to cache the rendered page for 10 minutes.
 	"""
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-	response.headers['Cache-Control'] = 'max-age=300'
+	response.headers['Cache-Control'] = 'public, max-age=300'
 	response.headers.add('Access-Control-Allow-Origin', '*')
 	response.headers.add("Access-Control-Allow-Credentials", "true")
 	response.headers.add("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT")
