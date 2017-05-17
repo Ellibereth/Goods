@@ -100,13 +100,16 @@ export default class AddToCartButton extends React.Component {
 					)
 			}	
 			var select_quantity = (
-					<div className ="form-group row">
-							<div className = " col-md-2 col-lg-2 col-sm-2">
-								<select className ="form-control"
-								 onChange = {this.handleQuantityChange.bind(this)}>
-							  		{quantity_options}
-								</select>
-							</div>
+					<div className ="form-group row row-eq-height">
+						<label className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter">
+							Qty
+						</label>
+						<div className = "col-md-6 col-lg-6 col-sm-6">
+							<select className ="form-control"
+							 onChange = {this.handleQuantityChange.bind(this)}>
+						  		{quantity_options}
+							</select>
+						</div>
 					</div>
 				)
 		}
@@ -130,11 +133,8 @@ export default class AddToCartButton extends React.Component {
 				<div >
 					{ user ?
 					<div>
-						<div className = "row">
-							<span className = "block-span">
-									{select_quantity}
-							</span>
-						</div>
+						{select_quantity}
+					
 
 						{ this.props.product.has_variants &&
 						<div className = "row">
@@ -144,11 +144,11 @@ export default class AddToCartButton extends React.Component {
 						</div>
 						}
 
-						<div className = "row ">
+						<div className = "row">
 							<button onClick = {this.addToCart.bind(this)} 
 							className="btn add-to-cart-button">
 								<span className = "add-to-cart-text block-span">
-							    	<b> BUY IT  </b>  <br/>
+							    	<b> Buy It  </b>  <br/>
 							    </span>
 							</button>
 						</div>

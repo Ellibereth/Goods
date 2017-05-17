@@ -47,35 +47,6 @@ body {
 }
 
 
-.product-add-cart-button-span {
-	font-weight : bold;
-	font-size : 36px;
-	display: block,;
-}
-
-
-
-.add-to-cart-button {
-	margin-top : 8px;
-	padding: 18px 96px;
-    font-size: 24px;
-    line-height: normal;
-    background-color: blue;	
-    border-color: white
-}
-
-.add-to-cart-button:hover {
-	opacity: 0.7
-}
-
-.product-features-heading{
-	font-size: 18;
-}
-
-
-.add-to-cart-text{
-	color : white;
-}
 
 #settings-header {
 	font-size: 24px;

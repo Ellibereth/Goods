@@ -52,7 +52,7 @@ export default class ProuctDescriptionTab extends React.Component {
 		return (
 			<div className = "row">	
 				<span className = "block-span">
-					<ul className="nav nav-pills product-page-tabs">
+					<ul className="list-inline product-page-tabs">
 						<li className= {this.state.selected_tab == 0 && "active"}>
 							<a onClick = {this.selectTab.bind(this, 0)}> Features </a>
 						</li>
@@ -60,7 +60,9 @@ export default class ProuctDescriptionTab extends React.Component {
 							<a onClick = {this.selectTab.bind(this, 1)}> Maker </a>
 						</li>
 					</ul>
-
+					<div className = "small-buffer"/>
+					<hr/>
+					<div className = "small-buffer"/>
 					{ this.state.selected_tab == 0 && description}
 					{ this.state.selected_tab == 1 && maker}
 				</span>

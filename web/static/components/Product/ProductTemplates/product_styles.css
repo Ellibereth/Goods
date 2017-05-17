@@ -160,6 +160,15 @@
 	color : white;
 }
 
-/*.product-page-tabs > li > a {
-	background-color : blue;
-}*/
+.product-page-tabs > li.active > a {
+	text-decoration:underline;
+	color : skyblue;
+}
+
+
+.product-page-tabs > li > a {
+	color : grey;
+}
+
+
+
