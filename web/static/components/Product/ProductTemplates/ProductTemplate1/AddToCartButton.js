@@ -91,7 +91,7 @@ export default class AddToCartButton extends React.Component {
 						<label for = "quantity" className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
 							Qty
 						</label>
-						<div className = "col-md-6 col-lg-6 col-sm-6">
+						<div className = "col-md-4 col-lg-4 col-sm-4">
 							<select id = "quantity" className ="form-control"
 							 onChange = {this.handleQuantityChange.bind(this)}>
 						  		{quantity_options}
@@ -112,7 +112,7 @@ export default class AddToCartButton extends React.Component {
 						<label for = "quantity" className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
 							Qty
 						</label>
-						<div className = "col-md-6 col-lg-6 col-sm-6">
+						<div className = "col-md-4 col-lg-4 col-sm-4">
 							<select id = "quantity" className ="form-control"
 							 onChange = {this.handleQuantityChange.bind(this)}>
 						  		{quantity_options}
@@ -134,8 +134,6 @@ export default class AddToCartButton extends React.Component {
 		var user = AppStore.getCurrentUser()
 		return (
 				<div >
-					{ user ?
-					<div>
 						{select_quantity}
 					
 
@@ -155,7 +153,10 @@ export default class AddToCartButton extends React.Component {
 						}
 
 						<div className = "row">
-							<button onClick = {this.addToCart.bind(this)} 
+							<button 
+								onClick = {user ? this.addToCart.bind(this) 
+									: this.onNonUserClick.bind(this)} 
+
 							className="btn add-to-cart-button">
 								<span className = "add-to-cart-text block-span">
 							    	<b> Buy It  </b>  <br/>
@@ -164,20 +165,8 @@ export default class AddToCartButton extends React.Component {
 						</div>
 
 						
-					</div>
-					:
-					<div>
-						<span>
-							<button onClick = {this.onNonUserClick.bind(this)} 
-							className="btn add-to-cart-button">
-								<div id = "add-to-cart-text">
-							    	<b> Add to cart </b> 
-							    </div>
-							</button>
-						</span>
-					</div>
-					}
 				</div>
+
 		);
   	}
 }
