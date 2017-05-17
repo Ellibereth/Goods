@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link
 
 import {Button, Grid, Row, Col} from 'react-bootstrap';
-import ProductImages from './AdminProductImages'
+import AdminProductImages from './AdminProductImages'
 
 
 

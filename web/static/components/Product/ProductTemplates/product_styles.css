@@ -144,7 +144,35 @@
     font-size: 24px;
     line-height: normal;
     background-color: blue;	
-    border-color: white
+    border-color: blue
+}
+
+.add-to-cart-button:hover {
+	border-left : lightgrey 1px solid !important;
+}
+
+.quantity-button{
+	margin-top : 0px;
+	padding: 18px 24px;
+    font-size: 24px;
+    line-height: normal;
+    background-color: blue;	
+    border-color: blue;
+    color: white !important;
+    text-align: center;
+
+
+    border-right : lightgrey 1px solid !important;
+	z-index: 1 !important;
+}
+
+.quantity-button:hover {
+	opacity : 0.7;
+}
+
+
+.quantity-dropdown > li > a {
+	/*color: white;*/
 }
 
 .add-to-cart-button:hover {
@@ -206,6 +234,13 @@
 .features-list > li {
 	/*font-size: 24px;*/
 }
+
+.btn-group > .btn {
+	margin: 0;
+}
+
+
+
 
 
 

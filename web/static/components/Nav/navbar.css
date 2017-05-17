@@ -108,6 +108,7 @@
 }
 
 
+/* This should be renamed, don't forget about it later*/
 .none {
 	visibility: hidden;
 	opacity: 0;

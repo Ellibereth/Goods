@@ -6,9 +6,9 @@ import {Button} from 'react-bootstrap';
 import ProductImages from './ProductImages'
 import AppStore from '../../../../stores/AppStore'
 import AddToCartButton from './AddToCartButton.js'
-import styles from '../product_styles.css'
+import styles from '..//product_styles.css'
 import {formatPrice} from '../../../Input/Util'
-
+import ProductDescriptionTab from './ProductDescriptionTab'
 
 
 export default class ProductTemplate2 extends React.Component {
@@ -22,13 +22,6 @@ export default class ProductTemplate2 extends React.Component {
 			is_loading : true,
 			more_information_open : false
 		}
-
-
-		
-		// Ben's unit test :P
-		// var test_prices = [1.00, 2.12, 3.123, 0.1, 0, 1]
-
-		// test_prices.map((price) => console.log(this.formatPrice(price)))
 	}
 
 
@@ -93,7 +86,7 @@ export default class ProductTemplate2 extends React.Component {
 						}		
 					}
 					else {
-						console.log("an error")
+						console.log(data.error)
 					}
 				$('#product-page-container').removeClass("faded");
 				this.setState({is_loading : false})
@@ -105,6 +98,8 @@ export default class ProductTemplate2 extends React.Component {
 				contentType : "application/json; charset=utf-8"
 			});
 	}
+
+
 
 
 	render() {
@@ -133,8 +128,19 @@ export default class ProductTemplate2 extends React.Component {
 							</div>
 						</div>
 
-						<div className = "top-buffer"/>
+						<div className = "small-buffer"/>
 
+						<div className = "row">
+							<div className = "panel-content">
+								<ProductImages selectImage = {this.selectImage.bind(this)}
+								selected_image  = {this.state.selected_image}
+								 product = {this.props.product}/>
+							</div>
+						</div>
+
+
+
+						
 					</div>
 
 					<div className = "col-sm-6 col-md-6 col-lg-6">
@@ -143,14 +149,24 @@ export default class ProductTemplate2 extends React.Component {
 								{this.props.product.name} 
 							</span>
 						</div>
+
 						<div className = "row">
 							<span className = "product-price-text">
-								${formatPrice(this.props.product.price)}
+								${formatPrice(this.props.product.price)} 
 							</span>
 						</div>
 
-						<div className = "small-buffer"/>
+
+
+						<AddToCartButton cart_item = {this.state.cart_item}
+						refreshUserInformation = {this.refreshUserInformation.bind(this)}
+						product = {this.props.product}/>
+
+						<div className = 'small-buffer'/>
+						<ProductDescriptionTab product = {this.props.product}/>
+						{/* <div className = "small-buffer"/>
 						<div className = "row">
+							<span className = "product-features-heading"> FEATURES </span>
 							<ul>
 							{this.props.product.description.split("\n").map(i => {
 					            return <li>{i}</li>;
@@ -158,35 +174,13 @@ export default class ProductTemplate2 extends React.Component {
 					        	<li> Manufactured by {this.props.product.manufacturer}  </li>
 					        	<li> Category: {this.props.product.category} </li>
 					        </ul>
-						</div>
+						</div> */}
 
-
-						<div className = "small-buffer"/>
-						<div className="row" >
-							<div className = "collapse" id = "more_info_dropdown">
-								<div className = "card">
-									<div className = "card-block">
-										<span> Manufacturer : {this.props.product.manufacturer} </span> <br/>
-										<span> Category : {this.props.product.category} </span> <br/>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className = "small-buffer"/>
-							
-						<AddToCartButton cart_item = {this.state.cart_item}
-						refreshUserInformation = {this.refreshUserInformation.bind(this)}
-						product = {this.props.product}/>
-
-						<div className = "small-buffer"/>
-						
-						<div className = "row">
-							<div className = "panel-content">
-								<ProductImages selectImage = {this.selectImage.bind(this)} product = {this.props.product}/>
-							</div>
-						</div>
 					
+					
+
+
+						<div className = "small-buffer"/>
 
 					</div>
 			</div>

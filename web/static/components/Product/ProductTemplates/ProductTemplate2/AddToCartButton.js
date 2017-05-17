@@ -4,6 +4,7 @@ import {} from 'react-bootstrap';
 import AppStore from '../../../../stores/AppStore.js'
 import AppActions from '../../../../actions/AppActions.js'
 import {Button} from 'react-bootstrap'
+import {formatPrice} from '../../../Input/Util.js'
 
 
 
@@ -86,9 +87,17 @@ export default class AddToCartButton extends React.Component {
 					)
 			}	
 			var select_quantity = (
-					<select onChange = {this.handleQuantityChange.bind(this)}>
-						{quantity_options}
-					</select>
+					<div className ="form-group row row-eq-height">
+						<label for = "quantity" className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
+							Qty
+						</label>
+						<div className = "col-md-4 col-lg-4 col-sm-4">
+							<select id = "quantity" className ="form-control"
+							 onChange = {this.handleQuantityChange.bind(this)}>
+						  		{quantity_options}
+							</select>
+						</div>
+					</div>
 				)
 		}
 
@@ -99,9 +108,17 @@ export default class AddToCartButton extends React.Component {
 					)
 			}	
 			var select_quantity = (
-					<select onChange = {this.handleQuantityChange.bind(this)}>
-						{quantity_options}
-					</select>
+					<div className ="form-group row row-eq-height">
+						<label for = "quantity" className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
+							Qty
+						</label>
+						<div className = "col-md-4 col-lg-4 col-sm-4">
+							<select id = "quantity" className ="form-control"
+							 onChange = {this.handleQuantityChange.bind(this)}>
+						  		{quantity_options}
+							</select>
+						</div>
+					</div>
 				)
 		}
 
@@ -113,51 +130,43 @@ export default class AddToCartButton extends React.Component {
 					)
 			)
 
-		var variant_type_selector = (
-				<select onChange = {this.handleVariantChange.bind(this)}>
-					{variant_options}
-				</select>
-			)
 
 		var user = AppStore.getCurrentUser()
 		return (
 				<div >
-					{ user ?
-					<div>
-						<div className = "row">
-							<span className = "block-span">
-								 Quantity: {select_quantity}
-							</span>
-						</div>
-						<div className = "row">
-							<span className = "block-span">
-								<button onClick = {this.addToCart.bind(this)} className="btn add-to-cart-button">
-									<div id = "buy_now_button_text">
-								    	<b> Add to cart </b> 
-								    </div>
-								</button>
-							</span>
-						</div>
+						{select_quantity}
+					
+
 						{ this.props.product.has_variants &&
-						<div className = "row">
-							<span className = "block-span">
-								Type: {variant_type_selector}
-							</span>
-						</div>
+							<div className ="form-group row row-eq-height">
+								<label for = "type" 
+								className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
+									Type
+								</label>
+								<div className = "col-md-6 col-lg-6 col-sm-6">
+									<select id = "type" className ="form-control"
+									 onChange = {this.handleVariantChange.bind(this)}>
+								  		{variant_options}
+									</select>
+								</div>
+							</div>
 						}
-					</div>
-					:
-					<div>
-						<span>
-							<button onClick = {this.onNonUserClick.bind(this)} className="btn add-to-cart-button">
-								<div id = "buy_now_button_text">
-							    	<b> Add to cart </b> 
-							    </div>
+
+						<div className = "row">
+							<button 
+								onClick = {user ? this.addToCart.bind(this) 
+									: this.onNonUserClick.bind(this)} 
+
+							className="btn add-to-cart-button">
+								<span className = "add-to-cart-text block-span">
+							    	<b> Buy It  </b>  <br/>
+							    </span>
 							</button>
-						</span>
-					</div>
-					}
+						</div>
+
+						
 				</div>
+
 		);
   	}
 }
