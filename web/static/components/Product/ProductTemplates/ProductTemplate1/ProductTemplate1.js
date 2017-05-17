@@ -148,6 +148,20 @@ export default class ProductTemplate1 extends React.Component {
 								{this.props.product.name} 
 							</span>
 						</div>
+
+						<div className = "row">
+							<span className = "product-price-text">
+								${formatPrice(this.props.product.price)} 
+							</span>
+						</div>
+
+						<div className = "small-buffer"/>
+
+
+						<AddToCartButton cart_item = {this.state.cart_item}
+						refreshUserInformation = {this.refreshUserInformation.bind(this)}
+						product = {this.props.product}/>
+
 						
 
 						<div className = "small-buffer"/>
@@ -172,23 +186,8 @@ export default class ProductTemplate1 extends React.Component {
 						</div> */}
 					
 
-						<div className = "small-buffer"/>
-						<div className="row" >
-							<div className = "collapse" id = "more_info_dropdown">
-								<div className = "card">
-									<div className = "card-block">
-										<span> Manufacturer : {this.props.product.manufacturer} </span> <br/>
-										<span> Category : {this.props.product.category} </span> <br/>
-									</div>
-								</div>
-							</div>
-						</div>
 
 						<div className = "small-buffer"/>
-							
-						<AddToCartButton cart_item = {this.state.cart_item}
-						refreshUserInformation = {this.refreshUserInformation.bind(this)}
-						product = {this.props.product}/>
 
 					</div>
 			</div>

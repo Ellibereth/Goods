@@ -99,7 +99,7 @@ export default class AddressForm extends React.Component {
 
 					<select value = {address && address.address_state} tabindex= {tab_index_start + 4} field = "address_state"    onChange = {this.handleChange.bind(this)}
 					id="State" name="address_state" className="form-control">
-							<option value="AL">Alabama</option>
+						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
 						<option value="AZ">Arizona</option>
 						<option value="AR">Arkansas</option>

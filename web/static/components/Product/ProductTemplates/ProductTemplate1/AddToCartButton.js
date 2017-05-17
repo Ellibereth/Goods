@@ -87,7 +87,7 @@ export default class AddToCartButton extends React.Component {
 					)
 			}	
 			var select_quantity = (
-					<select onChange = {this.handleQuantityChange.bind(this)}>
+					<select className = "selectpicker" id = "test_id" onChange = {this.handleQuantityChange.bind(this)}>
 						{quantity_options}
 					</select>
 				)
@@ -100,9 +100,14 @@ export default class AddToCartButton extends React.Component {
 					)
 			}	
 			var select_quantity = (
-					<select onChange = {this.handleQuantityChange.bind(this)}>
-						{quantity_options}
-					</select>
+					<div className ="form-group row">
+							<div className = " col-md-2 col-lg-2 col-sm-2">
+								<select className ="form-control"
+								 onChange = {this.handleQuantityChange.bind(this)}>
+							  		{quantity_options}
+								</select>
+							</div>
+					</div>
 				)
 		}
 
@@ -125,9 +130,9 @@ export default class AddToCartButton extends React.Component {
 				<div >
 					{ user ?
 					<div>
-						 <div className = "row">
+						<div className = "row">
 							<span className = "block-span">
-								 Quantity: {select_quantity}
+									{select_quantity}
 							</span>
 						</div>
 
@@ -138,15 +143,12 @@ export default class AddToCartButton extends React.Component {
 							</span>
 						</div>
 						}
-						
+
 						<div className = "row ">
 							<button onClick = {this.addToCart.bind(this)} 
 							className="btn add-to-cart-button">
 								<span className = "add-to-cart-text block-span">
 							    	BUY IT <b> ${formatPrice(this.props.product.price)} </b>  <br/>
-							    </span>
-							    <span className = "add-to-cart-text block-span">
-							    	SAVE LOTS 
 							    </span>
 							</button>
 						</div>
@@ -158,7 +160,7 @@ export default class AddToCartButton extends React.Component {
 						<span>
 							<button onClick = {this.onNonUserClick.bind(this)} 
 							className="btn add-to-cart-button">
-								<div id = "buy_now_button_text">
+								<div id = "add-to-cart-text">
 							    	<b> Add to cart </b> 
 							    </div>
 							</button>
