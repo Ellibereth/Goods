@@ -130,11 +130,6 @@ export default class AddToCartButton extends React.Component {
 					)
 			)
 
-		var variant_type_selector = (
-				<select onChange = {this.handleVariantChange.bind(this)}>
-					{variant_options}
-				</select>
-			)
 
 		var user = AppStore.getCurrentUser()
 		return (
@@ -145,11 +140,18 @@ export default class AddToCartButton extends React.Component {
 					
 
 						{ this.props.product.has_variants &&
-						<div className = "row">
-							<span className = "block-span">
-								Type: {variant_type_selector}
-							</span>
-						</div>
+							<div className ="form-group row row-eq-height">
+								<label for = "type" 
+								className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
+									Type
+								</label>
+								<div className = "col-md-6 col-lg-6 col-sm-6">
+									<select id = "type" className ="form-control"
+									 onChange = {this.handleVariantChange.bind(this)}>
+								  		{variant_options}
+									</select>
+								</div>
+							</div>
 						}
 
 						<div className = "row">
