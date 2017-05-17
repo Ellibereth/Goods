@@ -61,9 +61,10 @@ from api.general_api.analytics_api import analytics_api
 app.register_blueprint(analytics_api)
 
 
-# cache life span in seconds, right now set to a week
-CACHE_MAX_AGE =  7 * 24 * 60 * 60 
-CACHE_EXPIRE_DAYS = 14
+# cache life span in seconds, right now set to a 4weeks
+CACHE_WEEKS = 4
+CACHE_MAX_AGE =  CACHE_WEEKS * 24 * 60 * 60 
+CACHE_EXPIRE_DAYS = 28
 
 @app.before_first_request
 def create_database():
@@ -77,10 +78,17 @@ def add_header(response):
 	and also to cache the rendered page for 10 minutes.
 	"""
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-	response.headers['Cache-Control'] = 'public, max-age=' + str(CACHE_MAX_AGE)
-	right_now = datetime.datetime.now()
-	expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
-	response.headers['Expires'] = str(expire_time)
+
+
+	# we will need to adjust for caching every file EXCEPT bundle.js
+	# uncomment this to cache everything
+	# response.headers['Cache-Control'] = 'public, max-age=' + str(CACHE_MAX_AGE)
+	# right_now = datetime.datetime.now()
+	# expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
+	# print(expire_time)
+	# response.headers['Expires'] = str(expire_time)
+
+	
 
 	response.headers['Vary'] = 'Accept-Encoding'
 	response.headers.add('Access-Control-Allow-Origin', '*')
