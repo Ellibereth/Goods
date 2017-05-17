@@ -156,6 +156,12 @@ export default class ProductTemplate1 extends React.Component {
 							</span>
 						</div>
 
+						<div className = "row">
+							<span className = "product-manufacturer-text">
+								{this.props.product.manufacturer} 
+							</span>
+						</div>
+
 
 
 						<AddToCartButton cart_item = {this.state.cart_item}

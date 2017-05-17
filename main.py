@@ -1,5 +1,6 @@
 from flask import Flask, g, render_template, request, url_for, redirect, send_from_directory
 import time
+import datetime
 import os
 import random
 import requests
@@ -60,6 +61,10 @@ from api.general_api.analytics_api import analytics_api
 app.register_blueprint(analytics_api)
 
 
+# cache life span in seconds, right now set to a week
+CACHE_MAX_AGE =  7 * 24 * 60 * 60 
+CACHE_EXPIRE_DAYS = 14
+
 @app.before_first_request
 def create_database():
 	# db.drop_all()
@@ -72,7 +77,12 @@ def add_header(response):
 	and also to cache the rendered page for 10 minutes.
 	"""
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-	response.headers['Cache-Control'] = 'public, max-age=300'
+	response.headers['Cache-Control'] = 'public, max-age=' + str(CACHE_MAX_AGE)
+	right_now = datetime.datetime.now()
+	expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
+	response.headers['Expires'] = str(expire_time)
+
+	response.headers['Vary'] = 'Accept-Encoding'
 	response.headers.add('Access-Control-Allow-Origin', '*')
 	response.headers.add("Access-Control-Allow-Credentials", "true")
 	response.headers.add("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT")
