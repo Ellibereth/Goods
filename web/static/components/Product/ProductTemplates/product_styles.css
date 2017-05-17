@@ -153,7 +153,7 @@
 
 .quantity-button{
 	margin-top : 0px;
-	padding: 18px 24px;
+	padding: 4px 24px;
     font-size: 24px;
     line-height: normal;
     background-color: blue;	
@@ -216,7 +216,7 @@
 }
 
 .quantity-label{
-	font-size: 16px;
+	font-size: 12px;
 	padding-top : 6px;
 	padding-left: 0px;
 }
@@ -239,6 +239,21 @@
 	margin: 0;
 }
 
+
+.variant-select-button{
+	margin-top : 0px;
+	padding: 12px 102px;
+    font-size: 24px;
+    line-height: normal;
+    background-color: blue !important;	
+    color: white !important;
+    border-color: white;
+    width : 358px;
+}
+
+.variant-select-button:hover {
+	opacity : 0.7;
+}
 
 
 

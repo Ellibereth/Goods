@@ -17,7 +17,9 @@ export default class ProuctDescriptionTab extends React.Component {
 	}
 
 	componentDidMount(){
-
+		$(function () {
+			$('#myTab a:first').tab('show')
+		})
 
 	}
 
@@ -30,14 +32,8 @@ export default class ProuctDescriptionTab extends React.Component {
 	render() {
 		var product = this.props.product
 
-		
-
 		var description = (
-				<div 
-					className = { this.state.selected_tab == 0 ?
-					"product-info-tab product_template_2_tabs"
-					 :
-					"product-info-tab product_template_2_tabs display-none"} >
+				<div className = "product-info-tab">
 					<ul className = "features-list">
 					{this.props.product.description.split("\n").map(i => {
 						return <li>{i}</li>;
@@ -49,19 +45,13 @@ export default class ProuctDescriptionTab extends React.Component {
 						<li> Manufactured by {this.props.product.manufacturer}        </li>
 						<li> Category: {this.props.product.category} </li>
 						<li> Category: {this.props.product.category} </li>
-						<li> Category: {this.props.product.category} </li>
-						<li> Category: {this.props.product.category} </li>
-						<li> Category: {this.props.product.category} </li>
-						<li> Category: {this.props.product.category} </li>
+						
 					</ul>
 				</div>
 		)
 
 		var maker = (
-				<div className = { this.state.selected_tab == 1 ?
-					"product-info-tab product_template_2_tabs"
-					 :
-					"product-info-tab product_template_2_tabs display-none"}>
+				<div className = "product-info-tab">
 					<span className = "block-span"> MEET YOUR MAKER </span>
 					<span className = "block-span"> MEET YOUR MAKER </span>
 					<span className = "block-span"> MEET YOUR MAKER </span>
@@ -73,7 +63,7 @@ export default class ProuctDescriptionTab extends React.Component {
 		return (
 			<div className = "row">	
 				<span className = "block-span">
-					<ul className="list-inline product-page-tabs" >
+					<ul className="list-inline product-page-tabs">
 						<li className= {this.state.selected_tab == 0 && "active"}>
 							<a onClick = {this.selectTab.bind(this, 0)}> Features </a>
 						</li>
@@ -82,10 +72,8 @@ export default class ProuctDescriptionTab extends React.Component {
 						</li>
 					</ul>
 					<div className = "small-buffer"/>
-					<div className = "product_template_2_tab_container">
-						{description}
-						{maker}
-					</div>
+					{ this.state.selected_tab == 0 && description}
+					{ this.state.selected_tab == 1 && maker}
 				</span>
 			</div>	
 		)

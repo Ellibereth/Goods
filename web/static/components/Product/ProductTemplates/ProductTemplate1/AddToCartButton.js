@@ -102,8 +102,14 @@ export default class AddToCartButton extends React.Component {
 						<button type="button"
 						 className="btn quantity-button dropdown-toggle vertical-button-divider"
 						  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							{this.state.quantity_display}
-							<span className="caret"/>
+						  	<span className = "block-span">
+						  		{this.state.quantity_display}
+								<span className="caret"/>
+						  	</span>
+						  	<span className = "block-span" styles>
+						  		Qty.
+						  	</span>	
+							
 							
 						</button>
 						<ul className="dropdown-menu quantity-dropdown">
