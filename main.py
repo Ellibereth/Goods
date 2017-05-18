@@ -85,7 +85,7 @@ def add_header(response):
 	# cache everything int he static/web_scripts folder
 	if len(path_splits) > 2:
 		if path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
-			response.headers['Cache-Control'] = 'public, max-age=' + str(CACHE_MAX_AGE)
+			response.headers['Cache-Control'] = 'public,max-age=' + str(CACHE_MAX_AGE)
 			right_now = datetime.datetime.now()
 			expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
 			response.headers['Expires'] = str(expire_time)

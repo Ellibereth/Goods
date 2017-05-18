@@ -45,6 +45,17 @@ export default class SmallNavBar extends React.Component {
 			return (
 				
 					<ul className="nav navbar-nav navbar-right">
+						<li>
+							<form onSubmit = {this.searchProducts.bind(this)}
+								 className="navbar-form navbar-left" role="search">
+								<div className="input-group ">
+									<input  onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+									<div className="input-group-btn nav-search-icon">
+										<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+									</div>
+								</div>
+							</form>
+						</li>
 						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
 						<li><Link to ="/login" className = "no-user-link">Login</Link></li>
 					</ul>
