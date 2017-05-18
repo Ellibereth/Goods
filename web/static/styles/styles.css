@@ -12,7 +12,7 @@
 
 .black-border-shown{
 	border-style: solid;
-    border-color: black;
+	border-color: black;
 }
 
 .past-order {
@@ -34,7 +34,7 @@ body {
 }
 
 .bottom-column {
-    vertical-align: bottom;
+	vertical-align: bottom;
 }
 
 .admin-product-image {
@@ -77,13 +77,13 @@ body {
 
 
 .vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
 }
 
 .hcenter {
-    text-align: center;
+	text-align: center;
 }
 
 .cart-item-price-text  {
@@ -109,7 +109,7 @@ body {
 
 .clickable-text {
 	cursor:pointer;
-	color:blue;
+	color:#002868;
 }
 
 
@@ -117,7 +117,7 @@ body {
 .clickable-text:hover {
 	/*text-decoration:none;*/
 	text-decoration:underline;
-    /*text-shadow: 1px 1px 1px ;*/
+	/*text-shadow: 1px 1px 1px ;*/
 }
 
 .checkout-container{
@@ -129,7 +129,7 @@ body {
 }
 
 .add-field-icon {
-	color: blue;
+	color: #002868;
 	/*font-size : 36px;*/
 }
 
@@ -154,13 +154,13 @@ body {
 
 .footer {
 	background-color: white;
-    position: fixed; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    padding-left: 140px;
-    padding-right: 140px;
+	position: fixed; 
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	padding-left: 140px;
+	padding-right: 140px;
 }
 
 .block-span {
@@ -277,8 +277,8 @@ body {
 	height: 200px;
 	padding: 12px;
 	display: flex;
-    align-items: center;
-    flex-wrap: wrap;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .beige-container {
@@ -384,9 +384,27 @@ body {
 }
 
 .table-header-vertical-align-center {
- 	vertical-align: middle !important;
+	vertical-align: middle !important;
 }
 
 #content {
 	min-height: 90%;
 }
+
+.home-carousel-text-container{
+	position: absolute;
+	top: 5%;
+	left: 30%;
+	/*right: 75%;*/
+	/*bottom: 0;*/
+	width: 40%;
+	height: 30%;
+	background-color: white;
+	opacity: 0.7;
+	padding: 100px;
+}
+
+.carousel-caption{
+	color:#002868 
+}
+

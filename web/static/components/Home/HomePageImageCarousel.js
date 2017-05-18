@@ -17,30 +17,39 @@ export default class HomePageImageCarousel extends React.Component {
 	render() {
 		var images = image_names.map((image_name, index) =>
 				<div className= {index == 0 ? "item active" : "item"}>
-		            <img className = "home-images center-block" src= {base_url + image_name} index = {index}/>
-		        </div>
+					<img className = "home-images center-block" src= {base_url + image_name} index = {index}/>
+					<div className="home-carousel-text-container">
+						<div className="carousel-caption">
+							<h3>
+								<span className = "block-span">What we do  </span>
+								<span className = "block-span">Sell home made American goods</span>
+								<span className = "block-span">USA USA USA  </span>
+							</h3>
+						</div>
+					</div>
+				</div>
 			)
 
 		return (
 				<div id="myCarousel" className="carousel slide home-image-carousel" data-ride="carousel">
-				    <ol className="carousel-indicators">
-				        <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-				        <li data-target="#myCarousel" data-slide-to="1"></li>
-				        <li data-target="#myCarousel" data-slide-to="2"></li>
-				    </ol>
+					<ol className="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" className="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+					</ol>
 
-				    <div className="carousel-inner">
-				        {images}
-				    </div>
+					<div className="carousel-inner">
+						{images}
+					</div>
 
-				    <a className="left carousel-control" href="#myCarousel" data-slide="prev">
-				        <span className="glyphicon glyphicon-chevron-left"></span>
-				        <span className="sr-only">Previous</span>
-				    </a>
-				    <a className="right carousel-control" href="#myCarousel" data-slide="next">
-				        <span className="glyphicon glyphicon-chevron-right"></span>
-				        <span className="sr-only">Next</span>
-				    </a>
+					<a className="left carousel-control" href="#myCarousel" data-slide="prev">
+						<span className="glyphicon glyphicon-chevron-left"></span>
+						<span className="sr-only">Previous</span>
+					</a>
+					<a className="right carousel-control" href="#myCarousel" data-slide="next">
+						<span className="glyphicon glyphicon-chevron-right"></span>
+						<span className="sr-only">Next</span>
+					</a>
 				</div>
 		);
 	}

@@ -18,15 +18,15 @@ export default class Footer extends React.Component {
 	render() {
 		if (!this.state.ready) return <div/>
 		return(	
-			  	<div className="container">
-			  		<footer className = "row">
-						<ul className ="nav navbar-nav">
-							<li><Link to="/">© 2017 Manaweb, Inc.</Link></li>
-					    	<li><Link to="/">Home</Link></li>
-					    	<li><Link to="/terms">Terms</Link></li>
-					    	<li><Link to="/privacy">Privacy</Link></li>
-					    </ul>
-				    </footer>
+				<div className="container">
+					<footer className = "row edgarusa-footer">
+					<ul className ="nav navbar-nav">
+						<li><Link to="/">© 2017 Manaweb, Inc.</Link></li>
+							<li><Link to="/">Home</Link></li>
+							<li><Link to="/terms">Terms</Link></li>
+							<li><Link to="/privacy">Privacy</Link></li>
+						</ul>
+					</footer>
 				</div>
 		);
 	}
