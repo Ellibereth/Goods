@@ -8,6 +8,7 @@ import csv
 from flask_sqlalchemy import SQLAlchemy
 from api.models.shared_models import db
 from api.utility.jwt_util import JwtUtil
+from flask_compress import Compress
 
 from base64 import b64encode
 
@@ -22,6 +23,7 @@ from base64 import b64encode
 template_dir = os.path.abspath('./web/templates')
 static_dir = os.path.abspath('./web/static')
 app = Flask(__name__, template_folder=template_dir, static_folder = static_dir)
+Compress(app)
 # this was generated with os.urandom(24) but we can change this occasionally for more security
 secret_key = b64encode(b'L=\xbf=_\xa5P \xc5+\x9b3\xa4\xfdZ\x8fN\xc6\xd5\xb7/\x0f\xbe\x1b')
 secret_key = secret_key.decode('utf-8')

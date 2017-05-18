@@ -12,7 +12,7 @@ export default class Footer extends React.Component {
 	componentDidMount(){
 		setTimeout( function() {
 			this.setState({ready : true}) 
-		}.bind(this), 2000);
+		}.bind(this), 1000);
 	}
 
 	render() {
