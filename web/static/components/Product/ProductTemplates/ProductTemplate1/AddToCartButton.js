@@ -6,7 +6,7 @@ import AppActions from '../../../../actions/AppActions.js'
 import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util.js'
 
-const DEFAULT_VARIANT_TEXT = "Select a type"
+const DEFAULT_VARIANT_TEXT = "Select a Type..."
 
 
 // takes the price of the good as prop for now
@@ -121,11 +121,16 @@ export default class AddToCartButton extends React.Component {
 						{ this.props.product.has_variants &&
 							<div className = "row">
 								<div className="dropdown">
-									<button className="btn dropdown-toggle variant-select-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										<span className = "text-left"> {this.state.variant_display} </span>
-										<span className="caret text-right"></span>
+									<button className="btn dropdown-toggle variant-select-button " 
+										type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<span className =" pull-left">
+											<span> <b> {this.state.variant_display} </b> </span>
+										</span>
+										<span className = "pull-right"> 
+											<span className= "caret"/>
+										</span>
 									</button>
-									<ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+									<ul className="dropdown-menu variant-dropdown" aria-labelledby="dropdownMenu1">
 										<li> 
 											<a onClick = {() => this.setState({variant : null, variant_display : DEFAULT_VARIANT_TEXT})}>
 												 {DEFAULT_VARIANT_TEXT}
