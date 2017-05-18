@@ -22,6 +22,7 @@
 	line-height : 44px;
 	font-size: 36px;
 	color: white;
+	font-family: Rockwell !important;
 }
 
 .navbar-brand-with-user:hover, .navbar-brand-with-user:focus,
@@ -130,7 +131,8 @@
 
 .navbar-brand-small {
 	color: white;
-	font-size: 24px;
+	font-size: 18px;
+
 }
 .navbar-brand-small:hover {
 	color: skyblue;

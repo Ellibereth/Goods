@@ -115,6 +115,7 @@
 .product-manufacturer-text {
 	font-size : 16px;
 	display: block;
+	margin-left: 4px;
 }
 .product-more-images-header {
 	font-size : 24px;
@@ -145,8 +146,8 @@
 	padding: 18px 96px;
     font-size: 24px;
     line-height: normal;
-    background-color: blue;	
-    border-color: blue
+    background-color: #002868;	
+    border-color: #002868
 }
 
 .add-to-cart-button:hover {
@@ -158,8 +159,8 @@
 	padding: 4px 24px;
     font-size: 24px;
     line-height: normal;
-    background-color: blue;	
-    border-color: blue;
+    background-color: #002868;	
+    border-color: #002868;
     color: white !important;
     text-align: center;
 
@@ -198,7 +199,7 @@
 
 .product-page-tabs > li.active > a {
 	/*color : skyblue;*/
-	border-bottom: solid 4px blue;
+	border-bottom: solid 4px #002868;
 }
 
 
@@ -247,8 +248,8 @@
 	padding: 12px 102px;
     font-size: 24px;
     line-height: normal;
-    background-color: blue !important;	
-    color: white !important;
+    background-color: white !important;	
+    color: grey !important;
     border-color: white;
     width : 358px;
 }

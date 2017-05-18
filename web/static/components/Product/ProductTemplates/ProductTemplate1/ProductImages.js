@@ -47,18 +47,28 @@ export default class ProductImages extends React.Component {
 			var back_padding = 0;
 		}
 
-		var product_images = product.images.map((image, index) => {
-				return (
+		var product_images = []
+
+
+	 	for (var i = 0; i < product.images.length; i++){
+	 		var image = product.images[i]
+	 		var this_image = (
 						<div className = 
 							{this.props.selected_image == image.image_id 
 							?	"col-md-3 col-sm-3 col-lg-3 product-image-more-container-selected"
 							:	"col-md-3 col-sm-3 col-lg-3 product-image-more-container"}>
 							<img className = "img-responsive product-image-more"
-							src= {src_base + image.image_id} id = {index} 
+							src = {src_base + image.image_id} id = {i} 
 							onClick = {this.selectImage.bind(this, image.image_id)}/>
 						</div>
 					)
-			})
+	 		if (this.props.product.main_image == image.image_id) {
+	 			product_images.unshift(this_image)
+	 		}
+	 		else {
+	 			product_images.push(this_image)
+	 		}
+	 	}
 
 		product_images.unshift(
 				<Col md = {front_padding} lg = {front_padding} sm = {front_padding}/>

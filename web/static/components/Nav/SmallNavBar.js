@@ -120,7 +120,7 @@ export default class SmallNavBar extends React.Component {
 					>
 					<div className="container">
 							<div className="navbar-header">
-								<a className= {brand_class} href="/"> E </a>
+								<a className= {brand_class} href="/"> Edgar USA </a>
 							</div>
 
 						<div className="collapse navbar-collapse">

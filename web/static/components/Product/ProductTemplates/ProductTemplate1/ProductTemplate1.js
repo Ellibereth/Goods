@@ -151,16 +151,18 @@ export default class ProductTemplate1 extends React.Component {
 						</div>
 
 						<div className = "row">
+							<span className = "product-manufacturer-text">
+								{this.props.product.manufacturer} 
+							</span>
+						</div>
+
+						<div className = "row">
 							<span className = "product-price-text">
 								${formatPrice(this.props.product.price)} 
 							</span>
 						</div>
 
-						<div className = "row">
-							<span className = "product-manufacturer-text">
-								{this.props.product.manufacturer} 
-							</span>
-						</div>
+						
 
 
 
@@ -168,7 +170,7 @@ export default class ProductTemplate1 extends React.Component {
 						refreshUserInformation = {this.refreshUserInformation.bind(this)}
 						product = {this.props.product}/>
 
-						<div className = 'small-buffer'/>
+						<div className = 'top-buffer'/>
 						<ProductDescriptionTab product = {this.props.product}/>
 						{/* <div className = "small-buffer"/>
 						<div className = "row">

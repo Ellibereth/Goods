@@ -6,6 +6,7 @@ import AppActions from '../../../../actions/AppActions.js'
 import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util.js'
 
+const DEFAULT_VARIANT_TEXT = "Select a type"
 
 
 // takes the price of the good as prop for now
@@ -14,8 +15,11 @@ export default class AddToCartButton extends React.Component {
 		super(props);
 		this.state = {
 			quantity : 1,
+			
+			quantity_display : "1",
 			variant : null,
-			quantity_display : "1"
+			variant_display : DEFAULT_VARIANT_TEXT
+
 		}
 	}
 
@@ -23,8 +27,12 @@ export default class AddToCartButton extends React.Component {
 		this.setState({quantity_display : quantity, quantity : quantity})
 	}
 
-	handleVariantChange(event){
-		this.setState({variant : event.target.value})
+	handleVariantChange(variant){
+		this.setState({
+			variant : variant,
+			variant_display : variant.variant_type
+		})
+
 	}
 
 
@@ -46,9 +54,9 @@ export default class AddToCartButton extends React.Component {
 						AppActions.removeCurrentUser()
 						AppActions.addCurrentUser(data.user, data.jwt)
 					}
-					else    {
-						swal({title: "Problem",     
-								text: data.error,     
+					else                {
+						swal({title: "Problem",                 
+								text: data.error,                 
 								type: "error" 
 							})
 					
@@ -72,7 +80,7 @@ export default class AddToCartButton extends React.Component {
 
 		// $(".dropdown-menu li").click(function() {
 		// 	console.log("clicked!")
-		//     $(this).parent().closest(".dropdown-menu").prev().dropdown("toggle");
+		//                 $(this).parent().closest(".dropdown-menu").prev().dropdown("toggle");
 		// });
 	}
 
@@ -94,65 +102,38 @@ export default class AddToCartButton extends React.Component {
 				)
 		}
 
-
-		var select_quantity = (
-			<div className = "row">
-				<div className = "btn-group">
-					<div className="btn-group">
-						<button type="button"
-						 className="btn quantity-button dropdown-toggle vertical-button-divider"
-						  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						  	<span className = "block-span">
-						  		{this.state.quantity_display}
-								<span className="caret"/>
-						  	</span>
-						  	<span className = "block-span" styles>
-						  		Qty.
-						  	</span>	
-							
-							
-						</button>
-						<ul className="dropdown-menu quantity-dropdown">
-							{quantity_options}
-						</ul>
-					</div>
-					<button type = "button"
-						onClick = {user ? this.addToCart.bind(this) 
-							: this.onNonUserClick.bind(this)} 
-						className="btn add-to-cart-button ">
-						<span className = "add-to-cart-text block-span">
-								<b> Buy It    </b>    <br/>
-							</span>
-					</button>
-				</div>
-			</div>
-		)
-
-
 		var variant_options = []
 		this.props.product.variants.map((variant, index) => 
 					variant_options.push(
-						<option value = {variant.variant_id}> {variant.variant_type} </option>
+
+						<li>
+							<a className = "dropdown-item" onClick = {this.handleVariantChange.bind(this, variant)} >
+							 {variant.variant_type} 
+							</a>
+						</li>
+						
 					)
 			)
-
-
-		
 
 
 		return (
 				<div >
 						{ this.props.product.has_variants &&
-							<div className ="form-group row row-eq-height">
-								<label for = "type" 
-								className = "col-md-1 col-lg-1 col-sm-1 col-form-label vcenter quantity-label">
-									Type
-								</label>
-								<div className = "col-md-6 col-lg-6 col-sm-6">
-									<select id = "type" className ="form-control"
-									 onChange = {this.handleVariantChange.bind(this)}>
-											{variant_options}
-									</select>
+							<div className = "row">
+								<div className="dropdown">
+									<button className="btn dropdown-toggle variant-select-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+										<span className = "text-left"> {this.state.variant_display} </span>
+										<span className="caret text-right"></span>
+									</button>
+									<ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+										<li> 
+											<a onClick = {() => this.setState({variant : null, variant_display : DEFAULT_VARIANT_TEXT})}>
+												 {DEFAULT_VARIANT_TEXT}
+											</a> 
+										</li>
+										<li role="separator" className="divider"></li>
+										{variant_options}
+									</ul>
 								</div>
 							</div>
 						}
@@ -162,8 +143,36 @@ export default class AddToCartButton extends React.Component {
 						
 						
 
-						{select_quantity}
-
+						<div className = "row">
+							<div className = "btn-group">
+								<div className="btn-group">
+									<button type="button"
+									 className="btn quantity-button dropdown-toggle vertical-button-divider"
+										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<span className = "block-span">
+												<span> {this.state.quantity_display} </span>
+												<span className="caret"/>
+											</span>
+											<span className = "block-span" styles>
+												Qty.
+											</span>	
+										
+										
+									</button>
+									<ul className="dropdown-menu quantity-dropdown">
+										{quantity_options}
+									</ul>
+								</div>
+								<button type = "button"
+									onClick = {user ? this.addToCart.bind(this) 
+										: this.onNonUserClick.bind(this)} 
+									className="btn add-to-cart-button ">
+									<span className = "add-to-cart-text block-span">
+											<b> Buy It                </b>                <br/>
+										</span>
+								</button>
+							</div>
+						</div>
 						
 				</div>
 
