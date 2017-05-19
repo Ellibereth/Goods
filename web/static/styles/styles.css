@@ -29,8 +29,8 @@ body {
 }
 
 .nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
 .bottom-column {
@@ -93,6 +93,11 @@ body {
 
 .cart-remove-item-icon {
 	color : red;
+	cursor : pointer;
+}
+
+.cart-remove-item-icon:hover {
+	opacity: 0.7
 }
 
 .cart-title {
@@ -341,8 +346,6 @@ body {
 .home-large-buffer {
 	margin-top: 40px;
 }
-
-
 
 .order-border {
 	border-color: grey;

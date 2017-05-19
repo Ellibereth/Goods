@@ -41,7 +41,7 @@
 }
 
 .top-navbar {
-    margin-bottom: 12px;
+	margin-bottom: 12px;
 	padding: 12px;
 }
 
@@ -93,19 +93,19 @@
 }
 
 #account_dropdown {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 .cart-badge {
 	font-size: x-small;
-    position: absolute;
-    left: 32px;
-    top: 8px;
-    background-color: red;
+	position: absolute;
+	left: 32px;
+	top: 8px;
+	background-color: red;
 }
 
 #account_dropdown:hover + ul.dropdown-menu, ul.dropdown-menu:hover {
-    display: block;    
+	display: block;    
 }
 
 
@@ -142,6 +142,3 @@
 	padding-bottom: 50px;
 }
 
-.edgarusa-footer{
-	
-}

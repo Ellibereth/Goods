@@ -34,10 +34,11 @@ def addItemToCart():
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	
 	variant = request.json.get(Labels.Variant)
-	try:
+	if variant:
 		variant_id = variant.get(Labels.VariantId)
-	except:
-		variant_id = None
+	else:
+		variant_id == None
+
 	if variant_id:
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
 

@@ -130,7 +130,7 @@ export default class AddToCartButton extends React.Component {
 											<span className= "caret"/>
 										</span>
 									</button>
-									<ul className="dropdown-menu  " aria-labelledby="dropdownMenu1">
+									<ul className="dropdown-menu  variant-dropdown" aria-labelledby="dropdownMenu1">
 										<li> 
 											<a onClick = {() => this.setState({variant : null, variant_display : DEFAULT_VARIANT_TEXT})}>
 												 {DEFAULT_VARIANT_TEXT}

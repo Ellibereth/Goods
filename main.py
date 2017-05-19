@@ -63,10 +63,10 @@ from api.general_api.analytics_api import analytics_api
 app.register_blueprint(analytics_api)
 
 
-# cache life span in seconds, right now set to a 4weeks
-CACHE_WEEKS = 4
+# cache life span in seconds, right now set to 2 weeks
+CACHE_WEEKS = 2
 CACHE_MAX_AGE =  CACHE_WEEKS * 24 * 60 * 60 
-CACHE_EXPIRE_DAYS = 28
+CACHE_EXPIRE_DAYS = 2
 
 @app.before_first_request
 def create_database():
@@ -88,6 +88,7 @@ def add_header(response):
 	if len(path_splits) > 2:
 		if path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
 			response.headers['Cache-Control'] = 'public,max-age=' + str(CACHE_MAX_AGE)
+			# commented out since max-age should do enough by itself
 			right_now = datetime.datetime.now()
 			expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
 			response.headers['Expires'] = str(expire_time)

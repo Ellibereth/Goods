@@ -6,10 +6,9 @@ import datetime
 # Let's use Amazon S3
 
 
-# cache life span in seconds, right now set to a 2 weeks
+# cache life span in seconds, right now set for 2 weeks
 CACHE_WEEKS = 2
 CACHE_MAX_AGE =  CACHE_WEEKS * 24 * 60 * 60 
-CACHE_EXPIRE_DAYS = 14
 
 
 PRODUCT_PHOTOS = "publicmarketproductphotos"
@@ -43,14 +42,10 @@ class S3:
 			f.write(image_data)
 			
 		image_file = open(transfer_dir + image_key, 'rb')
-
-		right_now = datetime.datetime.now()
-		expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
 		s3.Bucket(bucket_name).put_object(
 			Key= image_key, 
 			Body=image_file,
 			CacheControl='public, max-age=' +str(CACHE_MAX_AGE),
-			Expires = str(expire_time)
 		)
 		os.remove(transfer_dir + image_key)
 
