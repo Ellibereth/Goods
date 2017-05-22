@@ -7,7 +7,7 @@ import datetime
 
 
 # cache life span in seconds, right now set for 2 weeks
-CACHE_WEEKS = 2
+CACHE_WEEKS = 4
 CACHE_MAX_AGE =  CACHE_WEEKS * 24 * 60 * 60 
 
 
@@ -45,7 +45,7 @@ class S3:
 		s3.Bucket(bucket_name).put_object(
 			Key= image_key, 
 			Body=image_file,
-			CacheControl='public, max-age=' +str(CACHE_MAX_AGE),
+			CacheControl='public, max-age=' + str(CACHE_MAX_AGE),
 		)
 		os.remove(transfer_dir + image_key)
 

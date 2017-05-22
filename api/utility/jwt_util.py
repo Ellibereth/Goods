@@ -22,8 +22,11 @@ class JwtUtil:
 		return this_jwt.decode(UTF8)
 
 	# @staticmethod
-	# def create_user_jwt():
-		
+	# def create_user_jwt(user):
+	# 	secret_key = os.environ.get(SECRET_KEY)
+	# 	payload = user.toJwtDict()
+	# 	this_jwt = jwt.encode(payload, secret_key, algorithm = algorithm)
+	# 	return this_jwt.decode(UTF8)
 		
 	@staticmethod
 	# still figuring out the best stuff to put in the payload

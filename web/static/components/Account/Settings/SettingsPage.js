@@ -34,13 +34,13 @@ export default class SettingsPage extends React.Component {
 				if (data.success) {
 					AppActions.removeCurrentUser()
 					AppActions.addCurrentUser(data.user, data.jwt)
-
 					this.setState({
 						cards : data.user.cards,
 						addresses : data.user.addresses,
 						orders : data.user.orders ,
 						cart: data.user.cart
 					})
+					this.refreshDisplay.bind(this)()
 				}
 				else {
 					console.log("an error")
@@ -56,9 +56,15 @@ export default class SettingsPage extends React.Component {
 	}
 
 	componentDidMount(){
-		// this.refreshSettings.bind(this)()
 		this.refreshDisplay.bind(this)()
+		
 		this.setState({is_loading : false})
+
+		if (AppStore.getCurrentUser().cards.length == 0 &&
+			AppStore.getCurrentUser().addresses.length == 0) {
+			this.refreshSettings.bind(this)()
+		}
+		
 	}
 
 	refreshDisplay() {
@@ -73,6 +79,8 @@ export default class SettingsPage extends React.Component {
 
 
 	render() {
+		console.log(this.state.cards)
+		// console.log(this.state.addresses)
 		return (
 			<PageContainer component = {
 				<div id = "settings-container" 

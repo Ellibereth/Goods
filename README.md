@@ -10,6 +10,12 @@ Python Dependencies - './requirements.txt' <br/>
 React Version - 15.5.4 <br/>
 Webpack Version - 2.4.1 https://webpack.github.io/ <br/>
 
+
+## HTTP Caching
+Images are stored on S3. Uses 2 week expire caching. <br/>
+Plugins like Bootstrap are cached with 2 day expirations.
+
+
 ## Security 
 Stores and handles payments with Stripe. https://stripe.com/ <br/>
 Stores addresses with Lob. https://lob.com/ <br/>

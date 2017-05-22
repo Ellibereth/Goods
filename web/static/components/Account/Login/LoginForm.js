@@ -41,8 +41,6 @@ export default class RegisterAccountForm extends React.Component {
 					}
 					else {
 						AppActions.addCurrentUser(data.user, data.jwt)
-						// returns to whatever page they were on? 
-						// or should we just go to the home page?
 						browserHistory.push('/')
 					}
 				}.bind(this),

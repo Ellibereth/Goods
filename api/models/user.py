@@ -88,6 +88,22 @@ class User(db.Model):
 		public_dict['email_confirmed'] = self.email_confirmed
 		public_dict['account_id'] = self.account_id
 		public_dict['is_admin'] = self.is_admin
+
+		return public_dict
+
+
+	def toPublicDictFast(self):
+		public_dict = {}
+		public_dict['name'] = self.name
+		public_dict['email'] = self.email
+		public_dict['email_confirmed'] = self.email_confirmed
+		public_dict['account_id'] = self.account_id
+		public_dict['is_admin'] = self.is_admin
+		public_dict['cart_size'] = Cart(self.account_id).getCartSize()
+		public_dict['cart'] = Cart(self.account_id).toPublicDict()
+		public_dict['orders'] = self.getUserOrders()
+		public_dict['addresses'] = []
+		public_dict['cards'] = []
 		return public_dict
 
 

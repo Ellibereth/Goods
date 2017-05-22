@@ -21,8 +21,10 @@ def checkLogin():
 	if this_user == None:
 		return JsonUtil.failure("Not a real user")
 	if this_user.checkLogin(input_password):
-		output = {Labels.User : this_user.toPublicDict(),
-		 Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
+		user_jwt = JwtUtil.create_jwt(this_user.toJwtDict())
+		user_info = this_user.toPublicDictFast()
+		output = {Labels.User : user_info,
+			Labels.Jwt : user_jwt}
 		return JsonUtil.successWithOutput(output)
 	else:
 		return JsonUtil.failure("Password is not correct")

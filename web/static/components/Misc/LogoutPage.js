@@ -15,7 +15,6 @@ export default class LogoutPage extends React.Component {
 
 
 	componentWillMount(){
-		console.log(AppStore.getCurrentUser())
 		AppActions.removeCurrentUser()
 		browserHistory.push(`/`)
 	}
