@@ -37,7 +37,7 @@ def addItemToCart():
 	if variant:
 		variant_id = variant.get(Labels.VariantId)
 	else:
-		variant_id == None
+		variant_id = None
 
 	if variant_id:
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
