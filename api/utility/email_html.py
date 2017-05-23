@@ -25,11 +25,12 @@ class EmailHtml:
 		msg['Subject'] = "User Order!"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = ", ".join(recipients)
-		body = "<span style = \"display:block;font-size: 14px;color:#002868\"> Hello, " + user.name + " </span>"
+		body = "<div style = \"width:70%\">"
+		body = body + "<span style = \"display:block;font-size: 14px;color:#002868\"> Hello, " + user.name + " </span>"
 		body = body + "<hr/>"
 		num_items = len(cart.toPublicDict()['items'])
 		first_item = cart.toPublicDict()['items'][0]
-		url_link = URL + "/oders"
+		url_link = URL + "myOrders"
 		if num_items == 1:
 			link_text = first_item['name']
 		elif num_items == 2:
@@ -39,19 +40,29 @@ class EmailHtml:
 
 		body =  body + "<span style = \"display:block;font-size: 12px;\"> Your order for \
 		<a href = \"" + url_link + "\">" + link_text + "</span>"
-		body = body + "<span style = \"display:block;font-size: 14px;color:#002868\"> Details </span>"
-		body = body + "<div style = \"border-style: solid;border-width:2px;border-radius:4px;padding:8px;width:50%\">"
+		body = body + "<div style = \"padding-top:12px\"/>"
 
-		body = body + "<div style = \"width:50%\">"
-		body = body + "<span style = \"display:block;color:grey;\"> Shipped to </span>"
-		body = body + "<span style = \"display:block;\"> <b>" + user.name + "</b> </span>"
-		body = body + "<span style = \"display:block;\"> <b>" + address.address_line1 + "</b> </span>"
-		body = body + "<span style = \"display:block;\"> <b>" + address.address_line2 + "</b> </span>"
-		body = body + "</div>"
-		body = body + "<div style = \"width:50%\">"
-		body = body + "<button type = \"button\" style = \"border-radius:4px; background-color:white\">"
-		body = body + "<span style = \"display:block;\"> <a href = \"" + url_link + "\"> View Order </a> </span>"
-		body = body + "</button>"
+		body = body + "<span style = \"display:block;font-size: 14px;color:#002868\"> Details </span>"
+		body = body + "<div style = \"border-style: solid;border-width:2px;border-radius:4px;padding:6px;width:50%\">"
+		
+		for product in cart.toPublicDict()['items']:
+			body = body + EmailHtml.generateCartItemRow(product)
+
+		body = body + "<hr/>"
+		body = body + "<span style = \"display:block\">"
+		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Items: </span>"
+		body = body + "<span style= \"font-size: 14px;color:#002868; float:right\">" + EmailHtml.formatPrice(cart.items_price) + "</span>"
+		body = body + "</span>"
+		body = body + "<br/>"
+		body = body + "<span style = \"display:block\">"
+		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Shipping: </span>"
+		body = body + "<span style= \"font-size: 14px;color:#002868; float:right\">" + EmailHtml.formatPrice(cart.shipping_price) + "</span>"
+		body = body + "</span>"
+		body = body + "<br/>"
+		body = body + "<span style = \"display:block\">"
+		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Total: </span>"
+		body = body + "<span style= \"font-size: 14px;color:#002868; float:right\">" + EmailHtml.formatPrice(cart.total_price) + "</span>"
+		body = body + "</span>"
 		body = body + "</div>"
 		body = body + "</div>"
 
@@ -61,16 +72,32 @@ class EmailHtml:
 
 	def generateCartItemRow(product):
 		html = (
-			"<span> Name: " + str(product[Labels.Name]) + " </span> <br/> \
-			<span> Unit Price : " + str(product[Labels.Price]) + "</span> <br/> \
+			"<span style = \"display:block; border-color:lightgrey;border-width:1px;border-radius:2px;padding:12px;\">  \
+			<span> Name: " + str(product[Labels.Name]) + " </span> <br/> \
+			<span> Unit Price : " + EmailHtml.formatPrice(product[Labels.Price]) + "</span> <br/> \
 			<span> Quantity : " + str(product[Labels.NumItems]) + "</span> <br/> \
 			<img style = \"height:100px;width:100px\" src=\"" + PHOTO_SRC_BASE 
-		+ product[Labels.MainImage] + "\"/> <br/> \
-			<hr/> <br/>"
+		+ product[Labels.MainImage] + "\"/>  </span>"
 		)
 
-		cart_item_html = MIMEText(html, 'html')
-		return cart_item_html
+		return html
 
+	def formatPrice(price):
+		if not price:
+			if price == 0: 
+				return "0.00"
+			else:
+				return ""	
+		decimal_splits = str(price).split('.')
+		dollars = decimal_splits[0]
+		
+		if len(decimal_splits) < 2:
+			cents = "00"
+		else:
+			cents = decimal_splits[1]
+			if len(cents) == 1: 
+				cents = cents + "0"
+			
+		return "$" + dollars + "." + cents
 	
 

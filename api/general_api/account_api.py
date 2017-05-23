@@ -292,9 +292,6 @@ def getUserOrders():
 
 @account_api.route('/getUserInfo', methods = ['POST'])
 def getUserInfo():
-
-	email_api.testEmail()
-
 	jwt = request.json.get(Labels.Jwt)
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if this_user == None:

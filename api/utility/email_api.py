@@ -134,7 +134,7 @@ def testEmail():
 	email = "spallstar28@gmail.com"
 	confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
 	name = "DAREK"
-	sendEmailConfirmation(email, confirmation_id, name)
+	# sendEmailConfirmation(email, confirmation_id, name)
 
 	user = User.query.filter_by(email = email).first()
 	cart = Cart(user.account_id)
