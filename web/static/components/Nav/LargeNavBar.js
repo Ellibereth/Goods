@@ -84,6 +84,7 @@ export default class LargeNavBar extends React.Component {
 						<ul className="dropdown-menu"> 
 							<li><Link to ="/settings"> Settings </Link> </li>
 							<li> <Link to = '/myOrders'> Past Orders </Link> </li>
+							<li><Link to ="/support">Support</Link></li>
 							<li> <Link to = "/logout"> Logout </Link></li>
 						</ul>
 					</li>

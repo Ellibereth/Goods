@@ -127,10 +127,7 @@ def checkoutCart():
 		db.session.commit()
 
 	db.session.commit()
-	# send email confirmations
-	email_api.sendPurchaseNotification(this_user, this_cart, address)
-	
-	# # clear the cart
+	email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
 	this_cart.clearCart()
 	return JsonUtil.successWithOutput({
 			Labels.User : this_user.toPublicDict(),

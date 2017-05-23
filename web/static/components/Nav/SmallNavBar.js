@@ -50,6 +50,7 @@ export default class SmallNavBar extends React.Component {
 								</div>
 							</form>
 						</li>
+
 						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
 						<li><Link to ="/login" className = "no-user-link">Login</Link></li>
 					</ul>
@@ -89,6 +90,7 @@ export default class SmallNavBar extends React.Component {
 						<ul className="dropdown-menu"> 
 							<li> <Link to ="/settings"> Settings </Link> </li>
 							<li> <Link to = '/myOrders'> Past Orders </Link> </li>
+							<li><Link to ="/support" >Support</Link></li>
 							<li> <Link to = "/logout"> Logout </Link></li>
 						</ul>
 					</li>

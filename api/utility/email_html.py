@@ -20,13 +20,13 @@ class EmailHtml:
 
 
 	# returns MIMText to attach to a message
-	def generateCartEmailNotificationMime(recipients, user, cart, address):
+	def generateCartEmailNotificationMime(recipients, user, cart, address, order_id):
 		msg = MIMEMultipart()
 		msg['Subject'] = "User Order!"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = ", ".join(recipients)
 		body = "<div style = \"width:70%\">"
-		body = body + "<span style = \"display:block;font-size: 14px;color:#002868\"> Hello, " + user.name + " </span>"
+		body = body + "<span style = \"display:block;font-size: 36px;color:#002868\"> Hello, " + user.name + " </span>"
 		body = body + "<hr/>"
 		num_items = len(cart.toPublicDict()['items'])
 		first_item = cart.toPublicDict()['items'][0]
@@ -34,34 +34,47 @@ class EmailHtml:
 		if num_items == 1:
 			link_text = first_item['name']
 		elif num_items == 2:
-			link_text = first_item['name'] + " and " + str(num_items - 1) + " other has been received"
+			link_text = first_item['name'] + " and " + str(num_items - 1) + " other"
 		else:
-			link_text = first_item['name'] + " and " + str(num_items - 1) + " others has been received"
+			link_text = first_item['name'] + " and " + str(num_items - 1) + " others"
 
-		body =  body + "<span style = \"display:block;font-size: 12px;\"> Your order for \
-		<a href = \"" + url_link + "\">" + link_text + "</span>"
+
+		body =  body + "<span style = \"display:block;font-size: 18px;\"> Your order for </span>\
+		<span style = \"display:block;font-size: 28px;\"> <a href = \"" + url_link + "\">" + link_text + "</a> </span> \
+		<span style = \"display:block;font-size: 18px;\"> has been received and will be shipped to </span> \
+		<div style= \"padding-top:12px;\"/> \
+		<span style = \"display:block;font-size: 24px;\"> " + address.name + " </span> \
+		<span style = \"display:block;font-size: 24px;\"> " + address.address_line1 + " </span> "
+		if address.address_line2 != "":
+			body = body + "<span style = \"display:block;font-size: 24px;\"> " + address.address_line2 + " </span>"
+		body = body + "<span style = \"display:block;font-size: 24px;\"> " + address.address_city + ", " + address.address_state \
+		+ " " + str(address.address_zip) + " </span>"
+
 		body = body + "<div style = \"padding-top:12px\"/>"
 
-		body = body + "<span style = \"display:block;font-size: 14px;color:#002868\"> Details </span>"
-		body = body + "<div style = \"border-style: solid;border-width:2px;border-radius:4px;padding:6px;width:50%\">"
-		body = body + "<div style = \"padding-top:12px\"/>"
+		body = body + "<span style = \"display:block;font-size: 36px;color:#002868\"> Item Details </span>"
+		body = body + "<div style = \"border-style: solid;border-width:2px;border-radius:4px;padding:6px;width:75%\">"
+		body = body + "<table cellspacing = \"0\" cellpadding = \"4\" \
+		 style = \"width: 100%; border:solid; border-width: 2px; border-color:grey; border-collapse: collapse\">"
 		
 		for product in cart.toPublicDict()['items']:
-			body = body + EmailHtml.generateCartItemRow(product)
+			body = body + EmailHtml.generateCartItemRow(product, order_id)
+
+		body = body + "</table>"
 
 		body = body + "<hr/>"
 		body = body + "<span style = \"display:block\">"
-		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Items: </span>"
+		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Items </span>"
 		body = body + "<span style= \"font-size: 14px;color:#002868; float:right\">" + EmailHtml.formatPrice(cart.items_price) + "</span>"
 		body = body + "</span>"
 		body = body + "<br/>"
 		body = body + "<span style = \"display:block\">"
-		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Shipping: </span>"
+		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Shipping </span>"
 		body = body + "<span style= \"font-size: 14px;color:#002868; float:right\">" + EmailHtml.formatPrice(cart.shipping_price) + "</span>"
 		body = body + "</span>"
 		body = body + "<br/>"
 		body = body + "<span style = \"display:block\">"
-		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Total: </span>"
+		body = body + "<span style= \"font-size: 14px;color:#002868;\"> Total </span>"
 		body = body + "<span style= \"font-size: 14px;color:#002868; float:right\">" + EmailHtml.formatPrice(cart.total_price) + "</span>"
 		body = body + "</span>"
 		body = body + "</div>"
@@ -71,14 +84,19 @@ class EmailHtml:
 		msg.attach(textPart)
 		return msg
 
-	def generateCartItemRow(product):
+	def generateCartItemRow(product, order_id):
+		url_link = URL + "myOrders"
 		html = (
-			"<span style = \"display:block; border-color:lightgrey;border-width:1px;border-radius:2px;padding:12px;\">  \
+			"<tr> <td style =  \"border:solid; border-width: 2px; border-color:grey\"\"> \
+			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + PHOTO_SRC_BASE 
+			+ product[Labels.MainImage] + "\"/>  </span> </td>\
+			<td style = \"border:solid; border-width: 2px; border-color:grey\"> <span style = \"display:block;padding:12px;\">  \
 			<span> Name: " + str(product[Labels.Name]) + " </span> <br/> \
 			<span> Unit Price : " + EmailHtml.formatPrice(product[Labels.Price]) + "</span> <br/> \
 			<span> Quantity : " + str(product[Labels.NumItems]) + "</span> <br/> \
-			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + PHOTO_SRC_BASE 
-		+ product[Labels.MainImage] + "\"/>  </span>"
+			<span> Order# : <a href = \"" + url_link + "\">" + str(order_id) + "</a> </span> <br/> \
+			<span> Click <a href = \"" + url_link + "\">here</a> to view </span> <br/> \
+			</span> </td>  </tr> "
 		)
 
 		return html

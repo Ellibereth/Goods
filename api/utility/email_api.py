@@ -108,7 +108,7 @@ def sendEmailConfirmation(email, email_confirmation_id, name):
 	smtpserver.close()
 
 
-def sendPurchaseNotification(user, cart, address):
+def sendPurchaseNotification(user, cart, address, order_id):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	
@@ -117,12 +117,12 @@ def sendPurchaseNotification(user, cart, address):
 	smtpserver.starttls()
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
-	msg = EmailHtml.generateCartEmailNotificationMime([user.email], user, cart, address)
+	msg = EmailHtml.generateCartEmailNotificationMime([user.email], user, cart, address, order_id)
 	smtpserver.send_message(msg)
 
 	# send the customer confirmation msg = MIMEMultipart()
 	# this will be changed but is a fun place holder!
-	
+
 	# msg = EmailHtml.generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address)
 	# smtpserver.send_message(msg)
 	smtpserver.close()
@@ -135,11 +135,12 @@ def testEmail():
 	confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
 	name = "DAREK"
 	# sendEmailConfirmation(email, confirmation_id, name)
+	order_id = "123SAMPLEORDERID"
 
 	user = User.query.filter_by(email = email).first()
 	cart = Cart(user.account_id)
 	address = user.getAddresses()[0]
-	sendPurchaseNotification(user, cart, address)
+	sendPurchaseNotification(user, cart, address, order_id)
 
 
 
