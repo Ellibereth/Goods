@@ -35,6 +35,7 @@ import CheckoutPage from './Account/Checkout/CheckoutPage.js'
 import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
 import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
 import SearchPage from './Search/SearchPage'
+import SupportPage from './CustomerService/SupportPage'
 
 export default class Main extends React.Component {
 	
@@ -122,6 +123,7 @@ ReactDOM.render(
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>
+			<Route path = "support" component = {SupportPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

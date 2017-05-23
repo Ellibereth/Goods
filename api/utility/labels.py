@@ -107,6 +107,7 @@ class FeedbackLabels:
 	Name = "name"
 	Success = "success"
 	AccountId = "account_id"
+	Message = "message"
 
 class RequestLabels:
 	Success = "success"

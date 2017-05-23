@@ -433,3 +433,22 @@ body {
 .checkout-notice-of-terms-text{
 	font-size: 11px;
 }
+
+.support-panel-body{
+	padding: 25px;
+	padding-top: 2px;
+	padding-bottom :2px;
+}
+
+.textarea-resize-vertical {
+	resize: vertical;
+}
+
+.send-feedback-button{
+	background-color : #002868;
+	color : white;
+}
+
+.send-feedback-button:hover{
+	color : white !important;
+}
