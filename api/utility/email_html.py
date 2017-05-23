@@ -44,6 +44,7 @@ class EmailHtml:
 
 		body = body + "<span style = \"display:block;font-size: 14px;color:#002868\"> Details </span>"
 		body = body + "<div style = \"border-style: solid;border-width:2px;border-radius:4px;padding:6px;width:50%\">"
+		body = body + "<div style = \"padding-top:12px\"/>"
 		
 		for product in cart.toPublicDict()['items']:
 			body = body + EmailHtml.generateCartItemRow(product)
@@ -76,7 +77,7 @@ class EmailHtml:
 			<span> Name: " + str(product[Labels.Name]) + " </span> <br/> \
 			<span> Unit Price : " + EmailHtml.formatPrice(product[Labels.Price]) + "</span> <br/> \
 			<span> Quantity : " + str(product[Labels.NumItems]) + "</span> <br/> \
-			<img style = \"height:100px;width:100px\" src=\"" + PHOTO_SRC_BASE 
+			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + PHOTO_SRC_BASE 
 		+ product[Labels.MainImage] + "\"/>  </span>"
 		)
 

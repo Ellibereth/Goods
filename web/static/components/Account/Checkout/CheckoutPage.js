@@ -164,18 +164,25 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	componentWillMount(){
+
 		var user = AppStore.getCurrentUser()
-		this.setState({
-			cards : user.cards,
-			addresses: user.addresses,
-			total_price: user.cart.total_price,
-			shipping_price : user.cart.shipping_price,
-			items_price : user.cart.items_price,
-			items : user.cart.items,
-			is_loading: false
-			},
-			this.initializeInformation.bind(this)
-		)
+		if (user.cards.length == 0 && user.addresses.length == 0){
+			this.refreshCheckoutInformation.bind(this)()
+		}
+		else{
+			this.setState({
+				cards : user.cards,
+				addresses: user.addresses,
+				total_price: user.cart.total_price,
+				shipping_price : user.cart.shipping_price,
+				items_price : user.cart.items_price,
+				items : user.cart.items,
+				is_loading: false
+				},
+				this.initializeInformation.bind(this)
+			)
+		}
+
 		
 	}
 

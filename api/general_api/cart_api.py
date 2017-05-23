@@ -102,14 +102,14 @@ def checkoutCart():
 		return JsonUtil.failure("Address does not go with this user")
 
 	this_cart = Cart(account_id)
-	price = this_cart.price
+	total_price = this_cart.total_price
 	this_user = User.query.filter_by(account_id = account_id).first()
 	order_id = Order.generateOrderId()
 
 	# charge this price to the customer via stripe
 	# stripe automatically checks if the card matches the customer 
 	try:
-		charge = StripeManager.chargeCustomerCard(this_user, card_id ,price)
+		charge = StripeManager.chargeCustomerCard(this_user, card_id ,total_price)
 	except Exception as e:
 		return JsonUtil.failure("Something went wrong while trying to process payment information " + str(e))
 
@@ -146,7 +146,7 @@ def getUserCart():
 		return JsonUtil.jwt_failure()
 	
 	this_cart = Cart(account_id)
-	price = this_cart.price
+	total_price = this_cart.total_price
 	return JsonUtil.success(Labels.Cart, this_cart.toPublicDict())
 
 

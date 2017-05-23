@@ -83,7 +83,7 @@ export default class ViewCartPage extends React.Component {
 									<CartDisplay 
 										is_loading = {this.state.is_loading}
 										refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-										price = {this.state.ites_price}
+										price = {this.state.items_price}
 										items = {this.state.items}
 										/>
 								</div>
