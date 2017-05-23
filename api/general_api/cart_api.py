@@ -28,11 +28,9 @@ def addItemToCart():
 	product_id = request.json.get(Labels.ProductId)
 	quantity = int(request.json.get(Labels.Quantity))
 	jwt = request.json.get(Labels.Jwt)
-
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	
 	variant = request.json.get(Labels.Variant)
 	if variant:
 		variant_id = variant.get(Labels.VariantId)

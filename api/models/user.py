@@ -5,7 +5,6 @@ from api.models.shared_models import db
 import time
 import random
 import string
-from api.utility import email_api
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.id_util import IdUtil

@@ -59,9 +59,14 @@ def registerUserAccount():
 		return JsonUtil.failure("Email already exists")
 	if password != password_confirm:
 		return JsonUtil.failure("Passwords do not match")
+
+	if name == "":
+		return JsonUtil.failure("Name cannot be blank")
+	if all(x.isalpha() or x.isspace() for x in name):
+		return JsonUtil.failure("Name must be alphabetical characters only")
 	try:
 		email_confirmation_id = User.generateEmailConfirmationId()
-		email_api.sendEmailConfirmation(email, email_confirmation_id)
+		email_api.sendEmailConfirmation(email, email_confirmation_id, name)
 	except:
 		return JsonUtil.failure("Invald Email")
 	new_user = User(name = name, email = email, password = password, 
@@ -287,6 +292,9 @@ def getUserOrders():
 
 @account_api.route('/getUserInfo', methods = ['POST'])
 def getUserInfo():
+
+	email_api.testEmail()
+
 	jwt = request.json.get(Labels.Jwt)
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if this_user == None:

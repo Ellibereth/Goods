@@ -4,7 +4,11 @@ from email.mime.image import MIMEImage
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+from api.utility.email_html import EmailHtml
 from api.utility.labels import CartLabels as Labels
+
+from api.models.user import User
+from api.models.cart import Cart
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -54,37 +58,6 @@ def sendRequestConfirmation(request):
 	smtpserver.starttls()
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
-	# try:
-	smtpserver.send_message(msg)
-	# 	output = {Success : True, Labels.EmailConfirmationId : confirmation_id}
-	# except:
-	# 	output = {"success" : False}
-	smtpserver.close()
-
-def sendEmailConfirmation(email, email_confirmation_id):
-	#to send from temporary gmail 
-	"""
-	sender = "manaweb.noreply@gmail.com"
-	passW = "powerplay"
-	smtpserver = smtplib.SMTP('smtp.gmail.com', 587)
-	"""	
-	# to send from manaweb
-	sender = 'darek@manaweb.com'
-	passW = "sqwcc23mrbnnjwcz"
-	msg = MIMEMultipart()
-	msg['Subject'] = "Please Confirm Your Email!"
-	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = email
-	url = URL + "confirmEmail/" + email_confirmation_id
-	body = "Click on the following link to confirm your e-mail \n " + url
-	textPart = MIMEText(body, 'plain')
-	msg.attach(textPart)
-	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
-	smtpserver.ehlo()
-	smtpserver.starttls()
-	smtpserver.ehlo
-	smtpserver.login(sender, passW)
-	# smtpserver.sendmail(sender, receiver, msg)
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
@@ -115,6 +88,26 @@ def sendFeedbackEmailNotification(feedback):
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
+
+def sendEmailConfirmation(email, email_confirmation_id, name):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	msg['Subject'] = "Please Confirm Your Email!"
+	msg['From'] = "noreply@edgarusa.com"
+	msg['To'] = email
+	body = EmailHtml.generateEmailHtml(email, email_confirmation_id, name)
+	textPart = MIMEText(body, 'html')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	smtpserver.send_message(msg)
+	smtpserver.close()
+
+
 def sendPurchaseNotification(user, cart, address):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
@@ -124,54 +117,30 @@ def sendPurchaseNotification(user, cart, address):
 	smtpserver.starttls()
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
-	msg = generateCartEmailNotificationMime([user.email], user, cart, address)
+	msg = EmailHtml.generateCartEmailNotificationMime([user.email], user, cart, address)
 	smtpserver.send_message(msg)
 
 	# send the customer confirmation msg = MIMEMultipart()
 	# this will be changed but is a fun place holder!
-	msg = generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address)
-	smtpserver.send_message(msg)
+	
+	# msg = EmailHtml.generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address)
+	# smtpserver.send_message(msg)
 	smtpserver.close()
 
 
 
-# returns MIMText to attach to a message
-def generateCartEmailNotificationMime(recipients, user, cart, address):
-	msg = MIMEMultipart()
-	msg['Subject'] = "User Order!"
-	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = ", ".join(recipients)
-	body = """
-		<span> Thank you for ordering with Edgar USA! Below is a summary if your order!" </span>
-		<br/>
-	"""
-	textPart = MIMEText(body, 'html')
-	msg.attach(textPart)
 
-	for product in cart.toPublicDict()['items']:
-		cart_item_html = generateCartItemRow(product)
-		msg.attach(cart_item_html)
+def testEmail():
+	email = "spallstar28@gmail.com"
+	confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
+	name = "DAREK"
+	sendEmailConfirmation(email, confirmation_id, name)
 
-	body = "------------------------------------" + "\n All of this was sent to "
-	body = body + "\n" + address.address_line1 + " " + address. address_line2
-	body = body + "\n " + address.address_city + ", " + address.address_state + " " + address.address_zip
+	user = User.query.filter_by(email = email).first()
+	cart = Cart(user.account_id)
+	address = user.getAddresses()[0]
+	sendPurchaseNotification(user, cart, address)
 
-	textPart = MIMEText(body, 'plain')
-	msg.attach(textPart)
-	return msg
-
-def generateCartItemRow(product):
-	html = (
-		" \
-		<span> Name: " + str(product[Labels.Name]) + " </span> <br/> \
-		<span> Unit Price : " + str(product[Labels.Price]) + "</span> <br/> \
-		<span> Quantity : " + str(product[Labels.NumItems]) + "</span> <br/> \
-		<img style = \"height: 100px; width 100px' src=\"" + PHOTO_SRC_BASE 
-	+ product[Labels.MainImage] + "'/> <br/> \
-		<hr/> <br/>"
-	)
-	cart_item_html = MIMEText(html, 'html')
-	return cart_item_html
 
 
 
