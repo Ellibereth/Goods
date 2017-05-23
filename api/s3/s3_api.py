@@ -8,7 +8,7 @@ import datetime
 
 # cache life span in seconds, right now set for 2 weeks
 CACHE_WEEKS = 4
-CACHE_MAX_AGE =  CACHE_WEEKS * 24 * 60 * 60 
+CACHE_MAX_AGE =  CACHE_WEEKS * 7 * 24 * 60 * 60 
 
 
 PRODUCT_PHOTOS = "publicmarketproductphotos"
@@ -27,9 +27,7 @@ class S3:
 		S3.uploadPhoto(STORY_PHOTOS, image_key, image_data)
 
 
-	# takes photo_data input as a buffered reader
-	# see data = open('test.png', 'rb') data type
-	# gave up on writing the image byte string to a 
+	# takes image_data input as a buffered reader
 	@staticmethod
 	def uploadProductImage(image_key, image_data):
 		S3.uploadPhoto(PRODUCT_PHOTOS, image_key, image_data)
