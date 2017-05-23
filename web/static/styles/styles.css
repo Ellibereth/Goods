@@ -22,7 +22,6 @@
 
 body { 
 	padding-top: 120px;
-	/*padding-bottom: 70px; */
 	background-color: white;
 	font-family: Lucida Grande;
 	overflow-x: hidden;
@@ -63,11 +62,7 @@ body {
 }
 
 .cart-checkout-preview {
-	/*padding: 16px;*/
 	border-color : black;
-	/*border-radius: 10px;
-	border-width: 3px;
-	border-style : double*/
 }
 
 .address-checkout-preview {
@@ -113,16 +108,13 @@ body {
 }
 
 .clickable-text {
-	cursor:pointer;
-	color:#002868;
+	cursor : pointer;
+	color: #337ab7;
+	/*color:#002868;*/
 }
 
-
-
 .clickable-text:hover {
-	/*text-decoration:none;*/
 	text-decoration:underline;
-	/*text-shadow: 1px 1px 1px ;*/
 }
 
 .checkout-container{
@@ -135,7 +127,6 @@ body {
 
 .add-field-icon {
 	color: #002868;
-	/*font-size : 36px;*/
 }
 
 .add-field-icon:hover {
@@ -177,8 +168,6 @@ body {
 }
 
 .settings-preview-row {
-	/*padding-top: 18px;
-	padding-bottom: 18px;*/
 }
 
 .settings-preview-column {
@@ -398,8 +387,6 @@ body {
 	position: absolute;
 	top: 5%;
 	left: 30%;
-	/*right: 75%;*/
-	/*bottom: 0;*/
 	width: 40%;
 	height: 30%;
 	background-color: white;
@@ -411,3 +398,38 @@ body {
 	color:#002868 
 }
 
+
+#search-container {
+	background-color : #FAF9F8 !important;
+}
+
+.search-result-amount-text{
+	font-size: 36px;
+	padding : 8px;
+}
+
+.checkout-button{
+	width: 95%;
+	background-color: #f0c14b;
+}
+
+.checkout-price-amount-text{
+	font-size: 10px;
+}
+
+.checkout-price-label-text{
+	font-size: 10px;
+}
+
+.checkout-price-last-row{
+	font-size: 24px;
+	color : red;
+}
+
+.checkout-footer-text{
+	font-size: 10px;
+}
+
+.checkout-notice-of-terms-text{
+	font-size: 11px;
+}

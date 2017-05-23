@@ -3,7 +3,6 @@ import time
 import base64
 
 from ..utility.stripe_api import StripeManager
-from ..utility.order_manager import OrderManager
 from ..utility.table_names import ProdTables
 
 from api.models.shared_models import db

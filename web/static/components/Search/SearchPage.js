@@ -6,11 +6,12 @@ import PageContainer from '../Misc/PageContainer'
 import SearchProductPreview from './SearchProductPreview'
 
 
-export default class HomePage extends React.Component {
+export default class SearchPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			products : []
+			products : [],
+			num_results:  0
 		}
 	}
 	componentDidMount(){
@@ -18,12 +19,10 @@ export default class HomePage extends React.Component {
 	}
 
 	componentWilReceiveProps(nextProps){
-		console.log(nextProps.search_input)
 		this.loadProducts.bind(this)(nextProps.search_input)
 	}
 
 	loadProducts(search_input){
-		console.log("loading products with search ", search_input)
 		var form_data = JSON.stringify({
 			'search_input' : search_input
 		})
@@ -33,7 +32,10 @@ export default class HomePage extends React.Component {
 			url: "/searchProducts",
 			success: function(data) {
 				if (data.success) {
-					this.setState({products: data.products})
+					this.setState({
+						products: data.products,
+						num_results : data.products.length
+					})
 				}
 				else {
 					swal("nice try!")
@@ -44,29 +46,23 @@ export default class HomePage extends React.Component {
 		})
 	}
 
-
 	render() {
-
 		var products = this.state.products
-
 		if (!products) return <PageContainer component = {<div/>}/>
-		if (products.length > 0) {
-			var products_display = products.map((product, index)=>
-				<div className = "row search-row">
-					<div className = "col-md-6 col-lg-6 col-sm-6"> 
-						<SearchProductPreview product_id = {product.product_id} index = {index}/>
+		var products_display = products.map((product, index)=>
+			<SearchProductPreview product = {product} index = {index}/>
+		)
+		
+		var component = (
+				<div id = "search-container" className = "container-fluid">
+					<div className = "container">
+						<div className = "row search-result-amount-text">
+							Showing {this.state.num_results} results for {this.props.params.search_input}
+						</div>
+						{products_display}
 					</div>
 				</div>
 			)
-		}
-		else {
-			var products_display = <div className = "row"> No products for this search </div>
-		}
-		var component = (
-					<div className = "container">
-						{products_display}
-					</div>
-				)
 
 		return (
 				<PageContainer component = {component}/>

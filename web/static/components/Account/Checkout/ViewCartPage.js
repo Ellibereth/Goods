@@ -13,7 +13,7 @@ export default class ViewCartPage extends React.Component {
 		super(props);
 		this.state = {
 			items : [],
-			price : null,
+			items_price : null,
 			cards : [],
 			addresses : [],
 			is_loading: true
@@ -22,54 +22,48 @@ export default class ViewCartPage extends React.Component {
 
 	refreshCheckoutInformation(){
 		this.setState({is_loading : true})
-		// $('#view-cart-container').addClass("faded");
 		var form_data = JSON.stringify({
 				"jwt" : localStorage.jwt
-			})
-			$.ajax({
-				type: "POST",
-				url: "/getUserInfo",
-				data: form_data,
-				success: function(data) {
-					if (data.success) {
-						this.setState({
-							items: data.user.cart.items, 
-							price : data.user.cart.price,
-							cards : data.user.cards,
-							addresses : data.user.addresses, 
-						})
-					}
-					else {
-						console.log("an error")
-					}
-					this.setState({is_loading : false})
-					$('#view-cart-container').removeClass("faded");
-				}.bind(this),
-				error : function(){
-					console.log("an internal server error")
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+		})
+		$.ajax({
+			type: "POST",
+			url: "/getUserInfo",
+			data: form_data,
+			success: function(data) {
+				if (data.success) {
+					this.setState({
+						items: data.user.cart.items, 
+						items_price : data.user.cart.items_price,
+						cards : data.user.cards,
+						addresses : data.user.addresses, 
+					})
+				}
+				else {
+					console.log("an error")
+				}
+				this.setState({is_loading : false})
+				$('#view-cart-container').removeClass("faded");
+			}.bind(this),
+			error : function(){
+				console.log("an internal server error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
 	}
 
-	
-
 	componentWillMount(){
-		// this.refreshCheckoutInformation.bind(this)()
 		var user = AppStore.getCurrentUser()
 		this.setState({
 				items: user.cart.items, 
-				price : user.cart.price,
+				items_price : user.cart.items_price,
 				cards : user.cards,
 				addresses : user.addresses, 
 				is_loading: false
-			})
+		})
 	}
 
-	
 	render() {
-		console.log(this.state.items)
 		return (
 			<PageContainer component = {
 				<div id = "view-cart-container" 
@@ -77,7 +71,7 @@ export default class ViewCartPage extends React.Component {
 				>
 
 					<div className = "row">
-						<div className = "col-md-10 col-lg-10 col-sm-10 well">
+						<div className = "col-md-9 col-lg-9 col-sm-9 well">
 							<div className = "row">
 								<div className = "col-md-2 col-lg-2 col-sm-2 checkout-item-label-editable vcenter">
 									<b> Items </b>
@@ -89,22 +83,23 @@ export default class ViewCartPage extends React.Component {
 									<CartDisplay 
 										is_loading = {this.state.is_loading}
 										refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-										price = {this.state.price}
+										price = {this.state.ites_price}
 										items = {this.state.items}
 										/>
 								</div>
 							</div>
 							<div className = "row">
 								<div className = "col-md-2 col-lg-2 pull-right">
-									<span> <b> Subtotal </b> ${formatPrice(this.state.price)} </span>
+									<span> <b> Subtotal </b> ${formatPrice(this.state.items_price)} </span>
 								</div>
 							</div>
 						</div>
-						<div className = "col-md-2 col-lg-2 col-sm-2">
-								<Button disabled = {this.state.items.length == 0}>
-									<Link to = "checkout"> Proceed to Checkout </Link>
-								</Button>
-								
+						<div className = "col-md-3 col-lg-3 col-sm-3">
+							<Button disabled = {this.state.items.length == 0} 
+							onClick = {() => browserHistory.push('checkout')}
+							className = "checkout-button">
+								Proceed to Checkout 
+							</Button>
 						</div>
 					</div>
 				</div>

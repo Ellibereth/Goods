@@ -7,6 +7,7 @@ import CartDisplay from './Cart/CartDisplay'
 import CheckoutCardSelect from './Billing/CheckoutCardSelect.js'
 import CheckoutAddressSelect from './Shipping/CheckoutAddressSelect.js'
 import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
+import CheckoutPriceRow from './CheckoutPriceRow'
 import {formatPrice} from '../../Input/Util'
 import {Button} from 'react-bootstrap'
 var browserHistory = require('react-router').browserHistory;
@@ -22,7 +23,9 @@ export default class CheckoutPage extends React.Component {
 		super(props);
 		this.state = {
 			items : [],
-			price : null,
+			total_price : null,
+			shipping_price : null,
+			items_price : null,
 			cards : [],
 			addresses : [],
 			selected_card_index : -1,
@@ -95,9 +98,7 @@ export default class CheckoutPage extends React.Component {
 		// we just increment one since the next card added will be at the end (I think)
 		this.setState({selected_address_index : this.state.addresses.length})
 	}
-
-	// this method will fire after a new billing method is added 
-	// then that one will be selected
+	
 	onAddingNewBillingMethod(){
 		var length = this.state.cards.length
 		this.refreshCheckoutInformation.bind(this)()
@@ -105,7 +106,6 @@ export default class CheckoutPage extends React.Component {
 		this.openEditable.bind(this)(CART_INDEX)
 	}
 
-	// closes all other ones
 	openEditable(index){
 		if (index == BILLING_INDEX && !this.getSelectedAddress()){
 			swal("Whoa!", "You must select a shipping address before continuing", "error")
@@ -125,8 +125,6 @@ export default class CheckoutPage extends React.Component {
 
 	refreshCheckoutInformation(){
 		this.setState({is_loading : true})
-		// $('#checkout-container').addClass("faded");
-
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt
@@ -139,7 +137,9 @@ export default class CheckoutPage extends React.Component {
 					if (data.success) {
 						this.setState({
 							items: data.user.cart.items, 
-							price : data.user.cart.price,
+							total_price : data.user.cart.total_price,
+							shipping_price : data.user.cart.shipping_price,
+							items_price : data.user.cart.items_price,
 							cards : data.user.cards,
 							addresses : data.user.addresses, 
 							is_loading : false
@@ -164,12 +164,14 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	componentWillMount(){
-		// this.refreshCheckoutInformation.bind(this)()
+		var user = AppStore.getCurrentUser()
 		this.setState({
-			cards : AppStore.getCurrentUser().cards,
-			addresses: AppStore.getCurrentUser().addresses,
-			price: AppStore.getCurrentUser().cart.price,
-			items : AppStore.getCurrentUser().cart.items,
+			cards : user.cards,
+			addresses: user.addresses,
+			total_price: user.cart.total_price,
+			shipping_price : user.cart.shipping_price,
+			items_price : user.cart.items_price,
+			items : user.cart.items,
 			is_loading: false
 			},
 			this.initializeInformation.bind(this)
@@ -209,17 +211,17 @@ export default class CheckoutPage extends React.Component {
 	onCheckoutClick(){
 		var selected_card = this.getSelectedCard.bind(this)()
 		var selected_address = this.getSelectedAddress.bind(this)()
-		var text = "Are you ready to checkout with card ending in " + selected_card.last4  + 
+		var text = "Are you ready to checkout with card ending in " + selected_card.last4    + 
 				"\n to address " + selected_address.address_line1 + "?"
 		swal({
-		  title: "Confirm",
-		  text: text,
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
+			title: "Confirm",
+			text: text,
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Yes",
+			cancelButtonText: "No",
+			closeOnConfirm: true,
+			closeOnCancel: true
 		},
 		function () {
 			this.checkout.bind(this)()
@@ -227,7 +229,6 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	checkout(){
-		// $('#checkout-container').addClass("faded");
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
 				account_id : AppStore.getCurrentUser().account_id,
@@ -265,6 +266,7 @@ export default class CheckoutPage extends React.Component {
 	}	
 
 	addressToString(address){
+		// Example Format
 		// Darek Johnson 3900 City Avenue, M619, Philadelphia, PA, 19131 United States
 		return ( 
 			<span>
@@ -273,7 +275,6 @@ export default class CheckoutPage extends React.Component {
 		)
 	}
 
-	// will allow checkout if possible 
 	canCheckout(){
 		if (this.getSelectedCard() == null) {
 			return false
@@ -284,11 +285,6 @@ export default class CheckoutPage extends React.Component {
 		if (this.state.items.length == 0) {
 			return false
 		}
-
-		if (this.state.can_edit[ADDRESS_INDEX] || this.state.can_edit[BILLING_INDEX]){
-			return false
-		}
-
 		return true
 	}	
 
@@ -299,11 +295,9 @@ export default class CheckoutPage extends React.Component {
 			<PageContainer {...this.props}
 				component = {
 
-				
 				<div id = "checkout-container" 
 				className = {this.state.is_loading ? "container faded" : "container"}
-				>
-		
+				>		
 					<CheckoutAddBillingModal 
 						selected_address = {this.getSelectedAddress()}
 						show = {this.state.billing_modal_open}
@@ -311,7 +305,7 @@ export default class CheckoutPage extends React.Component {
 						onAddingNewBillingMethod = {this.onAddingNewBillingMethod.bind(this)}
 					/>
 
-					<div className = "col-sm-10 col-md-10 col-lg-10">
+					<div className = "col-sm-9 col-md-9 col-lg-9">
 						<CheckoutAddressSelect 
 							selected_address_index = {this.state.selected_address_index}
 							toggleModal = {this.toggleAddressModal.bind(this)}
@@ -330,21 +324,18 @@ export default class CheckoutPage extends React.Component {
 						<hr/>
 
 						<CheckoutCardSelect 
-						selected_card_index = {this.state.selected_card_index}
-						selected_address = {this.getSelectedAddress()}
-						toggleModal = {this.toggleBillingModal.bind(this)}
-						refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-						setCard = {this.setCard.bind(this)} 
-						cards = {this.state.cards} 
-						card = {this.getSelectedCard.bind(this)()}
-						can_edit = {this.state.can_edit[BILLING_INDEX]}
-						openEditable = {this.openEditable.bind(this)}
-						closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
+							selected_card_index = {this.state.selected_card_index}
+							selected_address = {this.getSelectedAddress()}
+							toggleModal = {this.toggleBillingModal.bind(this)}
+							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+							setCard = {this.setCard.bind(this)} 
+							cards = {this.state.cards} 
+							card = {this.getSelectedCard.bind(this)()}
+							can_edit = {this.state.can_edit[BILLING_INDEX]}
+							openEditable = {this.openEditable.bind(this)}
+							closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
 						/>
-
-
 						<hr/>
-
 						<div className = "well" >
 							<div className = "row">
 								<div className = "col-md-2 col-lg-2 col-sm-2 checkout-item-label-editable vcenter">
@@ -355,22 +346,60 @@ export default class CheckoutPage extends React.Component {
 							<CartDisplay 
 							is_loading = {this.state.is_loading}
 							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-							price = {formatPrice(this.state.price)}
+							price = {formatPrice(this.state.total_price)}
 							items = {this.state.items}
 							/>
 						</div>
-
-
-
 					</div>
-					<div className = "col-sm-2 col-md-2 col-lg-2">
-						<Button disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
-							Place your order!
-						</Button>
-						<hr/>
-						<div className = "order-total">
-							Order Total: {formatPrice(this.state.price)}
+
+					<div className = "col-sm-3 col-md-3 col-lg-3">
+						<div className="panel panel-default">
+							<div className="panel-body">
+								<div className = "row">
+									<div className = "col-sm-12 col-md-12 col-lg-12 vcenter text-center">
+										<Button className = "checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
+											Place your order!
+										</Button>
+										<div className = "top-buffer"/>
+										<div className = "checkout-notice-of-terms-text">
+											By placing your order, you agree to our 
+											<Link to = "terms">
+												{" terms of service "}
+											</Link>
+											and 
+											<Link to = "privacy">
+												{" privacy policy"}
+											</Link>
+										</div>
+									</div>
+								</div>
+								<hr/>
+								<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+								label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
+								<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+								label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
+								<hr/>
+								<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
+								label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
+							</div>
+
+							<div className="panel-footer">
+								<div className = "row">
+									<div className = "col-sm-12 col-md-12 col-lg-12">
+										<div className = "clickable-text checkout-footer-text">
+											How are shipping costs calculated?
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
+
+
+
+						
+
+						
+
 					</div>
 				</div>
 			}/>	

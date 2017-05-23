@@ -15,6 +15,7 @@ search_api = Blueprint('search_api', __name__)
 
 @search_api.route('/searchProducts', methods = ['POST'])
 def searchProducts():
+	time_0 = time.time()
 	search_input = request.json.get(Labels.SearchInput)
 
 	# right now this queries all then filters
@@ -25,19 +26,22 @@ def searchProducts():
 	name_filter = [product for product in all_products if product.name]
 	name_filter = [product for product in name_filter if search_input.lower() in product.name.lower()]
 
-	description_filter = [product for product in name_filter if product.name]
-	description_filter = [product for product in description_filter if search_input.lower() in product.name.lower()]
+	description_filter = [product for product in all_products if product.description]
+	description_filter = [product for product in description_filter if search_input.lower() in product.description.lower()]
 
-	manufacturer_filter = [product for product in description_filter if product.name]
-	manufacturer_filter = [product for product in manufacturer_filter if search_input.lower() in product.name.lower()]
+	manufacturer_filter = [product for product in all_products if product.manufacturer]
+	manufacturer_filter = [product for product in manufacturer_filter if search_input.lower() in product.manufacturer.lower()]
 
-	story_text_filter = [product for product in manufacturer_filter if product.name]
-	story_text_filter = [product for product in story_text_filter if search_input.lower() in product.name.lower()]
-
-	filtered_products = [product.toPublicDict() for product in story_text_filter]
-
+	merged_list = name_filter + description_filter + manufacturer_filter
+	hit_product_ids = list()
+	all_matches = list()
+	for product in merged_list:
+		if product.product_id not in hit_product_ids:
+			all_matches.append(product.toPublicDict())
+			hit_product_ids.append(product.product_id)
+	time_1 = time.time()
 	return JsonUtil.successWithOutput({
-			Labels.Products : filtered_products
+			Labels.Products : all_matches
 		})
 
 

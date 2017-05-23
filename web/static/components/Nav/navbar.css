@@ -18,6 +18,10 @@
 	color: white;
 }
 
+.nav-greetings-text:hover {
+	cursor: default;
+}
+
 .navbar-brand-with-user {
 	line-height : 44px;
 	font-size: 36px;

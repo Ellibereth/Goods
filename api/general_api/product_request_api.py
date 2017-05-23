@@ -3,7 +3,6 @@ import time
 from passlib.hash import argon2
 import base64
 
-from ..utility.product_request_manager import ProductRequestManager
 from ..utility.table_names import ProdTables
 
 from api.utility import email_api

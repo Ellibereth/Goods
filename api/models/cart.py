@@ -14,10 +14,15 @@ class Cart:
 	def __init__(self, account_id):
 		self.account_id = account_id
 		self.items = CartItem.query.filter_by(account_id = account_id).all()
-		self.price = self.getCartPrice(account_id)
+		self.items_price = self.getCartPrice()
+		self.shipping_price = self.getCartShippingPrice()
+		self.total_price = self.items_price + self.shipping_price
 
-	def getCartPrice(self, account_id):
-		return Pricing.getCartPrice(self.items)
+	def getCartPrice(self):
+		return Pricing.getCartPrice(self)
+
+	def getCartShippingPrice(self):
+		return Pricing.getCartShippingPrice(self)
 
 	def clearCart(self):
 		for cart_item in self.items:
@@ -44,7 +49,9 @@ class Cart:
 				product[Labels.Name] = product[Labels.Name]  + " - " + cart_item.variant_type
 			product_list.append(product)
 		public_dict[Labels.Items] = product_list
-		public_dict[Labels.Price] = self.price
+		public_dict[Labels.TotalPrice] = self.total_price
+		public_dict[Labels.ShippingPrice] = self.shipping_price
+		public_dict[Labels.ItemsPrice] = self.items_price
 		return public_dict
 
 ## user object class

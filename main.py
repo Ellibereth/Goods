@@ -65,7 +65,7 @@ app.register_blueprint(analytics_api)
 
 # cache life span in seconds, right now set to 2 weeks
 CACHE_WEEKS = 2
-CACHE_MAX_AGE =  CACHE_WEEKS * 24 * 60 * 60 
+CACHE_MAX_AGE =  CACHE_WEEKS * 7 * 24 * 60 * 60 
 CACHE_EXPIRE_DAYS = 2
 
 @app.before_first_request
@@ -81,9 +81,7 @@ def add_header(response):
 	"""
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
 
-
 	path_splits = request.path.split('/')
-	# print(path_splits)
 	# cache everything int he static/web_scripts folder
 	if len(path_splits) > 2:
 		if path_splits[1] == 'static' and path_splits[2] == 'web_scripts':

@@ -29,24 +29,14 @@ export default class LargeNavBar extends React.Component {
 	onSearchChange(event){
 		this.setState({search_input : event.target.value})
 	}
+
+
 	getRightNav() {
 		if (this.props.no_login) {
 			return <div/>
 		}
-		var current_user = AppStore.getCurrentUser()
-		if (current_user == {} || !current_user){
-			return (
-				
-					<ul className="nav navbar-nav navbar-right">
-						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
-						<li><Link to ="/login" className = "no-user-link">Login</Link></li>
-					</ul>
-			)
-		}
-		else {
-			return (
-				<ul className="nav navbar-nav navbar-right">
-					<li>
+
+		var search_bar = (
 						<form onSubmit = {this.searchProducts.bind(this)}
 						 className="navbar-form navbar-left search-bar-with-user" role="search">
 							<div className="input-group nav-search-bar">
@@ -56,7 +46,22 @@ export default class LargeNavBar extends React.Component {
 								</div>
 							</div>
 						</form>
-					</li>
+				)
+		var current_user = AppStore.getCurrentUser()
+		if (current_user == {} || !current_user){
+			return (
+				
+					<ul className="nav navbar-nav navbar-right">
+						<li> {search_bar} </li>
+						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
+						<li><Link to ="/login" className = "no-user-link">Login</Link></li>
+					</ul>
+			)
+		}
+		else {
+			return (
+				<ul className="nav navbar-nav navbar-right">
+					<li> {search_bar} </li>
 					<li> 
 						<Link to = "/myCart"> 
 							<span className = "nav-icon">

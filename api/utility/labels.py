@@ -200,6 +200,9 @@ class CartLabels:
 	CartItem = "cart_item"
 	VariantType = "variant_type"
 	Variant = "variant"
+	TotalPrice = "total_price"
+	ShippingPrice = "shipping_price"
+	ItemsPrice = "items_price"
 
 class AddressLabels:
 	AddressId = "address_id"
