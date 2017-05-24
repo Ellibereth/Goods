@@ -90,6 +90,10 @@ def add_header(response):
 			right_now = datetime.datetime.now()
 			expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
 			response.headers['Expires'] = str(expire_time)
+			
+	# otherwise we do not cache, this can be changed later
+	else:
+		response.headers['Cache-Control'] = 'public,max-age=0'
 
 	
 
