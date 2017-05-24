@@ -15,7 +15,6 @@ class EmailHtml:
 		body = body + "<span style = \"display:block;font-size: 14px;\"> Thank you for signing up! Click below to confirm your account </span>"
 		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
 			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">  Confirm Email </a> </button> </div>"
-		body = body + "<h2> Welcome to Edgar USA! </h2>"
 
 		return body
 
@@ -23,12 +22,12 @@ class EmailHtml:
 	# returns MIMText to attach to a message
 	def generateCartEmailNotificationMime(recipients, user, cart, address, order_id):
 		msg = MIMEMultipart()
-		msg['Subject'] = "User Order!"
+		msg['Subject'] = "Order Confirmation"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = ", ".join(recipients)
 		body = "<div style = \"width:70%\">"
 		body = body + "<div style = \"text-align:center\">"
-		body = body + "<span style = \"display:block;font-size: 36px;color:#002868;\"> Greetings, " + user.name + " </span>"
+		body = body + "<span style = \"display:block;font-size: 24px;color:#002868;\"> Hi, " + user.name + " </span>"
 		body = body + "<div style = \"border-top:solid; border-width: 1px; border-color:lightgrey; padding-bottom: 12px\"> </div>"
 		num_items = len(cart.toPublicDict()['items'])
 		first_item = cart.toPublicDict()['items'][0]
@@ -36,7 +35,7 @@ class EmailHtml:
 		
 
 
-		body =  body + "<span style = \"display:block;font-size: 18px;\"> Edgar is preparing your items now...</span>"
+		body =  body + "<span style = \"display:block;font-size: 18px;\"> Your order has been confirmed. Thank you for shopping at Edgar USA. </span>"
 
 
 		body = body + "<div style = \"padding-top:12px\"> </div>"
@@ -89,6 +88,10 @@ class EmailHtml:
 		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.total_price) + "</span>"
 		body = body + "</span>"
 		body = body + "</div>"
+		body = body + "<div style = \"padding-top:12px\"></div>"
+		support_url = URL + "support"
+		body = body + "<div style = \"text-align:center\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\">  \
+		<a style = \"font-size: 18px;text-decoration:none;color:white;\" href = \"" + support_url + "\"> Contact Support </a> </button> </div>"
 		body = body + "</div>"
 
 		textPart = MIMEText(body, 'html')

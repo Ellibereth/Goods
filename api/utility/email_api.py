@@ -135,13 +135,13 @@ def testEmail():
 	email = "spallstar28@gmail.com"
 	confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
 	name = "DAREK"
-	sendEmailConfirmation(email, confirmation_id, name)
-	# order_id = "123SAMPLEORDERID"
+	# sendEmailConfirmation(email, confirmation_id, name)
+	order_id = "123SAMPLEORDERID"
 
-	# user = User.query.filter_by(email = email).first()
-	# cart = Cart(user.account_id)
-	# address = user.getAddresses()[0]
-	# sendPurchaseNotification(user, cart, address, order_id)
+	user = User.query.filter_by(email = email).first()
+	cart = Cart(user.account_id)
+	address = user.getAddresses()[0]
+	sendPurchaseNotification(user, cart, address, order_id)
 
 
 
