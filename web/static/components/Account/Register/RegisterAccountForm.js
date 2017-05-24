@@ -79,7 +79,7 @@ export default class RegisterAccountForm extends React.Component {
 			});
 		}
 
-	handleKeyPress(e){
+	onKeyPress(e){
 		if (e.key === 'Enter') {
       		this.onSubmitPress.bind(this)()
     	}
@@ -90,7 +90,9 @@ export default class RegisterAccountForm extends React.Component {
 		var text_inputs = form_inputs.map((form_input, index) => {
 			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]} index = {index}/>)
+				input_type = {input_types[index]} index = {index}
+				onKeyPress = {this.onKeyPress.bind(this)}
+				/>)
 		})
 
 		return (
