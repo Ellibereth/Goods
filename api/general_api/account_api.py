@@ -62,7 +62,7 @@ def registerUserAccount():
 
 	if name == "":
 		return JsonUtil.failure("Name cannot be blank")
-	if all(x.isalpha() or x.isspace() for x in name):
+	if not all(x.isalpha() or x.isspace() for x in name):
 		return JsonUtil.failure("Name must be alphabetical characters only")
 	try:
 		email_confirmation_id = User.generateEmailConfirmationId()
@@ -292,6 +292,7 @@ def getUserOrders():
 
 @account_api.route('/getUserInfo', methods = ['POST'])
 def getUserInfo():
+	# this was used as an easier way for testing emails, will be removed soon
 	# email_api.testEmail()
 	jwt = request.json.get(Labels.Jwt)
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
