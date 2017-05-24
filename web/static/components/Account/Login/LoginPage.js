@@ -17,17 +17,19 @@ export default class LoginPage extends React.Component {
 
 	componentWillMount() {
 		var current_user = AppStore.getCurrentUser()
-		if (current_user){
+		if (current_user) {
 			browserHistory.push(`/`)
 		}
 	}
+
+
 
 	render() {
 
 		return (
 			<PageContainer component = {
 				<div className = "container">
-					<LoginForm />
+					<LoginForm target = {this.props.location.query.target}/>
 					<a href = "/register"> Don't have an account yet? </a>
 				</div>
 			}/>

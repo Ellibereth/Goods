@@ -41,7 +41,12 @@ export default class RegisterAccountForm extends React.Component {
 				}
 				else {
 					AppActions.addCurrentUser(data.user, data.jwt)
-					browserHistory.push('/')
+					if (!this.props.target){
+						browserHistory.push('/')
+					}
+					else {
+						browserHistory.push('/' + this.props.target)
+					}
 				}
 			}.bind(this),
 			error : function(){

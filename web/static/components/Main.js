@@ -74,9 +74,10 @@ export default class Main extends React.Component {
 }
 
 const checkConfirmedUser = (nextState, replace) => {
+	var target = nextState.location.pathname.replace("/", "")
 	var thisUser = AppStore.getCurrentUser();
 	if (!thisUser) {
-		replace(`/`)
+		replace({pathname: '/login', query: { target: target}})
 	}
 	else if (!thisUser.email_confirmed) {
 		replace(`/pleaseConfirm`);
