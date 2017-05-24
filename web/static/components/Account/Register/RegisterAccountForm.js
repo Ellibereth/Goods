@@ -79,16 +79,22 @@ export default class RegisterAccountForm extends React.Component {
 			});
 		}
 
+	handleKeyPress(e){
+		if (e.key === 'Enter') {
+      		this.onSubmitPress.bind(this)()
+    	}
+	}
+
 	render() {
 
 		var text_inputs = form_inputs.map((form_input, index) => {
 			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]}/>)
+				input_type = {input_types[index]} index = {index}/>)
 		})
 
 		return (
-			<Form horizontal>
+			<Form onSubmit = {this.onSubmitPress.bind(this)} horizontal>
 				{text_inputs}
 				<FormGroup controlId = "submit_button">
 				<Col smOffset={0} sm={10}>
