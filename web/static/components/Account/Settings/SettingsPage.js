@@ -79,14 +79,12 @@ export default class SettingsPage extends React.Component {
 
 
 	render() {
-		console.log(this.state.cards)
-		// console.log(this.state.addresses)
 		return (
 			<PageContainer component = {
 				<div id = "settings-container" 
 				className = {this.state.is_loading ? "container faded" : "container"}
 				>
-					<h1> Your Account </h1> 
+					<h1 style = {{"margin-left": "14px"}}> Your Account </h1> 
 					<br/>
 					<UpdateSettingsPreview  />
 					<br/>

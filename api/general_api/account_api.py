@@ -75,7 +75,10 @@ def registerUserAccount():
 	stripe_customer_id = StripeManager.createCustomer(name, email)
 	new_user.stripe_customer_id = stripe_customer_id
 	db.session.commit()
-	return JsonUtil.success(Labels.User, new_user.toPublicDict())
+	return JsonUtil.successWithOutput({
+			Labels.User : new_user.toPublicDict(),
+			Labels.Jwt : JwtUtil.create_jwt(new_user.toJwtDict())
+		})
 	
 # confirms the user email if that route is visited
 @account_api.route('/confirmEmail', methods = ['POST'])
@@ -87,6 +90,7 @@ def confirmEmail():
 		return JsonUtil.failure("Email confirmation id doesn't go with any user")
 	# elif this_user.email_confirmed:
 	# 	return JsonUtil.failure("Email already confirmed")
+
 	else:
 		this_user.confirmEmail()
 		return JsonUtil.successWithOutput({
@@ -320,5 +324,13 @@ def softDeleteAccount():
 	this_user.softDeleteAccount()
 	return JsonUtil.success()
 
+@account_api.route('/resendConfirmationEmail', methods = ['POST'])
+def resendConfirmationEmail():
+	jwt = request.json.get(Labels.Jwt)
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	if this_user == None:
+		return JsonUtil.failure("This user doesn't exist")
 
+	email_api.sendEmailConfirmation(this_user.email, this_user.email_confirmation_id, this_user.name)
+	return JsonUtil.success()
 

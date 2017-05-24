@@ -5,6 +5,8 @@ import {} from 'react-bootstrap';
 import PageContainer from '../../Misc/PageContainer.js'
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions'
+var Link = require('react-router').Link
+import AppStore from '../../../stores/AppStore'
 
 export default class EmailConfirmationPage extends React.Component {
 	constructor(props) {
@@ -20,31 +22,37 @@ export default class EmailConfirmationPage extends React.Component {
 			"email_confirmation_id" : this.props.params.email_confirmation_id
 		})
 
-		$.ajax({
-			type: "POST",
-			url: "/confirmEmail",
-			data: form_data,
-			success: function(data) {
-				if (data.success){
-					// maybe do something to display if not confirmed
-					this.setState({valid_user : true})
-					AppActions.addCurrentUser(data.user, data.jwt)
-					console.log(data)
-				}
+		if (AppStore.getCurrentUser().email_confirmed){
+			browserHistory.push('/')
+		}
 
-				// redirect if something is wrong 
-				else {
-					// redirect to '/'
-					browserHistory.push(`/miscPage`)
-					this.setState({valid_user : false})
-				}
-			}.bind(this),
-			error: function(){
-				console.log("error")
-			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+		else {
+			$.ajax({
+				type: "POST",
+				url: "/confirmEmail",
+				data: form_data,
+				success: function(data) {
+					if (data.success){
+						// maybe do something to display if not confirmed
+						this.setState({valid_user : true})
+						AppActions.addCurrentUser(data.user, data.jwt)
+					}
+
+					// redirect if something is wrong 
+					else {
+						// redirect to '/'
+						browserHistory.push(`/miscPage`)
+						this.setState({valid_user : false})
+					}
+				}.bind(this),
+				error: function(){
+					console.log("error")
+				},
+				dataType: "json",
+				contentType : "application/json; charset=utf-8"
+			});
+		}
+
 	}
 
 	render() {
@@ -53,8 +61,9 @@ export default class EmailConfirmationPage extends React.Component {
 				<PageContainer component = {
 						<div className = "container">
 							<h1>
-								Thank you for confirming your e-mail! <br/>
-								Click <a href ="/"> here </a> to return to the home page.
+								Welcome to Edgar USA! <br/>
+								Your account has been confirmed <br/>
+								Click <Link to ="/"> here </Link> to start shopping now
 							</h1>
 						</div>
 					}
