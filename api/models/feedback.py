@@ -18,7 +18,8 @@ class Feedback(db.Model):
 	feedback_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	email = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
-	feedback_content = db.Column(db.String, nullable = False)
+	feedback_content = db.Column(db.String)
+	category = db.Column(db.String)
 	account_id = db.Column(db.String, nullable = True)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -27,18 +28,20 @@ class Feedback(db.Model):
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, email, name, feedback_content):
+	def __init__(self, email, name, feedback_content, category):
 		self.name = name
 		self.email = email
 		self.feedback_content = feedback_content
+		self.category = category
 		db.Model.__init__(self)
 		
 
 	def toPublicDict(self):
 		public_dict = {}
-		public_dict['name'] = self.name
-		public_dict['email'] = self.email
-		public_dict['feedback_content'] = self.feedback_content
+		public_dict[Labels.Name] = self.name
+		public_dict[Labels.Email] = self.email
+		public_dict[Labels.FeedbackContent] = self.feedback_content
+		public_dict[Labels.Category] = self.category
 		return public_dict
 
 

@@ -5,13 +5,16 @@ var browserHistory = require('react-router').browserHistory
 import {} from 'react-bootstrap';
 import PageContainer from '../Misc/PageContainer'
 
+const categories = ['nothing!', 'a purchase', 'your site', 'my account']
+
 export default class SupportPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			feedback_content: "",
 			email : "",
-			name: ""
+			name: "",
+			category: categories[0]
 		}
 		this.onChange = this.onChange.bind(this)
 		this.sendFeedback = this.sendFeedback.bind(this)
@@ -20,6 +23,7 @@ export default class SupportPage extends React.Component {
 	componentDidMount(){	
 
 	}
+
 
 	onChange(event){
 		var obj = this.state
@@ -31,7 +35,8 @@ export default class SupportPage extends React.Component {
 		var form_data = JSON.stringify({
 			feedback_content : this.state.feedback_content,
 			email : this.state.email,
-			name : this.state.name
+			name : this.state.name,
+			category : this.state.category
 		})
 		$.ajax({
 			type: "POST",
@@ -58,6 +63,11 @@ export default class SupportPage extends React.Component {
 
 
 	render() {
+
+		var select_options = categories.map((category, index)=>
+				<option value = {category} index = {index}> {category} </option>
+			)
+
 		var component = (
 			<div className = "container">
 				<div className = "row">
@@ -67,6 +77,21 @@ export default class SupportPage extends React.Component {
 								<div className = "row">
 									 <h2> <b> Dear Edgar, </b> </h2> 
 								</div>
+
+								<div className = "row">
+									 <form className="form-inline">
+										<div className = "form-group" style = {{"padding-right" : "6px"}}>
+											<p className = "form-control-static"> {"I have a problem with "} </p>
+										</div>
+										<div className = "form-group">
+											<select className = "form-control" 
+											 onChange = {this.onChange} name = "category">
+											 	{select_options}
+											 </select>
+										</div>
+									</form>
+								</div>
+
 								<div className = "row">
 									I'm writing to you about 
 								</div>
@@ -92,7 +117,8 @@ export default class SupportPage extends React.Component {
 								<div className = "top-buffer"/>
 								<div className = "row">
 									<div className = "form-group">
-										<label> Sincerely, </label>
+										<label> 
+										Your name (optional) </label>
 										<input name = "name" type="text" onChange = {this.onChange}
 										className="form-control" style = {{"width" : "35%"}} placeholder = "name"/>
 									</div>

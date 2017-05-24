@@ -77,7 +77,8 @@ def sendFeedbackEmailNotification(feedback):
 	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	name = feedback.name
 	body = "Name: " + feedback.name + "\n Email: " + feedback.email + \
-			"\n Content: " + feedback.feedback_content
+			"\n Content: " + feedback.feedback_content + \
+			"\n Category: " + feedback.category
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
