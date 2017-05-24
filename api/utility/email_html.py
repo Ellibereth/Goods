@@ -9,11 +9,12 @@ PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 class EmailHtml:
 
-	def generateEmailHtml(email, email_confirmation_id, name):
+	def generateConfirmationEmailHtml(email, email_confirmation_id, name):
 		url = URL + "confirmEmail/" + email_confirmation_id
 		body = "<h2> Hello, " + name.title() + "</h2>"
 		body = body + "<span style = \"display:block;font-size: 14px;\"> Thank you for signing up! Click below to confirm your account </span>"
-		body = body + "<span style = \"display:block;font-size: 14px;\"> " +  url + "</span>"
+		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
+			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">  Confirm Email </a> </button> </div>"
 		body = body + "<h2> Welcome to Edgar USA! </h2>"
 
 		return body
