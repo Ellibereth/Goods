@@ -91,17 +91,18 @@ export default class SettingsPage extends React.Component {
 					{
 						!this.state.is_loading && 
 						<div>
+							<ShippingPreview 
+								is_loading = {this.state.is_loading}
+								refreshSettings = {this.refreshSettings}
+								addresses = {this.state.addresses}/>
+							<br/>
 							<BillingPreview
 								is_loading  = {this.state.is_loading}
 								refreshSettings = {this.refreshSettings} 
 								cards = {this.state.cards} />
 							<br />
 
-							<ShippingPreview 
-								is_loading = {this.state.is_loading}
-								refreshSettings = {this.refreshSettings}
-								addresses = {this.state.addresses}/>
-							<br/>
+							
 
 							<OrdersPreview orders = {this.state.orders} />
 							<br/>

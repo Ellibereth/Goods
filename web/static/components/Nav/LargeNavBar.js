@@ -90,7 +90,7 @@ export default class LargeNavBar extends React.Component {
 					</li>
 					<li>
 						<span className = "nav-greetings-text">
-							 Hello {current_user.name.split(' ')[0]}! 
+							 Hello, {current_user.name.split(' ')[0]}! 
 						</span>
 					</li>
 				</ul>

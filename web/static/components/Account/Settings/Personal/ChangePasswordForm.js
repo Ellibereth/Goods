@@ -137,7 +137,7 @@ export default class ChangePasswordForm extends React.Component {
 		return (
 			<Grid>
 				<Form horizontal>
-					<ControlLabel> <span id = "settings-header"> You must confirm your password to make any changes to your account </span> </ControlLabel>
+					<ControlLabel> <span id = "settings-header"> Confirm Password</span> </ControlLabel>
 					<br/>
 					{text_inputs}
 					

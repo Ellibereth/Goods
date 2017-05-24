@@ -6,21 +6,21 @@ var browserHistory = require('react-router').browserHistory
 import AppStore from '../../stores/AppStore'
 
 export default class PleaseConfirmPage extends React.Component {
-    constructor(props) {
+	constructor(props) {
 	super(props);
 	this.state = {
-	    // show_modal: false
+		// show_modal: false
 		}
-    }
+	}
 
-    
+	
 
-    resendConfirmation(){
-    	var form_data = JSON.stringify({
-    		"jwt" : localStorage.jwt
-    	})
-    	console.log(AppStore.getCurrentUser().email)
-    	$.ajax({
+	resendConfirmation(){
+		var form_data = JSON.stringify({
+			"jwt" : localStorage.jwt
+		})
+		console.log(AppStore.getCurrentUser().email)
+		$.ajax({
 			type: "POST",
 			url: "/resendConfirmationEmail",
 			data: form_data,
@@ -42,28 +42,28 @@ export default class PleaseConfirmPage extends React.Component {
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		});
-    }
+	}
 
-    componentDidMount(){
-    	if (AppStore.getCurrentUser().email_confirmed){
-    		browserHistory.push('/')
-    	}
-    }
+	componentDidMount(){
+		if (AppStore.getCurrentUser().email_confirmed){
+			browserHistory.push('/')
+		}
+	}
 
 
-    render() {
+	render() {
 	// class size 30 and centered 
 	var component = (
 			<div className = "container">
-				<h3> Please confirm your account! </h3>
-				<h3> Check your e-mail </h3>
-				<h3> Click  <span className = "clickable-text" onClick = {this.resendConfirmation}> here </span>
-				to have the email sent again </h3>
+				<h3> Please confirm your email to continue </h3>
+				<h3> If you need confirmation email to be resent click
+					<span className = "clickable-text" onClick = {this.resendConfirmation}> here </span>
+				</h3>
 				
 			</div>
 		)
 	return (
 		<PageContainer component = {component} />
 		);
-    }
+	}
 }

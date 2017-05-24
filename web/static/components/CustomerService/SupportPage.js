@@ -4,8 +4,9 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
 import {} from 'react-bootstrap';
 import PageContainer from '../Misc/PageContainer'
+import AppStore from '../../stores/AppStore'
 
-const categories = ['nothing!', 'a purchase', 'your site', 'my account']
+const categories = ['', 'a purchase', 'your site', 'my account', 'something else']
 
 export default class SupportPage extends React.Component {
 	constructor(props) {
@@ -21,7 +22,12 @@ export default class SupportPage extends React.Component {
 	}
 
 	componentDidMount(){	
-
+		var current_user = AppStore.getCurrentUser()
+		if (current_user){
+			this.setState({
+				name : current_user.name
+			})
+		}
 	}
 
 
@@ -74,14 +80,11 @@ export default class SupportPage extends React.Component {
 					<div className = "col-sm-6 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
 						<div className = "panel panel-default ">
 							<div className = "panel-body support-panel-body" >
-								<div className = "row">
-									 <h2> <b> Dear Edgar, </b> </h2> 
-								</div>
-
+								<div className = "top-buffer"/>
 								<div className = "row">
 									 <form className="form-inline">
 										<div className = "form-group" style = {{"padding-right" : "6px"}}>
-											<p className = "form-control-static"> {"I have a problem with "} </p>
+											<p className = "form-control-static"> {"Topic: "} </p>
 										</div>
 										<div className = "form-group">
 											<select className = "form-control" 
@@ -91,9 +94,9 @@ export default class SupportPage extends React.Component {
 										</div>
 									</form>
 								</div>
-
+								<div className = "top-buffer"/>
 								<div className = "row">
-									I'm writing to you about 
+									Message
 								</div>
 
 								<div className = "row">
@@ -106,7 +109,7 @@ export default class SupportPage extends React.Component {
 								<div className = "row">
 									<form className="form-inline">
 										<div className = "form-group" style = {{"padding-right" : "6px"}}>
-											<p className = "form-control-static"> {"You can write back to me at"} </p>
+											<p className = "form-control-static"> {"Email: "} </p>
 										</div>
 											<div className = "form-group">
 												<input type="text" className = "form-control" placeholder = "email"
@@ -119,7 +122,7 @@ export default class SupportPage extends React.Component {
 									<div className = "form-group">
 										<label> 
 										Your name (optional) </label>
-										<input name = "name" type="text" onChange = {this.onChange}
+										<input name = "name" type="text" onChange = {this.onChange} value = {this.state.name}
 										className="form-control" style = {{"width" : "35%"}} placeholder = "name"/>
 									</div>
 								</div>

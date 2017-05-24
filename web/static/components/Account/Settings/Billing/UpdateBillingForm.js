@@ -148,7 +148,7 @@ export default class UpdateBillingForm extends React.Component {
 					<div className="checkbox">
 						<label>
 							<input id = "skip_address_checkbox" name = "same_address"  onChange = {this.skipBillingAddress.bind(this)} type="checkbox"/> 
-							Skip billing address
+							Use default shipping address
 						</label>
 					</div>
 				</div>

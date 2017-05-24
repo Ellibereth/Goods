@@ -73,6 +73,14 @@ export default class Main extends React.Component {
 	}
 }
 
+const checkUser = (nextState, replace) => {
+	var target = nextState.location.pathname.replace("/", "")
+	var thisUser = AppStore.getCurrentUser();
+	if (!thisUser) {
+		replace({pathname: '/login', query: { target: target}})
+	}
+}
+
 const checkConfirmedUser = (nextState, replace) => {
 	var target = nextState.location.pathname.replace("/", "")
 	var thisUser = AppStore.getCurrentUser();
@@ -108,19 +116,19 @@ ReactDOM.render(
 			<Route path= "eg/:product_id" component={ProductPage}/>
 			<Route path = "register" component = {RegisterPage}/>
 			<Route path = "login" component = {LoginPage}/>
-			<Route path = "settings" onEnter = {checkConfirmedUser} component = {SettingsPage}/>
-			<Route path = "updateSettings" onEnter = {checkConfirmedUser} component = {UpdateSettingsPage}/>
-			<Route path = "changePassword" onEnter = {checkConfirmedUser} component = {ChangePasswordPage}/>
-			<Route path = "myOrders" onEnter = {checkConfirmedUser} component = {OrderHistoryPage}/>
+			<Route path = "settings" onEnter = {checkUser} component = {SettingsPage}/>
+			<Route path = "updateSettings" onEnter = {checkUser} component = {UpdateSettingsPage}/>
+			<Route path = "changePassword" onEnter = {checkUser} component = {ChangePasswordPage}/>
+			<Route path = "myOrders" onEnter = {checkUser} component = {OrderHistoryPage}/>
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path= "adminEditProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
-			<Route path = "billing" onEnter = {checkConfirmedUser} component = {UpdateBillingPage} />
-			<Route path = "deleteAccount" onEnter = {checkConfirmedUser} component = {DeleteAccountPage} />
-			<Route path = "myCards" onEnter = {checkConfirmedUser} component = {ManageCardsPage} />
-			<Route path = "shipping" onEnter = {checkConfirmedUser} component = {UpdateShippingPage}/>
-			<Route path = "myPlaces" onEnter = {checkConfirmedUser} component = {ManageAddressPage}/>
-			<Route path = "myCart" onEnter = {checkConfirmedUser} component = {ViewCartPage} />
+			<Route path = "billing" onEnter = {checkUser} component = {UpdateBillingPage} />
+			<Route path = "deleteAccount" onEnter = {checkUser} component = {DeleteAccountPage} />
+			<Route path = "myCards" onEnter = {checkUser} component = {ManageCardsPage} />
+			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
+			<Route path = "myPlaces" onEnter = {checkUser} component = {ManageAddressPage}/>
+			<Route path = "myCart" onEnter = {checkUser} component = {ViewCartPage} />
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>

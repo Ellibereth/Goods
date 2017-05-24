@@ -34,12 +34,14 @@ export default class OrdersPreview extends React.Component {
 						<div> Recent Orders </div>
 					</div>
 					
-
-					<div className = "panel-body">
-						<div className = "container">
-							{order_display}
-						</div>
-					</div>
+					{	order_display.length > 0 &&
+						<div className = "panel-body">
+							<div className = "container">
+								{order_display}
+							</div>
+						</div>	
+					}
+					
 
 					<div className="panel-body">
 							<span className = "block-span"> You have {this.props.orders.length} orders </span>
@@ -47,7 +49,7 @@ export default class OrdersPreview extends React.Component {
 								this.props.orders.length > 0 ?
 								<span className = "block-span"> <Link to = "/myOrders"> View more </Link> </span>
 								:
-								<span className = "block-span"> Buy something! </span>
+								<span className = "block-span"> Start shipping at our store by clicking <Link to = "/"> here </Link> </span>
 							}
 					</div>
 				</div>

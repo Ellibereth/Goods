@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
 import AppStore from '../../../../stores/AppStore'
-import styles from './story_template.css'
 
 
 
@@ -21,7 +20,6 @@ export default class StoryTemplate1 extends React.Component {
 		var that = this;
 		var img = new Image();
 		img.onload = function() {
-			
 			that.setState({
 				height: this.height,
 				width: this.width
@@ -72,18 +70,16 @@ export default class StoryTemplate1 extends React.Component {
 		var src_story_base = "https://s3-us-west-2.amazonaws.com/storyphotos/"
 		var STORY_PHOTO_SRC = src_story_base +  this.props.product.story_image_id
 		var story_style = {
-			//backgroundImage : "linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(" + STORY_PHOTO_SRC + ")",
 			backgroundImage : "url(" + STORY_PHOTO_SRC + ")",
-			height : row_height + "px",
 			backgroundRepeat: "no-repeat",
-			// this means width is 100%
-			backgroundSize: "100% 100%"
+			backgroundSize: "100% 100%",
+			height: "700px"
 		}
 		
 		
 
 		return (
-			<div className = "row" 
+			<div className = "row story-image" 
 			//className = "story-image"
 			 style = {story_style} id = "image_story">
 				<div className ="col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 story-overlay-container">
