@@ -81,16 +81,16 @@ def add_header(response):
 	"""
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
 
+
 	path_splits = request.path.split('/')
 	# cache everything int he static/web_scripts folder
-	if len(path_splits) > 2:
-		if path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
+	if len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
 			response.headers['Cache-Control'] = 'public,max-age=' + str(CACHE_MAX_AGE)
 			# commented out since max-age should do enough by itself
 			right_now = datetime.datetime.now()
 			expire_time = right_now + datetime.timedelta(days = CACHE_EXPIRE_DAYS)
 			response.headers['Expires'] = str(expire_time)
-			
+
 	# otherwise we do not cache, this can be changed later
 	else:
 		response.headers['Cache-Control'] = 'public,max-age=0'
