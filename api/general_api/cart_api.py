@@ -77,8 +77,6 @@ def addItemToCart():
 
 		else:
 			try:
-				time_2 = time.time()
-				print(str(time_2 - time_0))
 				cart_item.updateCartQuantity(cart_item.num_items + quantity)
 			except Exception as e:
 				return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))

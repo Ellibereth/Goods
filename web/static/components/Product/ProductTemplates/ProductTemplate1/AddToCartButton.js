@@ -16,7 +16,7 @@ export default class AddToCartButton extends React.Component {
 		super(props);
 		this.state = {
 			quantity : 1,
-			
+			buy_disabled : false,
 			quantity_display : "1",
 			variant : null,
 			variant_display : DEFAULT_VARIANT_TEXT
@@ -38,8 +38,7 @@ export default class AddToCartButton extends React.Component {
 
 
 	addToCart(product){
-		var d1 = new Date()
-		
+		this.setState({buy_disabled : true})
 		$.ajax({
 			type: "POST",
 			url: "/addItemToCart",
@@ -51,8 +50,6 @@ export default class AddToCartButton extends React.Component {
 				"variant" : this.state.variant
 			}),
 			success: function(data) {
-					var d2 = new Date()
-					console.log(d2.getTime() - d1.getTime())
 					if (data.success){
 						swal({
 							title: "Success!",
@@ -71,6 +68,7 @@ export default class AddToCartButton extends React.Component {
 						});
 						AppActions.removeCurrentUser()
 						AppActions.addCurrentUser(data.user, data.jwt)
+						this.setState({buy_disabled : false})
 					}
 					else {
 						swal({title: "Problem",                                 
@@ -187,13 +185,13 @@ export default class AddToCartButton extends React.Component {
 										{quantity_options}
 									</ul>
 								</div>
-								<button type = "button"
+								<button type = "button" disabled = {this.state.buy_disabled}
 									onClick = {user ? this.addToCart.bind(this) 
 										: this.onNonUserClick.bind(this)} 
 									className="btn add-to-cart-button ">
 									<span className = "add-to-cart-text block-span">
-											<b> Buy It                                </b>                                <br/>
-										</span>
+										<b> Buy It</b>
+									</span>
 								</button>
 							</div>
 						</div>
