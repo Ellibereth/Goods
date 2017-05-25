@@ -26,6 +26,7 @@ export default class AddToCartButton extends React.Component {
 
 	handleQuantityChange (quantity){
 		this.setState({quantity_display : quantity, quantity : quantity})
+		$("#quantity_dropdown").removeClass('open')
 	}
 
 	handleVariantChange(variant){
@@ -33,6 +34,7 @@ export default class AddToCartButton extends React.Component {
 			variant : variant,
 			variant_display : variant.variant_type
 		})
+		$("#variant_dropdown").removeClass('open')
 
 	}
 
@@ -137,8 +139,8 @@ export default class AddToCartButton extends React.Component {
 				<div >
 						{ this.props.product.has_variants &&
 							<div className = "row">
-								<div className="dropdown">
-									<button className="btn dropdown-toggle variant-select-button " 
+								<div id = "variant_dropdown" className="dropdown">
+									<button  className="btn dropdown dropdown-toggle variant-select-button " 
 										type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 										<span className =" pull-left">
 											<span> <b> {this.state.variant_display} </b> </span>
@@ -147,7 +149,7 @@ export default class AddToCartButton extends React.Component {
 											<span className= "caret"/>
 										</span>
 									</button>
-									<ul className="dropdown-menu    variant-dropdown" aria-labelledby="dropdownMenu1">
+									<ul className="dropdown-menu variant-dropdown" aria-labelledby="dropdownMenu1">
 										<li> 
 											<a onClick = {() => this.setState({variant : null, variant_display : DEFAULT_VARIANT_TEXT})}>
 												 {DEFAULT_VARIANT_TEXT}
@@ -167,8 +169,8 @@ export default class AddToCartButton extends React.Component {
 
 						<div className = "row">
 							<div className = "btn-group">
-								<div className="btn-group">
-									<button type="button"
+								<div id = "quantity_dropdown" className="btn-group dropdown">
+									<button  type="button"
 									 className="btn quantity-button dropdown-toggle vertical-button-divider"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span className = "block-span">

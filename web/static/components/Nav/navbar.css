@@ -117,7 +117,7 @@
 	background-color: red;
 }
 
-#account_dropdown:hover + ul.dropdown-menu, ul.dropdown-menu:hover {
+#account_dropdown:hover + ul.dropdown-menu{
 	display: block;    
 }
 

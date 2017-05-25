@@ -17,10 +17,9 @@ export default class ProuctDescriptionTab extends React.Component {
 	}
 
 	componentDidMount(){
-		$(function () {
+		$(document).ready(function() {
 			$('#myTab a:first').tab('show')
 		})
-
 	}
 
 	selectTab(index){

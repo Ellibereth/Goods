@@ -58,7 +58,7 @@ export default class LargeNavBar extends React.Component {
 						</Link>
 					</li>
 					<li className = "account-dropdown">
-						<a id = "account_dropdown" data-target = "#" href="#" className="dropdown-toggle" 
+						<a id = "account_dropdown" href="#" className="dropdown-toggle" 
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false"> 
 						 	<span className = "nav-icon">

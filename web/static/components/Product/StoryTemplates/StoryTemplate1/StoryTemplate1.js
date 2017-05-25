@@ -4,7 +4,7 @@ var Link = require('react-router').Link;
 
 import AppStore from '../../../../stores/AppStore'
 
-
+const src_story_base = "https://s3-us-west-2.amazonaws.com/storyphotos/"
 
 export default class StoryTemplate1 extends React.Component {
 	constructor(props) {
@@ -25,6 +25,7 @@ export default class StoryTemplate1 extends React.Component {
 				width: this.width
 			})
 		}
+
 		var STORY_PHOTO_SRC = src_story_base +  nextProps.product.story_image_id
 		img.src = STORY_PHOTO_SRC;
 
@@ -39,7 +40,6 @@ export default class StoryTemplate1 extends React.Component {
 				width: this.width
 			})
 		}
-		var src_story_base = "https://s3-us-west-2.amazonaws.com/storyphotos/"
 		var STORY_PHOTO_SRC = src_story_base +  this.props.product.story_image_id
 		img.src = STORY_PHOTO_SRC;
 	}
