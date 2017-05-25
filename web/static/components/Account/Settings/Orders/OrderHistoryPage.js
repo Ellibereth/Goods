@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import PageContainer from '../../../Misc/PageContainer.js'
-import OrderDisplay from './OrderDisplay.js'
 import OrdersPreviewDisplay from './OrdersPreviewDisplay'
 var browserHistory = require('react-router').browserHistory;
 

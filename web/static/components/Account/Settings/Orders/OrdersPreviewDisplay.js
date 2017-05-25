@@ -5,6 +5,7 @@ var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import {Col} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util.js'
+var dateFormat = require('dateformat');
 
 
 // takes orders as prop
@@ -21,7 +22,8 @@ export default class OrdersPreview extends React.Component {
 		var first_col_size = 3
 		var second_col_size =  12 - first_col_size
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-		console.log(order)
+		var local_date = new Date(order.date_created)
+		var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 		return (
 			<div className = "row">
 				<div className = "col-md-5 col-lg-5 col-sm-5">
@@ -39,7 +41,7 @@ export default class OrdersPreview extends React.Component {
         					<tbody>
 	        					<tr>
 	        						<td className = "light-grey-background grey-text">  DATE  </td>
-        							<td> {order.date_created}  </td>
+        							<td> {formatted_date}  </td>
 	        					</tr>
 	        					<tr>
 	        						<td className = "light-grey-background grey-text">  PRICE  </td>
