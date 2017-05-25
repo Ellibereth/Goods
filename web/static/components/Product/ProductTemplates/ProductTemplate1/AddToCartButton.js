@@ -7,6 +7,7 @@ import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util.js'
 
 const DEFAULT_VARIANT_TEXT = "Select a Type..."
+var browserHistory = require('react-router').browserHistory
 
 
 // takes the price of the good as prop for now
@@ -37,6 +38,8 @@ export default class AddToCartButton extends React.Component {
 
 
 	addToCart(product){
+		var d1 = new Date()
+		
 		$.ajax({
 			type: "POST",
 			url: "/addItemToCart",
@@ -48,15 +51,30 @@ export default class AddToCartButton extends React.Component {
 				"variant" : this.state.variant
 			}),
 			success: function(data) {
+					var d2 = new Date()
+					console.log(d2.getTime() - d1.getTime())
 					if (data.success){
-						swal("Succesfully added to your cart!")
-						this.props.refreshUserInformation.bind(this)()
+						swal({
+							title: "Success!",
+							type: "success",
+							showCancelButton: true,
+							confirmButtonColor: "#DD6B55",
+							confirmButtonText: "View Cart",
+							cancelButtonText: "Continue Shopping",
+							closeOnConfirm: false,
+							closeOnCancel: true
+						},
+						function(isConfirm){
+							if (isConfirm){
+								browserHistory.push('myCart')
+							}
+						});
 						AppActions.removeCurrentUser()
 						AppActions.addCurrentUser(data.user, data.jwt)
 					}
-					else                {
-						swal({title: "Problem",                 
-								text: data.error,                 
+					else {
+						swal({title: "Problem",                                 
+								text: data.error,                                 
 								type: "error" 
 							})
 					
@@ -68,6 +86,7 @@ export default class AddToCartButton extends React.Component {
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		});
+
 	}
 
 	componentDidMount(){
@@ -80,7 +99,7 @@ export default class AddToCartButton extends React.Component {
 
 		// $(".dropdown-menu li").click(function() {
 		// 	console.log("clicked!")
-		//                 $(this).parent().closest(".dropdown-menu").prev().dropdown("toggle");
+		//                                 $(this).parent().closest(".dropdown-menu").prev().dropdown("toggle");
 		// });
 	}
 
@@ -130,7 +149,7 @@ export default class AddToCartButton extends React.Component {
 											<span className= "caret"/>
 										</span>
 									</button>
-									<ul className="dropdown-menu  variant-dropdown" aria-labelledby="dropdownMenu1">
+									<ul className="dropdown-menu    variant-dropdown" aria-labelledby="dropdownMenu1">
 										<li> 
 											<a onClick = {() => this.setState({variant : null, variant_display : DEFAULT_VARIANT_TEXT})}>
 												 {DEFAULT_VARIANT_TEXT}
@@ -173,7 +192,7 @@ export default class AddToCartButton extends React.Component {
 										: this.onNonUserClick.bind(this)} 
 									className="btn add-to-cart-button ">
 									<span className = "add-to-cart-text block-span">
-											<b> Buy It                </b>                <br/>
+											<b> Buy It                                </b>                                <br/>
 										</span>
 								</button>
 							</div>

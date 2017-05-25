@@ -39,7 +39,6 @@ def addItemToCart():
 
 	if variant_id:
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
-
 		if this_variant:
 			variant_type = this_variant.variant_type
 			cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id,
@@ -51,7 +50,7 @@ def addItemToCart():
 				db.session.add(new_cart_item)
 				db.session.commit()
 				return JsonUtil.successWithOutput({
-						Labels.User : this_user.toPublicDict(),
+						Labels.User : this_user.toPublicDictFast(),
 						Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 					})
 			else:
@@ -67,25 +66,27 @@ def addItemToCart():
 
 	else:
 		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
-
 		if cart_item == None:
 			new_cart_item = CartItem(account_id, product_id, num_items = quantity)
 			db.session.add(new_cart_item)
 			db.session.commit()
 			return JsonUtil.successWithOutput({
-				Labels.User : this_user.toPublicDict(),
+				Labels.User : this_user.toPublicDictFast(),
 				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 			})
+
 		else:
 			try:
+				time_2 = time.time()
+				print(str(time_2 - time_0))
 				cart_item.updateCartQuantity(cart_item.num_items + quantity)
 			except Exception as e:
 				return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
 
-		return JsonUtil.successWithOutput({
-				Labels.User : this_user.toPublicDict(),
-				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-			})
+			return JsonUtil.successWithOutput({
+					Labels.User : this_user.toPublicDictFast(),
+					Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+				})
 
 # checkout cart
 @cart_api.route('/checkoutCart', methods = ['POST'])
