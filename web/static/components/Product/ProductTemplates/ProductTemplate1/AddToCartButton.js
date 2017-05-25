@@ -37,68 +37,69 @@ export default class AddToCartButton extends React.Component {
 	}
 
 
-	addToCart(product){
-		this.setState({buy_disabled : true})
-		$.ajax({
-			type: "POST",
-			url: "/addItemToCart",
-			data: JSON.stringify({
-				"quantity" : this.state.quantity,
-				"product_id" : this.props.product.product_id, 
-				"account_id" : AppStore.getCurrentUser().account_id,
-				"jwt" : localStorage.jwt,
-				"variant" : this.state.variant
-			}),
-			success: function(data) {
-					if (data.success){
-						swal({
-							title: "Success!",
-							type: "success",
-							showCancelButton: true,
-							confirmButtonColor: "#DD6B55",
-							confirmButtonText: "View Cart",
-							cancelButtonText: "Continue Shopping",
-							closeOnConfirm: false,
-							closeOnCancel: true
-						},
-						function(isConfirm){
-							if (isConfirm){
-								browserHistory.push('myCart')
-							}
-						});
-						AppActions.removeCurrentUser()
-						AppActions.addCurrentUser(data.user, data.jwt)
-						this.setState({buy_disabled : false})
-					}
-					else {
-						swal({title: "Problem",                                 
-								text: data.error,                                 
-								type: "error" 
-							})
-					
-					}
-			}.bind(this),
-			error : function(){
-				console.log("error")
-			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+	addToCart(){
+		if (this.props.product.has_variants && !this.state.variant) {
+			swal({
+				title : "You must select a type",
+				type : "error"
+			})
+		}
+
+		else {
+			this.setState({buy_disabled : true})
+			$.ajax({
+				type: "POST",
+				url: "/addItemToCart",
+				data: JSON.stringify({
+					"quantity" : this.state.quantity,
+					"product_id" : this.props.product.product_id, 
+					"account_id" : AppStore.getCurrentUser().account_id,
+					"jwt" : localStorage.jwt,
+					"variant" : this.state.variant
+				}),
+				success: function(data) {
+						if (data.success){
+							swal({
+								title: "Success!",
+								type: "success",
+								showCancelButton: true,
+								confirmButtonColor: "#DD6B55",
+								confirmButtonText: "View Cart",
+								cancelButtonText: "Continue Shopping",
+								closeOnConfirm: true,
+								closeOnCancel: true
+							},
+							function(isConfirm){
+								if (isConfirm){
+									browserHistory.push('myCart')
+								}
+							});
+							AppActions.removeCurrentUser()
+							AppActions.addCurrentUser(data.user, data.jwt)
+							this.setState({buy_disabled : false})
+						}
+						else {
+							swal({title: "Problem",                                 
+									text: data.error,                                 
+									type: "error" 
+								})
+						
+						}
+				}.bind(this),
+				error : function(){
+					console.log("error")
+				},
+				dataType: "json",
+				contentType : "application/json; charset=utf-8"
+			});	
+		}
+
+		
 
 	}
 
 	componentDidMount(){
 		this.props.refreshUserInformation()
-		if (this.props.product.variants) {
-			this.setState({
-				variant : this.props.product.variants[0]
-			})
-		}
-
-		// $(".dropdown-menu li").click(function() {
-		// 	console.log("clicked!")
-		//                                 $(this).parent().closest(".dropdown-menu").prev().dropdown("toggle");
-		// });
 	}
 
 	onNonUserClick(){
