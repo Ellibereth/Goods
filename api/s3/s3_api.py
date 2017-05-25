@@ -44,6 +44,8 @@ class S3:
 			Key= image_key, 
 			Body=image_file,
 			CacheControl='public, max-age=' + str(CACHE_MAX_AGE),
+			ACL  = 'public-read',
+			ContentType = 'image/jpeg'
 		)
 		os.remove(transfer_dir + image_key)
 

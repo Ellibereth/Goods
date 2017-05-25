@@ -30,7 +30,7 @@ export default class UpdateBillingForm extends React.Component {
 			address_line2 : "",
 			address_zip : "",
 			addresss_state: "",
-			skip_shipping: false
+			skip_shipping: true
 		}
 	}
 
@@ -57,8 +57,8 @@ export default class UpdateBillingForm extends React.Component {
 		}.bind(this))
 	}
 
-	skipBillingAddress(event){
-		if (event.target.checked){
+	skipBillingAddress(){
+		if (!this.state.skip_shipping){
 			this.setState({
 				address_name : "",
 				address_city : "",
@@ -67,7 +67,7 @@ export default class UpdateBillingForm extends React.Component {
 				address_line2 : "",
 				address_zip : "",
 				addresss_state: "",
-				skip_shipping: true
+				skip_shipping: true,
 			})
 		}
 		else {
@@ -147,8 +147,10 @@ export default class UpdateBillingForm extends React.Component {
 				<div className = "row">
 					<div className="checkbox">
 						<label>
-							<input id = "skip_address_checkbox" name = "same_address"  onChange = {this.skipBillingAddress.bind(this)} type="checkbox"/> 
-							Use default shipping address
+							<input checked={this.state.skip_shipping} id = "skip_address_checkbox" 
+							name = "same_address" onClick = {this.skipBillingAddress.bind(this)} 
+							type="checkbox"/> 
+								Use default shipping address
 						</label>
 					</div>
 				</div>
