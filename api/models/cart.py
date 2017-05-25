@@ -50,6 +50,7 @@ class Cart:
 				this_variant = db_product.getProductVariant(cart_item.variant_id)
 				product[Labels.Inventory] = this_variant.inventory
 			product_list.append(product)
+		product_list.sort(key=lambda x: x[Labels.Name])
 		public_dict[Labels.Items] = product_list
 		public_dict[Labels.TotalPrice] = self.total_price
 		public_dict[Labels.ShippingPrice] = self.shipping_price
