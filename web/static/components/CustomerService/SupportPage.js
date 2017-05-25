@@ -113,7 +113,7 @@ export default class SupportPage extends React.Component {
 													<p className = "form-control-static"> {"Order Id: "} </p>
 												</div>
 													<div className = "form-group">
-														<input type="text" className = "form-control" placeholder = "order_id"
+														<input type="text" className = "form-control" 
 														 onChange = {this.onChange} name = "order_id" value = {this.state.order_id} />
 													</div>
 											</form>
@@ -121,9 +121,13 @@ export default class SupportPage extends React.Component {
 									</div>
 								}
 
+								<div className = "top-buffer"/>
+
 								<div className = "row">
 									Message
 								</div>
+
+								<div className = "small-buffer"/>
 
 								<div className = "row">
 									<div className = "form-group">
@@ -134,11 +138,13 @@ export default class SupportPage extends React.Component {
 
 								<div className = "row">
 									<form className="form-inline">
-										<div className = "form-group" style = {{"padding-right" : "6px"}}>
-											<p className = "form-control-static"> {"Email: "} </p>
-										</div>
+											<div className = "form-group" style = {{"padding-right" : "6px"}}>
+												<p className = "form-control-static"> {"Email: "} </p>
+											</div>
 											<div className = "form-group">
-												<input type="text" className = "form-control" placeholder = "email"
+												<input
+												style = {{'width' : '300px'}}
+												 type="text" className = "form-control" 
 												 onChange = {this.onChange} name = "email" value = {this.state.email} />
 											</div>
 									</form>
@@ -148,7 +154,7 @@ export default class SupportPage extends React.Component {
 									<div className = "form-group">
 										<label> Your name </label>
 										<input name = "name" type="text" onChange = {this.onChange} value = {this.state.name}
-										className="form-control" style = {{"width" : "35%"}} placeholder = "name"/>
+										className="form-control" style = {{"width" : "35%"}} />
 									</div>
 								</div>
 

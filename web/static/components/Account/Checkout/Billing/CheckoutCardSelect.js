@@ -58,9 +58,18 @@ export default class CheckoutCardSelect extends React.Component {
 
 	render() {
 		var cards = this.props.cards
-		var card_display = cards.map((card, index) => 
-				this.getCardInput(card, index)
-			)
+		var card_display = []
+		cards.map((card, index) => 
+			{
+				var card_item = this.getCardInput(card, index)
+				if (card.id == AppStore.getCurrentUser().default_card){
+					card_display.unshift(card_item)
+				}
+				else {
+					card_display.push(card_item)
+				}
+			}
+		)
 
 		if (cards.length == 0){
 			var card_display = 

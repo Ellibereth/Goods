@@ -53,7 +53,7 @@ export default class CartItemDisplay extends React.Component {
 	removeItem(){
 		swal({
 		  title: "You sure?",
-		  text: "Removing it now will be a pain if you change your mind later",
+		  text: "Are you sure you want to remove this item from your cart?",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",

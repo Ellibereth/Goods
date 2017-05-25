@@ -33,8 +33,9 @@ export default class CheckoutAddressSelect extends React.Component {
 	render() {
 		var addresses = this.props.addresses
 		var address = this.props.address
-		var address_display = addresses.map((address, index) => 
-				<div className = "row">
+		var address_display = []
+		addresses.map((address, index) => {
+				var address_item = (<div className = "row">
 					<div className = "top-buffer"/>
 					<hr/>
 					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right vcenter">
@@ -46,8 +47,15 @@ export default class CheckoutAddressSelect extends React.Component {
 					<div className = "col-xs-11 col-sm-11 col-md-11 col-lg-11 vcenter">
 						<span className = "checkout-card-details">  {this.props.addressToString(address)} </span>
 					</div>
-				</div>
-			)
+				</div>)
+				if (address.id == AppStore.getCurrentUser().default_address){
+					address_display.unshift(address_item)
+				}
+				else {
+					address_display.push(address_item)
+				}
+			}
+		)
 
 		if (address_display.length == 0){
 			address_display = (
