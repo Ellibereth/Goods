@@ -30,7 +30,7 @@ export default class CheckoutAddressPreview extends React.Component {
 		}
 		else {
 			var address_display = (
-				<div className = "col-md-5 col-lg-5 col-sm-5">
+				<div className = "col-md-6 col-lg-6 col-sm-6">
 					<span className = "span-block"> {address.name} </span>
 					<span className = "span-block"> {address.address_line1} {address.address_line2} </span> 
 					<span className = "span-block"> {address.address_city}, {address.address_state} {address.address_zip} </span>
@@ -40,8 +40,8 @@ export default class CheckoutAddressPreview extends React.Component {
 		return (
 				<div>
 					<div className = "row">
-						<div className = "col-md-5 col-lg-5 col-sm-5">
-							<b> 1. Shipping Address </b>
+						<div className = "col-md-4 col-lg-4 col-sm-4">
+							<span className = "checkout-section-title">	<b> 1. Shipping </b> </span>
 						</div>
 							{address_display}
 						<div className = "col-md-2 col-sm-2 col-lg-2 text-right">

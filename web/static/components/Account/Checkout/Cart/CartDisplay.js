@@ -49,21 +49,21 @@ export default class CartDisplay extends React.Component {
 
 						<div className = "row">
 							<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4">
-								Item Description
+								<span className = "cart-column-title"> Item Description </span>
 							</div>
 
 							<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter">
-								Price
+								<span className = "cart-column-title"> Price </span>
 							</div>
 
 							<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter">
-								Quantity 
+								<span className = "cart-column-title"> Quantity </span>
 							</div>
 							<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter">
-								Item Total 
+								<span className = "cart-column-title"> Total  </span>
 							</div>
 							<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 hcenter">
-								Remove
+								<span className = "cart-column-title"> Remove </span>
 							</div>
 						</div>	
 

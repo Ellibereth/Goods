@@ -37,14 +37,14 @@ export default class CheckoutAddressSelect extends React.Component {
 				<div className = "row">
 					<div className = "top-buffer"/>
 					<hr/>
-					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right">
+					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right vcenter">
 						<input type="radio"
 						checked = {index == this.props.selected_address_index}
 						onClick = {this.onAddressChange.bind(this, index)}
 						value= {index} name="gender"/>
 					</div>
 					<div className = "col-xs-11 col-sm-11 col-md-11 col-lg-11 vcenter">
-						 {this.props.addressToString(address)}
+						<span className = "checkout-card-details">  {this.props.addressToString(address)} </span>
 					</div>
 				</div>
 			)
@@ -75,23 +75,9 @@ export default class CheckoutAddressSelect extends React.Component {
 				refreshCheckoutInformation = {this.props.refreshCheckoutInformation}/>
 				{this.props.can_edit ? 
 					<div>
-						{/* }
-						<div className = "row">
-							<div className = "col-md-5 col-lg-5 col-sm-5 checkout-item-label-editable">
-								<b> 1. Select an Address </b>
-							</div>
-							<div className = "col-md-5 col-lg-5 col-sm-5" />
-							<div className = "col-md-2 col-lg-2 col-sm-2">
-								<div onClick = {this.props.closeEditable}> 
-									Close 
-									<span className = "glyphicon glyphicon-remove small"/>
-								</div>
-							</div>
-						</div>
-					*/}
 						<div className = "row">
 							<div className = "col-xs-6 col-sm-6 col-md-6 col-lg-6 ">
-								<b> 1. Select an Address </b>
+								<span className = "checkout-select-title"> <b> 1. Select a shipping address </b> </span>
 							</div>
 						</div>
 						<form>

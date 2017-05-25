@@ -33,7 +33,14 @@ class JwtUtil:
 	def validateJwtUser(jwt_str, account_id):
 		encoded = jwt_str.encode(UTF8)
 		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
+		return decoded.get(AccountId) == account_id
+
+
+	def validateJwtConfirmedUser(jwt_str, account_id):
+		encoded = jwt_str.encode(UTF8)
+		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
 		return decoded.get(AccountId) == account_id and decoded.get(EmailConfirmed)
+
 
 	@staticmethod
 	def create_admin_jwt():

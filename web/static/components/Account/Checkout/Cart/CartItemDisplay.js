@@ -85,7 +85,7 @@ export default class CartItemDisplay extends React.Component {
 		}
 
 		var num_items_options = []
-		for (var i = 1; i <= this.props.item.num_items_limit; i++){
+		for (var i = 1; i <= this.props.item.num_items_limit && i <= 15; i++){
 			if (this.props.item.num_items == i){
 				num_items_options.push(<option selected value = {i}> {i} </option>)
 			}
@@ -98,12 +98,19 @@ export default class CartItemDisplay extends React.Component {
 					<hr/>
 					<div className = "top-buffer"/>
 						<div onClick = {() => browserHistory.push(`/eg/` + this.props.item.product_id)}
-						className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 clickable-text vcenter">
-							{image_display} {item.name}
+						className = "col-xs-4 col-sm-4 col-md-4 col-lg-4">
+							<div className = "row">
+								<div className = "col-sm-4 col-md-4 col-lg-4">
+									{image_display}
+								</div>
+								<div className = "col-sm-8 col-md-8 col-lg-8">
+									<span className = "cart-item-text clickable-text"> {item.name} </span>
+								</div>
+							</div>
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							${item.price}
+							<span className = "cart-item-text"> ${item.price} </span>
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
@@ -111,13 +118,12 @@ export default class CartItemDisplay extends React.Component {
 								<div class="form-group">
 								  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
 								    {num_items_options}
-								    <option value = {0}> Delete </option>
 								  </select>
 								</div>
 							</form>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							${item.price *  item.num_items} 
+							<span className = "cart-item-text"> ${item.price *  item.num_items}  </span>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
 							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />

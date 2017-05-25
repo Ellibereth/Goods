@@ -40,15 +40,16 @@ export default class CheckoutCardSelect extends React.Component {
 					checked = {index == this.props.selected_card_index}
 					type="radio" value= {index} name = "card"/>
 				</div>
-				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4  vcenter">
-					 
-					<b> {card.brand} </b> ending in {card.last4} 
+				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4 vcenter">
+					<span className = "checkout-card-details"> <b> {card.brand} </b> ending in {card.last4}  </span>
 				</div>
-				<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3  hcenter vcenter">
-					{card.name}
+				<div className = "col-md-offset-1 col-sm-offset-1 col-lg-offset-1
+				col-md-3 col-xs-3 col-sm-3 col-lg-3  hcenter vcenter">
+					<span className = "checkout-card-details"> {card.name} </span>
 				</div>
-				<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3  hcenter vcenter">
-					{card.exp_month}/{card.exp_year}
+				<div className = "col-md-offset-1 col-sm-offset-1 col-lg-offset-1 
+							col-md-2 col-sm-2 col-lg-2 hcenter vcenter">
+					<span className = "checkout-card-details"> {card.exp_month}/{card.exp_year} </span>
 				</div>
 				<div className = "top-buffer"/>
 			</div>
@@ -85,13 +86,15 @@ export default class CheckoutCardSelect extends React.Component {
 					<div>
 						<div className = "row">
 							<div className = "col-md-5 col-xs-5 col-sm-5 col-lg-5 checkout-item-label-editable vcenter">
-								<b> 2. Select a payment method </b>
+								<span className = "checkout-select-title"> <b> 2. Select a payment method </b> </span>
 							</div>
-							<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3 hcenter vcenter">
-								Name on Card
+							<div className = "col-md-offset-1 col-sm-offset-1 col-lg-offset-1
+							col-md-3 col-xs-3 col-sm-3 col-lg-3 hcenter vcenter">
+								<span className = "checkout-card-details"> <b> Name on Card </b> </span>
 							</div>
-							<div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3 hcenter vcenter">
-								Expiration Date
+							<div className = " col-md-offset-1 col-sm-offset-1 col-lg-offset-1 
+							col-md-2 col-sm-2 col-lg-2 hcenter vcenter">
+								<span className = "checkout-card-details"> <b> Expiration Date </b> </span>
 							</div>
 						</div>
 						<form>

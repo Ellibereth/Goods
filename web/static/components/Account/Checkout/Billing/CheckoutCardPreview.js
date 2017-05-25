@@ -24,7 +24,7 @@ export default class CheckoutCardPreview extends React.Component {
 		}
 		else{
 			var card_display = (
-							<div className = "col-md-5 col-lg-5 col-sm-5">
+							<div className = "col-md-6 col-lg-6 col-sm-6">
 								<span className = "span-block"> <b> {card.brand} </b> ending in {card.last4}  </span>
 							</div>
 					)
@@ -32,9 +32,9 @@ export default class CheckoutCardPreview extends React.Component {
 
 		return (
 					<div>
-						<div className = "row">
-							<div className = "col-md-5 col-lg-5 col-sm-5">
-								<b> 2. Payment Information </b>
+						<div className = "row row-eq-height">
+							<div className = "col-md-4 col-lg-4 col-sm-4">
+								<span className = "checkout-section-title"> <b> 2. Payment </b> </span>
 							</div>
 							{card_display}
 							<div className = "col-md-2 col-sm-2 col-lg-2 text-right">

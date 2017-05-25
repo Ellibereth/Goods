@@ -107,14 +107,9 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	openEditable(index){
-		if (index == BILLING_INDEX && !this.getSelectedAddress()){
-			swal("Whoa!", "You must select a shipping address before continuing", "error")
-		}
-		else {
-			var can_edit = [false, false, false]
-			can_edit[index] = true
-			this.setState({can_edit : can_edit})	
-		}
+		var can_edit = [false, false, false]
+		can_edit[index] = true
+		this.setState({can_edit : can_edit})
 	}
 
 	closeEditable(index){
@@ -203,8 +198,15 @@ export default class CheckoutPage extends React.Component {
 				}	
 			}	
 		} 
+
+		if (this.state.addresses.length == 0){
+			this.openEditable.bind(this)(ADDRESS_INDEX)
+		}
+		else if (this.state.cards.length == 0){
+			this.openEditable.bind(this)(BILLING_INDEX)
+		}
 		
-		this.openEditable.bind(this)(ADDRESS_INDEX)
+
 		this.setState({first_load_done : true})
 	}
 
@@ -286,7 +288,10 @@ export default class CheckoutPage extends React.Component {
 		// Darek Johnson 3900 City Avenue, M619, Philadelphia, PA, 19131 United States
 		return ( 
 			<span>
-				<b> {address.name} </b> {address.address_line1}{address.address_line2 && " " + address.address_line2}, {address.address_city}, {address.address_state}, {address.address_zip} {address.address_country}
+				<b> {address.name} </b> <br/>
+				{address.address_line1} <br/>
+				{address.address_line2 && " " + address.address_line2} <br/>
+				{address.address_city}, {address.address_state} {address.address_zip} {address.address_country}
 			</span>
 		)
 	}
@@ -354,8 +359,8 @@ export default class CheckoutPage extends React.Component {
 						<hr/>
 						<div className = "well" >
 							<div className = "row">
-								<div className = "col-md-2 col-lg-2 col-sm-2 checkout-item-label-editable vcenter">
-									<b> 3. Items </b>
+								<div className = "col-md-5 col-lg-5 col-sm-5 checkout-item-label-editable vcenter">
+									<span className = "checkout-section-title"> <b> 3. Items </b> </span>
 								</div>
 							</div>
 							<hr/>

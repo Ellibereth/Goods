@@ -89,6 +89,7 @@ body {
 .cart-remove-item-icon {
 	color : red;
 	cursor : pointer;
+	font-size: 20px;
 }
 
 .cart-remove-item-icon:hover {
@@ -450,4 +451,29 @@ body {
 
 .send-feedback-button:hover{
 	color : white !important;
+}
+
+.cart-column-title{
+	font-size: 20px;
+}
+
+.checkout-section-title {
+	font-size: 20px;
+}
+
+.cart-item-text {
+	font-size : 20px;
+}
+
+.checkout-select-title{
+	font-size: 16px
+}
+
+
+.checkout-card-details {
+	font-size:16px;
+}
+
+.checkout-address-details {
+	font-size:16px;
 }

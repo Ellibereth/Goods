@@ -93,7 +93,7 @@ def checkoutCart():
 	account_id = request.json.get(Labels.AccountId)
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
+		return JsonUtil.jwt_failure("Invalid credentials")
 	card_id = request.json.get(Labels.CardId)
 	address_id = request.json.get(Labels.AddressId)
 	address = Lob.getAddressById(address_id)

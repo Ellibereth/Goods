@@ -74,7 +74,9 @@ export default class ViewCartPage extends React.Component {
 						<div className = "col-md-9 col-lg-9 col-sm-9 well">
 							<div className = "row">
 								<div className = "col-md-2 col-lg-2 col-sm-2 checkout-item-label-editable vcenter">
-									<b> Items </b>
+									<span className = "checkout-section-title">
+										<b> Items </b>
+									</span>
 								</div>
 							</div>
 							<hr/>
