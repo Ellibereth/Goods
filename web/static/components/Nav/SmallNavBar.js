@@ -111,7 +111,7 @@ export default class SmallNavBar extends React.Component {
 		var right_nav = this.getRightNav()
 		return (
 			<div>
-				<nav 
+				<nav style = {{"height" : "59px", "padding-top" : "3px"}}
 				className={this.props.visible 
 					? "navbar navbar-edgarusa-small navbar-fixed-top" 
 					:  "navbar navbar-edgarusa-small navbar-fixed-top none"}
