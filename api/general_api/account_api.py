@@ -115,6 +115,10 @@ def updateSettings():
 	if not User.isValidEmail(new_settings[Labels.Email]):
 		return JsonUtil.failure(new_settings[Labels.Email] + " is not a valid email address.")
 
+	email_match = User.query.filter_by(email = new_settings[Labels.Email]).first()
+	if email_match:
+		return JsonUtil.failure(new_settings[Labels.Email] + " is associated with another account")
+
 	if new_settings[Labels.Name] == "":
 		return JsonUtil.failure("Name cannot be blank")
 
