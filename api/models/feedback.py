@@ -21,6 +21,7 @@ class Feedback(db.Model):
 	feedback_content = db.Column(db.String)
 	category = db.Column(db.String)
 	account_id = db.Column(db.String, nullable = True)
+	order_id = db.Column(db.String)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -28,11 +29,12 @@ class Feedback(db.Model):
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, email, name, feedback_content, category):
+	def __init__(self, email, name, feedback_content, category, order_id = None):
 		self.name = name
 		self.email = email
 		self.feedback_content = feedback_content
 		self.category = category
+		self.order_id = order_id
 		db.Model.__init__(self)
 		
 

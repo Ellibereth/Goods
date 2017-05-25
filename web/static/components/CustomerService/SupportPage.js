@@ -6,7 +6,12 @@ import {} from 'react-bootstrap';
 import PageContainer from '../Misc/PageContainer'
 import AppStore from '../../stores/AppStore'
 
-const categories = ['', 'a purchase', 'your site', 'my account', 'something else']
+
+const PURCHASE_CATEGORY = "a purchase"
+const SITE_CATEGORY = "your site"
+const ACCOUNT_CATEGORY = "my account"
+const OTHER_CATEGORY = 'something else'
+const categories = ['', PURCHASE_CATEGORY, SITE_CATEGORY, ACCOUNT_CATEGORY, OTHER_CATEGORY]
 
 export default class SupportPage extends React.Component {
 	constructor(props) {
@@ -15,7 +20,8 @@ export default class SupportPage extends React.Component {
 			feedback_content: "",
 			email : "",
 			name: "",
-			category: categories[0]
+			category: categories[0],
+			order_id : ""
 		}
 		this.onChange = this.onChange.bind(this)
 		this.sendFeedback = this.sendFeedback.bind(this)
@@ -25,7 +31,8 @@ export default class SupportPage extends React.Component {
 		var current_user = AppStore.getCurrentUser()
 		if (current_user){
 			this.setState({
-				name : current_user.name
+				name : current_user.name,
+				email : current_user.email
 			})
 		}
 	}
@@ -42,7 +49,8 @@ export default class SupportPage extends React.Component {
 			feedback_content : this.state.feedback_content,
 			email : this.state.email,
 			name : this.state.name,
-			category : this.state.category
+			category : this.state.category,
+			order_id : this.state.order_id
 		})
 		$.ajax({
 			type: "POST",
@@ -95,6 +103,24 @@ export default class SupportPage extends React.Component {
 									</form>
 								</div>
 								<div className = "top-buffer"/>
+
+								{
+									this.state.category == PURCHASE_CATEGORY &&
+									<div>
+										<div className = "row">
+											<form className="form-inline">
+												<div className = "form-group" style = {{"padding-right" : "6px"}}>
+													<p className = "form-control-static"> {"Order Id: "} </p>
+												</div>
+													<div className = "form-group">
+														<input type="text" className = "form-control" placeholder = "order_id"
+														 onChange = {this.onChange} name = "order_id" value = {this.state.order_id} />
+													</div>
+											</form>
+										</div>
+									</div>
+								}
+
 								<div className = "row">
 									Message
 								</div>
@@ -113,15 +139,14 @@ export default class SupportPage extends React.Component {
 										</div>
 											<div className = "form-group">
 												<input type="text" className = "form-control" placeholder = "email"
-												 onChange = {this.onChange} name = "email" />
+												 onChange = {this.onChange} name = "email" value = {this.state.email} />
 											</div>
 									</form>
 								</div>
 								<div className = "top-buffer"/>
 								<div className = "row">
 									<div className = "form-group">
-										<label> 
-										Your name (optional) </label>
+										<label> Your name </label>
 										<input name = "name" type="text" onChange = {this.onChange} value = {this.state.name}
 										className="form-control" style = {{"width" : "35%"}} placeholder = "name"/>
 									</div>

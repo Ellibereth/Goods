@@ -15,7 +15,8 @@ def addFeedback():
 	name = request.json.get(Labels.Name)
 	feedback_content = request.json.get(Labels.FeedbackContent)
 	category = request.json.get(Labels.Category)
-	this_feedback = Feedback(email, name, feedback_content, category)
+	order_id = request.json.get(Labels.OrderId)
+	this_feedback = Feedback(email, name, feedback_content, category, order_id)
 	db.session.add(this_feedback)
 	db.session.commit()
 

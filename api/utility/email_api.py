@@ -76,9 +76,14 @@ def sendFeedbackEmailNotification(feedback):
 	msg['From'] = "noreply@edgarusa.com"
 	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	name = feedback.name
+	if feedback.order_id == None or feedback.order_id == "":
+		order_id = "N/A"
+	else:
+		order_id = feedback.order_id
 	body = "Name: " + feedback.name + "\n Email: " + feedback.email + \
 			"\n Content: " + feedback.feedback_content + \
-			"\n Category: " + feedback.category
+			"\n Category: " + feedback.category + \
+			"\n OrderId : " + order_id
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
