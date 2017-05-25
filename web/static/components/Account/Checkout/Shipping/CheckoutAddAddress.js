@@ -19,7 +19,7 @@ export default class CheckoutAddAddress extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			use_same_for_billing : 0,
+			use_same_for_billing : 1,
 			address_name : "",
 			description : "",
 			address_state: "",
@@ -38,9 +38,6 @@ export default class CheckoutAddAddress extends React.Component {
 		this.setState(obj)
 	}
 
-	onBillingAddressOptionChange(event){
-		this.setState({use_same_for_billing : event.target.value})
-	}
 
 	
 
@@ -96,20 +93,6 @@ export default class CheckoutAddAddress extends React.Component {
 						has_description = {true}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 
-						
-						<div className= "row">
-							<div className = "col-mg-2 col-sm-2 col-lg-2"/>
-							<div className="col-md-6">
-							    <p> Using a new or existing payment method? </p>
-								<div class="radio">
-								  <label><input onChange = {this.onBillingAddressOptionChange.bind(this)} value = {0}  selected = "selected" type="radio" name="use_same"/> Yes, I will add a new payment method </label>
-								</div>
-
-								<div class="radio">
-								  <label><input onChange = {this.onBillingAddressOptionChange.bind(this)} value = {1} type="radio" name="use_same"/> No, I will use an existing payment method </label>
-								</div>
-							</div>
-						</div>
 
 						<hr/>
 

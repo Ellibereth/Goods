@@ -75,7 +75,8 @@ class StripeManager:
 		new_card["address_country"] = address_country
 		new_card["adddress_stae"] = address_state
 		new_card['metadata'] = {"date_created" : time.time()}
-		customer.sources.create(card = new_card)
+		card = customer.sources.create(card = new_card)
+		return card
 
 	def getUserCards(user):
 		customer = stripe.Customer.retrieve(user.stripe_customer_id)

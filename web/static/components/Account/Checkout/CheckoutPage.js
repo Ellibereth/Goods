@@ -276,7 +276,7 @@ export default class CheckoutPage extends React.Component {
 			}.bind(this),
 			error : function(){
 				swal("We're sorry!", "Please contact customer service to discuss what you tried to do.","error")
-				console.log("error")
+				this.setState({is_loading : true})
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
@@ -414,13 +414,6 @@ export default class CheckoutPage extends React.Component {
 								</div>
 							</div>
 						</div>
-
-
-
-						
-
-						
-
 					</div>
 				</div>
 			}/>	

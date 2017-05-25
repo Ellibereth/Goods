@@ -177,7 +177,7 @@ class User(db.Model):
 		card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 
 			address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country = "US")
 		all_cards = self.getCreditCards()
-		if len(all_addresses) == 1:
+		if len(all_cards) == 1:
 			self.default_card = card['id']
 			db.session.commit()
 		return card
