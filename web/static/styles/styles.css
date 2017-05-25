@@ -210,9 +210,7 @@ body {
 
 
 
-#edit-address-button {
-	margin-right: 8px;
-}
+
 
 
 .add-settings-button {
@@ -414,11 +412,11 @@ body {
 }
 
 .checkout-price-amount-text{
-	font-size: 10px;
+	font-size: 14px;
 }
 
 .checkout-price-label-text{
-	font-size: 10px;
+	font-size: 14px;
 }
 
 .checkout-price-last-row{
@@ -427,11 +425,12 @@ body {
 }
 
 .checkout-footer-text{
-	font-size: 10px;
+	font-size: 12px;
+	text-align: center;
 }
 
 .checkout-notice-of-terms-text{
-	font-size: 11px;
+	font-size: 12px;
 }
 
 .support-panel-body{

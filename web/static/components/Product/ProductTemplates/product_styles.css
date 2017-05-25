@@ -148,7 +148,8 @@
 	font-size: 24px;
 	line-height: normal;
 	background-color: #002868;	
-	border-color: #002868
+	border-color: #002868;
+	height: 70px;
 }
 
 .add-to-cart-button:hover {
@@ -164,8 +165,7 @@
 	border-color: #002868;
 	color: white !important;
 	text-align: center;
-
-
+	height:70px;
 	border-right : lightgrey 1px solid !important;
 	z-index: 1 !important;
 }
