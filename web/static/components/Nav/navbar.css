@@ -99,10 +99,11 @@
 	color : white;
 }
 
-.navbar-right > li > a:hover, .navbar-right > li > a:focus {
+.navbar-right > li > a:hover {
 	background-color: transparent;
 	color : skyblue;
 }
+
 
 #account_dropdown {
 	background-color: transparent;
@@ -153,4 +154,10 @@
 .nav-buffer {
 	padding-bottom: 50px;
 }
+
+.account-dropdown:hover .dropdown-menu {
+	display: block;
+    margin-top: 0; /*remove the gap so it doesn't close*/
+}
+
 

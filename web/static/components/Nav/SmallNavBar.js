@@ -23,6 +23,7 @@ export default class SmallNavBar extends React.Component {
 			}
 		}.bind(this), 1000)
 		this.setState({cart_badge : AppStore.getCurrentUser().cart_size})
+		
 	}
 
 	getRightNav() {
@@ -60,8 +61,8 @@ export default class SmallNavBar extends React.Component {
 							</span>
 						</Link>
 					</li>
-					<li>
-						<a id = "account_dropdown" href="#" className="dropdown-toggle" 
+					<li className = "account-dropdown">
+						<a id = "account_dropdown" data-target = "3" href="#" className="dropdown-toggle" 
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false"> 
 						 	<span className = "nav-icon">

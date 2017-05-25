@@ -45,6 +45,12 @@ export default class TopNavBar extends React.Component {
 		        })
 		    }
 		}.bind(this));
+
+		$(document).ready(function() {
+      		$('.account-dropdown').on('mouseleave', function() {
+				$(this).removeClass("open");
+			});
+		});
 	}
 
 	onSearchChange(event){
