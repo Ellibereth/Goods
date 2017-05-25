@@ -4,7 +4,7 @@ import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 var browserHistory = require('react-router').browserHistory;
 import {Button} from 'react-bootstrap'
-
+import {formatPrice} from '../../../Input/Util'
 
 export default class CartItemDisplay extends React.Component {
 	constructor(props) {
@@ -85,7 +85,8 @@ export default class CartItemDisplay extends React.Component {
 		}
 
 		var num_items_options = []
-		for (var i = 1; i <= this.props.item.num_items_limit && i <= 15; i++){
+		var limit = this.props.item.num_items_limit ? Math.min(this.props.item.num_items_limit, this.props.item.inventory) : this.props.item.inventory
+		for (var i = 1; i <= limit; i++){
 			if (this.props.item.num_items == i){
 				num_items_options.push(<option selected value = {i}> {i} </option>)
 			}
@@ -110,7 +111,7 @@ export default class CartItemDisplay extends React.Component {
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${item.price} </span>
+							<span className = "cart-item-text"> ${formatPrice(item.price)} </span>
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
@@ -123,7 +124,7 @@ export default class CartItemDisplay extends React.Component {
 							</form>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${item.price *  item.num_items}  </span>
+							<span className = "cart-item-text"> ${formatPrice(item.price *  item.num_items)}  </span>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
 							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />

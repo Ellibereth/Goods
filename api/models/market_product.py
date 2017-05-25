@@ -135,6 +135,10 @@ class MarketProduct(db.Model):
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		return variants
 
+	def getProductVariant(self, variant_id):
+		variant = ProductVariant.query.filter_by(product_id = self.product_id, variant_id = variant_id).first()
+		return variant
+
 
 	def toPublicDict(self):
 		public_dict = {}

@@ -172,6 +172,7 @@ class PaymentLabels:
 
 
 class CartLabels:
+	Inventory = "inventory"
 	StripeCustomerId = "stripe_customer_id"
 	AccountId = "account_id"
 	Success = "success"

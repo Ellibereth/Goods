@@ -43,8 +43,9 @@ def addItemToCart():
 			variant_type = this_variant.variant_type
 			cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id,
 				variant_id = variant_id).first()
-
 			if cart_item == None:
+				if quantity  > this_variant.inventory:
+					return JsonUtil.failure("You can't order more than " + str(this_variant.inventory) + " of this item")
 				new_cart_item = CartItem(account_id, product_id, num_items = quantity,
 					variant_id = variant_id, variant_type = variant_type)
 				db.session.add(new_cart_item)
@@ -54,19 +55,28 @@ def addItemToCart():
 						Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 					})
 			else:
+				if quantity + cart_item.num_items > this_variant.inventory:
+					return JsonUtil.failure("You can't order more than " + str(this_variant.inventory) + " of this item")
 				try:
 					cart_item.updateCartQuantity(cart_item.num_items + quantity)
+					return JsonUtil.successWithOutput({
+						Labels.User : this_user.toPublicDictFast(),
+						Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+					})
+
 				except Exception as e:
 					return JsonUtil.failure("Something went wrong while adding item to cart " + str(e))
-
 
 		else:
 			raise Exception("Error, there's a variant_id that's available, but no variant to go with it. \n \
 				This rogue variant_id is " + str(variant_id) + ")")
 
 	else:
+		this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
 		if cart_item == None:
+			if quantity > min(this_product.num_items_limit, this_product.inventory):
+				return JsonUtil.failure("You can't order more than " + str(min(this_product.num_items_limit, this_product.inventory)) + " of this product.")
 			new_cart_item = CartItem(account_id, product_id, num_items = quantity)
 			db.session.add(new_cart_item)
 			db.session.commit()
@@ -76,6 +86,8 @@ def addItemToCart():
 			})
 
 		else:
+			if quantity + cart_item.num_items > min(this_product.num_items_limit, this_product.inventory):
+				return JsonUtil.failure("You can't order more than " + str(min(this_product.num_items_limit, this_product.inventory)) + " of this product.")
 			try:
 				cart_item.updateCartQuantity(cart_item.num_items + quantity)
 			except Exception as e:
@@ -170,10 +182,8 @@ def updateCartQuantity():
 		return JsonUtil.jwt_failure()
 
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-
 	this_cart_item = request.json.get(Labels.CartItem)
 	product_id = this_cart_item.get(Labels.ProductId)
-
 	new_num_items = int(request.json.get(Labels.NewNumItems))
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if not this_product:
@@ -182,14 +192,20 @@ def updateCartQuantity():
 	if this_product.has_variants:
 		variant_id = this_cart_item.get(Labels.VariantId)
 		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id, variant_id = variant_id).first()
+		this_variant = ProductVariant.query.filter_by(variant_id = variant_id, product_id = product_id).first()
+
+		if new_num_items  > this_variant.inventory:
+			return JsonUtil.failure("You can't order more than " + str(this_variant.inventory) + " of this item")
 		try:
 			cart_item.updateCartQuantity(new_num_items)
 		except Exception as e:
 			return JsonUtil.failure("Something went wrong while updating variant cart quantity : " + str(e))
 
-
 	else:
+		
 		cart_item = CartItem.query.filter_by(account_id = account_id, product_id = product_id).first()
+		if new_num_items > min(this_product.num_items_limit, this_product.inventory):
+			return JsonUtil.failure("You can't order more than " + str(min(this_product.num_items_limit, this_product.inventory)) + " of this item")
 		try:
 			cart_item.updateCartQuantity(new_num_items)
 		except Exception as e:

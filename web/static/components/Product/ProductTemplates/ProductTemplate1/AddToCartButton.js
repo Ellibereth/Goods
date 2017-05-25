@@ -76,15 +76,14 @@ export default class AddToCartButton extends React.Component {
 							});
 							AppActions.removeCurrentUser()
 							AppActions.addCurrentUser(data.user, data.jwt)
-							this.setState({buy_disabled : false})
 						}
 						else {
 							swal({title: "Problem",                                 
 									text: data.error,                                 
 									type: "error" 
 								})
-						
 						}
+						this.setState({buy_disabled : false})
 				}.bind(this),
 				error : function(){
 					console.log("error")
