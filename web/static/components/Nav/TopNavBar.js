@@ -11,11 +11,15 @@ import AppActions from '../../actions/AppActions.js';
 import LargeNavBar from './LargeNavBar'
 import SmallNavBar from './SmallNavBar'
 
+const LARGE = 'large'
+const SMALL = 'small'
+
 export default class TopNavBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			small_navbar_visible : false
+			small_navbar_visible : false,
+			search_input : ""
 		}
 	}
 
@@ -43,13 +47,56 @@ export default class TopNavBar extends React.Component {
 		}.bind(this));
 	}
 
+	onSearchChange(event){
+		this.setState({search_input : event.target.value})
+	}
+
+	getSearchBar(size){
+		var current_user = AppStore.getCurrentUser()
+		var search_bar_class = "navbar-form navbar-left edgar-search-bar"
+		if (current_user == {} || !current_user) {
+			search_bar_class = search_bar_class +  " no-user"
+		}
+		else {
+			search_bar_class = search_bar_class + " with-user"
+		}
+
+		if (size == LARGE){
+			search_bar_class = search_bar_class +  " nav-large"
+
+		}
+
+		else if (size == SMALL) {
+			search_bar_class = search_bar_class +  " nav-small"
+		}
+
+		return (
+				<form onSubmit = {this.searchProducts.bind(this)}
+					  className = {search_bar_class}
+					  role="search">
+					<div className="input-group ">
+						<input  onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+						<div className="input-group-btn nav-search-icon">
+							<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+						</div>
+					</div>
+				</form>
+		)
+	}
+
+	searchProducts(event){
+		window.location.href = '/search/' + this.state.search_input
+		event.preventDefault()
+	}
+
+
 	
 
 	render() {
 		return (
 			<div>
-				<LargeNavBar visible = {!this.state.small_navbar_visible}/>
-				<SmallNavBar visible = {this.state.small_navbar_visible}/>
+				<LargeNavBar getSearchBar = {this.getSearchBar.bind(this, LARGE)} visible = {!this.state.small_navbar_visible}/>
+				<SmallNavBar getSearchBar = {this.getSearchBar.bind(this, SMALL)} visible = {this.state.small_navbar_visible}/>
 			</div>
 		);
 	}

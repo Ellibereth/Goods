@@ -26,27 +26,12 @@ export default class LargeNavBar extends React.Component {
 		this.setState({cart_badge : AppStore.getCurrentUser().cart_size})
 	}
 
-	onSearchChange(event){
-		this.setState({search_input : event.target.value})
-	}
-
-
 	getRightNav() {
 		if (this.props.no_login) {
 			return <div/>
 		}
 
-		var search_bar = (
-						<form onSubmit = {this.searchProducts.bind(this)}
-						 className="navbar-form navbar-left search-bar-with-user" role="search">
-							<div className="input-group nav-search-bar">
-								<input  onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
-								<div className="input-group-btn nav-search-icon">
-									<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
-								</div>
-							</div>
-						</form>
-				)
+		var search_bar = this.props.getSearchBar()
 		var current_user = AppStore.getCurrentUser()
 		if (current_user == {} || !current_user){
 			return (
@@ -96,11 +81,6 @@ export default class LargeNavBar extends React.Component {
 				</ul>
 			)
 		}	
-	}
-
-	searchProducts(event){
-		window.location.href = '/search/' + this.state.search_input
-		event.preventDefault()
 	}
 
 	render() {

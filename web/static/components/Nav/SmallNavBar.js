@@ -11,7 +11,6 @@ export default class SmallNavBar extends React.Component {
 		super(props);
 		this.state = {
 			current_user : null,
-			search_input : "",
 			cart_badge: 0
 		}
 	}
@@ -26,29 +25,20 @@ export default class SmallNavBar extends React.Component {
 		this.setState({cart_badge : AppStore.getCurrentUser().cart_size})
 	}
 
-	onSearchChange(event){
-		this.setState({search_input : event.target.value})
-	}
-
 	getRightNav() {
 		if (this.props.no_login) {
 			return <div/>
 		}
+
+		var search_bar = this.props.getSearchBar()
+
 		var current_user = AppStore.getCurrentUser()
 		if (current_user == {} || !current_user){
 			return (
 				
 					<ul className="nav navbar-nav navbar-right">
 						<li>
-							<form onSubmit = {this.searchProducts.bind(this)}
-								 className="navbar-form navbar-left" role="search">
-								<div className="input-group ">
-									<input  onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
-									<div className="input-group-btn nav-search-icon">
-										<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
-									</div>
-								</div>
-							</form>
+							{search_bar}
 						</li>
 
 						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
@@ -60,15 +50,7 @@ export default class SmallNavBar extends React.Component {
 			return (
 				<ul className="nav navbar-nav navbar-right">
 					<li>
-						<form onSubmit = {this.searchProducts.bind(this)}
-							 className="navbar-form navbar-left" role="search">
-							<div className="input-group ">
-								<input  onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
-								<div className="input-group-btn nav-search-icon">
-									<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
-								</div>
-							</div>
-						</form>
+						{search_bar}
 					</li>
 					<li> 
 						<Link to = "/myCart"> 
@@ -99,11 +81,6 @@ export default class SmallNavBar extends React.Component {
 		}	
 	}
 
-	searchProducts(event){
-		window.location.href = '/search/' + this.state.search_input
-		
-		event.preventDefault()
-	}
 
 	render() {
 		var current_user = AppStore.getCurrentUser()

@@ -69,10 +69,17 @@
 	background-color: #002868;
 }
 
-.search-bar-with-user {
+.edgar-search-bar.nav-large.with-user{
 	padding-top: 10px;
 }
 
+.edgar-search-bar.nav-large.no-user{
+	padding-top: 0px;
+}
+
+.edgar-search-bar.nav-small{
+	padding-top: 0px;
+}
 
 #srch-term:focus {
 	width: 240px;	
