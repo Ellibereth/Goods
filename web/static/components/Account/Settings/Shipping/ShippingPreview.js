@@ -61,12 +61,24 @@ export default class ShippingPreview extends React.Component {
 	render() {
 		var current_user = AppStore.getCurrentUser()
 		var addresses = this.props.addresses
-
-		var address_columns = addresses.map((address,index) => 
-				<AddressPreview address = {address} 
-				toggleModal = {this.toggleModal.bind(this)}
-				deleteAddress = {this.deleteAddress.bind(this)}/>
-			)
+		var address_columns = []
+		addresses.map((address,index) =>  {
+			if (address.id == current_user.default_address)
+				address_columns.unshift(
+					<AddressPreview address = {address} 
+					toggleModal = {this.toggleModal.bind(this)}
+					deleteAddress = {this.deleteAddress.bind(this)}
+					refreshSettings = {this.props.refreshSettings}/>
+				)
+			else {
+				address_columns.push(
+					<AddressPreview address = {address} 
+					toggleModal = {this.toggleModal.bind(this)}
+					deleteAddress = {this.deleteAddress.bind(this)}
+					refreshSettings = {this.props.refreshSettings}/>
+				)
+			}
+		})
 
 		address_columns.unshift(
 				<AddAddressButton />

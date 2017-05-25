@@ -40,10 +40,61 @@ export default class AddressPreview extends React.Component {
 		this.props.deleteAddress(this.props.address)
 	}
 
+	setDefaultAddress(){
+		var data = {}
+		data["jwt"] = localStorage.jwt
+		data["address_id"] = this.props.address.id
+		var form_data = JSON.stringify(data)
+		$.ajax({
+			type: "POST",
+			url: "/setDefaultAddress",
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					swal("Sorry", "It seems there was an error setting a default address. " + data.error 
+						+ ". Please try again", "warning")
+				}
+				else {
+					// AppActions.addCurrentUser(data.user_info)
+						swal({
+							title: "Default address set",
+							type: "success"
+						})
+						this.props.refreshSettings()
+					}
+			}.bind(this),
+			error : function(){
+				console.log("error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+	}
+
+	getDefaultButton(){
+		if (this.props.address.id == AppStore.getCurrentUser().default_address) {
+			return (
+				<button className = "btn btn-default btn-sm" disable = {true}>
+					Default address
+				</button>
+			)
+		}
+		else{
+			return (
+				<button className = "btn btn-default btn-sm" onClick = {this.setDefaultAddress.bind(this)}>
+					Set as default 
+				</button>
+			)
+
+		} 
+	}
+
+
 
 
 	render() {
 		var address = this.props.address
+		var default_button = this.getDefaultButton.bind(this)()
 
 		return (
 			<div className = "col-sm-4 col-md-4 col-lg-4 settings-preview-column grey-solid-border">
@@ -57,12 +108,15 @@ export default class AddressPreview extends React.Component {
 					<div className = "small-buffer"/>
 				</span>
 				<span className = "block-span">
-					<button id = "edit-address-button" className = "btn btn-default btn-sm" onClick = {this.editAddress.bind(this)}>
+					{default_button}
+					<button style = {{"margin-left":"8px"}}className = "btn btn-default btn-sm" onClick = {this.editAddress.bind(this)}>
 						Edit
 					</button>
-					<button className = "btn btn-default btn-sm " onClick = {this.onDeletePress.bind(this)}>
+					<button style = {{"margin-left":"8px"}} className = "btn btn-default btn-sm " onClick = {this.onDeletePress.bind(this)}>
 						Delete
 					</button>
+					
+
 				</span>
 			</div>
 		)

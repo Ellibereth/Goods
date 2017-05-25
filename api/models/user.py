@@ -33,6 +33,8 @@ class User(db.Model):
 	stripe_customer_id = db.Column(db.String, unique = True)
 	is_admin = db.Column(db.Boolean, default = False)
 	soft_deleted = db.Column(db.Boolean, default = False)
+	default_address = db.Column(db.String)
+	default_card = db.Column(db.String)
 	deleted_account_email = db.Column(db.String)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -82,42 +84,44 @@ class User(db.Model):
 
 	def toJwtDict(self):
 		public_dict = {}
-		public_dict['name'] = self.name
-		public_dict['email'] = self.email
-		public_dict['email_confirmed'] = self.email_confirmed
-		public_dict['account_id'] = self.account_id
-		public_dict['is_admin'] = self.is_admin
+		public_dict[Labels.Name] = self.name
+		public_dict[Labels.Email] = self.email
+		public_dict[Labels.EmailConfirmed] = self.email_confirmed
+		public_dict[Labels.AccountId] = self.account_id
+		public_dict[Labels.IsAdmin] = self.is_admin
 
 		return public_dict
 
 
 	def toPublicDictFast(self):
 		public_dict = {}
-		public_dict['name'] = self.name
-		public_dict['email'] = self.email
-		public_dict['email_confirmed'] = self.email_confirmed
-		public_dict['account_id'] = self.account_id
-		public_dict['is_admin'] = self.is_admin
-		public_dict['cart_size'] = Cart(self.account_id).getCartSize()
-		public_dict['cart'] = Cart(self.account_id).toPublicDict()
-		public_dict['orders'] = self.getUserOrders()
-		public_dict['addresses'] = []
-		public_dict['cards'] = []
+		public_dict[Labels.Name] = self.name
+		public_dict[Labels.Email] = self.email
+		public_dict[Labels.EmailConfirmed] = self.email_confirmed
+		public_dict[Labels.AccountId] = self.account_id
+		public_dict[Labels.IsAdmin] = self.is_admin
+		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
+		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
+		public_dict[Labels.Orders] = self.getUserOrders()
+		public_dict[Labels.Addresses] = []
+		public_dict[Labels.Cards] = []
 		return public_dict
 
 
 	def toPublicDict(self):
 		public_dict = {}
-		public_dict['name'] = self.name
-		public_dict['email'] = self.email
-		public_dict['email_confirmed'] = self.email_confirmed
-		public_dict['account_id'] = self.account_id
-		public_dict['is_admin'] = self.is_admin
-		public_dict['cart_size'] = Cart(self.account_id).getCartSize()
-		public_dict['cart'] = Cart(self.account_id).toPublicDict()
-		public_dict['addresses'] = self.getAddresses()
-		public_dict['cards'] = self.getCreditCards()
-		public_dict['orders'] = self.getUserOrders()
+		public_dict[Labels.Name] = self.name
+		public_dict[Labels.Email] = self.email
+		public_dict[Labels.EmailConfirmed] = self.email_confirmed
+		public_dict[Labels.AccountId] = self.account_id
+		public_dict[Labels.IsAdmin] = self.is_admin
+		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
+		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
+		public_dict[Labels.Addresses] = self.getAddresses()
+		public_dict[Labels.Cards] = self.getCreditCards()
+		public_dict[Labels.Orders] = self.getUserOrders()
+		public_dict[Labels.DefaultCard] = self.default_card
+		public_dict[Labels.DefaultAddress] = self.default_address
 		return public_dict
 
 	# do you think these methods should be static or instance?
@@ -172,15 +176,16 @@ class User(db.Model):
 
 		card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 
 			address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country = "US")
+		all_cards = self.getCreditCards()
+		if len(all_addresses) == 1:
+			self.default_card = card['id']
+			db.session.commit()
 		return card
 		
 
 	def getCreditCards(self):
 		try:
 			cards = StripeManager.getUserCards(self)
-			# if you can sort them sort them, if not just return the standard. 
-			# this is because some accounts do not have time stamps
-			# but after 5/9/2017 they will
 			try:
 				sorted_cards = sorted(cards,  key=lambda k: k['metadata'].get('date_created'))
 				return sorted_cards
@@ -197,6 +202,10 @@ class User(db.Model):
 			, address_line2 = address_line2, address_city = address_city,
 				address_state = address_state, address_zip = address_zip,
 				 address_country = address_country)
+		all_addresses = self.getAddresses()
+		if len(all_addresses) == 1:
+			self.default_address = address['id']
+			db.session.commit()
 		return address
 		
 	def getAddresses(self):

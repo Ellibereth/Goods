@@ -182,19 +182,28 @@ export default class CheckoutPage extends React.Component {
 				this.initializeInformation.bind(this)
 			)
 		}
-
-		
 	}
 
 	initializeInformation(){
+		var user = AppStore.getCurrentUser()
 		if (this.state.cards.length > 0){
-			this.setState({selected_card_index : 0})
-			this.setCard.bind(this)(0)
+			for (var i = 0; i < this.state.cards.length; i++){
+				if (this.state.cards[i].id == user.default_card){
+					this.setState({selected_card_index : i})
+					this.setCard.bind(this)(i)
+				}	
+			}
+			
 		} 
 		if (this.state.addresses.length > 0){
-			this.setState({selected_address_index : 0})
-			this.setAddress.bind(this)(0)
+			for (var i = 0; i < this.state.addresses.length; i++){
+				if (this.state.addresses[i].id == user.default_address){
+					this.setState({selected_address_index : i})
+					this.setAddress.bind(this)(i)
+				}	
+			}	
 		} 
+		
 		this.openEditable.bind(this)(ADDRESS_INDEX)
 		this.setState({first_load_done : true})
 	}

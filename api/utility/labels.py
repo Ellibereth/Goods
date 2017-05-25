@@ -37,6 +37,13 @@ class UserLabels:
 	StripeCardId = "stripe_card_id"
 	Orders = "orders"
 	CartSize = "cart_size"
+	AddressId = "address_id"
+	CardId = "card_id"
+	IsAdmin = "is_admin"
+	Cart = "cart"
+	DefaultCard = "default_card"
+	DefaultAddress = "default_address"
+	
 
 
 class ProductImageLabels:

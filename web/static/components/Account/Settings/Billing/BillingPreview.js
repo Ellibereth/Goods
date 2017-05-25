@@ -34,48 +34,64 @@ export default class BillingPreview extends React.Component {
 	// shows a preview of the address 
 	// then asks the user if they want to delete it
 	deleteCard(card){
-			var data = {}
-			data["jwt"] = localStorage.jwt
-			data["account_id"] = AppStore.getCurrentUser().account_id
-			data["stripe_card_id"] = card.id
-			var form_data = JSON.stringify(data)
-			$.ajax({
-				type: "POST",
-				url: "/deleteUserCreditCard",
-				data: form_data,
-				success: function(data) {
-					if (!data.success) {
-						swal("Sorry", "It seems there was an error deleting your credit card. " + data.error 
-							+ ". Please try again", "warning")
+		var data = {}
+		data["jwt"] = localStorage.jwt
+		data["account_id"] = AppStore.getCurrentUser().account_id
+		data["stripe_card_id"] = card.id
+		var form_data = JSON.stringify(data)
+		$.ajax({
+			type: "POST",
+			url: "/deleteUserCreditCard",
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					swal("Sorry", "It seems there was an error deleting your credit card. " + data.error 
+						+ ". Please try again", "warning")
+				}
+				else {
+					// AppActions.addCurrentUser(data.user_info)
+						swal({
+							title: "Thank you", 
+							text : "Your changes have been made",
+							type: "success"
+						})
+						this.props.refreshSettings()
 					}
-					else {
-						// AppActions.addCurrentUser(data.user_info)
-							swal({
-								title: "Thank you", 
-								text : "Your changes have been made",
-								type: "success"
-							})
-							this.props.refreshSettings()
-						}
-				}.bind(this),
-				error : function(){
-					console.log("error")
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+			}.bind(this),
+			error : function(){
+				console.log("error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
 	}
 
 	render() {
 		var cards = this.props.cards
-		var card_columns = cards.map((card,index) => 
-				<CardPreview
+		var card_columns = []
+		var current_user = AppStore.getCurrentUser()
+
+		cards.map((card,index) => {
+			if (card.id == current_user.default_card){
+				card_columns.unshift(
+					<CardPreview
 					 card = {card}
 					 deleteCardPress = {this.deleteCardPress.bind(this)}
-				/>
-			)
+					 refreshSettings = {this.props.refreshSettings}/>
+				)
+			}
+			else {
+				card_columns.push(
+					<CardPreview
+					 card = {card}
+					 deleteCardPress = {this.deleteCardPress.bind(this)}
+					 refreshSettings = {this.props.refreshSettings}/>
+				)
+			}
+				
+		})
 
-				var current_user = AppStore.getCurrentUser()
+		
 	
 
 		card_columns.unshift(

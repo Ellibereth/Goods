@@ -334,3 +334,29 @@ def resendConfirmationEmail():
 	email_api.sendEmailConfirmation(this_user.email, this_user.email_confirmation_id, this_user.name)
 	return JsonUtil.success()
 
+
+@account_api.route('/setDefaultAddress', methods = ['POST'])
+def setDefaultAddress():
+	jwt = request.json.get(Labels.Jwt)
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	if this_user == None:
+		return JsonUtil.failure("This user doesn't exist")
+	address_id = request.json.get(Labels.AddressId)
+	this_user.default_address = address_id
+	db.session.commit()
+	return JsonUtil.success()
+
+@account_api.route('/setDefaultCard', methods = ['POST'])
+def setDefaultCard():
+	jwt = request.json.get(Labels.Jwt)
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	if this_user == None:
+		return JsonUtil.failure("This user doesn't exist")
+	card_id = request.json.get(Labels.CardId)
+	this_user.default_card = card_id
+	db.session.commit()
+	return JsonUtil.success()
+
+
+
+
