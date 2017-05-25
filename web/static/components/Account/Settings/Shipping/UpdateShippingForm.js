@@ -25,7 +25,8 @@ export default class UpdateShippingForm extends React.Component {
 			address_country : "US",
 			address_line1 : "",
 			address_line2 : "",
-			address_zip : ""
+			address_zip : "",
+			disabled : false,
 		}
 	}
 
@@ -44,7 +45,7 @@ export default class UpdateShippingForm extends React.Component {
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
 		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
 		function () {
@@ -53,6 +54,7 @@ export default class UpdateShippingForm extends React.Component {
 	}
 
 	submitData(){
+		this.setState({disabled : true})
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -69,6 +71,7 @@ export default class UpdateShippingForm extends React.Component {
 					if (!data.success) {
 						swal("Sorry!", "It seems there was an error with your address! " + data.error 
 							+ ". Please try again!", "warning")
+
 					}
 					else {
 						// AppActions.addCurrentUser(data.user_info)
@@ -98,7 +101,7 @@ export default class UpdateShippingForm extends React.Component {
 								contentType : "application/json; charset=utf-8"
 							});
 					}
-
+					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
 
@@ -108,19 +111,21 @@ export default class UpdateShippingForm extends React.Component {
 			});
 		}
 
+
 	render() {
 
 	
 
 		return (
 				<div>
-					<Form horizontal>
+					<Form  horizontal>
 						<AddressForm header = {"Add an address"}
 						has_description = {true}
+						onSubmit = {this.onSubmitPress.bind(this)}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 						<div className = "form-group" id = "submit_button">
 							<div className = "col-md-10 col-lg-10">
-								<Button className = "pull-right"
+								<Button className = "pull-right" disabled = {this.state.disabled}
 								onClick = {this.onSubmitPress.bind(this)}>
 									Submit
 								</Button>

@@ -38,45 +38,59 @@ export default class CheckoutAddAddress extends React.Component {
 		this.setState(obj)
 	}
 
-
-	
+	onSubmitPress(){
+		swal({
+		  title: "Ready?",
+		  text: "Is all your information correct?",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: true,
+		  closeOnCancel: true
+		},
+		function () {
+			this.addAddress.bind(this)()
+		}.bind(this))
+	}
 
 	addAddress(){
+		this.props.toggleModal()
 		var data = {}
-			for (var i = 0; i < form_inputs.length; i++){
-				var key = form_inputs[i]
-				data[key] = this.state[key]
-			}
-			data["jwt"] = localStorage.jwt
-			data["account_id"] = AppStore.getCurrentUser().account_id
-			var form_data = JSON.stringify(data)
-			$.ajax({
-				type: "POST",
-				url: "/addUserAddresses",
-				data: form_data,
-				success: function(data) {
-					if (!data.success) {
-						swal("Sorry!", "It seems there was an error with your address! " + data.error 
-							+ ". Please try again!", "warning")
-					}
-					else {
-						// AppActions.addCurrentUser(data.user_info)
-						swal({
-								title: "Thank you!", 
-								text : "Your changes have been made",
-								type: "success"
-							})
-						this.props.toggleModal()
-						this.props.onAddingNewShippingAddress(this.state.use_same_for_billing)
-					}
+		for (var i = 0; i < form_inputs.length; i++){
+			var key = form_inputs[i]
+			data[key] = this.state[key]
+		}
+		data["jwt"] = localStorage.jwt
+		data["account_id"] = AppStore.getCurrentUser().account_id
+		var form_data = JSON.stringify(data)
+		$.ajax({
+			type: "POST",
+			url: "/addUserAddresses",
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					swal("Sorry!", "It seems there was an error with your address! " + data.error 
+						+ ". Please try again!", "warning")
+				}
+				else {
+					// AppActions.addCurrentUser(data.user_info)
+					swal({
+							title: "Thank you!", 
+							text : "Your changes have been made",
+							type: "success"
+						})
+					
+					this.props.onAddingNewShippingAddress(this.state.use_same_for_billing)
+				}
 
-				}.bind(this),
-				error : function(){
+			}.bind(this),
+			error : function(){
 
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
 	}
 
 
@@ -89,7 +103,7 @@ export default class CheckoutAddAddress extends React.Component {
 			<div className = "container">
 				<div className = "row">
 					<div className = "col-sm-10 col-md-10 col-lg-10">
-						<AddressForm 
+						<AddressForm onSubmit = {this.onSubmitPress.bind(this)}
 						has_description = {true}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 
@@ -100,7 +114,7 @@ export default class CheckoutAddAddress extends React.Component {
 							<div className = "col-md-11 col-lg-11">
 								<Button
 									className = "pull-right" 
-									onClick = {this.addAddress.bind(this)}>
+									onClick = {this.onSubmitPress.bind(this)}>
 									Add Address
 								</Button>
 							</div>

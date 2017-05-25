@@ -104,17 +104,17 @@ export default class CreditCardInput extends React.Component {
 	}
 
 
-	isNumberKey(evt){
-		    var charCode = (evt.which) ? evt.which : event.keyCode
-		    if (charCode > 31 && (charCode < 48 || charCode > 57))
-		        return false;
-		    return true;
-		}
-
-
-
 	componentDidMount(){
 		
+	}
+
+	onKeyPress(e){
+		if (e.key == "Enter"){
+			if (this.props.onSubmit){
+			this.props.onSubmit()
+			}
+		}
+		console.log(e.key)
 	}
 
 	render() {
@@ -156,9 +156,11 @@ export default class CreditCardInput extends React.Component {
 			</div>
 			<div className = "row">
 				<div className= {this.state.name_error ? "form-group required" : "form-group required has-success"}>
-				  <label className="col-md-2 control-label text-left" for="State">Name on Card </label>  
+				  <label className="col-md-2 control-label text-left" for="State">Card Name</label>  
 				  <div className="col-md-6">
-				  <input tabindex= {1} id = "card_name_input" 
+				  <input 
+				  onKeyPress = {this.onKeyPress.bind(this)}
+				  tabindex= {1} id = "card_name_input" 
 				  	className= {this.state.name_error ? "form-control input-md" : "form-control form-control-success input-md"} 
 					 onChange = {this.handleChange.bind(this)} field = "name" placeholder="Full name" type="text" name="name" />
 				  </div>
@@ -170,8 +172,9 @@ export default class CreditCardInput extends React.Component {
 				<div className= {this.state.number_error ? "form-group required" : "form-group required has-success"}>
 				  <label className="col-md-2 control-label text-left" > Card Number </label>  
 				  <div className="col-md-6">
-				  <input tabindex= {2} id = "card_input" 
-				  onKeyPress = {this.isNumberKey}
+				  <input 
+				  onKeyPress = {this.onKeyPress.bind(this)}
+				  tabindex= {2} id = "card_input" 
 				  className= {this.state.number_error ? "form-control input-md" : "form-control form-control-success input-md"} 
 				   maxLength = "19"
 					onChange = {this.handleChange.bind(this)}  field = "number" placeholder="Card number" type="text" name="number" />
@@ -183,7 +186,8 @@ export default class CreditCardInput extends React.Component {
 				<div className = {this.state.expiry_error ? "form-group required" : "form-group required has-success"} >
 				  <label className="col-md-2 control-label text-left" for="State"> Expiration </label>  
 				  <div className="col-md-2">
-				  <input id = "expiry_input" tabindex= {3}  onKeyPress = {this.isNumberKey}
+				  <input onKeyPress = {this.onKeyPress.bind(this)}
+				  id = "expiry_input" tabindex= {3} 
 				  className= {this.state.expiry_error ? "form-control input-md" : "form-control form-control-success input-md"} 
 				  maxLength = "7"
 					onChange = {this.handleChange.bind(this)} field = "expiry" placeholder="MM/YY" type="text" name="expiry" />
@@ -195,8 +199,9 @@ export default class CreditCardInput extends React.Component {
 				<div className = {this.state.cvc_error ? "form-group required" : "form-group required has-success"}>
 				  <label className="col-md-2 control-label text-left" for="State"> CVC  </label>  
 				  <div className="col-md-2">
-				  	<input tabindex= {4} 
-				  	onKeyPress = {this.isNumberKey}
+				  	<input
+				  	onKeyPress = {this.onKeyPress.bind(this)}
+				  	tabindex= {4} 
 				  	className = {this.state.cvc_error ? "form-control input-md" : "form-control form-control-success input-md "}
 				  	maxLength = "3"
 					// onChange = {this.handleChange.bind(this)}

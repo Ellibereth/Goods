@@ -30,7 +30,8 @@ export default class UpdateBillingForm extends React.Component {
 			address_line2 : "",
 			address_zip : "",
 			addresss_state: "",
-			skip_shipping: true
+			skip_shipping: true,
+			disabled: false
 		}
 	}
 
@@ -49,7 +50,7 @@ export default class UpdateBillingForm extends React.Component {
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
 		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
 		function () {
@@ -79,6 +80,7 @@ export default class UpdateBillingForm extends React.Component {
 	}
 
 	submitData(){
+		this.setState({disabled : true})
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -128,6 +130,7 @@ export default class UpdateBillingForm extends React.Component {
 							});
 						
 					}
+					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
 					console.log("error")
@@ -142,6 +145,7 @@ export default class UpdateBillingForm extends React.Component {
 			<div className = "col-sm-12 col-md-12 col-lg-12">
 			<Form horizontal>
 				<CreditCardInput 
+				onSubmit = {this.onSubmitPress.bind(this)}
 				header = {"Add a payment method"}
 				onTextInputChange = {this.onTextInputChange.bind(this)} />
 				<div className = "row">
@@ -156,12 +160,12 @@ export default class UpdateBillingForm extends React.Component {
 				</div>
 				<div className = "small-buffer"/>
 				{ !this.state.skip_shipping && 
-					<AddressForm header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
+					<AddressForm onSubmit = {this.onSubmitPress.bind(this)} header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
 				}
 
 				<FormGroup controlId = "submit_button">
 					<div className = "col-md-10 col-lg-10">
-						<Button className = "pull-right"
+						<Button className = "pull-right" disabled = {this.state.disabled}
 						 onClick = {this.onSubmitPress.bind(this)}>
 						Submit
 						</Button>

@@ -32,6 +32,14 @@ export default class AddressForm extends React.Component {
 		}
    	}
 
+   	onKeyPress(e){
+		if (e.key == "Enter"){
+			if (this.props.onSubmit){
+			this.props.onSubmit()
+			}
+		}
+	}
+
 
 
 	render() {
@@ -61,7 +69,7 @@ export default class AddressForm extends React.Component {
 				<div className="form-group required">
 					<label tabindex= {1 + tab_index_start} className="col-md-2 control-label text-left" for="Name">Name </label>    
 					<div className="col-md-6">
-					<input value = {address && address.name} field = "address_name" onChange = {this.handleChange.bind(this)}
+					<input onKeyPress = {this.onKeyPress.bind(this)} value = {address && address.name} field = "address_name" onChange = {this.handleChange.bind(this)}
 					 id="Name" name="address_name" type="text" placeholder="Name on Address" className="form-control input-md" required=""/>
 					</div>
 				</div>
@@ -168,7 +176,9 @@ export default class AddressForm extends React.Component {
 					value = {address && address.address_city}
 					tabindex= {tab_index_start + 5} field = "address_city" onChange = {this.handleChange.bind(this)}
 					id="city" name="address_city" type="text" 
-					className="form-control input-md" required=""/>
+					className="form-control input-md" required=""
+					onKeyPress = {this.onKeyPress.bind(this)}
+					/>
 					</div>
 				</div>
 			</div>
@@ -180,7 +190,9 @@ export default class AddressForm extends React.Component {
 					<input 
 					value = {address && address.address_line1}
 					tabindex= {tab_index_start + 6} field = "address_line1" onChange = {this.handleChange.bind(this)}
-					 id="address1" name="address_line1" type="text" placeholder="" className="form-control input-md"/>
+					 id="address1" name="address_line1" type="text" 
+					 placeholder="" className="form-control input-md"
+					 onKeyPress = {this.onKeyPress.bind(this)}/>
 					{/* <span className="help-block">Street address, P.O. box, company name, c/o</span>    */}
 					</div>
 				</div>
@@ -193,7 +205,8 @@ export default class AddressForm extends React.Component {
 					<input 
 					value = {address && address.address_line2}
 					 tabindex= {tab_index_start + 7} field = "address_line2" onChange = {this.handleChange.bind(this)}
-					id="Address2" name="address_line2" type="text" placeholder="" className="form-control input-md"/>
+					id="Address2" name="address_line2" type="text" placeholder="" className="form-control input-md"
+					onKeyPress = {this.onKeyPress.bind(this)}/>
 					{/* <span className="help-block">Apartment, suite, unit, building, floor, etc.</span> */}
 					</div>
 				</div>
@@ -210,7 +223,8 @@ export default class AddressForm extends React.Component {
 					onChange = {this.onZipChange.bind(this)}
 					id="zip" name="address_zip" type="text" 
 					// placeholder="zip or postal code"
-					 className="form-control input-md" required=""/>
+					 className="form-control input-md" required=""
+					 onKeyPress = {this.onKeyPress.bind(this)}/>
 					
 					</div>
 				</div>
