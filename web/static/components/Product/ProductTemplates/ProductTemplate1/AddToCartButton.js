@@ -42,7 +42,7 @@ export default class AddToCartButton extends React.Component {
 	addToCart(){
 		if (this.props.product.has_variants && !this.state.variant) {
 			swal({
-				title : "You must select a type",
+				title : "You must select a type.",
 				type : "error"
 			})
 		}
@@ -62,7 +62,7 @@ export default class AddToCartButton extends React.Component {
 				success: function(data) {
 						if (data.success){
 							swal({
-								title: "Success!",
+								title: "This item is now in your cart.",
 								type: "success",
 								showCancelButton: true,
 								confirmButtonColor: "#DD6B55",
@@ -104,7 +104,7 @@ export default class AddToCartButton extends React.Component {
 	}
 
 	onNonUserClick(){
-		swal("You must sign in before you can add this to your cart!")	
+		swal("Sign up to start shopping!")	
 	}
 
 	render() {
@@ -192,7 +192,7 @@ export default class AddToCartButton extends React.Component {
 										: this.onNonUserClick.bind(this)} 
 									className="btn add-to-cart-button ">
 									<span className = "add-to-cart-text block-span">
-										<b> Buy It</b>
+										<b> Add to Cart </b>
 									</span>
 								</button>
 							</div>
