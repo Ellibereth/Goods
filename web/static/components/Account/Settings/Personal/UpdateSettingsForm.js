@@ -9,6 +9,8 @@ const form_labels = ['Name', "Email", "Confirm Password"]
 const form_inputs = ["name", "email", "password"]
 const input_types = ['text', 'text', 'password']
 
+const required_input = ["password"]
+
 export default class SettingsFormPersonal extends React.Component {
 	constructor(props) {
 		super(props);
@@ -141,9 +143,17 @@ export default class SettingsFormPersonal extends React.Component {
 
 	render() {
 		var text_inputs = form_inputs.map((form_input, index) => {
+			if (required_input.indexOf(form_input) > -1) {
+				var required = true;
+			}
+			else {
+				var required = false
+			}
 			return (<TextInput colSize = {"8"} onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]}/>)
+				input_type = {input_types[index]}
+				required = {required}/>
+			)
 		})
 
 		return (

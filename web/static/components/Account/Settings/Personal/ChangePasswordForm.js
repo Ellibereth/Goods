@@ -131,16 +131,24 @@ export default class ChangePasswordForm extends React.Component {
 		var text_inputs = form_inputs.map((form_input, index) => {
 			return (<TextInput colSize = {"8"} onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]}/>)
+				input_type = {input_types[index]} required = {true}/>)
 		})
 
 		return (
 			<Grid>
 				<Form horizontal>
+					<div className = "form-group">
+						<label className="col-md-8 col-lg-8 control-label text-left">
+							<span className = "form-heading"> Change Password </span>
+							<span className = "pull-right modal-header-right"> 
+								<span className = "red-text"> * </span>
+								<span className = "vcenter"> Required  </span>
+							</span>
+						</label>
+					</div>
 					{text_inputs}
 					
 					<FormGroup controlId = "update_password">
-						
 							<Col sm = {4} lg = {4} md = {4}>
 								<Button onClick = {this.onSubmitPress.bind(this)}>
 									Submit!

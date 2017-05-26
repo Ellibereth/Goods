@@ -53,7 +53,7 @@ export default class AddressForm extends React.Component {
 			{this.props.header && 
 				<div className = "row">
 					<div className="form-group">
-						<label className="col-md-10 col-lg-10 control-label text-left" for="Name">
+						<label className="col-md-10 col-lg-10 control-label text-left">
 							<span className = "form-heading"> {this.props.header}   </span>
 							<span className = "pull-right modal-header-right"> 
 								<span className = "red-text"> * </span>

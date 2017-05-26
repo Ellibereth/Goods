@@ -31,10 +31,14 @@ export default class TextInput extends React.Component {
 		  )
 	}
 
+	// var class_name = this.props.required ? "form-group required" : "form-group"
 	return (
 	  <div className="form-group">
 		  <div className="col-sm-10">
-			  {this.props.label}
+			  {this.props.label} 
+			  { this.props.required &&
+			  	<span style ={{"color":"red"}}>*</span>
+			  }
 		  </div>
 		  {input_div}
 	  </div>
