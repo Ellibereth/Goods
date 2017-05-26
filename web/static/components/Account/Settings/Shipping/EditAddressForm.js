@@ -45,7 +45,24 @@ export default class EditAddressForm extends React.Component {
 		})
 	}
 
-	addAddress(){
+	onSubmitPress(){
+		swal({
+		  title: "Ready?",
+		  text: "Is all your information correct?",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: true,
+		  closeOnCancel: true
+		},
+		function () {
+			this.editAddress.bind(this)()
+		}.bind(this))
+	}
+
+	editAddress(){
+		this.props.toggleModal()
 		var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -71,7 +88,7 @@ export default class EditAddressForm extends React.Component {
 								text : "Your changes have been made",
 								type: "success"
 							})
-						this.props.toggleModal()
+						
 						this.props.refreshSettings()
 					}
 
@@ -91,14 +108,16 @@ export default class EditAddressForm extends React.Component {
 				<div className = "col-sm-10 col-md-10 col-lg-10">
 					<AddressForm 
 					onTextInputChange = {this.onTextInputChange.bind(this)}
-					address = {this.props.address} />
+					address = {this.props.address}
+					onSubmit = {this.onSubmitPress.bind(this)}
+					 />
 
 					
 					
 				</div>
 				<div className = "col-sm-9 col-md-9 col-lg-9">
 					<div className = "pull-right">
-						<Button onClick = {this.addAddress.bind(this)}>
+						<Button onClick = {this.onSubmitPress.bind(this)}>
 							Edit Address
 						</Button>
 					</div>
