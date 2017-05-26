@@ -124,6 +124,8 @@ def checkoutCart():
 	except Exception as e:
 		return JsonUtil.failure("Something went wrong while trying to process payment information " + str(e))
 
+
+	date_created = db.func.current_timestamp()
 	# record this transaction for each product (enabling easier refunds), but group by quantity 
 	for cart_item in this_cart.items:
 		# update the inventory
@@ -133,7 +135,8 @@ def checkoutCart():
 			this_variant.inventory = this_variant.inventory - cart_item.num_items
 		else:
 			this_product.inventory = this_product.inventory - cart_item.num_items
-		new_order = Order(order_id, this_user, this_product, address, charge, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
+
+		new_order = Order(order_id, this_user, this_product, address, charge, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
 		db.session.add(new_order)
 		db.session.commit()
 

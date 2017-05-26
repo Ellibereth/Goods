@@ -102,7 +102,6 @@ class User(db.Model):
 		public_dict[Labels.IsAdmin] = self.is_admin
 		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
 		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
-		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.Addresses] = []
 		public_dict[Labels.Cards] = []
 		return public_dict

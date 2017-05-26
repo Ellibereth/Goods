@@ -477,3 +477,11 @@ body {
 .checkout-address-details {
 	font-size:16px;
 }
+
+.order-history-panel-header{
+	font-size: 18px;
+}
+
+.order-history-panel-text{
+	font-size: 18px;
+}

@@ -40,13 +40,16 @@ class Order(db.Model):
 	variant_id = db.Column(db.Integer)
 	name = db.Column(db.String)
 	main_image = db.Column(db.String)
+	card_last4 = db.Column(db.String)
+	card_brand = db.Column(db.String)
 
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, order_id, user, product, address, stripe_charge, num_items = 1, variant_id = None, variant_type = None):
+	def __init__(self, order_id, user, product, address, stripe_charge, 
+				num_items = 1, variant_id = None, variant_type = None, date_created = db.func.current_timestamp()):
 		self.order_id = order_id
 		self.price = product.price
 		self.num_items = num_items
@@ -69,7 +72,9 @@ class Order(db.Model):
 		self.address_state = address.address_state
 		self.variant_id = variant_id
 		self.main_image = product.main_image
-
+		self.card_last4 = stripe_charge[Labels.Source][Labels.Last4]
+		self.card_brand = stripe_charge[Labels.Source][Labels.Brand]
+		self.date_created = date_created0
 		db.Model.__init__(self)
 		
 	@staticmethod
@@ -102,7 +107,8 @@ class Order(db.Model):
 		public_dict[Labels.VariantId] = self.variant_id
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.MainImage] = self.main_image
-
+		public_dict[Labels.CardLast4] = self.card_last4
+		public_dict[Labels.CardBrand] = self.card_brand
 		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
 		return public_dict
 

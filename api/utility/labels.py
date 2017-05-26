@@ -169,6 +169,9 @@ class PaymentLabels:
 	Card = "card"
 	VariantId = "variant_id"
 	MainImage = "main_image"
+	CardBrand = "card_brand"
+	CardLast4 = "card_last4"
+	Source = "source"
 
 
 class CartLabels:

@@ -25,7 +25,7 @@ export default class OrderItemDisplay extends React.Component {
 		var local_date = new Date(order.date_created)
 		var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 		return (
-				<div className = "col-md-5 col-lg-5 col-sm-5">
+				<div className = "col-md-6 col-lg-6 col-sm-6">
 					<div className="table-responsive">
         				<table className="table table-bordered order-preview-table">
         					<thead>
@@ -33,7 +33,7 @@ export default class OrderItemDisplay extends React.Component {
         							<th> <img className = "order-preview-image" src = {src_base + order.main_image} /> </th>
         							<th className = "table-header-vertical-align-center">  
         								<div> {order.name} </div>
-        								<div> Quantity: {order.num_items} @ ${formatPrice(order.price)} </div>
+        								<div> Quantity: {order.num_items} @ ${formatPrice(order.price)} (each) </div>
         							</th>
         						</tr>
         					</thead>
@@ -45,10 +45,6 @@ export default class OrderItemDisplay extends React.Component {
 	        					<tr>
 	        						<td className = "light-grey-background grey-text">  PRICE  </td>
         							<td>  ${formatPrice(order.total_price)} </td>
-	        					</tr>
-	        					<tr>
-	        						<td className = "light-grey-background grey-text"> ORDER#  </td>
-        							<td className = "clickable-text">  {order.order_id} </td>
 	        					</tr>
         					</tbody>
         				</table>
