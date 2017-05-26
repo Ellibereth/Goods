@@ -1,6 +1,11 @@
 import lob
-lob.api_key = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc'
+LOB_LIVE_KEY = "live_823f35f6e24d9a3386eaf6b0c9e33ddf691"
+LOB_TEST_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc'
+lob.api_key = LOB_TEST_KEY
+lob.api_version = '2017-05-17'
 AccountId = "account_id"
+DELIVERABILITY = "deliverability"
+ERROR_DELIVERABLE =  ['deliverable_missing_secondary', 'undeliverable', 'no_match']
 
 class Lob:
 	@staticmethod
@@ -9,20 +14,32 @@ class Lob:
 		# we don't do international right now
 		if address_country != "US":
 			raise Exception("Address must be in US!")
-		try: 
+
+
+		try:
+			verification = Lob.verifyAddress(name, address_line1, address_line2, address_city,
+				address_state, address_zip, address_country)
+			print(verification[DELIVERABILITY])
+			print(verification)
+			if verification[DELIVERABILITY] in ERROR_DELIVERABLE:
+				raise Exception("Error, we cannot deliver to this address. \
+				Please check your information and try again.")
+
+			
+
 			address = lob.Address.create(
-			  description= description,
-			  name= name,
-			  company='Lob',
-			  address_line1= address_line1,
-			  address_line2= address_line2,
-			  address_city= address_city,
-			  address_state = address_state,
-			  address_zip = address_zip,
-			  address_country= address_country,
-			  metadata = {
-			  	AccountId : user.account_id
-			  }
+			    description= description,
+			    name= name,
+			    company='Lob',
+			    address_line1= address_line1,
+			    address_line2= address_line2,
+			    address_city= address_city,
+			    address_state = address_state,
+			    address_zip = address_zip,
+			    address_country= address_country,
+			    metadata = {
+			    	AccountId : user.account_id
+			    }
 		)
 			return address
 		except Exception as e:
@@ -32,20 +49,18 @@ class Lob:
 	@staticmethod
 	def verifyAddress(name = "", address_line1 = "", address_line2 = "", address_city = ""
 		,address_state = "", address_zip = "", address_country = "US"):
-		# we don't do international right now
 		if address_country != "US":
 			raise Exception("Address must be in US!")
-		# try: 
-		output = lob.Verification.create(
-			name = name,
-			address_line1= address_line1,
-			address_line2 = address_line2,
-			address_city= address_city,
-			address_state= address_state,
-			address_zip= address_zip,
-			address_country = address_country
+
+		verification = lob.USVerification.create(
+		    primary_line = address_line1,
+		    secondary_line = address_line2,
+		    city= address_city,
+		    state= address_country,
+		    zip_code= address_zip
 		)
-		return output
+
+		return verification
 
 		# except Exception as e:
 		# 	return e
