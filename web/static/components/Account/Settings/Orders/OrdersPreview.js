@@ -22,10 +22,9 @@ export default class OrdersPreview extends React.Component {
 		if (this.props.orders.length > 0){
 			var order_display = <OrdersPreviewDisplay order = {this.props.orders[0]}/>
 		}
-		else{
+		else {
 			var order_display = <span> No orders </span>
 		}
-
 		return (
 			<div className = "container-fluid">
 					
@@ -43,14 +42,19 @@ export default class OrdersPreview extends React.Component {
 					}
 					
 
-					<div className="panel-body">
+					<div className="panel-body">			
+						{this.props.orders.length == 1 ?
+							<span className = "block-span"> You have {this.props.orders.length} order </span>
+							:
 							<span className = "block-span"> You have {this.props.orders.length} orders </span>
-							{
-								this.props.orders.length > 0 ?
-								<span className = "block-span"> <Link to = "/myOrders"> View more </Link> </span>
-								:
-								<span className = "block-span"> Start shipping at our store by clicking <Link to = "/"> here </Link> </span>
-							}
+						}
+
+						{
+							this.props.orders.length > 0 ?
+							<span className = "block-span"> <Link to = "/myOrders"> View more </Link> </span>
+							:
+							<span className = "block-span"> Start shipping at our store by clicking <Link to = "/"> here </Link> </span>
+						}
 					</div>
 				</div>
 			</div>

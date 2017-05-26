@@ -6,7 +6,7 @@ import AppStore from '../../../../stores/AppStore.js';
 import {Col} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util.js'
 var dateFormat = require('dateformat');
-
+import OrderItemDisplay from './OrderItemDisplay'
 
 // takes orders as prop
 export default class OrdersPreview extends React.Component {
@@ -18,44 +18,28 @@ export default class OrdersPreview extends React.Component {
 	}
 
 	render() {
-		var order = this.props.order
-		var first_col_size = 3
-		var second_col_size =  12 - first_col_size
-		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-		var local_date = new Date(order.date_created)
-		var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+		var items = this.props.items
+		var order_items = []
+		for (var i = 0; i < this.props.items.length; i++){
+			order_items.push(<OrderItemDisplay order = {items[i]}/>)
+		}
+
 		return (
-			<div className = "row">
-				<div className = "col-md-5 col-lg-5 col-sm-5">
-					<div className="table-responsive">
-        				<table className="table table-bordered order-preview-table">
-        					<thead>
-        						<tr className = "noborder">
-        							<th> <img className = "order-preview-image" src = {src_base + order.main_image} /> </th>
-        							<th className = "table-header-vertical-align-center">  
-        								<div> {order.name} </div>
-        								<div> Quantity: {order.num_items} @ ${formatPrice(order.price)} </div>
-        							</th>
-        						</tr>
-        					</thead>
-        					<tbody>
-	        					<tr>
-	        						<td className = "light-grey-background grey-text">  DATE  </td>
-        							<td> {formatted_date}  </td>
-	        					</tr>
-	        					<tr>
-	        						<td className = "light-grey-background grey-text">  PRICE  </td>
-        							<td>  ${formatPrice(order.total_price)} </td>
-	        					</tr>
-	        					<tr>
-	        						<td className = "light-grey-background grey-text"> ORDER#  </td>
-        							<td className = "clickable-text">  {order.order_id} </td>
-	        					</tr>
-        					</tbody>
-        				</table>
-        			</div>
-        		</div>
-        	</div>						
+			<div className="panel panel-default">
+				<div className = "panel-heading">
+					<div> {"Order " + this.props.order_id}  </div>
+				</div>
+				
+
+				<div className = "panel-body">
+					<div className = "container">
+						{order_items}
+					</div>
+				</div>
+
+
+			</div>
+						
 		)
 	}
 }
