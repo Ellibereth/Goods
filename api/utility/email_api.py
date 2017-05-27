@@ -128,7 +128,7 @@ def sendPurchaseNotification(user, cart, address, order_id):
 
 	# send the customer confirmation msg = MIMEMultipart()
 	# this will be changed but is a fun place holder!
-	msg = EmailHtml.generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address)
+	msg = EmailHtml.generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address, order_id)
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
