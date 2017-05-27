@@ -40,7 +40,6 @@ export default class CreditCardInput extends React.Component {
 	}
 
 	isNumberKey(event) {
-		console.log(event.target.value)
 		const re = /^[0-9\b]+$/;
 		return (event.target.value == '' || re.test(event.target.value)) 
 	}
@@ -114,7 +113,6 @@ export default class CreditCardInput extends React.Component {
 			this.props.onSubmit()
 			}
 		}
-		console.log(e.key)
 	}
 
 	render() {

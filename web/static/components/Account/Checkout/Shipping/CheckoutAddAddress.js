@@ -55,6 +55,7 @@ export default class CheckoutAddAddress extends React.Component {
 	}
 
 	addAddress(){
+		this.props.setLoading(true)
 		this.props.toggleModal()
 		var data = {}
 		for (var i = 0; i < form_inputs.length; i++){
@@ -83,6 +84,7 @@ export default class CheckoutAddAddress extends React.Component {
 					
 					this.props.onAddingNewShippingAddress(this.state.use_same_for_billing)
 				}
+				this.props.setLoading(false)
 
 			}.bind(this),
 			error : function(){

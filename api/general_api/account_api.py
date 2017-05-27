@@ -301,12 +301,10 @@ def getUserOrders():
 
 @account_api.route('/getUserInfo', methods = ['POST'])
 def getUserInfo():
-	# this was used as an easier way for testing emails, will be removed soon
-	# email_api.testEmail()
 	jwt = request.json.get(Labels.Jwt)
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
 	if this_user == None:
-		return JsonUtil.jwt_failure()
+		return JsonUtil.jwt_failure("bad jwt")
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
 			Labels.User : this_user.toPublicDict()

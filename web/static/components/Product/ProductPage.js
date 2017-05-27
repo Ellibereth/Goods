@@ -5,6 +5,7 @@ import ProductTemplates from './ProductTemplates/ProductTemplates'
 import StoryTemplates from './StoryTemplates/StoryTemplates'
 
 import PageContainer from '../Misc/PageContainer'
+import Spinner from '../Misc/Spinner'
 
 
 
@@ -14,7 +15,8 @@ export default class ProductPage extends React.Component {
 		this.state = {
 			product : [],
 			invalid_product : true,
-			is_loading : true	
+			is_loading : true,
+			spinner_loading : true
 		}
 		this.generateMainComponent = this.generateMainComponent.bind(this)
 	}
@@ -58,14 +60,22 @@ export default class ProductPage extends React.Component {
 		this.getProductInformation.bind(this)()	
 	}
 
+	setLoading(spinner_loading){ 
+		this.setState({spinner_loading : spinner_loading})
+	}
+
+
 
 	generateMainComponent (){
 		return (
 			<div class = "container-fluid">
+				{this.state.spinner_loading && <Spinner />}
 				<div className = "small-buffer"/>
 				<ProductTemplates 
+					setLoading = {this.setLoading.bind(this)}
 					product = {this.state.product}
 					is_loading = {this.state.is_loading}
+
 					/>
 				<div className = "row">
 					<div className = "top-buffer"/>
@@ -73,7 +83,7 @@ export default class ProductPage extends React.Component {
 				</div>
 				<StoryTemplates 
 					product = {this.state.product}
-				 	is_loading = {this.state.is_loading}/>
+				 	/>
 			</div>
 		)
 		
@@ -96,6 +106,8 @@ export default class ProductPage extends React.Component {
 		else {
 			var component = this.generateMainComponent()			
 		}		
+
+
 
 		return (
 				<PageContainer component ={component}/>

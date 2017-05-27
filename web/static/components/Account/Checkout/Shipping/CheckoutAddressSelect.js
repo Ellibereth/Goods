@@ -19,10 +19,8 @@ export default class CheckoutAddressSelect extends React.Component {
 		}
 	}
 
-
-	setAddress(){
-	
-			this.props.openEditable(BILLING_INDEX)	
+	setAddress(){	
+		this.props.openEditable(BILLING_INDEX)	
 	}
 
 	onAddressChange(index){
@@ -80,7 +78,9 @@ export default class CheckoutAddressSelect extends React.Component {
 				onAddingNewShippingAddress = {this.props.onAddingNewShippingAddress}
 				show = {this.props.address_modal_open} 
 				toggleModal = {this.props.toggleModal}
-				refreshCheckoutInformation = {this.props.refreshCheckoutInformation}/>
+				refreshCheckoutInformation = {this.props.refreshCheckoutInformation}
+				setLoading = {this.props.setLoading}
+				/>
 				{this.props.can_edit ? 
 					<div>
 						<div className = "row">

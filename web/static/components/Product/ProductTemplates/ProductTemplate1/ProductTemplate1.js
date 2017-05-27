@@ -19,19 +19,10 @@ export default class ProductTemplate1 extends React.Component {
 			items : [],
 			price : null,
 			cart_item : [],
-			is_loading : true,
 			more_information_open : false
 		}
 	}
 
-
-	startLoading(){
-		$('#product-page-container').addClass("faded")
-	}
-
-	endLoading(){
-		$('#product-page-container').removeClass("faded");
-	}
 
 	getMainImageId(product) {
 		if (product == null || product.product_id == null) return null;
@@ -64,8 +55,7 @@ export default class ProductTemplate1 extends React.Component {
 		if (!AppStore.getCurrentUser()){
 			return
 		}
-		// this.setState({is_loading : true})
-		$('#product-page-container').addClass("faded");
+		this.props.setLoading(true)
 			var form_data = JSON.stringify({
 			"jwt" : localStorage.jwt
 			})
@@ -88,8 +78,7 @@ export default class ProductTemplate1 extends React.Component {
 					else {
 						console.log(data.error)
 					}
-				$('#product-page-container').removeClass("faded");
-				this.setState({is_loading : false})
+				this.props.setLoading(false)
 				}.bind(this),
 				error : function(){
 					console.log("an internal server error")
@@ -103,20 +92,14 @@ export default class ProductTemplate1 extends React.Component {
 
 
 	render() {
-		// keep in mind for the fade on loading
-		// this wasn't working last I checked
-		if (this.props.is_loading){
-			this.startLoading()
-		}
-		else {	
-			this.endLoading()
-		}
 
 
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 		if (this.props.is_loading){
 			return <div/>
 		}
+
+
 	
 		
 		return (	
@@ -134,7 +117,7 @@ export default class ProductTemplate1 extends React.Component {
 							<div className = "panel-content">
 								<ProductImages selectImage = {this.selectImage.bind(this)}
 								selected_image  = {this.state.selected_image}
-								 product = {this.props.product}/>
+								product = {this.props.product}/>
 							</div>
 						</div>
 
@@ -168,7 +151,9 @@ export default class ProductTemplate1 extends React.Component {
 
 						<AddToCartButton cart_item = {this.state.cart_item}
 						refreshUserInformation = {this.refreshUserInformation.bind(this)}
-						product = {this.props.product}/>
+						product = {this.props.product}
+						setLoading = {this.props.setLoading}
+						/>
 
 						<div className = 'top-buffer'/>
 						<ProductDescriptionTab product = {this.props.product}/>

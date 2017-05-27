@@ -104,7 +104,7 @@ export default class TopNavBar extends React.Component {
 			<div>
 				<LargeNavBar getSearchBar = {this.getSearchBar.bind(this, LARGE)} visible = {!this.state.small_navbar_visible}/>
 				<SmallNavBar getSearchBar = {this.getSearchBar.bind(this, SMALL)} visible = {this.state.small_navbar_visible}/>
-				<SiteMap />
+				{/* <SiteMap /> */}
 			</div>
 		);
 	}

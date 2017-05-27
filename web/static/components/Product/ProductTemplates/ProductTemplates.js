@@ -28,12 +28,13 @@ export default class ProductTemplates extends React.Component {
 				return <ProductTemplate1 
 					product = {this.props.product}
 					is_loading = {this.props.is_loading}
+					setLoading = {this.props.setLoading}
 					/>
 				break;
 			case 2:
 				return <ProductTemplate2
 					product = {this.props.product}
-					is_loading = {this.props.is_loading}
+					setLoading = {this.props.setLoading}
 					/>
 				break;
 			default:

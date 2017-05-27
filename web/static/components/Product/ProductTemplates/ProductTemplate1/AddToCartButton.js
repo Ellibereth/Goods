@@ -40,6 +40,7 @@ export default class AddToCartButton extends React.Component {
 
 
 	addToCart(){
+
 		if (this.props.product.has_variants && !this.state.variant) {
 			swal({
 				title : "You must select a type.",
@@ -48,6 +49,7 @@ export default class AddToCartButton extends React.Component {
 		}
 
 		else {
+			this.props.setLoading(true)
 			this.setState({buy_disabled : true})
 			$.ajax({
 				type: "POST",
@@ -85,6 +87,7 @@ export default class AddToCartButton extends React.Component {
 									type: "error" 
 								})
 						}
+						this.props.setLoading(false)
 						this.setState({buy_disabled : false})
 				}.bind(this),
 				error : function(){

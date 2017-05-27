@@ -62,6 +62,7 @@ export default class CheckoutAddBilling extends React.Component {
 	}
 
 	addCreditCard(){
+		this.props.setLoading(true)
 		this.props.toggleModal()
 		var data = {}
 		if (this.state.use_same_as_shipping){
@@ -102,6 +103,7 @@ export default class CheckoutAddBilling extends React.Component {
 					
 					this.props.onAddingNewBillingMethod()
 				}
+				this.props.setLoading(false)
 
 			}.bind(this),
 			error : function(){

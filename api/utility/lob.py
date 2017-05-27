@@ -19,8 +19,6 @@ class Lob:
 		try:
 			verification = Lob.verifyAddress(name, address_line1, address_line2, address_city,
 				address_state, address_zip, address_country)
-			print(verification[DELIVERABILITY])
-			print(verification)
 			if verification[DELIVERABILITY] in ERROR_DELIVERABLE:
 				raise Exception("Error, we cannot deliver to this address. \
 				Please check your information and try again.")

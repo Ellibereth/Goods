@@ -9,7 +9,10 @@ import CheckoutAddressSelect from './Shipping/CheckoutAddressSelect.js'
 import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
 import CheckoutPriceRow from './CheckoutPriceRow'
 import {formatPrice} from '../../Input/Util'
+import Spinner from '../../Misc/Spinner'
 import {Button} from 'react-bootstrap'
+
+
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
 
@@ -40,6 +43,10 @@ export default class CheckoutPage extends React.Component {
 		this.getSelectedCard = this.getSelectedCard.bind(this)
 		this.getSelectedAddress = this.getSelectedAddress.bind(this)
 		this.canCheckout = this.canCheckout.bind(this)
+	}
+
+	setLoading(is_loading){
+		this.setState({is_loading : is_loading})
 	}
 
 	toggleAddressModal(){
@@ -312,110 +319,113 @@ export default class CheckoutPage extends React.Component {
 
 	render() {
 		var can_checkout = this.canCheckout()
+
 		return (
 			<PageContainer {...this.props}
 				component = {
-
-				<div id = "checkout-container" 
-				className = {this.state.is_loading ? "container faded" : "container"}
-				>		
-					<CheckoutAddBillingModal 
-						selected_address = {this.getSelectedAddress()}
-						show = {this.state.billing_modal_open}
-						toggleModal = {this.toggleBillingModal.bind(this)}
-						onAddingNewBillingMethod = {this.onAddingNewBillingMethod.bind(this)}
-					/>
-
-					<div className = "col-sm-9 col-md-9 col-lg-9">
-						<CheckoutAddressSelect 
-							selected_address_index = {this.state.selected_address_index}
-							toggleModal = {this.toggleAddressModal.bind(this)}
-							address_modal_open = {this.state.address_modal_open}
-							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-							setAddress = {this.setAddress.bind(this)}
-							addresses = {this.state.addresses}
-							addressToString = {this.addressToString} 
-							can_edit = {this.state.can_edit[ADDRESS_INDEX]}
-							openEditable = {this.openEditable.bind(this)}
-							closeEditable = {() => this.closeEditable.bind(this)(ADDRESS_INDEX)}
-							address = {this.getSelectedAddress.bind(this)()}
-							onAddingNewShippingAddress = {this.onAddingNewShippingAddress.bind(this)}
-							/>
-
-						<hr/>
-
-						<CheckoutCardSelect 
-							selected_card_index = {this.state.selected_card_index}
+					<div id = "checkout-container" 
+					className = {this.state.is_loading ? "container faded" : "container"}
+					>	
+						{this.state.is_loading && <Spinner />}
+						<CheckoutAddBillingModal 
+							setLoading = {this.setLoading.bind(this)}
 							selected_address = {this.getSelectedAddress()}
+							show = {this.state.billing_modal_open}
 							toggleModal = {this.toggleBillingModal.bind(this)}
-							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-							setCard = {this.setCard.bind(this)} 
-							cards = {this.state.cards} 
-							card = {this.getSelectedCard.bind(this)()}
-							can_edit = {this.state.can_edit[BILLING_INDEX]}
-							openEditable = {this.openEditable.bind(this)}
-							closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
+							onAddingNewBillingMethod = {this.onAddingNewBillingMethod.bind(this)}
 						/>
-						<hr/>
-						<div className = "well" >
-							<div className = "row">
-								<div className = "col-md-5 col-lg-5 col-sm-5 checkout-item-label-editable vcenter">
-									<span className = "checkout-section-title"> <b> 3. Items </b> </span>
-								</div>
-							</div>
+
+						<div className = "col-sm-9 col-md-9 col-lg-9">
+							<CheckoutAddressSelect 
+								selected_address_index = {this.state.selected_address_index}
+								toggleModal = {this.toggleAddressModal.bind(this)}
+								address_modal_open = {this.state.address_modal_open}
+								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+								setAddress = {this.setAddress.bind(this)}
+								addresses = {this.state.addresses}
+								addressToString = {this.addressToString} 
+								can_edit = {this.state.can_edit[ADDRESS_INDEX]}
+								openEditable = {this.openEditable.bind(this)}
+								closeEditable = {() => this.closeEditable.bind(this)(ADDRESS_INDEX)}
+								address = {this.getSelectedAddress.bind(this)()}
+								onAddingNewShippingAddress = {this.onAddingNewShippingAddress.bind(this)}
+								setLoading = {this.setLoading.bind(this)}
+								/>
+
 							<hr/>
-							<CartDisplay 
-							is_loading = {this.state.is_loading}
-							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-							price = {formatPrice(this.state.total_price)}
-							items = {this.state.items}
+
+							<CheckoutCardSelect 
+								selected_card_index = {this.state.selected_card_index}
+								selected_address = {this.getSelectedAddress()}
+								toggleModal = {this.toggleBillingModal.bind(this)}
+								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+								setCard = {this.setCard.bind(this)} 
+								cards = {this.state.cards} 
+								card = {this.getSelectedCard.bind(this)()}
+								can_edit = {this.state.can_edit[BILLING_INDEX]}
+								openEditable = {this.openEditable.bind(this)}
+								closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
 							/>
-						</div>
-					</div>
-
-					<div className = "col-sm-3 col-md-3 col-lg-3">
-						<div className="panel panel-default">
-							<div className="panel-body">
+							<hr/>
+							<div className = "well" >
 								<div className = "row">
-									<div className = "col-sm-12 col-md-12 col-lg-12 vcenter text-center">
-										<Button className = "checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
-											Place your order!
-										</Button>
-										<div className = "top-buffer"/>
-										<div className = "checkout-notice-of-terms-text">
-											By placing your order, you agree to our 
-											<Link to = "terms">
-												{" terms of service "}
-											</Link>
-											and 
-											<Link to = "privacy">
-												{" privacy policy"}
-											</Link>
-										</div>
+									<div className = "col-md-5 col-lg-5 col-sm-5 checkout-item-label-editable vcenter">
+										<span className = "checkout-section-title"> <b> 3. Items </b> </span>
 									</div>
 								</div>
 								<hr/>
-								<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-								label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
-								<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-								label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
-								<hr/>
-								<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
-								label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
+								<CartDisplay 
+								is_loading = {this.state.is_loading}
+								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+								price = {formatPrice(this.state.total_price)}
+								items = {this.state.items}
+								/>
 							</div>
+						</div>
 
-							<div className="panel-footer">
-								<div className = "row">
-									<div className = "col-sm-12 col-md-12 col-lg-12">
-										<div className = "clickable-text checkout-footer-text">
-											How are shipping costs calculated?
+						<div className = "col-sm-3 col-md-3 col-lg-3">
+							<div className="panel panel-default">
+								<div className="panel-body">
+									<div className = "row">
+										<div className = "col-sm-12 col-md-12 col-lg-12 vcenter text-center">
+											<Button className = "checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
+												Place your order!
+											</Button>
+											<div className = "top-buffer"/>
+											<div className = "checkout-notice-of-terms-text">
+												By placing your order, you agree to our 
+												<Link to = "terms">
+													{" terms of service "}
+												</Link>
+												and 
+												<Link to = "privacy">
+													{" privacy policy"}
+												</Link>
+											</div>
+										</div>
+									</div>
+									<hr/>
+									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+									label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
+									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+									label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
+									<hr/>
+									<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
+									label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
+								</div>
+
+								<div className="panel-footer">
+									<div className = "row">
+										<div className = "col-sm-12 col-md-12 col-lg-12">
+											<div className = "clickable-text checkout-footer-text">
+												How are shipping costs calculated?
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 			}/>	
 		)
 	}

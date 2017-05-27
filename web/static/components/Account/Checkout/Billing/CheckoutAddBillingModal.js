@@ -41,6 +41,7 @@ render() {
 		</Modal.Header>
 			<Modal.Body>
 			<CheckoutAddBilling
+				setLoading = {this.props.setLoading}
 				selected_address = {this.props.selected_address}
 				refreshCheckoutInformation = {this.props.refreshCheckoutInformation}
 				toggleModal = {this.props.toggleModal}
