@@ -72,11 +72,13 @@ class EmailHtml:
 
 		body = body + "<span style = \"font-size:18px;\"> <b> Shipping Address </b> </span>"
 		body = body + "<div style = \"padding-top:12px;\"> </div>"
-		body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.name + " </span> \
+		if address.address_line1 and address.address_line1 != "":
+			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.name + " </span> \
 		<span style = \"display:block;font-size: 18px;\"> " + address.address_line1 + " </span> "
 		if address.address_line2 and address.address_line2 != "":
 			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_line2 + " </span>"
-		body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_city + ", " + address.address_state \
+		if address.address_city and address.address_zip and address.address_state:
+			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_city + ", " + address.address_state \
 		+ " " + str(address.address_zip) + " </span>"
 		body = body + "<div style = \"padding-top: 18px;\"> </div>"
 		body = body + " <table cellspacing = \"0\" cellpadding = \"0\" \
