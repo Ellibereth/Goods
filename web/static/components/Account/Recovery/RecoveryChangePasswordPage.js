@@ -12,7 +12,9 @@ export default class RecoveryChangePasswordPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email : ""
+			email : "",
+			can_submit : true
+
 		}
 	}
 
@@ -30,28 +32,31 @@ export default class RecoveryChangePasswordPage extends React.Component {
 	}
 
 	onSubmitEmail(){
-		var form_data = JSON.stringify({
-			email : this.state.email
-		})
-		$.ajax({
-			type: "POST",
-			url: "/setRecoveryPin",
-			data: form_data,
-			success: function(data) {
-				swal({
-					title : "A recovery email has been sent to " + this.state.email,
-					type: "success"
-				})
-				setTimeout( function () {
-					browserHistory.push('/')
-				}, 2000)
-			}.bind(this),
-			error : function(){
-				console.log("error")
-			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+		if (this.state.can_submit){
+			this.setState({can_submit: true})
+			var form_data = JSON.stringify({
+				email : this.state.email
+			})
+			$.ajax({
+				type: "POST",
+				url: "/setRecoveryPin",
+				data: form_data,
+				success: function(data) {
+					swal({
+						title : "A recovery email has been sent to " + this.state.email,
+						type: "success"
+					})
+					setTimeout( function () {
+						browserHistory.push('/')
+					}, 2000)
+				}.bind(this),
+				error : function(){
+					console.log("error")
+				},
+				dataType: "json",
+				contentType : "application/json; charset=utf-8"
+			});
+		}
 	}
 
 	onKeyPress(e){

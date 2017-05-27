@@ -15,6 +15,11 @@ export default class OrderItemDisplay extends React.Component {
 		this.state = {
 			
 		}
+		this.goToProduct = this.goToProduct.bind(this)
+	}
+
+	goToProduct(){
+		browserHistory.push('/eg/' + this.props.order.product_id)
 	}
 
 	render() {
@@ -30,10 +35,11 @@ export default class OrderItemDisplay extends React.Component {
         				<table className="table table-bordered order-preview-table">
         					<thead>
         						<tr className = "noborder">
-        							<th> <img className = "order-preview-image" src = {src_base + order.main_image} /> </th>
-        							<th className = "table-header-vertical-align-center">  
-        								<div> {order.name} </div>
-        								<div> Quantity: {order.num_items} @ ${formatPrice(order.price)} (each) </div>
+        							<th> <img onClick = {this.goToProduct}
+        							className = "order-preview-image" src = {src_base + order.main_image} /> </th>
+        							<th className = "clickable-text table-header-vertical-align-center">  
+        								<div  onClick = {this.goToProduct}> {order.name} </div>
+        								<div  onClick = {this.goToProduct}> Quantity: {order.num_items} @ ${formatPrice(order.price)} (each) </div>
         							</th>
         						</tr>
         					</thead>
@@ -41,10 +47,6 @@ export default class OrderItemDisplay extends React.Component {
 	        					<tr>
 	        						<td className = "light-grey-background grey-text">  DATE  </td>
         							<td> {formatted_date}  </td>
-	        					</tr>
-	        					<tr>
-	        						<td className = "light-grey-background grey-text">  PRICE  </td>
-        							<td>  ${formatPrice(order.total_price)} </td>
 	        					</tr>
         					</tbody>
         				</table>

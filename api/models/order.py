@@ -93,6 +93,7 @@ class Order(db.Model):
 		public_dict[Labels.Price] = self.price
 		public_dict[Labels.TotalPrice] = self.price * self.num_items
 		public_dict[Labels.DateCreated] = self.date_created
+		public_dict[Labels.ProductId] = self.product_id
 		address = {
 			Labels.AddressName : self.address_name,
 			Labels.AddressDescription : self.address_description,

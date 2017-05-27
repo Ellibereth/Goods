@@ -104,7 +104,15 @@ export default class AddToCartButton extends React.Component {
 	}
 
 	onNonUserClick(){
-		swal("Sign up to start shopping!")	
+		swal({
+			title: "Sign up before adding items to cart",
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: "Register Now",
+			closeOnConfirm: true
+			},
+			function(isConfirm){
+				browserHistory.push('/register')
+			})	
 	}
 
 	render() {

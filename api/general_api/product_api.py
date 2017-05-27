@@ -67,6 +67,10 @@ def getMarketProducts():
 @product_api.route('/getMarketProductInfo', methods = ['POST'])
 def getMarketProductInfo():
 	product_id = request.json.get(Labels.ProductId)
+	if not product_id:
+		return JsonUtil.failure("Bad Product Id")
+	if not product_id.isdigit():
+		return JsonUtil.failure("Bad Product Id")
 	market_product = MarketProduct.query.filter_by(product_id = product_id, active = True).first()
 	if market_product == None:
 		return JsonUtil.failure("Error retrieving product information")

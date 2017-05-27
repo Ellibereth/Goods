@@ -16,9 +16,9 @@ class EmailHtml:
 		msg['To'] = user.email
 		url = URL + "recovery/" + user.recovery_pin
 		body = "<h2> Hello " + user.name.title() + ",</h2>"
-		body = body + "<span style = \"display:block;font-size: 14px;\">  Click below to rcover your account </span>"
+		body = body + "<span style = \"display:block;font-size: 14px;\">  Click below to recover your account </span>"
 		body = body + "<span style = \"display:block;font-size: 14px;\">  This link will expire in 15 minutes </span>"
-		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
+		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:16px; border:none;border-radius:6px;\"> \
 			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">  Recover Account </a> </button> </div>"
 
 		textPart = MIMEText(body, 'html')
