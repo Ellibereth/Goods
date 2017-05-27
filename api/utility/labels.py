@@ -174,6 +174,7 @@ class PaymentLabels:
 	CardBrand = "card_brand"
 	CardLast4 = "card_last4"
 	Source = "source"
+	Last4 = "last4"
 
 
 class CartLabels:
