@@ -74,7 +74,7 @@ class Order(db.Model):
 		self.main_image = product.main_image
 		self.card_last4 = stripe_charge[Labels.Source][Labels.Last4]
 		self.card_brand = stripe_charge[Labels.Source][Labels.Brand]
-		self.date_created = date_created0
+		self.date_created = date_created
 		db.Model.__init__(self)
 		
 	@staticmethod
