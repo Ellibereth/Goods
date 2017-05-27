@@ -36,6 +36,8 @@ import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirme
 import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
 import SearchPage from './Search/SearchPage'
 import SupportPage from './CustomerService/SupportPage'
+import RecoveryPage from './Account/Recovery/RecoveryPage'
+import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
 
 export default class Main extends React.Component {
 	
@@ -133,6 +135,8 @@ ReactDOM.render(
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>
 			<Route path = "support" component = {SupportPage}/>
+			<Route path = "recovery/:recovery_pin" component = {RecoveryPage}/>
+			<Route path = "recoverAccount" component = {RecoveryChangePasswordPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

@@ -128,11 +128,23 @@ def sendPurchaseNotification(user, cart, address, order_id):
 
 	# send the customer confirmation msg = MIMEMultipart()
 	# this will be changed but is a fun place holder!
-
-	# msg = EmailHtml.generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address)
-	# smtpserver.send_message(msg)
+	msg = EmailHtml.generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address)
+	smtpserver.send_message(msg)
 	smtpserver.close()
 
+
+def sendRecoveryEmail(user):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	msg = EmailHtml.generateRecoveryEmail(user)
+	smtpserver.send_message(msg)
+	smtpserver.close()
 
 
 
@@ -140,7 +152,7 @@ def testEmail():
 	email = "spallstar28@gmail.com"
 	confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
 	name = "DAREK"
-	# sendEmailConfirmation(email, confirmation_id, name)
+	sendEmailConfirmation(email, confirmation_id, name)
 	order_id = "123SAMPLEORDERID"
 
 	user = User.query.filter_by(email = email).first()

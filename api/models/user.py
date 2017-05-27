@@ -3,6 +3,7 @@ from api.utility.table_names import TestTables
 from passlib.hash import argon2
 from api.models.shared_models import db
 import time
+import datetime
 import random
 import string
 from api.utility.stripe_api import StripeManager
@@ -36,6 +37,8 @@ class User(db.Model):
 	default_address = db.Column(db.String)
 	default_card = db.Column(db.String)
 	deleted_account_email = db.Column(db.String)
+	recovery_pin = db.Column(db.String)
+	recovery_pin_expiration = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -64,6 +67,16 @@ class User(db.Model):
 			new_confirmation_id = IdUtil.id_generator()
 			missing = User.query.filter_by(email_confirmation_id = new_confirmation_id).first()
 		return new_confirmation_id
+
+
+	@staticmethod
+	def generateRecoveryPin():
+		new_recovery_pin = IdUtil.id_generator()
+		missing = User.query.filter_by(recovery_pin = new_recovery_pin).first()
+		while missing is not None:
+			new_recovery_pin = IdUtil.id_generator()
+			missing = User.query.filter_by(recovery_pin = new_recovery_pin).first()
+		return new_recovery_pin
 
 	
 	# right now this method only checks if the password is at least 6 characters
@@ -123,6 +136,12 @@ class User(db.Model):
 		public_dict[Labels.DefaultAddress] = self.default_address
 		return public_dict
 
+
+	def setRecoveryPin(self):
+		self.recovery_pin = self.generateRecoveryPin()
+		self.recovery_pin_expiration = datetime.datetime.now() + datetime.timedelta(minutes = 15)
+		db.session.commit()
+
 	# do you think these methods should be static or instance?
 	# here is an example implementation for static 
 	@staticmethod
@@ -156,6 +175,12 @@ class User(db.Model):
 			return True
 		else:
 			return False
+
+	def setPasswordWithRecovery(self, password):
+		self.password_hash = User.argonHash(password)
+		self.recovery_pin = None
+		self.recovery_pin_expiration = None
+		db.session.commit()
 
 	# new settings is a dictionary object
 	# this part is slightly hard coded :P
@@ -220,7 +245,6 @@ class User(db.Model):
 	# in actuality this method deletes the previous address with the id and then recreates one
 	def editAddress(self, address_id, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
-		print(address_id)
 		Lob.deleteAddress(address_id)
 		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
 			, address_line2 = address_line2, address_city = address_city,

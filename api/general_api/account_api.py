@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 import time
+import datetime
 from api.models.user import User
 from api.utility.table_names import ProdTables
 from api.utility import email_api
@@ -360,6 +361,60 @@ def setDefaultCard():
 	this_user.default_card = card_id
 	db.session.commit()
 	return JsonUtil.success()
+
+@account_api.route('/setRecoveryPin', methods = ['POST'])
+def setRecoveryPin():
+	email = request.json.get(Labels.Email)
+	user = User.query.filter_by(email = email).first()
+	if user:
+		user.setRecoveryPin()
+		email_api.sendRecoveryEmail(user)
+		return JsonUtil.successWithOutput()
+	else:
+		return JsonUtil.success()
+
+
+@account_api.route('/checkRecoveryInformation', methods = ['POST'])
+def checkRecoveryInformation():
+	recovery_pin = request.json.get(Labels.RecoveryPin)
+	user = User.query.filter_by(recovery_pin = recovery_pin).first()
+	if user:
+		if datetime.datetime.now() > user.recovery_pin_expiration:
+			return JsonUtil.failure("This link is invalid or has expired")
+		else:
+			return JsonUtil.success()
+	else:
+		return JsonUtil.failure("This link is invalid or has expired")
+
+
+@account_api.route('/recoverySetPassword', methods = ['POST'])
+def recoverySetPassword():
+	password = request.json.get(Labels.Password)
+	password_confirm = request.json.get(Labels.PasswordConfirm)
+	recovery_pin = request.json.get(Labels.RecoveryPin)
+	user = User.query.filter_by(recovery_pin = recovery_pin).first()
+	if not password or password == "" or not password_confirm or password_confirm == "":
+		return JsonUtil.failure("Passwords cannot be blank")
+
+	if password != password_confirm:
+		return JsonUtil.failure("Passwords do not match")
+
+	if user:
+		if datetime.datetime.now() > user.recovery_pin_expiration:
+			return JsonUtil.failure("This recovery link is invalid or has expired")
+		else:
+			is_valid_password = User.validatePasswordSubimssion(password)
+			if is_valid_password[Labels.Success]:
+				user.setPasswordWithRecovery(password)
+				return JsonUtil.success()
+			else:
+				return JsonUtil.failure(is_valid_password[Labels.Error])
+	else:
+		return JsonUtil.failure("This recovery link is invalid or has expired")
+
+
+	
+	
 
 
 

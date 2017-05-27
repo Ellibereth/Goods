@@ -2,6 +2,8 @@
 
 
 class UserLabels:
+	RecoveryPin = "recovery_pin"
+	RecoveryPinExpiration = "recovery_pin_expiration"
 	Email = "email"
 	TimeStamp = "time_stamp"
 	EmailConfirmationId = "email_confirmation_id"
