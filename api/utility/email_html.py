@@ -74,7 +74,7 @@ class EmailHtml:
 		body = body + "<div style = \"padding-top:12px;\"> </div>"
 		body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.name + " </span> \
 		<span style = \"display:block;font-size: 18px;\"> " + address.address_line1 + " </span> "
-		if address.address_line2 != "":
+		if address.address_line2 and address.address_line2 != "":
 			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_line2 + " </span>"
 		body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_city + ", " + address.address_state \
 		+ " " + str(address.address_zip) + " </span>"
