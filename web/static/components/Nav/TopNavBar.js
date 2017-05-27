@@ -81,9 +81,9 @@ export default class TopNavBar extends React.Component {
 					  className = {search_bar_class}
 					  role="search">
 					<div className="input-group ">
-						<input  onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
+						<input style = {{"height" : "34px"}} onChange = {this.onSearchChange.bind(this)} type="text" className="form-control" placeholder="Search" name="srch-term" id="srch-term"/>
 						<div className="input-group-btn nav-search-icon">
-							<button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+							<button style = {{"height" : "34px"}} className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
 						</div>
 					</div>
 				</form>

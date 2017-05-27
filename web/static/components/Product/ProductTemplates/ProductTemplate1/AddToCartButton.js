@@ -108,10 +108,14 @@ export default class AddToCartButton extends React.Component {
 			title: "Sign up before adding items to cart",
 			confirmButtonColor: "#DD6B55",
 			confirmButtonText: "Register Now",
-			closeOnConfirm: true
+			showCloseButton: true,
+			closeOnConfirm: true,
+			allowOutsideClick: true
 			},
 			function(isConfirm){
-				browserHistory.push('/register')
+				if (isConfirm){
+					browserHistory.push('/register')					
+				}
 			})	
 	}
 
