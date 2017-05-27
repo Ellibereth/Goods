@@ -245,6 +245,7 @@ class User(db.Model):
 	# in actuality this method deletes the previous address with the id and then recreates one
 	def editAddress(self, address_id, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
+
 		Lob.deleteAddress(address_id)
 		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
 			, address_line2 = address_line2, address_city = address_city,

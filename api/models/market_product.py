@@ -28,6 +28,7 @@ class MarketProduct(db.Model):
 	manufacturer = db.Column(db.String)
 	num_items_limit = db.Column(db.Integer)
 	has_variants = db.Column(db.Boolean, default = False)
+	variant_type_description = db.Column(db.Boolean, default = "type")
 
 	story_text = db.Column(db.String, default = "PUT IN SOME TEXT HERE ABOUT YOUR STORY")
 	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
