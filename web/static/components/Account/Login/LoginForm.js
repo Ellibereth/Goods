@@ -37,7 +37,7 @@ export default class RegisterAccountForm extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry!", "It seems there was an error in your submission! " + data.error + ". Please try again!", "warning")
+					swal("Sorry!", "It seems there was an error in your submission. " + data.error + ". Please try again!", "warning")
 				}
 				else {
 					AppActions.addCurrentUser(data.user, data.jwt)

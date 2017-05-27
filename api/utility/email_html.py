@@ -15,7 +15,7 @@ class EmailHtml:
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = user.email
 		url = URL + "recovery/" + user.recovery_pin
-		body = "<h2> Hello, " + user.name.title() + "</h2>"
+		body = "<h2> Hello " + user.name.title() + ",</h2>"
 		body = body + "<span style = \"display:block;font-size: 14px;\">  Click below to rcover your account </span>"
 		body = body + "<span style = \"display:block;font-size: 14px;\">  This link will expire in 15 minutes </span>"
 		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
@@ -27,7 +27,7 @@ class EmailHtml:
 
 	def generateConfirmationEmailHtml(email, email_confirmation_id, name):
 		url = URL + "confirmEmail/" + email_confirmation_id
-		body = "<h2> Hello, " + name.title() + "</h2>"
+		body = "<h2> Hello " + name.title() + ",</h2>"
 		body = body + "<span style = \"display:block;font-size: 14px;\"> Thank you for signing up! Click below to confirm your account </span>"
 		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
 			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">  Confirm Email </a> </button> </div>"
@@ -43,7 +43,7 @@ class EmailHtml:
 		msg['To'] = ", ".join(recipients)
 		body = "<div style = \"width:70%\">"
 		body = body + "<div style = \"text-align:center\">"
-		body = body + "<span style = \"display:block;font-size: 24px;color:#002868;\"> Hi, " + user.name + " </span>"
+		body = body + "<span style = \"display:block;font-size: 24px;color:#002868;\"> Hi " + user.name + ", </span>"
 		body = body + "<div style = \"border-top:solid; border-width: 1px; border-color:lightgrey; padding-bottom: 12px\"> </div>"
 		num_items = len(cart.toPublicDict()['items'])
 		first_item = cart.toPublicDict()['items'][0]
