@@ -15,8 +15,7 @@ export default class SiteMap extends React.Component {
 	}
 
 	getSiteMap(){
-		var pathname = location.pathname
-		var first_path = pathname.split('/')
+		var pathname = location.pathname.split('/')[1]
 		switch(pathname) {
 			case "search":
 				return <Link to = {'/' + pathname}> Search </Link>
