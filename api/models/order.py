@@ -11,11 +11,48 @@ from api.models.market_product import MarketProduct
 from api.utility.lob import Lob
 from api.utility.stripe_api import StripeManager
 
-## I understand there are magic strings in this, but not sure the best way to get around it right now
-## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
+class Order:
+	def __init__(self, order_id):
+		self.order_id = order_id
+		self.items = OrderItem.query.filter_by(order_id = order_id).all()
+		self.items_price = self.getItemsPrice()
+		self.order_shipping = self.getShippingPrice()
+		self.date_created = self.getDateCreated()
+		self.total_price = self.items_price + self.order_shipping
+
+	def getItemsPrice(self):
+		total = 0
+		for this_item in self.items:
+			total = total + this_item.num_items * this_item.price
+		return total
+
+	def getShippingPrice(self):
+		if len(self.items) == 0:
+			return 0
+		else:
+			return self.items[0].order_shipping
+		return total
+
+	def getDateCreated(self):
+		if len(self.items) == 0:
+			return 0
+		else:
+			return self.items[0].date_created
+		return total
+
+
+	def toPublicDict(self):
+		public_dict = {}
+		public_dict[Labels.OrderId] = self.order_id
+		public_dict[Labels.Items] = [item.toPublicDict() for item in self.items]
+		public_dict[Labels.ItemsPrice] = self.items_price
+		public_dict[Labels.OrderShipping] = self.order_shipping
+		public_dict[Labels.TotalPrice] = self.total_price
+		public_dict[Labels.DateCreated] = self.date_created
+		return public_dict
 		
 ## user object class
-class Order(db.Model):
+class OrderItem(db.Model):
 	__tablename__ = ProdTables.OrderTable
 	primary_key = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	order_id = db.Column(db.String)
@@ -42,13 +79,14 @@ class Order(db.Model):
 	main_image = db.Column(db.String)
 	card_last4 = db.Column(db.String)
 	card_brand = db.Column(db.String)
+	order_shipping = db.Column(db.Float)
 
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, order_id, user, product, address, stripe_charge, 
+	def __init__(self, order_id, user, product, address, stripe_charge, order_shipping,
 				num_items = 1, variant_id = None, variant_type = None, date_created = db.func.current_timestamp()):
 		self.order_id = order_id
 		self.price = product.price
@@ -75,15 +113,16 @@ class Order(db.Model):
 		self.card_last4 = stripe_charge[Labels.Source][Labels.Last4]
 		self.card_brand = stripe_charge[Labels.Source][Labels.Brand]
 		self.date_created = date_created
+		self.order_shipping = order_shipping
 		db.Model.__init__(self)
 		
 	@staticmethod
 	def generateOrderId():
 		new_order_id = IdUtil.id_generator()
-		missing = Order.query.filter_by(order_id = new_order_id).all()
+		missing = OrderItem.query.filter_by(order_id = new_order_id).all()
 		while missing:
 			new_order_id = IdUtil.id_generator()
-			missing = Order.query.filter_by(order_id = new_order_id).all()
+			missing = OrderItem.query.filter_by(order_id = new_order_id).all()
 		return new_order_id
 
 	def toPublicDict(self):

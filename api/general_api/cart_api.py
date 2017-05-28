@@ -15,6 +15,7 @@ from api.utility.labels import CartLabels as Labels
 from api.utility.jwt_util import JwtUtil
 from api.utility import email_api 
 from api.models.order import Order
+from api.models.order import OrderItem
 from api.utility.lob import Lob
 
 cart_api = Blueprint('cart_api', __name__)
@@ -115,7 +116,7 @@ def checkoutCart():
 	this_cart = Cart(account_id)
 	total_price = this_cart.total_price
 	this_user = User.query.filter_by(account_id = account_id).first()
-	order_id = Order.generateOrderId()
+	order_id = OrderItem.generateOrderId()
 
 	# charge this price to the customer via stripe
 	# stripe automatically checks if the card matches the customer 
@@ -136,7 +137,8 @@ def checkoutCart():
 		else:
 			this_product.inventory = this_product.inventory - cart_item.num_items
 
-		new_order = Order(order_id, this_user, this_product, address, charge, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
+		order_shipping = this_cart.shipping_price
+		new_order = OrderItem(order_id, this_user, this_product, address, charge, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
 		db.session.add(new_order)
 		db.session.commit()
 

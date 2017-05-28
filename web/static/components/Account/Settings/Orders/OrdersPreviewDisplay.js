@@ -18,14 +18,13 @@ export default class OrdersPreview extends React.Component {
 	}
 
 	render() {
-		var items = this.props.items
-		var order_items = []
-		var total_price = 0;
-		for (var i = 0; i < this.props.items.length; i++){
-			order_items.push(<OrderItemDisplay order = {items[i]}/>)
-			total_price = total_price + items[i].price * items[i].num_items
+		var order = this.props.order
+		var items = this.props.order.items
+		var items_display = []
+		for (var i = 0; i < items.length; i++){
+			items_display.push(<OrderItemDisplay order = {items[i]}/>)
 		}
-		var item = this.props.items[0]
+		var item = items[0]
 		var local_date = new Date(item.date_created)
 		var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM TT");
 		var address = item.address
@@ -63,12 +62,13 @@ export default class OrdersPreview extends React.Component {
 				</div>
 
 				<div className = "panel-body">
-					{order_items}
+					{items_display}
 				</div>
 
 				<div className = "panel-footer">
-					<div className = "order-history-panel-header"> {"Shipping: $5.00"} </div>
-					<div className = "order-history-panel-header"> {"Order Total: $" + formatPrice(total_price)} </div>
+					<div className = "order-history-panel-header"> {"Items: $" + formatPrice(order.items_price)} </div>
+					<div className = "order-history-panel-header"> {"Shipping: $" + formatPrice(order.order_shipping)} </div>
+					<div className = "order-history-panel-header"> {"Order Total: $" + formatPrice(order.total_price)} </div>
 				</div>
 
 

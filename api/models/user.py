@@ -10,6 +10,7 @@ from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.id_util import IdUtil
 from api.utility.lob import Lob
+from api.models.order import OrderItem
 from api.models.order import Order
 from api.models.cart import Cart
 import re
@@ -102,7 +103,6 @@ class User(db.Model):
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
 		public_dict[Labels.IsAdmin] = self.is_admin
-
 		return public_dict
 
 
@@ -262,8 +262,19 @@ class User(db.Model):
 
 	# gets all user orders
 	def getUserOrders(self):
-		user_orders = Order.query.filter_by(account_id = self.account_id).order_by(Order.date_created.desc()).limit(10).all()
-		return [order.toPublicDict() for order in user_orders]
+		order_id_set = set()
+		ORDER_RETRIEVE_LIMIT = 20
+		for order_item in OrderItem.query.filter_by(account_id = self.account_id).all():
+			if len(order_id_set) < ORDER_RETRIEVE_LIMIT:
+				order_id_set.add(order_item.order_id)
+
+		orders = list()
+		for order_id in order_id_set:
+			orders.append(Order(order_id).toPublicDict())
+
+		sorted_orders = sorted(orders,  key=lambda k: k.get('date_created'))
+
+		return sorted_orders
 
 
 	# deletes the user and overwrites their email

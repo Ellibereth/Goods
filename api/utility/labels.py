@@ -176,6 +176,10 @@ class PaymentLabels:
 	Source = "source"
 	Last4 = "last4"
 	Brand = "brand"
+	OrderShipping = "order_shipping"
+	ItemsPrice = "items_price"
+	TotalPrice = "total_price"
+	Items = "items"
 
 
 class CartLabels:
