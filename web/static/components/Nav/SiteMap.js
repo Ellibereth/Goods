@@ -120,7 +120,7 @@ export default class SiteMap extends React.Component {
 				labels = ["Checkout"]
 				break;
 			default:
-				console.log("default")
+				return <div/>
 		}
 
 		labels.unshift("Home")

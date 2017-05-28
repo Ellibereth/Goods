@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link
 
 import {} from 'react-bootstrap';
+import AppStore from '../../stores/AppStore'
 
 
 export default class Breadcrumbs extends React.Component {
@@ -39,9 +40,12 @@ export default class Breadcrumbs extends React.Component {
 
 
 		return (
-			<ul className="breadcrumb">
-				{links}
-			</ul>
+			<div>
+				{AppStore.getCurrentUser() && <div style = {{"padding-top" : "25px"}}/>}
+				<ul className="breadcrumb">
+					{links}
+				</ul>
+			</div>
 		)
 	}
 }

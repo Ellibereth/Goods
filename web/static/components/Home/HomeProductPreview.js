@@ -14,10 +14,10 @@ export default class ProductPreview extends React.Component {
 		}
   	}
 
-  	goToProduct(event){
-  		event.preventDefault()
-  		browserHistory.push('/eg/' + this.props.product.product_id)
-  	}
+  	// goToProduct(event){
+  	// 	event.preventDefault()
+  	// 	browserHistory.push('/eg/' + this.props.product.product_id)
+  	// }
 
 
 
@@ -31,28 +31,31 @@ export default class ProductPreview extends React.Component {
 
 			<div 
 			id = {this.props.product.product_id} 
-			onClick = {this.goToProduct.bind(this)}
+			// onClick = {this.goToProduct.bind(this)}
 			className = {"home-product-preview col-md-" + col_size + " col-lg-" + col_size}
 			>
-				<div className = "row home-product-preview-image-row">
-					{this.props.product.images.length == 0 ? 
-						<div> No Image For This Product </div>
+				<a href = {'/eg/' + this.props.product.product_id} style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
 
-							:
-							<a onClick = {this.goToProduct.bind(this)} style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
-								<img 
-								src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
-								+ this.props.product.main_image}
-								className = "img-responsive img-rounded center-block home-product-preview-image"/>
-							</a>
-					}
-				</div>
-				<div className = "row home-product-preview-details">
-						<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> <br/>
-						<span className = "home-product-preview-name"> {this.props.product.name} </span> <br/>
-						
-						<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
-				</div>
+
+					<div className = "row home-product-preview-image-row">
+						{this.props.product.images.length == 0 ? 
+							<div> No Image For This Product </div>
+
+								:
+								
+									<img 
+									src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
+									+ this.props.product.main_image}
+									className = "img-responsive img-rounded center-block home-product-preview-image"/>
+						}
+					</div>
+					<div className = "row home-product-preview-details">
+							<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> <br/>
+							<span className = "home-product-preview-name"> {this.props.product.name} </span> <br/>
+							
+							<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
+					</div>
+				</a>
 			</div>
 		);
 	}
