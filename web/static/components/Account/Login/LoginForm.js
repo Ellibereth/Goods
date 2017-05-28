@@ -84,14 +84,15 @@ export default class LoginForm extends React.Component {
 						type = {input_types[index]}
 						onChange = {this.onTextInputChange.bind(this)}
 						value = {this.state[form_input]} 
-						placeholder = {form_labels[index]}
+						label = {form_labels[index]}
+
 					/>
 		})
 
 		return (
 			<div className = "panel panel-primary account-panel">
 				<div className = "panel-heading account-panel-heading">
-					<div className = "text-center "> Register Today </div>
+					<div className = "text-center "> Login </div>
 				</div>
 				<div className = "panel-body account-panel-body">
 					<Form onSubmit = {this.submitData.bind(this)} horizontal>

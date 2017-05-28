@@ -1,0 +1,48 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var Link = require('react-router').Link
+
+import {} from 'react-bootstrap';
+
+
+export default class Breadcrumbs extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+		
+		}
+	}
+
+	componentDidMount(){
+
+	}
+
+	render(){
+		var labels = this.props.labels
+		var routes = this.props.routes
+		var links = []
+		for (var i  = 0; i < routes.length; i++){
+			if (i == routes.length - 1){
+				links.push(
+					<li className="active"> {labels[i]} </li>
+				)
+			}
+			else {
+				links.push(
+					<li> 
+						<Link to = {"/" + routes[i]}> {labels[i]} </Link>
+					</li>
+				)
+			}
+		}	
+
+
+		return (
+			<ul className="breadcrumb">
+				{links}
+			</ul>
+		)
+	}
+}
+

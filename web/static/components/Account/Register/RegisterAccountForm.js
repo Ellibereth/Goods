@@ -118,7 +118,7 @@ export default class RegisterAccountForm extends React.Component {
 						type = {input_types[index]}
 						onChange = {this.onTextInputChange.bind(this)}
 						value = {this.state[form_input]} 
-						placeholder = {form_labels[index]}
+						label = {form_labels[index]}
 					/>
 		})
 

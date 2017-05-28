@@ -38,12 +38,10 @@ export default class ProductPreview extends React.Component {
 						<div> No Image For This Product </div>
 
 							:
-							<a style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
 							<img 
 							src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
 							+ this.props.product.main_image}
 							className = "img-responsive img-rounded center-block home-product-preview-image"/>
-							</a>
 					}
 				</div>
 				<div className = "row home-product-preview-details">

@@ -3,67 +3,130 @@ var ReactDOM = require('react-dom');
 
 var browserHistory = require('react-router').browserHistory
 var Link = require('react-router').Link
+import createHistory from 'history/createBrowserHistory'
+const history = createHistory()
+
 import {} from 'react-bootstrap';
+import Breadcrumbs from './Breadcrumbs'
 
 
 export default class SiteMap extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			pathname : location.pathname.split('/')[1]
 		}
 		this.getSiteMap = this.getSiteMap.bind(this)
 	}
 
+	componentDidMount(){
+		history.listen((location, action) => {
+			console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
+			console.log(`The last navigation action was ${action}`)
+		})
+	}
+
 	getSiteMap(){
-		var pathname = location.pathname.split('/')[1]
+		var pathname = this.state.pathname
+		var routes = []
+		var labels = []
 		switch(pathname) {
 			case "search":
-				return <Link to = {'/' + pathname}> Search </Link>
+				routes = [pathname]
+				labels = ["Search"]
+				break;
 			case "Support":
-				return <Link to = {'/' + pathname}> Support </Link>
+				routes = [pathname]
+				labels = ["Support"]
+				break;
 			case "recovery":
-				return <Link to = {'/' + pathname}> Change Password </Link>
+				routes = [pathname]
+				labels = ["Set Password"]
+				break;
 			case "recoverAccount":
-				return <Link to = {'/' + pathname}> Recover Account </Link>
+				routes = [pathname]
+				labels = ["Recover Account"]
+				break;
 			case "confirmRequest":
-				return <Link to = {'/' + pathname}> Confirm Request </Link>
+				routes = [pathname]
+				labels = ["Confirm Request"]
+				break;
 			case "confirmEmail":
-				return <Link to = {'/' + pathname}> Confirm Email </Link>
+				routes = [pathname]
+				labels = ["Confirm Email"]
+				break;
 			case "privacy":
-				return <Link to = {'/' + pathname}> Privacy Policy </Link>
+				routes = [pathname]
+				labels = ["Privacy Policy"]
+				break;
 			case "terms":
-				return <Link to = {'/' + pathname}> Terms of Service </Link>
+				routes = [pathname]
+				labels = ["Terms of Service"]
+				break;
 			case "eg":
-				return <Link to = {'/' + pathname}> Product </Link>
+				routes = [pathname]
+				labels = ["Product"]
+				break;
 			case "register":
-				return <Link to = {'/' + pathname}> Register </Link>
+				routes = [pathname]
+				labels = ["Register"]
+				break;
 			case "login":
-				return <Link to = {'/' + pathname}> Login </Link>
+				routes = [pathname]
+				labels = ["Login"]
+				break;
 			case "settings":
-				return <Link to = {'/' + pathname}> Settings </Link>
+				routes = [pathname]
+				labels = ["Settings"]
+				break;
 			case "updateSettings":
-				return <Link to = {'/' + pathname}> Personal </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "Update Settings"]
+				break;
 			case "changePassword":
-				return <Link to = {'/' + pathname}> Change Password </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "Change Password"]
+				break;
 			case "myOrders":
-				return <Link to = {'/' + pathname}> Past Orders </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "Past Orders"]
+				break;
 			case "billing":
-				return <Link to = {'/' + pathname}> Add Billing </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "Add Billing"]
+				break;
 			case "shipping":
-				return <Link to = {'/' + pathname}> Add Shipping </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "Add Shipping"]
+				break;
 			case "myPlaces":
-				return <Link to = {'/' + pathname}> Shipping </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "My Places"]
+				break;
 			case "myCards":
-				return <Link to = {'/' + pathname}> Billing </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "My Cards"]
+				break;
 			case "deleteAccount":
-				return <Link to = {'/' + pathname}> Delete Account </Link>
+				routes = ["settings", pathname]
+				labels = ["Settings" , "Delete Account"]
+				break;
 			case "myCart":
-				return <Link to = {'/' + pathname}> My Cart </Link>
+				routes = [pathname]
+				labels = ["My Cart"]
+				break;
 			case "checkout":
-				return <Link to = {'/' + pathname}> Checkout </Link>
+				routes = [pathname]
+				labels = ["Checkout"]
+				break;
 			default:
-				return <Link to = {'/'}> Home </Link>
+				console.log("default")
 		}
+
+		labels.unshift("Home")
+		routes.unshift("")
+
+		return <Breadcrumbs labels = {labels} routes = {routes}/>
 
 	}
 
