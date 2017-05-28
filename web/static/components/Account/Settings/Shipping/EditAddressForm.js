@@ -56,49 +56,54 @@ export default class EditAddressForm extends React.Component {
 		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
-		function () {
-			this.editAddress.bind(this)()
+		function (isConfirm) {
+			if (isConfirm){
+				this.editAddress.bind(this)()	
+			}
 		}.bind(this))
 	}
 
 	editAddress(){
-		this.props.toggleModal()
+		
 		var data = {}
-			for (var i = 0; i < form_inputs.length; i++){
-				var key = form_inputs[i]
-				data[key] = this.state[key]
-			}
-			data["jwt"] = localStorage.jwt
-			data["account_id"] = AppStore.getCurrentUser().account_id
-			data['address_id'] = this.props.address.id
-			var form_data = JSON.stringify(data)
-			$.ajax({
-				type: "POST",
-				url: "/editUserAddress",
-				data: form_data,
-				success: function(data) {
-					if (!data.success) {
-						swal("Sorry!", "It seems there was an error with your address! " + data.error 
-							+ ". Please try again!", "warning")
-					}
-					else {
-						// AppActions.addCurrentUser(data.user_info)
-						swal({
-								title: "Thank you!", 
-								text : "Your changes have been made",
-								type: "success"
-							})
-						
-						this.props.refreshSettings()
-					}
+		for (var i = 0; i < form_inputs.length; i++){
+			var key = form_inputs[i]
+			data[key] = this.state[key]
+		}
+		data["jwt"] = localStorage.jwt
+		data["account_id"] = AppStore.getCurrentUser().account_id
+		data['address_id'] = this.props.address.id
+		var form_data = JSON.stringify(data)
+		this.props.toggleModal(null)
+		this.props.setLoading(true)
+		$.ajax({
+			type: "POST",
+			url: "/editUserAddress",
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					swal("Sorry!", "It seems there was an error with your address! " + data.error 
+						+ ". Please try again!", "warning")
+				}
+				else {
+					// AppActions.addCurrentUser(data.user_info)
+					swal({
+							title: "Thank you!", 
+							text : "Your changes have been made",
+							type: "success"
+						})
 
-				}.bind(this),
-				error : function(){
+					this.props.setLoading(false)
+					this.props.refreshSettings()
+				}
 
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+			}.bind(this),
+			error : function(){
+
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
 	}
 
 	render() {

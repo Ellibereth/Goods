@@ -23,7 +23,7 @@ export default class BillingPreview extends React.Component {
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
 		  cancelButtonText: "No",
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
 		function () {
@@ -34,6 +34,7 @@ export default class BillingPreview extends React.Component {
 	// shows a preview of the address 
 	// then asks the user if they want to delete it
 	deleteCard(card){
+		this.props.setLoading(true)
 		var data = {}
 		data["jwt"] = localStorage.jwt
 		data["account_id"] = AppStore.getCurrentUser().account_id
@@ -57,6 +58,7 @@ export default class BillingPreview extends React.Component {
 						})
 						this.props.refreshSettings()
 					}
+					this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				console.log("error")
@@ -75,6 +77,7 @@ export default class BillingPreview extends React.Component {
 			if (card.id == current_user.default_card){
 				card_columns.unshift(
 					<CardPreview
+					setLoading = {this.props.setLoading}
 					 card = {card}
 					 deleteCardPress = {this.deleteCardPress.bind(this)}
 					 refreshSettings = {this.props.refreshSettings}/>
@@ -83,6 +86,7 @@ export default class BillingPreview extends React.Component {
 			else {
 				card_columns.push(
 					<CardPreview
+					setLoading = {this.props.setLoading}
 					 card = {card}
 					 deleteCardPress = {this.deleteCardPress.bind(this)}
 					 refreshSettings = {this.props.refreshSettings}/>

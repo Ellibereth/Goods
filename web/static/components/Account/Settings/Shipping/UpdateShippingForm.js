@@ -54,6 +54,7 @@ export default class UpdateShippingForm extends React.Component {
 	}
 
 	submitData(){
+		this.props.setLoading(true)
 		this.setState({disabled : true})
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
@@ -89,11 +90,24 @@ export default class UpdateShippingForm extends React.Component {
 								url: "/getUserInfo",
 								data: form_data,
 								success: function(data) {
+									this.props.setLoading(false)
 									if (data.success) {
 										AppActions.removeCurrentUser()
 										AppActions.addCurrentUser(data.user, data.jwt)
+										browserHistory.push(`/settings`)
+
 									}
-									browserHistory.push(`/settings`)
+									else {
+										this.setState({
+											disabled : false
+										})
+										swal({
+											title : data.error,
+											type : "error"
+										})
+									}
+									this.props.setLoading(false)
+									
 								}.bind(this),
 								error : function(){
 								},

@@ -17,6 +17,7 @@ export default class CardPreview extends React.Component {
 	}
 
 	setDefaultCard(){
+		this.props.setLoading(true)
 		var data = {}
 		data["jwt"] = localStorage.jwt
 		data["card_id"] = this.props.card.id
@@ -38,6 +39,7 @@ export default class CardPreview extends React.Component {
 						})
 						this.props.refreshSettings()
 					}
+				this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				console.log("error")

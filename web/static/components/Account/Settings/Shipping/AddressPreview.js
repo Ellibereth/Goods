@@ -26,7 +26,7 @@ export default class AddressPreview extends React.Component {
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
 		  cancelButtonText: "No",
-		  closeOnConfirm: false,
+		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},
 		function () {
@@ -41,6 +41,7 @@ export default class AddressPreview extends React.Component {
 	}
 
 	setDefaultAddress(){
+		this.props.setLoading(true)
 		var data = {}
 		data["jwt"] = localStorage.jwt
 		data["address_id"] = this.props.address.id
@@ -62,6 +63,7 @@ export default class AddressPreview extends React.Component {
 						})
 						this.props.refreshSettings()
 					}
+				this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				console.log("error")

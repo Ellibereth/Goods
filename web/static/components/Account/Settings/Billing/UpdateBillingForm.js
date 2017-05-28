@@ -81,6 +81,7 @@ export default class UpdateBillingForm extends React.Component {
 
 	submitData(){
 		this.setState({disabled : true})
+		this.props.setLoading(true)
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -100,7 +101,7 @@ export default class UpdateBillingForm extends React.Component {
 				success: function(data) {
 					if (!data.success) {
 						swal("Sorry!", "It seems there was an error with your card! " + data.error 
-							+ ". Please try again!", "failure")
+							+ ". Please try again!", "error")
 					}
 					else {
 						// AppActions.addCurrentUser(data.user_info)
@@ -120,8 +121,14 @@ export default class UpdateBillingForm extends React.Component {
 									if (data.success) {
 										AppActions.removeCurrentUser()
 										AppActions.addCurrentUser(data.user, data.jwt)
+										browserHistory.push(`/settings`)
 									}
-									browserHistory.push(`/settings`)
+									else {
+										this.setState({
+											disabled : false
+										})
+									}
+									this.props.setLoading(true)
 								}.bind(this),
 								error : function(){
 								},

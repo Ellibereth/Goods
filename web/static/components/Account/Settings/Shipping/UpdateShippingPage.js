@@ -4,29 +4,30 @@ import AppStore from '../../../../stores/AppStore.js';
 import UpdateShippingForm from './UpdateShippingForm'
 import PageContainer from '../../../Misc/PageContainer'
 var browserHistory = require('react-router').browserHistory;
+import Spinner from '../../../Misc/Spinner'
 
 export default class UpdateShippingPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			is_loading : false
 		}
 	}
+
+	setLoading(is_loading){
+		this.setState({is_loading : is_loading})
+	}
+
 
 	render() {
 		return (
 			<PageContainer component = {
+				
 				<div className = "container">
-					 
-					 {/* Option for styling a header here. This is for Eli to test with! 
-					 	Have fun :D
+					{this.state.is_loading && <Spinner/>}	 
 					 <div className = "row">
-					 	<div className = "col-md-offset-1 col-md-8 col-lg-offset-1 col-lg-8">
-					 		<span className = "settings-title"> Add an address </span>
-					 	</div>
-					 </div> */}
-					 <div className = "row">
-					 	<UpdateShippingForm />
+					 	<UpdateShippingForm
+					 	setLoading = {this.setLoading.bind(this)} />
 					 </div>
 				</div>
 			}/>

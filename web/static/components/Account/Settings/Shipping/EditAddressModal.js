@@ -28,10 +28,6 @@ export default class EditAddressModal extends React.Component {
 
 
 render() {
-	// the page left and page right are place holders for better names
-	// any advice before changing would be good
-	// <PageLeft />
-	// <PageRight/>
 	return (
 		<Modal show = {this.props.show} bsSize="large" aria-labelledby="contained-modal-title-lg">
 		<Modal.Header closeButton onClick = {this.onModalClosePress.bind(this)}>
@@ -46,8 +42,9 @@ render() {
 		</Modal.Header>
 			<Modal.Body>
 				<EditAddressForm
+				setLoading = {this.props.setLoading}
 				refreshSettings = {this.props.refreshSettings}
-				 address = {this.props.address} toggleModal = {this.props.toggleModal}/>
+				address = {this.props.address} toggleModal = {this.props.toggleModal}/>
 			</Modal.Body>
 		</Modal>
 		);

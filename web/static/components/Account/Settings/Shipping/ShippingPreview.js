@@ -29,6 +29,7 @@ export default class ShippingPreview extends React.Component {
 		data["account_id"] = AppStore.getCurrentUser().account_id
 		data["address_id"] = address.id
 		var form_data = JSON.stringify(data)
+		this.props.setLoading(true)
 		$.ajax({
 			type: "POST",
 			url: "/deleteUserAddress",
@@ -47,6 +48,7 @@ export default class ShippingPreview extends React.Component {
 						})
 					this.props.refreshSettings()
 				}
+				this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				console.log("error")
@@ -65,7 +67,9 @@ export default class ShippingPreview extends React.Component {
 		addresses.map((address,index) =>  {
 			if (address.id == current_user.default_address)
 				address_columns.unshift(
-					<AddressPreview address = {address} 
+					<AddressPreview 
+					setLoading = {this.props.setLoading}
+					address = {address} 
 					toggleModal = {this.toggleModal.bind(this)}
 					deleteAddress = {this.deleteAddress.bind(this)}
 					refreshSettings = {this.props.refreshSettings}/>
@@ -73,6 +77,7 @@ export default class ShippingPreview extends React.Component {
 			else {
 				address_columns.push(
 					<AddressPreview address = {address} 
+					setLoading = {this.props.setLoading}
 					toggleModal = {this.toggleModal.bind(this)}
 					deleteAddress = {this.deleteAddress.bind(this)}
 					refreshSettings = {this.props.refreshSettings}/>
@@ -124,7 +129,8 @@ export default class ShippingPreview extends React.Component {
 				<div className = "container-fluid">
 					<EditAddressModal show = {this.state.modal_show} address = {this.state.modal_address} 
 					refreshSettings = {this.props.refreshSettings}
-					toggleModal = {this.toggleModal.bind(this)}/>
+					toggleModal = {this.toggleModal.bind(this)}
+					setLoading = {this.props.setLoading}/>
 
 					<div className="panel panel-default">
 						<div className = "panel-heading">

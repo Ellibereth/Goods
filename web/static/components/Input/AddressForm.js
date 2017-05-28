@@ -6,7 +6,12 @@ export default class AddressForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			zip : ""
+			address_zip : "",
+			address_state: "",
+			address_line1: "",
+			address_line2: "",
+			address_city : "",
+			address_name: ""
 		}
 	}
 
@@ -17,17 +22,31 @@ export default class AddressForm extends React.Component {
 	componentDidMount(){
 		if (this.props.address){
 			this.setState({
-				zip : this.props.address.address_zip
+				address_zip : this.props.address.address_zip,
+				address_state: this.props.address.address_state,
+				address_line1: this.props.address.address_line1,
+				address_line2: this.props.address.address_line2,
+				address_city : this.props.address.address_city,
+				address_name: this.props.address.name,
 			})
 		}
 		this.props.onTextInputChange("address_state", "AL")
+
+	}
+
+	onNonZipChange(event){
+		var obj = this.state
+		obj[event.target.name] =  event.target.value
+		this.setState(obj)
+		this.handleChange.bind(this)(event)
+
 	}
 
 	onZipChange(event){
 		if (isNumberKey(event)) {
 			this.handleChange.bind(this)(event)
 			this.setState({
-				zip : event.target.value
+				address_zip : event.target.value
 			})
 		}
    	}
@@ -69,7 +88,7 @@ export default class AddressForm extends React.Component {
 				<div className="form-group required">
 					<label tabindex= {1 + tab_index_start} className="col-md-2 control-label text-left" for="Name">Name </label>    
 					<div className="col-md-6">
-					<input onKeyPress = {this.onKeyPress.bind(this)} value = {address && address.name} field = "address_name" onChange = {this.handleChange.bind(this)}
+					<input onKeyPress = {this.onKeyPress.bind(this)} value = {this.state.address_name} field = "address_name" onChange = {this.onNonZipChange.bind(this)}
 					 id="Name" name="address_name" type="text" placeholder="Name on Address" className="form-control input-md" required=""/>
 					</div>
 				</div>
@@ -92,7 +111,7 @@ export default class AddressForm extends React.Component {
 				<div className="form-group required">
 					<label className="col-md-2 control-label text-left" for="Country">Country</label>
 					<div className="col-md-5">
-					<select tabindex= {tab_index_start + 3} field = "address_country" onChange = {this.handleChange.bind(this)}
+					<select tabindex= {tab_index_start + 3} field = "address_country" onChange = {this.onNonZipChange.bind(this)}
 					id="Country" name="address_country" className="form-control" disabled = {true}>
 						<option selected value="US">United States</option>
 					</select>
@@ -105,7 +124,8 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="State">State</label>    
 					<div className="col-md-6">
 
-					<select value = {address && address.address_state} tabindex= {tab_index_start + 4} field = "address_state"    onChange = {this.handleChange.bind(this)}
+					<select value = {this.state.address_state} tabindex= {tab_index_start + 4} field = "address_state"  
+					  onChange = {this.onNonZipChange.bind(this)}
 					id="State" name="address_state" className="form-control">
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
@@ -173,8 +193,8 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="city">City/Town</label>    
 					<div className="col-md-6">
 					<input 
-					value = {address && address.address_city}
-					tabindex= {tab_index_start + 5} field = "address_city" onChange = {this.handleChange.bind(this)}
+					value = {this.state.address_city}
+					tabindex= {tab_index_start + 5} field = "address_city" onChange = {this.onNonZipChange.bind(this)}
 					id="city" name="address_city" type="text" 
 					className="form-control input-md" required=""
 					onKeyPress = {this.onKeyPress.bind(this)}
@@ -188,8 +208,8 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="address1">Address Line 1</label>    
 					<div className="col-md-8">
 					<input 
-					value = {address && address.address_line1}
-					tabindex= {tab_index_start + 6} field = "address_line1" onChange = {this.handleChange.bind(this)}
+					value = {this.state.address_line1}
+					tabindex= {tab_index_start + 6} field = "address_line1" onChange = {this.onNonZipChange.bind(this)}
 					 id="address1" name="address_line1" type="text" 
 					 placeholder="" className="form-control input-md"
 					 onKeyPress = {this.onKeyPress.bind(this)}/>
@@ -203,8 +223,8 @@ export default class AddressForm extends React.Component {
 					<label className="col-md-2 control-label text-left" for="Address2">Address Line 2</label>    
 					<div className="col-md-8">
 					<input 
-					value = {address && address.address_line2}
-					 tabindex= {tab_index_start + 7} field = "address_line2" onChange = {this.handleChange.bind(this)}
+					value = {this.state.address_line2}
+					 tabindex= {tab_index_start + 7} field = "address_line2" onChange = {this.onNonZipChange.bind(this)}
 					id="Address2" name="address_line2" type="text" placeholder="" className="form-control input-md"
 					onKeyPress = {this.onKeyPress.bind(this)}/>
 					{/* <span className="help-block">Apartment, suite, unit, building, floor, etc.</span> */}
@@ -219,7 +239,7 @@ export default class AddressForm extends React.Component {
 					<input tabindex= {tab_index_start + 8}
 					maxLength = {5} 
 					field = "address_zip" 
-					value = {this.state.zip}
+					value = {this.state.address_zip}
 					onChange = {this.onZipChange.bind(this)}
 					id="zip" name="address_zip" type="text" 
 					// placeholder="zip or postal code"
