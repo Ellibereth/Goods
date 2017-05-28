@@ -135,8 +135,8 @@ ReactDOM.render(
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>
 			<Route path = "support" component = {SupportPage}/>
-			<Route path = "recovery/:recovery_pin" component = {RecoveryPage}/>
-			<Route path = "recoverAccount" component = {RecoveryChangePasswordPage}/>
+			<Route path = "recoverAccount" component = {RecoveryPage}/>
+			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

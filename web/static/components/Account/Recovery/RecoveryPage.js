@@ -1,3 +1,4 @@
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
@@ -5,133 +6,126 @@ var browserHistory = require('react-router').browserHistory;
 import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import {Form, FormGroup, Col, Button} from 'react-bootstrap'
+import AccountInput from '../AccountInput'
+import Spinner from '../../Misc/Spinner'
 
-const form_labels = ["Password", "Password Confirm"]
-const form_inputs = ["password", "password_confirm"]
-const input_types = ['password', 'password']
+const form_labels = ["Email"]
+const form_inputs = ["email"]
+const input_types = ['text']
 
+// you type email here
 export default class RecoveryPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			is_valid : false,
-			password : "",
-			password_confirm : ""
+			email : "",
+			disabled : false,
+			is_loading : false
+
+		}
+	}
+
+	componentDidMount(){
+		if (AppStore.getCurrentUser()){
+			browserHistory.push('/')
 		}
 	}
 
 	// handle the text input changes
-	onTextInputChange(field, value){
+	onTextInputChange(event) {
+		console.log(event.target.name)
 		var obj = {}
-		obj[field] = value
+		obj[event.target.name] = event.target.value
 		this.setState(obj)
 	}
 
-	componentDidMount(){
-		this.checkRecovery.bind(this)()
-	}
 
-	checkRecovery() {
-		var form_data = JSON.stringify({
-			recovery_pin : this.props.params.recovery_pin
-		})
-		$.ajax({
-			type: "POST",
-			url: "/checkRecoveryInformation",
-			data: form_data,
-			success: function(data) {
-				if (data.success){
-					this.setState({is_valid : true})
-				}
-				else {
+	onSubmitEmail(){
+		event.preventDefault()
+		if (!this.state.disabled){
+			this.setState({disabled: true, is_loading : true})
+			var form_data = JSON.stringify({
+				email : this.state.email
+			})
+			$.ajax({
+				type: "POST",
+				url: "/setRecoveryPin",
+				data: form_data,
+				success: function(data) {
 					swal({
-						title : data.error,
-						type : "error"
+						title : "A recovery email has been sent to " + this.state.email,
+						type: "success"
 					})
-				}
-			}.bind(this),
-			error : function(){
-				console.log("error")
-			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
-	}
-
-	onSubmitPassword(){
-		var form_data = JSON.stringify({
-			recovery_pin : this.props.params.recovery_pin,
-			password : this.state.password,
-			password_confirm : this.state.password_confirm
-		})
-		$.ajax({
-			type: "POST",
-			url: "/recoverySetPassword",
-			data: form_data,
-			success: function(data) {
-				if (data.success){
-					swal({
-						title: "Password has been set",
-						// text: "You will not be able to recover this imaginary file!",
-						type: "success",
-						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Return to home page to login",
-						closeOnConfirm: true,
-					}, function(isConfirm){
+					setTimeout( function () {
 						browserHistory.push('/')
-					})
-				}
-				else {
-					swal({
-						title : data.error,
-						type : "error"
-					})
-				}
-			}.bind(this),
-			error : function(){
-				console.log("error")
-			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+					}, 2000)
+					this.setState({disabled: false, is_loading : false})
+				}.bind(this),
+				error : function(){
+					console.log("error")
+				},
+				dataType: "json",
+				contentType : "application/json; charset=utf-8"
+			});
+		}
 	}
 
 	onKeyPress(e){
 		if (e.key == "Enter"){
-			this.onSubmitPassword.bind(this)()
+			this.onSubmitEmail.bind(this)()
 		}
 	}
 
 	render() {
-
 		var text_inputs = form_inputs.map((form_input, index) => {
-			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]} index = {index}
-				onKeyPress = {this.onKeyPress.bind(this)}
-				/>)
+			return (
+					<AccountInput 
+						index = {index}
+						tabindex = {index}
+						onKeyPress = {this.onKeyPress.bind(this)}
+						field = {form_input}
+						name = {form_input}
+						type = {input_types[index]}
+						onChange = {this.onTextInputChange.bind(this)}
+						value = {this.state[form_input]} 
+						placeholder = {form_labels[index]}
+					/>
+				)
 		})
 
 		
+
 		return (
 			<PageContainer component = {
-
 				<div className = "container">
-					{ this.state.is_valid &&
-						<Form onSubmit = {this.onSubmitPassword.bind(this)} horizontal>
-							{text_inputs}
-							<FormGroup controlId = "submit_button">
-								<Col smOffset={0} sm={10}>
-									<Button onClick = {this.onSubmitPassword.bind(this)}>
-										Change Password
-									</Button>
-								</Col>
-							</FormGroup>
-						</Form>
-					}
+					{this.state.is_loading && <Spinner />}
+						<div className = "container">
+							<div className = "col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
+								<div className = "panel panel-primary account-panel">
+									<div className = "panel-heading account-panel-heading">
+										<div className = "text-center "> Reset Account </div>
+									</div>
+									<div className = "panel-body account-panel-body">
+										<Form onSubmit = {this.onSubmitEmail.bind(this)} horizontal>
+											{text_inputs}
+											<div className = "form-group row">
+												<div className = "col-sm-12 col-md-12 col-lg-12">
+													<Button disabled = {this.state.disabled}
+													 className = "account-button" onClick = {this.onSubmitEmail.bind(this)}>
+														Recover Account
+													</Button>
+												</div>
+											</div>
+										</Form>
+									</div>
+								</div>
+							</div>
+						</div>
 				</div>
 			}/>
 		)
 	}
 }
+
+
 

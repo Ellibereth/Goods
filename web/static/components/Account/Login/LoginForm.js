@@ -8,6 +8,7 @@ const form_labels = ["Email", "Password"]
 const form_inputs = ["email", "password"]
 const input_types = ['text', 'password']
 var Link = require('react-router').Link
+import AccountInput from '../AccountInput'
 
 export default class LoginForm extends React.Component {
 	constructor(props) {
@@ -69,29 +70,22 @@ export default class LoginForm extends React.Component {
 		}
 	}
 
-	generateInput(label, field, index){
-		return (
-			<div className="form-group row">
-				<div className="col-lg-12 col-md-12 col-sm-12">
-					<input 
-						tabindex = {index}
-						onKeyPress = {this.onKeyPress.bind(this)}
-						field = {field}
-						name = {field}
-						className="form-control input-lg" type= {input_types[index]}
-						onChange = {this.onTextInputChange.bind(this)}
-						value = {this.state[field]} 
-						placeholder = {label}
-						/>
-				</div>
-			</div>
-		)
-	}
 
 	render() {
 
 		var text_inputs = form_inputs.map((form_input, index) => {
-			return this.generateInput(form_labels[index], form_input, index)
+			return <AccountInput 
+						index = {index}
+						tabindex = {index}
+						onKeyPress = {this.onKeyPress.bind(this)}
+						field = {form_input}
+						name = {form_input}
+						className="form-control input-lg" 
+						type = {input_types[index]}
+						onChange = {this.onTextInputChange.bind(this)}
+						value = {this.state[form_input]} 
+						placeholder = {form_labels[index]}
+					/>
 		})
 
 		return (
@@ -113,7 +107,7 @@ export default class LoginForm extends React.Component {
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<Link to = "/recoverPassword"> Forgot your password? </Link>
+								<Link to = "/recoverAccount"> Forgot your password? </Link>
 							</div>
 						</div>
 

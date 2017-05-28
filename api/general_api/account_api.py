@@ -363,6 +363,8 @@ def setDefaultCard():
 @account_api.route('/setRecoveryPin', methods = ['POST'])
 def setRecoveryPin():
 	email = request.json.get(Labels.Email)
+	if email == "":
+		return JsonUtil.failure("Email cannot be blank")
 	user = User.query.filter_by(email = email).first()
 	if user:
 		user.setRecoveryPin()
@@ -398,15 +400,18 @@ def recoverySetPassword():
 		return JsonUtil.failure("Passwords do not match")
 
 	if user:
-		if datetime.datetime.now() > user.recovery_pin_expiration:
-			return JsonUtil.failure("This recovery link is invalid or has expired")
-		else:
-			is_valid_password = User.validatePasswordSubimssion(password)
-			if is_valid_password[Labels.Success]:
-				user.setPasswordWithRecovery(password)
-				return JsonUtil.success()
+		if user.recovery_pin_expiration:
+			if datetime.datetime.now() > user.recovery_pin_expiration:
+				return JsonUtil.failure("This recovery link is invalid or has expired")
 			else:
-				return JsonUtil.failure(is_valid_password[Labels.Error])
+				is_valid_password = User.validatePasswordSubimssion(password)
+				if is_valid_password[Labels.Success]:
+					user.setPasswordWithRecovery(password)
+					return JsonUtil.success()
+				else:
+					return JsonUtil.failure(is_valid_password[Labels.Error])
+		else:
+			return JsonUtil.failure("This recovery link is invalid or has expired")
 	else:
 		return JsonUtil.failure("This recovery link is invalid or has expired")
 
