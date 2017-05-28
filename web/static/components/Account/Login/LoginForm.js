@@ -1,31 +1,35 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
-import TextInput from '../../Input/TextInput.js'
 import AppActions from '../../../actions/AppActions.js';
+import TextInput from '../../Input/TextInput.js'
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ["Email", "Password"]
 const form_inputs = ["email", "password"]
 const input_types = ['text', 'password']
+var Link = require('react-router').Link
 
-export default class RegisterAccountForm extends React.Component {
+export default class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			email: "",
 			password: "",
+			disabled: false
 		}
 	}
 
 	// handle the text input changes
-	onTextInputChange(field, value){
+	onTextInputChange(event) {
 		var obj = {}
-		obj[field] = value
+		obj[event.target.name] = event.target.value
 		this.setState(obj)
 	}
 
-	onLoginAttemptPress(){
-		var data = {}
+
+	submitData(){
+		this.setState({disabled : true})
+			var data = {}
 		for (var i = 0; i < form_inputs.length; i++){
 			var key = form_inputs[i]
 			data[key] = this.state[key]
@@ -48,6 +52,7 @@ export default class RegisterAccountForm extends React.Component {
 						browserHistory.push('/' + this.props.target)
 					}
 				}
+				this.setState({disabled : false})
 			}.bind(this),
 			error : function(){
 				console.log("error")
@@ -55,36 +60,74 @@ export default class RegisterAccountForm extends React.Component {
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		});
+
 	}
 
 	onKeyPress(e){
-		if (e.key == "Enter"){
-			this.onLoginAttemptPress.bind(this)()
+		if (e.key === 'Enter') {
+			this.submitData.bind(this)()
 		}
 	}
 
+	generateInput(label, field, index){
+		return (
+			<div className="form-group row">
+				<div className="col-lg-12 col-md-12 col-sm-12">
+					<input 
+						tabindex = {index}
+						onKeyPress = {this.onKeyPress.bind(this)}
+						field = {field}
+						name = {field}
+						className="form-control input-lg" type= {input_types[index]}
+						onChange = {this.onTextInputChange.bind(this)}
+						value = {this.state[field]} 
+						placeholder = {label}
+						/>
+				</div>
+			</div>
+		)
+	}
+
 	render() {
-		var input_type = "text"
+
 		var text_inputs = form_inputs.map((form_input, index) => {
-			return (<TextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]} index = {index}
-				onKeyPress = {this.onKeyPress.bind(this)}
-				/>)
+			return this.generateInput(form_labels[index], form_input, index)
 		})
 
 		return (
-			<Form onSubmit = {this.onLoginAttemptPress.bind(this)} horizontal>
-				{text_inputs}
-				<FormGroup controlId = "submit_button">
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onLoginAttemptPress.bind(this)}>
-						Log In!
-					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+			<div className = "panel panel-primary account-panel">
+				<div className = "panel-heading account-panel-heading">
+					<div className = "text-center "> Register Today </div>
+				</div>
+				<div className = "panel-body account-panel-body">
+					<Form onSubmit = {this.submitData.bind(this)} horizontal>
+						{text_inputs}
+						<div className = "form-group row">
+							<div className = "col-sm-12 col-md-12 col-lg-12">
+								<Button disabled = {this.state.disabled}
+								 className = "account-button" onClick = {this.submitData.bind(this)}>
+									Login
+								</Button>
+							</div>
+						</div>
+
+						<div className = "form-group row text-center">
+							<div className = "col-sm-12 col-md-12 col-lg-12">
+								<Link to = "/recoverPassword"> Forgot your password? </Link>
+							</div>
+						</div>
+
+						<div className = "form-group row text-center">
+							<div className = "col-sm-12 col-md-12 col-lg-12">
+								<Link to = "/register"> New to Edgar USA? Register here </Link>
+							</div>
+						</div>
+
+					</Form>
+				</div>
+			</div>
 		)
 	}
 }
+
 

@@ -1,41 +1,47 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
-var Link = require('react-router').Link;
-
+import AppStore from '../../../stores/AppStore'
 import LoginForm from './LoginForm'
 import PageContainer from '../../Misc/PageContainer'
-import AppStore from '../../../stores/AppStore.js';
-
+import Spinner from '../../Misc/Spinner'
 
 
 export default class LoginPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			is_loading : false
 		}
 	}
 
-	componentWillMount() {
-		var current_user = AppStore.getCurrentUser()
-		if (current_user) {
-			browserHistory.push(`/`)
+	componentDidMount(){
+		if (AppStore.getCurrentUser()) {
+			browserHistory.push('/')
 		}
 	}
 
-
+	setLoading(is_loading) {
+		this.setState({is_loading : is_loading})
+	}
 
 	render() {
 
 		return (
 			<PageContainer component = {
 				<div className = "container">
-					<LoginForm target = {this.props.location.query.target}/>
-					<div> <Link to = "/register"> Don't have an account yet? </Link>  </div>
-					<div> <Link to = "/recoverAccount"> Forgot your password? </Link> </div>
+					{this.state.is_loading && <Spinner />}
+					
+					
+							<div className = "container">
+								<div className = "col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
+									<LoginForm
+									setLoading = {this.setLoading.bind(this)}/>
+								</div>
+					</div>
 				</div>
 			}/>
+			
 		)
 	}
 }

@@ -17,6 +17,7 @@ export default class RegisterAccountForm extends React.Component {
 			email: "",
 			password: "",
 			password_confirm : "",
+			disabled: false
 		}
 	}
 
@@ -48,7 +49,7 @@ export default class RegisterAccountForm extends React.Component {
 	}
 
 	submitData(){
-		
+			this.setState({disabled : true})
 			var data = {}
 			for (var i = 0; i < form_inputs.length; i++){
 				var key = form_inputs[i]
@@ -83,14 +84,16 @@ export default class RegisterAccountForm extends React.Component {
 					}
 					
 					
-
+					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
 					console.log("error")
+					this.setState({disabled : false})
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});
+
 		}
 
 	onKeyPress(e){
@@ -134,7 +137,8 @@ export default class RegisterAccountForm extends React.Component {
 						{text_inputs}
 						<div className = "form-group row">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<Button className = "account-button" onClick = {this.onSubmitPress.bind(this)}>
+								<Button disabled = {this.state.disabled}
+								 className = "account-button" onClick = {this.onSubmitPress.bind(this)}>
 									Submit
 								</Button>
 							</div>
