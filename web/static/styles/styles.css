@@ -490,6 +490,37 @@ body {
 }
 
 
+.account-panel {
+	/*border: none !important;*/
+}
+
+.account-panel-heading{
+	font-size: 24px;
+	/*background-color: #002868 !important;*/
+}
+
+.account-panel-body {
+
+}
+
+.account-button:hover {
+	opacity: 0.7;
+	background-color: #337ab7;
+	color: white;	
+}
+
+.account-button{
+	background-color: #337ab7;
+	color: white;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	font-size: 24px;
+	width: 100%;
+	border: none
+}
+
+
+
 
 /* Absolute Center Spinner */
 .loading {

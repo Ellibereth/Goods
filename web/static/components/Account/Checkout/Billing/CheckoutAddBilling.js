@@ -107,6 +107,7 @@ export default class CheckoutAddBilling extends React.Component {
 
 			}.bind(this),
 			error : function(){
+				this.props.setLoading(false)
 				console.log("error")
 			},
 			dataType: "json",

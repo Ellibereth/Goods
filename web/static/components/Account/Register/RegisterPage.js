@@ -1,16 +1,28 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+var browserHistory = require('react-router').browserHistory;
+import AppStore from '../../../stores/AppStore'
 import RegisterAccountForm from './RegisterAccountForm'
 import PageContainer from '../../Misc/PageContainer'
+import Spinner from '../../Misc/Spinner'
 
 
 export default class RegisterPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			is_loading : false
 		}
+	}
+
+	componentDidMount(){
+		if (AppStore.getCurrentUser()) {
+			browserHistory.push('/')
+		}
+	}
+
+	setLoading(is_loading) {
+		this.setState({is_loading : is_loading})
 	}
 
 	render() {
@@ -18,8 +30,15 @@ export default class RegisterPage extends React.Component {
 		return (
 			<PageContainer component = {
 				<div className = "container">
-					<RegisterAccountForm/>
-					<a href = "/login"> Already have an account? </a>
+					{this.state.is_loading && <Spinner />}
+					
+					
+							<div className = "container">
+								<div className = "col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
+									<RegisterAccountForm
+									setLoading = {this.setLoading.bind(this)}/>
+								</div>
+					</div>
 				</div>
 			}/>
 			
