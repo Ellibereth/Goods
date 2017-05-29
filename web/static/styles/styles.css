@@ -492,6 +492,7 @@ body {
 
 .account-panel {
 	/*border: none !important;*/
+	padding: 12px;
 }
 
 .account-panel-heading{
@@ -517,6 +518,11 @@ body {
 	font-size: 24px;
 	width: 100%;
 	border: none
+}
+
+.account-header {
+	margin-top :0px;
+	margin-bottom: 24px;
 }
 
 
@@ -650,3 +656,5 @@ body {
 	width: 200px;
 	margin-left: 32px;
 }
+
+

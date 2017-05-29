@@ -134,10 +134,8 @@ export default class RegisterAccountForm extends React.Component {
 
 		return (
 			<div className = "panel panel-primary account-panel">
-				<div className = "panel-heading account-panel-heading">
-					<div className = "text-center "> Create Account </div>
-				</div>
 				<div className = "panel-body account-panel-body">
+					<h2 className = "account-header"> Create Account </h2>
 					<Form onSubmit = {this.onSubmitPress.bind(this)} horizontal>
 						{text_inputs}
 						<div className = "form-group row">
@@ -152,14 +150,14 @@ export default class RegisterAccountForm extends React.Component {
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
 								By creating an account you agree to Edgar USA's 
-								<Link to = "/terms"> {" Terms of Service "} </Link>
+								<Link to = "/terms"> {"Terms of Service"} </Link>
 							</div>
 						</div>
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
 								Already have an account? 
-								<Link to = "/login"> {" Log in "} </Link>
+								<Link to = "/login"> {"Log in"} </Link>
 							</div>
 						</div>
 

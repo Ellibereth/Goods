@@ -91,10 +91,9 @@ export default class LoginForm extends React.Component {
 
 		return (
 			<div className = "panel panel-primary account-panel">
-				<div className = "panel-heading account-panel-heading">
-					<div className = "text-center "> Login </div>
-				</div>
+
 				<div className = "panel-body account-panel-body">
+					<h2 className = "account-header"> Login </h2>
 					<Form onSubmit = {this.submitData.bind(this)} horizontal>
 						{text_inputs}
 						<div className = "form-group row">
