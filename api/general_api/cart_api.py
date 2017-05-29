@@ -138,7 +138,7 @@ def checkoutCart():
 			new_order = OrderItem(order_id, this_user, this_product, address, charge, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
 			db.session.add(new_order)
 	except:
-		email_api.notifyUserCheckoutErrorEmail(user, this_cart, address, ErrorLabels.Database)
+		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database)
 		return JsonUtil.failure("There was an error with checking out your cart. Please check your cart and try again. \n \
 			If you continue to have issues, do not hesitate to contact customer service.")
 
@@ -147,7 +147,7 @@ def checkoutCart():
 	try:
 		charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
 	except Exception as e:
-		email_api.notifyUserCheckoutErrorEmail(user, this_cart, address, ErrorLabels.Charge)
+		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Charge)
 		return JsonUtil.failure("Something went wrong while trying to process payment information. Please check your billing information and try again.")
 
 
@@ -157,7 +157,7 @@ def checkoutCart():
 	try:
 		email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
 	except:
-		email_api.notifyUserCheckoutErrorEmail(user, this_cart, address, ErrorLabels.Email)
+		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email)
 		email_error = True
 
 	this_cart.clearCart()
