@@ -111,7 +111,7 @@ def checkoutCart():
 	address_id = request.json.get(Labels.AddressId)
 	address = Lob.getAddressById(address_id)
 
-	if int(address.metadata[Labels.AccountId]) != account_id:
+	if int(address.metadata.get(Labels.AccountId)) != account_id:
 		return JsonUtil.failure("Address does not go with this user")
 
 	this_cart = Cart(account_id)
@@ -138,17 +138,17 @@ def checkoutCart():
 			new_order = OrderItem(order_id, this_user, this_product, address, charge, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
 			db.session.add(new_order)
 	except:
-		email_api.notifyUserCheckoutErrorEmail(user, ErrorLabels.Database)
+		email_api.notifyUserCheckoutErrorEmail(user, this_cart, address, ErrorLabels.Database)
 		return JsonUtil.failure("There was an error with checking out your cart. Please check your cart and try again. \n \
 			If you continue to have issues, do not hesitate to contact customer service.")
 
 	# charge this price to the customer via stripe
 	# stripe automatically checks if the card matches the customer 
 	try:
-		charge = StripeManager.chargeCustomerCard(this_user, card_id ,total_price)
+		charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
 	except Exception as e:
-		email_api.notifyUserCheckoutErrorEmail(user, ErrorLabels.Charge)
-		return JsonUtil.failure("Something went wrong while trying to process payment information. " + str(e))
+		email_api.notifyUserCheckoutErrorEmail(user, this_cart, address, ErrorLabels.Charge)
+		return JsonUtil.failure("Something went wrong while trying to process payment information. Please check your billing information and try again.")
 
 
 	db.session.commit()
@@ -157,7 +157,7 @@ def checkoutCart():
 	try:
 		email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
 	except:
-		email_api.notifyUserCheckoutErrorEmail(user, ErrorLabels.Email)
+		email_api.notifyUserCheckoutErrorEmail(user, this_cart, address, ErrorLabels.Email)
 		email_error = True
 
 	this_cart.clearCart()
@@ -165,7 +165,8 @@ def checkoutCart():
 		return JsonUtil.successWithOutput({
 				Labels.User : this_user.toPublicDict(),
 				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-				Labels.Message : "Unfortunately we couldn't send you confirmation email, but this order can be viewed in settings / past orders."
+				Labels.Message : "Unfortunately we couldn't send you confirmation email, but this order can be viewed in settings / past orders.\
+				 We are working on this and you can expect a confirmation email within 1-2 days"
 			})
 	else:
 		return JsonUtil.successWithOutput({

@@ -246,6 +246,6 @@ class SearchLabels:
 
 
 class ErrorLabels:
-	DATABASE = "database"
-	CHARGE = "charge"
-	EMAIL = "email"
+	Database = "database"
+	Charge = "charge"
+	Email = "email"

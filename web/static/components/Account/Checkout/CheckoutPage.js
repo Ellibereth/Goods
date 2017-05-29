@@ -43,6 +43,7 @@ export default class CheckoutPage extends React.Component {
 		this.getSelectedCard = this.getSelectedCard.bind(this)
 		this.getSelectedAddress = this.getSelectedAddress.bind(this)
 		this.canCheckout = this.canCheckout.bind(this)
+		this.setLoading = this.setLoading.bind(this)
 	}
 
 	setLoading(is_loading){
@@ -267,7 +268,7 @@ export default class CheckoutPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry!", "Something went wrong + " + data.error, "warning")
+					swal("Sorry!", data.error, "error")
 				}
 				else {
 					if (data.message) {
@@ -285,6 +286,7 @@ export default class CheckoutPage extends React.Component {
 					$('#checkout-container').removeClass("faded");
 					AppActions.removeCurrentUser()
 					AppActions.addCurrentUser(data.user, data.jwt)
+					this.setLoading(false)
 				}
 			}.bind(this),
 			error : function(){

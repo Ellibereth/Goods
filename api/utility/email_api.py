@@ -125,20 +125,28 @@ def sendPurchaseNotification(user, cart, address, order_id):
 	smtpserver.starttls()
 	smtpserver.ehlo
 	smtpserver.login(sender, passW)
-	msg = EmailHtml.generateCartEmailNotificationMime([user.email], user, cart, address, order_id)
+	msg = MIMEMultipart()
+	msg['Subject'] = "Order Confirmation"
+	msg['From'] = "noreply@edgarusa.com"
+	msg['To'] = ", ".join(recipients)
+	html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
+	htmlPart = MIMEText(html, 'html')
+	msg.attach(htmlPart)
 	smtpserver.send_message(msg)
 
-	# send the customer confirmation msg = MIMEMultipart()
-	# this will be changed but is a fun place holder!
-	msg = EmailHtml.generateCartEmailNotificationMime(ADMIN_RECIPIENTS, user, cart, address, order_id)
+	msg = MIMEMultipart()
+	msg['Subject'] = "Order Confirmation"
+	msg['From'] = "noreply@edgarusa.com"
+	msg['To'] = ", ".join(recipients)
+	html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
+	htmlPart = MIMEText(html, 'html')
+	msg.attach(htmlPart)
 	smtpserver.send_message(msg)
 	smtpserver.close()
-
 
 def sendRecoveryEmail(user):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
-	
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
@@ -148,7 +156,7 @@ def sendRecoveryEmail(user):
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
-def notifyUserCheckoutErrorEmail(user, error_type):
+def notifyUserCheckoutErrorEmail(user, cart, address, error_type):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
@@ -157,7 +165,7 @@ def notifyUserCheckoutErrorEmail(user, error_type):
 	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	if not user:
 		return
-	body = EmailHtml.generateCheckoutErrorHtml(user, error_type)
+	body = EmailHtml.generateCheckoutErrorHtml(user, cart, address, error_type)
 	textPart = MIMEText(body, 'html')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
@@ -174,14 +182,14 @@ def testEmail():
 	# confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
 	# name = "DAREK"
 	# sendEmailConfirmation(email, confirmation_id, name)
-	# order_id = "123SAMPLEORDERID"
 	user = User.query.filter_by(email = email).first()
-	# cart = Cart(user.account_id)
-	# address = user.getAddresses()[0]
+	cart = Cart(user.account_id)
+	address = user.getAddresses()[0]
 	# sendPurchaseNotification(user, cart, address, order_id)
-	notifyUserCheckoutErrorEmail(user, ErrorLabels.DATABASE)
-	notifyUserCheckoutErrorEmail(user, ErrorLabels.CHARGE)
-	notifyUserCheckoutErrorEmail(user, ErrorLabels.EMAIL)
+	notifyUserCheckoutErrorEmail(user, cart, address, ErrorLabels.Database)
+	# notifyUserCheckoutErrorEmail(user, cart, address, ErrorLabels.Charge)
+	# notifyUserCheckoutErrorEmail(user, cart, address, ErrorLabels.Email)
+	
 
 
 
