@@ -150,13 +150,21 @@ export default class SupportPage extends React.Component {
 									</form>
 								</div>
 								<div className = "top-buffer"/>
+
 								<div className = "row">
-									<div className = "form-group">
-										<label> Your name </label>
-										<input name = "name" type="text" onChange = {this.onChange} value = {this.state.name}
-										className="form-control" style = {{"width" : "35%"}} />
-									</div>
+									<form className="form-inline">
+											<div className = "form-group" style = {{"padding-right" : "6px"}}>
+												<p className = "form-control-static"> {"Name: "} </p>
+											</div>
+											<div className = "form-group">
+												<input
+												style = {{'width' : '300px'}}
+												 type="text" className = "form-control" 
+												 onChange = {this.onChange} name = "name" value = {this.state.name} />
+											</div>
+									</form>
 								</div>
+								
 
 								<div className = "row">
 									<button onClick = {this.sendFeedback} type = "button" className = "btn send-feedback-button">

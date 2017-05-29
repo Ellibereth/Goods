@@ -645,3 +645,8 @@ body {
 .modal-header .close {
   font-size: 40px; /*bigger*/
 }
+
+.register-popover {
+	width: 200px;
+	margin-left: 32px;
+}

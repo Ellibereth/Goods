@@ -35,7 +35,7 @@ export default class SiteMap extends React.Component {
 				routes = [pathname]
 				labels = ["Search"]
 				break;
-			case "Support":
+			case "support":
 				routes = [pathname]
 				labels = ["Support"]
 				break;
@@ -116,8 +116,8 @@ export default class SiteMap extends React.Component {
 				labels = ["My Cart"]
 				break;
 			case "checkout":
-				routes = [pathname]
-				labels = ["Checkout"]
+				routes = ["myCart", pathname]
+				labels = ["My Cart", "Checkout"]
 				break;
 			default:
 				return <div/>

@@ -132,7 +132,10 @@ export default class AddToCartButton extends React.Component {
 
 		for (var i = 1; i <= 10; i++) {
 			quantity_options.push(
-					<li onClick = {this.handleQuantityChange.bind(this, i)}> <a> {i} </a> </li>
+					<li style= {{"cursor" : "pointer"}}  
+						onClick = {this.handleQuantityChange.bind(this, i)}> 
+						<a> {i} </a>
+					 </li>
 				)
 		}
 
@@ -141,7 +144,8 @@ export default class AddToCartButton extends React.Component {
 					variant_options.push(
 
 						<li>
-							<a className = "dropdown-item" onClick = {this.handleVariantChange.bind(this, variant)} >
+							<a className = "dropdown-item" style= {{"cursor" : "pointer"}} 
+							onClick = {this.handleVariantChange.bind(this, variant)} >
 							 {variant.variant_type} 
 							</a>
 						</li>

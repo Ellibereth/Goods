@@ -7,6 +7,7 @@ import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ['Name', "Email", "Password", "Confirm Password"]
 const form_inputs = ["name", "email", "password", "password_confirm"]
 const input_types = ['text', 'text', 'password', 'password']
+const popover_text = [null, null, "Passwords must be at least 6 characters" , null]
 var Link = require('react-router').Link
 import AccountInput from '../AccountInput'
 
@@ -105,6 +106,14 @@ export default class RegisterAccountForm extends React.Component {
 		}
 	}
 
+	componentDidMount(){
+		$(document).ready(function(){
+			$('[data-toggle="popover"]').popover(); 
+		});
+
+		
+	}
+
 	render() {
 
 		var text_inputs = form_inputs.map((form_input, index) => {
@@ -119,6 +128,7 @@ export default class RegisterAccountForm extends React.Component {
 						onChange = {this.onTextInputChange.bind(this)}
 						value = {this.state[form_input]} 
 						label = {form_labels[index]}
+						popover_text = {popover_text[index]}
 					/>
 		})
 
@@ -142,14 +152,14 @@ export default class RegisterAccountForm extends React.Component {
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
 								By creating an account you agree to Edgar USA's 
-                                <Link to = "/terms"> {" Terms of Service "} </Link>
+								<Link to = "/terms"> {" Terms of Service "} </Link>
 							</div>
 						</div>
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
 								Already have an account? 
-                                <Link to = "/login"> {" Log in "} </Link>
+								<Link to = "/login"> {" Log in "} </Link>
 							</div>
 						</div>
 

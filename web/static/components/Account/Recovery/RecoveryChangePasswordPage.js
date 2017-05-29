@@ -49,10 +49,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 					this.setState({is_valid : true})
 				}
 				else {
-					swal({
-						title : data.error,
-						type : "error"
-					})
+					browserHistory.push('/')
 				}
 			}.bind(this),
 			error : function(){
