@@ -9,10 +9,12 @@ from api.utility.labels import CartLabels as Labels
 
 from api.models.user import User
 from api.models.cart import Cart
+from api.utility.labels import ErrorLabels
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 ADMIN_RECIPIENTS = ['eli@edgarusa.com', 'darek@manaweb.com', 'darek@edgarusa.com']
+
 
 URL = "https://edgarusa-testserver.herokuapp.com/"
 ## informs darek@manaweb.com of the incoming request 
@@ -146,19 +148,40 @@ def sendRecoveryEmail(user):
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
+def notifyUserCheckoutErrorEmail(user, error_type):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	msg['Subject'] = "USER CHECKOUT ERROR"
+	msg['From'] = "noreply@edgarusa.com"
+	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
+	if not user:
+		return
+	body = EmailHtml.generateCheckoutErrorHtml(user, error_type)
+	textPart = MIMEText(body, 'html')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	smtpserver.send_message(msg)
+	smtpserver.close()
 
 
 def testEmail():
 	email = "spallstar28@gmail.com"
-	confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
-	name = "DAREK"
-	sendEmailConfirmation(email, confirmation_id, name)
-	order_id = "123SAMPLEORDERID"
-
+	# confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
+	# name = "DAREK"
+	# sendEmailConfirmation(email, confirmation_id, name)
+	# order_id = "123SAMPLEORDERID"
 	user = User.query.filter_by(email = email).first()
-	cart = Cart(user.account_id)
-	address = user.getAddresses()[0]
-	sendPurchaseNotification(user, cart, address, order_id)
+	# cart = Cart(user.account_id)
+	# address = user.getAddresses()[0]
+	# sendPurchaseNotification(user, cart, address, order_id)
+	notifyUserCheckoutErrorEmail(user, ErrorLabels.DATABASE)
+	notifyUserCheckoutErrorEmail(user, ErrorLabels.CHARGE)
+	notifyUserCheckoutErrorEmail(user, ErrorLabels.EMAIL)
 
 
 

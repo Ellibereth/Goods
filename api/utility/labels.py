@@ -225,6 +225,7 @@ class CartLabels:
 	TotalPrice = "total_price"
 	ShippingPrice = "shipping_price"
 	ItemsPrice = "items_price"
+	Message = "message"
 
 class AddressLabels:
 	AddressId = "address_id"
@@ -244,3 +245,7 @@ class SearchLabels:
 	Products = "products"
 
 
+class ErrorLabels:
+	DATABASE = "database"
+	CHARGE = "charge"
+	EMAIL = "email"

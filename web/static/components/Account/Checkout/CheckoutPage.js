@@ -270,9 +270,15 @@ export default class CheckoutPage extends React.Component {
 					swal("Sorry!", "Something went wrong + " + data.error, "warning")
 				}
 				else {
-					swal("Thank you!", "You will receive a confirmation email for this purchase. \
-						This will take the user to a checkout page soon. Will have to write that huh?"
-						, "success")
+					if (data.message) {
+						swal("Thank you!", data.message
+						, "warning")
+					}
+					else {
+						swal("Thank you!", "You will receive a confirmation email for this purchase. \
+							This will take the user to a checkout page soon. Will have to write that huh?"
+							, "success")
+					}
 					setTimeout(function() {
 						browserHistory.push(`/checkoutConfirmed`)
 					}, 2000)

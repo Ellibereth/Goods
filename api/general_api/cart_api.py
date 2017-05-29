@@ -17,6 +17,7 @@ from api.utility import email_api
 from api.models.order import Order
 from api.models.order import OrderItem
 from api.utility.lob import Lob
+from api.utility.labels import ErrorLabels
 
 cart_api = Blueprint('cart_api', __name__)
 
@@ -119,37 +120,58 @@ def checkoutCart():
 	order_id = OrderItem.generateOrderId()
 
 	date_created = db.func.current_timestamp()
-	# record this transaction for each product (enabling easier refunds), but group by quantity 
-	for cart_item in this_cart.items:
-		# update the inventory
-		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-		if cart_item.variant_type:
-			this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
-			if this_variant:
-				this_variant.inventory = this_variant.inventory - cart_item.num_items
+	try:
+		# record this transaction for each product (enabling easier refunds), but group by quantity 
+		for cart_item in this_cart.items:
+			# update the inventory
+			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+			if cart_item.variant_type:
+				this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
+				if this_variant:
+					this_variant.inventory = this_variant.inventory - cart_item.num_items
+				else:
+					return JsonUtil.failure("Seems like you tried to order a type that doesn't exist. Check your cart and try again.")
 			else:
-				return JsonUtil.failure("Seems like you tried to order a type that doesn't exist")
-		else:
-			this_product.inventory = this_product.inventory - cart_item.num_items
+				this_product.inventory = this_product.inventory - cart_item.num_items
 
-		order_shipping = this_cart.shipping_price
-		new_order = OrderItem(order_id, this_user, this_product, address, charge, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
-		db.session.add(new_order)
-		db.session.commit()
+			order_shipping = this_cart.shipping_price
+			new_order = OrderItem(order_id, this_user, this_product, address, charge, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
+			db.session.add(new_order)
+	except:
+		email_api.notifyUserCheckoutErrorEmail(user, ErrorLabels.Database)
+		return JsonUtil.failure("There was an error with checking out your cart. Please check your cart and try again. \n \
+			If you continue to have issues, do not hesitate to contact customer service.")
 
 	# charge this price to the customer via stripe
 	# stripe automatically checks if the card matches the customer 
 	try:
 		charge = StripeManager.chargeCustomerCard(this_user, card_id ,total_price)
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong while trying to process payment information " + str(e))
+		email_api.notifyUserCheckoutErrorEmail(user, ErrorLabels.Charge)
+		return JsonUtil.failure("Something went wrong while trying to process payment information. " + str(e))
 
-	email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
+
+	db.session.commit()
+
+	email_error = False
+	try:
+		email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
+	except:
+		email_api.notifyUserCheckoutErrorEmail(user, ErrorLabels.Email)
+		email_error = True
+
 	this_cart.clearCart()
-	return JsonUtil.successWithOutput({
-			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-		})
+	if email_error:
+		return JsonUtil.successWithOutput({
+				Labels.User : this_user.toPublicDict(),
+				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
+				Labels.Message : "Unfortunately we couldn't send you confirmation email, but this order can be viewed in settings / past orders."
+			})
+	else:
+		return JsonUtil.successWithOutput({
+				Labels.User : this_user.toPublicDict(),
+				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+			})
 
 
 @cart_api.route('/getUserCart', methods = ['POST'])

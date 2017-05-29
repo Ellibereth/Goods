@@ -19,25 +19,22 @@ class StripeManager:
 		# this casting is super lame, but can't cast "5.00" to an int apparently
 		# so I have to cast to float then int...there must be a better way but it's 7 am 
 		amount = int(float(price) * 100) 
-		try:
-			# update the customer information if there is a token, otherwise 
-			# just use previous information
-			customer = stripe.Customer.retrieve(user.stripe_customer_id)
-			if token != None:
-				customer.source = token[Id]
-				customer.save()
+		# update the customer information if there is a token, otherwise 
+		# just use previous information
+		customer = stripe.Customer.retrieve(user.stripe_customer_id)
+		if token != None:
+			customer.source = token[Id]
+			customer.save()
 
-			# then charge the customer
-			charge = stripe.Charge.create(
-				customer = customer,
-				amount = amount,
-				currency= "usd"
-			)
-			return charge
+		# then charge the customer
+		charge = stripe.Charge.create(
+			customer = customer,
+			amount = amount,
+			currency= "usd"
+		)
+		return charge
 
-		# do something better with this exception later
-		except Exception as e:
-			print(e)
+
 
 	def doesCustomerExist(user):
 		# stripe api throws an error if the customer doesn't exist so we use a try except here
