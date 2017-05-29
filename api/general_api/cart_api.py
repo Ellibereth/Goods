@@ -137,9 +137,6 @@ def checkoutCart():
 		db.session.add(new_order)
 		db.session.commit()
 
-
-	
-
 	# charge this price to the customer via stripe
 	# stripe automatically checks if the card matches the customer 
 	try:
