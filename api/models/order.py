@@ -31,7 +31,6 @@ class Order:
 			return 0
 		else:
 			return self.items[0].order_shipping
-		return total
 
 	def getDateCreated(self):
 		if len(self.items) == 0:
@@ -49,6 +48,7 @@ class Order:
 		public_dict[Labels.OrderShipping] = self.order_shipping
 		public_dict[Labels.TotalPrice] = self.total_price
 		public_dict[Labels.DateCreated] = self.date_created
+		
 		return public_dict
 		
 ## user object class

@@ -118,14 +118,6 @@ def checkoutCart():
 	this_user = User.query.filter_by(account_id = account_id).first()
 	order_id = OrderItem.generateOrderId()
 
-	# charge this price to the customer via stripe
-	# stripe automatically checks if the card matches the customer 
-	try:
-		charge = StripeManager.chargeCustomerCard(this_user, card_id ,total_price)
-	except Exception as e:
-		return JsonUtil.failure("Something went wrong while trying to process payment information " + str(e))
-
-
 	date_created = db.func.current_timestamp()
 	# record this transaction for each product (enabling easier refunds), but group by quantity 
 	for cart_item in this_cart.items:
@@ -133,7 +125,10 @@ def checkoutCart():
 		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
 		if cart_item.variant_type:
 			this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
-			this_variant.inventory = this_variant.inventory - cart_item.num_items
+			if this_variant:
+				this_variant.inventory = this_variant.inventory - cart_item.num_items
+			else:
+				return JsonUtil.failure("Seems like you tried to order a type that doesn't exist")
 		else:
 			this_product.inventory = this_product.inventory - cart_item.num_items
 
@@ -142,7 +137,16 @@ def checkoutCart():
 		db.session.add(new_order)
 		db.session.commit()
 
-	db.session.commit()
+
+	
+
+	# charge this price to the customer via stripe
+	# stripe automatically checks if the card matches the customer 
+	try:
+		charge = StripeManager.chargeCustomerCard(this_user, card_id ,total_price)
+	except Exception as e:
+		return JsonUtil.failure("Something went wrong while trying to process payment information " + str(e))
+
 	email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
 	this_cart.clearCart()
 	return JsonUtil.successWithOutput({

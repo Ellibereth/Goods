@@ -641,3 +641,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.modal-header .close {
+  font-size: 40px; /*bigger*/
+}

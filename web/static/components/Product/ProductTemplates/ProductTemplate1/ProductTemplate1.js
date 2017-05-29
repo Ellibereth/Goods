@@ -55,7 +55,6 @@ export default class ProductTemplate1 extends React.Component {
 		if (!AppStore.getCurrentUser()){
 			return
 		}
-		this.props.setLoading(true)
 			var form_data = JSON.stringify({
 			"jwt" : localStorage.jwt
 			})

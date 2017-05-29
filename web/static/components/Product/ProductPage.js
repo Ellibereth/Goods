@@ -16,14 +16,13 @@ export default class ProductPage extends React.Component {
 			product : [],
 			invalid_product : true,
 			is_loading : true,
-			spinner_loading : true
+			spinner_loading : false
 		}
 		this.generateMainComponent = this.generateMainComponent.bind(this)
 	}
 
 	getProductInformation(){
 
-		$('#product-page-container').addClass("faded");
 		var form_data = JSON.stringify({
 			"product_id" : this.props.params.product_id,
 			"jwt" : localStorage.jwt
@@ -34,7 +33,10 @@ export default class ProductPage extends React.Component {
 		  data: form_data,
 		  success: function(data) {
 			if (!data.success){
-				this.setState({invalid_product : true})
+				this.setState({
+					invalid_product : true,
+					is_loading : false
+				})
 			}
 			else {
 				if (data.product.active){
@@ -45,7 +47,6 @@ export default class ProductPage extends React.Component {
 		 			})
 				}
 			}
-			$('#product-page-container').removeClass("faded");
 		  }.bind(this),
 		  error : function(){
 			console.log("error")
@@ -58,6 +59,7 @@ export default class ProductPage extends React.Component {
 
 	componentDidMount(){
 		this.getProductInformation.bind(this)()	
+		
 	}
 
 	setLoading(spinner_loading){ 
