@@ -59,7 +59,7 @@ class OrderItem(db.Model):
 	price = db.Column(db.Float)
 	num_items = db.Column(db.Integer)
 	stripe_customer_id = db.Column(db.String, nullable = False)
-	stripe_charge_id = db.Column(db.String, nullable = False)
+	stripe_charge_id = db.Column(db.String)
 	refund_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -86,7 +86,7 @@ class OrderItem(db.Model):
 
 	# name,email, password all come from user inputs
 	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, order_id, user, product, address, stripe_charge, order_shipping,
+	def __init__(self, order_id, user, product, address, order_shipping,
 				num_items = 1, variant_id = None, variant_type = None, date_created = db.func.current_timestamp()):
 		self.order_id = order_id
 		self.price = product.price
@@ -98,7 +98,7 @@ class OrderItem(db.Model):
 			self.name = product.name
 		self.account_id = user.account_id
 		self.stripe_customer_id = user.stripe_customer_id
-		self.stripe_charge_id = stripe_charge[Labels.Id]
+		
 		self.lob_address_id = address.id
 		self.address_name = address.name
 		self.address_description = address.description
@@ -110,12 +110,17 @@ class OrderItem(db.Model):
 		self.address_state = address.address_state
 		self.variant_id = variant_id
 		self.main_image = product.main_image
-		self.card_last4 = stripe_charge[Labels.Source][Labels.Last4]
-		self.card_brand = stripe_charge[Labels.Source][Labels.Brand]
 		self.date_created = date_created
 		self.order_shipping = order_shipping
 		db.Model.__init__(self)
-		
+	
+	def updateCharge(self, charge):
+		self.stripe_charge_id = charge[Labels.Id]
+		self.card_last4 = charge[Labels.Source][Labels.Last4]
+		self.card_brand = charge[Labels.Source][Labels.Brand]
+		db.session.commit()
+
+
 	@staticmethod
 	def generateOrderId():
 		new_order_id = IdUtil.id_generator()

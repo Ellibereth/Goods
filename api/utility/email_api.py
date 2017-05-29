@@ -128,7 +128,7 @@ def sendPurchaseNotification(user, cart, address, order_id):
 	msg = MIMEMultipart()
 	msg['Subject'] = "Order Confirmation"
 	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = ", ".join(recipients)
+	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
 	htmlPart = MIMEText(html, 'html')
 	msg.attach(htmlPart)
@@ -137,7 +137,7 @@ def sendPurchaseNotification(user, cart, address, order_id):
 	msg = MIMEMultipart()
 	msg['Subject'] = "Order Confirmation"
 	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = ", ".join(recipients)
+	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
 	htmlPart = MIMEText(html, 'html')
 	msg.attach(htmlPart)
@@ -156,7 +156,7 @@ def sendRecoveryEmail(user):
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
-def notifyUserCheckoutErrorEmail(user, cart, address, error_type):
+def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error = ""):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
@@ -165,7 +165,7 @@ def notifyUserCheckoutErrorEmail(user, cart, address, error_type):
 	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	if not user:
 		return
-	body = EmailHtml.generateCheckoutErrorHtml(user, cart, address, error_type)
+	body = EmailHtml.generateCheckoutErrorHtml(user, cart, address, error_type, python_error)
 	textPart = MIMEText(body, 'html')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)

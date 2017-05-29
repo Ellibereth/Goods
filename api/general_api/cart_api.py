@@ -135,10 +135,11 @@ def checkoutCart():
 				this_product.inventory = this_product.inventory - cart_item.num_items
 
 			order_shipping = this_cart.shipping_price
-			new_order = OrderItem(order_id, this_user, this_product, address, charge, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
+			charge = "NOT SAVED YET"
+			new_order = OrderItem(order_id, this_user, this_product, address, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
 			db.session.add(new_order)
-	except:
-		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database)
+	except Exception as e:
+		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database, str(e))
 		return JsonUtil.failure("There was an error with checking out your cart. Please check your cart and try again. \n \
 			If you continue to have issues, do not hesitate to contact customer service.")
 
@@ -146,8 +147,11 @@ def checkoutCart():
 	# stripe automatically checks if the card matches the customer 
 	try:
 		charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
+		order_items = OrderItem.query.filter_by(order_id = order_id).all()
+		for item in order_items:
+			item.updateCharge(charge)
 	except Exception as e:
-		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Charge)
+		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Charge, str(e))
 		return JsonUtil.failure("Something went wrong while trying to process payment information. Please check your billing information and try again.")
 
 
@@ -156,8 +160,8 @@ def checkoutCart():
 	email_error = False
 	try:
 		email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
-	except:
-		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email)
+	except Exception as e:
+		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email, str(e))
 		email_error = True
 
 	this_cart.clearCart()

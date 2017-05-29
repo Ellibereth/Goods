@@ -127,10 +127,11 @@ class EmailHtml:
 
 		return html
 
-	def generateCheckoutErrorHtml(user, cart, address, error_type):
+	def generateCheckoutErrorHtml(user, cart, address, error_type, python_error):
 		right_now_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 		html = "<h2> Checkout error for " + user.name.title() + " with email " + str(user.email) + "</h2>"
 		html = html + "<span style = \"display:block;font-size: 14px;\"> Error Type: " + str(error_type) + " </span>"
+		html = html + "<span style = \"display:block;font-size: 14px;\"> Error Message: " + str(python_error) + " </span>"
 		html = html + "<span style = \"display:block;font-size: 14px;\"> Date : " + right_now_date + "  </span>"
 		html = html + "<br/> <h1> User tried to buy </h1> <br/> <hr/>"
 
