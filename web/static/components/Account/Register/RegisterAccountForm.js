@@ -160,7 +160,6 @@ export default class RegisterAccountForm extends React.Component {
 								<Link to = "/login"> {"Log in"} </Link>
 							</div>
 						</div>
-
 					</Form>
 				</div>
 			</div>
