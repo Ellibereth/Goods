@@ -43,8 +43,6 @@ class EmailHtml:
 		body = body + "<div style = \"text-align:center\">"
 		body = body + "<span style = \"display:block;font-size: 24px;color:#002868;\"> Hi " + user.name + ", </span>"
 		body = body + "<div style = \"border-top:solid; border-width: 1px; border-color:lightgrey; padding-bottom: 12px\"> </div>"
-		num_items = len(cart.toPublicDict()['items'])
-		first_item = cart.toPublicDict()['items'][0]
 		url_link = URL + "myOrders"
 		
 

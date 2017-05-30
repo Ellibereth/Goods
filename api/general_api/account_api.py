@@ -364,13 +364,13 @@ def setDefaultCard():
 @account_api.route('/setRecoveryPin', methods = ['POST'])
 def setRecoveryPin():
 	email = request.json.get(Labels.Email)
-	if email == "":
+	if email == None or email == "":
 		return JsonUtil.failure("Email cannot be blank")
 	user = User.query.filter_by(email = email).first()
 	if user:
 		user.setRecoveryPin()
 		email_api.sendRecoveryEmail(user)
-		return JsonUtil.successWithOutput()
+		return JsonUtil.success()
 	else:
 		return JsonUtil.success()
 

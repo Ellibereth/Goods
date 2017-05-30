@@ -11,60 +11,15 @@ from api.models.market_product import MarketProduct
 from api.utility.lob import Lob
 from api.utility.stripe_api import StripeManager
 
-class Order:
-	def __init__(self, order_id):
-		self.order_id = order_id
-		self.items = OrderItem.query.filter_by(order_id = order_id).all()
-		self.items_price = self.getItemsPrice()
-		self.order_shipping = self.getShippingPrice()
-		self.date_created = self.getDateCreated()
-		self.total_price = self.items_price + self.order_shipping
-
-	def getItemsPrice(self):
-		total = 0
-		for this_item in self.items:
-			total = total + this_item.num_items * this_item.price
-		return total
-
-	def getShippingPrice(self):
-		if len(self.items) == 0:
-			return 0
-		else:
-			return self.items[0].order_shipping
-
-	def getDateCreated(self):
-		if len(self.items) == 0:
-			return 0
-		else:
-			return self.items[0].date_created
-		return total
-
-
-	def toPublicDict(self):
-		public_dict = {}
-		public_dict[Labels.OrderId] = self.order_id
-		public_dict[Labels.Items] = [item.toPublicDict() for item in self.items]
-		public_dict[Labels.ItemsPrice] = self.items_price
-		public_dict[Labels.OrderShipping] = self.order_shipping
-		public_dict[Labels.TotalPrice] = self.total_price
-		public_dict[Labels.DateCreated] = self.date_created
-		
-		return public_dict
-		
-## user object class
-class OrderItem(db.Model):
+class Order(db.Model):
 	__tablename__ = ProdTables.OrderTable
-	primary_key = db.Column(db.Integer, primary_key = True, autoincrement = True)
-	order_id = db.Column(db.String)
-	price = db.Column(db.Float)
-	num_items = db.Column(db.Integer)
+	order_id = db.Column(db.String, primary_key = True)
+	items_price = db.Column(db.Float)
+	order_shipping = db.Column(db.Float)
+	total_price = db.Column(db.Float)
+	refund_date = db.Column(db.DateTime)
 	stripe_customer_id = db.Column(db.String, nullable = False)
 	stripe_charge_id = db.Column(db.String)
-	refund_date = db.Column(db.DateTime)
-	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
-	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
-										   onupdate=db.func.current_timestamp())
-
 	lob_address_id = db.Column(db.String)
 	address_line1 = db.Column(db.String)
 	address_line2 = db.Column(db.String)
@@ -74,31 +29,21 @@ class OrderItem(db.Model):
 	address_name = db.Column(db.String)
 	address_description = db.Column(db.String)
 	address_state = db.Column(db.String)
-	variant_id = db.Column(db.Integer)
-	name = db.Column(db.String)
-	main_image = db.Column(db.String)
 	card_last4 = db.Column(db.String)
 	card_brand = db.Column(db.String)
-	order_shipping = db.Column(db.Float)
 
-	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
+	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
+	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
+										   onupdate=db.func.current_timestamp())
+
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
 
-	# name,email, password all come from user inputs
-	# email_confirmation_id, stripe_customer_id will be generated with try statements 
-	def __init__(self, order_id, user, product, address, order_shipping,
-				num_items = 1, variant_id = None, variant_type = None, date_created = db.func.current_timestamp()):
-		self.order_id = order_id
-		self.price = product.price
-		self.num_items = num_items
-		self.product_id = product.product_id
-		if variant_type:
-			self.name = product.name + " - " + variant_type
-		else:
-			self.name = product.name
+	def __init__(self, user, cart, address):
+		self.order_id = self.generateOrderId()
+		self.items_price = cart.getCartItemsPrice()
+		self.order_shipping = cart.getCartShippingPrice()
 		self.account_id = user.account_id
 		self.stripe_customer_id = user.stripe_customer_id
-		
 		self.lob_address_id = address.id
 		self.address_name = address.name
 		self.address_description = address.description
@@ -108,12 +53,31 @@ class OrderItem(db.Model):
 		self.address_line2 = address.address_line2
 		self.address_zip = address.address_zip
 		self.address_state = address.address_state
-		self.variant_id = variant_id
-		self.main_image = product.main_image
-		self.date_created = date_created
-		self.order_shipping = order_shipping
+		self.total_price = self.items_price + self.order_shipping
+
+
+
 		db.Model.__init__(self)
-	
+
+
+	@staticmethod
+	def getOrderById(order_id):
+		this_order = Order.query.filter_by(order_id = order_id).first()
+		if this_order:
+			return this_order
+		else:
+			return None
+
+
+	@staticmethod
+	def generateOrderId():
+		new_order_id = IdUtil.id_generator()
+		missing = Order.query.filter_by(order_id = new_order_id).first()
+		while missing:
+			new_order_id = IdUtil.id_generator()
+			missing = OrderItem.query.filter_by(order_id = new_order_id).first()
+		return new_order_id
+
 	def updateCharge(self, charge):
 		self.stripe_charge_id = charge[Labels.Id]
 		self.card_last4 = charge[Labels.Source][Labels.Last4]
@@ -121,23 +85,16 @@ class OrderItem(db.Model):
 		db.session.commit()
 
 
-	@staticmethod
-	def generateOrderId():
-		new_order_id = IdUtil.id_generator()
-		missing = OrderItem.query.filter_by(order_id = new_order_id).all()
-		while missing:
-			new_order_id = IdUtil.id_generator()
-			missing = OrderItem.query.filter_by(order_id = new_order_id).all()
-		return new_order_id
-
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.OrderId] = self.order_id
-		public_dict[Labels.NumItems] = self.num_items
-		public_dict[Labels.Price] = self.price
-		public_dict[Labels.TotalPrice] = self.price * self.num_items
+
+		order_items = OrderItem.query.filter_by(order_id = self.order_id).all()
+		public_dict[Labels.Items] = [item.toPublicDict() for item in order_items]
+		public_dict[Labels.ItemsPrice] = self.items_price
+		public_dict[Labels.OrderShipping] = self.order_shipping
+		public_dict[Labels.TotalPrice] = self.total_price
 		public_dict[Labels.DateCreated] = self.date_created
-		public_dict[Labels.ProductId] = self.product_id
 		address = {
 			Labels.AddressName : self.address_name,
 			Labels.AddressDescription : self.address_description,
@@ -149,15 +106,64 @@ class OrderItem(db.Model):
 			Labels.AddressState : self.address_state
 		}
 		public_dict[Labels.Address] = address
-		public_dict[Labels.VariantId] = self.variant_id
-		public_dict[Labels.Name] = self.name
-		public_dict[Labels.MainImage] = self.main_image
 		public_dict[Labels.CardLast4] = self.card_last4
 		public_dict[Labels.CardBrand] = self.card_brand
 		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
+		
+		return public_dict
+		
+## user object class
+class OrderItem(db.Model):
+	__tablename__ = ProdTables.OrderItemTable
+	primary_key = db.Column(db.Integer, primary_key = True, autoincrement = True)
+	
+	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
+	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
+										   onupdate=db.func.current_timestamp())
+	price = db.Column(db.Float)
+	num_items = db.Column(db.Integer)
+	variant_id = db.Column(db.Integer)
+	name = db.Column(db.String)
+	main_image = db.Column(db.String)
+	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
+	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
+	# order_id = db.Column(db.String)
+	order_id = db.Column(db.String, db.ForeignKey(ProdTables.OrderTable + "." + Labels.OrderId))
+
+	# name,email, password all come from user inputs
+	# email_confirmation_id, stripe_customer_id will be generated with try statements 
+	def __init__(self, order_id, user, product,
+			num_items = 1, variant_id = None, variant_type = None):
+		self.order_id = order_id
+		self.price = product.price
+		self.num_items = num_items
+		
+		if variant_type:
+			self.name = product.name + " - " + variant_type
+		else:
+			self.name = product.name
+		self.product_id = product.product_id
+		self.account_id = user.account_id
+		self.variant_id = variant_id
+		self.main_image = product.main_image
+		this_order = Order.query.filter_by(order_id = order_id).first()
+		if this_order:
+			self.date_created = this_order.date_created
+		db.Model.__init__(self)
+	
+
+	def toPublicDict(self):
+		public_dict = {}
+		public_dict[Labels.OrderId] = self.order_id
+		public_dict[Labels.NumItems] = self.num_items
+		public_dict[Labels.Price] = self.price
+		public_dict[Labels.TotalPrice] = self.price * self.num_items
+		public_dict[Labels.DateCreated] = self.date_created
+		public_dict[Labels.ProductId] = self.product_id
+		public_dict[Labels.VariantId] = self.variant_id
+		public_dict[Labels.Name] = self.name
+		public_dict[Labels.MainImage] = self.main_image	
 		return public_dict
 
 
-
-
-
+	

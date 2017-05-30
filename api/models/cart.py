@@ -14,11 +14,11 @@ class Cart:
 	def __init__(self, account_id):
 		self.account_id = account_id
 		self.items = CartItem.query.filter_by(account_id = account_id).all()
-		self.items_price = self.getCartPrice()
+		self.items_price = self.getCartItemsPrice()
 		self.shipping_price = self.getCartShippingPrice()
 		self.total_price = self.items_price + self.shipping_price
 
-	def getCartPrice(self):
+	def getCartItemsPrice(self):
 		return Pricing.getCartPrice(self)
 
 	def getCartShippingPrice(self):

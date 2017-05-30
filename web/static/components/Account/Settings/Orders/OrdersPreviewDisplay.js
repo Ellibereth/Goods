@@ -24,10 +24,9 @@ export default class OrdersPreview extends React.Component {
 		for (var i = 0; i < items.length; i++){
 			items_display.push(<OrderItemDisplay order = {items[i]}/>)
 		}
-		var item = items[0]
-		var local_date = new Date(item.date_created)
+		var local_date = new Date(order.date_created)
 		var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM TT");
-		var address = item.address
+		var address = order.address
 		return (
 			<div className="panel panel-default">
 				<div className = "panel-heading">
@@ -55,7 +54,7 @@ export default class OrdersPreview extends React.Component {
 					<div className = "col-sm-4 col-md-4 col-lg-4">
 						<div> <b> Billed to </b> </div>
 						<div>
-							 {item.card_brand + " ending in " + item.card_last4}  
+							 {order.card_brand + " ending in " + order.card_last4}  
 						</div>
 					 </div>
 					 

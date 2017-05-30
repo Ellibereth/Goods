@@ -14,6 +14,7 @@ class ProdTables:
 	CustomerServiceResponseTable = "CUSTOMER_SERVICE_RESPONSE_TABLE"
 	MarketProductTable = "MARKET_PRODUCT_TABLE"
 	OrderTable = "ORDER_TABLE"
+	OrderItemTable = "ORDER_ITEM_TABLE"
 	ImageTable = "IMAGE_TABLE"
 	ProductTagTable = "PRODUCT_TAG_TABLE"
 	ShoppingCartTable = "SHOPPING_CART_TABLE"
@@ -43,4 +44,5 @@ class TestTables:
 	UserAddressTable = TEST_PREFIX + ProdTables.UserAddressTable
 	StoryImageTable = TEST_PREFIX + ProdTables.StoryImageTable
 	ProductVariantTable = TEST_PREFIX + ProdTables.ProductVariantTable
+	OrderItemTable = TEST_PREFIX + ProdTables.OrderItemTable
 	SqlTestTable = "TEST_SQL"

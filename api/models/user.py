@@ -260,21 +260,15 @@ class User(db.Model):
 	def deleteCreditCard(self, card_id):
 		StripeManager.deleteCreditCard(self, card_id)
 
-	# gets all user orders
-	def getUserOrders(self):
-		order_id_set = set()
-		ORDER_RETRIEVE_LIMIT = 20
-		for order_item in OrderItem.query.filter_by(account_id = self.account_id).all():
-			if len(order_id_set) < ORDER_RETRIEVE_LIMIT:
-				order_id_set.add(order_item.order_id)
-
+	# get last N orders from user
+	def getUserOrders(self, limit = 10):
 		orders = list()
-		for order_id in order_id_set:
-			orders.append(Order(order_id).toPublicDict())
+		for order in Order.query.filter_by(account_id = self.account_id).all():
+			orders.append(Order.getOrderById(order.order_id).toPublicDict())
 
 		sorted_orders = sorted(orders,  key=lambda k: k.get('date_created'))
-
-		return sorted_orders
+		sorted_orders.reverse()
+		return sorted_orders[:limit]
 
 
 	# deletes the user and overwrites their email

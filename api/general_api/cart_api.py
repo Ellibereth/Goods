@@ -117,10 +117,14 @@ def checkoutCart():
 	this_cart = Cart(account_id)
 	total_price = this_cart.total_price
 	this_user = User.query.filter_by(account_id = account_id).first()
-	order_id = OrderItem.generateOrderId()
+
 
 	date_created = db.func.current_timestamp()
 	try:
+		this_order = Order(this_user, this_cart, address)
+		db.session.add(this_order)
+		order_id = this_order.order_id
+
 		# record this transaction for each product (enabling easier refunds), but group by quantity 
 		for cart_item in this_cart.items:
 			# update the inventory
@@ -135,9 +139,8 @@ def checkoutCart():
 				this_product.inventory = this_product.inventory - cart_item.num_items
 
 			order_shipping = this_cart.shipping_price
-			charge = "NOT SAVED YET"
-			new_order = OrderItem(order_id, this_user, this_product, address, order_shipping, cart_item.num_items, cart_item.variant_id, cart_item.variant_type, date_created)
-			db.session.add(new_order)
+			new_order_item = OrderItem(order_id, this_user, this_product, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
+			db.session.add(new_order_item)
 	except Exception as e:
 		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database, str(e))
 		return JsonUtil.failure("There was an error with checking out your cart. Please check your cart and try again. \n \
@@ -147,9 +150,7 @@ def checkoutCart():
 	# stripe automatically checks if the card matches the customer 
 	try:
 		charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
-		order_items = OrderItem.query.filter_by(order_id = order_id).all()
-		for item in order_items:
-			item.updateCharge(charge)
+		this_order.updateCharge(charge)
 	except Exception as e:
 		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Charge, str(e))
 		return JsonUtil.failure("Something went wrong while trying to process payment information. Please check your billing information and try again.")

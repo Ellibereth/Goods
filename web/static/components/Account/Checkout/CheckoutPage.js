@@ -37,7 +37,9 @@ export default class CheckoutPage extends React.Component {
 			address_modal_open : false,
 			billing_modal_open: false,
 			is_loading: true,
-			first_load_done : false
+			first_load_done : false,
+			button_disabled : false
+
 		}
 
 		this.getSelectedCard = this.getSelectedCard.bind(this)
@@ -255,6 +257,7 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	checkout(){
+		this.setState({button_disabled : true})
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
 				account_id : AppStore.getCurrentUser().account_id,
@@ -283,15 +286,17 @@ export default class CheckoutPage extends React.Component {
 					setTimeout(function() {
 						browserHistory.push(`/checkoutConfirmed`)
 					}, 2000)
-					$('#checkout-container').removeClass("faded");
 					AppActions.removeCurrentUser()
 					AppActions.addCurrentUser(data.user, data.jwt)
 					this.setLoading(false)
+					this.setState({button_disabled : false})
 				}
 			}.bind(this),
 			error : function(){
 				swal("We're sorry!", "Please contact customer service to discuss what you tried to do.","error")
 				this.setState({is_loading : true})
+				this.setLoading(false)
+				this.setState({button_disabled : false})
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
@@ -312,6 +317,9 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	canCheckout(){
+		if (this.state.button_disabled){
+			return false
+		}
 		if (this.getSelectedCard() == null) {
 			return false
 		}
