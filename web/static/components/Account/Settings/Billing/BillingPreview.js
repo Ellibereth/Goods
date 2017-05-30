@@ -135,7 +135,7 @@ export default class BillingPreview extends React.Component {
 					
 				<div className="panel panel-default">
 					<div className = "panel-heading">
-						<div> Payment Methods </div>
+						<div className = "account-page-text"> Payment Methods </div>
 					</div>
 					<div className="panel-body">
 						<div className = "container-fluid">

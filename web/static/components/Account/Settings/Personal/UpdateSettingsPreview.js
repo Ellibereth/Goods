@@ -19,11 +19,11 @@ export default class UpdateSettingsPreview extends React.Component {
 				<div className = "container-fluid">
 					<div className = "panel panel-default">
 						<div className = "panel-heading">
-							<div> Personal </div>
+							<div className = "account-page-text"> Personal </div>
 						</div>
 						<div className ="panel-body">
-							<span className = "block-span"> Name: {current_user.name} </span>
-							<span className = "block-span"> Email: {current_user.email} </span>
+							<span className = "account-page-text block-span"> Name: {current_user.name} </span>
+							<span className = "account-page-text block-span"> Email: {current_user.email} </span>
 							<span className = "block-span"> <div className = "small-buffer"/></span>
 							<span className = "block-span"> 
 								<button style = {{"margin-right" : "6px"}} className = "btn btn-default btn-sm" id = "edit-address-button"

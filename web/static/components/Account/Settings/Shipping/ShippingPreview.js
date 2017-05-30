@@ -134,7 +134,7 @@ export default class ShippingPreview extends React.Component {
 
 					<div className="panel panel-default">
 						<div className = "panel-heading">
-							<div> Shipping Address </div>
+							<div className = "account-page-text"> Shipping Address </div>
 						</div>
 						<div className="panel-body">
 							<div className = "container-fluid">

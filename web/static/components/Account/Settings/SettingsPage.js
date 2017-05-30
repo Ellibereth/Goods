@@ -94,25 +94,25 @@ export default class SettingsPage extends React.Component {
 					<br/>
 					<UpdateSettingsPreview  />
 					<br/>
-					{
-						!this.state.is_loading && 
-						<div>
-							<ShippingPreview 
-								setLoading = {this.setLoading.bind(this)}
-								is_loading = {this.state.is_loading}
-								refreshSettings = {this.refreshSettings}
-								addresses = {this.state.addresses}/>
-							<br/>
-							<BillingPreview
-								setLoading = {this.setLoading.bind(this)}
-								is_loading  = {this.state.is_loading}
-								refreshSettings = {this.refreshSettings} 
-								cards = {this.state.cards} />
-							<br />
-							<OrdersPreview orders = {this.state.orders} />
-							<br/>
-						</div>
-					}
+						{
+							!this.state.is_loading && 
+							<div>
+								<ShippingPreview 
+									setLoading = {this.setLoading.bind(this)}
+									is_loading = {this.state.is_loading}
+									refreshSettings = {this.refreshSettings}
+									addresses = {this.state.addresses}/>
+								<br/>
+								<BillingPreview
+									setLoading = {this.setLoading.bind(this)}
+									is_loading  = {this.state.is_loading}
+									refreshSettings = {this.refreshSettings} 
+									cards = {this.state.cards} />
+								<br />
+								<OrdersPreview orders = {this.state.orders} />
+								<br/>
+							</div>
+						}
 				</div>
 			}/>
 		)
