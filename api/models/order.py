@@ -8,6 +8,7 @@ import string
 from api.utility.labels import PaymentLabels as Labels
 from api.utility.id_util import IdUtil
 from api.models.market_product import MarketProduct
+from api.models.market_product import ProductVariant
 from api.utility.lob import Lob
 from api.utility.stripe_api import StripeManager
 
@@ -65,6 +66,23 @@ class Order(db.Model):
 		else:
 			return None
 
+	def addItems(self, this_user, this_cart):
+		# record this transaction for each product (enabling easier refunds), but group by quantity 
+		for cart_item in this_cart.items:
+			# update the inventory
+			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+			if cart_item.variant_type:
+				this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
+				if this_variant:
+					this_variant.inventory = this_variant.inventory - cart_item.num_items
+				else:
+					raise Exception("Seems like you tried to order a type that doesn't exist. Check your cart and try again.")
+			else:
+				this_product.inventory = this_product.inventory - cart_item.num_items
+
+			order_shipping = this_cart.shipping_price
+			new_order_item = OrderItem(self.order_id, this_user, this_product, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
+			db.session.add(new_order_item)
 
 	@staticmethod
 	def generateOrderId():

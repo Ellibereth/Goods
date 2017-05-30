@@ -123,24 +123,10 @@ def checkoutCart():
 	try:
 		this_order = Order(this_user, this_cart, address)
 		db.session.add(this_order)
-		order_id = this_order.order_id
+		
+		this_order.addItems(this_user, this_cart)
 
-		# record this transaction for each product (enabling easier refunds), but group by quantity 
-		for cart_item in this_cart.items:
-			# update the inventory
-			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-			if cart_item.variant_type:
-				this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
-				if this_variant:
-					this_variant.inventory = this_variant.inventory - cart_item.num_items
-				else:
-					return JsonUtil.failure("Seems like you tried to order a type that doesn't exist. Check your cart and try again.")
-			else:
-				this_product.inventory = this_product.inventory - cart_item.num_items
-
-			order_shipping = this_cart.shipping_price
-			new_order_item = OrderItem(order_id, this_user, this_product, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
-			db.session.add(new_order_item)
+		
 	except Exception as e:
 		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database, str(e))
 		return JsonUtil.failure("There was an error with checking out your cart. Please check your cart and try again. \n \
@@ -160,7 +146,7 @@ def checkoutCart():
 
 	email_error = False
 	try:
-		email_api.sendPurchaseNotification(this_user, this_cart, address, order_id)
+		email_api.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
 	except Exception as e:
 		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email, str(e))
 		email_error = True
