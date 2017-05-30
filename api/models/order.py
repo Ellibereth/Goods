@@ -54,9 +54,6 @@ class Order(db.Model):
 		self.address_zip = address.address_zip
 		self.address_state = address.address_state
 		self.total_price = self.items_price + self.order_shipping
-
-
-
 		db.Model.__init__(self)
 
 

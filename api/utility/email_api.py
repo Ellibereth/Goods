@@ -128,7 +128,7 @@ def sendPurchaseNotification(user, cart, address, order_id):
 	msg = MIMEMultipart()
 	msg['Subject'] = "Order Confirmation"
 	msg['From'] = "noreply@edgarusa.com"
-	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
+	msg['To'] = user.email
 	html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
 	htmlPart = MIMEText(html, 'html')
 	msg.attach(htmlPart)
