@@ -125,6 +125,8 @@ def updateProductInfo():
 	name = request.json.get(Labels.Name)
 
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if product == None:
+		return JsonUtil.failure("There was no input")
 	if this_product == None:
 		return JsonUtil.failure("Error retrieving product information")
 	price = product.get(Labels.Price)
@@ -202,8 +204,8 @@ def activateProduct():
 		return JsonUtil.failure("product doesn't exist")
 	return JsonUtil.success("Successfully activated \'" + product.name)
 
-@product_api.route('/deactivateMarketProduct', methods = ['POST'])
-def deactivateMarketProduct():
+@product_api.route('/deactivateProduct', methods = ['POST'])
+def deactivateProduct():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
@@ -259,16 +261,21 @@ def addProductVariant():
 	if this_product == None:
 		return JsonUtil.failure("Invalid submission")
 	
-	new_variant_type = request.json.get(Labels.NewVariantType)
-	this_product.addProductVariant(new_variant_type)
+	variant_type = request.json.get(Labels.VariantType)
+	inventory = request.json.get(Labels.Inventory)
+	if inventory == None:
+		inventory = 10
+	price = request.json.get(Labels.Price)
+	this_product.addProductVariant(variant_type, price, inventory)
 
 	return JsonUtil.successWithOutput({
 			Labels.Product : this_product.toPublicDict()
 		})
 
 
-@product_api.route('/updateVariantInventory', methods = ['POST'])
-def updateVariantInventory():
+
+@product_api.route('/deleteVariant', methods = ['POST'])
+def deleteVariant():
 	jwt = request.json.get(Labels.Jwt)
 	if not JwtUtil.validateJwtAdmin(jwt):
 		return JsonUtil.jwt_failure()
@@ -277,15 +284,36 @@ def updateVariantInventory():
 	if this_product == None:
 		return JsonUtil.failure("Invalid submission")
 
-	variants  = request.json.get(Labels.Variants)	
-	if not variants:
-		return JsonUtil.failure("No variants")
+	variant_id = request.json.get(Labels.VariantId)
+	this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
+	if not this_variant:
+		return JsonUtil.failure("Invalid submission")
 
-	ProductVariant.updateVariantInventory(variants)
+	this_variant.delete()
 
-	return JsonUtil.successWithOutput({
-			Labels.Product : this_product.toPublicDict()
-		})
+	return JsonUtil.success()
+
+@product_api.route('/updateVariant', methods = ['POST'])
+def updateVariant():
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+	product_id = request.json.get(Labels.ProductId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product == None:
+		return JsonUtil.failure("Invalid submission")
+
+	variant  = request.json.get(Labels.Variant)	
+	if not variant:
+		return JsonUtil.failure("Invalid variant")
+
+	this_variant = ProductVariant.query.filter_by(variant_id = variant[Labels.VariantId]).first()
+	if not this_variant:
+		return JsonUtil.failure("Invalid variant")
+
+	this_variant.updateVariant(variant)
+
+	return JsonUtil.success()
 
 
 @product_api.route('/activateVariant', methods = ['POST'])
@@ -298,7 +326,7 @@ def activateVariant():
 	if this_product == None:
 		return JsonUtil.failure("Invalid submission")
 
-	vairant_id = reuqest.json.get(Labels.VariantId)
+	vairant_id = request.json.get(Labels.VariantId)
 	ProductVariant.activateVariant(variant_id)
 	return JsonUtil.success()
 
@@ -313,7 +341,7 @@ def deactivateVariant():
 	if this_product == None:
 		return JsonUtil.failure("Invalid submission")
 
-	vairant_id = reuqest.json.get(Labels.VariantId)
+	vairant_id = request.json.get(Labels.VariantId)
 	ProductVariant.deactivateVariant(variant_id)
 	return JsonUtil.success()
 
@@ -328,4 +356,25 @@ def getBatchedProductInformation():
 	return JsonUtil.successWithOutput({
 			Labels.Products :  [market_product.toPublicDict() for market_product in market_products]
 		})
+
+@product_api.route('/toggleProductHasVariants', methods = ['POST'])
+def toggleProductHasVariants():
+	jwt = request.json.get(Labels.Jwt)
+	if not JwtUtil.validateJwtAdmin(jwt):
+		return JsonUtil.jwt_failure()
+
+	product_id = request.json.get(Labels.ProductId)
+	has_variants = request.json.get(Labels.HasVariants)
+	if not product_id:
+		return JsonUtil.falure("No product ID")
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if not this_product:
+		return JsonUtil.falure("Product doesn't exist")
+
+	this_product.has_variants = has_variants
+	this_product.active = False
+	db.session.commit()
+	return JsonUtil.success()
+
+
 

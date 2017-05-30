@@ -100,10 +100,10 @@ export default class AdminActivateProduct extends React.Component {
 			return "";
 		}
 		else if (product.active){
-			return "Your product is active"
+			return "This product is active"
 		}
 		else {
-			return "Your product is inactive"
+			return "This product is inactive"
 		}
 	}
 

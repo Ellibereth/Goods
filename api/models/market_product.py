@@ -116,14 +116,13 @@ class MarketProduct(db.Model):
 		self.active = False
 		db.session.commit()
 
-	def addProductVariant(self, variant_type):
-		new_variant = ProductVariant(self.product_id, variant_type)
+	def addProductVariant(self, variant_type, price, inventory):
+		print(variant_type)
+		new_variant = ProductVariant(self.product_id, variant_type, price, inventory)
 		db.session.add(new_variant)
 		db.session.commit()
 
-	# example input
-	# colors = ['blue','green'], sizes = ['10 Men', '6.5 Women']
-	# if either one is empty just set it to None
+	
 	def addProductVariants(self, variant_types):
 		# we can either check if it is a product that has variants
 		# or we can automatically make it one through this process
@@ -162,6 +161,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.NumItemsLimit] = self.num_items_limit
 		public_dict[Labels.Active] = self.active
 		public_dict[Labels.HasVariants] = self.has_variants
+		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
 		return public_dict
@@ -175,24 +175,38 @@ class ProductVariant(db.Model):
 	inventory = db.Column(db.Integer, default = 0)
 	variant_type = db.Column(db.String)
 	active = db.Column(db.Boolean, default = False)
+	price = db.Column(db.Float)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
 
-	def __init__(self, product_id, variant_type, inventory = 0):
+	def __init__(self, product_id, variant_type, price, inventory = 0):
 		self.product_id = product_id
 		self.variant_type = variant_type
+		self.price = price
 		self.inventory = inventory
 		db.Model.__init__(self)
 		
-	@staticmethod
-	def updateVariantInventory(variants):
-		for variant in variants:
-			this_variant = ProductVariant.query.filter_by(variant_id = variant[Labels.VariantId]).first()
-			if this_variant:
-				this_variant.inventory = variant[Labels.Inventory]
-				db.session.commit()
+	def updateVariant(self, variant):
+		
+		new_inventory = variant.get(Labels.Inventory)
+		if new_inventory:
+			self.inventory = new_inventory
+		new_price = variant.get(Labels.Price)
+		if new_price:
+			self.price = new_price
+		new_type = variant.get(Labels.VariantType)
+		if new_type:
+			self.variant_type = new_type
+
+		db.session.commit()
+
+	def delete(self):
+		 db.session.delete(self)
+		 db.session.commit()
+
+
 
 	@staticmethod
 	def activateVariant(variant_id):
@@ -212,6 +226,7 @@ class ProductVariant(db.Model):
 		public_dict[Labels.VariantType] = self.variant_type
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.VariantId] = self.variant_id
+		public_dict[Labels.Active] = self.active
 		return public_dict
 
 

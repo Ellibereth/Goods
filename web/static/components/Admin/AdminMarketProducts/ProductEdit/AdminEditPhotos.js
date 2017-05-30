@@ -5,7 +5,7 @@ import {Grid, Row, Col, Button} from 'react-bootstrap';
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 
-export default class AdminProductMainContainer extends React.Component {
+export default class AdminEditPhotos extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {

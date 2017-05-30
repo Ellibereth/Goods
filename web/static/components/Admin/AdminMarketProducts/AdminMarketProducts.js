@@ -5,9 +5,9 @@ import AddProductModal from './ProductAdd/AddProductModal.js'
 
 import {Button} from 'react-bootstrap'
 var Link = require('react-router').Link;
-
-const product_variables = ['name', 'product_id', 'description', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date']
-const headers = ['Name', 'Product Id', 'Description', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
+import AdminProductPreviewRow from './AdminProductPreviewRow'
+const headers = ['Go To This Product', 'Image', 'Name', "Inventory",  'Id', 'Description', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
+const product_variables = ['name', 'inventory', 'description', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date'] 
 
 export default class AdminMarketProducts extends React.Component {
 	constructor(props) {
@@ -47,9 +47,6 @@ export default class AdminMarketProducts extends React.Component {
 		this.setState({show_modal : !this.state.show_modal})
 	}
 
-	toggleClass(id){
-		$("#" + id).toggleClass("admin-table-cell-short")
-	}
 
 
 
@@ -59,35 +56,11 @@ export default class AdminMarketProducts extends React.Component {
 				<th> {header} </th>
 			)
 
-		table_headers.unshift(
-				<th> Add Photo </th>
-			)
-
 		var table_entries = market_products.map((product, index) => 
-				{
-					var row = product_variables.map((attr) => {
-						var id = product['product_id'] + "_" + attr
-						return (
-							<td className = "admin-table-cell-short" id = {id} 
-							p_id = {product['product_id']}
-							attr = {attr} index = {index}
-							onClick = {this.toggleClass.bind(this, id)}>
-							 {product[attr]} </td> 
-							)
-						})
-				
-					row.unshift(
-						<td className = "admin-table-cell-short" id = {product['product_id']}
-						attr = "go_to" index = {index}>
-							<Link to = {"/adminEditProduct/" + product.product_id}> Go to! </Link>
-						</td>
-					)
-					return (
-						<tr>
-							{row}
-						</tr>
-				)
-			})
+				<AdminProductPreviewRow 
+				product_variables = {product_variables}
+				product = {product} index = {index}/>
+			)
 
 
 		return (

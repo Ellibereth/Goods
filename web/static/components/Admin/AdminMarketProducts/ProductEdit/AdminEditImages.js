@@ -12,7 +12,7 @@ import AdminEditPhotos from './AdminEditPhotos.js'
 import UploadStoryPhoto from '../ProductAdd/UploadStoryPhoto'
 
 
-export default class AdminEditProduct extends React.Component {
+export default class AdminEditImages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -254,26 +254,30 @@ export default class AdminEditProduct extends React.Component {
 
 		return (
 			<div className = "container" id = "admin_edit_product">
-				<div className = "row" id = "add_story">
-					<UploadStoryPhoto product = {this.props.product}/>
-				</div>
-				
+				<AdminActivateProduct product = {this.state.product}/>
+
 				<hr/>
 					<div className = "row" id = "text_edit">
 						<Form horizontal>
 							{input_forms}
-
-							<FormGroup controlId = "submit_button">
-							<Col smOffset={0} sm={10}>
-								<Button onClick = {this.onTextSubmitPress.bind(this)}>
-								Submit
-								</Button>
-							</Col>
-							</FormGroup>
+							<div className = "form-group">
+								<div className = "col-md-10 col-lg-10">
+									<Button onClick = {this.onTextSubmitPress.bind(this)}>
+									Submit
+									</Button>
+								</div>
+							</div>
 						</Form>
 					</div>
 
 				<hr/>
+
+
+				<div className = "row" id = "add_story">
+					<UploadStoryPhoto product = {this.props.product}/>
+				</div>
+
+
 				<div className = "row">
 					<Form horizontal>
 						{variant_inventory}
