@@ -39,7 +39,7 @@ export default class AdminLoginPage extends React.Component {
 			success: function(data) {
 				if (data.success) {
 					AppActions.addCurrentUser(data.user, data.jwt)
-					browserHistory.push('/adminTools')
+					browserHistory.push('/yevgeniypoker555/tools')
 				}
 				else {
 					swal("nice try!")
