@@ -32,8 +32,8 @@ export default class AdminEditProductInfo extends React.Component {
 
 	onTextSubmitPress() {
 		swal({
-		  title: "Ready?",
-		  text: "Ready to update?",
+		  title: "ARE YOU SURE?",
+		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
@@ -43,6 +43,22 @@ export default class AdminEditProductInfo extends React.Component {
 		},
 		function () {
 			this.submitTextData.bind(this)()
+		}.bind(this))
+	}
+
+	onToggleProductHasVariants(has_variants){
+		swal({
+		  title: "ARE YOU SURE?",
+		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: true,
+		  closeOnCancel: true
+		},
+		function () {
+			this.onToggleProductHasVariants.bind(this)(has_variants)
 		}.bind(this))
 	}
 

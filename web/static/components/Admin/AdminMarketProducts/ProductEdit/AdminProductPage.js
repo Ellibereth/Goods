@@ -5,11 +5,13 @@ import ProductMainContainer from '../../../Product/ProductMainContainer'
 import AdminEditProductInfo from './AdminEditProductInfo'
 import PageContainer from '../../../Misc/PageContainer.js'
 import AdminEditVariants from './AdminEditVariants'
-
+import AdminEditImages from './AdminEditImages'
 
 const PREVIEW_VIEW = 0
 const INFO_VIEW = 1
-const VARIANT_VIEW = 2
+const IMAGES_VIEW = 2
+const VARIANT_VIEW = 3
+
 
 export default class AdminProductPage extends React.Component {
 	constructor(props) {
@@ -85,6 +87,10 @@ export default class AdminProductPage extends React.Component {
 								className = {this.state.selected_tab == INFO_VIEW && "active"}>
 									<a href="#info"> Edit Info</a>
 								</li>
+								<li onClick = {this.navivgateTab.bind(this, IMAGES_VIEW)}
+								className = {this.state.selected_tab == IMAGES_VIEW && "active"}>
+									<a href="#info"> Images </a>
+								</li>
 								{
 									this.state.product.has_variants &&
 									<li onClick = {this.navivgateTab.bind(this, VARIANT_VIEW)}
@@ -114,6 +120,13 @@ export default class AdminProductPage extends React.Component {
 							getProductInformation = {this.getProductInformation.bind(this)}
 							product = {this.state.product}/>
 						</div>
+
+						<div className = {this.state.selected_tab == IMAGES_VIEW ? "row" : "none"}>
+							<AdminEditImages 
+							getProductInformation = {this.getProductInformation.bind(this)}
+							product = {this.state.product}/>
+						</div>
+
 
 					</div>
 				</div>

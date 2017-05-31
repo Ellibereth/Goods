@@ -5,7 +5,7 @@ import {Grid, Row, Col, Button} from 'react-bootstrap';
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 
-export default class AdminEditPhotos extends React.Component {
+export default class AdminEditProductPhotos extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -69,7 +69,7 @@ export default class AdminEditPhotos extends React.Component {
 	}
 
 	getProductInformation(){
-		this.props.getProductInformation.bind(this)(this.state.product)
+		this.props.getProductInformation.bind(this)()
 	}
 
 
@@ -84,8 +84,6 @@ export default class AdminEditPhotos extends React.Component {
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 		var images = product.images.map((image, index) => {
-			console.log(image.image_id)
-			console.log(product.main_image)
 				var label = (image.image_id == product.main_image) ? "Main Image" : "Not Main"
 				return (	
 					<div className="item col-lg-3 col-md-3 col-sm-3">

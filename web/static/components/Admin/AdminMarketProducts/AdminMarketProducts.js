@@ -6,8 +6,8 @@ import AddProductModal from './ProductAdd/AddProductModal.js'
 import {Button} from 'react-bootstrap'
 var Link = require('react-router').Link;
 import AdminProductPreviewRow from './AdminProductPreviewRow'
-const headers = ['Go To This Product', 'Image', 'Name', "Inventory",  'Id', 'Description', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
-const product_variables = ['name', 'inventory', 'description', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date'] 
+const headers = ['Go To This Product', 'Image', 'Name', "Inventory", 'Description', 'Is Active','Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
+const product_variables = ['name', 'inventory', 'description', 'active', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date'] 
 
 export default class AdminMarketProducts extends React.Component {
 	constructor(props) {
@@ -55,6 +55,7 @@ export default class AdminMarketProducts extends React.Component {
 		var table_headers = headers.map((header) => 
 				<th> {header} </th>
 			)
+
 
 		var table_entries = market_products.map((product, index) => 
 				<AdminProductPreviewRow 
