@@ -48,7 +48,8 @@ export default class AdminProductPreviewRow extends React.Component {
 				<td className = "admin-table-cell-short" id = {product['product_id'] + "_" + attr} 
 				p_id = {product['product_id']}
 				attr = {attr} index = {index}>
-					{product[attr]}
+
+					{product[attr] && product[attr].toString()}
 				</td> 
 			)
 	

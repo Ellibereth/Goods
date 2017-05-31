@@ -10,6 +10,7 @@ from api.utility.labels import UserLabels as Labels
 from api.utility.json_util import JsonUtil
 from api.utility.jwt_util import JwtUtil
 from api.models.cart import Cart
+from api.security.tracking import LoginAttempt
 
 account_api = Blueprint('account_api', __name__)
 
@@ -20,15 +21,23 @@ def checkLogin():
 	input_password = request.json.get(Labels.Password)
 	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
-		return JsonUtil.failure("Not a real user")
+		LoginAttempt.addLoginAttempt(email, ip = request.remote_addr,
+		 success = False, is_admin = False)
+
+		return JsonUtil.failure("Credential are not correct")
+
 	if this_user.checkLogin(input_password):
 		user_jwt = JwtUtil.create_jwt(this_user.toJwtDict())
 		user_info = this_user.toPublicDictFast()
 		output = {Labels.User : user_info,
 			Labels.Jwt : user_jwt}
+		LoginAttempt.addLoginAttempt(email, ip = request.remote_addr,
+		 success = True, is_admin = False)
 		return JsonUtil.successWithOutput(output)
 	else:
-		return JsonUtil.failure("Password is not correct")
+		LoginAttempt.addLoginAttempt(email, ip = request.remote_addr,
+		 success = False, is_admin = False)
+		return JsonUtil.failure("Credentials are not correct")
 
 
 # checks the login information from a user 

@@ -33,6 +33,13 @@ class LoginAttempt(db.Model):
 	def getRecentLoginAttempts():
 		return 0
 
+	@staticmethod
+	def addLoginAttempt(username, ip, success, is_admin):
+		login_attempt = LoginAttempt(username, ip, success, is_admin)
+		db.session.add(login_attempt)
+		db.session.commit()
+
+
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.AttempId] = self.attempt_id
