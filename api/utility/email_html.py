@@ -66,6 +66,8 @@ class EmailHtml:
 		body = body + "<div style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> </div>"
 		body = body + "<div style = \"padding-top: 18px;\"> </div>"
 
+
+		body = body + "<div style = \"width:50%; float:left;\">"
 		body = body + "<span style = \"font-size:18px;\"> <b> Shipping Address </b> </span>"
 		body = body + "<div style = \"padding-top:12px;\"> </div>"
 		if address.address_line1 and address.address_line1 != "":
@@ -76,6 +78,13 @@ class EmailHtml:
 		if address.address_city and address.address_zip and address.address_state:
 			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_city + ", " + address.address_state \
 		+ " " + str(address.address_zip) + " </span>"
+		body = body + "</div>"
+
+		body = body + "<div style = \"width:50%; float:right;\">"
+		body = body + "<span style = \"font-size:18px; display:block;\"> <b> Recevied On </b> </span> "
+		body = body + "<span style = \"font-size:18px; display:block;\"> " +  datetime.date.today().strftime('%A %B %d, %Y') +  " </span>"
+		body = body + "</div>"
+
 		body = body + "<div style = \"padding-top: 18px;\"> </div>"
 		body = body + " <table cellspacing = \"0\" cellpadding = \"0\" \
 		 style = \"width: 100%\"> "
@@ -140,12 +149,15 @@ class EmailHtml:
 
 
 	def formatPrice(price):
+
 		if not price:
 			if price == 0: 
 				return "0.00"
 			else:
 				return ""	
-		decimal_splits = str(price).split('.')
+
+		rounded_price = round(price, 2)
+		decimal_splits = str(rounded_price).split('.')
 		dollars = decimal_splits[0]
 		
 		if len(decimal_splits) < 2:
