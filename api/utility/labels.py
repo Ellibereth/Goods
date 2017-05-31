@@ -251,3 +251,15 @@ class ErrorLabels:
 	Database = "database"
 	Charge = "charge"
 	Email = "email"
+
+
+class AdminLabels:
+	Ip = "ip"
+	Username = "username"
+	AttemptId = "attempt_id"
+	Success = "success"
+	DateCreated = "date_created"
+	IsAdmin = "is_admin"
+	Password = "password"
+
+

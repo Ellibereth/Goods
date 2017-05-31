@@ -21,6 +21,8 @@ class ProdTables:
 	UserAddressTable = "USER_ADDRESS_TABLE"
 	StoryImageTable = "STORY_IMAGE_TABLE"
 	ProductVariantTable = "PRODUCT_VARIANT_TABLE"
+	LoginAttemptTable = "LOGIN_ATTEMPT_TABLE"
+	AdminUserTable = "ADMIN_USER_TABLE"
 
 
 """ 
@@ -45,4 +47,6 @@ class TestTables:
 	StoryImageTable = TEST_PREFIX + ProdTables.StoryImageTable
 	ProductVariantTable = TEST_PREFIX + ProdTables.ProductVariantTable
 	OrderItemTable = TEST_PREFIX + ProdTables.OrderItemTable
+	LoginAttemptTable = TEST_PREFIX + ProdTables.LoginAttemptTable
+	AdminUserTable = TEST_PREFIX + ProdTables.AdminUserTable
 	SqlTestTable = "TEST_SQL"
