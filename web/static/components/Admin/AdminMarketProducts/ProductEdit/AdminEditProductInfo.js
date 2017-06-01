@@ -184,6 +184,24 @@ export default class AdminEditProductInfo extends React.Component {
 		}
 
 
+		var live_toggle = (
+				<div className="form-group row">
+				<label className="col-md-2 col-lg-2 col-form-label">
+					Would you like this product to show up live?
+				</label>
+					<div className = "col-md-6 col-lg-6">
+					 	<select className="form-control" id="sel1" 
+					 	value = {this.state.product.live ? this.state.product.live : false}
+					 	onChange = {(event) => this.onTextInputChange("live", event.target.value)}>
+					 		<option value = {true}> Live </option>
+    						<option value = {false}> Not Live </option>
+					 	</select>
+					</div>
+				</div>
+
+			)
+
+
 
 
 
@@ -197,6 +215,7 @@ export default class AdminEditProductInfo extends React.Component {
 				<div className = "row" id = "text_edit">
 					<form className ="form-horizonal">
 						{input_forms}
+						{live_toggle}
 						<div className = "form-group">
 							<div className = "col-md-10 col-lg-10">
 								<button  type = "button" className = "btn btn-default" 

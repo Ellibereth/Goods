@@ -25,7 +25,7 @@ export default class HomePageMainContainer extends React.Component {
 			})
 		$.ajax({
 		  type: "POST",
-		  url: "/getBatchedProductInformation",
+		  url: "/getHomePageProducts",
 		  data: form_data,
 		  success: function(data) {
 			if (!data.success){
@@ -49,9 +49,9 @@ export default class HomePageMainContainer extends React.Component {
 		// make sure this is divides 12
 		var items_per_row = 4
 
-
+		var col_size = 12 / items_per_row
 		var products = this.state.products.map((product, index) =>
-				<HomeProductPreview col_size = {12 / items_per_row} product = {product}/>
+				<HomeProductPreview col_size = {col_size} product = {product}/>
 			)
 
 		var product_rows = []
@@ -65,7 +65,9 @@ export default class HomePageMainContainer extends React.Component {
 					this_row.push(products[j])
 				}
 				else {
-					console.log("did not add item " + j)		
+					this_row.push(<div 
+						className = {"home-page-filler-product col-md-" + col_size + " col-lg-" + col_size}/>)
+					// console.log("did not add item " + j)		
 				}
 			}
 			product_rows.push(

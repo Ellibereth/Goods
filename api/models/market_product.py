@@ -28,7 +28,8 @@ class MarketProduct(db.Model):
 	manufacturer = db.Column(db.String)
 	num_items_limit = db.Column(db.Integer)
 	has_variants = db.Column(db.Boolean, default = False)
-	variant_type_description = db.Column(db.Boolean, default = "type")
+	variant_type_description = db.Column(db.String, default = "type")
+	live = db.Column(db.Boolean, default = False)
 
 	story_text = db.Column(db.String, default = "PUT IN SOME TEXT HERE ABOUT YOUR STORY")
 	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
@@ -161,6 +162,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.NumItemsLimit] = self.num_items_limit
 		public_dict[Labels.Active] = self.active
 		public_dict[Labels.HasVariants] = self.has_variants
+		public_dict[Labels.Live] = self.live
 		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]

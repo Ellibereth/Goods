@@ -139,6 +139,9 @@ def updateProductInfo():
 	story_text = product.get(Labels.StoryText)
 	num_items_limit = product.get(Labels.NumItemsLimit)
 	variant_type_description = product.get(Labels.VariantTypeDescription)
+	live = product.get(Labels.Live)
+	if live != None:
+		this_product.live = live
 	if variant_type_description != None:
 		this_product.variant_type_description = variant_type_description
 	if price != None:
@@ -356,6 +359,14 @@ def getBatchedProductInformation():
 	market_products = MarketProduct.query.filter(MarketProduct.product_id.in_(product_id_list)
 		,MarketProduct.active).all()
 
+	return JsonUtil.successWithOutput({
+			Labels.Products :  [market_product.toPublicDict() for market_product in market_products]
+		})
+
+
+@product_api.route('/getHomePageProducts', methods = ['POST'])
+def getHomePageProducts():
+	market_products = MarketProduct.query.filter(MarketProduct.active, MarketProduct.live).all()
 	return JsonUtil.successWithOutput({
 			Labels.Products :  [market_product.toPublicDict() for market_product in market_products]
 		})

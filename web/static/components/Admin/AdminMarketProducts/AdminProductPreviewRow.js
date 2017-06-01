@@ -49,7 +49,7 @@ export default class AdminProductPreviewRow extends React.Component {
 				p_id = {product['product_id']}
 				attr = {attr} index = {index}>
 
-					{product[attr] && product[attr].toString()}
+					{product[attr] ? product[attr].toString() : "null/false"}
 				</td> 
 			)
 	
