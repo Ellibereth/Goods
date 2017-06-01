@@ -6,7 +6,6 @@ import AppActions from '../../../../actions/AppActions.js'
 import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util.js'
 
-const DEFAULT_VARIANT_TEXT = "Select a Type..."
 var browserHistory = require('react-router').browserHistory
 
 
@@ -14,14 +13,23 @@ var browserHistory = require('react-router').browserHistory
 export default class AddToCartButton extends React.Component {
 		constructor(props) {
 		super(props);
+		
+
 		this.state = {
 			quantity : 1,
 			buy_disabled : false,
 			quantity_display : "1",
 			variant : null,
-			variant_display : DEFAULT_VARIANT_TEXT
+			variant_display : this.getVariantDefaultText.bind(this)()
 
 		}
+	}
+
+	getVariantDefaultText(){
+		var VARIANT_TEXT  = this.props.product.variant_type_description ?  
+			("Select a " + this.props.product.variant_type_description + "...") :
+			"Select a Type..."
+		return VARIANT_TEXT
 	}
 
 	handleQuantityChange (quantity){
@@ -154,6 +162,9 @@ export default class AddToCartButton extends React.Component {
 			)
 
 
+
+
+
 		return (
 				<div >
 						{ this.props.product.has_variants &&
@@ -170,8 +181,8 @@ export default class AddToCartButton extends React.Component {
 									</button>
 									<ul className="dropdown-menu variant-dropdown" aria-labelledby="dropdownMenu1">
 										<li> 
-											<a onClick = {() => this.setState({variant : null, variant_display : DEFAULT_VARIANT_TEXT})}>
-												 {DEFAULT_VARIANT_TEXT}
+											<a onClick = {() => this.setState({variant : null, variant_display : this.getVariantDefaultText.bind(this)()})}>
+												 {this.getVariantDefaultText.bind(this)()}
 											</a> 
 										</li>
 										<li role="separator" className="divider"></li>

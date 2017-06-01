@@ -14,12 +14,12 @@ export default class UploadStoryPhoto extends React.Component {
 
 	onSubmitPress(){
 		swal({
-		  title: "Confirm",
-		  text: "Are you ready to submit this photo?",
+		  title: "ARE YOU SURE?",
+		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",
-		  cancelButtonText: "No",
+		  cancelButtonText: "No!",
 		  closeOnConfirm: true,
 		  closeOnCancel: true
 		},

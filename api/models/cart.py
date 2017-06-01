@@ -34,7 +34,8 @@ class Cart:
 		return self.getSalesTaxRate(address) * self.getCartItemsPrice()
 
 	def getCartTotalPrice(self, address):
-		return self.getCartShippingPrice(address) + self.getCartSalesTaxPrice(address) + self.items_price
+		return round(self.getCartShippingPrice(address), 2)  \
+			+ round(self.getCartSalesTaxPrice(address), 2) + round(self.items_price, 2)
 
 	def clearCart(self):
 		for cart_item in self.items:

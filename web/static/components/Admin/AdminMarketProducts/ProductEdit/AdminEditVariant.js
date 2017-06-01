@@ -29,9 +29,26 @@ export default class AdminEditVariant extends React.Component {
 		this.setState({variant: obj})
 	}
 
-	activateVariant(variant){
+	warningAlert(callback) {
+		swal({
+		  title: "ARE YOU SURE?",
+		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: true,
+		  closeOnCancel: true
+		},
+		function () {
+			callback()
+		}.bind(this))
+	}
+
+	activateVariant(){
 		var form_data = JSON.stringify({
-			"variant_id" : variant.variant_id,
+			"product_id" : this.props.product.product_id,
+			"variant_id" : this.props.variant.variant_id,
 			"jwt" : localStorage.jwt
 		})
 		$.ajax({
@@ -54,9 +71,10 @@ export default class AdminEditVariant extends React.Component {
 		});	
 	}
 
-	deactivateVariant(variant){
+	deactivateVariant(){
 		var form_data = JSON.stringify({
-			"variant_id" : variant.variant_id,
+			"product_id" : this.props.product.product_id,
+			"variant_id" : this.props.variant.variant_id,
 			"jwt" : localStorage.jwt
 		})
 		$.ajax({
@@ -134,6 +152,7 @@ export default class AdminEditVariant extends React.Component {
 	}
 
 	render() {
+
 		if (!this.state.variant) return <div/>
 
 		var variant = this.state.variant
@@ -152,27 +171,27 @@ export default class AdminEditVariant extends React.Component {
 					</div>
 					<div className = "panel-footer">
 							{ variant.active ?
-							<button className = "btn-sm btn btn-default"
-							 onClick = {this.activateVariant.bind(this, variant)}>
-							 	Activate  
+							 <button className = "btn-sm btn btn-default"
+							 onClick = {this.warningAlert.bind(this, this.deactivateVariant.bind(this))}>
+								 Dectivate  
 							 </button>
 							 :
-							 <button className = "btn-sm btn btn-default"
-							 onClick = {this.deactivateVariant.bind(this, variant)}>
-								 Dectivate  
+							<button className = "btn-sm btn btn-default"
+							 onClick = {this.warningAlert.bind(this, this.activateVariant.bind(this))}>
+							 	Activate  
 							 </button>
 							}
 
 							
 							<button style = {{"margin-left" : "12px"}} 
 							className = "btn-sm btn btn-default"
-								 onClick = {this.updateVariant.bind(this, variant)}>
+								 onClick = {this.warningAlert.bind(this, this.updateVariant.bind(this))}>
 								 Update
 							</button>
 
 							<button style = {{"margin-left" : "12px"}} 
 							className = "btn-sm btn btn-default"
-								 onClick = {this.deleteVariant.bind(this, variant)}>
+								 onClick = {this.warningAlert.bind(this, this.deleteVariant.bind(this))}>
 								 Hard Delete
 							</button>
 					</div>

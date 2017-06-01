@@ -25,7 +25,7 @@ def addMarketProduct():
 		return JsonUtil.failure("Invalid submission")
 	name = market_product.get(Labels.Name)
 	try:
-		price = float(market_product.get(Labels.Price))
+		price = round(float(market_product.get(Labels.Price)), 2)
 	except:
 		return JsonUtil.failure("Price is not a valid float")
 	category = market_product.get(Labels.Category)
@@ -138,8 +138,11 @@ def updateProductInfo():
 	product_template = product.get(Labels.ProductTemplate)
 	story_text = product.get(Labels.StoryText)
 	num_items_limit = product.get(Labels.NumItemsLimit)
+	variant_type_description = product.get(Labels.VariantTypeDescription)
+	if variant_type_description != None:
+		this_product.variant_type_description = variant_type_description
 	if price != None:
-		this_product.price = price
+		this_product.price = round(float(price), 2)
 	if description != None:
 		this_product.description = description
 	if manufacturer != None:
@@ -326,7 +329,7 @@ def activateVariant():
 	if this_product == None:
 		return JsonUtil.failure("Invalid submission")
 
-	vairant_id = request.json.get(Labels.VariantId)
+	variant_id = request.json.get(Labels.VariantId)
 	ProductVariant.activateVariant(variant_id)
 	return JsonUtil.success()
 
@@ -341,7 +344,7 @@ def deactivateVariant():
 	if this_product == None:
 		return JsonUtil.failure("Invalid submission")
 
-	vairant_id = request.json.get(Labels.VariantId)
+	variant_id = request.json.get(Labels.VariantId)
 	ProductVariant.deactivateVariant(variant_id)
 	return JsonUtil.success()
 

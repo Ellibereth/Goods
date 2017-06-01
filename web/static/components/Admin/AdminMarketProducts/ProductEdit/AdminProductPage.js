@@ -38,7 +38,6 @@ export default class AdminProductPage extends React.Component {
 				this.setState({invalid_product : true})
 			}
 			else {
-				console.log(data.product)
 				this.setState({
 					invalid_product : false,
 					product: data.product,

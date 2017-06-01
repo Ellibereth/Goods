@@ -212,13 +212,15 @@ class ProductVariant(db.Model):
 	def activateVariant(variant_id):
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
 		this_variant.active = True
-		db.sesion.commit()
+		db.session.commit()
 
 	@staticmethod
 	def deactivateVariant(variant_id):
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
 		this_variant.active = False
-		db.sesion.commit()
+
+		db.session.commit()
+		print(this_variant.toPublicDict())
 
 	def toPublicDict(self):
 		public_dict = {}

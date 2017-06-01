@@ -16,6 +16,24 @@ export default class AdminEditProductPhotos extends React.Component {
 		this.setState({product : this.props.product})
 	}
 
+
+
+	onSetMainPhoto(image_id, index) {
+		swal({
+		  title: "ARE YOU SURE?",
+		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: true,
+		  closeOnCancel: true
+		},
+		function () {
+			this.setMainPhoto.bind(this)(image_id, index)
+		}.bind(this))
+	}
+
 	setMainPhoto(image_id, index){
 		var form_data = JSON.stringify({
 			"product_id" : this.props.product.product_id,
@@ -41,6 +59,23 @@ export default class AdminEditProductPhotos extends React.Component {
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 			});
+	}
+
+
+	onDeletePhoto(image_id, index) {
+		swal({
+		  title: "ARE YOU SURE?",
+		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Yes",
+		  cancelButtonText: "No!",
+		  closeOnConfirm: true,
+		  closeOnCancel: true
+		},
+		function () {
+			this.deletePhoto.bind(this)(image_id, index)
+		}.bind(this))
 	}
 
 	deletePhoto(image_id, index){
@@ -94,10 +129,10 @@ export default class AdminEditProductPhotos extends React.Component {
 							<img src= {src_base + image.image_id} id = {index} className = "admin-product-image"/>
 						</div>
 						<div className = "row">
-							<Button onClick = {this.deletePhoto.bind(this, image.image_id, index)}> Delete Photo </Button>
+							<Button onClick = {this.onDeletePhoto.bind(this, image.image_id, index)}> Delete Photo </Button>
 						</div>
 						<div className = "row">
-							<Button onClick = {this.setMainPhoto.bind(this, image.image_id, index)}> Set as Main Photo </Button>
+							<Button onClick = {this.onSetMainPhoto.bind(this, image.image_id, index)}> Set as Main Photo </Button>
 						</div>
 					</div>
 				)

@@ -26,7 +26,7 @@ export default class AddVariantForm extends React.Component {
 	onAddPress(){
 		swal({
 		  title: "Confirm",
-		  text: "Do you really want to show this product on the market?",
+		  text: "Do you really want to show this variant on the market?",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Yes",

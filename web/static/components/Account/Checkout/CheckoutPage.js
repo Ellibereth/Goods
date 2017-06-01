@@ -142,7 +142,6 @@ export default class CheckoutPage extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success) {
-						console.log(data.user.cart)
 						this.setState({
 							items: data.user.cart.items, 
 							total_price : data.user.cart.total_price,
@@ -429,14 +428,17 @@ export default class CheckoutPage extends React.Component {
 									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
 									label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
 
-									{this.state.shipping_price && 
+									{this.state.shipping_price ? 
 									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
 									label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
+									: <div/>
 									}	
 
-									{this.state.sales_tax_price != null &&
+
+									{this.state.sales_tax_price ?
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
 										label = {"Sales Tax:"} price = {formatPrice(this.state.sales_tax_price)}/>
+										: <div/>
 									}
 
 									<hr/>

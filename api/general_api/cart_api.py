@@ -33,6 +33,8 @@ def addItemToCart():
 	if not JwtUtil.validateJwtUser(jwt, account_id):
 		return JsonUtil.jwt_failure()
 	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+	if not this_user:
+		return JsonUtil.failure("No user logged in")
 	variant = request.json.get(Labels.Variant)
 	if variant:
 		variant_id = variant.get(Labels.VariantId)

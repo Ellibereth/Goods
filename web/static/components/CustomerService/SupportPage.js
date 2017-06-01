@@ -165,6 +165,7 @@ export default class SupportPage extends React.Component {
 									</form>
 								</div>
 								
+								<div className = "top-buffer"/>
 
 								<div className = "row">
 									<button onClick = {this.sendFeedback} type = "button" className = "btn send-feedback-button">
