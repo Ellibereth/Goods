@@ -56,7 +56,26 @@ export default class AdminProductPage extends React.Component {
 	}
 
 	componentDidMount(){
-		this.getProductInformation.bind(this)()
+		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		$.ajax({
+			type: "POST",
+			url: "/checkAdminJwt",
+			data: form_data,
+			success: function(data) {
+				if (!data.success){
+					browserHistory.push('/')	
+				}
+				else {
+					this.getProductInformation.bind(this)()
+				}
+			}.bind(this),
+			error : function(){
+				replace('/')
+		  	},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+		
 	}
 
 	navivgateTab(index){

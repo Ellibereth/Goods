@@ -14,7 +14,7 @@ export default class SiteMap extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			pathname : location.pathname.split('/')[1]
+			pathname : location.pathname
 		}
 		this.getSiteMap = this.getSiteMap.bind(this)
 	}
@@ -27,96 +27,110 @@ export default class SiteMap extends React.Component {
 	}
 
 	getSiteMap(){
-		var pathname = this.state.pathname
+		var pathname = this.state.pathname.split('/')
 		var routes = []
 		var labels = []
-		switch(pathname) {
+		switch(pathname[1]) {
+			case "yevgeniypoker555":
+				routes = [pathname[1]]
+				labels = ["Admin"]
+				if (pathname[2]) {
+					switch (pathname[2]) {
+						case "editProduct":
+							routes.push(pathname[1] + "/" + pathname[2])
+							labels.push("Product")
+							break;
+					}
+				}
+				
+				break;
+
 			case "search":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Search"]
 				break;
 			case "support":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Support"]
 				break;
 			case "recovery":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Set Password"]
 				break;
 			case "recoverAccount":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Recover Account"]
 				break;
 			case "confirmRequest":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Confirm Request"]
 				break;
 			case "confirmEmail":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Confirm Email"]
 				break;
 			case "privacy":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Privacy Policy"]
 				break;
 			case "terms":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Terms of Service"]
 				break;
 			case "eg":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Product"]
 				break;
 			case "register":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Register"]
 				break;
 			case "login":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Login"]
 				break;
 			case "settings":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["Settings"]
 				break;
 			case "updateSettings":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "Update Settings"]
 				break;
 			case "changePassword":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "Change Password"]
 				break;
 			case "myOrders":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "Past Orders"]
 				break;
 			case "billing":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "Add Billing"]
 				break;
 			case "shipping":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "Add Shipping"]
 				break;
 			case "myPlaces":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "My Places"]
 				break;
 			case "myCards":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "My Cards"]
 				break;
 			case "deleteAccount":
-				routes = ["settings", pathname]
+				routes = ["settings", pathname[1]]
 				labels = ["Settings" , "Delete Account"]
 				break;
 			case "myCart":
-				routes = [pathname]
+				routes = [pathname[1]]
 				labels = ["My Cart"]
 				break;
 			case "checkout":
-				routes = ["myCart", pathname]
+				routes = ["myCart", pathname[1]]
 				labels = ["My Cart", "Checkout"]
 				break;
 			default:

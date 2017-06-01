@@ -109,10 +109,9 @@ ReactDOM.render(
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
 			<IndexRoute  component={HomePage} />
-			<Route path = 'yevgeniypoker555' component = {AdminLoginPage}/>
-			<Route path = 'yevgeniypoker555/tools' onEnter = {checkAdmin} component = {AdminToolsPage}/>
-			<Route path= "yevgeniypoker555/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
-
+			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
+			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
+			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>

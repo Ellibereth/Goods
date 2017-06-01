@@ -44,13 +44,22 @@ export default class AdminToolsPage extends React.Component {
 	
 
 	componentDidMount() {	
-		var current_user = AppStore.getCurrentUser()
-		this.setState({current_user : current_user})
-		if (current_user != ""){
-			if (current_user['isAdmin']){
-				this.setState({access_granted : true})
-			}
-		}
+		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		$.ajax({
+			type: "POST",
+			url: "/checkAdminJwt",
+			data: form_data,
+			success: function(data) {
+				if (!data.success){
+					browserHistory.push('/')	
+				}
+			}.bind(this),
+			error : function(){
+				replace('/')
+		  	},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
 	}
 
 	render() {

@@ -266,5 +266,6 @@ class AdminLabels:
 	Password = "password"
 	Name = "name"
 	User = "user"
+	Jwt = "jwt"
 
 

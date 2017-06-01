@@ -50,6 +50,26 @@ export default class AdminLoginPage extends React.Component {
 		})
 	}
 
+	componentDidMount() {
+		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		$.ajax({
+			type: "POST",
+			url: "/checkAdminJwt",
+			data: form_data,
+			success: function(data) {
+				console.log(data.success)
+				if (data.success){
+					browserHistory.push('/yevgeniypoker555')	
+				}
+			}.bind(this),
+			error : function(){
+				replace('/')
+		  	},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+	}
+
 	render() {
 		return (
 			<PageContainer component = {
