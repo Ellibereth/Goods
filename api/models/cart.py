@@ -15,14 +15,26 @@ class Cart:
 		self.account_id = account_id
 		self.items = CartItem.query.filter_by(account_id = account_id).all()
 		self.items_price = self.getCartItemsPrice()
-		self.shipping_price = self.getCartShippingPrice()
-		self.total_price = self.items_price + self.shipping_price
 
 	def getCartItemsPrice(self):
 		return Pricing.getCartPrice(self)
 
-	def getCartShippingPrice(self):
-		return Pricing.getCartShippingPrice(self)
+	def getCartShippingPrice(self, address):
+		return Pricing.getCartShippingPrice(self, address)
+
+
+	def getSalesTaxRate(self, address):
+		SALES_TAX_RATE = 0.05
+		if address[Labels.AddressState] == "CA" or address[Labels.AddressState] == "TX":
+			return SALES_TAX_RATE
+		else:
+			return 0
+
+	def getCartSalesTaxPrice(self, address):
+		return self.getSalesTaxRate(address) * self.getCartItemsPrice()
+
+	def getCartTotalPrice(self, address):
+		return self.getCartShippingPrice(address) + self.getCartSalesTaxPrice(address) + self.items_price
 
 	def clearCart(self):
 		for cart_item in self.items:
@@ -36,7 +48,7 @@ class Cart:
 			total = total + item.num_items
 		return total
 
-	def toPublicDict(self):
+	def toPublicDict(self, address = None):
 		public_dict = {}
 		product_list = list()
 		for cart_item in self.items:
@@ -52,10 +64,18 @@ class Cart:
 			product_list.append(product)
 		product_list.sort(key=lambda x: x[Labels.Name])
 		public_dict[Labels.Items] = product_list
-		public_dict[Labels.TotalPrice] = self.total_price
-		public_dict[Labels.ShippingPrice] = self.shipping_price
-		public_dict[Labels.ItemsPrice] = self.items_price
+		
+		public_dict[Labels.ItemsPrice] = self.getCartItemsPrice()
+
+		if address:
+			public_dict[Labels.ShippingPrice] = self.getCartShippingPrice(address)
+			public_dict[Labels.SalesTaxPrice] = self.getCartSalesTaxPrice(address)
+			public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
+
 		return public_dict
+
+	
+
 
 ## user object class
 class CartItem(db.Model):

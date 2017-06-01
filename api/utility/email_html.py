@@ -98,17 +98,22 @@ class EmailHtml:
 		body = body + "<div style = \"padding-top: 18px;\"> </div>"
 		body = body + "<span style = \"display:block\">"
 		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Items </span>"
-		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.items_price) + "</span>"
+		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartItemsPrice()) + "</span>"
 		body = body + "</span>"
 		body = body + "<br/>"
 		body = body + "<span style = \"display:block\">"
 		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Shipping </span>"
-		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.shipping_price) + "</span>"
+		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartShippingPrice(address)) + "</span>"
+		body = body + "</span>"
+		body = body + "<br/>"
+		body = body + "<span style = \"display:block\">"
+		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Sales Tax </span>"
+		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartSalesTaxPrice(address)) + "</span>"
 		body = body + "</span>"
 		body = body + "<br/>"
 		body = body + "<span style = \"display:block\">"
 		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Total </span>"
-		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.total_price) + "</span>"
+		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartTotalPrice(address)) + "</span>"
 		body = body + "</span>"
 		body = body + "</div>"
 		body = body + "<div style = \"padding-top:12px\"></div>"
@@ -152,7 +157,7 @@ class EmailHtml:
 
 		if not price:
 			if price == 0: 
-				return "0.00"
+				return "$0.00"
 			else:
 				return ""	
 

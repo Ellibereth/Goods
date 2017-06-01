@@ -18,8 +18,8 @@ class Pricing:
 			total_price = total_price + this_item_price * cart_item.num_items
 		return total_price
 
-	def getCartShippingPrice(cart):
-		# this will be updated to 
+	def getCartShippingPrice(cart, address):
+		# this will be updated to actually take address into account 
 		return FLAT_SHIPPING_PRICE
 
 

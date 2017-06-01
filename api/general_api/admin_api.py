@@ -4,6 +4,7 @@ from api.utility.jwt_util import JwtUtil
 from api.security.tracking import LoginAttempt
 from api.utility.labels import AdminLabels as Labels
 from api.models.shared_models import db
+from api.models.admin_user import AdminUser
 	
 admin_api = Blueprint('admin_api', __name__)
 admin_login_username = "heathcliffe"
@@ -15,15 +16,17 @@ def checkAdminLogin():
 	
 	username = request.json.get(Labels.Username)
 	password = request.json.get(Labels.Password)
-	if password == admin_login_password and username == admin_login_username:
-		admin_jwt = JwtUtil.create_admin_jwt()
+	if AdminUser.checkLogin(username, password):
+		admin_user = AdminUser.query.filter_by(username = username).first()
+
+		admin_jwt = JwtUtil.create_jwt(admin_user.toPublicDict())
 		LoginAttempt.addLoginAttempt(username, ip = request.remote_addr
 			, success = True, is_admin = True)
-		return JsonUtil.successWithOutput({"user" : {'is_admin' : True, "name" : "Admin"}, "jwt" : admin_jwt})
+		return JsonUtil.successWithOutput({
+			Labels.User : admin_user.toPublicDict(), 
+			"jwt" : admin_jwt})
 	else:
-
 		LoginAttempt.addLoginAttempt(username, ip, success = False, is_admin = True)
-		
 		return JsonUtil.failure("Invalid Credentials")
 
 

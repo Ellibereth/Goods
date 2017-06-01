@@ -182,9 +182,12 @@ class PaymentLabels:
 	ItemsPrice = "items_price"
 	TotalPrice = "total_price"
 	Items = "items"
+	SalesTaxPrice = "sales_tax_price"
 
 
 class CartLabels:
+	SalesTaxPrice = "sales_tax_price"
+	Address = "address"
 	Inventory = "inventory"
 	StripeCustomerId = "stripe_customer_id"
 	AccountId = "account_id"
@@ -261,5 +264,7 @@ class AdminLabels:
 	DateCreated = "date_created"
 	IsAdmin = "is_admin"
 	Password = "password"
+	Name = "name"
+	User = "user"
 
 

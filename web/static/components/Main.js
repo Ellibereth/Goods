@@ -112,7 +112,7 @@ ReactDOM.render(
 			<Route path = 'yevgeniypoker555' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555/tools' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
-			
+
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
@@ -126,7 +126,6 @@ ReactDOM.render(
 			<Route path = "myOrders" onEnter = {checkUser} component = {OrderHistoryPage}/>
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
-			
 			<Route path = "billing" onEnter = {checkUser} component = {UpdateBillingPage} />
 			<Route path = "deleteAccount" onEnter = {checkUser} component = {DeleteAccountPage} />
 			<Route path = "myCards" onEnter = {checkUser} component = {ManageCardsPage} />

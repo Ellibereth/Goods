@@ -38,7 +38,8 @@ export default class CheckoutPage extends React.Component {
 			billing_modal_open: false,
 			is_loading: true,
 			first_load_done : false,
-			button_disabled : false
+			button_disabled : false,
+			sales_tax_price: null
 
 		}
 
@@ -132,14 +133,16 @@ export default class CheckoutPage extends React.Component {
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
 				"account_id" : AppStore.getCurrentUser().account_id,
-				"jwt" : localStorage.jwt
+				"jwt" : localStorage.jwt,
+				"address" : this.getSelectedAddress()
 			})
 			$.ajax({
 				type: "POST",
-				url: "/getUserInfo",
+				url: "/refreshCheckoutInfo",
 				data: form_data,
 				success: function(data) {
 					if (data.success) {
+						console.log(data.user.cart)
 						this.setState({
 							items: data.user.cart.items, 
 							total_price : data.user.cart.total_price,
@@ -147,7 +150,8 @@ export default class CheckoutPage extends React.Component {
 							items_price : data.user.cart.items_price,
 							cards : data.user.cards,
 							addresses : data.user.addresses, 
-							is_loading : false
+							is_loading : false,
+							sales_tax_price : data.user.cart.sales_tax_price,
 						})
 						AppActions.removeCurrentUser()
 						AppActions.addCurrentUser(data.user, data.jwt)
@@ -169,7 +173,6 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	componentWillMount(){
-
 		var user = AppStore.getCurrentUser()
 		if (user.cards.length == 0 && user.addresses.length == 0){
 			this.refreshCheckoutInformation.bind(this)()
@@ -218,6 +221,8 @@ export default class CheckoutPage extends React.Component {
 		
 
 		this.setState({first_load_done : true})
+
+
 	}
 
 	setCard(card_index){
@@ -229,7 +234,7 @@ export default class CheckoutPage extends React.Component {
 	setAddress(address_index){
 		this.setState({
 			selected_address_index : address_index
-		})
+		}, this.refreshCheckoutInformation.bind(this))
 	}
 
 	hasCheckoutError(){
@@ -333,9 +338,9 @@ export default class CheckoutPage extends React.Component {
 	}	
 
 
+
 	render() {
 		var can_checkout = this.canCheckout()
-
 		return (
 			<PageContainer {...this.props}
 				component = {
@@ -423,9 +428,19 @@ export default class CheckoutPage extends React.Component {
 									<hr/>
 									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
 									label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
+
+									{this.state.shipping_price && 
 									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
 									label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
+									}	
+
+									{this.state.sales_tax_price != null &&
+										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+										label = {"Sales Tax:"} price = {formatPrice(this.state.sales_tax_price)}/>
+									}
+
 									<hr/>
+
 									<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
 									label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
 								</div>

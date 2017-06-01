@@ -17,6 +17,7 @@ class Order(db.Model):
 	order_id = db.Column(db.String, primary_key = True)
 	items_price = db.Column(db.Float)
 	order_shipping = db.Column(db.Float)
+	sales_tax_price = db.Column(db.Float, default = 0)
 	total_price = db.Column(db.Float)
 	refund_date = db.Column(db.DateTime)
 	stripe_customer_id = db.Column(db.String, nullable = False)
@@ -42,10 +43,11 @@ class Order(db.Model):
 	def __init__(self, user, cart, address):
 		self.order_id = self.generateOrderId()
 		self.items_price = cart.getCartItemsPrice()
-		self.order_shipping = cart.getCartShippingPrice()
+		self.order_shipping = cart.getCartShippingPrice(address)
 		self.account_id = user.account_id
 		self.stripe_customer_id = user.stripe_customer_id
 		self.lob_address_id = address.id
+		self.sales_tax_price = cart.getCartSalesTaxPrice(address)
 		self.address_name = address.name
 		self.address_description = address.description
 		self.address_city = address.address_city
@@ -54,9 +56,8 @@ class Order(db.Model):
 		self.address_line2 = address.address_line2
 		self.address_zip = address.address_zip
 		self.address_state = address.address_state
-		self.total_price = self.items_price + self.order_shipping
+		self.total_price = self.items_price + self.order_shipping + self.sales_tax_price
 		db.Model.__init__(self)
-
 
 	@staticmethod
 	def getOrderById(order_id):
@@ -66,7 +67,7 @@ class Order(db.Model):
 		else:
 			return None
 
-	def addItems(self, this_user, this_cart):
+	def addItems(self, this_user, this_cart, address):
 		# record this transaction for each product (enabling easier refunds), but group by quantity 
 		for cart_item in this_cart.items:
 			# update the inventory
@@ -80,7 +81,7 @@ class Order(db.Model):
 			else:
 				this_product.inventory = this_product.inventory - cart_item.num_items
 
-			order_shipping = this_cart.shipping_price
+			order_shipping = this_cart.getCartShippingPrice(address)
 			new_order_item = OrderItem(self.order_id, this_user, this_product, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
 			db.session.add(new_order_item)
 
@@ -123,6 +124,7 @@ class Order(db.Model):
 		public_dict[Labels.Address] = address
 		public_dict[Labels.CardLast4] = self.card_last4
 		public_dict[Labels.CardBrand] = self.card_brand
+		public_dict[Labels.SalesTaxPrice] = self.sales_tax_price
 		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
 		
 		return public_dict
@@ -178,6 +180,7 @@ class OrderItem(db.Model):
 		public_dict[Labels.VariantId] = self.variant_id
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.MainImage] = self.main_image	
+		
 		return public_dict
 
 

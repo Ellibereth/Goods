@@ -115,7 +115,9 @@ def checkoutCart():
 		return JsonUtil.failure("Address does not go with this user")
 
 	this_cart = Cart(account_id)
-	total_price = this_cart.total_price
+	total_price = this_cart.toPublicDict(address).get(Labels.TotalPrice)
+	if not total_price:
+		return JsonUtil.failure("Error calculating price of cart")
 	this_user = User.query.filter_by(account_id = account_id).first()
 
 
@@ -123,8 +125,7 @@ def checkoutCart():
 	try:
 		this_order = Order(this_user, this_cart, address)
 		db.session.add(this_order)
-		
-		this_order.addItems(this_user, this_cart)
+		this_order.addItems(this_user, this_cart, address)
 
 		
 	except Exception as e:
@@ -135,6 +136,7 @@ def checkoutCart():
 	# charge this price to the customer via stripe
 	# stripe automatically checks if the card matches the customer 
 	try:
+		
 		charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
 		this_order.updateCharge(charge)
 	except Exception as e:
@@ -235,6 +237,21 @@ def updateCartQuantity():
 				Labels.User : this_user.toPublicDict(),
 				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 			})	
+
+
+@cart_api.route('/refreshCheckoutInfo', methods = ['POST'])
+def refreshCheckoutInfo():
+	address = request.json.get(Labels.Address)
+
+	jwt = request.json.get(Labels.Jwt)
+	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+
+	if this_user == None:
+		return JsonUtil.jwt_failure()
+	return JsonUtil.successWithOutput({
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
+			Labels.User : this_user.toPublicDictCheckout(address)
+		})
 
 
 

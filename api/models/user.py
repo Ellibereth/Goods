@@ -33,7 +33,6 @@ class User(db.Model):
 	password_hash = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
 	stripe_customer_id = db.Column(db.String, unique = True)
-	is_admin = db.Column(db.Boolean, default = False)
 	soft_deleted = db.Column(db.Boolean, default = False)
 	default_address = db.Column(db.String)
 	default_card = db.Column(db.String)
@@ -102,7 +101,6 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.IsAdmin] = self.is_admin
 		return public_dict
 
 
@@ -112,7 +110,6 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.IsAdmin] = self.is_admin
 		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
 		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
 		public_dict[Labels.Addresses] = []
@@ -120,13 +117,27 @@ class User(db.Model):
 		return public_dict
 
 
+	def toPublicDictCheckout(self, address):
+		public_dict = {}
+		public_dict[Labels.Name] = self.name
+		public_dict[Labels.Email] = self.email
+		public_dict[Labels.EmailConfirmed] = self.email_confirmed
+		public_dict[Labels.AccountId] = self.account_id
+		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
+		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict(address)
+		public_dict[Labels.Addresses] = self.getAddresses()
+		public_dict[Labels.Cards] = self.getCreditCards()
+		public_dict[Labels.Orders] = self.getUserOrders()
+		public_dict[Labels.DefaultCard] = self.default_card
+		public_dict[Labels.DefaultAddress] = self.default_address
+		return public_dict
+
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.IsAdmin] = self.is_admin
 		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
 		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
 		public_dict[Labels.Addresses] = self.getAddresses()
