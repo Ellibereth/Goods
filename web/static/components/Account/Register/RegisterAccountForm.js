@@ -9,7 +9,7 @@ const form_inputs = ["name", "email", "password", "password_confirm"]
 const input_types = ['text', 'text', 'password', 'password']
 const popover_text = [null, null, "Passwords must be at least 6 characters" , null]
 var Link = require('react-router').Link
-import AccountInput from '../AccountInput'
+import AccountInput from '../../Input/AccountInput'
 
 export default class RegisterAccountForm extends React.Component {
 	constructor(props) {

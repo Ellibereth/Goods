@@ -6,7 +6,7 @@ var browserHistory = require('react-router').browserHistory;
 import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import {Form, FormGroup, Col, Button} from 'react-bootstrap'
-import AccountInput from '../AccountInput'
+import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
 
 const form_labels = ["Email"]

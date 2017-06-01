@@ -8,7 +8,7 @@ const form_labels = ["Email", "Password"]
 const form_inputs = ["email", "password"]
 const input_types = ['text', 'password']
 var Link = require('react-router').Link
-import AccountInput from '../AccountInput'
+import AccountInput from '../../Input/AccountInput'
 
 export default class LoginForm extends React.Component {
 	constructor(props) {
