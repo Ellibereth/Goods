@@ -45,6 +45,13 @@ export default class ProductMainContainer extends React.Component {
 						is_loading : false
 		 			})
 				}
+				else if (this.props.admin_view) {
+					this.setState({
+						invalid_product : false,
+						product: data.product,
+						is_loading : false
+		 			})
+				}
 			}
 		  }.bind(this),
 		  error : function(){
@@ -92,6 +99,8 @@ export default class ProductMainContainer extends React.Component {
 
 
 	render() {
+
+
 		if (this.state.is_loading) {
 			var component = <div/>
 		}

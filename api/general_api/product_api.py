@@ -71,7 +71,7 @@ def getMarketProductInfo():
 		return JsonUtil.failure("Bad Product Id")
 	if not product_id.isdigit():
 		return JsonUtil.failure("Bad Product Id")
-	market_product = MarketProduct.query.filter_by(product_id = product_id, active = True).first()
+	market_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if market_product == None:
 		return JsonUtil.failure("Error retrieving product information")
 	else:
@@ -178,24 +178,7 @@ def updateProductInfo():
 	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
 
 
-@product_api.route('/uploadMarketProductImage', methods = ['POST'])
-def uploadMarketProductImage():
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtAdmin(jwt):
-		return JsonUtil.jwt_failure()
-	product_id = request.json.get(Labels.ProductId)
-	image_data = request.json.get(Labels.ImageData)
-	if image_data == None:
-		return JsonUtil.failure("No image has been uploaded!")
-	image_bytes = image_data.encode('utf-8')
-	image_decoded = base64.decodestring(image_bytes)
-	# increment the number of images for the product
-	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
-		return JsonUtil.failure("Product doesn't exist")
-	this_product.addProductImage(image_decoded)
-	
-	return JsonUtil.success()
+
 
 @product_api.route('/activateProduct', methods = ['POST'])
 def activateProduct():
