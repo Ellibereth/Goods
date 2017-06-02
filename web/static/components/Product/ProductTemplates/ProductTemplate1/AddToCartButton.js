@@ -41,7 +41,7 @@ export default class AddToCartButton extends React.Component {
 		this.setState({
 			variant : variant,
 			variant_display : variant.variant_type
-		})
+		}, this.props.checkItemInStock(this.props.product, variant))
 		$("#variant_dropdown").removeClass('open')
 
 	}
@@ -112,6 +112,9 @@ export default class AddToCartButton extends React.Component {
 
 	componentDidMount(){
 		this.props.refreshUserInformation()
+		if (!this.props.product.has_variants) {
+			this.props.checkItemInStock(this.props.product, null)
+		}
 	}
 
 	onNonUserClick(){
@@ -138,6 +141,8 @@ export default class AddToCartButton extends React.Component {
 		var num_can_add = cart_item.num_items_limit - cart_item.num_items
 		var user = AppStore.getCurrentUser()
 
+		var button_disabled = this.state.buy_disabled || (!this.props.item_in_stock)
+
 		for (var i = 1; i <= 10; i++) {
 			quantity_options.push(
 					<li style= {{"cursor" : "pointer"}}  
@@ -146,6 +151,8 @@ export default class AddToCartButton extends React.Component {
 					 </li>
 				)
 		}
+
+
 
 		var variant_options = []
 		this.props.product.variants.map((variant, index) => 
@@ -200,7 +207,7 @@ export default class AddToCartButton extends React.Component {
 						<div className = "row">
 							<div className = "btn-group">
 								<div id = "quantity_dropdown" className="btn-group dropdown">
-									<button  type="button"
+									<button  type="button" disabled = {button_disabled}
 									 className="btn quantity-button dropdown-toggle vertical-button-divider"
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span className = "block-span">
@@ -217,10 +224,12 @@ export default class AddToCartButton extends React.Component {
 										{quantity_options}
 									</ul>
 								</div>
-								<button type = "button" disabled = {this.state.buy_disabled}
+								<button type = "button" 
+								disabled = {button_disabled}
 									onClick = {user ? this.addToCart.bind(this) 
 										: this.onNonUserClick.bind(this)} 
-									className="btn add-to-cart-button ">
+									className= {button_disabled ? "btn add-to-cart-button disabled"
+									 : "btn add-to-cart-button"}>
 									<span className = "add-to-cart-text block-span">
 										<b> Add to Cart </b>
 									</span>
@@ -231,5 +240,5 @@ export default class AddToCartButton extends React.Component {
 				</div>
 
 		);
-		}
+	}
 }

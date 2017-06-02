@@ -8,6 +8,7 @@ from api.models.admin_user import AdminUser
 from api.models.home_image import HomeImage
 from api.models.market_product import MarketProduct
 from api.security.tracking import AdminAction
+from api.models.market_product import ProductVariant
 
 import base64
 from api.s3.s3_api import S3

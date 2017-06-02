@@ -19,7 +19,8 @@ export default class ProductTemplate1 extends React.Component {
 			items : [],
 			price : null,
 			cart_item : [],
-			more_information_open : false
+			more_information_open : false,
+			item_in_stock : true,
 		}
 	}
 
@@ -88,19 +89,31 @@ export default class ProductTemplate1 extends React.Component {
 	}
 
 
+	checkItemInStock(product, variant){
+		if (product.has_variants) {
+			if (variant) {
+				var item_in_stock = (variant.inventory > 0)
+			}
+			else {
+				var item_in_stock = false
+			}
+		}
+		// item does not have variants
+		else {
+			var item_in_stock = (product.inventory > 0)
+		}
+		this.setState({item_in_stock : item_in_stock})
+	}
+
+
+
+
 
 
 	render() {
 
-
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-		if (this.props.is_loading){
-			return <div/>
-		}
-
-
-	
-		
+		if (this.props.is_loading){return <div/>}		
 		return (	
 			<div className = "container">	
 					<div className = "col-sm-6 col-md-6 col-lg-6" >
@@ -139,9 +152,15 @@ export default class ProductTemplate1 extends React.Component {
 						</div>
 
 						<div className = "row">
-							<span className = "product-price-text">
-								${formatPrice(this.props.product.price)} 
-							</span>
+							
+								{this.state.item_in_stock ? 
+									<span className = "product-price-text"> ${formatPrice(this.props.product.price)}  </span>
+								:
+									<span className = "product-price-text">
+										<s>${formatPrice(this.props.product.price)} </s> 
+										<span style = {{"color" : "red"}}> {" Sold Out!"} </span>
+									</span>
+								}
 						</div>
 
 						
@@ -152,6 +171,8 @@ export default class ProductTemplate1 extends React.Component {
 						refreshUserInformation = {this.refreshUserInformation.bind(this)}
 						product = {this.props.product}
 						setLoading = {this.props.setLoading}
+						checkItemInStock = {this.checkItemInStock.bind(this)}
+						item_in_stock = {this.state.item_in_stock}
 						/>
 
 						<div className = 'top-buffer'/>

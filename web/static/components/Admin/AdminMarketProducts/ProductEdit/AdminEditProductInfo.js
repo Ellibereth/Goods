@@ -104,7 +104,8 @@ export default class AdminEditProductInfo extends React.Component {
 			if (data.success){
 				this.setState({product : data.product})
 				this.props.getProductInformation.bind(this)()
-				swal("Complete!", "Product successfully updated", "success")
+				setTimeout(function () {swal("Complete!", "Product successfully updated", "success")}, 500)
+
 			}
 			else {
 				swal("Something went wrong!", data.error, "error")
