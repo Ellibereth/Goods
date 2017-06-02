@@ -158,7 +158,7 @@ export default class ProductTemplate1 extends React.Component {
 								:
 									<span className = "product-price-text">
 										<s>${formatPrice(this.props.product.price)} </s> 
-										<span style = {{"color" : "red"}}> {" Sold Out!"} </span>
+										<span style = {{"color" : "red", "margin-left" : "12px"}}> {" Sold Out!"} </span>
 									</span>
 								}
 						</div>
