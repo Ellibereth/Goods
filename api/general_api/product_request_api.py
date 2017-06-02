@@ -11,6 +11,7 @@ from api.models.request import Request
 from api.utility.labels import RequestLabels as Labels
 from api.utility.json_util import JsonUtil
 from api.utility.jwt_util import JwtUtil
+from api.security.tracking import AdminAction
 
 product_request_api = Blueprint('product_request_api', __name__)
 
@@ -20,25 +21,34 @@ product_request_api = Blueprint('product_request_api', __name__)
 @product_request_api.route('/softDeleteProductRequestByRequestId', methods = ['POST'])
 def softDeleteProductRequestByRequestId():
 	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtAdmin(jwt):
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
+	if not decoded_jwt:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.jwt_failure()
 
 	request_id = request.json.get(Labels.RequestId)
 	if request_id == None:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Bad input")
 	this_request = Request.query.filter_by(request_id = request_id).first()
 	if this_request == None:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("This request id doesn't exist")
 	this_request.soft_deleted = True
 	db.session.commit()
+	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
 	return JsonUtil.success()
 
 @product_request_api.route('/getProductRequests', methods =['POST'])
 def getProductRequests():
 	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtAdmin(jwt):
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
+	if not decoded_jwt:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.jwt_failure()
+
 	all_requests = Request.query.all()
+	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
 	return jsonify([req.toPublicDict() for req in all_requests])
 
 

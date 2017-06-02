@@ -25,4 +25,4 @@ class JsonUtil:
 
 	@staticmethod
 	def jwt_failure():
-		return jsonify({"sucess" : False, "error" : "Bad JWT"})
+		return jsonify({"sucess" : False, "error" : "Invalid Authentication"})

@@ -59,6 +59,9 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	User = "user"
+	Password = "password"
+	Username = "username"
 	TimeStamp = "time_stamp"
 	ProuctId = "product_id"
 	Success = "success"
@@ -105,6 +108,7 @@ class MarketProductLabels:
 	Products = "products"
 	Live = "live"
 	VariantTypeDescription = "variant_type_description"
+	Username = "username"
 
 class ProductTagLabels:
 	ProductId = "product_id"
@@ -260,6 +264,7 @@ class ErrorLabels:
 
 
 class AdminLabels:
+	ErrorMessage = "error_message"
 	Ip = "ip"
 	Username = "username"
 	AttemptId = "attempt_id"
@@ -270,5 +275,7 @@ class AdminLabels:
 	Name = "name"
 	User = "user"
 	Jwt = "jwt"
+	AdminActionId = "admin_action_id"
+	RequestPath = "request_path"
 
 

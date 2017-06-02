@@ -12,7 +12,7 @@ from passlib.hash import argon2
 class AdminUser(db.Model):
 	__tablename__ = ProdTables.AdminUserTable
 	admin_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
-	username = db.Column(db.String)
+	username = db.Column(db.String, unique = True)
 	password_hash = db.Column(db.String)
 	name = db.Column(db.String)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())

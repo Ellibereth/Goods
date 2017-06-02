@@ -41,19 +41,24 @@ class JwtUtil:
 		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
 		return decoded.get(AccountId) == account_id and decoded.get(EmailConfirmed)
 
-
-	@staticmethod
-	def create_admin_jwt():
-		secret_key = os.environ.get(SECRET_KEY)
-		payload = {IsAdmin : True}
-		this_jwt = jwt.encode(payload, secret_key, algorithm= algorithm)
-		return this_jwt.decode(UTF8)
-
 	@staticmethod
 	def validateJwtAdmin(jwt_str):
 		encoded = jwt_str.encode(UTF8)
 		decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
-		return decoded.get(IsAdmin)
+		decoded.get(IsAdmin)
+
+	@staticmethod
+	def decodeAdminJwt(jwt_str):
+		try:
+			encoded = jwt_str.encode(UTF8)
+			decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])
+			if decoded.get(IsAdmin):
+				return decoded
+			else:
+				return None
+		except:
+			return None
+
 
 	@staticmethod
 	def getUserInfoFromJwt(jwt_str):

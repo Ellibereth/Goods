@@ -23,7 +23,6 @@ export default class AdminProductRequests extends React.Component {
 			  url: "/getProductRequests",
 			  data : form_data,
 			  success: function(data) {
-			  	console.log(data)
 				this.setState({product_requests: data})
 			  }.bind(this),
 			  error : function(){
