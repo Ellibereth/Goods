@@ -89,7 +89,7 @@ export default class AddHomeImage extends React.Component {
 				onChange = {() => this.handleImageChange.bind(this)()} />
 				<FormGroup controlId = "submit_buton">
 				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this, this.)}>
+					<Button onClick = {this.onSubmitPress.bind(this, this.uploadImage.bind(this))}>
 						Submit!
 					</Button>
 				</Col>

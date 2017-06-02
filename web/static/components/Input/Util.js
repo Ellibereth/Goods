@@ -1,3 +1,5 @@
+var dateFormat = require('dateformat');
+
 export function isNumberKey(event) {
 	const re = /^[0-9\b]+$/;
 	return (event.target.value == '' || re.test(event.target.value)) 
@@ -25,4 +27,10 @@ export function formatPrice(price){
 
 		cents = cents.substring(0,2)
 		return dollars + "." + cents
+}
+
+export function formatDate(date){
+	var local_date = new Date(date)
+	var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+	return formatted_date
 }

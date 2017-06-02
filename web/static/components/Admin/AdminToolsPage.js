@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react');''
 var ReactDOM = require('react-dom');
 
 import AppActions from '../../actions/AppActions.js'
@@ -6,7 +6,7 @@ import AppStore from '../../stores/AppStore.js'
 
 import AdminProductRequests from './AdminProductRequests/AdminProductRequests.js'
 import AdminMarketProducts from './AdminMarketProducts/AdminMarketProducts.js'
-
+import AdminHome from './AdminHome'
 import PageContainer from '../Misc/PageContainer'
 
 const REQUEST_INDEX = 0

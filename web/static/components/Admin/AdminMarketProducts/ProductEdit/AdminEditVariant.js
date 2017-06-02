@@ -109,8 +109,7 @@ export default class AdminEditVariant extends React.Component {
 	  	data: form_data,
 	  	success: function(data) {
 			if (data.success){
-				this.props.getProductInformation()
-				swal("Deleted", "Variant successfully deleted", "success")
+				location.reload()
 			}
 			else {
 				swal("Something went wrong!", data.error, "error")
@@ -137,7 +136,10 @@ export default class AdminEditVariant extends React.Component {
 	  	success: function(data) {
 			if (data.success){
 				this.props.getProductInformation()
-				swal("Complete", "Product variant inventory successfully updated", "success")
+				setTimeout(function () {
+					swal("Complete", "Product variant inventory successfully updated", "success")
+				}, 500) 
+
 			}
 			else {
 				swal("Something went wrong!", data.error, "error")
