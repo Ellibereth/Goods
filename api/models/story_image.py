@@ -7,6 +7,8 @@ import string
 from api.utility.labels import ProductImageLabels as Labels
 from api.utility.id_util import IdUtil
 
+
+
 ## user object class
 class StoryImage(db.Model):
 	__tablename__ = ProdTables.StoryImageTable

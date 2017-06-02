@@ -12,6 +12,7 @@ import PageContainer from '../Misc/PageContainer'
 const REQUEST_INDEX = 0
 const ACTIVE_PRODUCT_INDEX = 1
 const INACTIVE_PRODUCT_INDEX = 2
+const HOME_PAGE_INDEX = 3
 
 import {Nav, NavItem} from 'react-bootstrap'
 
@@ -85,6 +86,7 @@ export default class AdminToolsPage extends React.Component {
 						<NavItem eventKey= {REQUEST_INDEX}> Requests </NavItem>
 						<NavItem eventKey= {ACTIVE_PRODUCT_INDEX}> Active Products </NavItem>	
 						<NavItem eventKey= {INACTIVE_PRODUCT_INDEX}> Not Active Products </NavItem>	
+						<NavItem eventKey= {HOME_PAGE_INDEX}> Home Page </NavItem>	
 					</Nav>
 					<div className = "top-buffer"/>
 					<div className = {this.state.selected_tab != REQUEST_INDEX && "none"} > 
@@ -95,6 +97,10 @@ export default class AdminToolsPage extends React.Component {
 					</div>
 					<div className = {this.state.selected_tab != INACTIVE_PRODUCT_INDEX && "none"} > 
 						<AdminMarketProducts products = {this.state.products} active = {false} />
+					</div>
+
+					<div className = {this.state.selected_tab != HOME_PAGE_INDEX && "none"} > 
+						<AdminHome products = {this.state.products} active = {false} />
 					</div>
 					
 				</div>

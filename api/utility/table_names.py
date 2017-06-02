@@ -23,6 +23,7 @@ class ProdTables:
 	ProductVariantTable = "PRODUCT_VARIANT_TABLE"
 	LoginAttemptTable = "LOGIN_ATTEMPT_TABLE"
 	AdminUserTable = "ADMIN_USER_TABLE"
+	HomeImageTable = "HOME_IMAGE_TABLE"
 
 
 """ 
@@ -49,4 +50,5 @@ class TestTables:
 	OrderItemTable = TEST_PREFIX + ProdTables.OrderItemTable
 	LoginAttemptTable = TEST_PREFIX + ProdTables.LoginAttemptTable
 	AdminUserTable = TEST_PREFIX + ProdTables.AdminUserTable
+	HomeImageTable = TEST_PREFIX + ProdTables.HomeImageTable
 	SqlTestTable = "TEST_SQL"

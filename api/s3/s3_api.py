@@ -11,8 +11,10 @@ CACHE_WEEKS = 4
 CACHE_MAX_AGE =  CACHE_WEEKS * 7 * 24 * 60 * 60 
 
 
-PRODUCT_PHOTOS = "publicmarketproductphotos"
-STORY_PHOTOS = "storyphotos"
+PRODUCT_IMAGES = "publicmarketproductphotos"
+STORY_IMAGES = "storyphotos"
+HOME_IMAGES = 'edgarusahomepage'
+
 s3 = boto3.resource('s3',
 			aws_access_key_id="AKIAJDIH6XBW42FXQX2Q",
 			aws_secret_access_key="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"
@@ -24,13 +26,18 @@ class S3:
 
 	@staticmethod
 	def uploadStoryImage(image_key, image_data):
-		S3.uploadPhoto(STORY_PHOTOS, image_key, image_data)
+		S3.uploadPhoto(STORY_IMAGES, image_key, image_data)
 
 
 	# takes image_data input as a buffered reader
 	@staticmethod
+	def uploadHomeImage(image_key, image_data):
+		S3.uploadPhoto(HOME_IMAGES, image_key, image_data)
+
+	# takes image_data input as a buffered reader
+	@staticmethod
 	def uploadProductImage(image_key, image_data):
-		S3.uploadPhoto(PRODUCT_PHOTOS, image_key, image_data)
+		S3.uploadPhoto(PRODUCT_IMAGES, image_key, image_data)
 
 	def uploadPhoto(bucket_name, image_key, image_data):
 		if image_data == None:
@@ -57,13 +64,13 @@ class S3:
 	# deletes the image with the given key in the bucket for product images
 	@staticmethod
 	def deleteProductImage(image_key):
-		bucket = s3.Bucket(PRODUCT_PHOTOS)
+		bucket = s3.Bucket(PRODUCT_IMAGES)
 		bucket.delete_key(image_key)
 
 	# deletes the image with the given key in the bucket for product images
 	@staticmethod
 	def deleteStoryImage(image_key):
-		bucket = s3.Bucket(STORY_PHOTOS)
+		bucket = s3.Bucket(STORY_IMAGES)
 		bucket.delete_key(image_key)
 
 	# returns the data as a bytes object

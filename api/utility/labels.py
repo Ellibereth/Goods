@@ -55,6 +55,8 @@ class ProductImageLabels:
 	MainImage = "main_image"
 	DeletedDate = "deleted_date"
 	Images = "images"
+	ImageText = "image_text"
+	Live = "live"
 
 class MarketProductLabels:
 	TimeStamp = "time_stamp"

@@ -33,8 +33,8 @@ class ProductImage(db.Model):
 
 	def toPublicDict(self):
 		public_dict = {}
-		public_dict['product_id'] = self.product_id
-		public_dict['image_id'] = self.image_id
+		public_dict[Labels.ProductId] = self.product_id
+		public_dict[Labels.ImageId] = self.image_id
 		return public_dict
 
 
