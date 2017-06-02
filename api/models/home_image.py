@@ -7,6 +7,7 @@ import string
 from api.utility.labels import ProductImageLabels as Labels
 from api.utility.id_util import IdUtil
 from passlib.hash import argon2
+from api.s3.s3_api import S3
 
 
 class HomeImage(db.Model):
@@ -37,10 +38,10 @@ class HomeImage(db.Model):
 
 	@staticmethod
 	def addHomeImage(image_data):
-		home_image = ProductImage()
-		db.session.add(image_record)
+		home_image = HomeImage()
+		db.session.add(home_image)
 		# upload the image to S3
-		S3.uploadHomeImage(image_record.image_id, image_decoded)
+		S3.uploadHomeImage(home_image.image_id, image_data)
 		# commit to database
 		db.session.commit()
 
@@ -50,6 +51,13 @@ class HomeImage(db.Model):
 		public_dict[Labels.ImageText] = self.image_text
 		public_dict[Labels.Live] = self.live
 		return public_dict
+
+	def updateHomeImage(self, live, image_text):
+		if live:
+			self.live = live
+		if image_text:
+			self.image_text = image_text
+		db.session.commit()
 
 
 

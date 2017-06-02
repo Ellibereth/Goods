@@ -74,27 +74,6 @@ def uploadMarketProductImage():
 	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
 	return JsonUtil.success()
 
-@admin_api.route('/uploadHomeImage', methods = ['POST'])
-def uploadHomeImage():
-	jwt = request.json.get(Labels.Jwt)
-	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
-
-	image_data = request.json.get(Labels.ImageData)
-	if image_data == None:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.failure("No image has been uploaded!")
-	image_bytes = image_data.encode('utf-8')
-	image_decoded = base64.decodestring(image_bytes)
-	HomeImage.addHomeImage(image_decoded)
-	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-	return JsonUtil.success()
-
-
-
-
 @admin_api.route('/deleteProductPhoto', methods = ['POST'])
 def deleteProductPhoto():
 	jwt = request.json.get(Labels.Jwt)
@@ -500,6 +479,65 @@ def addMarketProduct():
 	db.session.commit()
 	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
 	return JsonUtil.success()
+
+@admin_api.route('/uploadHomeImage', methods = ['POST'])
+def uploadHomeImage():
+	jwt = request.json.get(Labels.Jwt)
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
+	if not decoded_jwt:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+		return JsonUtil.jwt_failure()
+
+	image_data = request.json.get(Labels.ImageData)
+	if image_data == None:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+		return JsonUtil.failure("No image has been uploaded!")
+	image_bytes = image_data.encode('utf-8')
+	image_decoded = base64.decodestring(image_bytes)
+	HomeImage.addHomeImage(image_decoded)
+	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
+	return JsonUtil.success()
+
+
+@admin_api.route('/updateHomeImage', methods = ['POST'])
+def updateHomeImage():
+	jwt = request.json.get(Labels.Jwt)
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
+	if not decoded_jwt:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+		return JsonUtil.jwt_failure()
+
+	image_id = request.json.get(Labels.ImageId)
+	live = request.json.get(Labels.Live)
+	image_text = request.json.get(Labels.ImageText)
+	if not image_id:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+		return JsonUtil.failure("Bad home image input")
+
+	home_image = HomeImage.query.filter_by(image_id = image_id).first()
+	if not home_image:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+		return JsonUtil.failure("Bad home image input")
+
+	home_image.updateHomeImage(live, image_text)
+	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+	return JsonUtil.success()
+
+@admin_api.route('/getHomeImages', methods = ['POST'])
+def getHomeImages():
+	jwt = request.json.get(Labels.Jwt)
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
+	if not decoded_jwt:
+		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+		return JsonUtil.jwt_failure()
+
+	home_images = HomeImage.query.filter_by().all()
+	return JsonUtil.successWithOutput({
+			Labels.Images : [home_image.toPublicDict() for home_image in home_images]
+	})
+
+
+
 
 
 

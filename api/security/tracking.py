@@ -92,6 +92,7 @@ class AdminAction(db.Model):
 		public_dict[Labels.Ip] = self.ip
 		public_dict[Labels.Success] = self.success
 		public_dict[Labels.RequestPath] = self.request_path
+		public_dict[Labels.ErrorMessage] = self.error_message
 		return public_dict
 
 

@@ -59,6 +59,8 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	ImageText = "image_text"
+	LiveStatus = "live_status"
 	User = "user"
 	Password = "password"
 	Username = "username"

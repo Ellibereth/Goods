@@ -10,21 +10,47 @@ export default class HomePageImageCarousel extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			images  : []
 		}
 	}
 
 
+
+	componentDidMount(){
+		$.ajax({
+			type: "POST",
+			url: "/getPublicHomeImages",
+			success: function(data) {
+				if (data.success) {
+					this.setState({images : data.images})
+				}
+			}.bind(this),
+			error : function(){
+				console.log("error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+	}
+
+	generateImageText(image_text) {
+		var splits = image_text.split('\n')
+		var rows = splits.map((line) =>
+				<span className = "block-span"> {line} </span>
+			)
+		return <h3> {rows} </h3>
+	}
+
+
+
 	render() {
-		var images = image_names.map((image_name, index) =>
+		var images = this.state.images
+		var image_display = images.map((image, index) =>
 				<div className= {index == 0 ? "item active" : "item"}>
-					<img className = "home-images center-block" src= {base_url + image_name} index = {index}/>
+					<img className = "home-images center-block" src= {base_url + image.image_id} index = {index}/>
 					<div className="home-carousel-text-container">
 						<div className="carousel-caption">
-							<h3>
-								<span className = "block-span">What we do  </span>
-								<span className = "block-span">Sell home made American goods</span>
-								<span className = "block-span">USA USA USA  </span>
-							</h3>
+							{this.generateImageText(image.image_text)}
 						</div>
 					</div>
 				</div>
@@ -39,7 +65,7 @@ export default class HomePageImageCarousel extends React.Component {
 					</ol>
 
 					<div className="carousel-inner">
-						{images}
+						{image_display}
 					</div>
 
 					<a className="left carousel-control" href="#myCarousel" data-slide="prev">

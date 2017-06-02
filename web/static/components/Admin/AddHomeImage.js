@@ -65,7 +65,7 @@ export default class AddHomeImage extends React.Component {
 					swal("Thank you!", "Image uploaded!"
 						, "success")
 
-					location.reload()
+					setTimeout(function () {location.reload()}, 500)
 
 				}
 			}.bind(this),
