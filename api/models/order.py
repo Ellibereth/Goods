@@ -75,15 +75,27 @@ class Order(db.Model):
 			if cart_item.variant_type:
 				this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
 				if this_variant:
-					this_variant.inventory = this_variant.inventory - cart_item.num_items
+					new_inventory = this_variant.inventory - cart_item.num_items
+					if new_inventory < 0:
+						return str(this_product.name) + " " + str(cart_item.variant_type) + " is out of stock. You can only purchase " \
+							+ str(this_variant.inventory) + ". Please adjust your quantity and try again"
+					else:
+						this_variant.inventory = new_inventory
+
 				else:
-					raise Exception("Seems like you tried to order a type that doesn't exist. Check your cart and try again.")
+					return "Seems like you tried to order a type that doesn't exist. Check your cart and try again."
 			else:
-				this_product.inventory = this_product.inventory - cart_item.num_items
+				new_inventory = this_product.inventory - cart_item.num_items
+				if new_inventory < 0:
+					return str(this_product.name) + " is out of stock. You can only purchase " + str(this_product.inventory) \
+						+ ". Please adjust your quantity and try again"
+				else:
+					this_product.inventory = new_inventory
 
 			order_shipping = this_cart.getCartShippingPrice(address)
 			new_order_item = OrderItem(self.order_id, this_user, this_product, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
 			db.session.add(new_order_item)
+		return None
 
 	@staticmethod
 	def generateOrderId():

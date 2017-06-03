@@ -292,16 +292,17 @@ export default class CheckoutPage extends React.Component {
 					}, 2000)
 					AppActions.removeCurrentUser()
 					AppActions.addCurrentUser(data.user, data.jwt)
-					this.setLoading(false)
-					this.setState({button_disabled : false})
 				}
+				this.setLoading(false)
+				this.setState({button_disabled : false})
+				this.setState({is_loading : false})
 			}.bind(this),
 			error : function(){
 				swal("We're sorry!", "Please contact customer service to discuss what you tried to do.","error")
-				this.setState({is_loading : true})
+				this.setState({is_loading : false})
 				this.setLoading(false)
 				this.setState({button_disabled : false})
-			},
+			}.bind(this),
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		});

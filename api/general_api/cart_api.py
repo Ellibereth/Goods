@@ -133,7 +133,9 @@ def checkoutCart():
 	try:
 		this_order = Order(this_user, this_cart, address)
 		db.session.add(this_order)
-		this_order.addItems(this_user, this_cart, address)
+		error = this_order.addItems(this_user, this_cart, address)
+		if error:
+			return JsonUtil.failure(error)
 
 		
 	except Exception as e:

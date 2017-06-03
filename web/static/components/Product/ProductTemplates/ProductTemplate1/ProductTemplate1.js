@@ -19,7 +19,8 @@ export default class ProductTemplate1 extends React.Component {
 			items : [],
 			price : null,
 			cart_item : [],
-			more_information_open : false
+			more_information_open : false,
+			item_in_stock : true
 		}
 	}
 
@@ -94,7 +95,7 @@ export default class ProductTemplate1 extends React.Component {
 				var item_in_stock = (variant.inventory > 0)
 			}
 			else {
-				var item_in_stock = false
+				var item_in_stock = true
 			}
 		}
 		// item does not have variants
