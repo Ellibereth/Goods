@@ -77,8 +77,13 @@ class Order(db.Model):
 				if this_variant:
 					new_inventory = this_variant.inventory - cart_item.num_items
 					if new_inventory < 0:
-						return str(this_product.name) + " " + str(cart_item.variant_type) + " is out of stock. You can only purchase " \
+						error_message = str(this_product.name) + " " + str(cart_item.variant_type) + " is out of stock. You can only purchase " \
 							+ str(this_variant.inventory) + ". Please adjust your quantity and try again"
+						return {
+							Labels.Error : error_message,
+							Labels.Inventory : this_variant.inventory,
+							Labels.CartItem : cart_item 
+						}
 					else:
 						this_variant.inventory = new_inventory
 
@@ -87,8 +92,14 @@ class Order(db.Model):
 			else:
 				new_inventory = this_product.inventory - cart_item.num_items
 				if new_inventory < 0:
-					return str(this_product.name) + " is out of stock. You can only purchase " + str(this_product.inventory) \
+					error_message = str(this_product.name) + " is out of stock. You can only purchase " + str(this_product.inventory) \
 						+ ". Please adjust your quantity and try again"
+					return {
+							Labels.Error : error_message,
+							Labels.Inventory : this_product.inventory,
+							Labels.CartItem : cart_item 
+						}
+					
 				else:
 					this_product.inventory = new_inventory
 
@@ -117,7 +128,7 @@ class Order(db.Model):
 		public_dict = {}
 		public_dict[Labels.OrderId] = self.order_id
 
-		order_items = OrderItem.query.filter_by(order_id = self.order_id).all()
+		order_items = OrderItem.query.filter(OrderItem.order_id == self.order_id, OrderItem.num_items > 0).all()
 		public_dict[Labels.Items] = [item.toPublicDict() for item in order_items]
 		public_dict[Labels.ItemsPrice] = self.items_price
 		public_dict[Labels.OrderShipping] = self.order_shipping

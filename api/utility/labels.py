@@ -149,6 +149,9 @@ class RequestLabels:
 	Jwt = "jwt"
 
 class PaymentLabels:
+	Inventory = "inventory"
+	Error = "error"
+	CartItem = "cart_item"
 	Name = "name"
 	Jwt = "jwt"
 	StripeCustomerId = "stripe_customer_id"

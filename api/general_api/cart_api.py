@@ -133,9 +133,12 @@ def checkoutCart():
 	try:
 		this_order = Order(this_user, this_cart, address)
 		db.session.add(this_order)
-		error = this_order.addItems(this_user, this_cart, address)
-		if error:
-			return JsonUtil.failure(error)
+		result = this_order.addItems(this_user, this_cart, address)
+		if result:
+			db.session.rollback()
+			result[Labels.CartItem].updateCartQuantity(result[Labels.Inventory])
+			db.session.commit()
+			return JsonUtil.failure(result.get(Labels.Error))
 
 		
 	except Exception as e:

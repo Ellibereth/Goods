@@ -1,5 +1,8 @@
 import smtplib
 import time
+import sys 
+import os
+
 from email.mime.image import MIMEImage
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -156,7 +159,7 @@ def sendRecoveryEmail(user):
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
-def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error = ""):
+def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error = None):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
@@ -165,7 +168,15 @@ def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error =
 	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	if not user:
 		return
-	body = EmailHtml.generateCheckoutErrorHtml(user, cart, address, error_type, python_error)
+
+	if python_error:
+		exc_type, exc_obj, exc_tb = sys.exc_info()
+		fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+		error_string  = (str(python_error), exc_type, fname, exc_tb.tb_lineno)
+	else:
+		error_string = ""
+
+	body = EmailHtml.generateCheckoutErrorHtml(user, cart, address, error_type, error_string)
 	textPart = MIMEText(body, 'html')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)

@@ -13,7 +13,8 @@ from api.models.market_product import MarketProduct
 class Cart:
 	def __init__(self, account_id):
 		self.account_id = account_id
-		self.items = CartItem.query.filter_by(account_id = account_id).all()
+		self.items = CartItem.query.filter(CartItem.account_id == account_id,
+				 CartItem.num_items > 0).all()
 		self.items_price = self.getCartItemsPrice()
 
 	def getCartItemsPrice(self):
@@ -53,16 +54,17 @@ class Cart:
 		public_dict = {}
 		product_list = list()
 		for cart_item in self.items:
-			db_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-			product = db_product.toPublicDict()
-			product[Labels.NumItems] = cart_item.num_items
-			product[Labels.VariantType] = cart_item.variant_type
-			product[Labels.VariantId] = cart_item.variant_id
-			if cart_item.variant_type != None:
-				product[Labels.Name] = product[Labels.Name]  + " - " + cart_item.variant_type
-				this_variant = db_product.getProductVariant(cart_item.variant_id)
-				product[Labels.Inventory] = this_variant.inventory
-			product_list.append(product)
+			if cart_item.num_items > 0:
+				db_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+				product = db_product.toPublicDict()
+				product[Labels.NumItems] = cart_item.num_items
+				product[Labels.VariantType] = cart_item.variant_type
+				product[Labels.VariantId] = cart_item.variant_id
+				if cart_item.variant_type != None:
+					product[Labels.Name] = product[Labels.Name]  + " - " + cart_item.variant_type
+					this_variant = db_product.getProductVariant(cart_item.variant_id)
+					product[Labels.Inventory] = this_variant.inventory
+				product_list.append(product)
 		product_list.sort(key=lambda x: x[Labels.Name])
 		public_dict[Labels.Items] = product_list
 		
@@ -125,7 +127,7 @@ class CartItem(db.Model):
 		public_dict[Labels.NumItems] = self.num_items
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.NumItemsLimit] = min(self.num_items_limit, self.inventory)
+		public_dict[Labels.NumItemsLimit] = min(self.num_items_limit, self.num_items)
 		public_dict[Labels.VariantId] = self.variant_id
 		return public_dict
 
