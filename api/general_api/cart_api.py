@@ -49,7 +49,10 @@ def addItemToCart():
 				variant_id = variant_id).first()
 			if cart_item == None:
 				if quantity  > this_variant.inventory:
-					return JsonUtil.failure("You can't order more than " + str(this_variant.inventory) + " of this item")
+					return JsonUtil.failureWithOutput({
+						Labels.Error : "You can't order more than " + str(this_variant.inventory) + " of this item",
+						Labels.Type : "INVENTORY"
+					})
 				new_cart_item = CartItem(account_id, product_id, num_items = quantity,
 					variant_id = variant_id, variant_type = variant_type)
 				db.session.add(new_cart_item)
@@ -60,7 +63,10 @@ def addItemToCart():
 					})
 			else:
 				if quantity + cart_item.num_items > this_variant.inventory:
-					return JsonUtil.failure("You can't order more than " + str(this_variant.inventory) + " of this item")
+					return JsonUtil.failureWithOutput({
+						Labels.Error : "You can't order more than " + str(this_variant.inventory) + " of this item",
+						Labels.Type : "INVENTORY"
+					})
 				try:
 					cart_item.updateCartQuantity(cart_item.num_items + quantity)
 					return JsonUtil.successWithOutput({
@@ -138,7 +144,6 @@ def checkoutCart():
 	# charge this price to the customer via stripe
 	# stripe automatically checks if the card matches the customer 
 	try:
-		
 		charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
 		this_order.updateCharge(charge)
 	except Exception as e:

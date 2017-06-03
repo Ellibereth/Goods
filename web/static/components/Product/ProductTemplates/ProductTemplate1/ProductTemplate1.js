@@ -19,8 +19,7 @@ export default class ProductTemplate1 extends React.Component {
 			items : [],
 			price : null,
 			cart_item : [],
-			more_information_open : false,
-			item_in_stock : true,
+			more_information_open : false
 		}
 	}
 
@@ -111,7 +110,6 @@ export default class ProductTemplate1 extends React.Component {
 
 
 	render() {
-
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 		if (this.props.is_loading){return <div/>}		
 		return (	
@@ -167,7 +165,9 @@ export default class ProductTemplate1 extends React.Component {
 
 
 
-						<AddToCartButton cart_item = {this.state.cart_item}
+						<AddToCartButton 
+						getProductInformation = {this.props.getProductInformation}
+						cart_item = {this.state.cart_item}
 						refreshUserInformation = {this.refreshUserInformation.bind(this)}
 						product = {this.props.product}
 						setLoading = {this.props.setLoading}

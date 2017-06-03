@@ -48,6 +48,7 @@ export default class AddToCartButton extends React.Component {
 
 
 	addToCart(){
+		console.log(this.props.getProductInformation)
 
 		if (this.props.product.has_variants && !this.state.variant) {
 			swal({
@@ -93,8 +94,13 @@ export default class AddToCartButton extends React.Component {
 							swal({title: "Problem",                                 
 									text: data.error,                                 
 									type: "error" 
-								})
+								})	
+
 						}
+						this.props.getProductInformation()
+						setTimeout(function () {
+							this.props.checkItemInStock(this.props.product, this.state.variant)
+						}.bind(this), 1000)
 						this.props.setLoading(false)
 						this.setState({buy_disabled : false})
 				}.bind(this),

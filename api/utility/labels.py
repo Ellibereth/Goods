@@ -195,6 +195,7 @@ class PaymentLabels:
 
 
 class CartLabels:
+	Type = "type"
 	SalesTaxPrice = "sales_tax_price"
 	Address = "address"
 	Inventory = "inventory"

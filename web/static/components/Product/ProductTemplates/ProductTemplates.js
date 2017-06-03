@@ -26,14 +26,9 @@ export default class ProductTemplates extends React.Component {
 		switch (template){
 			case 1:
 				return <ProductTemplate1 
+					getProductInformation = {this.props.getProductInformation}
 					product = {this.props.product}
 					is_loading = {this.props.is_loading}
-					setLoading = {this.props.setLoading}
-					/>
-				break;
-			case 2:
-				return <ProductTemplate2
-					product = {this.props.product}
 					setLoading = {this.props.setLoading}
 					/>
 				break;

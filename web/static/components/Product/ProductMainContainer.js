@@ -75,11 +75,13 @@ export default class ProductMainContainer extends React.Component {
 
 
 	generateMainComponent (){
+
 		return (
 			<div>
 				{this.state.spinner_loading && <Spinner />}
 				<div className = "small-buffer"/>
 				<ProductTemplates 
+					getProductInformation = {this.getProductInformation.bind(this)}
 					setLoading = {this.setLoading.bind(this)}
 					product = {this.state.product}
 					is_loading = {this.state.is_loading}
