@@ -17,16 +17,16 @@ from api.utility.variants import ProductVariants as Variants
 class MarketProduct(db.Model):
 	__tablename__ = ProdTables.MarketProductTable
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-	name = db.Column(db.String, nullable = False)
-	price = db.Column(db.Float, nullable = False)
-	category = db.Column(db.String)
-	description = db.Column(db.String)
+	name = db.Column(db.String, default = "Sample Name")
+	price = db.Column(db.Float, default = 0)
+	category = db.Column(db.String, default = "Sample Category")
+	description = db.Column(db.String, default = "Sample Description")
 	num_images = db.Column(db.Integer, nullable = False, default = 0)
 	main_image = db.Column(db.String)
-	inventory = db.Column(db.Integer)
+	inventory = db.Column(db.Integer, default = 0)
 	active = db.Column(db.Boolean, default = False)
-	manufacturer = db.Column(db.String)
-	num_items_limit = db.Column(db.Integer)
+	manufacturer = db.Column(db.String, default = "Sample Manufacturer")
+	num_items_limit = db.Column(db.Integer, default = 50)
 	has_variants = db.Column(db.Boolean, default = False)
 	variant_type_description = db.Column(db.String, default = "type")
 	live = db.Column(db.Boolean, default = False)
@@ -46,19 +46,8 @@ class MarketProduct(db.Model):
 	image_id = db.relationship("ProductImage", backref = TestTables.ImageTable, lazy='dynamic')
 
 
-	def __init__(self, name, price, category, description, manufacturer, inventory, sale_end_date, has_variants = False, num_items_limit = 50, product_template = 1, story_template = 1):
-		self.price = price
+	def __init__(self, name):
 		self.name = name
-		self.category = category
-		self.description = description
-		self.manufacturer = manufacturer
-		self.inventory = inventory
-		self.sale_end_date = sale_end_date
-		self.num_items_limit = num_items_limit
-		self.main_image = None
-		self.product_template = product_template
-		self.story_template = story_template
-		self.has_variants = has_variants
 		db.Model.__init__(self)
 		
 	def getProductImages(self):
@@ -149,7 +138,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.Manufacturer] = self.manufacturer
 		public_dict[Labels.Inventory] = self.inventory
-		public_dict[Labels.SaleEndDate] = self.sale_end_date.strftime('%Y-%m-%dT%H:%M:%S')
+		public_dict[Labels.SaleEndDate] = self.sale_end_date
 		public_dict[Labels.DateCreated] = self.date_created
 		public_dict[Labels.NumImages] = self.num_images
 		public_dict[Labels.ProductId] = self.product_id

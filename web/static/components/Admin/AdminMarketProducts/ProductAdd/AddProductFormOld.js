@@ -1,19 +1,29 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-const form_inputs = ['name']
-const form_labels = ["Product Name"]
-const input_types = ['text']
+const form_inputs = ['name', 'description', 'manufacturer', 'price', 'category', 'inventory', 'sale_end_date']
+const form_labels = ["Product Name", "Product Description", "Manufacturer", "Price", "Category", "Inventory", "Sale End Date"]
+const input_types = ['text', 'textarea', 'text', 'text', 'text', 'text', 'datetime-local']
 import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../../../Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
-var browserHistory = require('react-router').browserHistory
 
 export default class AddProductForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			name: "",
+			email: "",
+			phone_number : "",
+			price_range: "",
+			product_description : "",
+			brand : "",
+			price : "",
+			category : "",
+			inventory : "",
+			has_variants : false,
+			tags : [],
+			variants : []
 		}
 	}
 
@@ -24,7 +34,19 @@ export default class AddProductForm extends React.Component {
 		this.setState(obj)
 	}
 
-	
+	onVariantChange(event){
+		this.setState({
+			has_variants : !this.state.has_variants
+		})
+	}
+
+	handleTagsChange(tags) {
+    	this.setState({tags})
+ 	}
+
+ 	handleVariantsChange(variants) {
+    	this.setState({variants})
+ 	}
 
 
 	onSubmitPress(){
@@ -52,6 +74,9 @@ export default class AddProductForm extends React.Component {
 
 			var form_data = JSON.stringify({
 				market_product : market_product,
+				tags : this.state.tags,
+				variant_types : this.state.variants,
+				has_variants : this.state.has_variants,
 				jwt  : localStorage.jwt
 			})
 			$.ajax({
@@ -64,12 +89,11 @@ export default class AddProductForm extends React.Component {
 						swal("Sorry!", "Something went wrong! \n Error : " + data.error, "warning")
 					}
 					else {
+						this.props.toggleAddProductModal()
 						swal("Nice man!", "You just added this product to the market"
 							, "success")
-						setTimeout(function () {
-							browserHistory.push('/yevgeniypoker555/editProduct/' + data.product.product_id)
-						}, 2000)
 					}
+					this.props.loadProducts()
 				}.bind(this),
 				error : function(){
 					console.log("error")
@@ -88,15 +112,61 @@ export default class AddProductForm extends React.Component {
 			)
 		})
 
-		
+		var tag_input = (
+						<div className="form-group">
+							<div className="col-sm-10">
+								Tags
+							</div>
+							<div className ="col-sm-10">
+								<TagsInput 
+								 value={this.state.tags} onChange={this.handleTagsChange.bind(this)}/>
+							</div>
+						</div>
+			)
+
+		var has_variants_input = (
+
+				<div className="form-group">
+					<div className ="col-sm-10">
+						<div className = "checkbox"> 
+						 	<label>
+						 		<input type= "checkbox" name = "has_variants" value={this.state.has_variants} onChange={this.onVariantChange.bind(this)}/>
+						 		Will this product have variants (colors, sizes, etc?)
+						 	</label>
+						</div>
+					</div>
+				</div>
+
+				)
+
+
+		var variants_input = (
+						<div className="form-group">
+							<div className="col-sm-10">
+								Variants
+							</div>
+							<div className ="col-sm-10">
+								<TagsInput 
+								 value={this.state.variants} onChange={this.handleVariantsChange.bind(this)}/>
+							</div>
+						</div>
+					)
 		
 
 		return (
 			<Form horizontal>
-				<h2> Click to add a blank product </h2>
-
-				<hr/>
 				{text_inputs}
+				{tag_input}
+
+				{has_variants_input}
+
+				{ this.state.has_variants &&
+					<div>
+						{variants_input}
+					</div>
+				}
+
+				
 
 				<FormGroup controlId = "submit_buton">
 

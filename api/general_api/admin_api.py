@@ -439,6 +439,7 @@ def uploadProductStoryImage():
 @admin_api.route('/addMarketProduct', methods = ['POST'])
 def addMarketProduct():
 	jwt = request.json.get(Labels.Jwt)
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
 	if not decoded_jwt:
 		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.jwt_failure()
@@ -446,40 +447,15 @@ def addMarketProduct():
 	if market_product == None:
 		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
+	
 	name = market_product.get(Labels.Name)
-	try:
-		price = round(float(market_product.get(Labels.Price)), 2)
-	except:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.failure("Price is not a valid float")
-	category = market_product.get(Labels.Category)
-	description = market_product.get(Labels.Description)
-	manufacturer = market_product.get(Labels.Manufacturer)
-	inventory = market_product.get(Labels.Inventory)
-	sale_end_date_string = market_product.get(Labels.SaleEndDate)
-	date_format = '%Y-%m-%dT%H:%M'
-	sale_end_date = datetime.datetime.strptime(sale_end_date_string, date_format)
-	has_variants = request.json.get(Labels.HasVariants)
-	variant_types = request.json.get(Labels.VariantTypes)
-	if has_variants:
-		new_product = MarketProduct(name, price, category, description, manufacturer, inventory, sale_end_date, has_variants = True)
-		db.session.add(new_product)
-		db.session.commit()
-		new_product.addProductVariants(variant_types)
-	else:
-		new_product = MarketProduct(name, price, category, description, manufacturer, inventory, sale_end_date)
-		db.session.add(new_product)
-		db.session.commit()
-	tags = request.json.get(Labels.Tags)
-	# add tags here, will change depending on front end input
-	# only update tags if adding the product was a success
-	if tags != None:
-		for tag in tags:
-			new_tag = ProductTag(new_product.product_id, tag)
-			db.session.add(new_product)
+	new_product = MarketProduct(name)
+	db.session.add(new_product)
 	db.session.commit()
 	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
-	return JsonUtil.success()
+	return JsonUtil.successWithOutput({
+			Labels.Product : new_product.toPublicDict()
+		})
 
 @admin_api.route('/uploadHomeImage', methods = ['POST'])
 def uploadHomeImage():

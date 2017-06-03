@@ -19,12 +19,26 @@ export default class ProductPreview extends React.Component {
   	// 	browserHistory.push('/eg/' + this.props.product.product_id)
   	// }
 
+  	itemInStock(product){
+  		if (!product.has_variants) {
+  			if (product.inventory > 0){
+  				return true
+  			}
+  			else {
+  				return false
+  			}
+  		}
+  		else {
+  			return true
+  		}
+  		
+  	}
 
 
   	render() {
-  		// hard coded for now
 
   		var date = this.props.product.sale_end_date
+  		var item_in_stock = this.itemInStock(this.props.product)
   		// if (this.state.invalid_product) return <div id = {this.props.product.product_id}/>
   		var col_size = this.props.col_size
 		return (
@@ -50,7 +64,16 @@ export default class ProductPreview extends React.Component {
 						}
 					</div>
 					<div className = "row home-product-preview-details">
-							<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> <br/>
+							
+						{item_in_stock ? 
+							<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> 
+							:
+							<span className = "home-product-preview-price">
+								<s>${formatPrice(this.props.product.price)} </s> 
+								<span style = {{"color" : "red", "margin-left" : "12px"}}> {" Sold Out!"} </span>
+							</span>
+						}
+							<br/>
 							<span className = "home-product-preview-name"> {this.props.product.name} </span> <br/>
 							
 							<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
