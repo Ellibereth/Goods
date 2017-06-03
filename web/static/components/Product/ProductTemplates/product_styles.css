@@ -269,3 +269,6 @@
 	color:grey;
 }
 
+.dropdown-item.sold-out {
+	text-decoration : line-through !important;
+}

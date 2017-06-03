@@ -159,18 +159,19 @@ export default class AddToCartButton extends React.Component {
 
 
 		var variant_options = []
-		this.props.product.variants.map((variant, index) => 
+		this.props.product.variants.map((variant, index) => {
 					variant_options.push(
-
 						<li>
-							<a className = "dropdown-item" style= {{"cursor" : "pointer"}} 
-							onClick = {this.handleVariantChange.bind(this, variant)} >
+							<a className = {variant.inventory > 0 ? "dropdown-item" 
+							: "dropdown-item sold-out"}
+							style= {{"cursor" : "pointer"}} 
+							onClick = {this.handleVariantChange.bind(this, variant)}>
 							 {variant.variant_type} 
 							</a>
 						</li>
 						
 					)
-			)
+			})
 
 
 
@@ -184,7 +185,13 @@ export default class AddToCartButton extends React.Component {
 									<button  className="btn dropdown dropdown-toggle variant-select-button " 
 										type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 										<span className =" pull-left">
-											<span> <b> {this.state.variant_display} </b> </span>
+											<span> 
+												{this.props.item_in_stock ?
+													<b>  {this.state.variant_display} </b>
+													:
+													<b> <strike> {this.state.variant_display} </strike> </b>
+												}
+											</span>
 										</span>
 										<span className = "pull-right"> 
 											<span className= "caret"/>
