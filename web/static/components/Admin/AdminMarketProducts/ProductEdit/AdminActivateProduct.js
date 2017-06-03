@@ -96,14 +96,15 @@ export default class AdminActivateProduct extends React.Component {
 	}
 
 	getActiveText(product){
+		var url = '/eg/' + product.product_id
 		if (!product){
 			return "";
 		}
 		else if (product.active){
-			return "This product is active"
+			return <h2> {"This product is active at url "} <a href=  {url}> {url} </a> </h2>
 		}
 		else {
-			return "This product is inactive"
+			return <h2> {"This product is inactive but would be have url "} <a href=  {url}> {url} </a> </h2>
 		}
 	}
 
@@ -112,7 +113,7 @@ export default class AdminActivateProduct extends React.Component {
 		return (
 			<div className = "container">
 				<div className = "row">
-					<h2> {text} </h2>
+					{text} 
 				</div>
 				<div className = "row">
 					<Button onClick = {this.onDeactivatePress.bind(this)}> Deactivate </Button>

@@ -39,9 +39,14 @@ export default class AdminProductPreviewRow extends React.Component {
 	}
 
 	getCellContents(product, attr) {
+
 		if (product[attr] == null) {
 			var cell_contents = "null"
 		}
+		else if (attr == "product_id") {
+			var cell_contents  = <a href = {'/eg/' + product[attr]}> {'/eg/' + product[attr]} </a>
+		}
+		
 		else if (product[attr] == false) {
 			var cell_contents = "false"
 		} 
