@@ -289,7 +289,7 @@ export default class CheckoutPage extends React.Component {
 							, "success")
 					}
 					setTimeout(function() {
-						browserHistory.push(`/checkoutConfirmed`)
+						window.location = `/checkoutConfirmed`
 					}, 2000)
 					AppActions.removeCurrentUser()
 					AppActions.addCurrentUser(data.user, data.jwt)
@@ -416,13 +416,13 @@ export default class CheckoutPage extends React.Component {
 											<div className = "top-buffer"/>
 											<div className = "checkout-notice-of-terms-text">
 												By placing your order, you agree to our 
-												<Link to = "terms">
+												<a href = "terms">
 													{" terms of service "}
-												</Link>
+												</a>
 												and 
-												<Link to = "privacy">
+												<a href = "privacy">
 													{" privacy policy"}
-												</Link>
+												</a>
 											</div>
 										</div>
 									</div>

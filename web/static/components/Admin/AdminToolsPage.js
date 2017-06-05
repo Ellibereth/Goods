@@ -43,7 +43,7 @@ export default class AdminToolsPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success){
-					browserHistory.push('/')	
+					window.location = '/'
 				}
 				else {
 					this.initializeInformation.bind(this)()

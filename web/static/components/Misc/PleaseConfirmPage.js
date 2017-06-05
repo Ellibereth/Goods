@@ -46,7 +46,7 @@ export default class PleaseConfirmPage extends React.Component {
 
 	componentDidMount(){
 		if (AppStore.getCurrentUser().email_confirmed){
-			browserHistory.push('/')
+			window.location = '/'
 		}
 	}
 

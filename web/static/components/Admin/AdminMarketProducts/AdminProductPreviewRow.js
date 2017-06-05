@@ -90,7 +90,7 @@ export default class AdminProductPreviewRow extends React.Component {
 		row.unshift (
 			<td className = "admin-table-cell-short" id = {product['product_id']}
 			attr = "go_to" index = {index}>
-				<Link to = {"/yevgeniypoker555/editProduct/" + product.product_id}> Go to! </Link>
+				<a href = {"/yevgeniypoker555/editProduct/" + product.product_id}> Go to! </a>
 			</td>
 		)
 

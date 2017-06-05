@@ -16,7 +16,7 @@ export default class SearchProductPreview extends React.Component {
   	}
 
   	goToProduct(){
-  		browserHistory.push('/eg/' + this.props.product.product_id)
+  		window.location = '/eg/' + this.props.product.product_id
   	}
 
   	render() {

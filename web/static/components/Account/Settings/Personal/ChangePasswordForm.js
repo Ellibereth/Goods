@@ -72,7 +72,7 @@ export default class ChangePasswordForm extends React.Component {
 							old_password : ""
 						})
 						setTimeout(function() {
-							browserHistory.push(`/settings`)
+							window.location = `/settings`
 						}, 2000)
 
 						swal({
@@ -94,7 +94,7 @@ export default class ChangePasswordForm extends React.Component {
 		}
 
 	changeSettings(){
-		browserHistory.push(`/updateSettings`)
+		window.location = `/updateSettings`
 	}
 
 

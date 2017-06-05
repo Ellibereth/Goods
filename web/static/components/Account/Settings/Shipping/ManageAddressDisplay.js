@@ -60,7 +60,7 @@ export default class ManageAddressDisplay extends React.Component {
 								text : "Your changes have been made",
 								type: "success"
 							})
-						browserHistory.push(`/settings`)
+						window.location = `/settings`
 					}
 				}.bind(this),
 				error : function(){

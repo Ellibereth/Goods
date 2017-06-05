@@ -38,8 +38,8 @@ export default class LargeNavBar extends React.Component {
 				
 					<ul className="nav navbar-nav navbar-right">
 						<li> {search_bar} </li>
-						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
-						<li><Link to ="/login" className = "no-user-link">Login</Link></li>
+						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
+						<li><a href ="/login" className = "no-user-link">Login</a></li>
 					</ul>
 			)
 		}
@@ -48,14 +48,14 @@ export default class LargeNavBar extends React.Component {
 				<ul className="nav navbar-nav navbar-right">
 					<li> {search_bar} </li>
 					<li> 
-						<Link to = "/myCart"> 
+						<a href = "/myCart"> 
 							<span className = "nav-icon">
 								<span className = "glyphicon glyphicon-shopping-cart "/> 
 								{this.state.cart_badge > 0 && <span className ="badge badge-notify cart-badge"> {this.state.cart_badge} </span>}
 							</span>
 
 							<span className = "nav-icon-text"> Cart </span>
-						</Link>
+						</a>
 					</li>
 					<li className = "account-dropdown">
 						<a id = "account_dropdown" href="#" className="dropdown-toggle" 

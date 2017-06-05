@@ -42,8 +42,8 @@ export default class SmallNavBar extends React.Component {
 							{search_bar}
 						</li>
 
-						<li><Link to="/register" className = "no-user-link">Sign Up</Link></li>
-						<li><Link to ="/login" className = "no-user-link">Login</Link></li>
+						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
+						<li><a href ="/login" className = "no-user-link">Login</a></li>
 					</ul>
 			)
 		}
@@ -54,12 +54,12 @@ export default class SmallNavBar extends React.Component {
 						{search_bar}
 					</li>
 					<li> 
-						<Link to = "/myCart"> 
+						<a href = "/myCart"> 
 							<span className = "nav-icon">
 								<span className = "glyphicon glyphicon-shopping-cart "/> 
 								{this.state.cart_badge > 0 && <span className ="badge badge-notify cart-badge"> {this.state.cart_badge} </span>}
 							</span>
-						</Link>
+						</a>
 					</li>
 					<li className = "account-dropdown">
 						<a id = "account_dropdown" href="#" className="dropdown-toggle" 
@@ -71,10 +71,10 @@ export default class SmallNavBar extends React.Component {
 						</a>
 
 						<ul className="dropdown-menu"> 
-							<li> <Link to ="/settings"> Settings </Link> </li>
-							<li> <Link to = '/myOrders'> Past Orders </Link> </li>
-							<li><Link to ="/support" >Support</Link></li>
-							<li> <Link to = "/logout"> Logout </Link></li>
+							<li> <a href ="/settings"> Settings </a> </li>
+							<li> <a href = '/myOrders'> Past Orders </a> </li>
+							<li><a href ="/support" >Support</a></li>
+							<li> <a href = "/logout"> Logout </a></li>
 						</ul>
 					</li>
 				</ul>

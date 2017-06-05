@@ -94,7 +94,7 @@ export default class UpdateShippingForm extends React.Component {
 									if (data.success) {
 										AppActions.removeCurrentUser()
 										AppActions.addCurrentUser(data.user, data.jwt)
-										browserHistory.push(`/settings`)
+										window.location = `/settings`
 
 									}
 									else {

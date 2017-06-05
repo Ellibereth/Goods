@@ -17,7 +17,7 @@ export default class RegisterPage extends React.Component {
 
 	componentDidMount(){
 		if (AppStore.getCurrentUser()) {
-			browserHistory.push('/')
+			window.location = '/'
 		}
 	}
 

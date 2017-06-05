@@ -14,11 +14,6 @@ export default class ProductPreview extends React.Component {
 		}
   	}
 
-  	// goToProduct(event){
-  	// 	event.preventDefault()
-  	// 	browserHistory.push('/eg/' + this.props.product.product_id)
-  	// }
-
   	itemInStock(product){
   		if (!product.has_variants) {
   			if (product.inventory > 0){

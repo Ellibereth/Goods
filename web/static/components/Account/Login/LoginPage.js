@@ -17,7 +17,7 @@ export default class LoginPage extends React.Component {
 
 	componentDidMount(){
 		if (AppStore.getCurrentUser()) {
-			browserHistory.push('/')
+			window.location = '/'
 		}
 	}
 

@@ -51,9 +51,9 @@ export default class OrdersPreview extends React.Component {
 
 						{
 							this.props.orders.length > 0 ?
-							<span className = "account-page-text block-span"> <Link to = "/myOrders"> View more </Link> </span>
+							<span className = "account-page-text block-span"> <a href = "/myOrders"> View more </a> </span>
 							:
-							<span className = "account-page-text block-span"> Start shipping at our store by clicking <Link to = "/"> here </Link> </span>
+							<span className = "account-page-text block-span"> Start shipping at our store by clicking <a href = "/"> here </a> </span>
 						}
 					</div>
 				</div>

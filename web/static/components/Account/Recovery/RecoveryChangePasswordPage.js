@@ -49,7 +49,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 					this.setState({is_valid : true})
 				}
 				else {
-					browserHistory.push('/')
+					window.location = '/'
 				}
 			}.bind(this),
 			error : function(){
@@ -83,7 +83,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 							confirmButtonText: "Return to home page to login",
 							closeOnConfirm: true,
 						}, function(isConfirm){
-							browserHistory.push('/')
+							window.location = '/'
 						})
 					}
 					else {

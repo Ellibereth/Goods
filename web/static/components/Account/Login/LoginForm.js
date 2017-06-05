@@ -47,10 +47,10 @@ export default class LoginForm extends React.Component {
 				else {
 					AppActions.addCurrentUser(data.user, data.jwt)
 					if (!this.props.target){
-						browserHistory.push('/')
+						window.location = '/'
 					}
 					else {
-						browserHistory.push('/' + this.props.target)
+						window.location = '/' + this.props.target
 					}
 				}
 				this.setState({disabled : false})
@@ -107,13 +107,13 @@ export default class LoginForm extends React.Component {
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<Link to = "/recoverAccount"> Forgot your password? </Link>
+								<a href = "/recoverAccount"> Forgot your password? </a>
 							</div>
 						</div>
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<Link to = "/register"> New to Edgar USA? Register here </Link>
+								<a href = "/register"> New to Edgar USA? Register here </a>
 							</div>
 						</div>
 

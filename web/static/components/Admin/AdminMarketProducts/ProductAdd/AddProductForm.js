@@ -67,7 +67,7 @@ export default class AddProductForm extends React.Component {
 						swal("Nice man!", "You just added this product to the market"
 							, "success")
 						setTimeout(function () {
-							browserHistory.push('/yevgeniypoker555/editProduct/' + data.product.product_id)
+							window.location = '/yevgeniypoker555/editProduct/' + data.product.product_id
 						}, 2000)
 					}
 				}.bind(this),

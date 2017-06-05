@@ -27,11 +27,11 @@ export default class UpdateSettingsPreview extends React.Component {
 							<span className = "block-span"> <div className = "small-buffer"/></span>
 							<span className = "block-span"> 
 								<button style = {{"margin-right" : "6px"}} className = "btn btn-default btn-sm" id = "edit-address-button"
-									onClick = {() => browserHistory.push('updateSettings')}>
+									onClick = {() => window.location = 'updateSettings'}>
 									Edit
 								</button>
 								<button className = "btn btn-default btn-sm" 
-									onClick = {() => browserHistory.push('deleteAccount')}>
+									onClick = {() => window.location = 'deleteAccount'}>
 									Delete
 								</button>
 							</span>

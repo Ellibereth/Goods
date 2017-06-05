@@ -32,7 +32,7 @@ export default class Breadcrumbs extends React.Component {
 			else {
 				links.push(
 					<li> 
-						<Link to = {"/" + routes[i]}> {labels[i]} </Link>
+						<a href = {"/" + routes[i]}> {labels[i]} </a>
 					</li>
 				)
 			}

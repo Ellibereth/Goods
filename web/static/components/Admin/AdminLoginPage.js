@@ -39,7 +39,7 @@ export default class AdminLoginPage extends React.Component {
 			success: function(data) {
 				if (data.success) {
 					AppActions.addCurrentUser(data.user, data.jwt)
-					browserHistory.push('/yevgeniypoker555')
+					window.location = '/yevgeniypoker555'
 				}
 				else {
 					swal("nice try!")
@@ -59,7 +59,7 @@ export default class AdminLoginPage extends React.Component {
 			success: function(data) {
 				console.log(data.success)
 				if (data.success){
-					browserHistory.push('/yevgeniypoker555')	
+					window.location = '/yevgeniypoker555'
 				}
 			}.bind(this),
 			error : function(){

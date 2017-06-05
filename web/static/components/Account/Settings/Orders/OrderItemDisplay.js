@@ -19,7 +19,7 @@ export default class OrderItemDisplay extends React.Component {
 	}
 
 	goToProduct(){
-		browserHistory.push('/eg/' + this.props.order.product_id)
+		window.location = '/eg/' + this.props.order.product_id;
 	}
 
 	render() {

@@ -27,7 +27,7 @@ export default class RecoveryPage extends React.Component {
 
 	componentDidMount(){
 		if (AppStore.getCurrentUser()){
-			browserHistory.push('/')
+			window.location = '/'
 		}
 	}
 
@@ -57,7 +57,7 @@ export default class RecoveryPage extends React.Component {
 						type: "success"
 					})
 					setTimeout( function () {
-						browserHistory.push('/')
+						window.location = '/'
 					}, 2000)
 					this.setState({disabled: false, is_loading : false})
 				}.bind(this),

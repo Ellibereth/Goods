@@ -21,10 +21,10 @@ export default class Footer extends React.Component {
 				<div className="container">
 					<footer className = "row edgarusa-footer">
 					<ul className ="nav navbar-nav">
-						<li><Link to="/">© 2017 Manaweb, Inc.</Link></li>
-							<li><Link to="/">Home</Link></li>
-							<li><Link to="/terms">Terms</Link></li>
-							<li><Link to="/privacy">Privacy</Link></li>
+						<li><a href="/">© 2017 Manaweb, Inc.</a></li>
+							<li><a href="/">Home</a></li>
+							<li><a href="/terms">Terms</a></li>
+							<li><a href="/privacy">Privacy</a></li>
 						</ul>
 					</footer>
 				</div>

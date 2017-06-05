@@ -16,7 +16,7 @@ export default class LogoutPage extends React.Component {
 
 	componentWillMount(){
 		AppActions.removeCurrentUser()
-		browserHistory.push(`/`)
+		window.location = '/'
 	}
 
 	render() {

@@ -80,7 +80,7 @@ export default class RegisterAccountForm extends React.Component {
 							text : "Your account has been created. You should receive a confirmation email shortly",
 							type: "success"},
 							function () {
-								browserHistory.push("/")
+								window.location = '/'
 							}.bind(this)
 						)
 
@@ -150,14 +150,14 @@ export default class RegisterAccountForm extends React.Component {
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
 								By creating an account you agree to Edgar USA's 
-								<Link to = "/terms"> {"Terms of Service"} </Link>
+								<a href = "/terms"> {"Terms of Service"} </a>
 							</div>
 						</div>
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
 								Already have an account? 
-								<Link to = "/login"> {"Log in"} </Link>
+								<a href = "/login"> {"Log in"} </a>
 							</div>
 						</div>
 					</Form>

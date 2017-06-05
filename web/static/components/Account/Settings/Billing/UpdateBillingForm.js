@@ -121,7 +121,7 @@ export default class UpdateBillingForm extends React.Component {
 									if (data.success) {
 										AppActions.removeCurrentUser()
 										AppActions.addCurrentUser(data.user, data.jwt)
-										browserHistory.push(`/settings`)
+										window.location = `/settings`
 									}
 									else {
 										this.setState({

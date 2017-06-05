@@ -82,7 +82,7 @@ export default class AddToCartButton extends React.Component {
 							},
 							function(isConfirm){
 								if (isConfirm){
-									browserHistory.push('myCart')
+									window.location =  'myCart'
 								}
 							});
 							AppActions.removeCurrentUser()
@@ -132,7 +132,7 @@ export default class AddToCartButton extends React.Component {
 			},
 			function(isConfirm){
 				if (isConfirm){
-					browserHistory.push('/register')					
+					window.location = '/register'				
 				}
 			})	
 	}

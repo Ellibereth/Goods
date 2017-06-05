@@ -25,7 +25,7 @@ export default class CheckoutConfirmedPage extends React.Component {
 						<div style = {{"font-size" : "18px"}} className = "col-sm-10 col-md-10 col-lg-10">
 							<p> Thanks for ordering! </p>
 							<p> You will have received an email with details of your order at {AppStore.getCurrentUser().email} </p>
-							<p> You can always view your past orders <Link to = "/myOrders"> here </Link> </p>
+							<p> You can always view your past orders <a href = "/myOrders"> here </a> </p>
 						</div>
 					</div>
 				</div>

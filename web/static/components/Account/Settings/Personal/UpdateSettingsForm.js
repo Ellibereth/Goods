@@ -84,7 +84,7 @@ export default class SettingsFormPersonal extends React.Component {
 						})
 						// reloads in 1 second
 						setTimeout(function() {
-							browserHistory.push(`/settings`)
+							window.location = `/settings`
 						}, 2000)
 
 						swal({
@@ -109,7 +109,7 @@ export default class SettingsFormPersonal extends React.Component {
 			});
 		}
 	updatePassword() {
-		browserHistory.push(`/changePassword`)
+		window.location = `/changePassword`
 	}
 
 

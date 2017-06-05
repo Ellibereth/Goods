@@ -60,7 +60,7 @@ export default class SupportPage extends React.Component {
 				if (data.success) {
 					swal("Your feedback is appreaciated", "Redirecting you to the homepage shorlty", "success")
 					setTimeout(function (){
-						browserHistory.push('/')
+						window.location = '/'
 					}, 2000)
 
 				}

@@ -23,7 +23,7 @@ export default class EmailConfirmationPage extends React.Component {
 		})
 
 		if (AppStore.getCurrentUser().email_confirmed){
-			browserHistory.push('/')
+			window.location = '/'
 		}
 
 		else {
@@ -41,7 +41,7 @@ export default class EmailConfirmationPage extends React.Component {
 					// redirect if something is wrong 
 					else {
 						// redirect to '/'
-						browserHistory.push(`/miscPage`)
+						window.location = `/miscPage`
 						this.setState({valid_user : false})
 					}
 				}.bind(this),
@@ -63,7 +63,7 @@ export default class EmailConfirmationPage extends React.Component {
 							<h1>
 								Welcome to Edgar USA! <br/>
 								Your account has been confirmed <br/>
-								Click <Link to ="/"> here </Link> to start shopping now
+								Click <a href ="/"> here </a> to start shopping now
 							</h1>
 						</div>
 					}

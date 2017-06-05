@@ -61,7 +61,7 @@ export default class DeleteAccountForm extends React.Component {
 					else {
 						AppActions.removeCurrentUser()
 						setTimeout(function() {
-							browserHistory.push(`/`)
+							window.location = `/`
 						}, 2000)
 
 						swal({
@@ -108,7 +108,7 @@ export default class DeleteAccountForm extends React.Component {
 								</Button>
 							</Col>
 							<Col pullRight className = "text-right" sm = {4} lg = {4} md = {4}>
-								<Button onClick = {() => browserHistory.push('/settings')}>
+								<Button onClick = {() => window.location = '/settings'}>
 									Return to settings
 								</Button>
 							</Col>
