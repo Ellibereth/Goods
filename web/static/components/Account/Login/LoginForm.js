@@ -42,7 +42,7 @@ export default class LoginForm extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry!", "It seems there was an error in your submission. Please try again!", "warning")
+					swal("Sorry", data.error, "error")
 				}
 				else {
 					console.log(data.user.email)

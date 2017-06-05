@@ -17,12 +17,21 @@ account_api = Blueprint('account_api', __name__)
 # checks the login information from a user 
 @account_api.route('/checkLogin', methods = ['POST'])
 def checkLogin():
-	email = request.json.get(Labels.Email)
+	email_input = request.json.get(Labels.Email)
 	input_password = request.json.get(Labels.Password)
+	try:
+		email = email_input.lower()
+	except:
+		return JsonUtil.failure()
+
+	ip = request.remote_addr
+	if LoginAttempt.blockIpAddress(ip):
+		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
+		return JsonUtil.failure("Your IP has been blocked for spamming login attempts. Try again in 15 minutes")
+
 	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
-		LoginAttempt.addLoginAttempt(email, ip = request.remote_addr,
-		 success = False, is_admin = False)
+		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 
 		return JsonUtil.failure("Credential are not correct")
 
@@ -31,12 +40,10 @@ def checkLogin():
 		user_info = this_user.toPublicDictFast()
 		output = {Labels.User : user_info,
 			Labels.Jwt : user_jwt}
-		LoginAttempt.addLoginAttempt(email, ip = request.remote_addr,
-		 success = True, is_admin = False)
+		LoginAttempt.addLoginAttempt(email, ip, success = True, is_admin = False)
 		return JsonUtil.successWithOutput(output)
 	else:
-		LoginAttempt.addLoginAttempt(email, ip = request.remote_addr,
-		 success = False, is_admin = False)
+		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure("Credentials are not correct")
 
 
@@ -60,10 +67,13 @@ def checkPassword():
 @account_api.route('/registerUserAccount', methods = ['POST'])
 def registerUserAccount():
 	name = request.json.get(Labels.Name)
-	email = request.json.get(Labels.Email)
+	email_input = request.json.get(Labels.Email)
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
-
+	try:
+		email = email_input.lower()
+	except:
+		return JsonUtil.failure()
 	old_user = User.query.filter_by(email = email).first()
 	if old_user != None:
 		return JsonUtil.failure("Email already exists")

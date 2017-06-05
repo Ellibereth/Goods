@@ -28,6 +28,10 @@ def checkAdminLogin():
 	ip = request.remote_addr
 	username = request.json.get(Labels.Username)
 	password = request.json.get(Labels.Password)
+	if LoginAttempt.blockIpAddress(ip):
+		LoginAttempt.addLoginAttempt(username, ip, success = False, is_admin = True)
+		return JsonUtil.failure("Your IP has been blocked for spamming login attempts. Try again in 15 minutes")
+
 	if AdminUser.checkLogin(username, password):
 		admin_user = AdminUser.query.filter_by(username = username).first()
 		admin_jwt = JwtUtil.create_jwt(admin_user.toPublicDict())

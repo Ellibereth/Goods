@@ -6,6 +6,12 @@ import random
 import string
 from api.utility.labels import AdminLabels as Labels
 from api.utility.id_util import IdUtil
+import datetime
+
+# how many login attempts allowed per IP per minute limit time interval
+MINUTE_LIMIT = 15
+LOGIN_LIMIT = 10
+
 
 # records login attempt by regular users and admins
 class LoginAttempt(db.Model):
@@ -30,8 +36,15 @@ class LoginAttempt(db.Model):
 
 	
 	@staticmethod
-	def getRecentLoginAttempts():
-		return 0
+	def getRecentLoginAttempts(ip):
+		interval_start = datetime.datetime.now() - datetime.timedelta(minutes = MINUTE_LIMIT)
+		num_recent_logins = LoginAttempt.query.filter(LoginAttempt.date_created > interval_start).count()
+		return num_recent_logins
+
+	@staticmethod
+	def blockIpAddress(ip):
+		num_recent_logins = LoginAttempt.getRecentLoginAttempts(ip)
+		return (num_recent_logins > LOGIN_LIMIT)
 
 	@staticmethod
 	def addLoginAttempt(username, ip, success, is_admin):
@@ -83,6 +96,15 @@ class AdminAction(db.Model):
 		admin_action = AdminAction(username, request_path, ip, success, error_message)
 		db.session.add(admin_action)
 		db.session.commit()
+
+	@staticmethod
+	def getRecentAttempts(ip):
+		now = datetime.datetime.now()
+		before = now - timedelta(minutes = MINUTE_THRESHOLD)
+
+
+		return 0
+
 
 	def toPublicDict(self):
 		public_dict = {}
