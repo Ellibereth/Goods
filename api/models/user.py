@@ -13,6 +13,7 @@ from api.utility.lob import Lob
 from api.models.order import OrderItem
 from api.models.order import Order
 from api.models.cart import Cart
+from api.models.market_product import MarketProduct
 import re
 
 
@@ -147,6 +148,35 @@ class User(db.Model):
 		public_dict[Labels.DefaultAddress] = self.default_address
 		return public_dict
 
+	def adjustCart(self):
+		cart = Cart(self.account_id)
+		adjusted_items = list()
+		for cart_item in cart.items:
+			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+			if cart_item.variant_type:
+				this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
+				if this_variant:
+					new_inventory = this_variant.inventory - cart_item.num_items
+					if new_inventory < 0:
+						cart_item.num_items = this_variant.inventory
+						adjusted_items.append({
+							Labels.Name : this_product.name + " " + str(this_variant.variant_type),
+							Labels.NumItems : this_variant.inventory
+						})
+			else:
+				new_inventory = this_product.inventory - cart_item.num_items
+				if new_inventory < 0:
+					cart_item.num_items = this_product.inventory
+					adjusted_items.append({
+						Labels.Name : this_product.name,
+						Labels.NumItems : this_product.inventory
+					})
+
+		db.session.commit()
+		if not adjusted_items:
+			return None
+		else:
+			return adjusted_items
 
 	def setRecoveryPin(self):
 		self.recovery_pin = self.generateRecoveryPin()

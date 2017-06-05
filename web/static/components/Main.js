@@ -55,9 +55,17 @@ export default class Main extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
+					if (data.adjusted_items) {
+						swal({
+							title: "Sorry",
+							text: "Some items in your cart have been removed due to inventory constraints",
+							type : "error"
+						})
+					}
 					AppActions.removeCurrentUser()
 					AppActions.addCurrentUser(data.user, data.jwt)
 				}
+
 			}.bind(this),
 			error : function(){
 			},

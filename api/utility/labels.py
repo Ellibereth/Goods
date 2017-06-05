@@ -2,6 +2,8 @@
 
 
 class UserLabels:
+	NumItems = "num_items"
+	AdjustedItems = "adjusted_items"
 	RecoveryPin = "recovery_pin"
 	RecoveryPinExpiration = "recovery_pin_expiration"
 	Email = "email"
