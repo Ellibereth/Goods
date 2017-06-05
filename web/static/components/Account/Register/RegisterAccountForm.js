@@ -84,6 +84,12 @@ export default class RegisterAccountForm extends React.Component {
 							}.bind(this)
 						)
 
+
+						ga('send', 'event', {
+							eventCategory: 'Account',
+							eventAction: 'Register'
+						});
+
 					}
 					
 					

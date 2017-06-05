@@ -45,6 +45,13 @@ export default class LoginForm extends React.Component {
 					swal("Sorry!", "It seems there was an error in your submission. Please try again!", "warning")
 				}
 				else {
+					console.log(data.user.email)
+					ga('send', 'event', {
+							eventCategory: 'Account',
+							eventAction: 'Login',
+							eventLabel: data.user.email
+					});
+
 					AppActions.addCurrentUser(data.user, data.jwt)
 					if (!this.props.target){
 						window.location = '/'
