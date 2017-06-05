@@ -43,12 +43,12 @@ export default class OrderItemDisplay extends React.Component {
         							</th>
         						</tr>
         					</thead>
-        					<tbody>
+	    					{/*<tbody>
 	        					<tr>
 	        						<td className = "light-grey-background grey-text">  DATE  </td>
-        							<td> {formatted_date}  </td>
+	    							<td> {formatted_date}  </td>
 	        					</tr>
-        					</tbody>
+	    					</tbody>*/}
         				</table>
         			</div>
         		</div>			
