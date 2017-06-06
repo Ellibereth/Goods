@@ -10,7 +10,7 @@ import datetime
 
 # how many login attempts allowed per IP per minute limit time interval
 MINUTE_LIMIT = 15
-LOGIN_LIMIT = 100
+LOGIN_LIMIT = 15
 
 
 # records login attempt by regular users and admins
@@ -37,13 +37,12 @@ class LoginAttempt(db.Model):
 	
 	@staticmethod
 	def getRecentLoginAttempts(ip):
-		interval_start = datetime.datetime.now() - datetime.timedelta(minutes = MINUTE_LIMIT)
+		interval_start = datetime.datetime.utcnow() - datetime.timedelta(minutes = MINUTE_LIMIT)
 		num_recent_logins = LoginAttempt.query.filter(LoginAttempt.date_created > interval_start).count()
 		return num_recent_logins
 
 	@staticmethod
 	def blockIpAddress(ip):
-
 		num_recent_logins = LoginAttempt.getRecentLoginAttempts(ip)
 		print(num_recent_logins)
 		return (num_recent_logins > LOGIN_LIMIT)
