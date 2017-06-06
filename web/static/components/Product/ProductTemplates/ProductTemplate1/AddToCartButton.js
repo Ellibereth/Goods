@@ -82,7 +82,7 @@ export default class AddToCartButton extends React.Component {
 							},
 							function(isConfirm){
 								if (isConfirm){
-									window.location =  'myCart'
+									window.location =  '/myCart'
 								}
 							});
 							AppActions.removeCurrentUser()

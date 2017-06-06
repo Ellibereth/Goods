@@ -98,7 +98,7 @@ export default class ViewCartPage extends React.Component {
 						</div>
 						<div className = "col-md-3 col-lg-3 col-sm-3">
 							<Button disabled = {this.state.items.length == 0} 
-							onClick = {() => window.location = 'checkout'}
+							onClick = {() => window.location = '/checkout'}
 							className = "checkout-button">
 								Proceed to Checkout 
 							</Button>
