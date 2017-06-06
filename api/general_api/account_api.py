@@ -19,13 +19,13 @@ account_api = Blueprint('account_api', __name__)
 def checkLogin():
 	email_input = request.json.get(Labels.Email)
 	input_password = request.json.get(Labels.Password)
-	try:
+	if isinstance(email_input, str):
 		email = email_input.lower()
-	except:
+	else:
 		return JsonUtil.failure()
 
 	ip = request.remote_addr
-	
+
 	if LoginAttempt.blockIpAddress(ip):
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure("Your IP has been blocked for spamming login attempts. Try again in 15 minutes")
@@ -71,9 +71,10 @@ def registerUserAccount():
 	email_input = request.json.get(Labels.Email)
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
-	try:
+	
+	if isinstance(email_input, str):
 		email = email_input.lower()
-	except:
+	else:
 		return JsonUtil.failure()
 	old_user = User.query.filter_by(email = email).first()
 	if old_user != None:
