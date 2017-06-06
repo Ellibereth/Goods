@@ -19,7 +19,8 @@ export default class RegisterAccountForm extends React.Component {
 			email: "",
 			password: "",
 			password_confirm : "",
-			disabled: false
+			disabled: false,
+			form_times : form_inputs.map((input) => 0)
 		}
 	}
 
@@ -107,24 +108,34 @@ export default class RegisterAccountForm extends React.Component {
 		}
 	}
 
+	onFocus(event) {
+		var now = Math.floor(Date.now() / 1000)
+		var form_times = this.state.form_times
+		form_times[event.target.name] = now
+		this.setState({form_times : form_times})
+	}
+
+	onBlur(event){
+		if (event.target.value) {
+			var now = Math.floor(Date.now() / 1000)
+			ga('send', 'event', {
+			    eventCategory: 'Register',
+			    eventAction: 'Complete Form Input',
+			    eventLabel: event.target.name,
+			    eventValue : now - this.state.form_times[event.target.name]
+			});
+		}
+	}
+
 	componentDidMount(){
 		$(document).ready(function(){
+			var _this = this;
 			$('[data-toggle="popover"]').popover(); 
 
-			$(".form-control" ).blur(function() {
-				if (this.value != "") {
-					ga('send', 'event', {
-						eventCategory: 'Register',
-						eventAction: 'Finished ' + this.name,
-						eventLabel: this.value
-					});
-				}
-			});
 		});
 	}
 
 	render() {
-
 		var text_inputs = form_inputs.map((form_input, index) => {
 			return <AccountInput 
 						index = {index}
@@ -138,6 +149,8 @@ export default class RegisterAccountForm extends React.Component {
 						value = {this.state[form_input]} 
 						label = {form_labels[index]}
 						popover_text = {popover_text[index]}
+						onFocus = {this.onFocus.bind(this)}
+						onBlur = {this.onBlur.bind(this)}
 					/>
 		})
 
