@@ -9,6 +9,8 @@ from api.models.home_image import HomeImage
 from api.models.market_product import MarketProduct
 from api.security.tracking import AdminAction
 from api.models.market_product import ProductVariant
+from api.models.product_image import ProductImage
+from api.models.story_image import StoryImage
 
 import base64
 from api.s3.s3_api import S3
@@ -417,6 +419,7 @@ def toggleProductHasVariants():
 @admin_api.route('/uploadProductStoryImage', methods = ['POST'])
 def uploadProductStoryImage():
 	jwt = request.json.get(Labels.Jwt)
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
 	if not decoded_jwt:
 		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.jwt_failure()
