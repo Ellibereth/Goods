@@ -88,7 +88,9 @@ class Order(db.Model):
 						this_variant.inventory = new_inventory
 
 				else:
-					return "Seems like you tried to order a type that doesn't exist. Check your cart and try again."
+					return {
+						Labels.Error : "Seems like you tried to order a type that doesn't exist. Check your cart and try again."
+					}
 			else:
 				new_inventory = this_product.inventory - cart_item.num_items
 				if new_inventory < 0:

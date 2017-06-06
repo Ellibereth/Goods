@@ -7,7 +7,7 @@ import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ['Name', "Email", "Password", "Confirm Password"]
 const form_inputs = ["name", "email", "password", "password_confirm"]
 const input_types = ['text', 'text', 'password', 'password']
-const popover_text = [null, null, "Passwords must be at least 6 characters" , null]
+const popover_text = [null, null, "Passwords must be at least 6 characters" , "Passwords must be at least 6 characters"]
 var Link = require('react-router').Link
 import AccountInput from '../../Input/AccountInput'
 
@@ -110,9 +110,17 @@ export default class RegisterAccountForm extends React.Component {
 	componentDidMount(){
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover(); 
-		});
 
-		
+			$(".form-control" ).blur(function() {
+				if (this.value != "") {
+					ga('send', 'event', {
+						eventCategory: 'Register',
+						eventAction: 'Finished ' + this.name,
+						eventLabel: this.value
+					});
+				}
+			});
+		});
 	}
 
 	render() {

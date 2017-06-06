@@ -15,7 +15,6 @@ import RequestConfirmationPage from './Account/Confirmation/RequestConfirmationP
 import TermsOfServicePage from './Misc/TermsOfServicePage.js'
 import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
 import ProductPage from './Product/ProductPage.js'
-// import StorePage from './Store/StorePage.js'
 import RegisterPage from './Account/Register/RegisterPage.js'
 import LoginPage from './Account/Login/LoginPage.js'
 import SettingsPage from './Account/Settings/SettingsPage.js'

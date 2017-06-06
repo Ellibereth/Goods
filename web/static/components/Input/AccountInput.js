@@ -34,7 +34,8 @@ export default class AccountInput extends React.Component {
 						placeholder = {this.props.label}
 						data-content = {this.props.popover_text}
 						data-toggle = {this.props.popover_text && "popover"}
-						// data-trigger = {this.props.popover_text && "focus"}
+						data-trigger = {this.props.popover_text && "focus"}
+						data-animation = {true}
 						data-template = {this.props.popover_text &&
 							popover_template}
 						/>

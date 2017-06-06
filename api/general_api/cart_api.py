@@ -133,14 +133,13 @@ def checkoutCart():
 	try:
 		this_order = Order(this_user, this_cart, address)
 		db.session.add(this_order)
-		result = this_order.addItems(this_user, this_cart, address)
-		if result:
+		error_result = this_order.addItems(this_user, this_cart, address)
+		if error_result:
 			db.session.rollback()
-			result[Labels.CartItem].updateCartQuantity(result[Labels.Inventory])
+			error_result[Labels.CartItem].updateCartQuantity(error_result[Labels.Inventory])
 			db.session.commit()
-			return JsonUtil.failure(result.get(Labels.Error))
+			return JsonUtil.failure(error_result.get(Labels.Error))
 
-		
 	except Exception as e:
 		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database, str(e))
 		return JsonUtil.failure("There was an error with checking out your cart. Please check your cart and try again. \n \

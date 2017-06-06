@@ -45,7 +45,6 @@ export default class LoginForm extends React.Component {
 					swal("Sorry", data.error, "error")
 				}
 				else {
-					console.log(data.user.email)
 					ga('send', 'event', {
 							eventCategory: 'Account',
 							eventAction: 'Login',
