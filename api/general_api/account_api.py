@@ -25,6 +25,7 @@ def checkLogin():
 		return JsonUtil.failure()
 
 	ip = request.remote_addr
+	
 	if LoginAttempt.blockIpAddress(ip):
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure("Your IP has been blocked for spamming login attempts. Try again in 15 minutes")

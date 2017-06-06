@@ -80,16 +80,10 @@ export default class RegisterAccountForm extends React.Component {
 							text : "Your account has been created. You should receive a confirmation email shortly",
 							type: "success"},
 							function () {
-								window.location = '/'
+								window.location = '/thanks'
 							}.bind(this)
 						)
 
-
-						ga('send', 'event', {
-							eventCategory: 'Account',
-							eventAction: 'Register',
-							eventLabel: data.user.email
-						});
 
 					}
 					
