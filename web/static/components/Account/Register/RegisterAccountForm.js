@@ -109,29 +109,14 @@ export default class RegisterAccountForm extends React.Component {
 	}
 
 	onFocus(event) {
-		var now = Math.floor(Date.now() / 1000)
-		var form_times = this.state.form_times
-		form_times[event.target.name] = now
-		this.setState({form_times : form_times})
+		console.log("vent logged")
+		ga('send', 'pageview', 'register-' + event.target.name);
 	}
 
-	onBlur(event){
-		if (event.target.value) {
-			var now = Math.floor(Date.now() / 1000)
-			ga('send', 'event', {
-			    eventCategory: 'Register',
-			    eventAction: 'Complete Form Input',
-			    eventLabel: event.target.name,
-			    eventValue : now - this.state.form_times[event.target.name]
-			});
-		}
-	}
 
 	componentDidMount(){
 		$(document).ready(function(){
-			var _this = this;
 			$('[data-toggle="popover"]').popover(); 
-
 		});
 	}
 
@@ -150,7 +135,6 @@ export default class RegisterAccountForm extends React.Component {
 						label = {form_labels[index]}
 						popover_text = {popover_text[index]}
 						onFocus = {this.onFocus.bind(this)}
-						onBlur = {this.onBlur.bind(this)}
 					/>
 		})
 
