@@ -115,9 +115,7 @@ export default class RegisterAccountForm extends React.Component {
 
 
 	componentDidMount(){
-		$(document).ready(function(){
-			$('[data-toggle="popover"]').popover(); 
-		});
+		$('[data-toggle="popover"]').popover(); 
 	}
 
 	render() {

@@ -99,7 +99,7 @@ export default class CartItemDisplay extends React.Component {
 				<div className = "row cart-checkout-preview"> 
 					<hr/>
 					<div className = "top-buffer"/>
-						<div onClick = {() => window.locaiton = `/eg/` + this.props.item.product_id}
+						<div onClick = {() => window.location = `/eg/` + this.props.item.product_id}
 						className = "col-xs-4 col-sm-4 col-md-4 col-lg-4">
 							<div className = "row">
 								<div className = "col-sm-4 col-md-4 col-lg-4">

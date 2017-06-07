@@ -125,54 +125,22 @@ def updateProductInfo():
 	if this_product == None:
 		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
-	price = product.get(Labels.Price)
-	description = product.get(Labels.Description)
-	manufacturer = product.get(Labels.Manufacturer)
-	sale_end_date = product.get(Labels.SaleEndDate)
-	inventory = product.get(Labels.Inventory)
-	story_template = product.get(Labels.StoryTemplate)
-	product_template = product.get(Labels.ProductTemplate)
-	story_text = product.get(Labels.StoryText)
-	num_items_limit = product.get(Labels.NumItemsLimit)
-	variant_type_description = product.get(Labels.VariantTypeDescription)
-	live = product.get(Labels.Live)
-	if live != None:
-		this_product.live = live
-	if variant_type_description != None:
-		this_product.variant_type_description = variant_type_description
-	if price != None:
-		this_product.price = round(float(price), 2)
-	if description != None:
-		this_product.description = description
-	if manufacturer != None:
-		this_product.manufacturer = manufacturer
-	if sale_end_date != None:
-		this_product.sale_end_date = sale_end_date
-	if name != None:
-		this_product.name = name
-	if inventory != None:
-		this_product.inventory = inventory
-	if story_text != None:
-		this_product.story_text = story_text
-	if num_items_limit != None:
+
+	integer_input_labels = ['inventory', 'num_items_limit', 'story_template', 'product_template']
+	for key in product.keys():
 		try:
-			this_product.num_items_limit = int(num_items_limit)
+			if key == "price":
+				value = round(float(product.get(key)), 2)
+			elif key in integer_input_labels:
+				value = int(product.get(key))
+			else:
+				value = product.get(key)
+			if value:
+				setattr(this_product, key, value)
 		except:
 			AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-			return JsonUtil.failure("Item limit is not integer")
-	if story_template != None:
-		try:
-			this_product.story_template = int(story_template)
-		except:
-			AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-			return JsonUtil.failure("Story template choice : " + str(story_template) + " is not an integer")
-	if product_template != None:
-		try:
-			this_product.product_template = int(product_template)
-		except:
-			AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-			return JsonUtil.failure("Product template choice : " + str(product_template) + " is not an integer")
-			
+			return JsonUtil.failure(key + " input is invalid")
+
 	db.session.commit()
 	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
 	return JsonUtil.success(Labels.Product, this_product.toPublicDict())

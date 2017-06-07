@@ -1,4 +1,4 @@
-var React = require('react');''
+var React = require('react');
 var ReactDOM = require('react-dom');
 
 import AppActions from '../../actions/AppActions.js'

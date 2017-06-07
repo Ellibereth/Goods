@@ -328,7 +328,6 @@ def getUserInfo():
 	if this_user == None:
 		return JsonUtil.jwt_failure()
 
-
 	adjusted_items = this_user.adjustCart()
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
