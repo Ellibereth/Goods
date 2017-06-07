@@ -112,17 +112,18 @@ def send_static(path):
 def catch_all(path):
 	return render_template("index.html")
 
+def check_admin(function):
+	def wrapper():
+		jwt = request.json.get(Labels.Jwt)
+		decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
+		if not decoded_jwt:
+			AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
+			return JsonUtil.jwt_failure()
 
-@app.before_request
-def before_request():
-	g.start = time.time()
+		return function()
+	return wrapper
 
-@app.teardown_request
-def teardown_request(exception=None):
-	diff = time.time() - g.start
-	with open("logs/request_speed.csv", "a") as f:
-		writer = csv.writer(f)
-		writer.writerow([request.method, request.path, diff])
+
 
 
 

@@ -57,7 +57,7 @@ export default class AdminLoginPage extends React.Component {
 			url: "/checkAdminJwt",
 			data: form_data,
 			success: function(data) {
-				console.log(data.success)
+				console.log(data)
 				if (data.success){
 					window.location = '/yevgeniypoker555'
 				}

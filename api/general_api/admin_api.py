@@ -11,10 +11,9 @@ from api.security.tracking import AdminAction
 from api.models.market_product import ProductVariant
 from api.models.product_image import ProductImage
 from api.models.story_image import StoryImage
-
+from api.general_api.decorators import check_admin
 import base64
 from api.s3.s3_api import S3
-
 
 
 	
@@ -46,25 +45,21 @@ def checkAdminLogin():
 		LoginAttempt.addLoginAttempt(username, ip, success = False, is_admin = True)
 		return JsonUtil.failure("Invalid Credentials")
 
+
 @admin_api.route('/checkAdminJwt', methods =['POST'])
+@check_admin
 def checkAdminJwt():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
-	else:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
-		return JsonUtil.success()
+	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
+	return JsonUtil.success()
 
 
 @admin_api.route('/uploadMarketProductImage', methods = ['POST'])
+@check_admin
 def uploadMarketProductImage():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 	product_id = request.json.get(Labels.ProductId)
 	image_data = request.json.get(Labels.ImageData)
 	if image_data == None:
@@ -82,12 +77,10 @@ def uploadMarketProductImage():
 	return JsonUtil.success()
 
 @admin_api.route('/deleteProductPhoto', methods = ['POST'])
+@check_admin
 def deleteProductPhoto():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	image_id = request.json.get(Labels.ImageId)
@@ -107,12 +100,10 @@ def deleteProductPhoto():
 
 
 @admin_api.route('/updateProductInfo', methods = ['POST'])
+@check_admin
 def updateProductInfo():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	product = request.json.get(Labels.Product)
@@ -148,13 +139,10 @@ def updateProductInfo():
 
 
 @admin_api.route('/setMainProductPhoto', methods = ['POST'])
+@check_admin
 def setMainProductPhoto():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
-
 	product_id = request.json.get(Labels.ProductId)
 	image_id = request.json.get(Labels.ImageId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -175,12 +163,10 @@ def setMainProductPhoto():
 
 
 @admin_api.route('/activateProduct', methods = ['POST'])
+@check_admin
 def activateProduct():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -193,12 +179,10 @@ def activateProduct():
 	return JsonUtil.success("Successfully activated \'" + product.name)
 
 @admin_api.route('/deactivateProduct', methods = ['POST'])
+@check_admin
 def deactivateProduct():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -212,12 +196,10 @@ def deactivateProduct():
 	return JsonUtil.success("Successfully activated \'" + product.name)
 
 @admin_api.route('/getAdminMarketProductInfo', methods = ['POST'])
+@check_admin
 def getAdminMarketProductInfo():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	market_product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -231,12 +213,10 @@ def getAdminMarketProductInfo():
 
 
 @admin_api.route('/getMarketProducts', methods = ['POST'])
+@check_admin
 def getMarketProducts():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	market_products = MarketProduct.getAllProducts()
 	AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = True)
@@ -244,12 +224,10 @@ def getMarketProducts():
 
 
 @admin_api.route('/addProductVariant', methods = ['POST'])
+@check_admin
 def addProductVariant():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -272,12 +250,10 @@ def addProductVariant():
 
 
 @admin_api.route('/deleteVariant', methods = ['POST'])
+@check_admin
 def deleteVariant():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -297,12 +273,10 @@ def deleteVariant():
 	return JsonUtil.success()
 
 @admin_api.route('/updateVariant', methods = ['POST'])
+@check_admin
 def updateVariant():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
@@ -326,11 +300,10 @@ def updateVariant():
 
 
 @admin_api.route('/activateVariant', methods = ['POST'])
+@check_admin
 def activateVariant():
 	jwt = request.json.get(Labels.Jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if this_product == None:
@@ -344,11 +317,11 @@ def activateVariant():
 
 
 @admin_api.route('/deactivateVariant', methods = ['POST'])
+@check_admin
 def deactivateVariant():
 	jwt = request.json.get(Labels.Jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
+
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if this_product == None:
@@ -362,11 +335,10 @@ def deactivateVariant():
 
 
 @admin_api.route('/toggleProductHasVariants', methods = ['POST'])
+@check_admin
 def toggleProductHasVariants():
 	jwt = request.json.get(Labels.Jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
+	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
 
 	product_id = request.json.get(Labels.ProductId)
 	has_variants = request.json.get(Labels.HasVariants)
@@ -385,12 +357,9 @@ def toggleProductHasVariants():
 	return JsonUtil.success()
 
 @admin_api.route('/uploadProductStoryImage', methods = ['POST'])
+@check_admin
 def uploadProductStoryImage():
 	jwt = request.json.get(Labels.Jwt)
-	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 	product_id = request.json.get(Labels.ProductId)
 
 	image_data = request.json.get(Labels.ImageData)
@@ -412,12 +381,11 @@ def uploadProductStoryImage():
 
 
 @admin_api.route('/addMarketProduct', methods = ['POST'])
+@check_admin
 def addMarketProduct():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
+	
 	market_product = request.json.get(Labels.MarketProduct)
 	if market_product == None:
 		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
@@ -433,12 +401,11 @@ def addMarketProduct():
 		})
 
 @admin_api.route('/uploadHomeImage', methods = ['POST'])
+@check_admin
 def uploadHomeImage():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
+	
 
 	image_data = request.json.get(Labels.ImageData)
 	if image_data == None:
@@ -452,12 +419,10 @@ def uploadHomeImage():
 
 
 @admin_api.route('/updateHomeImage', methods = ['POST'])
+@check_admin
 def updateHomeImage():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	image_id = request.json.get(Labels.ImageId)
 	live = request.json.get(Labels.Live)
@@ -476,12 +441,10 @@ def updateHomeImage():
 	return JsonUtil.success()
 
 @admin_api.route('/getHomeImages', methods = ['POST'])
+@check_admin
 def getHomeImages():
 	jwt = request.json.get(Labels.Jwt)
 	decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-	if not decoded_jwt:
-		AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-		return JsonUtil.jwt_failure()
 
 	home_images = HomeImage.query.filter_by().all()
 	return JsonUtil.successWithOutput({

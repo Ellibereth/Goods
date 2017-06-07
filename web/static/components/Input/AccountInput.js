@@ -38,8 +38,8 @@ export default class AccountInput extends React.Component {
 						data-animation = {true}
 						data-template = {this.props.popover_text &&
 							popover_template}
-						onBlur = {this.props.onBlur && this.props.onBlur}
-						onFocus = {this.props.onFocus && this.props.onFocus}
+						onBlur = {this.props.onBlur}
+						onFocus = {this.props.onFocus}
 						/>
 				</div>
 			</div>
@@ -47,3 +47,7 @@ export default class AccountInput extends React.Component {
 	}
 }
 
+AccountInput.defaultProps = { 
+	onBlur : function(){},
+	onFocus : function(){}
+};
