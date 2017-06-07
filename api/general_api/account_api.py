@@ -127,7 +127,8 @@ def updateSettings(this_user):
 		return JsonUtil.failure(ErrorMessages.invalidEmail(new_settings[Labels.Email]))
 	email_match = User.query.filter_by(email = new_settings[Labels.Email]).first()
 	if email_match:
-		return JsonUtil.failure(ErrorMessages.inUseEmail(new_settings[Labels.Email]))
+		if email_match.account_id != this_user.account_id:
+			return JsonUtil.failure(ErrorMessages.inUseEmail(new_settings[Labels.Email]))
 	if new_settings[Labels.Name] == "":
 		return JsonUtil.failure(ErrorMessages.BlankName)
 	if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):	
