@@ -89,9 +89,9 @@ class AdminAction(db.Model):
 		db.Model.__init__(self)
 
 	@staticmethod
-	def addAdminAction(decoded_jwt, request_path, ip, success, error_message = None):
-		if decoded_jwt:
-			username = decoded_jwt.get(Labels.Username)
+	def addAdminAction(admin_user, request_path, ip, success, error_message = None):
+		if admin_user:
+			username = admin_user.get(Labels.Username)
 		else:
 			username = None
 		admin_action = AdminAction(username, request_path, ip, success, error_message)

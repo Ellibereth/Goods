@@ -26,9 +26,7 @@ import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProdu
 import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
 import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
-import ManageCardsPage from './Account/Settings/Billing/ManageCardsPage.js'
 import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
-import ManageAddressPage from './Account/Settings/Shipping/ManageAddressPage.js'
 import ViewCartPage from './Account/Checkout/ViewCartPage.js'
 import CheckoutPage from './Account/Checkout/CheckoutPage.js'
 import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
@@ -135,9 +133,7 @@ ReactDOM.render(
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path = "billing" onEnter = {checkUser} component = {UpdateBillingPage} />
 			<Route path = "deleteAccount" onEnter = {checkUser} component = {DeleteAccountPage} />
-			<Route path = "myCards" onEnter = {checkUser} component = {ManageCardsPage} />
 			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
-			<Route path = "myPlaces" onEnter = {checkUser} component = {ManageAddressPage}/>
 			<Route path = "myCart" onEnter = {checkUser} component = {ViewCartPage} />
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>

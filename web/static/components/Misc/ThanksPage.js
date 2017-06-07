@@ -17,7 +17,7 @@ export default class ThanksPage extends React.Component {
   	var component = (
   			<div className = "container">
 				<h1>
-					Thanks for signing up!
+					Thanks for signing up! Click <a href = "/"> here </a> to start shopping now!
 				</h1>
 			</div>
 		)

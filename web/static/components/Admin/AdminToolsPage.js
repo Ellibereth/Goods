@@ -109,7 +109,6 @@ export default class AdminToolsPage extends React.Component {
 					<div className = {this.state.selected_tab != ADD_PRODUCT_INDEX && "none"} > 
 						<AddProductForm active = {false} />
 					</div>
-					
 				</div>
 			}/>
 			

@@ -112,20 +112,6 @@ def send_static(path):
 def catch_all(path):
 	return render_template("index.html")
 
-def check_admin(function):
-	def wrapper():
-		jwt = request.json.get(Labels.Jwt)
-		decoded_jwt = JwtUtil.decodeAdminJwt(jwt)
-		if not decoded_jwt:
-			AdminAction.addAdminAction(decoded_jwt, request.path, request.remote_addr, success = False)
-			return JsonUtil.jwt_failure()
-
-		return function()
-	return wrapper
-
-
-
-
 
 if __name__ == '__main__':
 	app.debug = True

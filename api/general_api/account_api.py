@@ -11,6 +11,8 @@ from api.utility.json_util import JsonUtil
 from api.utility.jwt_util import JwtUtil
 from api.models.cart import Cart
 from api.security.tracking import LoginAttempt
+from api.utility.error import ErrorMessages
+from api.general_api import decorators
 
 account_api = Blueprint('account_api', __name__)
 
@@ -22,19 +24,16 @@ def checkLogin():
 	if isinstance(email_input, str):
 		email = email_input.lower()
 	else:
-		return JsonUtil.failure()
-
+		return JsonUtil.failure(InvalidCredentials)
 	ip = request.remote_addr
-
 	if LoginAttempt.blockIpAddress(ip):
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
-		return JsonUtil.failure("Your IP has been blocked for spamming login attempts. Try again in 15 minutes")
+		return JsonUtil.failure(ErrorMessages.IpBlocked)
 
 	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
-
-		return JsonUtil.failure("Credential are not correct")
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 	if this_user.checkLogin(input_password):
 		user_jwt = JwtUtil.create_jwt(this_user.toJwtDict())
@@ -45,23 +44,23 @@ def checkLogin():
 		return JsonUtil.successWithOutput(output)
 	else:
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
-		return JsonUtil.failure("Credentials are not correct")
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 
-# checks the login information from a user 
+# checks the login information from a user
+# once they are logged in, mostly used for making changes to settings  
 @account_api.route('/checkPassword', methods = ['POST'])
-def checkPassword():
-	jwt = request.json.get(Labels.Jwt)
+@decorators.check_user_jwt
+def checkPassword(this_user):
 	input_password = request.json.get(Labels.Password)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.failure("Not a real user")
 	if this_user.checkLogin(input_password):
-		output = {Labels.User : this_user.toPublicDict(),
-		 Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
+		output = {
+			Labels.User : this_user.toPublicDict(),
+			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+		}
 		return JsonUtil.successWithOutput(output)
 	else:
-		return JsonUtil.failure("Password is not correct")
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 
 # registers a user
@@ -71,26 +70,25 @@ def registerUserAccount():
 	email_input = request.json.get(Labels.Email)
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
-	
 	if isinstance(email_input, str):
 		email = email_input.lower()
 	else:
 		return JsonUtil.failure()
 	old_user = User.query.filter_by(email = email).first()
 	if old_user != None:
-		return JsonUtil.failure("Email already exists")
+		return JsonUtil.failure(ErrorMessages.ExistingEmail)
 	if password != password_confirm:
-		return JsonUtil.failure("Passwords do not match")
+		return JsonUtil.failure(ErrorMessages.PasswordConfirmMismactch)
 
 	if name == "":
-		return JsonUtil.failure("Name cannot be blank")
+		return JsonUtil.failure(ErrorMessages.BlankName)
 	if not all(x.isalpha() or x.isspace() for x in name):
-		return JsonUtil.failure("Name must be alphabetical characters only")
+		return JsonUtil.failure(ErrorMessages.InvalidName)
 	try:
 		email_confirmation_id = User.generateEmailConfirmationId()
 		email_api.sendEmailConfirmation(email, email_confirmation_id, name)
 	except:
-		return JsonUtil.failure("Invald Email")
+		return JsonUtil.failure(ErrorMessages.InvalidEmail)
 	new_user = User(name = name, email = email, password = password, 
 		email_confirmation_id =email_confirmation_id)
 	db.session.add(new_user)
@@ -109,10 +107,7 @@ def confirmEmail():
 	this_user = User.query.filter_by(email_confirmation_id = email_confirmation_id).first()
 
 	if this_user == None:
-		return JsonUtil.failure("Email confirmation id doesn't go with any user")
-	# elif this_user.email_confirmed:
-	# 	return JsonUtil.failure("Email already confirmed")
-
+		return JsonUtil.failure(ErrorMessages.NonExistantEmailConfirmation)
 	else:
 		this_user.confirmEmail()
 		return JsonUtil.successWithOutput({
@@ -122,65 +117,45 @@ def confirmEmail():
 
 # updates the user's settings
 @account_api.route('/updateSettings', methods = ['POST'])
-def updateSettings():
-	jwt = request.json.get(Labels.Jwt)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
+@decorators.check_user_jwt
+def updateSettings(this_user):
 	new_settings = request.json.get(Labels.NewSettings)
 	password = request.json.get(Labels.Password)
-	if this_user == None:
-		return JsonUtil.failure("Not a real user")
-	if not JwtUtil.validateJwtUser(jwt, this_user.account_id):
-		return JsonUtil.jwt_failure()
 	if not this_user.checkLogin(password):
-		return JsonUtil.failure("Password is not correct")
-
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	if not User.isValidEmail(new_settings[Labels.Email]):
-		return JsonUtil.failure(new_settings[Labels.Email] + " is not a valid email address.")
-
+		return JsonUtil.failure(ErrorMessages.invalidEmail(new_settings[Labels.Email]))
 	email_match = User.query.filter_by(email = new_settings[Labels.Email]).first()
 	if email_match:
-		return JsonUtil.failure(new_settings[Labels.Email] + " is associated with another account")
-
+		return JsonUtil.failure(ErrorMessages.inUseEmail(new_settings[Labels.Email]))
 	if new_settings[Labels.Name] == "":
-		return JsonUtil.failure("Name cannot be blank")
-
-	
+		return JsonUtil.failure(ErrorMessages.BlankName)
 	if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):	
-		return JsonUtil.failure("Name must only be letters and spaces")
-
+		return JsonUtil.failure(ErrorMessages.InvalidName)
 	this_user.updateSettings(new_settings)
 	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
 	return JsonUtil.successWithOutput(output)
 
-
 @account_api.route('/changePassword', methods = ['POST'])
-def changePassword():
-	jwt = request.json.get(Labels.Jwt)
+@decorators.check_user_jwt
+def changePassword(this_user):
 	old_password = request.json.get(Labels.OldPassword)
 	new_password = request.json.get(Labels.Password)
 	new_password_confirm = request.json.get(Labels.PasswordConfirm)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.failure("Not a real user")
 	if new_password == new_password_confirm:
 		valid_password = this_user.changePassword(old_password, new_password)
 		if valid_password:
 			output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
 			return JsonUtil.successWithOutput(output)
 		else:
-			return JsonUtil.failure("Password is invalid")
+			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	else:
-		return JsonUtil.failure("Passwords don't match")
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 
 @account_api.route('/addCreditCard', methods = ['POST'])
-def addCreditCard():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-
-	user = User.query.filter_by(account_id = account_id).first()
+@decorators.check_user_jwt
+def addCreditCard(this_user):
 	name = request.json.get(Labels.Name)
 	address_city = request.json.get(Labels.AddressCity)
 	address_country = request.json.get(Labels.AddressCountry)
@@ -193,33 +168,21 @@ def addCreditCard():
 	number = request.json.get(Labels.Number)
 	cvc = request.json.get(Labels.Cvc)
 	try:
-		user.addCreditCard(address_city, address_line1, address_line2, 
+		this_user.addCreditCard(address_city, address_line1, address_line2, 
 			address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country)
 		return JsonUtil.success()
-	except Exception as e:
-		return JsonUtil.failure("Something went wrong while adding credit card \n " + str(e))
+	except:
+		return JsonUtil.failure(ErrorMessages.CardAddError)
 
 @account_api.route("/getUserCards", methods = ['POST'])
-def getUserCards():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-	user = User.query.filter_by(account_id = account_id).first()
-	cards = user.getCreditCards()
+@decorators.check_user_jwt
+def getUserCards(this_user):
+	cards = this_user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Cards : cards})
 
 @account_api.route('/addUserAddresses', methods = ['POST'])
-def addUserAddresses():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-
-	user = User.query.filter_by(account_id = account_id).first()
-	if user == None:
-		return JsonUtil.failure("User does not exist")
-
+@decorators.check_user_jwt
+def addUserAddresses(this_user):
 	name = request.json.get(Labels.AddressName)
 	description = request.json.get(Labels.Description)
 	address_city = request.json.get(Labels.AddressCity)
@@ -229,35 +192,23 @@ def addUserAddresses():
 	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
 	try:
-		user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
+		this_user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country)
 		return JsonUtil.success()
 
-	except Exception as e:
-		return JsonUtil.failure("Somehing went wrong \n " + str(e))
+	except:
+		return JsonUtil.failure(ErrorMessages.AddressAddError)
+
 
 @account_api.route("/getUserAddress", methods = ['POST'])
-def getUserAddress():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-	user = User.query.filter_by(account_id = account_id).first()
-	if user == None:
-		return JsonUtil.failure("User does not exist")
-
-	addresses = user.getAddresses()
+@decorators.check_user_jwt
+def getUserAddress(this_user):
+	addresses = this_user.getAddresses()
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses})
 
 @account_api.route('/editUserAddress', methods = ['POST'])
-def editUserAddress():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-	user = User.query.filter_by(account_id = account_id).first()
-	if user == None:
-		return JsonUtil.failure("User does not exist")
+@decorators.check_user_jwt
+def editUserAddress(this_user):
 	address_id = request.json.get(Labels.AddressId)
 	name = request.json.get(Labels.AddressName)
 	description = request.json.get(Labels.Description)
@@ -268,66 +219,44 @@ def editUserAddress():
 	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
 	try:
-		user.editAddress(address_id, description, name, address_line1, address_line2, address_city, address_state,
+		this_user.editAddress(address_id, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country)
 		return JsonUtil.success()
 
 	except Exception as e:
-		return JsonUtil.failure("Something went wrong while editing address \n " + str(e))
+		print(str(e))
+		return JsonUtil.failure(ErrorMessages.AddressEditError)
 
 @account_api.route('/deleteUserAddress', methods = ['POST'])
-def deleteUserAddress():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-	user = User.query.filter_by(account_id = account_id).first()
-	if user == None:
-		return JsonUtil.failure("User does not exist")
-	address_id = request.json.get(Labels.AddressId)
-	
+@decorators.check_user_jwt
+def deleteUserAddress(this_user):
+	address_id = request.json.get(Labels.AddressId)	
 	try:
-		user.deleteAddress(address_id)
+		this_user.deleteAddress(address_id)
 		return JsonUtil.success()
-
-	except Exception as e:
-		return JsonUtil.failure("Something went wrong while deleting address \n " + str(e))
-
+	except:
+		return JsonUtil.failure(ErrorMessages.AddressDeleteError)
 	
 @account_api.route('/deleteUserCreditCard', methods = ['POST'])
-def deleteUserCreditCard():
-	account_id = request.json.get(Labels.AccountId)
-	jwt = request.json.get(Labels.Jwt)
-	if not JwtUtil.validateJwtUser(jwt, account_id):
-		return JsonUtil.jwt_failure()
-	user = User.query.filter_by(account_id = account_id).first()
-	if user == None:
-		return JsonUtil.failure("User does not exist")
+@decorators.check_user_jwt
+def deleteUserCreditCard(this_user):
 	card_id = request.json.get(Labels.StripeCardId)
 	try:
-		user.deleteCreditCard(card_id)
+		this_user.deleteCreditCard(card_id)
 		return JsonUtil.success()
-	except Exception as e:
-		return JsonUtil.failure("Something went wrong while delting credit card \n " + str(e))
+	except:
+		return JsonUtil.failure(ErrorMessages.CardDeleteError)
 
 
 @account_api.route('/getUserOrders', methods = ['POST'])
-def getUserOrders():
-	jwt = request.json.get(Labels.Jwt)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.failure("Not a real user")
+@decorators.check_user_jwt
+def getUserOrders(this_user):
 	orders = this_user.getUserOrders()
 	return JsonUtil.successWithOutput({Labels.Orders : orders})
 
 @account_api.route('/getUserInfo', methods = ['POST'])
-def getUserInfo():
-	# email_api.testEmail()
-	jwt = request.json.get(Labels.Jwt)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.jwt_failure()
-
+@decorators.check_user_jwt
+def getUserInfo(this_user):
 	adjusted_items = this_user.adjustCart()
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
@@ -337,49 +266,36 @@ def getUserInfo():
 
 
 @account_api.route('/softDeleteAccount', methods = ['POST'])
-def softDeleteAccount():
-	jwt = request.json.get(Labels.Jwt)
+@decorators.check_user_jwt
+def softDeleteAccount(this_user):
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.failure("User does not exist")
 	if password != password_confirm:
-		return JsonUtil.failure("Passwords don't match")
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	if not this_user.checkLogin(password):
-		return JsonUtil.failure("Password is incorrect")
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 	this_user.softDeleteAccount()
 	return JsonUtil.success()
 
 @account_api.route('/resendConfirmationEmail', methods = ['POST'])
-def resendConfirmationEmail():
-	jwt = request.json.get(Labels.Jwt)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.failure("This user doesn't exist")
-
+@decorators.check_user_jwt
+def resendConfirmationEmail(this_user):
 	email_api.sendEmailConfirmation(this_user.email, this_user.email_confirmation_id, this_user.name)
 	return JsonUtil.success()
 
 
 @account_api.route('/setDefaultAddress', methods = ['POST'])
-def setDefaultAddress():
-	jwt = request.json.get(Labels.Jwt)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.failure("This user doesn't exist")
+@decorators.check_user_jwt
+def setDefaultAddress(this_user):
 	address_id = request.json.get(Labels.AddressId)
 	this_user.default_address = address_id
 	db.session.commit()
 	return JsonUtil.success()
 
 @account_api.route('/setDefaultCard', methods = ['POST'])
-def setDefaultCard():
-	jwt = request.json.get(Labels.Jwt)
-	this_user = JwtUtil.getUserInfoFromJwt(jwt)
-	if this_user == None:
-		return JsonUtil.failure("This user doesn't exist")
+@decorators.check_user_jwt
+def setDefaultCard(this_user):
 	card_id = request.json.get(Labels.CardId)
 	this_user.default_card = card_id
 	db.session.commit()
@@ -389,7 +305,7 @@ def setDefaultCard():
 def setRecoveryPin():
 	email = request.json.get(Labels.Email)
 	if email == None or email == "":
-		return JsonUtil.failure("Email cannot be blank")
+		return JsonUtil.failure(ErrorMessages.BlankEmail)
 	user = User.query.filter_by(email = email).first()
 	if user:
 		user.setRecoveryPin()
@@ -405,11 +321,11 @@ def checkRecoveryInformation():
 	user = User.query.filter_by(recovery_pin = recovery_pin).first()
 	if user:
 		if datetime.datetime.now() > user.recovery_pin_expiration:
-			return JsonUtil.failure("This link is invalid or has expired")
+			return JsonUtil.failure(ErrorMessages.ExpiredLink)
 		else:
 			return JsonUtil.success()
 	else:
-		return JsonUtil.failure("This link is invalid or has expired")
+		return JsonUtil.failure(ExpiredLink)
 
 
 @account_api.route('/recoverySetPassword', methods = ['POST'])
@@ -419,15 +335,15 @@ def recoverySetPassword():
 	recovery_pin = request.json.get(Labels.RecoveryPin)
 	user = User.query.filter_by(recovery_pin = recovery_pin).first()
 	if not password or password == "" or not password_confirm or password_confirm == "":
-		return JsonUtil.failure("Passwords cannot be blank")
+		return JsonUtil.failure(ErrorMessages.BlankPassword)
 
 	if password != password_confirm:
-		return JsonUtil.failure("Passwords do not match")
+		return JsonUtil.failure(ErrorMessages.PasswordConfirmMismatch)
 
 	if user:
 		if user.recovery_pin_expiration:
 			if datetime.datetime.now() > user.recovery_pin_expiration:
-				return JsonUtil.failure("This recovery link is invalid or has expired")
+				return JsonUtil.failure(ErrorMessages.ExpiredLink)
 			else:
 				is_valid_password = User.validatePasswordSubimssion(password)
 				if is_valid_password[Labels.Success]:
@@ -436,13 +352,10 @@ def recoverySetPassword():
 				else:
 					return JsonUtil.failure(is_valid_password[Labels.Error])
 		else:
-			return JsonUtil.failure("This recovery link is invalid or has expired")
+			return JsonUtil.failure(ErrorMessages.ExpiredLink)
 	else:
-		return JsonUtil.failure("This recovery link is invalid or has expired")
+		return JsonUtil.failure(ErrorMessages.ExpiredLink)
 
-
-	
-	
 
 
 
