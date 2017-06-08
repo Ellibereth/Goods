@@ -2,6 +2,7 @@
 
 
 class UserLabels:
+	CartMessage = "cart_message"
 	NumItems = "num_items"
 	AdjustedItems = "adjusted_items"
 	RecoveryPin = "recovery_pin"

@@ -23,7 +23,7 @@ import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
 import ChangePasswordPage from './Account/Settings/Personal/ChangePasswordPage.js'
 import LogoutPage from './Misc/LogoutPage.js'
 import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
-import PleaseConfirmPage  from './Misc/PleaseConfirmPage.js'
+import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
 import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
 import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
@@ -55,10 +55,17 @@ export default class Main extends React.Component {
 				if (data.success) {
 					if (data.adjusted_items) {
 						swal({
-							title: "Sorry",
-							text: "Some items in your cart have been removed due to inventory constraints",
-							type : "error"
-						})
+							title: "Your cart has been changed for inventory constraints",
+							type : "info",
+							showCancelButton: false,
+							confirmButtonText: "View Changes",
+							cancelButtonText: "Keep Shopping",
+							closeOnConfirm: true,
+							closeOnCancel: true
+						},
+						function (isConfirm) {
+							window.location = '/myCart'
+						}.bind(this))
 					}
 					AppActions.removeCurrentUser()
 					AppActions.addCurrentUser(data.user, data.jwt)
@@ -111,10 +118,10 @@ const checkAdmin = (nextState, replace) => {
 }
 
 
-ReactDOM.render(  
+ReactDOM.render(    
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
-			<IndexRoute  component={HomePage} />
+			<IndexRoute    component={HomePage} />
 			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />

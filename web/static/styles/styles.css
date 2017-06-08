@@ -673,3 +673,7 @@ body {
     margin: 14px;
 }
 
+.cart-message{
+	padding : 8px;
+	text-align: center;
+}

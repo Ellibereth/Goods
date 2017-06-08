@@ -40,6 +40,7 @@ class User(db.Model):
 	deleted_account_email = db.Column(db.String)
 	recovery_pin = db.Column(db.String)
 	recovery_pin_expiration = db.Column(db.DateTime)
+	cart_message = db.Column(db.String)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -115,6 +116,7 @@ class User(db.Model):
 		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
 		public_dict[Labels.Addresses] = []
 		public_dict[Labels.Cards] = []
+		public_dict[Labels.CartMessage] = self.cart_message
 		return public_dict
 
 
@@ -131,6 +133,7 @@ class User(db.Model):
 		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
+		public_dict[Labels.CartMessage] = self.cart_message
 		return public_dict
 
 	def toPublicDict(self):
@@ -146,6 +149,7 @@ class User(db.Model):
 		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
+		public_dict[Labels.CartMessage] = self.cart_message
 		return public_dict
 
 	def adjustCart(self):
@@ -172,6 +176,13 @@ class User(db.Model):
 						Labels.NumItems : this_product.inventory
 					})
 
+
+		if adjusted_items:
+			cart_message = ""
+			for item in adjusted_items:
+				cart_message = cart_message + item[Labels.Name] + ":" + str(item[Labels.NumItems]) + "\n"
+			self.cart_message = cart_message
+		
 		db.session.commit()
 		if not adjusted_items:
 			return None

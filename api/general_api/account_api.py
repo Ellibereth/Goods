@@ -358,6 +358,12 @@ def recoverySetPassword():
 		return JsonUtil.failure(ErrorMessages.ExpiredLink)
 
 
+@account_api.route('/readCartMessage', methods = ['POST'])
+@decorators.check_user_jwt
+def readCartMessage(this_user):
+	this_user.cart_message = ""
+	db.session.commit()
+	return JsonUtil.success()
 
 
 

@@ -108,16 +108,17 @@ def updateProductInfo(admin_user):
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
 
-	integer_input_labels = ['inventory', 'num_items_limit', 'story_template', 'product_template']
+	
 	for key in product.keys():
 		try:
-			if key == "price":
+			if key == Labels.Price:
 				value = round(float(product.get(key)), 2)
-			elif key in integer_input_labels:
+			elif key in MarketProduct.INTEGER_INPUTS:
 				value = int(product.get(key))
 			else:
 				value = product.get(key)
-			if value:
+
+			if value != None:
 				setattr(this_product, key, value)
 		except:
 			AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)

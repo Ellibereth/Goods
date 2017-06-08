@@ -16,6 +16,7 @@ from api.utility.variants import ProductVariants as Variants
 ## user object class
 class MarketProduct(db.Model):
 	__tablename__ = ProdTables.MarketProductTable
+	INTEGER_INPUTS = [Labels.Inventory, Labels.NumItemsLimit, Labels.StoryTemplate, Labels.ProductTemplate]
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	name = db.Column(db.String, default = "Sample Name")
 	price = db.Column(db.Float, default = 0)

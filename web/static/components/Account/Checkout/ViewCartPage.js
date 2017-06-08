@@ -16,7 +16,8 @@ export default class ViewCartPage extends React.Component {
 			items_price : null,
 			cards : [],
 			addresses : [],
-			is_loading: true
+			is_loading: true,
+			cart_message : ""
 		}
 	}
 
@@ -37,6 +38,11 @@ export default class ViewCartPage extends React.Component {
 						cards : data.user.cards,
 						addresses : data.user.addresses, 
 					})
+					if (this.state.is_loading) {
+						this.setState({cart_message : data.user.cart_message},
+							() => this.readCartMessage())
+
+					}
 				}
 				else {
 					console.log("an error")
@@ -52,15 +58,25 @@ export default class ViewCartPage extends React.Component {
 		});
 	}
 
-	componentWillMount(){
-		var user = AppStore.getCurrentUser()
-		this.setState({
-				items: user.cart.items, 
-				items_price : user.cart.items_price,
-				cards : user.cards,
-				addresses : user.addresses, 
-				is_loading: false
+	readCartMessage(){
+		var form_data = JSON.stringify({
+				"jwt" : localStorage.jwt
 		})
+		$.ajax({
+			type: "POST",
+			url: "/readCartMessage",
+			data: form_data,
+			error : function(){
+				console.log("an internal server error")
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+
+	}
+
+	componentDidMount(){
+		this.refreshCheckoutInformation.bind(this)()
 	}
 
 	render() {
@@ -102,6 +118,11 @@ export default class ViewCartPage extends React.Component {
 							className = "checkout-button">
 								Proceed to Checkout 
 							</Button>
+							<div className = "row">
+								<div className = "cart-message">
+									{this.state.cart_message}
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

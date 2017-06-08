@@ -25,7 +25,7 @@ class ErrorMessages:
 	CartCheckoutPaymentError = "Something went wrong while trying to process payment information. Please check your billing information and try again."
 	CartCheckoutEmailError = "Unfortunately we couldn't send you confirmation email, but this order can be viewed in settings / past orders.\
 				 We are working on this and you can expect a confirmation email within 1-2 days"
-	InvaldProduct = "Product doens't exist"
+	InvalidProduct = "Product doesn't exist"
 	CartUpdateQuantity = "Something went wrong while updating cart quantity"
 
 	def invalidEmail(email):
@@ -36,3 +36,4 @@ class ErrorMessages:
 
 	def itemLimit(limit):
 		return "You can't order more than " + limit + " of this"
+
