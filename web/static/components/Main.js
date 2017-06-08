@@ -54,8 +54,13 @@ export default class Main extends React.Component {
 			success: function(data) {
 				if (data.success) {
 					if (data.adjusted_items) {
+						message = ""
+						data.adjusted_items.map((item) => {
+							message = message + item.name + ": " + item.num_items + "\n"
+						})
 						swal({
-							title: "Your cart has been changed for inventory constraints",
+							title: "Some items in your cart have been modified",
+							text: message,
 							type : "info",
 							showCancelButton: false,
 							confirmButtonText: "View Changes",

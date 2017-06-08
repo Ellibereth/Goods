@@ -69,6 +69,7 @@ export default class UpdateShippingForm extends React.Component {
 				url: "/addUserAddresses",
 				data: form_data,
 				success: function(data) {
+					this.props.setLoading(false)
 					if (!data.success) {
 						swal("Sorry!", "It seems there was an error with your address! " + data.error 
 							+ ". Please try again!", "warning")
@@ -118,8 +119,12 @@ export default class UpdateShippingForm extends React.Component {
 					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
-
-				},
+					this.props.setLoading(false)
+					swal({
+						title :"Something went wrong!",
+						type : "error"
+					})
+				}.bind(this),
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});

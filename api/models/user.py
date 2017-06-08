@@ -14,6 +14,7 @@ from api.models.order import OrderItem
 from api.models.order import Order
 from api.models.cart import Cart
 from api.models.market_product import MarketProduct
+from api.models.market_product import ProductVariant
 import re
 
 
@@ -44,6 +45,8 @@ class User(db.Model):
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
+	NAME_MAX_LENGTH = 20
+	MIN_PASSWORD_LENGTH = 6
 
 	def __init__(self, name, email, password, email_confirmation_id):
 		self.name = name
@@ -80,6 +83,7 @@ class User(db.Model):
 			missing = User.query.filter_by(recovery_pin = new_recovery_pin).first()
 		return new_recovery_pin
 
+
 	
 	# right now this method only checks if the password is at least 6 characters
 	# but we'll add other stuff too
@@ -92,7 +96,7 @@ class User(db.Model):
 
 	@staticmethod
 	def isValidEmail(email):
-		if len(email) > 7:
+		if len(email) > 5:
 			if re.match("[^@]+@[^@]+\.[^@]+", email) != None:
 				return True
 		return False

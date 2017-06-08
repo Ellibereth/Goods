@@ -99,6 +99,7 @@ export default class UpdateBillingForm extends React.Component {
 				url: "/addCreditCard",
 				data: form_data,
 				success: function(data) {
+					this.props.setLoading(false)
 					if (!data.success) {
 						swal("Sorry!", "It seems there was an error with your card! " + data.error 
 							+ ". Please try again!", "error")
@@ -140,8 +141,12 @@ export default class UpdateBillingForm extends React.Component {
 					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
-					console.log("error")
-				},
+					this.props.setLoading(false)
+					swal({
+						title :"Something went wrong!",
+						type : "error"
+					})
+				}.bind(this),
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});

@@ -1,3 +1,4 @@
+from api.models.user import User
 
 class ErrorMessages:
 	InvalidCredentials = "Credential are not correct"
@@ -27,6 +28,8 @@ class ErrorMessages:
 				 We are working on this and you can expect a confirmation email within 1-2 days"
 	InvalidProduct = "Product doesn't exist"
 	CartUpdateQuantity = "Something went wrong while updating cart quantity"
+	LongName = "Name must be less than " + str(User.NAME_MAX_LENGTH) + " characters"
+	ShortPassword = "Password must be at least " + str(User.MIN_PASSWORD_LENGTH) + " characters"
 
 	def invalidEmail(email):
 		return email + " is not a valid email address."

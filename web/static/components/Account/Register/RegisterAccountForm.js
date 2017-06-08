@@ -88,13 +88,12 @@ export default class RegisterAccountForm extends React.Component {
 
 					}
 					
-					
 					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
-					console.log("error")
+					this.props.setLoading(false)
 					this.setState({disabled : false})
-				},
+				}.bind(this),
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});
@@ -109,7 +108,6 @@ export default class RegisterAccountForm extends React.Component {
 	}
 
 	onFocus(event) {
-		console.log("vent logged")
 		ga('send', 'pageview', 'register-' + event.target.name);
 	}
 

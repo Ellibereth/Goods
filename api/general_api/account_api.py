@@ -14,6 +14,9 @@ from api.security.tracking import LoginAttempt
 from api.utility.error import ErrorMessages
 from api.general_api import decorators
 
+from validate_email import validate_email
+
+
 account_api = Blueprint('account_api', __name__)
 
 # checks the login information from a user 
@@ -73,22 +76,38 @@ def registerUserAccount():
 	if isinstance(email_input, str):
 		email = email_input.lower()
 	else:
-		return JsonUtil.failure()
+		return JsonUtil.failure(ErrorMessages.InvalidEmail)
+	if email == "":
+		return JsonUtil.failure(ErrorMessages.BlankEmail)
 	old_user = User.query.filter_by(email = email).first()
 	if old_user != None:
 		return JsonUtil.failure(ErrorMessages.ExistingEmail)
-	if password != password_confirm:
-		return JsonUtil.failure(ErrorMessages.PasswordConfirmMismactch)
-
 	if name == "":
 		return JsonUtil.failure(ErrorMessages.BlankName)
+	if not isinstance(name, str):
+		return JsonUtil.failure(ErrorMessages.InvalidName)
+	if len(name) > User.NAME_MAX_LENGTH:
+		return JsonUtil.failure(ErrorMessages.LongName)
+
 	if not all(x.isalpha() or x.isspace() for x in name):
 		return JsonUtil.failure(ErrorMessages.InvalidName)
+
+
+	if not validate_email(email,verify=True):
+		return JsonUtil.failure(ErrorMessages.InvalidEmail)
+
 	try:
 		email_confirmation_id = User.generateEmailConfirmationId()
 		email_api.sendEmailConfirmation(email, email_confirmation_id, name)
-	except:
+	except Exception as e:
+		print(str(e))
 		return JsonUtil.failure(ErrorMessages.InvalidEmail)
+
+	if len(password) < User.MIN_PASSWORD_LENGTH:
+		return JsonUtil.failure(ErrorMessages.ShortPassword)
+	if password != password_confirm:
+		return JsonUtil.failure(ErrorMessages.PasswordConfirmMismatch)
+
 	new_user = User(name = name, email = email, password = password, 
 		email_confirmation_id =email_confirmation_id)
 	db.session.add(new_user)
@@ -125,6 +144,16 @@ def updateSettings(this_user):
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	if not User.isValidEmail(new_settings[Labels.Email]):
 		return JsonUtil.failure(ErrorMessages.invalidEmail(new_settings[Labels.Email]))
+
+	if new_settings.get(Labels.Name) == "":
+		return JsonUtil.failure(ErrorMessages.BlankName)
+	if not isinstance(new_settings.get(Labels.Name), str):
+		return JsonUtil.failure(ErrorMessages.InvalidName)
+	if len(new_settings.get(Labels.Name)) > User.NAME_MAX_LENGTH:
+		return JsonUtil.failure(ErrorMessages.LongName)
+	if not validate_email(new_settings.get(Labels.Email),verify=True):
+		return JsonUtil.failure(ErrorMessages.InvalidEmail)
+
 	email_match = User.query.filter_by(email = new_settings[Labels.Email]).first()
 	if email_match:
 		if email_match.account_id != this_user.account_id:

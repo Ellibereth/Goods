@@ -56,7 +56,6 @@ export default class AdminProductPreviewRow extends React.Component {
 		else {
 			return product[attr]
 		}
-		return cell_contents
 	}
 
 

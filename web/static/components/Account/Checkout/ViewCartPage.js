@@ -5,6 +5,7 @@ import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../Input/Util'
+import Spinner from '../../Misc/Spinner'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
 
@@ -38,11 +39,11 @@ export default class ViewCartPage extends React.Component {
 						cards : data.user.cards,
 						addresses : data.user.addresses, 
 					})
-					if (this.state.is_loading) {
-						this.setState({cart_message : data.user.cart_message},
-							() => this.readCartMessage())
+					// if (this.state.is_loading) {
+					// 	this.setState({cart_message : data.user.cart_message},
+					// 		() => this.readCartMessage())
 
-					}
+					// }
 				}
 				else {
 					console.log("an error")
@@ -76,7 +77,15 @@ export default class ViewCartPage extends React.Component {
 	}
 
 	componentDidMount(){
-		this.refreshCheckoutInformation.bind(this)()
+		// this.refreshCheckoutInformation.bind(this)()
+		var user = AppStore.getCurrentUser()
+		this.setState({
+						items: user.cart.items, 
+						items_price : user.cart.items_price,
+						cards : user.cards,
+						addresses : user.addresses, 
+						is_loading : false
+					})
 	}
 
 	render() {
@@ -85,6 +94,7 @@ export default class ViewCartPage extends React.Component {
 				<div id = "view-cart-container" 
 				className = {this.state.is_loading ? "container faded" : "container"}
 				>
+					{this.state.is_loading && <Spinner />}
 
 					<div className = "row">
 						<div className = "col-md-9 col-lg-9 col-sm-9 well">
@@ -118,11 +128,11 @@ export default class ViewCartPage extends React.Component {
 							className = "checkout-button">
 								Proceed to Checkout 
 							</Button>
-							<div className = "row">
+							{/*<div className = "row">
 								<div className = "cart-message">
 									{this.state.cart_message}
 								</div>
-							</div>
+							</div>*/}
 						</div>
 					</div>
 				</div>
