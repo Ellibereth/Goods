@@ -129,7 +129,7 @@ export default class UpdateBillingForm extends React.Component {
 											disabled : false
 										})
 									}
-									this.props.setLoading(true)
+									this.props.setLoading(false)
 								}.bind(this),
 								error : function(){
 								},
@@ -146,6 +146,7 @@ export default class UpdateBillingForm extends React.Component {
 						title :"Something went wrong!",
 						type : "error"
 					})
+					this.setState({disabled : false})
 				}.bind(this),
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

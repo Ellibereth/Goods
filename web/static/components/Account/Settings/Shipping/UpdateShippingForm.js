@@ -96,7 +96,6 @@ export default class UpdateShippingForm extends React.Component {
 										AppActions.removeCurrentUser()
 										AppActions.addCurrentUser(data.user, data.jwt)
 										window.location = `/settings`
-
 									}
 									else {
 										this.setState({
@@ -124,6 +123,7 @@ export default class UpdateShippingForm extends React.Component {
 						title :"Something went wrong!",
 						type : "error"
 					})
+					this.setState({disabled : false})
 				}.bind(this),
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

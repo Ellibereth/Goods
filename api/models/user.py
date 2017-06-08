@@ -303,7 +303,7 @@ class User(db.Model):
 		old_address = Lob.getAddressById(address_id)
 		if int(old_address.metadata.get(Labels.AccountId)) != self.account_id:
 			raise Exception("This address belongs to a different user")
-		Lob.deleteAddress(address_id)
+		
 		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
 			, address_line2 = address_line2, address_city = address_city,
 				address_state = address_state, address_zip = address_zip,
@@ -312,7 +312,7 @@ class User(db.Model):
 		if self.default_address == address_id:
 			self.default_address = address['id']
 			db.session.commit()
-
+		Lob.deleteAddress(address_id)
 		return address
 
 
