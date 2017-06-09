@@ -93,7 +93,6 @@ def registerUserAccount():
 	if not all(x.isalpha() or x.isspace() for x in name):
 		return JsonUtil.failure(ErrorMessages.InvalidName)
 
-
 	if not validate_email(email,verify=True):
 		return JsonUtil.failure(ErrorMessages.InvalidEmail)
 

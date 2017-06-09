@@ -11,7 +11,7 @@ from api.utility.jwt_util import JwtUtil
 from flask_compress import Compress
 
 from base64 import b64encode
-
+from api.security.tracking import HttpRequest
 
 # logging speed of requests
 # log_dir = "logs/"
@@ -101,6 +101,19 @@ def add_header(response):
 	response.headers.add("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT")
 	response.headers.add("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
 	return response
+
+
+
+@app.before_request
+def before_request():
+	g.start = time.time()
+
+@app.teardown_request
+def teardown_request(exception=None):
+	time_spent = time.time() - g.start
+	HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
+	
+
 
 
 @app.route('/static/<path:path>', methods = ['GET'])

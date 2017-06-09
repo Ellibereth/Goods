@@ -119,6 +119,34 @@ class AdminAction(db.Model):
 		return public_dict
 
 
+# records activity that requires an admin jwt
+class HttpRequest(db.Model):
+	__tablename__ = ProdTables.HttpRequestTable
+	request_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
+	request_path = db.Column(db.String)
+	time_spent = db.Column(db.Float)
+	ip = db.Column(db.String)
+	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
+	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
+										   onupdate=db.func.current_timestamp())
+
+	# name,email, password all come from user inputs
+	# email_confirmation_id, stripe_customer_id will be generated with try statements 
+	def __init__(self, request_path, time_spent, ip):
+		self.request_path = request_path
+		self.time_spent = time_spent
+		self.ip = ip
+		db.Model.__init__(self)
+
+	@staticmethod
+	def recordHttpRequest(request_path, time_spent, ip):
+		new_request = HttpRequest(request_path, time_spent, ip)
+		db.session.add(new_request)
+		db.session.commit()
+
+
+
+
 
 
 
