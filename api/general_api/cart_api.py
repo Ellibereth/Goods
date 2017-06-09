@@ -46,7 +46,7 @@ def addItemToCart(this_user):
 			if cart_item == None:
 				if quantity  > this_variant.inventory:
 					return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory)),
+						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory - cart_item.num_items)),
 						Labels.Type : "INVENTORY"
 					})
 				new_cart_item = CartItem(this_user.account_id, product_id, num_items = quantity,
@@ -60,8 +60,8 @@ def addItemToCart(this_user):
 			else:
 				if quantity + cart_item.num_items > this_variant.inventory:
 					return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory)),
-						Labels.Type : "INVENTORY"
+						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory - cart_item.num_items)),
+						Labels.Type : "INVENTORY",
 					})
 				try:
 					cart_item.updateCartQuantity(cart_item.num_items + quantity)
@@ -82,7 +82,7 @@ def addItemToCart(this_user):
 		if cart_item == None:
 			if quantity > min(this_product.num_items_limit, this_product.inventory):
 				return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory))),
+						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory) - cart_item.num_items)),
 						Labels.Type : "INVENTORY"
 					})
 			new_cart_item = CartItem(this_user.account_id, product_id, num_items = quantity)
@@ -96,12 +96,12 @@ def addItemToCart(this_user):
 		else:
 			if quantity + cart_item.num_items > min(this_product.num_items_limit, this_product.inventory):
 				return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory))),
+						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory) - cart_item.num_items)),
 						Labels.Type : "INVENTORY"
 					})
 			try:
 				cart_item.updateCartQuantity(cart_item.num_items + quantity)
-			except Exception as e:
+			except:
 				return JsonUtil.failure(ErrorMessages.CartAddError)
 
 			return JsonUtil.successWithOutput({

@@ -32,7 +32,7 @@ class JsonUtil:
 		if output_dict == None:
 			return jsonify({"success" : False})
 		json_output = {}
-		json_output['success'] = True
+		json_output['success'] = False
 		for key in output_dict.keys():
 			if key != "success":
 				json_output[key] = output_dict[key]
