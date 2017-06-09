@@ -72,9 +72,11 @@ export default class UpdateShippingForm extends React.Component {
 				success: function(data) {
 					this.props.setLoading(false)
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error with your address! " + data.error 
-							+ ". Please try again!", "warning")
-
+						swal({
+							title : "Sorry!",
+							text: data.error, 
+							type: "warning"
+						})
 					}
 					else {
 						// AppActions.addCurrentUser(data.user_info)

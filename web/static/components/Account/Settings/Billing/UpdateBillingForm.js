@@ -104,8 +104,11 @@ export default class UpdateBillingForm extends React.Component {
 				success: function(data) {
 					this.props.setLoading(false)
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error with your card! " + data.error 
-							+ ". Please try again!", "error")
+						swal({
+							title : "Sorry!",
+							text: data.error, 
+							type: "warning"
+						})
 					}
 					else {
 						// AppActions.addCurrentUser(data.user_info)
