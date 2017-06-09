@@ -132,7 +132,6 @@ export default class CheckoutPage extends React.Component {
 	refreshCheckoutInformation(){
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
-				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt,
 				"address" : this.getSelectedAddress()
 			})
@@ -264,7 +263,6 @@ export default class CheckoutPage extends React.Component {
 		this.setState({button_disabled : true})
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
-				account_id : AppStore.getCurrentUser().account_id,
 				jwt : localStorage.jwt,
 				card_id : this.getSelectedCard.bind(this)().id,
 				address_id : this.getSelectedAddress.bind(this)().id 

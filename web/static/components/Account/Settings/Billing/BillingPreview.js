@@ -37,7 +37,6 @@ export default class BillingPreview extends React.Component {
 		this.props.setLoading(true)
 		var data = {}
 		data["jwt"] = localStorage.jwt
-		data["account_id"] = AppStore.getCurrentUser().account_id
 		data["stripe_card_id"] = card.id
 		var form_data = JSON.stringify(data)
 		$.ajax({

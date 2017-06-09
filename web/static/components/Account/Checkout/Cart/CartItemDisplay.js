@@ -16,7 +16,6 @@ export default class CartItemDisplay extends React.Component {
 
 	serverUpdateQuantity(new_quantity){
 		var form_data = JSON.stringify({
-				"account_id" : AppStore.getCurrentUser().account_id,
 				"jwt" : localStorage.jwt,
 				"new_num_items" : new_quantity,
 				"cart_item" : this.props.item

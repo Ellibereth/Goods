@@ -64,7 +64,6 @@ export default class AddToCartButton extends React.Component {
 				data: JSON.stringify({
 					"quantity" : this.state.quantity,
 					"product_id" : this.props.product.product_id, 
-					"account_id" : AppStore.getCurrentUser().account_id,
 					"jwt" : localStorage.jwt,
 					"variant" : this.state.variant
 				}),

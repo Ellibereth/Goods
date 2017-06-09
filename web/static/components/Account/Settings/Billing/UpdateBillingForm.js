@@ -95,7 +95,6 @@ export default class UpdateBillingForm extends React.Component {
 			data['exp_month'] = this.state['expiry'].split('/')[0]
 			data['exp_year'] = this.state['expiry'].split('/')[1]
 			data["jwt"] = localStorage.jwt
-			data["account_id"] = AppStore.getCurrentUser().account_id
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",

@@ -71,7 +71,6 @@ export default class EditAddressForm extends React.Component {
 			data[key] = this.state[key]
 		}
 		data["jwt"] = localStorage.jwt
-		data["account_id"] = AppStore.getCurrentUser().account_id
 		data['address_id'] = this.props.address.id
 		var form_data = JSON.stringify(data)
 		this.props.toggleModal(null)

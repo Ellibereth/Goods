@@ -63,7 +63,6 @@ export default class CheckoutAddAddress extends React.Component {
 			data[key] = this.state[key]
 		}
 		data["jwt"] = localStorage.jwt
-		data["account_id"] = AppStore.getCurrentUser().account_id
 		var form_data = JSON.stringify(data)
 		$.ajax({
 			type: "POST",

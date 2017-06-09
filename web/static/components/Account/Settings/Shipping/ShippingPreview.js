@@ -26,7 +26,6 @@ export default class ShippingPreview extends React.Component {
 	deleteAddress(address){
 		var data = {}
 		data["jwt"] = localStorage.jwt
-		data["account_id"] = AppStore.getCurrentUser().account_id
 		data["address_id"] = address.id
 		var form_data = JSON.stringify(data)
 		this.props.setLoading(true)
