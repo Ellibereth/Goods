@@ -43,5 +43,8 @@ class ErrorMessages:
 		return email + " is associated with another account"
 
 	def itemLimit(limit):
-		return "You can't order more than " + limit + " of this"
+		if limit == 0:
+			return "You can't order more than " + limit + "more of this"
+		else:
+			return "You can't order more than " + limit + "more of this"
 

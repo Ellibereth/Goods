@@ -156,30 +156,45 @@ class User(db.Model):
 		public_dict[Labels.CartMessage] = self.cart_message
 		return public_dict
 
+	def adjustCartItemWithVariant(self, cart_item):
+		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+		this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
+		if this_variant:
+			new_inventory = this_variant.inventory - cart_item.num_items
+			if new_inventory < 0:
+				cart_item.num_items = this_variant.inventory
+				return {
+					Labels.Name : this_product.name + " " + str(this_variant.variant_type),
+					Labels.NumItems : this_variant.inventory
+				}
+		return None
+
+	def adjustCartItemWithoutVariant(self, cart_item):
+		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+		new_inventory = this_product.inventory - cart_item.num_items
+		if new_inventory < 0:
+			cart_item.num_items = this_product.inventory
+			return {
+				Labels.Name : this_product.name,
+				Labels.NumItems : this_product.inventory
+			}
+		return None
+
+
+	def adjustCartItem(self, cart_item):
+		if cart_item.variant_type:
+			return self.adjustCartItemWithVariant(cart_item)
+		else:
+			return self.adjustCartItemWithoutVariant(cart_item)
+		return None
+
 	def adjustCart(self):
 		cart = Cart(self.account_id)
 		adjusted_items = list()
 		for cart_item in cart.items:
-			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-			if cart_item.variant_type:
-				this_variant = ProductVariant.query.filter_by(variant_id = cart_item.variant_id).first()
-				if this_variant:
-					new_inventory = this_variant.inventory - cart_item.num_items
-					if new_inventory < 0:
-						cart_item.num_items = this_variant.inventory
-						adjusted_items.append({
-							Labels.Name : this_product.name + " " + str(this_variant.variant_type),
-							Labels.NumItems : this_variant.inventory
-						})
-			else:
-				new_inventory = this_product.inventory - cart_item.num_items
-				if new_inventory < 0:
-					cart_item.num_items = this_product.inventory
-					adjusted_items.append({
-						Labels.Name : this_product.name,
-						Labels.NumItems : this_product.inventory
-					})
-
+			adjusted_item = self.adjustCartItem(cart_item)
+			if adjusted_item:
+				adjusted_items.append(adjusted_item)
 
 		if adjusted_items:
 			cart_message = ""

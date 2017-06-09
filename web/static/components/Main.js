@@ -53,8 +53,12 @@ export default class Main extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
+					console.log(data.adjusted_items)
+					AppActions.removeCurrentUser()
+					AppActions.addCurrentUser(data.user, data.jwt)
 					if (data.adjusted_items) {
-						message = ""
+						
+						var message = ""
 						data.adjusted_items.map((item) => {
 							message = message + item.name + ": " + item.num_items + "\n"
 						})
@@ -72,8 +76,7 @@ export default class Main extends React.Component {
 							window.location = '/myCart'
 						}.bind(this))
 					}
-					AppActions.removeCurrentUser()
-					AppActions.addCurrentUser(data.user, data.jwt)
+					
 				}
 
 			}.bind(this),
