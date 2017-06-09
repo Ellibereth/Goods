@@ -43,19 +43,16 @@ export default class ProductPreview extends React.Component {
 			// onClick = {this.goToProduct.bind(this)}
 			className = {"home-product-preview col-md-" + col_size + " col-lg-" + col_size}
 			>
-				<a href = {'/eg/' + this.props.product.product_id} style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
-
-
+				<a className = "no-underline" href = {'/eg/' + this.props.product.product_id} style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
 					<div className = "row home-product-preview-image-row">
-						{this.props.product.images.length == 0 ? 
+						{
+							this.props.product.images.length == 0 ? 
 							<div> No Image For This Product </div>
-
 								:
-								
-									<img 
-									src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
-									+ this.props.product.main_image}
-									className = "img-responsive img-rounded center-block home-product-preview-image"/>
+								<img 
+								src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
+								+ this.props.product.main_image}
+								className = "img-responsive img-rounded center-block home-product-preview-image"/>
 						}
 					</div>
 					<div className = "row home-product-preview-details">

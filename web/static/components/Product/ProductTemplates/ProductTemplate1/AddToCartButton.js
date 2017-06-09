@@ -103,8 +103,13 @@ export default class AddToCartButton extends React.Component {
 						this.setState({buy_disabled : false})
 				}.bind(this),
 				error : function(){
-					console.log("error")
-				},
+					swal ({
+						title : "Something went wrong!",
+						type : "error"
+					})
+					this.props.setLoading(false)
+					this.setState({buy_disabled : false})
+				}.bind(this),
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});	

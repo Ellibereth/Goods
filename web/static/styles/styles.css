@@ -677,3 +677,7 @@ body {
 	padding : 8px;
 	text-align: center;
 }
+
+.no-underline {
+	text-decoration: none !important;
+}

@@ -32,6 +32,10 @@ class AppStore extends React.Component {
 		AppDispatcher.register(this.dispatcherCallback.bind(this));
 	}
 	getCurrentUser() {
+		if (_currentUser == "undefined") {
+			localStorage.CurrentUser = ""
+			return ""
+		}
 		return _currentUser;
 	}
 	getIp() {
