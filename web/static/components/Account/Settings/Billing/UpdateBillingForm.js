@@ -42,22 +42,6 @@ export default class UpdateBillingForm extends React.Component {
 		this.setState(obj)
 	}
 
-	onSubmitPress(){
-		swal({
-		  title: "Ready?",
-		  text: "Is all your information correct?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
-		function () {
-			this.submitData.bind(this)()
-		}.bind(this))
-	}
-
 	skipBillingAddress(){
 		if (!this.state.skip_shipping){
 			this.setState({
@@ -78,6 +62,25 @@ export default class UpdateBillingForm extends React.Component {
 		}
 		
 	}
+
+	onSubmitPress(){
+		// swal({
+		//   title: "Ready?",
+		//   text: "Is all your information correct?",
+		//   showCancelButton: true,
+		//   confirmButtonColor: "#DD6B55",
+		//   confirmButtonText: "Yes",
+		//   cancelButtonText: "No!",
+		//   closeOnConfirm: true,
+		//   closeOnCancel: true
+		// },
+		// function () {
+		// 	this.submitData.bind(this)()
+		// }.bind(this))
+		this.submitData.bind(this)()
+	}
+
+
 
 	submitData(){
 		this.setState({disabled : true})
@@ -142,10 +145,12 @@ export default class UpdateBillingForm extends React.Component {
 				}.bind(this),
 				error : function(){
 					this.props.setLoading(false)
-					swal({
-						title :"Something went wrong!",
-						type : "error"
-					})
+					setTimeout(function() {
+						swal({
+							title :"Something went wrong!",
+							type : "error"
+						})
+					}, 250)
 					this.setState({disabled : false})
 				}.bind(this),
 				dataType: "json",

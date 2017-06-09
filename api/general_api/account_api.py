@@ -221,6 +221,21 @@ def addUserAddresses(this_user):
 	address_line2 = request.json.get(Labels.AddressLine2)
 	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
+
+	if address_city == "":
+		return JsonUtil.failure(ErrorMessages.AddressAddError)
+	if address_country == "":
+		return JsonUtil.failure(ErrorMessages.AddressAddError)
+	if address_line1 == "":
+		return JsonUtil.failure(ErrorMessages.AddressAddError)
+	if address_line2 == "":
+		return JsonUtil.failure(ErrorMessages.AddressAddError)
+	if address_zip == "":
+		return JsonUtil.failure(ErrorMessages.AddressAddError)
+	if address_state == "":
+		return JsonUtil.failure(ErrorMessages.AddressAddError)
+
+
 	try:
 		this_user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country)

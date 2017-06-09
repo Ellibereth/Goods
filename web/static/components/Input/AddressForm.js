@@ -86,7 +86,7 @@ export default class AddressForm extends React.Component {
 
 			<div className = "row">
 				<div className="form-group required">
-					<label tabindex= {1 + tab_index_start} className="col-md-2 control-label text-left" for="Name">Name </label>    
+					<label tabindex= {1 + tab_index_start} className="col-md-2 control-label text-left" for="Name">Name</label>    
 					<div className="col-md-6">
 					<input onKeyPress = {this.onKeyPress.bind(this)} value = {this.state.address_name} field = "address_name" onChange = {this.onNonZipChange.bind(this)}
 					 id="Name" name="address_name" type="text" placeholder="Name on Address" className="form-control input-md" required=""/>

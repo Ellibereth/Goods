@@ -168,7 +168,7 @@ export default class CreditCardInput extends React.Component {
 
 			<div className = "row">
 				<div className= {this.state.number_error ? "form-group required" : "form-group required has-success"}>
-				  <label className="col-md-2 control-label text-left" > Card Number </label>  
+				  <label className="col-md-2 control-label text-left">Card Number</label>  
 				  <div className="col-md-6">
 				  <input 
 				  onKeyPress = {this.onKeyPress.bind(this)}
@@ -182,7 +182,7 @@ export default class CreditCardInput extends React.Component {
 
 			<div className = "row">
 				<div className = {this.state.expiry_error ? "form-group required" : "form-group required has-success"} >
-				  <label className="col-md-2 control-label text-left" for="State"> Expiration </label>  
+				  <label className="col-md-2 control-label text-left" for="State">Expiration</label>  
 				  <div className="col-md-2">
 				  <input onKeyPress = {this.onKeyPress.bind(this)}
 				  id = "expiry_input" tabindex= {3} 
@@ -195,7 +195,7 @@ export default class CreditCardInput extends React.Component {
 
 			<div className = "row">
 				<div className = {this.state.cvc_error ? "form-group required" : "form-group required has-success"}>
-				  <label className="col-md-2 control-label text-left" for="State"> CVC  </label>  
+				  <label className="col-md-2 control-label text-left" for="State">CVC</label>  
 				  <div className="col-md-2">
 				  	<input
 				  	onKeyPress = {this.onKeyPress.bind(this)}

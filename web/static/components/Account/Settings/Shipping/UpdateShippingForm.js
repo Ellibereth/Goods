@@ -38,19 +38,20 @@ export default class UpdateShippingForm extends React.Component {
 	}
 
 	onSubmitPress(){
-		swal({
-		  title: "Ready?",
-		  text: "Is all your information correct?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
-		function () {
-			this.submitData.bind(this)()
-		}.bind(this))
+		// swal({
+		//   title: "Ready?",
+		//   text: "Is all your information correct?",
+		//   showCancelButton: true,
+		//   confirmButtonColor: "#DD6B55",
+		//   confirmButtonText: "Yes",
+		//   cancelButtonText: "No!",
+		//   closeOnConfirm: true,
+		//   closeOnCancel: true
+		// },
+		// function () {
+		// 	this.submitData.bind(this)()
+		// }.bind(this))
+		this.submitData.bind(this)()
 	}
 
 	submitData(){
@@ -119,10 +120,12 @@ export default class UpdateShippingForm extends React.Component {
 				}.bind(this),
 				error : function(){
 					this.props.setLoading(false)
-					swal({
-						title :"Something went wrong!",
-						type : "error"
-					})
+					setTimeout(function() {
+						swal({
+							title :"Something went wrong!",
+							type : "error"
+						})
+					}, 250)
 					this.setState({disabled : false})
 				}.bind(this),
 				dataType: "json",
