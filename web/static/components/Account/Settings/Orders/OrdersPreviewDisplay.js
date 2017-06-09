@@ -18,6 +18,7 @@ export default class OrdersPreview extends React.Component {
 	}
 
 	render() {
+
 		var order = this.props.order
 		var items = this.props.order.items
 		var items_display = []
@@ -27,6 +28,7 @@ export default class OrdersPreview extends React.Component {
 		var local_date = new Date(order.date_created)
 		var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM TT");
 		var address = order.address
+		var sales_tax_display = order.sales_tax_price ? <div className = "order-history-panel-header"> {"Sales Tax: $" + formatPrice(order.sales_tax_price)} </div> : <span/>
 		return (
 			<div className="panel panel-default">
 				<div className = "panel-heading">
@@ -67,7 +69,7 @@ export default class OrdersPreview extends React.Component {
 				<div className = "panel-footer">
 					<div className = "order-history-panel-header"> {"Items: $" + formatPrice(order.items_price)} </div>
 					<div className = "order-history-panel-header"> {"Shipping: $" + formatPrice(order.order_shipping)} </div>
-					<div className = "order-history-panel-header"> {"Sales Tax: $" + formatPrice(order.sales_tax_price)} </div>
+					{sales_tax_display}
 					<div className = "order-history-panel-header"> {"Order Total: $" + formatPrice(order.total_price)} </div>
 				</div>
 

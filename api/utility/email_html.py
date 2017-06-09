@@ -81,7 +81,8 @@ class EmailHtml:
 		body = body + "</div>"
 
 		body = body + "<div style = \"width:50%; float:right;\">"
-		body = body + "<span style = \"font-size:18px; display:block;\"> <b> Date of Purchase </b> </span> "
+		body = body + "<span style = \"font-size:18px; \"> <b> Date of Purchase </b> </span> "
+		body = body + "<div style = \"padding-top:12px;\"> </div>"
 		body = body + "<div style = \"font-size:18px; display:block;\"> " +  datetime.date.today().strftime('%A %B %d, %Y') +  " </div>"
 		body = body + "</div>"
 

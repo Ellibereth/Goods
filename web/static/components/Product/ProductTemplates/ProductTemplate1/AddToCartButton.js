@@ -151,7 +151,7 @@ export default class AddToCartButton extends React.Component {
 
 		var button_disabled = this.state.buy_disabled || (!this.props.item_in_stock)
 
-		for (var i = 1; i <= 10; i++) {
+		for (var i = 1; i <= Math.min(10, this.props.product.inventory); i++) {
 			quantity_options.push(
 					<li style= {{"cursor" : "pointer"}}  
 						onClick = {this.handleQuantityChange.bind(this, i)}> 

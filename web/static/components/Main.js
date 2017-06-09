@@ -60,7 +60,12 @@ export default class Main extends React.Component {
 						
 						var message = ""
 						data.adjusted_items.map((item) => {
-							message = message + item.name + ": " + item.num_items + "\n"
+							if (item.num_items == 0){
+								message = message + "Unforunately " + item.name + " has been removed from your cart \n"
+							}
+							else {
+								message = message + " We only have " + item.num_items + " left of " + item.name + " \n"
+							}
 						})
 						swal({
 							title: "Some items in your cart have been modified",
