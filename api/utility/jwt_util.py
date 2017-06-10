@@ -1,4 +1,4 @@
-from api.models.user import User
+
 import jwt
 import os
 from flask import jsonify
@@ -20,13 +20,6 @@ class JwtUtil:
 		secret_key = os.environ.get(SECRET_KEY)
 		this_jwt = jwt.encode(payload, secret_key, algorithm= algorithm)
 		return this_jwt.decode(UTF8)
-
-	# @staticmethod
-	# def create_user_jwt(user):
-	# 	secret_key = os.environ.get(SECRET_KEY)
-	# 	payload = user.toJwtDict()
-	# 	this_jwt = jwt.encode(payload, secret_key, algorithm = algorithm)
-	# 	return this_jwt.decode(UTF8)
 		
 	@staticmethod
 	# still figuring out the best stuff to put in the payload
@@ -62,6 +55,7 @@ class JwtUtil:
 
 	@staticmethod
 	def getUserInfoFromJwt(jwt_str):
+		from api.models.user import User
 		try:
 			encoded = jwt_str.encode(UTF8)
 			decoded = jwt.decode(encoded, os.environ.get(SECRET_KEY), algorithms=[algorithm])

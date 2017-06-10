@@ -210,8 +210,6 @@ def addProductVariant(admin_user):
 	
 	variant_type = request.json.get(Labels.VariantType)
 	inventory = request.json.get(Labels.Inventory)
-	if inventory == None:
-		inventory = 10
 	price = request.json.get(Labels.Price)
 	this_product.addProductVariant(variant_type, price, inventory)
 

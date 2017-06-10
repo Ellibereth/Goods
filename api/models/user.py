@@ -12,18 +12,15 @@ from api.utility.id_util import IdUtil
 from api.utility.lob import Lob
 from api.models.order import OrderItem
 from api.models.order import Order
-from api.models.cart import Cart
+from api.models.cart import Cart, CartItem
 from api.models.market_product import MarketProduct
 from api.models.market_product import ProductVariant
+from api.utility.jwt_util import JwtUtil
 import re
+from api.utility.error import ErrorMessages
+import os
+import sys
 
-
-
-
-## I understand there are magic strings in this, but not sure the best way to get around it right now
-## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
-
-MIN_PASSWORD_LENGTH = 6
 
 ## user object class
 class User(db.Model):
@@ -54,6 +51,8 @@ class User(db.Model):
 		self.password_hash = User.argonHash(password)
 		self.email_confirmation_id = email_confirmation_id
 		self.email_confirmed = False
+		stripe_customer_id = StripeManager.createCustomer(name, email)
+		self.stripe_customer_id = stripe_customer_id
 		db.Model.__init__(self)
 		
 	@staticmethod
@@ -268,14 +267,19 @@ class User(db.Model):
 	# adds a credit card with billing and shipping information to stripe 
 	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
 			exp_month, exp_year, number, cvc, name, address_state, address_country = "US"):
-
-		card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 
-			address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country = "US")
-		all_cards = self.getCreditCards()
-		if len(all_cards) == 1:
-			self.default_card = card['id']
-			db.session.commit()
-		return card
+		try:
+			card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 
+				address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country = "US")
+			all_cards = self.getCreditCards()
+			if len(all_cards) == 1:
+				self.default_card = card['id']
+				db.session.commit()
+			return {Labels.Success : True}
+		except Exception as e:
+			return {
+				Labels.Success : True,
+				Labels.Error : ErrorMessages.CardAddError
+			}
 		
 
 	def getCreditCards(self):
@@ -291,18 +295,33 @@ class User(db.Model):
 
 	def addAddress(self, description, name, address_line1, address_line2, address_city, address_state,
 			address_zip, address_country):
+		if name == "":
+			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankName}
+		if address_city == "":
+			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankCity}
+		if address_country == "":
+			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankCountry}
+		if address_line1 == "":
+			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankAddressLine}
+		if address_zip == "":
+			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankZip}
+		if address_state == "":
+			{Labels.Success : False , Labels.Error :ErrorMessages.BlankState}
 		if description == None:
 			description = ""
-		address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
-			, address_line2 = address_line2, address_city = address_city,
-				address_state = address_state, address_zip = address_zip,
-				 address_country = address_country)
-		all_addresses = self.getAddresses()
-		if len(all_addresses) == 1:
-			self.default_address = address['id']
-			db.session.commit()
-		return address
-		
+		try:
+			address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
+				, address_line2 = address_line2, address_city = address_city,
+					address_state = address_state, address_zip = address_zip,
+					 address_country = address_country)
+			all_addresses = self.getAddresses()
+			if len(all_addresses) == 1:
+				self.default_address = address['id']
+				db.session.commit()
+			return {Labels.Success : True}
+		except:
+			return {Labels.Success : False , Labels.Error :ErrorMessages.AddressAddError}
+
 	def getAddresses(self):
 		try:
 			addresses = Lob.getUserAddresses(self)
@@ -355,3 +374,100 @@ class User(db.Model):
 		self.email = None
 		db.session.commit()
 
+	def addItemWithVariantToCart(self, product_id,quantity, variant_id):
+		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
+		if this_variant:
+			variant_type = this_variant.variant_type
+			cart_item = CartItem.query.filter_by(account_id = self.account_id, product_id = product_id,
+				variant_id = variant_id).first()
+			if cart_item == None:
+				if quantity  > this_variant.inventory:
+					return {
+						Labels.Success : False,
+						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory)),
+						Labels.Type : "INVENTORY"
+					}
+				new_cart_item = CartItem(self.account_id, product_id, num_items = quantity,
+					variant_id = variant_id, variant_type = variant_type)
+				db.session.add(new_cart_item)
+				db.session.commit()
+				return {
+						Labels.Success : True,
+						Labels.User : self.toPublicDictFast(),
+						Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+					}
+			else:
+				if quantity + cart_item.num_items > this_variant.inventory:
+					return JsonUtil.failureWithOutput({
+						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory - cart_item.num_items)),
+						Labels.Type : "INVENTORY",
+					})
+				try:
+					cart_item.updateCartQuantity(cart_item.num_items + quantity)
+					return {
+						Labels.Success : True,
+						Labels.User : self.toPublicDictFast(),
+						Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+					}
+
+				except:
+					return {
+						Labels.Success : False,
+						Labels.Error : ErrorMessages.CartAddError
+					}
+
+		else:
+			return {
+					Labels.Success : False,
+					Labels.Error : ErrorMessages.CartAddError
+				}
+
+	def addItemWithoutVariantToCart(self, product_id, quantity):
+		this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+		cart_item = CartItem.query.filter_by(account_id = self.account_id, product_id = product_id).first()
+		if cart_item == None:
+			if quantity > min(this_product.num_items_limit, this_product.inventory):
+				return {
+						Labels.Success : False,
+						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory))),
+						Labels.Type : "INVENTORY"
+					}
+			new_cart_item = CartItem(self.account_id, product_id, num_items = quantity)
+			db.session.add(new_cart_item)
+			db.session.commit()
+			return {
+				Labels.Success : True,
+				Labels.User : self.toPublicDictFast(),
+				Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+			}
+
+		else:
+			if quantity + cart_item.num_items > min(this_product.num_items_limit, this_product.inventory):
+				return {
+						Labels.Success : False,
+						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory) - cart_item.num_items)),
+						Labels.Type : "INVENTORY"
+					}
+			try:
+				cart_item.updateCartQuantity(cart_item.num_items + quantity)
+			except:
+				return {
+					Labels.Success : False,
+					Labels.Error : ErrorMessages.CartAddError
+				}
+
+
+			return {
+					Labels.Success : True,
+					Labels.User : self.toPublicDictFast(),
+					Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+				}
+
+
+
+	def addItemToCart(self, product_id, quantity, variant_id = None):
+		if variant_id:
+			return self.addItemWithVariantToCart(product_id, quantity, variant_id)
+			
+		else:
+			return self.addItemWithoutVariantToCart(product_id, quantity)

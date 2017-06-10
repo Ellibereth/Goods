@@ -98,8 +98,11 @@ export default class AddToCartButton extends React.Component {
 						setTimeout(function () {
 							this.props.checkItemInStock(this.props.product, this.state.variant)
 						}.bind(this), 1000)
-						this.props.setLoading(false)
-						this.setState({buy_disabled : false})
+						this.setState({buy_disabled : false},
+							() => this.props.setLoading(false)
+						)
+						
+						
 				}.bind(this),
 				error : function(){
 					swal ({

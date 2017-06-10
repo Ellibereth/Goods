@@ -18,6 +18,7 @@ from validate_email import validate_email
 
 
 
+
 account_api = Blueprint('account_api', __name__)
 
 # checks the login information from a user 
@@ -111,8 +112,6 @@ def registerUserAccount():
 	new_user = User(name = name, email = email, password = password, 
 		email_confirmation_id =email_confirmation_id)
 	db.session.add(new_user)
-	stripe_customer_id = StripeManager.createCustomer(name, email)
-	new_user.stripe_customer_id = stripe_customer_id
 	db.session.commit()
 	return JsonUtil.successWithOutput({
 			Labels.User : new_user.toPublicDict(),
@@ -197,12 +196,13 @@ def addCreditCard(this_user):
 	exp_year = int(request.json.get(Labels.ExpYear))
 	number = request.json.get(Labels.Number)
 	cvc = request.json.get(Labels.Cvc)
-	try:
-		this_user.addCreditCard(address_city, address_line1, address_line2, 
-			address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country)
-		return JsonUtil.success()
-	except:
-		return JsonUtil.failure(ErrorMessages.CardAddError)
+	add_card_response = this_user.addCreditCard(address_city, address_line1, address_line2, 
+		address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country)
+	
+	if add_card_response.get(Labels.Success):
+		return JsonUtil.successWithOutput(add_card_response)
+	else:
+		return JsonUtil.failureWithOutput(add_card_response)
 
 @account_api.route("/getUserCards", methods = ['POST'])
 @decorators.check_user_jwt
@@ -222,27 +222,13 @@ def addUserAddresses(this_user):
 	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
 
-	if name == "":
-		return JsonUtil.failure(ErrorMessages.BlankName)
-	if address_city == "":
-		return JsonUtil.failure(ErrorMessages.BlankCity)
-	if address_country == "":
-		return JsonUtil.failure(ErrorMessages.BlankCountry)
-	if address_line1 == "":
-		return JsonUtil.failure(ErrorMessages.BlankAddressLine)
-	if address_zip == "":
-		return JsonUtil.failure(ErrorMessages.BlankZip)
-	if address_state == "":
-		return JsonUtil.failure(ErrorMessages.BlankState)
 
-
-	try:
-		this_user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
-			address_zip, address_country)
-		return JsonUtil.success()
-
-	except:
-		return JsonUtil.failure(ErrorMessages.AddressAddError)
+	add_address_response = this_user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
+		address_zip, address_country)
+	if add_address_response.get(Labels.Success):
+		return JsonUtil.successWithOutput(add_address_response)
+	else:
+		return JsonUtil.failureWithOutput(add_address_response)
 
 
 @account_api.route("/getUserAddress", methods = ['POST'])

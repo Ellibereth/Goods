@@ -2,6 +2,7 @@
 
 
 class UserLabels:
+	Type = "type"
 	CartMessage = "cart_message"
 	NumItems = "num_items"
 	AdjustedItems = "adjusted_items"

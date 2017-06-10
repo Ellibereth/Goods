@@ -107,8 +107,7 @@ class MarketProduct(db.Model):
 		self.active = False
 		db.session.commit()
 
-	def addProductVariant(self, variant_type, price, inventory):
-		print(variant_type)
+	def addProductVariant(self, variant_type, price, inventory = 0):
 		new_variant = ProductVariant(self.product_id, variant_type, price, inventory)
 		db.session.add(new_variant)
 		db.session.commit()
@@ -159,7 +158,8 @@ class MarketProduct(db.Model):
 		return public_dict
 
 
-## user object class
+	# def addVariant(self):
+
 class ProductVariant(db.Model):
 	__tablename__ = ProdTables.ProductVariantTable
 	variant_id = db.Column(db.Integer, primary_key = True, autoincrement = True)

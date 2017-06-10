@@ -70,7 +70,7 @@ class StripeManager:
 		new_card['cvc'] = cvc
 		new_card['name'] = name
 		new_card["address_country"] = address_country
-		new_card["adddress_stae"] = address_state
+		new_card["address_state"] = address_state
 		new_card['metadata'] = {"date_created" : time.time()}
 		card = customer.sources.create(card = new_card)
 		return card

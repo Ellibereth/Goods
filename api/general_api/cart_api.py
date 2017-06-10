@@ -36,78 +36,13 @@ def addItemToCart(this_user):
 		variant_id = variant.get(Labels.VariantId)
 	else:
 		variant_id = None
-
-	if variant_id:
-		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
-		if this_variant:
-			variant_type = this_variant.variant_type
-			cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = product_id,
-				variant_id = variant_id).first()
-			if cart_item == None:
-				if quantity  > this_variant.inventory:
-					return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory)),
-						Labels.Type : "INVENTORY"
-					})
-				new_cart_item = CartItem(this_user.account_id, product_id, num_items = quantity,
-					variant_id = variant_id, variant_type = variant_type)
-				db.session.add(new_cart_item)
-				db.session.commit()
-				return JsonUtil.successWithOutput({
-						Labels.User : this_user.toPublicDictFast(),
-						Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-					})
-			else:
-				if quantity + cart_item.num_items > this_variant.inventory:
-					return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory - cart_item.num_items)),
-						Labels.Type : "INVENTORY",
-					})
-				try:
-					cart_item.updateCartQuantity(cart_item.num_items + quantity)
-					return JsonUtil.successWithOutput({
-						Labels.User : this_user.toPublicDictFast(),
-						Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-					})
-
-				except:
-					return JsonUtil.failure(ErrorMessages.CartAddError)
-
-		else:
-			return JsonUtil.failure(ErrorMessages.CartAddError)
-
+		
+	add_to_cart_response = this_user.addItemToCart(product_id, quantity, variant_id)
+	if add_to_cart_response.get(Labels.Success):
+		return JsonUtil.successWithOutput(add_to_cart_response)
 	else:
-		this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-		cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = product_id).first()
-		if cart_item == None:
-			if quantity > min(this_product.num_items_limit, this_product.inventory):
-				return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory))),
-						Labels.Type : "INVENTORY"
-					})
-			new_cart_item = CartItem(this_user.account_id, product_id, num_items = quantity)
-			db.session.add(new_cart_item)
-			db.session.commit()
-			return JsonUtil.successWithOutput({
-				Labels.User : this_user.toPublicDictFast(),
-				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-			})
-
-		else:
-			if quantity + cart_item.num_items > min(this_product.num_items_limit, this_product.inventory):
-				return JsonUtil.failureWithOutput({
-						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory) - cart_item.num_items)),
-						Labels.Type : "INVENTORY"
-					})
-			try:
-				cart_item.updateCartQuantity(cart_item.num_items + quantity)
-			except:
-				return JsonUtil.failure(ErrorMessages.CartAddError)
-
-			return JsonUtil.successWithOutput({
-					Labels.User : this_user.toPublicDictFast(),
-					Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-				})
+		return JsonUtil.failureWithOutput(add_to_cart_response)
+	
 
 # checkout cart
 @cart_api.route('/checkoutCart', methods = ['POST'])
