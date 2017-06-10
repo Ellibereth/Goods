@@ -63,25 +63,6 @@ export default class UpdateBillingForm extends React.Component {
 		
 	}
 
-	onSubmitPress(){
-		// swal({
-		//   title: "Ready?",
-		//   text: "Is all your information correct?",
-		//   showCancelButton: true,
-		//   confirmButtonColor: "#DD6B55",
-		//   confirmButtonText: "Yes",
-		//   cancelButtonText: "No!",
-		//   closeOnConfirm: true,
-		//   closeOnCancel: true
-		// },
-		// function () {
-		// 	this.submitData.bind(this)()
-		// }.bind(this))
-		this.submitData.bind(this)()
-	}
-
-
-
 	submitData(){
 		this.setState({disabled : true})
 		this.props.setLoading(true)
@@ -104,7 +85,7 @@ export default class UpdateBillingForm extends React.Component {
 					this.props.setLoading(false)
 					if (!data.success) {
 						swal({
-							title : "Sorry!",
+							title : "Sorry",
 							text: data.error, 
 							type: "warning"
 						})
@@ -112,7 +93,7 @@ export default class UpdateBillingForm extends React.Component {
 					else {
 						// AppActions.addCurrentUser(data.user_info)
 						swal({
-								title: "Thank you!", 
+								title: "Thank you", 
 								text : "Your changes have been made",
 								type: "success"
 							})
@@ -149,7 +130,7 @@ export default class UpdateBillingForm extends React.Component {
 					this.props.setLoading(false)
 					setTimeout(function() {
 						swal({
-							title :"Something went wrong!",
+							title :"Something went wrong",
 							type : "error"
 						})
 					}, 250)
@@ -186,7 +167,7 @@ export default class UpdateBillingForm extends React.Component {
 				<FormGroup controlId = "submit_button">
 					<div className = "col-md-10 col-lg-10">
 						<Button className = "pull-right" disabled = {this.state.disabled}
-						 onClick = {this.onSubmitPress.bind(this)}>
+						 onClick = {this.submitData.bind(this)}>
 						Submit
 						</Button>
 					</div>

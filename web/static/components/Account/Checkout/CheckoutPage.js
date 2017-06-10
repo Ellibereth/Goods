@@ -151,9 +151,7 @@ export default class CheckoutPage extends React.Component {
 							is_loading : false,
 							sales_tax_price : data.user.cart.sales_tax_price,
 						})
-						AppActions.removeCurrentUser()
-						AppActions.addCurrentUser(data.user, data.jwt)
-						// $('#checkout-container').removeClass("faded");
+						AppActions.updateCurrentUser(data.user)
 					}
 					else {
 						console.log("an error")
@@ -289,8 +287,7 @@ export default class CheckoutPage extends React.Component {
 					setTimeout(function() {
 						window.location = `/checkoutConfirmed`
 					}, 2000)
-					AppActions.removeCurrentUser()
-					AppActions.addCurrentUser(data.user, data.jwt)
+					AppActions.updateCurrentUser(data.user)
 				}
 				this.setLoading(false)
 				this.setState({button_disabled : false})

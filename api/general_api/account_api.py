@@ -14,7 +14,7 @@ from api.security.tracking import LoginAttempt
 from api.utility.error import ErrorMessages
 from api.general_api import decorators
 
-from validate_email import validate_email
+
 
 
 
@@ -75,48 +75,11 @@ def registerUserAccount():
 	email_input = request.json.get(Labels.Email)
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
-	if isinstance(email_input, str):
-		email = email_input.lower()
+	register_user_response = User.registerUser(name, email_input, password, password_confirm)
+	if register_user_response.get(Labels.Success):
+		return JsonUtil.successWithOutput(register_user_response)
 	else:
-		return JsonUtil.failure(ErrorMessages.InvalidEmail)
-	if email == "":
-		return JsonUtil.failure(ErrorMessages.BlankEmail)
-	old_user = User.query.filter_by(email = email).first()
-	if old_user != None:
-		return JsonUtil.failure(ErrorMessages.ExistingEmail)
-	if name == "":
-		return JsonUtil.failure(ErrorMessages.BlankName)
-	if not isinstance(name, str):
-		return JsonUtil.failure(ErrorMessages.InvalidName)
-	if len(name) > User.NAME_MAX_LENGTH:
-		return JsonUtil.failure(ErrorMessages.LongName)
-
-	if not all(x.isalpha() or x.isspace() for x in name):
-		return JsonUtil.failure(ErrorMessages.InvalidName)
-
-	if not validate_email(email,verify=True):
-		return JsonUtil.failure(ErrorMessages.InvalidEmail)
-
-	try:
-		email_confirmation_id = User.generateEmailConfirmationId()
-		email_api.sendEmailConfirmation(email, email_confirmation_id, name)
-	except Exception as e:
-		print(str(e))
-		return JsonUtil.failure(ErrorMessages.InvalidEmail)
-
-	if len(password) < User.MIN_PASSWORD_LENGTH:
-		return JsonUtil.failure(ErrorMessages.ShortPassword)
-	if password != password_confirm:
-		return JsonUtil.failure(ErrorMessages.PasswordConfirmMismatch)
-
-	new_user = User(name = name, email = email, password = password, 
-		email_confirmation_id =email_confirmation_id)
-	db.session.add(new_user)
-	db.session.commit()
-	return JsonUtil.successWithOutput({
-			Labels.User : new_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(new_user.toJwtDict())
-		})
+		return JsonUtil.failureWithOutput(register_user_response)
 	
 # confirms the user email if that route is visited
 @account_api.route('/confirmEmail', methods = ['POST'])
@@ -255,7 +218,6 @@ def editUserAddress(this_user):
 		return JsonUtil.success()
 
 	except Exception as e:
-		print(str(e))
 		return JsonUtil.failure(ErrorMessages.AddressEditError)
 
 @account_api.route('/deleteUserAddress', methods = ['POST'])

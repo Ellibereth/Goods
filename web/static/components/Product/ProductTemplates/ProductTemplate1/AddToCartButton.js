@@ -13,8 +13,6 @@ var browserHistory = require('react-router').browserHistory
 export default class AddToCartButton extends React.Component {
 		constructor(props) {
 		super(props);
-		
-
 		this.state = {
 			quantity : 1,
 			buy_disabled : false,
@@ -106,7 +104,7 @@ export default class AddToCartButton extends React.Component {
 				}.bind(this),
 				error : function(){
 					swal ({
-						title : "Something went wrong!",
+						title : "Something went wrong",
 						type : "error"
 					})
 					this.props.setLoading(false)

@@ -10,7 +10,6 @@ from email.mime.multipart import MIMEMultipart
 from api.utility.email_html import EmailHtml
 from api.utility.labels import CartLabels as Labels
 
-from api.models.user import User
 from api.models.cart import Cart
 from api.utility.labels import ErrorLabels
 
@@ -187,20 +186,6 @@ def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error =
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
-
-def testEmail():
-	email = "spallstar28@gmail.com"
-	# confirmation_id = "ASDFADSF_CONFIRMATIONID1213"
-	# name = "DAREK"
-	# sendEmailConfirmation(email, confirmation_id, name)
-	user = User.query.filter_by(email = email).first()
-	cart = Cart(user.account_id)
-	address = user.getAddresses()[0]
-	# sendPurchaseNotification(user, cart, address, order_id)
-	notifyUserCheckoutErrorEmail(user, cart, address, ErrorLabels.Database)
-	# notifyUserCheckoutErrorEmail(user, cart, address, ErrorLabels.Charge)
-	# notifyUserCheckoutErrorEmail(user, cart, address, ErrorLabels.Email)
-	
 
 
 

@@ -20,6 +20,8 @@ import re
 from api.utility.error import ErrorMessages
 import os
 import sys
+from api.utility import email_api
+from validate_email import validate_email
 
 
 ## user object class
@@ -54,7 +56,50 @@ class User(db.Model):
 		stripe_customer_id = StripeManager.createCustomer(name, email)
 		self.stripe_customer_id = stripe_customer_id
 		db.Model.__init__(self)
-		
+
+	@staticmethod
+	def registerUser(name, email_input, password, password_confirm):
+		if isinstance(email_input, str):
+			email = email_input.lower()
+		else:
+			return {Labels.Success : False , Labels.Error: ErrorMessages.InvalidEmail}
+		if email == "":
+			return {Labels.Success : False, Labels.Error : ErrorMessages.BlankEmail}
+		old_user = User.query.filter_by(email = email).first()
+		if old_user != None:
+			return {Labels.Success: False, Labels.Error : ErrorMessages.ExistingEmail}
+		if name == "":
+			return {Labels.Success : False, Labels.Error :ErrorMessages.BlankName}
+		if not isinstance(name, str):
+			return {Labels.Success: False, Labels.Error : ErrorMessages.InvalidName}
+		if len(name) > User.NAME_MAX_LENGTH:
+			return {Labels.Success : False, Labels.Error : ErrorMessages.LongName}
+
+		if not all(x.isalpha() or x.isspace() for x in name):
+			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidName}
+
+		if len(password) < User.MIN_PASSWORD_LENGTH:
+			return {Labels.Success : False, Labels.Error :ErrorMessages.ShortPassword}
+		if password != password_confirm:
+			return {Labels.Success : False, Labels.Error : ErrorMessages.PasswordConfirmMismatch}
+
+		if not validate_email(email):
+			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidEmail}
+		try:
+			email_confirmation_id = User.generateEmailConfirmationId()
+			email_api.sendEmailConfirmation(email, email_confirmation_id, name)
+		except Exception as e:
+			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
+		new_user = User(name = name, email = email, password = password, 
+			email_confirmation_id =email_confirmation_id)
+		db.session.add(new_user)
+		db.session.commit()
+		return {
+				Labels.Success : True,
+				Labels.User : new_user.toPublicDict(),
+				Labels.JwtDict : new_user.toJwtDict()
+			}
+			
 	@staticmethod
 	def argonHash(pre_hash):
 		return argon2.using(rounds=4).hash(pre_hash)
@@ -267,6 +312,19 @@ class User(db.Model):
 	# adds a credit card with billing and shipping information to stripe 
 	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
 			exp_month, exp_year, number, cvc, name, address_state, address_country = "US"):
+		if number == "" or len(number) != 16:
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+		if name == "":
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+		if cvc == "" or len(cvc) != 3:
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+		if address_zip == "" or len(address_zip) != 5:
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+		if exp_month == "" or len(exp_month) != 2:
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+		if exp_year == "" or len(exp_year) != 2:
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+
 		try:
 			card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 
 				address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country = "US")
@@ -277,11 +335,10 @@ class User(db.Model):
 			return {Labels.Success : True}
 		except Exception as e:
 			return {
-				Labels.Success : True,
+				Labels.Success : False,
 				Labels.Error : ErrorMessages.CardAddError
 			}
 		
-
 	def getCreditCards(self):
 		try:
 			cards = StripeManager.getUserCards(self)
@@ -299,7 +356,7 @@ class User(db.Model):
 			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankName}
 		if address_city == "":
 			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankCity}
-		if address_country == "":
+		if address_country != "US":
 			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankCountry}
 		if address_line1 == "":
 			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankAddressLine}
@@ -394,20 +451,21 @@ class User(db.Model):
 				return {
 						Labels.Success : True,
 						Labels.User : self.toPublicDictFast(),
-						Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+						Labels.JwtDict : self.toJwtDict()
 					}
 			else:
 				if quantity + cart_item.num_items > this_variant.inventory:
-					return JsonUtil.failureWithOutput({
+					return {
+						Labels.Success : False,
 						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory - cart_item.num_items)),
 						Labels.Type : "INVENTORY",
-					})
+					}
 				try:
 					cart_item.updateCartQuantity(cart_item.num_items + quantity)
 					return {
 						Labels.Success : True,
 						Labels.User : self.toPublicDictFast(),
-						Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+						Labels.JwtDict : self.toJwtDict()
 					}
 
 				except:
@@ -438,7 +496,7 @@ class User(db.Model):
 			return {
 				Labels.Success : True,
 				Labels.User : self.toPublicDictFast(),
-				Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+				Labels.JwtDict : self.toJwtDict()
 			}
 
 		else:
@@ -460,7 +518,7 @@ class User(db.Model):
 			return {
 					Labels.Success : True,
 					Labels.User : self.toPublicDictFast(),
-					Labels.Jwt : JwtUtil.create_jwt(self.toJwtDict())
+					Labels.JwtDict : self.toJwtDict()
 				}
 
 
@@ -471,3 +529,4 @@ class User(db.Model):
 			
 		else:
 			return self.addItemWithoutVariantToCart(product_id, quantity)
+

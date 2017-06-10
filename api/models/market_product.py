@@ -212,7 +212,6 @@ class ProductVariant(db.Model):
 		this_variant.active = False
 
 		db.session.commit()
-		print(this_variant.toPublicDict())
 
 	def toPublicDict(self):
 		public_dict = {}

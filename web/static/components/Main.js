@@ -53,18 +53,17 @@ export default class Main extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
-					console.log(data.adjusted_items)
 					AppActions.removeCurrentUser()
-					AppActions.addCurrentUser(data.user, data.jwt)
+					AppActions.updateCurrentUser(data.user)
 					if (data.adjusted_items) {
 						
 						var message = ""
 						data.adjusted_items.map((item) => {
-							if (item.num_items == 0){
-								message = message + "Unforunately " + item.name + " has been removed from your cart \n"
+							if (!item.num_items){
+								message = message + "Unfortunately " + item.name + " has been removed from your cart \n"
 							}
 							else {
-								message = message + " We only have " + item.num_items + " left of " + item.name + " \n"
+								message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
 							}
 						})
 						swal({

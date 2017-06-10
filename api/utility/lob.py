@@ -16,7 +16,7 @@ class Lob:
 		,address_state = "", address_zip = "", address_country = "US"):
 		# we don't do international right now
 		if address_country != "US":
-			raise Exception("Address must be in US!")
+			raise Exception("Address must be in US")
 
 		search = ZipcodeSearchEngine()
 		zipcode = search.by_zipcode(address_zip)

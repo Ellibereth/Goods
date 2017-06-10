@@ -2,6 +2,9 @@
 
 
 class UserLabels:
+
+	Order = "order"
+	JwtDict = "jwt_dict"
 	Type = "type"
 	CartMessage = "cart_message"
 	NumItems = "num_items"
@@ -202,6 +205,8 @@ class PaymentLabels:
 
 
 class CartLabels:
+	JwtDict = "jwt_dict"
+	Order = "order"
 	Type = "type"
 	SalesTaxPrice = "sales_tax_price"
 	Address = "address"

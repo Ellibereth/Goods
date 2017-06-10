@@ -20,6 +20,7 @@ from api.utility.lob import Lob
 from api.utility.labels import ErrorLabels
 from api.utility.error import ErrorMessages
 from api.general_api import decorators 
+from api.utility.checkout import Checkout
 
 cart_api = Blueprint('cart_api', __name__)
 
@@ -36,7 +37,7 @@ def addItemToCart(this_user):
 		variant_id = variant.get(Labels.VariantId)
 	else:
 		variant_id = None
-		
+
 	add_to_cart_response = this_user.addItemToCart(product_id, quantity, variant_id)
 	if add_to_cart_response.get(Labels.Success):
 		return JsonUtil.successWithOutput(add_to_cart_response)
@@ -50,57 +51,11 @@ def addItemToCart(this_user):
 def checkoutCart(this_user):
 	card_id = request.json.get(Labels.CardId)
 	address_id = request.json.get(Labels.AddressId)
-	address = Lob.getAddressById(address_id)
-	if int(address.metadata.get(Labels.AccountId)) != this_user.account_id:
-		return JsonUtil.failure(ErrorMessages.AddressUserMismatch)
-	this_cart = Cart(this_user.account_id)
-	total_price = this_cart.toPublicDict(address).get(Labels.TotalPrice)
-	if not total_price:
-		return JsonUtil.failure(ErrorMessages.CartPriceCalculationError)
-	date_created = db.func.current_timestamp()
-	try:
-		this_order = Order(this_user, this_cart, address)
-		db.session.add(this_order)
-		error_result = this_order.addItems(this_user, this_cart, address)
-		if error_result:
-			db.session.rollback()
-			error_result[Labels.CartItem].updateCartQuantity(error_result[Labels.Inventory])
-			db.session.commit()
-			return JsonUtil.failure(error_result.get(Labels.Error))
-
-	except Exception as e:
-		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database, str(e))
-		return JsonUtil.failure(ErrorMessages.CartCheckoutGeneralError)
-
-	# charge this price to the customer via stripe
-	# stripe automatically checks if the card matches the customer 
-	try:
-		charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
-		this_order.updateCharge(charge)
-	except Exception as e:
-		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Charge, str(e))
-		return JsonUtil.failure(ErrorMessages.CartCheckoutPaymentError)
-	db.session.commit()
-	email_error = False
-	try:
-		email_api.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
-	except Exception as e:
-		email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email, str(e))
-		email_error = True
-
-	this_cart.clearCart()
-	if email_error:
-		return JsonUtil.successWithOutput({
-				Labels.User : this_user.toPublicDict(),
-				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-				Labels.Message : ErrorMessages.CartCheckoutEmailError
-			})
+	checkout_cart_response = Checkout.checkoutCart(this_user, card_id, address_id)
+	if checkout_cart_response.get(Labels.Success):
+		return JsonUtil.successWithOutput(checkout_cart_response)
 	else:
-		return JsonUtil.successWithOutput({
-				Labels.User : this_user.toPublicDict(),
-				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-			})
-
+		return JsonUtil.failureWithOutput(checkout_cart_response)
 
 @cart_api.route('/getUserCart', methods = ['POST'])
 @decorators.check_user_jwt
@@ -127,33 +82,11 @@ def updateCartQuantity(this_user):
 	product_id = this_cart_item.get(Labels.ProductId)
 	new_num_items = int(request.json.get(Labels.NewNumItems))
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if not this_product:
-		return JsonUtil.failure(ErrorMessages.InvalidProduct)
-	if this_product.has_variants:
-		variant_id = this_cart_item.get(Labels.VariantId)
-		cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = product_id, variant_id = variant_id).first()
-		this_variant = ProductVariant.query.filter_by(variant_id = variant_id, product_id = product_id).first()
-
-		if new_num_items  > this_variant.inventory:
-			return JsonUtil.failure(ErrorMessages.itemLimit(str(this_variant.inventory)))
-		try:
-			cart_item.updateCartQuantity(new_num_items)
-		except:
-			return JsonUtil.failure(ErrorMessages.CartUpdateQuantity)
-
+	update_cart_quantity_response = Checkout.updateCartQuantity(this_user, this_product, this_cart_item, new_num_items)
+	if update_cart_quantity_response.get(Labels.Success):
+		return JsonUtil.successWithOutput(update_cart_quantity_response)
 	else:
-		cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = product_id).first()
-		if new_num_items > min(this_product.num_items_limit, this_product.inventory):
-			return JsonUtil.failure(ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory))))
-		try:
-			cart_item.updateCartQuantity(new_num_items)
-		except Exception as e:
-			return JsonUtil.failure(ErrorMessages.CartUpdateQuantity)
-
-	return JsonUtil.successWithOutput({
-				Labels.User : this_user.toPublicDict(),
-				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-			})	
+		return JsonUtil.failureWithOutput(update_cart_quantity_response)
 
 @cart_api.route('/refreshCheckoutInfo', methods = ['POST'])
 @decorators.check_user_jwt
