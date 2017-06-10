@@ -56,7 +56,6 @@ export default class AddressPreview extends React.Component {
 						+ ". Please try again", "warning")
 				}
 				else {
-					// AppActions.addCurrentUser(data.user_info)
 						swal({
 							title: "Default address set",
 							type: "success"

@@ -39,7 +39,6 @@ export default class ShippingPreview extends React.Component {
 						+ ". Please try again", "warning")
 				}
 				else {
-					// AppActions.addCurrentUser(data.user_info)
 					swal({
 							title: "Thank you", 
 							text : "Your changes have been made",

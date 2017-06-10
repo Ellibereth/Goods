@@ -8,6 +8,11 @@ var _currentUser = (localStorage.CurrentUser) ? JSON.parse(localStorage.CurrentU
 var _ip = ""
 
 
+function _loadUserNoJwt(data){
+	_currentUser = data;
+  	localStorage.CurrentUser = JSON.stringify(_currentUser);
+}
+
 function _loadCurrentUser(data, jwt) {
   	_currentUser = data;
   	localStorage.CurrentUser = JSON.stringify(_currentUser);
@@ -53,6 +58,10 @@ class AppStore extends React.Component {
 	dispatcherCallback(payload) {
 		var action = payload.action;
 		switch(action.actionType) {
+			case AppConstants.UPDATE_CURRENTUSER:
+				_loadUserNoJwt(action.data);
+			    this.emitUserChange.bind(this)();
+			    break;
 		    case AppConstants.ADD_CURRENTUSER:
 			    _loadCurrentUser(action.data, action.jwt);
 			    this.emitUserChange.bind(this)();

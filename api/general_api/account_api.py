@@ -76,7 +76,9 @@ def registerUserAccount():
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
 	register_user_response = User.registerUser(name, email_input, password, password_confirm)
+
 	if register_user_response.get(Labels.Success):
+		register_user_response[Labels.JwtDict] = JwtUtil.create_jwt(register_user_response[Labels.User])
 		return JsonUtil.successWithOutput(register_user_response)
 	else:
 		return JsonUtil.failureWithOutput(register_user_response)

@@ -33,8 +33,7 @@ export default class SettingsPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
-					AppActions.removeCurrentUser()
-					AppActions.addCurrentUser(data.user, data.jwt)
+					AppActions.updateCurrentUser(data.user)
 					this.setState({
 						cards : data.user.cards,
 						addresses : data.user.addresses,

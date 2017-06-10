@@ -91,7 +91,6 @@ export default class UpdateBillingForm extends React.Component {
 						})
 					}
 					else {
-						// AppActions.addCurrentUser(data.user_info)
 						swal({
 								title: "Thank you", 
 								text : "Your changes have been made",
@@ -106,8 +105,7 @@ export default class UpdateBillingForm extends React.Component {
 								data: form_data,
 								success: function(data) {
 									if (data.success) {
-										AppActions.removeCurrentUser()
-										AppActions.addCurrentUser(data.user, data.jwt)
+										AppActions.updateCurrentUser(data.user)
 										window.location = `/settings`
 									}
 									else {

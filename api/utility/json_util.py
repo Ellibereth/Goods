@@ -22,8 +22,7 @@ class JsonUtil:
 		for key in output_dict.keys():
 			if key != "success" and key != "jwt_dict":
 				json_output[key] = output_dict[key]
-		if json_output.get('jwt_dict'):
-			json_output['jwt'] = JwtUtil.create_jwt(json_output.get('jwt_dict'))
+
 		return jsonify(json_output)
 
 	@staticmethod

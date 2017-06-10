@@ -107,11 +107,15 @@ class EmailHtml:
 		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartShippingPrice(address)) + "</span>"
 		body = body + "</span>"
 		body = body + "<br/>"
-		body = body + "<span style = \"display:block\">"
-		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Sales Tax </span>"
-		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartSalesTaxPrice(address)) + "</span>"
-		body = body + "</span>"
-		body = body + "<br/>"
+		
+
+		if cart.getCartSalesTaxPrice(address) != 0:
+			body = body + "<span style = \"display:block\">"
+			body = body + "<span style= \"font-size: 18px;color:#002868;\"> Sales Tax </span>"
+			body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartSalesTaxPrice(address)) + "</span>"
+			body = body + "</span>"
+			body = body + "<br/>"
+			
 		body = body + "<span style = \"display:block\">"
 		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Total </span>"
 		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartTotalPrice(address)) + "</span>"

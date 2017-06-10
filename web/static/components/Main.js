@@ -53,7 +53,6 @@ export default class Main extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
-					AppActions.removeCurrentUser()
 					AppActions.updateCurrentUser(data.user)
 					if (data.adjusted_items) {
 						

@@ -96,8 +96,7 @@ class User(db.Model):
 		db.session.commit()
 		return {
 				Labels.Success : True,
-				Labels.User : new_user.toPublicDict(),
-				Labels.JwtDict : new_user.toJwtDict()
+				Labels.User : new_user.toPublicDict()
 			}
 			
 	@staticmethod
@@ -451,7 +450,6 @@ class User(db.Model):
 				return {
 						Labels.Success : True,
 						Labels.User : self.toPublicDictFast(),
-						Labels.JwtDict : self.toJwtDict()
 					}
 			else:
 				if quantity + cart_item.num_items > this_variant.inventory:
@@ -464,8 +462,7 @@ class User(db.Model):
 					cart_item.updateCartQuantity(cart_item.num_items + quantity)
 					return {
 						Labels.Success : True,
-						Labels.User : self.toPublicDictFast(),
-						Labels.JwtDict : self.toJwtDict()
+						Labels.User : self.toPublicDictFast()
 					}
 
 				except:
@@ -495,8 +492,7 @@ class User(db.Model):
 			db.session.commit()
 			return {
 				Labels.Success : True,
-				Labels.User : self.toPublicDictFast(),
-				Labels.JwtDict : self.toJwtDict()
+				Labels.User : self.toPublicDictFast()
 			}
 
 		else:
@@ -517,8 +513,7 @@ class User(db.Model):
 
 			return {
 					Labels.Success : True,
-					Labels.User : self.toPublicDictFast(),
-					Labels.JwtDict : self.toJwtDict()
+					Labels.User : self.toPublicDictFast()
 				}
 
 

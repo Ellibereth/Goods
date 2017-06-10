@@ -45,11 +45,12 @@ class Checkout:
 		# we commit to database after these 2 steps
 		db.session.commit()
 
-
-		this_cart.clearCart()
-
 		#lastly send the email confirmation (or try to)
 		send_email_response = Checkout.checkoutSendEmailConfirmation(this_user, this_cart, this_order, address)
+		
+		this_cart.clearCart()
+
+		
 		return send_email_response
 			
 
@@ -84,12 +85,12 @@ class Checkout:
 			return {Labels.Success: False, Labels.Error: ErrorMessages.CartCheckoutPaymentError}
 
 	def checkoutSendEmailConfirmation(this_user, this_cart, this_order, address):
+		print(this_cart.toPublicDict())
 		try:
 			email_api.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
 			return {
 					Labels.Success : True,
-					Labels.User : this_user.toPublicDict(),
-					Labels.JwtDict : this_user.toJwtDict()
+					Labels.User : this_user.toPublicDict()
 				}
 
 		except Exception as e:
@@ -97,7 +98,6 @@ class Checkout:
 			return {
 					Labels.Success : True,
 					Labels.User : this_user.toPublicDict(),
-					Labels.JwtDict : this_user.toJwtDict(),
 					Labels.Message : ErrorMessages.CartCheckoutEmailError
 				}
 
@@ -127,7 +127,6 @@ class Checkout:
 
 		return {
 					Labels.User : this_user.toPublicDict(),
-					Labels.JwtDict : this_user.toJwtDict
 				}
 
 

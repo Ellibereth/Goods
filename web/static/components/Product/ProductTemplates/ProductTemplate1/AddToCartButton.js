@@ -82,8 +82,7 @@ export default class AddToCartButton extends React.Component {
 									window.location =  '/myCart'
 								}
 							});
-							AppActions.removeCurrentUser()
-							AppActions.addCurrentUser(data.user, data.jwt)
+							AppActions.updateCurrentUser(data.user)
 						}
 						else {
 							swal({title: "Problem",                                 

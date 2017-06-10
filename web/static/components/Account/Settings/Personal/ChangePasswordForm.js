@@ -64,8 +64,7 @@ export default class ChangePasswordForm extends React.Component {
 							+ ". Please try again!", "warning")
 					}
 					else {
-						AppActions.removeCurrentUser()
-						AppActions.addCurrentUser(data.user, data.jwt)
+						AppActions.updateCurrentUser(data.user)
 						this.setState({
 							password_confirm : "",
 							password : "",

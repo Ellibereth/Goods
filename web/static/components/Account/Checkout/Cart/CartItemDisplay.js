@@ -26,8 +26,7 @@ export default class CartItemDisplay extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						AppActions.removeCurrentUser()
-						AppActions.addCurrentUser(data.user, data.jwt)
+						AppActions.updateCurrentUser(data.user)
 					}
 					else {
 						swal("Sorry", "Something went wrong." + data.error, "error")

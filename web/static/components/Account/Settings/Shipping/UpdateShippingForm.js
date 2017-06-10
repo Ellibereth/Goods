@@ -61,7 +61,6 @@ export default class UpdateShippingForm extends React.Component {
 						})
 					}
 					else {
-						// AppActions.addCurrentUser(data.user_info)
 						swal({
 								title: "Thank you", 
 								text : "Your changes have been made",
@@ -78,8 +77,7 @@ export default class UpdateShippingForm extends React.Component {
 								success: function(data) {
 									this.props.setLoading(false)
 									if (data.success) {
-										AppActions.removeCurrentUser()
-										AppActions.addCurrentUser(data.user, data.jwt)
+										AppActions.updateCurrentUser(data.user)
 										window.location = `/settings`
 									}
 									else {
