@@ -47,7 +47,7 @@ class Checkout:
 
 		#lastly send the email confirmation (or try to)
 		send_email_response = Checkout.checkoutSendEmailConfirmation(this_user, this_cart, this_order, address)
-		
+
 		this_cart.clearCart()
 
 		
@@ -85,7 +85,6 @@ class Checkout:
 			return {Labels.Success: False, Labels.Error: ErrorMessages.CartCheckoutPaymentError}
 
 	def checkoutSendEmailConfirmation(this_user, this_cart, this_order, address):
-		print(this_cart.toPublicDict())
 		try:
 			email_api.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
 			return {

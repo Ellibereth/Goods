@@ -115,7 +115,7 @@ class EmailHtml:
 			body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartSalesTaxPrice(address)) + "</span>"
 			body = body + "</span>"
 			body = body + "<br/>"
-			
+
 		body = body + "<span style = \"display:block\">"
 		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Total </span>"
 		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartTotalPrice(address)) + "</span>"
@@ -133,8 +133,8 @@ class EmailHtml:
 		url_link = URL + "myOrders"
 		html = (
 			"<tr> <td align = \"left\" style =  \"border-top:solid; border-width: 1px; border-color:lightgrey\"> \
-			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + PHOTO_SRC_BASE 
-			+ product[Labels.MainImage] + "\"/>  </span> </td>\
+			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + str(PHOTO_SRC_BASE)
+			+ str(product[Labels.MainImage]) + "\"/>  </span> </td>\
 			<td align = \"right\" style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> <span style = \"display:block;padding:12px;\">  \
 			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
 			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatPrice(product[Labels.Price]) + "</span> <br/> \
