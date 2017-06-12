@@ -55,6 +55,20 @@ sh bundleprod
 cd ..
 ```
 This will compile and bundle all cached vendor libraries.
+Once this is done, then comment out the line in index.html. 
+
+```
+<script src= {{url_for('static', filename='dist/dll/dll.vendor.js') }}></script>
+```
+
+Then compress and obfuscate bundle.js.
+```
+https://jscompress.com/
+https://javascriptobfuscator.com/
+```
+
+
+
 
 ## Webpack notes for development
 ```
