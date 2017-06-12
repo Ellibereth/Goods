@@ -23,7 +23,7 @@
 .body-container { 
 	padding-top: 95px;
 	background-color: white;
-	font-family: Lucida Grande;
+	font-family: Helvetica Neue;
 	overflow-x: hidden;
 }
 
@@ -690,7 +690,7 @@
 
 .landing-card {
 	background-color: white;
-	background: rgba(255,255,255,0.85);
+	background: rgba(255,255,255,0.93);
 	position: relative;
 	top: 15%;
 	text-align: center;
@@ -734,4 +734,8 @@
 	border-color: #337ab7 !important;
 	background-color : #337ab7 !important;
 	color: white;
+}
+
+.landing-container {
+	font-family: Arial;
 }

@@ -25,7 +25,7 @@ export default class HomePage extends React.Component {
 
 
 		return (
-			<div style = {image_style}>
+			<div className = "landing-container" style = {image_style}>
 				
 				<div className = "landing-card col-sm-4 col-md-4 col-lg-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
 						<div className = "landing-title">
@@ -48,7 +48,7 @@ export default class HomePage extends React.Component {
 						</div>
 						<div className = "small-buffer"/>
 						<div className = "row">
-							<div className = "col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+							<div className = "col-md-12 col-lg-8 col-md-offset-0 col-lg-offset-2">
 								<div className="input-group landing-subscribe-container">
 									<input type="text" className="form-control landing-subscribe-input" placeholder="Type your email here" aria-describedby="basic-addon2"/>
 									<span className="input-group-addon landing-subscribe-button" >Notify Me!</span>
