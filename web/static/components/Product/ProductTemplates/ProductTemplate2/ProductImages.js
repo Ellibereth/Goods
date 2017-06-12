@@ -1,9 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Col} from 'react-bootstrap';
-
-
 // props are
 // function : selectImage
 // dictionary : product

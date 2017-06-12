@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Modal, Button} from 'react-bootstrap';
 import AddProductForm from './AddProductForm'
+import Modal from 'react-bootstrap/lib/Modal'
 
 export default class AddProductModal extends React.Component {
 	constructor(props) {

@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 
 export default class UploadMarketPhoto extends React.Component {
 	constructor(props) {
@@ -77,21 +76,21 @@ export default class UploadMarketPhoto extends React.Component {
 	render() {
 		var product = this.props.product
 		return (
-			<Form horizontal>
+			<form className = "form-horizontal">
 				<div className="col-sm-4">
 			  		Upload a product photo!
 		  		</div>
 				<input type = "file" placeholder="Image" id= {product.product_id + "_upload"} className="form-control"
 				accept="image/*" 
 				onChange = {() => this.handleImageChange.bind(this)(product.product_id)} />
-				<FormGroup controlId = "submit_buton">
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
+				<div className = "form-group">
+				<div className = "col-sm-10 col-md-10">
+					<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
 						Submit!
-					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+					</button>
+				</div>
+				</div>
+			</form>
 		)
 	}
 }

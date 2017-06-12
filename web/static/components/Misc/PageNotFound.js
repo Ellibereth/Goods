@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {} from 'react-bootstrap';
 import PageContainer from './PageContainer'
 
 export default class PageNotFound extends React.Component {

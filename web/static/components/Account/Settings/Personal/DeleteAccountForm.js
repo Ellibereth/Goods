@@ -4,7 +4,6 @@ var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../../actions/AppActions.js';
 import AppStore from '../../../../stores/AppStore.js';
 import TextInput from '../../../Input/TextInput.js'
-import {Grid, Form, Row, Col, FormGroup, Button, ControlLabel} from 'react-bootstrap'
 const form_labels = ['Password', 'Confirm Password']
 const form_inputs = ["password", "password_confirm"]
 const input_types = ['password', 'password']
@@ -93,30 +92,28 @@ export default class DeleteAccountForm extends React.Component {
 		})
 
 		return (
-			<Grid>
-				<Form horizontal>
-					<ControlLabel> <span id = "settings-header"> Delete Account </span> </ControlLabel>
+				<form className = "form-horizontal">
+					<label className = "control-label"> <span id = "settings-header"> Delete Account </span> </label>
 					<br/>
 					{text_inputs}
 					
-					<FormGroup controlId = "update_password">
+					<div className = "form-group">
 						
-							<Col sm = {4} lg = {4} md = {4}>
-								<Button className = "delete-account-button"
+							<div className = "col-sm-4 col-md-4 col-lg-4">
+								<button className = "btn btn-default delete-account-button">
 								onClick = {this.handleDeleteClick.bind(this)}>
 									Delete Account
-								</Button>
-							</Col>
-							<Col pullRight className = "text-right" sm = {4} lg = {4} md = {4}>
-								<Button onClick = {() => window.location = '/settings'}>
+								</button>
+							</div>
+							<div className = "col-sm-4 col-md-4 col-lg-4 pull-right text-right" >
+								<button className = "btn btn-default" onClick = {() => window.location = '/settings'}>
 									Return to settings
-								</Button>
-							</Col>
-					</FormGroup>
+								</button>
+							</div>
+					</div>
 					
 
-				</Form>
-			</Grid>
+				</form>
 		)
 	}
 }

@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Grid, Col, Row} from 'react-bootstrap';
 var browserHistory = require('react-router').browserHistory;
 import {formatPrice} from '../Input/Util'
 

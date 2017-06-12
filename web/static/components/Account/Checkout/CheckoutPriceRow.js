@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {} from 'react-bootstrap';
 import {formatPrice} from '../../Input/Util'
 
 

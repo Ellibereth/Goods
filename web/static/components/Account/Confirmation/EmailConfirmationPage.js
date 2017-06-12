@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {} from 'react-bootstrap';
 import PageContainer from '../../Misc/PageContainer.js'
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions'

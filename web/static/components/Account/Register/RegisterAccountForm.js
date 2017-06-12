@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions.js';
 import TextInput from '../../Input/TextInput.js'
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ['Name', "Email", "Password", "Confirm Password"]
 const form_inputs = ["name", "email", "password", "password_confirm"]
 const input_types = ['text', 'text', 'password', 'password']
@@ -138,14 +137,14 @@ export default class RegisterAccountForm extends React.Component {
 			<div className = "panel panel-primary account-panel">
 				<div className = "panel-body account-panel-body">
 					<h2 className = "account-header"> Create Account </h2>
-					<Form onSubmit = {this.onSubmitPress.bind(this)} horizontal>
+					<form className = "form-horizontal" onSubmit = {this.onSubmitPress.bind(this)} >
 						{text_inputs}
 						<div className = "form-group row">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<Button disabled = {this.state.disabled}
+								<button className = "btn btn-default" disabled = {this.state.disabled}
 								 className = "account-button" onClick = {this.onSubmitPress.bind(this)}>
 									Sign Up
-								</Button>
+								</button>
 							</div>
 						</div>
 
@@ -162,7 +161,7 @@ export default class RegisterAccountForm extends React.Component {
 								<a href = "/login"> {"Log in"} </a>
 							</div>
 						</div>
-					</Form>
+					</form>
 				</div>
 			</div>
 		)

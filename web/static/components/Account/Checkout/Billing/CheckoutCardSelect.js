@@ -4,7 +4,6 @@ import AppStore from '../../../../stores/AppStore.js';
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
-import {Button} from 'react-bootstrap'
 
 const ADDRESS_INDEX = 0
 const BILLING_INDEX = 1
@@ -125,9 +124,9 @@ export default class CheckoutCardSelect extends React.Component {
 							this.props.cards.length > 0 &&
 							<div className = "row">
 								<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-									<Button onClick = {this.setCard.bind(this)}>
+									<button className = "btn btn-default" onClick = {this.setCard.bind(this)}>
 										Use this card
-									</Button>
+									</button>
 								</div>
 							</div>
 						}

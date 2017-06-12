@@ -6,7 +6,6 @@ import CheckoutAddAddressModal from './CheckoutAddAddressModal'
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
-import {Button} from 'react-bootstrap'
 const ADDRESS_INDEX = 0
 const BILLING_INDEX = 1
 const CART_INDEX = 2
@@ -106,9 +105,9 @@ export default class CheckoutAddressSelect extends React.Component {
 							this.props.addresses.length > 0 && 
 							<div className = "row">
 								<div className = "col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
-									<Button onClick = {this.setAddress.bind(this)}>
+									<button className = "btn btn-default" onClick = {this.setAddress.bind(this)}>
 										Use this address
-									</Button>
+									</button>
 								</div>
 							</div>	
 						}

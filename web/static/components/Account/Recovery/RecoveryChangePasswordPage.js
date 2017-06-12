@@ -4,7 +4,6 @@ import AppStore from '../../../stores/AppStore.js';
 var browserHistory = require('react-router').browserHistory;
 import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
-import {Form, FormGroup, Col, Button} from 'react-bootstrap'
 import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
 
@@ -139,7 +138,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 									
 									<div className = "panel-body account-panel-body">
 										<h2 className = "account-header"> Reset Password </h2>
-										<Form onSubmit = {this.submitData.bind(this)} horizontal>
+										<form className = "form-horizontal" onSubmit = {this.submitData.bind(this)} >
 											{text_inputs}
 											<div className = "form-group row">
 												<div className = "col-sm-12 col-md-12 col-lg-12">
@@ -149,7 +148,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 													</Button>
 												</div>
 											</div>
-										</Form>
+										</form>
 									</div>
 								</div>
 							</div>

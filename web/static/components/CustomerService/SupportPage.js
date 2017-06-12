@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var browserHistory = require('react-router').browserHistory
-import {} from 'react-bootstrap';
 import PageContainer from '../Misc/PageContainer'
 import AppStore from '../../stores/AppStore'
 

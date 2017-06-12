@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 
 export default class AddHomeImage extends React.Component {
 	constructor(props) {
@@ -79,7 +78,7 @@ export default class AddHomeImage extends React.Component {
 
 	render() {
 		return (
-			<Form horizontal>
+			<form className = "form-horizontal">
 				<div className="col-sm-4">
 			  		Upload New Home Image!
 		  		</div>
@@ -87,14 +86,14 @@ export default class AddHomeImage extends React.Component {
 				 className="form-control"
 				accept="image/*" 
 				onChange = {() => this.handleImageChange.bind(this)()} />
-				<FormGroup controlId = "submit_buton">
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this, this.uploadImage.bind(this))}>
+				<div className = "form-group">
+				<div className = "col-sm-10 col-md-10">>
+					<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this, this.uploadImage.bind(this))}>
 						Submit!
-					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+					</button>
+				</div>
+				</div>
+			</form>
 		)
 	}
 }

@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
-import {Col, Form, FormControl, Grid, Row, FormGroup, Button} from 'react-bootstrap';
 
 import TextInput from '../../../Input/TextInput.js'
 import UploadMarketPhoto from '../ProductAdd/UploadMarketPhoto.js'

@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {} from 'react-bootstrap';
 import ProductMainContainer from '../../../Product/ProductMainContainer'
 import AdminEditProductInfo from './AdminEditProductInfo'
 import PageContainer from '../../../Misc/PageContainer.js'

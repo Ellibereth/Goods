@@ -1,8 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
-
-import {} from 'react-bootstrap';
 import AppStore from '../../../../stores/AppStore'
 import styles from '..//product_styles.css'
 import {formatPrice} from '../../../Input/Util'

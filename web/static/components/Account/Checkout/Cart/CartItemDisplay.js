@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 var browserHistory = require('react-router').browserHistory;
-import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util'
 
 export default class CartItemDisplay extends React.Component {

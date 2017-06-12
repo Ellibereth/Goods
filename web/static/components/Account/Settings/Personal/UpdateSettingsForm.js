@@ -4,7 +4,6 @@ var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../../actions/AppActions.js';
 import AppStore from '../../../../stores/AppStore.js';
 import TextInput from '../../../Input/TextInput.js'
-import {Grid, Form, Row, Col, FormGroup, Button, ControlLabel} from 'react-bootstrap'
 const form_labels = ['Name', "Email", "Confirm Password"]
 const form_inputs = ["name", "email", "password"]
 const input_types = ['text', 'text', 'password']
@@ -157,29 +156,27 @@ export default class SettingsFormPersonal extends React.Component {
 		})
 
 		return (
-			<Grid>
-				<Form horizontal>
+				<form className = "form-horizontal" >
 					<br/>
 					{text_inputs}
 					
 
-					<FormGroup controlId = "update_password">
+					<div className = "form-group">
 						
-							<Col sm = {4} lg = {4} md = {4}>
-								<Button onClick = {this.onSubmitPress.bind(this)}>
+							<div className = "col-sm-4 col-md-4 col-lg-4">
+								<button className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
 									Submit!
-								</Button>
-							</Col>
-							<Col pullRight className = "text-right" sm = {4} lg = {4} md = {4}>
-								<Button onClick = {this.updatePassword.bind(this)}>
+								</button>
+							</div>
+							<div className = "col-sm-4 col-md-4 col-lg-4 text-right pull-right"  >
+								<button className = "btn btn-default" onClick = {this.updatePassword.bind(this)}>
 									Click to change password
-								</Button>
-							</Col>
-					</FormGroup>
+								</button>
+							</div>
+					</div>
 					
 
-				</Form>
-			</Grid>
+				</form>
 		)
 	}
 }

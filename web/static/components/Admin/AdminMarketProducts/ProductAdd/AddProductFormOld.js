@@ -4,7 +4,6 @@ var ReactDOM = require('react-dom');
 const form_inputs = ['name', 'description', 'manufacturer', 'price', 'category', 'inventory', 'sale_end_date']
 const form_labels = ["Product Name", "Product Description", "Manufacturer", "Price", "Category", "Inventory", "Sale End Date"]
 const input_types = ['text', 'textarea', 'text', 'text', 'text', 'text', 'datetime-local']
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../../../Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
 
@@ -154,7 +153,7 @@ export default class AddProductForm extends React.Component {
 		
 
 		return (
-			<Form horizontal>
+			<form className = "form-horizontal">
 				{text_inputs}
 				{tag_input}
 
@@ -168,15 +167,15 @@ export default class AddProductForm extends React.Component {
 
 				
 
-				<FormGroup controlId = "submit_buton">
+				<div className = "form-group">
 
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
+				<div className = "col-md-10 col-sm-10">
+					<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
 					Submit!
-					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+					</button>
+				</div>
+				</div>
+			</form>
 		)
 	}
 }

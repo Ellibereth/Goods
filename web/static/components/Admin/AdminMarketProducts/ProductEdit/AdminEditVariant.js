@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Button} from 'react-bootstrap';
 
 const form_fields = ['variant_type', 'inventory']
 const form_labels = ['Variant Type', 'Inventory']

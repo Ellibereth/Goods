@@ -4,7 +4,6 @@ var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../../actions/AppActions.js';
 import AppStore from '../../../../stores/AppStore.js';
 import TextInput from '../../../Input/TextInput.js'
-import {Grid, Form, Row, Col, FormGroup, Button, ControlLabel} from 'react-bootstrap'
 const form_labels = ['New Password', "Confirm Your New Password", "Confirm Current Password"]
 const form_inputs = ["password", "password_confirm", "old_password"]
 const input_types = ['password', 'password', 'password']
@@ -134,8 +133,7 @@ export default class ChangePasswordForm extends React.Component {
 		})
 
 		return (
-			<Grid>
-				<Form horizontal>
+				<form className = "form-horizontal">
 					<div className = "form-group">
 						<label className="col-md-8 col-lg-8 control-label text-left">
 							<span className = "form-heading"> Change Password </span>
@@ -147,22 +145,21 @@ export default class ChangePasswordForm extends React.Component {
 					</div>
 					{text_inputs}
 					
-					<FormGroup controlId = "update_password">
-							<Col sm = {4} lg = {4} md = {4}>
-								<Button onClick = {this.onSubmitPress.bind(this)}>
+					<div className = "form-group">
+							<div className = "col-sm-4 col-md-4 col-lg-4">
+								<button className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
 									Submit!
-								</Button>
-							</Col>
-							<Col pullRight className = "text-right" sm = {4} lg = {4} md = {4}>
-								<Button onClick = {this.changeSettings.bind(this)}>
+								</button>
+							</div>
+							<div className = "pull-right text-right col-sm-4 col-md-4 col-lg-4">
+								<button className = "btn btn-default" onClick = {this.changeSettings.bind(this)}>
 									Change other Settings
-								</Button>
-							</Col>
-					</FormGroup>
+								</button>
+							</div>
+					</div>
 					
 
-				</Form>
-			</Grid>
+				</form>
 		)
 	}
 }

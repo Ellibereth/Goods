@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
-import {Button} from 'react-bootstrap'
 
 const ADDRESS_INDEX = 0
 const BILLING_INDEX = 1

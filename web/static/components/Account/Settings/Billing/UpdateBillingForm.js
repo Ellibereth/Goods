@@ -9,7 +9,6 @@ import CreditCardInput from '../../../Input/CreditCardInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
 
 
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip",
 					"addresss_name", "name", "number", "cvc"]
@@ -142,7 +141,7 @@ export default class UpdateBillingForm extends React.Component {
 	render() {
 		return (
 			<div className = "col-sm-12 col-md-12 col-lg-12">
-			<Form horizontal>
+			<form className = "form-horizontal">
 				<CreditCardInput 
 				onSubmit = {this.onSubmitPress.bind(this)}
 				header = {"Add a payment method"}
@@ -162,15 +161,15 @@ export default class UpdateBillingForm extends React.Component {
 					<AddressForm onSubmit = {this.onSubmitPress.bind(this)} header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
 				}
 
-				<FormGroup controlId = "submit_button">
+				<div className = "form-group">
 					<div className = "col-md-10 col-lg-10">
-						<Button className = "pull-right" disabled = {this.state.disabled}
+						<button className = "btn btn-default" className = "pull-right" disabled = {this.state.disabled}
 						 onClick = {this.submitData.bind(this)}>
 						Submit
-						</Button>
+						</button>
 					</div>
-				</FormGroup>
-			</Form>
+				</div>
+			</form>
 			</div>
 		)
 	}

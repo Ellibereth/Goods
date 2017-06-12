@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
-import {Button} from 'react-bootstrap';
 import ProductImages from './ProductImages'
 import AppStore from '../../../../stores/AppStore'
 import AddToCartButton from './AddToCartButton.js'
@@ -164,20 +163,6 @@ export default class ProductTemplate2 extends React.Component {
 
 						<div className = 'small-buffer'/>
 						<ProductDescriptionTab product = {this.props.product}/>
-						{/* <div className = "small-buffer"/>
-						<div className = "row">
-							<span className = "product-features-heading"> FEATURES </span>
-							<ul>
-							{this.props.product.description.split("\n").map(i => {
-					            return <li>{i}</li>;
-					        })}
-					        	<li> Manufactured by {this.props.product.manufacturer}  </li>
-					        	<li> Category: {this.props.product.category} </li>
-					        </ul>
-						</div> */}
-
-					
-					
 
 
 						<div className = "small-buffer"/>

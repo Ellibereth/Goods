@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
-import {Button} from 'react-bootstrap';
 import StoryTemplate1 from './StoryTemplate1/StoryTemplate1'
 
 export default class StoryTemplates extends React.Component {

@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
-import {Button} from 'react-bootstrap'
 import AddressForm from '../../../Input/AddressForm.js'
 
 var browserHistory = require('react-router').browserHistory;
@@ -112,11 +111,10 @@ export default class CheckoutAddAddress extends React.Component {
 
 						<div className = "row">
 							<div className = "col-md-11 col-lg-11">
-								<Button
-									className = "pull-right" 
+								<button className = "btn btn-default pull-right" 
 									onClick = {this.onSubmitPress.bind(this)}>
 									Add Address
-								</Button>
+								</button>
 							</div>
 						</div>
 					</div>

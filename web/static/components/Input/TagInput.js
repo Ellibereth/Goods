@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import TagsInput from 'react-tagsinput'
-import {Col, FormGroup, FormControl} from 'react-bootstrap'
 
 export default class TextInput extends React.Component {
 	constructor(props) {

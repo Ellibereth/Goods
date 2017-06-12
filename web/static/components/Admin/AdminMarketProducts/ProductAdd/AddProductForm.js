@@ -4,7 +4,6 @@ var ReactDOM = require('react-dom');
 const form_inputs = ['name']
 const form_labels = ["Product Name"]
 const input_types = ['text']
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 import TextInput from '../../../Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
 var browserHistory = require('react-router').browserHistory
@@ -92,21 +91,21 @@ export default class AddProductForm extends React.Component {
 		
 
 		return (
-			<Form horizontal>
+			<form className = "form-horizontal">
 				<h2> Click to add a blank product </h2>
 
 				<hr/>
 				{text_inputs}
 
-				<FormGroup controlId = "submit_buton">
+				<div className = "form-group">
 
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
+				<div className = "col-sm-10">
+					<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
 					Submit!
-					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+					</button>
+				</div>
+				</div>
+			</form>
 		)
 	}
 }

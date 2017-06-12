@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
-import {Button} from 'react-bootstrap';
 import ProductTemplate1 from './ProductTemplate1/ProductTemplate1'
 import ProductTemplate2 from './ProductTemplate2/ProductTemplate2'
 

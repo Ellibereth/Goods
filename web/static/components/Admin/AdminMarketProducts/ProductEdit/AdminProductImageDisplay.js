@@ -1,8 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {} from 'react-bootstrap';
-
 export default class AdminProductMainContainer extends React.Component {
 	constructor(props) {
 		super(props);

@@ -1,8 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Modal, Button} from 'react-bootstrap';
 import CheckoutAddBilling from './CheckoutAddBilling.js'
-
+import Modal from 'react-bootstrap/lib/Modal'
 
 export default class CheckoutAddBillingModal extends React.Component {
 	constructor(props) {

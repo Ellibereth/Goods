@@ -10,13 +10,15 @@ import AdminHome from './AdminHome'
 import PageContainer from '../Misc/PageContainer'
 import AddProductForm from './AdminMarketProducts/ProductAdd/AddProductForm'
 
+import Nav from 'react-bootstrap/lib/Nav'
+import NatItem from 'react-bootstrap/lib/NavItem'
+
 const REQUEST_INDEX = 0
 const ACTIVE_PRODUCT_INDEX = 1
 const INACTIVE_PRODUCT_INDEX = 2
 const HOME_PAGE_INDEX = 3
 const ADD_PRODUCT_INDEX = 4
 
-import {Nav, NavItem} from 'react-bootstrap'
 
 export default class AdminToolsPage extends React.Component {
 	constructor(props) {

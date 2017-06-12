@@ -10,7 +10,6 @@ import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
 import CheckoutPriceRow from './CheckoutPriceRow'
 import {formatPrice} from '../../Input/Util'
 import Spinner from '../../Misc/Spinner'
-import {Button} from 'react-bootstrap'
 
 
 var browserHistory = require('react-router').browserHistory;
@@ -405,9 +404,9 @@ export default class CheckoutPage extends React.Component {
 								<div className="panel-body">
 									<div className = "row">
 										<div className = "col-sm-12 col-md-12 col-lg-12 vcenter text-center">
-											<Button className = "checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
+											<button className = "btn btn-default checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
 												Place your order!
-											</Button>
+											</button>
 											<div className = "top-buffer"/>
 											<div className = "checkout-notice-of-terms-text">
 												By placing your order, you agree to our 

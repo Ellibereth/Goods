@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {} from 'react-bootstrap';
 import ProductTemplates from './ProductTemplates/ProductTemplates'
 import StoryTemplates from './StoryTemplates/StoryTemplates'
 

@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 
-// import {Button, Row, Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 var Link = require('react-router').Link;
 import styles from './navbar.css'
 

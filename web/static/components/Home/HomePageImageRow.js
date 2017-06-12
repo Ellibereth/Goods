@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Row, Col} from 'react-bootstrap';
 
 
 export default class HomePageImageRow extends React.Component {
@@ -25,15 +24,15 @@ export default class HomePageImageRow extends React.Component {
 		}
 		var col_sizes = [4,4,4]
 		var columns = col_sizes.map((col_size, index) =>
-			<Col md={col_size} style = {{overflow : "hidden"}}> 
+			<div className = {"col-md-" + col_size} style = {{overflow : "hidden"}}> 
 				<img className = "img-responsive" src={image_sources[index]} />
-			</Col>
+			</div>
 		)
 
 		return (
-				<Row className = "show-grid">
+				<div className = "show-grid row">
 					{columns}
-				</Row>
+				</div>
 			);
 		}
 }

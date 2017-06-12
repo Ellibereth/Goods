@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 
 import AdminTextInput from '../Input/AdminTextInput'
 

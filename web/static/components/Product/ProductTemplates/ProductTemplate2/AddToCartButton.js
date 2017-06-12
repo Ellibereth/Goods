@@ -1,9 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {} from 'react-bootstrap';
 import AppStore from '../../../../stores/AppStore.js'
 import AppActions from '../../../../actions/AppActions.js'
-import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../../Input/Util.js'
 
 const DEFAULT_VARIANT_TEXT = "Select a type"

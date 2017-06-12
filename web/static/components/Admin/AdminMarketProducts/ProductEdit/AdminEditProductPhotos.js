@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Grid, Row, Col, Button} from 'react-bootstrap';
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 

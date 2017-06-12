@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
-import {Button} from 'react-bootstrap';
 import ProductImages from './ProductImages'
 import AppStore from '../../../../stores/AppStore'
 import AddToCartButton from './AddToCartButton.js'

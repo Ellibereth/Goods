@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import TextInput from '../../Input/TextInput.js'
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ['What is your name?', "What is your email?", "What should we know?"]
 const form_inputs = ["name", "email", "feedback_content"]
 
@@ -77,16 +76,16 @@ export default class ProductRequestForm extends React.Component {
 		})
 
 		return (
-			<Form horizontal>
+			<form className = "form-horizontal">
 				{text_inputs}
-				<FormGroup controlId = "submit_button">
-				<Col smOffset={0} sm={10}>
-					<Button onClick = {this.onSubmitPress.bind(this)}>
+				<div className = "form-group">
+				<div className = "col-sm-10">
+					<button type = "button" className = "btn btn-defauly" onClick = {this.onSubmitPress.bind(this)}>
 					Submit!
-					</Button>
-				</Col>
-				</FormGroup>
-			</Form>
+					</button>
+				</div>
+				</div>
+			</form>
 		)
 	}
 }

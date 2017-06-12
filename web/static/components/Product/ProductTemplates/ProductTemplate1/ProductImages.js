@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Col} from 'react-bootstrap';
 
 
 // props are
@@ -71,11 +70,11 @@ export default class ProductImages extends React.Component {
 	 	}
 
 		product_images.unshift(
-				<Col md = {front_padding} lg = {front_padding} sm = {front_padding}/>
+				<div className = {"col-md-" + front_padding + " col-lg-" + front_padding + " col-sm-" + front_padding}/>
 			)
 
 		product_images.push(
-				<Col md = {back_padding} lg = {back_padding} sm = {back_padding}/>
+				<div className = {"col-md-" + back_padding + " col-lg-" + back_padding + " col-sm-" + back_padding}/>
 			)
 		
 		return (

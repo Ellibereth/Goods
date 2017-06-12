@@ -6,7 +6,6 @@ import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Input/TextInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_labels = ["Name", "Description", "City","State", "Country", "Address Line 1", 
 						"Address Line 2", "Zip Code"]
 const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
@@ -122,20 +121,20 @@ export default class UpdateShippingForm extends React.Component {
 
 		return (
 				<div>
-					<Form  horizontal>
+					<form  className = "form-horizontal">
 						<AddressForm header = {"Add an address"}
 						has_description = {true}
 						onSubmit = {this.onSubmitPress.bind(this)}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 						<div className = "form-group" id = "submit_button">
 							<div className = "col-md-10 col-lg-10">
-								<Button className = "pull-right" disabled = {this.state.disabled}
+								<button type = "button" className = "btn btn-default" className = "pull-right" disabled = {this.state.disabled}
 								onClick = {this.submitData.bind(this)}>
 									Submit
-								</Button>
+								</button>
 							</div>
 						</div>
-					</Form>
+					</form>
 				</div>
 		)
 	}

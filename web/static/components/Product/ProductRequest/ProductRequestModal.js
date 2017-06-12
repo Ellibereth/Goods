@@ -1,7 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Modal, Button} from 'react-bootstrap';
 import ProductRequestForm from './ProductRequestForm.js'
+
+import Modal from 'react-bootstrap/lib/Modal'
 
 
 export default class ProductRequestModal extends React.Component {

@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Button} from 'react-bootstrap';
 
 
 
@@ -116,8 +115,8 @@ export default class AdminActivateProduct extends React.Component {
 					{text} 
 				</div>
 				<div className = "row">
-					<Button onClick = {this.onDeactivatePress.bind(this)}> Deactivate </Button>
-					<Button onClick = {this.onActivatePress.bind(this)}> Activate </Button>
+					<button type = "button" className = "btn btn-default" onClick = {this.onDeactivatePress.bind(this)}> Deactivate </button>
+					<button type = "button" className = "btn btn-default" onClick = {this.onActivatePress.bind(this)}> Activate </button>
 				</div>
 			</div>
 		);

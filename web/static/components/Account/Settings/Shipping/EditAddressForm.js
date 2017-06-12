@@ -4,7 +4,7 @@ var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import AddressForm from '../../../Input/AddressForm.js'
-import {Button} from 'react-bootstrap'
+
 
 const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
 					"address_line1", "address_line2", "address_zip"]
@@ -120,9 +120,9 @@ export default class EditAddressForm extends React.Component {
 				</div>
 				<div className = "col-sm-9 col-md-9 col-lg-9">
 					<div className = "pull-right">
-						<Button onClick = {this.onSubmitPress.bind(this)}>
+						<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
 							Edit Address
-						</Button>
+						</button>
 					</div>
 				</div>
 				

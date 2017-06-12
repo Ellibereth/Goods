@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {Button} from 'react-bootstrap'
 const request_variables = ['request_id', 'name', 'email', 'description', 'price_range', 'confirmed', 'completed', 'date_created', 'date_completed']
 const headers = ['Delete', 'Request Id', 'Name', 'Email', 'Description', 'Price Range', 'Confirmed', 'Completed', 'Date Created', 'Date Completed']
 
@@ -104,9 +103,9 @@ export default class AdminProductRequests extends React.Component {
 					row.unshift(
 							<td className = "admin-table-cell-short" id = {request['submission_id'] + "_delete"} s_id = {request['submission_id']}
 							attr = "delete" index = {index}> 
-								<Button onClick = {() => this.onDeleteClick.bind(this)(request['request_id'], index)}>
+								<button type = "button" className = "btn btn-default" onClick = {() => this.onDeleteClick.bind(this)(request['request_id'], index)}>
 									Delete!
-								</Button>
+								</button>
 							 </td> 
 						)
 					return (

@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 
 var Link = require('react-router').Link
 
-import {} from 'react-bootstrap';
 import AppStore from '../../stores/AppStore'
 
 

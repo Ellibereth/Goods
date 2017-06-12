@@ -5,7 +5,6 @@ import AppStore from '../../../stores/AppStore.js';
 var browserHistory = require('react-router').browserHistory;
 import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
-import {Form, FormGroup, Col, Button} from 'react-bootstrap'
 import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
 
@@ -105,17 +104,17 @@ export default class RecoveryPage extends React.Component {
 
 									<div className = "panel-body account-panel-body">
 										<h2 className = "account-header"> Recover Account </h2>
-										<Form onSubmit = {this.onSubmitEmail.bind(this)} horizontal>
+										<form className = "form-horizontal" onSubmit = {this.onSubmitEmail.bind(this)} >
 											{text_inputs}
 											<div className = "form-group row">
 												<div className = "col-sm-12 col-md-12 col-lg-12">
-													<Button disabled = {this.state.disabled}
+													<button className = "btn btn-default" disabled = {this.state.disabled}
 													 className = "account-button" onClick = {this.onSubmitEmail.bind(this)}>
 														Recover Account
-													</Button>
+													</button>
 												</div>
 											</div>
-										</Form>
+										</form>
 									</div>
 								</div>
 							</div>

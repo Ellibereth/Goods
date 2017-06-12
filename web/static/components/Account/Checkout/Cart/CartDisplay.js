@@ -4,7 +4,6 @@ import AppStore from '../../../../stores/AppStore.js';
 import CartItemDisplay from './CartItemDisplay'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
-import {Button} from 'react-bootstrap'
 
 export default class CartDisplay extends React.Component {
 	constructor(props){

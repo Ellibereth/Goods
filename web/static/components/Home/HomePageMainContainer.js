@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Grid, Row, Col, Button} from 'react-bootstrap';
 import HomeProductPreview from './HomeProductPreview'
 import HomePageImageCarousel from './HomePageImageCarousel'
 

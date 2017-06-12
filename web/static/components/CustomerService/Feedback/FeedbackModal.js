@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {Modal, Button} from 'react-bootstrap';
 import FeedbackForm from './FeedbackForm.js'
 
+import Modal from 'react-bootstrap/lib/Modal'
 
 export default class FeedbackModal extends React.Component {
 	constructor(props) {

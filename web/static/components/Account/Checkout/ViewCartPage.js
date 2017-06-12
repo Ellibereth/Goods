@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
 import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
-import {Button} from 'react-bootstrap'
 import {formatPrice} from '../../Input/Util'
 import Spinner from '../../Misc/Spinner'
 var browserHistory = require('react-router').browserHistory;
@@ -123,11 +122,10 @@ export default class ViewCartPage extends React.Component {
 							</div>
 						</div>
 						<div className = "col-md-3 col-lg-3 col-sm-3">
-							<Button disabled = {this.state.items.length == 0} 
-							onClick = {() => window.location = '/checkout'}
-							className = "checkout-button">
+							<button className = "btn btn-default checkout-button" disabled = {this.state.items.length == 0} 
+							onClick = {() => window.location = '/checkout'}>
 								Proceed to Checkout 
-							</Button>
+							</button>
 							{/*<div className = "row">
 								<div className = "cart-message">
 									{this.state.cart_message}

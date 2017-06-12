@@ -21,7 +21,7 @@
     "react": "^15.5.4",
     "react-activity-indicator": "^0.7.71",
     "react-addons-test-utils": "^15.4.2",
-    "react-bootstrap": "^0.30.8",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-loading-spinner": "^1.0.12",
     "react-player": "^0.14.3",
@@ -51,8 +51,7 @@
     "webpack": "^2.4.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "stats": "webpack --env production --profile --json > stats.json"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC"

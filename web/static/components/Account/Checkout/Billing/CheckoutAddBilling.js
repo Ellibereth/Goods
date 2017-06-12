@@ -7,7 +7,6 @@ import TextInput from '../../../Input/TextInput.js'
 import CreditCardInput from '../../../Input/CreditCardInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
 
-import {Form, Col, FormGroup, Button} from 'react-bootstrap'
 const form_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip",
 					"addresss_name", "name", "number", "cvc"]
@@ -150,10 +149,10 @@ export default class CheckoutAddBilling extends React.Component {
 						
 						<div className = "row">
 							<div className = "col-md-11 col-lg-11 ">
-								<Button className = "pull-right"
+								<button className = "btn btn-default" className = "pull-right"
 								onClick = {this.onSubmitPress.bind(this)}>
 									Add Billing Method
-								</Button>
+								</button>
 							</div>
 						</div>
 						

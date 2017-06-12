@@ -6,7 +6,6 @@ var Link = require('react-router').Link
 import createHistory from 'history/createBrowserHistory'
 const history = createHistory()
 
-import {} from 'react-bootstrap';
 import Breadcrumbs from './Breadcrumbs'
 
 

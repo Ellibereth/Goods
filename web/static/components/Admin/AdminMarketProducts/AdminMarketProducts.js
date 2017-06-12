@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 
 import AddProductModal from './ProductAdd/AddProductModal.js'
 
-import {Button} from 'react-bootstrap'
 var Link = require('react-router').Link;
 import AdminProductPreviewRow from './AdminProductPreviewRow'
 const headers = ['Go To This Product', 'Image', 'Name', "Inventory", 'Description', 'URL', 'On Home Page', 'Is Active','Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']

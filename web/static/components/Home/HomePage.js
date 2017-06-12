@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import {} from 'react-bootstrap';
 import ProductRequestModal from '../Product/ProductRequest/ProductRequestModal.js'
 import FeedbackModal from '../CustomerService/Feedback/FeedbackModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'

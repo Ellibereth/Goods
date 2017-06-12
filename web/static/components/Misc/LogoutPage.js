@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {} from 'react-bootstrap';
 import AppStore from '../../stores/AppStore'
 import AppActions from '../../actions/AppActions'
 var browserHistory = require('react-router').browserHistory;

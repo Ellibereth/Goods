@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import StripeCheckout from 'react-stripe-checkout';
-import {} from 'react-bootstrap';
 import AppStore from '../../../stores/AppStore.js'
 
 const stripe_api_key = "pk_test_8EWYuAcsnEEfUqVe2m91mTXB"

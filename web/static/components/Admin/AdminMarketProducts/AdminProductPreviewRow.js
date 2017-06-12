@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 
 import AddProductModal from './ProductAdd/AddProductModal.js'
 import {formatDate} from '../../Input/Util'
-import {Button} from 'react-bootstrap'
 
 var Link = require('react-router').Link;
 
