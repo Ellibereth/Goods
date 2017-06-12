@@ -39,7 +39,7 @@ export default class ProductPage extends React.Component {
 			};
 		
 		return (
-				<div>
+				<div className = "body-container">
 					<TopNavBar/>
 						<div id="content" style = {content_style}>
 							{this.props.component}

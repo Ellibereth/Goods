@@ -45,6 +45,16 @@ export default class LoginForm extends React.Component {
 					swal("Sorry", data.error, "error")
 				}
 				else {
+					console.log(JSON.parse(data.user.account_id).toString())
+					var account_id = JSON.parse(data.user.account_id).toString()
+					if (account_id) {
+						ga('set', 'dimension1', account_id);
+						ga('set', 'userId', account_id);
+					}
+					else {
+						ga('set', 'dimension1', "None");
+						ga('set', 'userId', "None");
+					}
 					ga('send', 'event', {
 							eventCategory: 'Account',
 							eventAction: 'Login',

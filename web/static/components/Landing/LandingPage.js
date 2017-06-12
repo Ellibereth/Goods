@@ -1,0 +1,66 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+import {} from 'react-bootstrap';
+
+
+export default class HomePage extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+		}
+	}
+
+	
+
+	render() {
+		
+		var PHOTO_SRC = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/3.jpg"
+		var image_style = {
+			backgroundImage : "url(" + PHOTO_SRC + ")",
+			backgroundRepeat: "no-repeat",
+			backgroundSize: "100% 100%",
+			height : "1000px"
+		}
+
+
+		return (
+			<div style = {image_style}>
+				
+				<div className = "landing-card col-sm-4 col-md-4 col-lg-4 col-sm-offset-4 col-md-offset-4 col-lg-offset-4">
+						<div className = "landing-title">
+							Edgar USA
+						</div>
+						<div className = "landing-after-title-text">
+							Borrowing, redefined
+						</div>
+						<div className = "small-buffer"/>
+						<div className = "landing-middle-text">
+							Need furniture? 
+						</div>
+						
+						<div className = "landing-middle-text">
+							Buy it now, pay for it later
+						</div>
+						<div className = "top-buffer"/>
+						<div className = "landing-above-input-text">
+							Sign up to get notified when we launch
+						</div>
+						<div className = "small-buffer"/>
+						<div className = "row">
+							<div className = "col-md-8 col-lg-8 col-md-offset-2 col-lg-offset-2">
+								<div className="input-group landing-subscribe-container">
+									<input type="text" className="form-control landing-subscribe-input" placeholder="Type your email here" aria-describedby="basic-addon2"/>
+									<span className="input-group-addon landing-subscribe-button" >Notify Me!</span>
+								</div>
+							</div>
+						</div>
+						<div className = "top-buffer"/>
+						<div className = "landing-privacy-policy-notice">
+							<a href = '/privacy'>Privacy Policy </a>
+						</div>
+				</div>
+			</div>
+		);
+	}
+}

@@ -20,7 +20,7 @@
 	border-style: solid;
 }
 
-body { 
+.body-container { 
 	padding-top: 95px;
 	background-color: white;
 	font-family: Lucida Grande;
@@ -688,3 +688,50 @@ body {
 }
 
 
+.landing-card {
+	background-color: white;
+	background: rgba(255,255,255,0.85);
+	position: relative;
+	top: 15%;
+	text-align: center;
+	border-radius: 8px;
+	padding: 16px;
+
+}
+
+.landing-title {
+	font-size: 48px;
+	font-weight: bold;
+
+}
+
+.landing-after-title-text {
+	font-size: 16px;	
+	font-weight: bold;
+}
+
+.landing-middle-text {
+	font-size: 16px;
+}
+
+.landing-above-input-text {
+	font-size: 12px;
+}
+
+.landing-subscribe-container{
+	border-color : #337ab7;
+}
+
+.landing-subscribe-input:focus {
+	border-color: #337ab7 !important;
+}
+
+.landing-subscribe-input{
+	border-color: #337ab7 !important;
+}
+
+.landing-subscribe-button{
+	border-color: #337ab7 !important;
+	background-color : #337ab7 !important;
+	color: white;
+}
