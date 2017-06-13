@@ -112,6 +112,16 @@ Here are two links that might help if you're stuck
 https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 https://stackoverflow.com/questions/18264621/how-do-i-push-different-branches-to-different-heroku-apps
 
+Lastly, each environment has slightly different config variables 
+
+- DATABASE_URI (Database URI)
+- ENVIRONMENT (DEVELOPMENT, STAGING, PRODUCTION)
+
+These can be accessed in main.py through 
+
+```
+os.environ.get(FIELD_NAME)
+```
 
 ## Webpack notes for development
 ```
