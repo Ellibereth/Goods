@@ -81,10 +81,10 @@ git remote add stage-heroku https://git.heroku.com/edgarusa-testserver.git
 git remote add prod-heroku https://git.heroku.com/edgarusa.git
 ```
 
-Then if you want to push your current branch to any of these (although I recommend pushing mostly to dev first, then merge), use the following command where [ENV_TYPE] is one of dev,stage,prod.
+Then if you want to push your current branch to any of these (although I recommend pushing mostly to dev first, then merge), use the following command where [ENV] is one of dev,stage,prod.
 
 ```
-git push [ENV_TYPE]-heroku
+git push [ENV]-heroku
 ```
 
 ## Branching
@@ -95,10 +95,19 @@ git checkout -b [BRANCH_NAME] # creates a new branch
 # make changes to files...
 git add -A  # add files
 git commit -m  "COMMIT MESSAGE" # commit files
-
+git checkout master # returns to master branch
+git merge [BRANCH_NAME] # merges your branch with master
+git branch -d [BRANCH_NAME] # deletes your old branch
 ```
 
-Here are two links that will help
+
+If you want to push your branch to heroku then use the following 
+
+```
+git push [ENV]-heroku [BRANCH_NAME]:master
+```
+
+Here are two links that might help if you're stuck
 
 https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 https://stackoverflow.com/questions/18264621/how-do-i-push-different-branches-to-different-heroku-apps
