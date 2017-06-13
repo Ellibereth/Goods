@@ -7,7 +7,7 @@ var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
-// import HomePage from './Home/HomePage.js'
+import HomePage from './Home/HomePage.js'
 // import AdminLoginPage from './Admin/AdminLoginPage.js'
 // import PageNotFound from './Misc/PageNotFound.js'
 // import EmailConfirmationPage from './Account/Confirmation/EmailConfirmationPage.js'
@@ -162,7 +162,7 @@ ReactDOM.render(
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
 			<Route path = "thanks" component = {ThanksPage}/>
 			<Route path = "landing" component = {LandingPage}/> */}
-			<Route path= "*" component={LandingPage} />
+			<Route path= "*" component={HomePage} />
 		</Route>
 	</Router>, 
 document.getElementById('app'));

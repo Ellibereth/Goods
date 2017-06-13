@@ -31,13 +31,13 @@ secret_key = secret_key.decode('utf-8')
 app.config['SECRET_KEY'] = secret_key
 os.environ['SECRET_KEY'] = secret_key
 
-print(os.environ.get("ENVIRONMENT"))
+DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
 
-## switch these when on dev server and production
-# production database
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
-# dev server database
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://skivafwmffefsc:0b550d51de8c629c24a4845dbbfd16ec283214c9452e0755991304481498c6e4@ec2-54-235-72-121.compute-1.amazonaws.com:5432/d57p2u2b5qvp4i"
+if DATABASE_URI == None:
+	# if local test we use the dev server as a test
+	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://srwigmxvvfclho:8c2a2e178f3f7729ed6d0f57e33a29938e2011366f27978f408a2293245e835b@ec2-50-19-83-146.compute-1.amazonaws.com:5432/ddfifja29586"
+else:
+	app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
