@@ -35,7 +35,7 @@ export default class HomePage extends React.Component {
 						</div>
 						<div className = "small-buffer"/>
 						<div className = "landing-middle-text">
-							Need furniture? 
+							Need stuff? 
 						</div>
 						
 						<div className = "landing-middle-text">
