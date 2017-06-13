@@ -32,11 +32,10 @@ app.config['SECRET_KEY'] = secret_key
 os.environ['SECRET_KEY'] = secret_key
 
 DATABASE_URI = os.environ.get('DATABASE_URL')
-print(DATABASE_URI)
 
 if DATABASE_URI == None:
-	# if local test we use the dev server as a test
-	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://skivafwmffefsc:0b550d51de8c629c24a4845dbbfd16ec283214c9452e0755991304481498c6e4@ec2-54-235-72-121.compute-1.amazonaws.com:5432/d57p2u2b5qvp4i"
+	# if testing locally we use the dev DB
+	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://srwigmxvvfclho:8c2a2e178f3f7729ed6d0f57e33a29938e2011366f27978f408a2293245e835b@ec2-50-19-83-146.compute-1.amazonaws.com:5432/ddfifja29586"
 else:
 	app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
