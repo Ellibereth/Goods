@@ -13,13 +13,6 @@ from flask_compress import Compress
 from base64 import b64encode
 from api.security.tracking import HttpRequest
 
-# logging speed of requests
-# log_dir = "logs/"
-# logging.basicConfig(filename=(log_dir + 'request_speed.log'), 
-# 	level=logging.DEBUG, format='%(message)s')
-
-
-
 # initialize app
 template_dir = os.path.abspath('./web/templates')
 static_dir = os.path.abspath('./web/static')
