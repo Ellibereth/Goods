@@ -59,7 +59,11 @@ export default class BillingPreview extends React.Component {
 					this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
-				console.log("error")
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'deleteUserCreditCard',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

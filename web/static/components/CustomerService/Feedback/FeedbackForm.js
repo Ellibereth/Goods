@@ -60,7 +60,10 @@ export default class ProductRequestForm extends React.Component {
 
 				}.bind(this),
 				error : function(){
-					console.log("error")
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'addFeedback',
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

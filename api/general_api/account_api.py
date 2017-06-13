@@ -175,9 +175,9 @@ def getUserCards(this_user):
 	cards = this_user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Cards : cards})
 
-@account_api.route('/addUserAddresses', methods = ['POST'])
+@account_api.route('/addUserAddress', methods = ['POST'])
 @decorators.check_user_jwt
-def addUserAddresses(this_user):
+def addUserAddress(this_user):
 	name = request.json.get(Labels.AddressName)
 	description = request.json.get(Labels.Description)
 	address_city = request.json.get(Labels.AddressCity)

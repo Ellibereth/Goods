@@ -84,7 +84,11 @@ export default class ChangePasswordForm extends React.Component {
 					}
 				}.bind(this),
 				error : function(){
-					console.log("error")
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'changePassword',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
@@ -117,7 +121,11 @@ export default class ChangePasswordForm extends React.Component {
 					}
 				}.bind(this),
 				error : function(){
-					console.log("error")
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'checkPassword',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

@@ -85,6 +85,11 @@ export default class ProductTemplate2 extends React.Component {
 						}		
 					}
 					else {
+						ga('send', 'event', {
+						    eventCategory: ' server-error',
+						    eventAction: 'getUserInfo',
+						    eventLabel: AppStore.getCurrentUser().email
+						});
 						console.log(data.error)
 					}
 				$('#product-page-container').removeClass("faded");

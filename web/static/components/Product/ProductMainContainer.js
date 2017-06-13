@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import ProductTemplates from './ProductTemplates/ProductTemplates'
 import StoryTemplates from './StoryTemplates/StoryTemplates'
-
 import PageContainer from '../Misc/PageContainer'
 import Spinner from '../Misc/Spinner'
 
@@ -54,7 +53,10 @@ export default class ProductMainContainer extends React.Component {
 			}
 		  }.bind(this),
 		  error : function(){
-			console.log("error")
+			 ga('send', 'event', {
+				eventCategory: ' server-error',
+				eventAction: 'getMarketProductInfo'
+			});
 		  },
 		  dataType: "json",
 		  contentType : "application/json; charset=utf-8"

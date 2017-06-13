@@ -61,7 +61,11 @@ export default class AddToCartButton extends React.Component {
 					}
 			}.bind(this),
 			error : function(){
-				console.log("error")
+				ga('send', 'event', {
+				    eventCategory: ' server-error',
+				    eventAction: 'addItemToCart',
+				    eventLabel: AppStore.getCurrentUser().email
+				});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

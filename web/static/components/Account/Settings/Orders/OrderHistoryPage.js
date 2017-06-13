@@ -28,7 +28,11 @@ export default class OrderHistoryPage extends React.Component {
 			this.setState({orders: data.orders, is_loading : false})
 			}.bind(this),
 			error : function(){
-			console.log("error")
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'getUserOrders',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

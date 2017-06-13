@@ -51,7 +51,11 @@ export default class ViewCartPage extends React.Component {
 				$('#view-cart-container').removeClass("faded");
 			}.bind(this),
 			error : function(){
-				console.log("an internal server error")
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'getUserInfo',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
@@ -67,7 +71,11 @@ export default class ViewCartPage extends React.Component {
 			url: "/readCartMessage",
 			data: form_data,
 			error : function(){
-				console.log("an internal server error")
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'readCartMessage',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

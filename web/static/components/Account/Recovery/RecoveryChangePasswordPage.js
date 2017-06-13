@@ -52,7 +52,10 @@ export default class RecoveryChangePasswordPage extends React.Component {
 				}
 			}.bind(this),
 			error : function(){
-				console.log("error")
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'checkRecoveryInformation'
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
@@ -94,7 +97,11 @@ export default class RecoveryChangePasswordPage extends React.Component {
 					this.setState({is_loading : false, disabled : false})
 				}.bind(this),
 				error : function(){
-					console.log("error")
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'recoverySetPassword',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

@@ -97,7 +97,11 @@ export default class EditAddressForm extends React.Component {
 
 			}.bind(this),
 			error : function(){
-
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'editUserAddress',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

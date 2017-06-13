@@ -160,7 +160,11 @@ export default class CheckoutPage extends React.Component {
 					}
 				}.bind(this),
 				error : function(){
-					console.log("an internal server error")
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'refreshCheckoutInfo',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
@@ -293,6 +297,11 @@ export default class CheckoutPage extends React.Component {
 				this.setState({is_loading : false})
 			}.bind(this),
 			error : function(){
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'checkoutCart',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 				swal("We're sorry!", "Please contact customer service to discuss what you tried to do.","error")
 				this.setState({is_loading : false})
 				this.setLoading(false)

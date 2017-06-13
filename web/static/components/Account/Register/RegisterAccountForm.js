@@ -73,7 +73,7 @@ export default class RegisterAccountForm extends React.Component {
 						})
 					}
 					else {
-
+						ga('send', 'pageview', 'register-complete');
 						AppActions.addCurrentUser(data.user, data.jwt)
 						swal({
 							title: "Thank you", 
@@ -90,6 +90,10 @@ export default class RegisterAccountForm extends React.Component {
 					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'registerUserAccount'
+					});
 					this.props.setLoading(false)
 					this.setState({disabled : false})
 				}.bind(this),

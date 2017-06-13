@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 
-
 var base_url = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
 const image_names = ["1.jpg","2.jpg","3.jpg"]
 
@@ -26,7 +25,10 @@ export default class HomePageImageCarousel extends React.Component {
 				}
 			}.bind(this),
 			error : function(){
-				console.log("error")
+				ga('send', 'event', {
+					eventCategory: ' server-error',
+					eventAction: 'getPublicHomeImages',
+				});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

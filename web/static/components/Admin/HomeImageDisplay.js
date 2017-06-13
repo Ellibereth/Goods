@@ -67,7 +67,10 @@ export default class HomeImageDisplay extends React.Component {
 				}
 			}.bind(this),
 			error : function(){
-				console.log("error")
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'updateHomeImage',
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

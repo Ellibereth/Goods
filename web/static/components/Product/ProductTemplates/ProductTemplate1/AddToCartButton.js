@@ -44,6 +44,7 @@ export default class AddToCartButton extends React.Component {
 
 
 	addToCart(){
+		ga('send', 'pageview', 'add-to-cart-button-pressed');
 		if (this.props.product.has_variants && !this.state.variant) {
 			swal({
 				title : "You must select a type.",
@@ -100,10 +101,15 @@ export default class AddToCartButton extends React.Component {
 						
 				}.bind(this),
 				error : function(){
-					swal ({
-						title : "Something went wrong",
+					swal({
+						title : "Something went wrong, try again",
 						type : "error"
 					})
+					ga('send', 'event', {
+						eventCategory: 'server-error',
+						eventAction: 'add-to-cart',
+						eventLabel : AppStore.getCurrentUser().email
+					});
 					this.props.setLoading(false)
 					this.setState({buy_disabled : false})
 				}.bind(this),

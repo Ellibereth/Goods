@@ -65,7 +65,7 @@ export default class CheckoutAddAddress extends React.Component {
 		var form_data = JSON.stringify(data)
 		$.ajax({
 			type: "POST",
-			url: "/addUserAddresses",
+			url: "/addUserAddress",
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
@@ -85,7 +85,11 @@ export default class CheckoutAddAddress extends React.Component {
 
 			}.bind(this),
 			error : function(){
-
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'addUserAddress',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

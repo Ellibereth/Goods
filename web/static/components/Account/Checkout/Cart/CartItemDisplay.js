@@ -33,6 +33,11 @@ export default class CartItemDisplay extends React.Component {
 					
 				}.bind(this),
 				error : function(){
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'updateCartQuantity',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 					swal("an internal server error")
 				},
 				dataType: "json",

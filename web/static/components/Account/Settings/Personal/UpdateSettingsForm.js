@@ -101,7 +101,11 @@ export default class SettingsFormPersonal extends React.Component {
 					}
 				}.bind(this),
 				error : function(){
-					console.log("error")
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'updateSettings',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
@@ -132,7 +136,11 @@ export default class SettingsFormPersonal extends React.Component {
 					}
 				}.bind(this),
 				error : function(){
-					
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'checkPassword',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

@@ -61,7 +61,10 @@ export default class RecoveryPage extends React.Component {
 					this.setState({disabled: false, is_loading : false})
 				}.bind(this),
 				error : function(){
-					console.log("error")
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'setRecoveryPin'
+					});
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

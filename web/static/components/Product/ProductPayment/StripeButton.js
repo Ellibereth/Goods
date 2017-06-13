@@ -36,7 +36,11 @@ export default class StripeButton extends React.Component {
 		  success: function(data) {
 		  },
 		  error : function(){
-			console.log("error")
+			ga('send', 'event', {
+				eventCategory: ' server-error',
+				eventAction: 'acceptStripePayment',
+				eventLabel: AppStore.getCurrentUser().email
+			});
 		  },
 		  dataType: "json",
 		  contentType : "application/json; charset=utf-8"

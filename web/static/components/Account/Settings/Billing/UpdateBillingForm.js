@@ -115,6 +115,7 @@ export default class UpdateBillingForm extends React.Component {
 									this.props.setLoading(false)
 								}.bind(this),
 								error : function(){
+
 								},
 								dataType: "json",
 								contentType : "application/json; charset=utf-8"
@@ -124,6 +125,11 @@ export default class UpdateBillingForm extends React.Component {
 					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'addCreditCard',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 					this.props.setLoading(false)
 					setTimeout(function() {
 						swal({

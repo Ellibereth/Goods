@@ -35,7 +35,11 @@ export default class HomePageMainContainer extends React.Component {
 			}
 		  }.bind(this),
 		  error : function(){
-			console.log("error")
+			ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'getHomePageProducts',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 		  },
 		  dataType: "json",
 		  contentType : "application/json; charset=utf-8"

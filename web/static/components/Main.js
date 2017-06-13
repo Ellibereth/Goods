@@ -7,89 +7,94 @@ var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
-// import HomePage from './Home/HomePage.js'
-// import AdminLoginPage from './Admin/AdminLoginPage.js'
-// import PageNotFound from './Misc/PageNotFound.js'
-// import EmailConfirmationPage from './Account/Confirmation/EmailConfirmationPage.js'
-// import RequestConfirmationPage from './Account/Confirmation/RequestConfirmationPage.js'
-// import TermsOfServicePage from './Misc/TermsOfServicePage.js'
-// import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
-// import ProductPage from './Product/ProductPage.js'
-// import RegisterPage from './Account/Register/RegisterPage.js'
-// import LoginPage from './Account/Login/LoginPage.js'
-// import SettingsPage from './Account/Settings/SettingsPage.js'
-// import UpdateSettingsPage from './Account/Settings/Personal/UpdateSettingsPage.js'
-// import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
-// import ChangePasswordPage from './Account/Settings/Personal/ChangePasswordPage.js'
-// import LogoutPage from './Misc/LogoutPage.js'
-// import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
-// import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
-// import AdminToolsPage from './Admin/AdminToolsPage.js'
-// import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
-// import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
-// import ViewCartPage from './Account/Checkout/ViewCartPage.js'
-// import CheckoutPage from './Account/Checkout/CheckoutPage.js'
-// import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
-// import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
-// import SearchPage from './Search/SearchPage'
-// import SupportPage from './CustomerService/SupportPage'
-// import RecoveryPage from './Account/Recovery/RecoveryPage'
-// import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
+import HomePage from './Home/HomePage.js'
+import AdminLoginPage from './Admin/AdminLoginPage.js'
+import PageNotFound from './Misc/PageNotFound.js'
+import EmailConfirmationPage from './Account/Confirmation/EmailConfirmationPage.js'
+import RequestConfirmationPage from './Account/Confirmation/RequestConfirmationPage.js'
+import TermsOfServicePage from './Misc/TermsOfServicePage.js'
+import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
+import ProductPage from './Product/ProductPage.js'
+import RegisterPage from './Account/Register/RegisterPage.js'
+import LoginPage from './Account/Login/LoginPage.js'
+import SettingsPage from './Account/Settings/SettingsPage.js'
+import UpdateSettingsPage from './Account/Settings/Personal/UpdateSettingsPage.js'
+import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
+import ChangePasswordPage from './Account/Settings/Personal/ChangePasswordPage.js'
+import LogoutPage from './Misc/LogoutPage.js'
+import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
+import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
+import AdminToolsPage from './Admin/AdminToolsPage.js'
+import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
+import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
+import ViewCartPage from './Account/Checkout/ViewCartPage.js'
+import CheckoutPage from './Account/Checkout/CheckoutPage.js'
+import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
+import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
+import SearchPage from './Search/SearchPage'
+import SupportPage from './CustomerService/SupportPage'
+import RecoveryPage from './Account/Recovery/RecoveryPage'
+import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
 // import ThanksPage from './Misc/ThanksPage'
 import LandingPage from './Landing/LandingPage'
 
 export default class Main extends React.Component {
 	
 	componentDidMount() {
-		// this.getUserInfo()
+		this.getUserInfo()
 	}
 
-	// getUserInfo(){
-	// 	var form_data =  JSON.stringify({
-	// 		jwt : localStorage.jwt
-	// 	})
-	// 	$.ajax({
-	// 		type: "POST",
-	// 		url: "/getUserInfo",
-	// 		data: form_data,
-	// 		success: function(data) {
-	// 			if (data.success) {
-	// 				AppActions.updateCurrentUser(data.user)
-	// 				if (data.adjusted_items) {
+	getUserInfo(){
+		var form_data =  JSON.stringify({
+			jwt : localStorage.jwt
+		})
+		$.ajax({
+			type: "POST",
+			url: "/getUserInfo",
+			data: form_data,
+			success: function(data) {
+				if (data.success) {
+					AppActions.updateCurrentUser(data.user)
+					if (data.adjusted_items) {
 						
-	// 					var message = ""
-	// 					data.adjusted_items.map((item) => {
-	// 						if (!item.num_items){
-	// 							message = message + "Unfortunately " + item.name + " has been removed from your cart \n"
-	// 						}
-	// 						else {
-	// 							message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
-	// 						}
-	// 					})
-	// 					swal({
-	// 						title: "Some items in your cart have been modified",
-	// 						text: message,
-	// 						type : "info",
-	// 						showCancelButton: false,
-	// 						confirmButtonText: "View Changes",
-	// 						cancelButtonText: "Keep Shopping",
-	// 						closeOnConfirm: true,
-	// 						closeOnCancel: true
-	// 					},
-	// 					function (isConfirm) {
-	// 						window.location = '/myCart'
-	// 					}.bind(this))
-	// 				}
+						var message = ""
+						data.adjusted_items.map((item) => {
+							if (!item.num_items){
+								message = message + "Unfortunately " + item.name + " has been removed from your cart \n"
+							}
+							else {
+								message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
+							}
+						})
+						swal({
+							title: "Some items in your cart have been modified",
+							text: message,
+							type : "info",
+							showCancelButton: false,
+							confirmButtonText: "View Changes",
+							cancelButtonText: "Keep Shopping",
+							closeOnConfirm: true,
+							closeOnCancel: true
+						},
+						function (isConfirm) {
+							window.location = '/myCart'
+						}.bind(this))
+					}
 					
-	// 			}
+				}
 
-	// 		}.bind(this),
-	// 		error : function(){
-	// 		},
-	// 		dataType: "json",
-	// 		contentType : "application/json; charset=utf-8"
-	// 	});
-	// }
+			}.bind(this),
+			error : function(){
+				ga('send', 'event', {
+					eventCategory: ' server-error',
+					eventAction: 'getUserInfo',
+					eventLabel: AppStore.getCurrentUser().email
+				});
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
+	}
 
 	render() {
 		return (
@@ -133,8 +138,8 @@ const checkAdmin = (nextState, replace) => {
 ReactDOM.render(    
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
-			<IndexRoute component={LandingPage} />
-			{/* <Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
+			<IndexRoute component={HomePage} />
+			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
@@ -160,8 +165,8 @@ ReactDOM.render(
 			<Route path = "support" component = {SupportPage}/>
 			<Route path = "recoverAccount" component = {RecoveryPage}/>
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
-			<Route path = "thanks" component = {ThanksPage}/>
-			<Route path = "landing" component = {LandingPage}/> */}
+			{/* <Route path = "thanks" component = {ThanksPage}/> */}
+			<Route path = "landing" component = {LandingPage}/>
 			<Route path= "*" component={LandingPage} />
 		</Route>
 	</Router>, 

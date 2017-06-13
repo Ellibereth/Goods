@@ -48,7 +48,7 @@ export default class UpdateShippingForm extends React.Component {
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
-				url: "/addUserAddresses",
+				url: "/addUserAddress",
 				data: form_data,
 				success: function(data) {
 					this.props.setLoading(false)
@@ -100,6 +100,11 @@ export default class UpdateShippingForm extends React.Component {
 					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
+					ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'addUserAddress',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 					this.props.setLoading(false)
 					setTimeout(function() {
 						swal({

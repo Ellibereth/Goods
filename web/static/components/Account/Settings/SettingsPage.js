@@ -48,7 +48,11 @@ export default class SettingsPage extends React.Component {
 				this.setState({is_loading : false})
 			}.bind(this),
 			error : function(){
-				console.log("an internal server error")
+				ga('send', 'event', {
+						eventCategory: ' server-error',
+						eventAction: 'getUserInfo',
+						eventLabel: AppStore.getCurrentUser().email
+					});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
