@@ -34,7 +34,7 @@ obj/
 Ankh.NoLoad
 node_modules/
 *.csv
-
+*.env
 #Tooling
 _ReSharper*/
 *.resharper

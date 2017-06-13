@@ -33,6 +33,7 @@ obj/
 [Rr]elease*/
 Ankh.NoLoad
 node_modules/
+*.csv
 
 #Tooling
 _ReSharper*/

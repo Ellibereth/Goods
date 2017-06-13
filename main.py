@@ -19,6 +19,7 @@ from api.security.tracking import HttpRequest
 # 	level=logging.DEBUG, format='%(message)s')
 
 
+
 # initialize app
 template_dir = os.path.abspath('./web/templates')
 static_dir = os.path.abspath('./web/static')
@@ -29,8 +30,8 @@ secret_key = b64encode(b'L=\xbf=_\xa5P \xc5+\x9b3\xa4\xfdZ\x8fN\xc6\xd5\xb7/\x0f
 secret_key = secret_key.decode('utf-8')
 app.config['SECRET_KEY'] = secret_key
 os.environ['SECRET_KEY'] = secret_key
-os.environ['SERVER_ENVIRONMENT'] = "PROD"
 
+print(os.environ.get("ENVIRONMENT"))
 
 ## switch these when on dev server and production
 # production database
