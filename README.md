@@ -64,14 +64,44 @@ https://javascriptobfuscator.com/
 ```
 
 
-## Managing Environments
-This project uses Heroku's pipeline to manage environments. We have the following
+## Environments
+This project uses Heroku's pipeline to manage environments. We have the following. Note that the Heroku CLI Name is just the name I use to refer to it in the Heroku terminal. I'd advise you do the same for consistency.
 
-Type | Heroku App Name | Heroku CLI Name (what I call it)
+Type | Heroku App Name | Heroku CLI Name
 ------------ | ------------ | ------------
 Development | edgarusa-devgeniy | dev-heroku
 Staging | edgarusa-testserver | stage-heroku
 Production | edgarusa | prod-heroku
+
+To set up the Heroku as remotes run the following lines of code 
+
+```
+git remote add dev-heroku https://git.heroku.com/edgarusa-devgeniy.git
+git remote add stage-heroku https://git.heroku.com/edgarusa-testserver.git
+git remote add prod-heroku https://git.heroku.com/edgarusa.git
+```
+
+Then if you want to push your current branch to any of these (although I recommend pushing mostly to dev first, then merge), use the following command where [ENV_TYPE] is one of dev,stage,prod.
+
+```
+git push [ENV_TYPE]-heroku
+```
+
+## Branching
+Here is a guide to branching. Starting from the master branch do the following
+
+```
+git checkout -b [BRANCH_NAME] # creates a new branch 
+# make changes to files...
+git add -A  # add files
+git commit -m  "COMMIT MESSAGE" # commit files
+
+```
+
+Here are two links that will help
+
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
+https://stackoverflow.com/questions/18264621/how-do-i-push-different-branches-to-different-heroku-apps
 
 
 ## Webpack notes for development
