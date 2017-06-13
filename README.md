@@ -88,7 +88,7 @@ git push [ENV]-heroku
 ```
 
 ## Branching
-Here is a guide to branching. Starting from the master branch do the following
+Here is a guide to local branching. Starting from the master branch do the following
 
 ```
 git checkout -b [BRANCH_NAME] # creates a new branch 
@@ -100,11 +100,24 @@ git merge [BRANCH_NAME] # merges your branch with master
 git branch -d [BRANCH_NAME] # deletes your old branch
 ```
 
-
 If you want to push your branch to heroku then use the following 
 
 ```
 git push [ENV]-heroku [BRANCH_NAME]:master
+```
+
+To create a remote branch you need to do the following. This shouldn't happen often but we can if we need to. Then other's can access your remote branch too. Use this for longer term changes, especially when prod,staging, dev will be very different.
+
+```
+git checkout -b [BRANCH_NAME] # creates a new branch 
+# make changes to files...
+git add -A  # add files
+git commit -m  "COMMIT MESSAGE" # commit files
+# make this branch remote
+git remote add origin https://github.com/darekj28/Goods/
+git push --set-upstream origin [BRANCH_NAME]
+git checkout master # returns to master branch
+git push [ENV]-heroku [ENV]:master # push remote branch to Heroku
 ```
 
 Here are two links that might help if you're stuck
