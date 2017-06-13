@@ -5,7 +5,7 @@ var BUILD_DIR = path.resolve(__dirname, 'static');
 var APP_DIR = path.resolve(__dirname, 'static/components');
 
 var config = {
-	devtool: 'source-map',
+	devtool: 'cheap-module-source-map',
 	entry: APP_DIR + '/Main.js',
 	output: {
 	path: BUILD_DIR,
@@ -20,7 +20,7 @@ var config = {
 			loader: 'babel-loader',
 			exclude: /node_modules/,
 			query: {
-			  presets: ['react', 'es2015']
+			  presets: ['react','es2015']
 		}
 	  }
 	]
@@ -42,13 +42,15 @@ var config = {
 		}
 	}),
 	new webpack.optimize.UglifyJsPlugin({
-		compress: { warnings: false },
+		compressor: { warnings: false },
 		comments: false,
 		sourceMap: true,
-		minimize: true
+		minimize: true,
+		include: /\.min\.js$/,
 	}),
     new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
-    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 15})
+    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 15}),
+     new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
   ],
 
 };

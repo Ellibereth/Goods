@@ -29,13 +29,14 @@ secret_key = b64encode(b'L=\xbf=_\xa5P \xc5+\x9b3\xa4\xfdZ\x8fN\xc6\xd5\xb7/\x0f
 secret_key = secret_key.decode('utf-8')
 app.config['SECRET_KEY'] = secret_key
 os.environ['SECRET_KEY'] = secret_key
+os.environ['SERVER_ENVIRONMENT'] = "PROD"
 
 
 ## switch these when on dev server and production
-# production database
-# app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
+production database
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://uc7qa98kmmve1o:p89beda55b5c58f71842847b0d4418111f3e3ba233cf3dbede57a405e7b0dc630@ec2-34-207-18-104.compute-1.amazonaws.com:5432/der386f4nnibg1"
 # dev server database
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://skivafwmffefsc:0b550d51de8c629c24a4845dbbfd16ec283214c9452e0755991304481498c6e4@ec2-54-235-72-121.compute-1.amazonaws.com:5432/d57p2u2b5qvp4i"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "postgres+psycopg2://skivafwmffefsc:0b550d51de8c629c24a4845dbbfd16ec283214c9452e0755991304481498c6e4@ec2-54-235-72-121.compute-1.amazonaws.com:5432/d57p2u2b5qvp4i"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 

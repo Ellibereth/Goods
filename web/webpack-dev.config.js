@@ -7,9 +7,9 @@ var APP_DIR = path.resolve(__dirname, 'static/components');
 
 var config = {
     cache : true,
-    // devtool: "eval", //or cheap-module-eval-source-map,
-  entry: APP_DIR + '/Main.js',
-  output: {
+    devtool: "eval", 
+    entry: APP_DIR + '/Main.js',
+    output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
