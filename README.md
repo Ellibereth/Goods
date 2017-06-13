@@ -10,7 +10,6 @@ Python Dependencies - './requirements.txt' <br/>
 React Version - 15.5.4 <br/>
 Webpack Version - 2.4.1 https://webpack.github.io/ <br/>
 
-
 ## HTTP Caching
 Images are stored on S3. Uses 2 week expire caching. <br/>
 Plugins like Bootstrap are cached with 2 day expirations.
@@ -33,9 +32,6 @@ sh setup
 ```
 
 This will install reactjs, install react dependencies, and python dependencies
-
-
-
 
 ## Testing Locally
 Run the following commands in linux 
@@ -68,6 +64,14 @@ https://javascriptobfuscator.com/
 ```
 
 
+## Managing Environments
+This project uses Heroku's pipeline to manage environments. We have the following
+
+Type | Heroku App Name | Heroku CLI Name (what I call it)
+------------ | ------------ | ------------
+Development | edgarusa-devgeniy | dev-heroku
+Staging | edgarusa-testserver | stage-heroku
+Production | edgarusa | prod-heroku
 
 
 ## Webpack notes for development
