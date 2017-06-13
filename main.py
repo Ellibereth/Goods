@@ -28,8 +28,7 @@ DATABASE_URI = os.environ.get('DATABASE_URL')
 
 if DATABASE_URI == None:
 	# if testing locally we use the dev DB
-	# app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://srwigmxvvfclho:8c2a2e178f3f7729ed6d0f57e33a29938e2011366f27978f408a2293245e835b@ec2-50-19-83-146.compute-1.amazonaws.com:5432/ddfifja29586"
-	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://skivafwmffefsc:0b550d51de8c629c24a4845dbbfd16ec283214c9452e0755991304481498c6e4@ec2-54-235-72-121.compute-1.amazonaws.com:5432/d57p2u2b5qvp4i"
+	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://srwigmxvvfclho:8c2a2e178f3f7729ed6d0f57e33a29938e2011366f27978f408a2293245e835b@ec2-50-19-83-146.compute-1.amazonaws.com:5432/ddfifja29586"
 
 else:
 	app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
@@ -108,9 +107,10 @@ def before_request():
 @app.teardown_request
 def teardown_request(exception=None):
 	time_spent = time.time() - g.start
-	HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
-	
-
+	path_splits = request.path.split('/')
+	# only record the request if it's non-static
+	if len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
+		HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
 
 
 @app.route('/static/<path:path>', methods = ['GET'])
