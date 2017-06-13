@@ -31,7 +31,7 @@ secret_key = secret_key.decode('utf-8')
 app.config['SECRET_KEY'] = secret_key
 os.environ['SECRET_KEY'] = secret_key
 
-DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+DATABASE_URI = os.environ.get('DATABASE_URL')
 print(DATABASE_URI)
 
 if DATABASE_URI == None:
