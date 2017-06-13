@@ -32,6 +32,7 @@ app.config['SECRET_KEY'] = secret_key
 os.environ['SECRET_KEY'] = secret_key
 
 DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+print(DATABASE_URI)
 
 if DATABASE_URI == None:
 	# if local test we use the dev server as a test
