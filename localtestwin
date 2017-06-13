@@ -1,4 +1,4 @@
 cd web
 sh bundle
 cd ..
-python main_test.py
+python main.py
