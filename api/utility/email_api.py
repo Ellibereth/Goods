@@ -12,13 +12,17 @@ from api.utility.labels import CartLabels as Labels
 
 from api.models.cart import Cart
 from api.utility.labels import ErrorLabels
-
+import os
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 ADMIN_RECIPIENTS = ['eli@edgarusa.com', 'darek@manaweb.com', 'darek@edgarusa.com']
 
 
-URL = "https://edgarusa-testserver.herokuapp.com/"
+URL = os.environ.get('HEROKU_APP_URL')
+# in this case Darek is using local host to test
+if URL == None:
+	URL = "0.0.0.0:5000/"
+
 ## informs darek@manaweb.com of the incoming request 
 def sendRequestEmail(request):
 	sender = 'darek@manaweb.com'

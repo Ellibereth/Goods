@@ -3,8 +3,12 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from api.utility.labels import CartLabels as Labels
 import datetime
+import os
 
-URL = "https://edgarusa-testserver.herokuapp.com/"
+URL = os.environ.get('HEROKU_APP_URL')
+# in this use the dev environment
+if URL == None:
+	URL = 'https://edgarusa-devgeniy.herokuapp.com/'
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
