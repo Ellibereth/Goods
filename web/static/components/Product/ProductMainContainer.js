@@ -41,31 +41,40 @@ export default class ProductMainContainer extends React.Component {
 						invalid_product : false,
 						product: data.product,
 						is_loading : false
-		 			})
+					})
 				}
 				else if (this.props.admin_view) {
 					this.setState({
 						invalid_product : false,
 						product: data.product,
 						is_loading : false
-		 			})
+					})
 				}
 			}
-		  }.bind(this),
-		  error : function(){
-			 ga('send', 'event', {
+		}.bind(this),
+		error : function(){
+			ga('send', 'event', {
 				eventCategory: ' server-error',
 				eventAction: 'getMarketProductInfo'
 			});
-		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
+		},
+		dataType: "json",
+		contentType : "application/json; charset=utf-8"
 		});
 	}
 
 
 	componentDidMount(){
-		this.getProductInformation.bind(this)()	
+		this.getProductInformation.bind(this)()
+		setTimeout(function () {
+			ga('ec:addProduct', {
+				'id': this.state.product.product_id.toString(),
+				'name': this.state.product.name,
+				'manufacturer' : this.state.product.manufacturer,
+				'price' : this.state.product.price.toString(),
+			});
+			ga('ec:setAction', 'detail');	
+		}.bind(this), 1000)
 		
 	}
 
@@ -94,7 +103,7 @@ export default class ProductMainContainer extends React.Component {
 				</div>
 				<StoryTemplates 
 					product = {this.state.product}
-				 	/>
+					/>
 			</div>
 		)
 		

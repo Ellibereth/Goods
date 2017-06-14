@@ -171,10 +171,11 @@ export default class CheckoutPage extends React.Component {
 			});
 	}
 
-	componentWillMount(){
+	componentDidMount(){
 		var user = AppStore.getCurrentUser()
 		if (user.cards.length == 0 && user.addresses.length == 0){
 			this.refreshCheckoutInformation.bind(this)()
+			this.sendToGoogleAnalytics.bind(this)()
 		}
 		else{
 			this.setState({
@@ -188,7 +189,25 @@ export default class CheckoutPage extends React.Component {
 				},
 				this.initializeInformation.bind(this)
 			)
+			this.sendToGoogleAnalytics.bind(this)()
 		}
+	}
+
+	sendToGoogleAnalytics(){
+		this.state.items.map((item) => {
+			ga('ec:addProduct', {
+				'id': item.product_id.toString(),
+				'name': item.name,
+				'brand': item.manufacuturer,
+				'variant' : item.variant_type ? item.variant_type : "none",
+				'price': item.price.toString(),
+				'quantity': item.num_items
+			});
+		})
+
+		ga('ec:setAction','Checkout', {
+			'step': 1,            // A value of 1 indicates this action is first checkout step.
+		});
 	}
 
 	initializeInformation(){
@@ -286,6 +305,27 @@ export default class CheckoutPage extends React.Component {
 						swal("Thank you!", "You will receive a confirmation email for this purchase. \
 							This will take the user to a checkout page soon. Will have to write that huh?"
 							, "success")
+						
+						this.state.items.map((item) => {
+							ga('ec:addProduct', {
+								'id': item.product_id.toString(),
+								'name': item.name,
+								'variant' : item.variant_type ? item.variant_type : "none",
+								'brand': item.manufacuturer,
+								'price': item.price.toString(),
+								'quantity': item.num_items
+							});
+						})
+
+						var order = data.order
+						// Transaction level information is provided via an actionFieldObject.
+						ga('ec:setAction', 'purchase', {
+							'id': order.order_id.toString(),
+							'affiliation': 'Edgar USA',
+							'revenue': order.total_price.toString(),
+							'tax': order.sales_tax_price.toString(),
+							'shipping': order.order_shipping.toString(),
+						});
 					}
 					setTimeout(function() {
 						window.location = `/checkoutConfirmed`

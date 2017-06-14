@@ -47,10 +47,7 @@ class Checkout:
 
 		#lastly send the email confirmation (or try to)
 		send_email_response = Checkout.checkoutSendEmailConfirmation(this_user, this_cart, this_order, address)
-
 		this_cart.clearCart()
-
-		
 		return send_email_response
 			
 
@@ -89,7 +86,8 @@ class Checkout:
 			email_api.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
 			return {
 					Labels.Success : True,
-					Labels.User : this_user.toPublicDict()
+					Labels.User : this_user.toPublicDict(),
+					Labels.Order : this_order.toPublicDict()
 				}
 
 		except Exception as e:
@@ -97,7 +95,8 @@ class Checkout:
 			return {
 					Labels.Success : True,
 					Labels.User : this_user.toPublicDict(),
-					Labels.Message : ErrorMessages.CartCheckoutEmailError
+					Labels.Message : ErrorMessages.CartCheckoutEmailError,
+					Labels.Order : this_order.toPublicDict()
 				}
 
 	def updateCartQuantity(this_user, this_product, this_cart_item, new_num_items):
