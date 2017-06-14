@@ -95,7 +95,8 @@ export default class ChangePasswordForm extends React.Component {
 			});
 		}
 
-	changeSettings(){
+	changeSettings(event){
+		event.preventDefault()
 		window.location = `/updateSettings`
 	}
 
@@ -159,7 +160,7 @@ export default class ChangePasswordForm extends React.Component {
 									Submit!
 								</button>
 							</div>
-							<div className = "pull-right text-right col-sm-4 col-md-4 col-lg-4">
+							<div className = "text-right col-sm-4 col-md-4 col-lg-4">
 								<button className = "btn btn-default" onClick = {this.changeSettings.bind(this)}>
 									Change other Settings
 								</button>

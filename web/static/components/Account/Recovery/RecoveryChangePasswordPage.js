@@ -62,7 +62,8 @@ export default class RecoveryChangePasswordPage extends React.Component {
 		});
 	}
 
-	submitData(){
+	submitData(event){
+		event.preventDefault()
 		this.setState({is_loading : true})
 		this.setState({disabled : true})
 		var form_data = JSON.stringify({

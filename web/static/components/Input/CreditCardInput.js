@@ -111,7 +111,7 @@ export default class CreditCardInput extends React.Component {
 	}
 
 	render() {
-
+		
 		var card_icon_base = "https://s3-us-west-2.amazonaws.com/edgarusapublicicons/cardicons/"
 
 		// VISA, Mastercard, Discover, AMEX
@@ -198,7 +198,7 @@ export default class CreditCardInput extends React.Component {
 				  	className = {this.state.cvc_error ? "form-control input-md" : "form-control form-control-success input-md "}
 				  	maxLength = "3"
 					onChange = {this.handleChange.bind(this)}
-					  field = "cvc" placeholder="CVC" type="text" name="cvc" />
+					 field = "cvc" placeholder="CVC" type="text" name="cvc" />
 					{/*
 						this.state.cvc_error &&
 						 <div className="form-control-feedback has-danger"> {this.state.cvc_error} </div>

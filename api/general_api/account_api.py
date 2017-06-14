@@ -159,7 +159,6 @@ def addCreditCard(this_user):
 	address_zip = request.json.get(Labels.AddressZip)
 	exp_month = request.json.get(Labels.ExpMonth)
 	exp_year = request.json.get(Labels.ExpYear)
-
 	number = request.json.get(Labels.Number)
 	cvc = request.json.get(Labels.Cvc)
 	add_card_response = this_user.addCreditCard(address_city, address_line1, address_line2, 

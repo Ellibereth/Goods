@@ -27,7 +27,8 @@ export default class SettingsFormPersonal extends React.Component {
 		this.setState(obj)
 	}
 
-	onSubmitPress(){
+	onSubmitPress(event){
+		event.preventDefault()
 		swal({
 		  title: "Ready?",
 		  text: "Is all your information correct?",
@@ -110,12 +111,13 @@ export default class SettingsFormPersonal extends React.Component {
 				contentType : "application/json; charset=utf-8"
 			});
 		}
-	updatePassword() {
+	updatePassword(event) {
+		event.preventDefault()
 		window.location = `/changePassword`
 	}
 
 
-	onSubmitPress() {
+	submitData() {
 		// first check the password
 		var form_data = JSON.stringify({
 			"jwt" : localStorage.jwt,
@@ -163,7 +165,7 @@ export default class SettingsFormPersonal extends React.Component {
 		})
 
 		return (
-				<form className = "form-horizontal" >
+				<form onSubmit = {this.onSubmitPress.bind(this)} className = "form-horizontal" >
 					<br/>
 					{text_inputs}
 					
@@ -175,7 +177,7 @@ export default class SettingsFormPersonal extends React.Component {
 									Submit!
 								</button>
 							</div>
-							<div className = "col-sm-4 col-md-4 col-lg-4 text-right pull-right"  >
+							<div className = "col-sm-4 col-md-4 col-lg-4 text-right">
 								<button className = "btn btn-default" onClick = {this.updatePassword.bind(this)}>
 									Click to change password
 								</button>

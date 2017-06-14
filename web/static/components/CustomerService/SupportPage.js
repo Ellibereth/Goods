@@ -43,7 +43,8 @@ export default class SupportPage extends React.Component {
 		this.setState(obj)
 	}
 
-	sendFeedback(){
+	sendFeedback(event){
+		event.preventDefault()
 		var form_data = JSON.stringify({
 			feedback_content : this.state.feedback_content,
 			email : this.state.email,
@@ -89,7 +90,7 @@ export default class SupportPage extends React.Component {
 							<div className = "panel-body support-panel-body" >
 								<div className = "top-buffer"/>
 								<div className = "row">
-									 <form className="form-inline">
+									 <form onSubmit = {this.sendFeedback.bind(this)} className="form-inline">
 										<div className = "form-group" style = {{"padding-right" : "6px"}}>
 											<p className = "form-control-static"> {"Topic: "} </p>
 										</div>

@@ -38,7 +38,7 @@ export default class RecoveryPage extends React.Component {
 	}
 
 
-	onSubmitEmail(){
+	onSubmitEmail(event){
 		event.preventDefault()
 		if (!this.state.disabled){
 			this.setState({disabled: true, is_loading : true})
@@ -73,7 +73,7 @@ export default class RecoveryPage extends React.Component {
 
 	onKeyPress(e){
 		if (e.key == "Enter"){
-			this.onSubmitEmail.bind(this)()
+			this.onSubmitEmail.bind(this)(e)
 		}
 	}
 

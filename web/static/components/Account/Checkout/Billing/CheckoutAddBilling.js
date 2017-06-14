@@ -7,10 +7,9 @@ import TextInput from '../../../Input/TextInput.js'
 import CreditCardInput from '../../../Input/CreditCardInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
 
-const form_inputs = ["address_city", "address_country",
+const address_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip",
-					"addresss_name", "name", "number", "cvc"]
-
+					"addresss_name"]
 
 export default class CheckoutAddBilling extends React.Component {
 	constructor(props) {
@@ -65,18 +64,20 @@ export default class CheckoutAddBilling extends React.Component {
 		this.props.toggleModal()
 		var data = {}
 		if (this.state.use_same_as_shipping){
-			for (var i = 0; i < form_inputs.length; i++){
-				var key = form_inputs[i]
+			for (var i = 0; i < address_inputs.length; i++){
+				var key = address_inputs[i]
 				data[key] = this.props.selected_address[key]
 			}	
 		}	
 		else {
-			for (var i = 0; i < form_inputs.length; i++){
-				var key = form_inputs[i]
+			for (var i = 0; i < address_inputs.length; i++){
+				var key = address_inputs[i]
 				data[key] = this.state[key]
 			}	
 		}
 		
+		data['name'] = this.state.name
+		data['cvc'] = this.state.cvc
 		data['number'] = this.state.number
 		data['exp_month'] = this.state['expiry'].split('/')[0]
 		data['exp_year'] = this.state['expiry'].split('/')[1]

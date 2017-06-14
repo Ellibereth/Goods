@@ -15,13 +15,12 @@ search_api = Blueprint('search_api', __name__)
 
 @search_api.route('/searchProducts', methods = ['POST'])
 def searchProducts():
-	time_0 = time.time()
 	search_input = request.json.get(Labels.SearchInput)
 
 	# right now this queries all then filters
 	# will be updated ot adjust the query in the 
 	# future when our search criteria is more formalized
-	all_products = MarketProduct.query.all()
+	all_products = MarketProduct.query.filter_by(active = True).all()
 
 	name_filter = [product for product in all_products if product.name]
 	name_filter = [product for product in name_filter if search_input.lower() in product.name.lower()]
@@ -39,7 +38,6 @@ def searchProducts():
 		if product.product_id not in hit_product_ids:
 			all_matches.append(product.toPublicDict())
 			hit_product_ids.append(product.product_id)
-	time_1 = time.time()
 	return JsonUtil.successWithOutput({
 			Labels.Products : all_matches
 		})

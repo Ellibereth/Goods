@@ -36,7 +36,7 @@ export default class UpdateShippingForm extends React.Component {
 		this.setState(obj)
 	}
 
-	submitData(){
+	submitData(event){
 		this.props.setLoading(true)
 		this.setState({disabled : true})
 			var data = {}
@@ -129,11 +129,11 @@ export default class UpdateShippingForm extends React.Component {
 					<form  className = "form-horizontal">
 						<AddressForm header = {"Add an address"}
 						has_description = {true}
-						onSubmit = {this.onSubmitPress.bind(this)}
+						onSubmit = {this.submitData.bind(this)}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 						<div className = "form-group" id = "submit_button">
 							<div className = "col-md-10 col-lg-10">
-								<button type = "button" className = "btn btn-default" className = "pull-right" disabled = {this.state.disabled}
+								<button type = "button pull-right" className = "btn btn-default"  disabled = {this.state.disabled}
 								onClick = {this.submitData.bind(this)}>
 									Submit
 								</button>

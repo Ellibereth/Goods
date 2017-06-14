@@ -22,7 +22,8 @@ export default class ProductRequestForm extends React.Component {
 		this.setState(obj)
 	}
 
-	onSubmitPress(){
+	onSubmitPress(event){
+		event.preventDefault()
 		swal({
 		  title: "Ready?",
 		  text: "Are you sure you want to submit?",
@@ -79,7 +80,7 @@ export default class ProductRequestForm extends React.Component {
 		})
 
 		return (
-			<form className = "form-horizontal">
+			<form onSubmit = {this.onSubmitPress.bind(this)} className = "form-horizontal">
 				{text_inputs}
 				<div className = "form-group">
 				<div className = "col-sm-10">
