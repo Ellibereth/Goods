@@ -104,8 +104,8 @@ class Checkout:
 			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidProduct}
 		if this_product.has_variants:
 			variant_id = this_cart_item.get(Labels.VariantId)
-			cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = product_id, variant_id = variant_id).first()
-			this_variant = ProductVariant.query.filter_by(variant_id = variant_id, product_id = product_id).first()
+			cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = this_product.product_id, variant_id = variant_id).first()
+			this_variant = ProductVariant.query.filter_by(variant_id = variant_id, product_id = this_product.product_id).first()
 
 			if new_num_items  > this_variant.inventory:
 				return {Labels.Success : False, Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory))}
@@ -115,7 +115,7 @@ class Checkout:
 				return {Labels.Success : False, Labels.Error : ErrorMessages.CartUpdateQuantity}
 
 		else:
-			cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = product_id).first()
+			cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = this_product.product_id).first()
 			if new_num_items > min(this_product.num_items_limit, this_product.inventory):
 				return {Labels.Success : False, Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory)))}
 			try:
@@ -125,6 +125,7 @@ class Checkout:
 
 		return {
 					Labels.User : this_user.toPublicDict(),
+					Labels.Success: True
 				}
 
 

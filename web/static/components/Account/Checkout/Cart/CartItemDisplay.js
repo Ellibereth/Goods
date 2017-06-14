@@ -26,11 +26,12 @@ export default class CartItemDisplay extends React.Component {
 				success: function(data) {
 					if (data.success){
 
+
 						ga('ec:addProduct', {
-						    'id': this.props.product.product_id.toString(),
-							'name': this.props.product.name,
-							'brand': this.props.product.manufacturer,
-							'price': this.props.product.price.toString(),
+						    'id': this.props.item.product_id.toString(),
+							'name': this.props.item.name,
+							'brand': this.props.item.manufacturer,
+							'price': formatPrice(this.props.item.price),
 							'quantity': Math.abs(this.props.item.num_items - new_quantity),
 							'variant' : this.props.item ? this.props.item.variant_type : "none"
 						});

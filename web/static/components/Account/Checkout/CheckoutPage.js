@@ -152,9 +152,6 @@ export default class CheckoutPage extends React.Component {
 						})
 						AppActions.updateCurrentUser(data.user)
 					}
-					else {
-						console.log("an error")
-					}
 					if (!this.state.first_load_done) {
 						this.initializeInformation.bind(this)()
 					}
@@ -175,9 +172,8 @@ export default class CheckoutPage extends React.Component {
 		var user = AppStore.getCurrentUser()
 		if (user.cards.length == 0 && user.addresses.length == 0){
 			this.refreshCheckoutInformation.bind(this)()
-			this.sendToGoogleAnalytics.bind(this)()
 		}
-		else{
+		else {
 			this.setState({
 				cards : user.cards,
 				addresses: user.addresses,
@@ -189,7 +185,7 @@ export default class CheckoutPage extends React.Component {
 				},
 				this.initializeInformation.bind(this)
 			)
-			this.sendToGoogleAnalytics.bind(this)()
+			
 		}
 	}
 
@@ -198,16 +194,14 @@ export default class CheckoutPage extends React.Component {
 			ga('ec:addProduct', {
 				'id': item.product_id.toString(),
 				'name': item.name,
-				'brand': item.manufacuturer,
+				'brand': item.manufacturer,
 				'variant' : item.variant_type ? item.variant_type : "none",
-				'price': item.price.toString(),
+				'price': formatPrice(item.price),
 				'quantity': item.num_items
 			});
 		})
 
-		ga('ec:setAction','Checkout', {
-			'step': 1,            // A value of 1 indicates this action is first checkout step.
-		});
+		ga('ec:setAction','checkout')
 	}
 
 	initializeInformation(){
@@ -236,6 +230,8 @@ export default class CheckoutPage extends React.Component {
 		else if (this.state.cards.length == 0){
 			this.openEditable.bind(this)(BILLING_INDEX)
 		}
+
+		this.sendToGoogleAnalytics.bind(this)()
 		
 
 		this.setState({first_load_done : true})
@@ -311,8 +307,8 @@ export default class CheckoutPage extends React.Component {
 								'id': item.product_id.toString(),
 								'name': item.name,
 								'variant' : item.variant_type ? item.variant_type : "none",
-								'brand': item.manufacuturer,
-								'price': item.price.toString(),
+								'brand': item.manufacturer,
+								'price': formatPrice(item.price),
 								'quantity': item.num_items
 							});
 						})
@@ -322,14 +318,14 @@ export default class CheckoutPage extends React.Component {
 						ga('ec:setAction', 'purchase', {
 							'id': order.order_id.toString(),
 							'affiliation': 'Edgar USA',
-							'revenue': order.total_price.toString(),
-							'tax': order.sales_tax_price.toString(),
-							'shipping': order.order_shipping.toString(),
+							'revenue': formatPrice(order.total_price),
+							'tax': formatPrice(order.sales_tax_price),
+							'shipping': formatPrice(order.order_shipping),
 						});
 					}
 					setTimeout(function() {
 						window.location = `/checkoutConfirmed`
-					}, 2000)
+					}, 4000)
 					AppActions.updateCurrentUser(data.user)
 				}
 				this.setLoading(false)
