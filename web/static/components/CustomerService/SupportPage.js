@@ -89,7 +89,7 @@ export default class SupportPage extends React.Component {
 							<div className = "panel-body support-panel-body" >
 								<div className = "top-buffer"/>
 								<div className = "row">
-									 <form onSubmit = {(event) =>  event.preventDefault()} className="form-inline">
+									 <form className="form-inline">
 										<div className = "form-group" style = {{"padding-right" : "6px"}}>
 											<p className = "form-control-static"> {"Topic: "} </p>
 										</div>
@@ -107,7 +107,7 @@ export default class SupportPage extends React.Component {
 									this.state.category == PURCHASE_CATEGORY &&
 									<div>
 										<div className = "row">
-											<form  onSubmit = {(event) =>  event.preventDefault()} className="form-inline">
+											<form className="form-inline">
 												<div className = "form-group" style = {{"padding-right" : "6px"}}>
 													<p className = "form-control-static"> {"Order Id: "} </p>
 												</div>
@@ -151,7 +151,7 @@ export default class SupportPage extends React.Component {
 								<div className = "top-buffer"/>
 
 								<div className = "row">
-									<form onSubmit = {(event) =>  event.preventDefault()} className="form-inline">
+									<form className="form-inline">
 											<div className = "form-group" style = {{"padding-right" : "6px"}}>
 												<p className = "form-control-static"> {"Name: "} </p>
 											</div>

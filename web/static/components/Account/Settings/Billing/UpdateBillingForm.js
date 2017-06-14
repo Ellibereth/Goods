@@ -63,7 +63,6 @@ export default class UpdateBillingForm extends React.Component {
 	}
 
 	submitData(event){
-		event.preventDefault()
 		this.setState({disabled : true})
 		this.props.setLoading(true)
 			var data = {}

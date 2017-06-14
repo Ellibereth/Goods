@@ -78,7 +78,7 @@ export default class AddHomeImage extends React.Component {
 
 	render() {
 		return (
-			<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal">
+			<form className = "form-horizontal">
 				<div className="col-sm-4">
 			  		Upload New Home Image!
 		  		</div>

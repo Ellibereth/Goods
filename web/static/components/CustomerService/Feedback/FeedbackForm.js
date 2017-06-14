@@ -79,7 +79,7 @@ export default class ProductRequestForm extends React.Component {
 		})
 
 		return (
-			<form onSubmit = {(event) =>  event.preventDefault()} className = "form-horizontal">
+			<form className = "form-horizontal">
 				{text_inputs}
 				<div className = "form-group">
 				<div className = "col-sm-10">

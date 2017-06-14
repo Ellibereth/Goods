@@ -97,7 +97,7 @@ export default class DeleteAccountForm extends React.Component {
 		})
 
 		return (
-				<form onSubmit = {(event) => event.preventDefault()} onSubmit = {this.handleDeleteClick.bind(this)} className = "form-horizontal">
+				<form onSubmit = {this.handleDeleteClick.bind(this)} className = "form-horizontal">
 					<label className = "control-label"> <span id = "settings-header"> Delete Account </span> </label>
 					<br/>
 					{text_inputs}

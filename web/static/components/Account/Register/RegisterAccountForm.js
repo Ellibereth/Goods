@@ -31,7 +31,6 @@ export default class RegisterAccountForm extends React.Component {
 	}
 
 	onSubmitPress(event){
-		event.preventDefault()
 		swal({
 			title: "Ready?",
 			text: "Is all your information correct?",

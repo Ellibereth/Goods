@@ -164,7 +164,7 @@ export default class SettingsFormPersonal extends React.Component {
 		})
 
 		return (
-				<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal" >
+				<form className = "form-horizontal" >
 					<br/>
 					{text_inputs}
 					

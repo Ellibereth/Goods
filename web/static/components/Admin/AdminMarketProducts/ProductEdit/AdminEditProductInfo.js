@@ -214,7 +214,7 @@ export default class AdminEditProductInfo extends React.Component {
 
 
 				<div className = "row" id = "text_edit">
-					<form onSubmit = {(event) => event.preventDefault()} className ="form-horizonal">
+					<form className ="form-horizonal">
 						{input_forms}
 						{live_toggle}
 						<div className = "form-group">
