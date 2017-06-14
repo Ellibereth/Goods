@@ -311,18 +311,21 @@ class User(db.Model):
 	# adds a credit card with billing and shipping information to stripe 
 	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
 			exp_month, exp_year, number, cvc, name, address_state, address_country = "US"):
+		
+		exp_year = exp_year.replace(' ', '')
+		exp_month = exp_month.replace(' ', '')
+		number = number.replace(' ', '')
 		if number == "" or len(number) != 16:
-			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardNumberError}
 		if name == "":
-			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+			return {Labels.Success : False,Labels.Error : ErrorMessages.BlankName}
 		if cvc == "" or len(cvc) != 3:
-			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
-		if address_zip == "" or len(address_zip) != 5:
-			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardCvcError}
 		if exp_month == "" or len(exp_month) != 2:
-			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardExpiryError}
 		if exp_year == "" or len(exp_year) != 2:
-			return {Labels.Success : False,Labels.Error : ErrorMessages.CardAddError}
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardExpiryError}
+
 
 		try:
 			card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 

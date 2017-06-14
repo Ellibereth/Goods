@@ -39,11 +39,6 @@ export default class CreditCardInput extends React.Component {
 		}
 	}
 
-	isNumberKey(event) {
-		const re = /^[0-9\b]+$/;
-		return (event.target.value == '' || re.test(event.target.value)) 
-	}
-
 	checkNameError(value){
 		if (value.length == 0){
 			this.setState({
@@ -202,7 +197,7 @@ export default class CreditCardInput extends React.Component {
 				  	tabindex= {4} 
 				  	className = {this.state.cvc_error ? "form-control input-md" : "form-control form-control-success input-md "}
 				  	maxLength = "3"
-					// onChange = {this.handleChange.bind(this)}
+					onChange = {this.handleChange.bind(this)}
 					  field = "cvc" placeholder="CVC" type="text" name="cvc" />
 					{/*
 						this.state.cvc_error &&

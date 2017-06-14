@@ -11,7 +11,7 @@ import AddressForm from '../../../Input/AddressForm.js'
 
 const form_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip",
-					"addresss_name", "name", "number", "cvc"]
+					"address_name", "name", "number", "cvc"]
 
 
 export default class UpdateBillingForm extends React.Component {
@@ -133,7 +133,7 @@ export default class UpdateBillingForm extends React.Component {
 					this.props.setLoading(false)
 					setTimeout(function() {
 						swal({
-							title :"Something went wrong",
+							title :"Something went wrong with your submission",
 							type : "error"
 						})
 					}, 250)
@@ -169,9 +169,9 @@ export default class UpdateBillingForm extends React.Component {
 
 				<div className = "form-group">
 					<div className = "col-md-10 col-lg-10">
-						<button className = "btn btn-default" className = "pull-right" disabled = {this.state.disabled}
+						<button className = "btn btn-default pull-right" disabled = {this.state.disabled}
 						 onClick = {this.submitData.bind(this)}>
-						Submit
+							Submit
 						</button>
 					</div>
 				</div>

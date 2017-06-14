@@ -37,6 +37,10 @@ class ErrorMessages:
 	BlankZip = "Zipcode can't be blank"
 	BlankState = "State can't be blank"
 	BlankCountry = "Country can't be blank"
+	CardNumberError = "Card number invalid"
+	CardExpiryError = "Card expiry invalid"
+	CardCvcError = "Card CVC invalid"
+	CardZipError = "Card Zip invalid"
 
 	def invalidEmail(email):
 		return email + " is not a valid email address."
