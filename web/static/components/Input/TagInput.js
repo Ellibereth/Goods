@@ -11,7 +11,6 @@ export default class TextInput extends React.Component {
 	handleChange(event) {
 		var value = $("#tag_input").tagsinput('items')['itemsArray']
 		this.props.onTagInputChange(this.props.field, value)
-		console.log(value)
 	}
 
 	render() {

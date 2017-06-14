@@ -25,7 +25,7 @@ export default class AdminProductRequests extends React.Component {
 				this.setState({product_requests: data})
 			  }.bind(this),
 			  error : function(){
-				console.log("error")
+
 			  },
 			  dataType: "json",
 			  contentType : "application/json; charset=utf-8"

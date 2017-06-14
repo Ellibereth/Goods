@@ -53,7 +53,6 @@ export default class AdminEditProductPhotos extends React.Component {
 				this.props.getProductInformation(obj)
 			}.bind(this),
 			error : function(){
-				console.log("error")
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

@@ -18,7 +18,6 @@ export default class PleaseConfirmPage extends React.Component {
 		var form_data = JSON.stringify({
 			"jwt" : localStorage.jwt
 		})
-		console.log(AppStore.getCurrentUser().email)
 		$.ajax({
 			type: "POST",
 			url: "/resendConfirmationEmail",
@@ -36,7 +35,6 @@ export default class PleaseConfirmPage extends React.Component {
 				}
 			}.bind(this),
 			error: function(){
-				console.log("error")
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

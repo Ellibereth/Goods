@@ -83,7 +83,6 @@ export default class AdminEditProductInfo extends React.Component {
 			
 	  	}.bind(this),
 	  	error : function(){
-	  		console.log("error")
 	  	},
 	  		dataType: "json",
 	  		contentType : "application/json; charset=utf-8"
@@ -113,7 +112,6 @@ export default class AdminEditProductInfo extends React.Component {
 			this.props.getProductInformation()
 	  	}.bind(this),
 	  	error : function(){
-	  		console.log("error")
 	  	},
 	  		dataType: "json",
 	  		contentType : "application/json; charset=utf-8"

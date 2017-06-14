@@ -27,7 +27,7 @@ export default class LoginForm extends React.Component {
 	}
 
 
-	submitData(){
+	submitData(event){
 		event.preventDefault()
 		this.setState({disabled : true})
 			var data = {}
@@ -45,16 +45,6 @@ export default class LoginForm extends React.Component {
 					swal("Sorry", data.error, "error")
 				}
 				else {
-					console.log(JSON.parse(data.user.account_id).toString())
-					var account_id = JSON.parse(data.user.account_id).toString()
-					if (account_id) {
-						ga('set', 'dimension1', account_id);
-						ga('set', 'userId', account_id);
-					}
-					else {
-						ga('set', 'dimension1', "None");
-						ga('set', 'userId', "None");
-					}
 					ga('send', 'event', {
 							eventCategory: 'Account',
 							eventAction: 'Login',
@@ -72,7 +62,6 @@ export default class LoginForm extends React.Component {
 				this.setState({disabled : false})
 			}.bind(this),
 			error : function(){
-				console.log("error")
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
@@ -82,7 +71,7 @@ export default class LoginForm extends React.Component {
 
 	onKeyPress(e){
 		if (e.key === 'Enter') {
-			this.submitData.bind(this)()
+			this.submitData.bind(this)(e)
 		}
 	}
 

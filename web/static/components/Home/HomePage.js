@@ -23,7 +23,6 @@ export default class HomePage extends React.Component {
 	}
 
 	toggleFeedbackModal (){
-		console.log("pressed")
 		this.setState({show_request_modal : false})
 		this.setState({show_feedback_modal : !this.state.show_feedback_modal})
 	} 

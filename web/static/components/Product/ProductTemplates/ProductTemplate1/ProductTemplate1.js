@@ -74,9 +74,6 @@ export default class ProductTemplate1 extends React.Component {
 							}
 						}		
 					}
-					// else {
-					// 	console.log(data.error)
-					// }
 				this.props.setLoading(false)
 				}.bind(this),
 				error : function(){

@@ -28,7 +28,6 @@ export default class AdminActivateProduct extends React.Component {
 			
 		  }.bind(this),
 		  error : function(){
-			console.log("error")
 		  },
 		  dataType: "json",
 		  contentType : "application/json; charset=utf-8"
@@ -51,7 +50,6 @@ export default class AdminActivateProduct extends React.Component {
 			
 		  }.bind(this),
 		  error : function(){
-			console.log("error")
 		  },
 		  dataType: "json",
 		  contentType : "application/json; charset=utf-8"

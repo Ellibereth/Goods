@@ -39,7 +39,6 @@ export default class AdminLoginPage extends React.Component {
 				}
 			}.bind(this),
 			error : function(){
-				console.log("error")
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

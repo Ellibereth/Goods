@@ -59,7 +59,6 @@ export default class AddProductForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						console.log(data.error)
 						swal("Sorry!", "Something went wrong! \n Error : " + data.error, "warning")
 					}
 					else {
@@ -71,7 +70,6 @@ export default class AddProductForm extends React.Component {
 					}
 				}.bind(this),
 				error : function(){
-					console.log("error")
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

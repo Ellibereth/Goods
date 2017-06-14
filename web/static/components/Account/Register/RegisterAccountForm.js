@@ -31,6 +31,7 @@ export default class RegisterAccountForm extends React.Component {
 	}
 
 	onSubmitPress(event){
+		event.preventDefault()
 		swal({
 			title: "Ready?",
 			text: "Is all your information correct?",
@@ -75,6 +76,7 @@ export default class RegisterAccountForm extends React.Component {
 					else {
 						ga('send', 'pageview', 'register-complete');
 						AppActions.addCurrentUser(data.user, data.jwt)
+						console.log(data.jwt)
 						swal({
 							title: "Thank you", 
 							text : "Your account has been created. You should receive a confirmation email shortly",
@@ -83,8 +85,6 @@ export default class RegisterAccountForm extends React.Component {
 								window.location = '/'
 							}.bind(this)
 						)
-
-
 					}
 					
 					this.setState({disabled : false})
@@ -107,7 +107,7 @@ export default class RegisterAccountForm extends React.Component {
 	onKeyPress(e){
 		// e.preventDefault()
 		if (e.key === 'Enter') {
-			this.onSubmitPress.bind(this)()
+			this.onSubmitPress.bind(this)(event)
 		}
 	}
 

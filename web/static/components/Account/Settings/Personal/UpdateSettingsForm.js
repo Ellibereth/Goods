@@ -68,7 +68,6 @@ export default class SettingsFormPersonal extends React.Component {
 				url: "/updateSettings",
 				data: form_data,
 				success: function(data) {
-					console.log(data)
 					if (!data.success) {
 						swal("Sorry!", "It seems there was an error in your submission! " + data.error 
 							+ ". Please try again!", "warning")

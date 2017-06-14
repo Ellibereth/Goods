@@ -50,7 +50,6 @@ export default class StoryTemplate1 extends React.Component {
 	render() {
 		var height = this.state.height
 		var width = this.state.width
-		// console.log(this.state.height)
 		if (height != 0) {
 			var ratio = height / width
 			var story_text = (

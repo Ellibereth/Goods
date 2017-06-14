@@ -45,7 +45,6 @@ export default class ViewCartPage extends React.Component {
 					// }
 				}
 				else {
-					console.log("an error")
 				}
 				this.setState({is_loading : false})
 				$('#view-cart-container').removeClass("faded");

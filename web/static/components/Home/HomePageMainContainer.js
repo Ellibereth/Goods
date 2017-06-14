@@ -28,7 +28,6 @@ export default class HomePageMainContainer extends React.Component {
 		  data: form_data,
 		  success: function(data) {
 			if (!data.success){
-				console.log(data.error)
 			}
 			else {
 				this.setState({products : data.products})
@@ -60,7 +59,6 @@ export default class HomePageMainContainer extends React.Component {
 		var product_rows = []
 
 		var num_rows = Math.floor((products.length - 1) / items_per_row + 1)
-		// console.log(num_rows)
 		for (var i = 0; i < num_rows; i++){
 			var this_row = []
 			for (var j = i * items_per_row; j < items_per_row * (i+1); j++){
@@ -70,7 +68,6 @@ export default class HomePageMainContainer extends React.Component {
 				else {
 					this_row.push(<div 
 						className = {"home-page-filler-product col-md-" + col_size + " col-lg-" + col_size}/>)
-					// console.log("did not add item " + j)		
 				}
 			}
 			product_rows.push(

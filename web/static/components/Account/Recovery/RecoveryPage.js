@@ -32,7 +32,6 @@ export default class RecoveryPage extends React.Component {
 
 	// handle the text input changes
 	onTextInputChange(event) {
-		console.log(event.target.name)
 		var obj = {}
 		obj[event.target.name] = event.target.value
 		this.setState(obj)

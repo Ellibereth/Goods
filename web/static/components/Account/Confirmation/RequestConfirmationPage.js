@@ -29,11 +29,9 @@ export default class EmailConfirmationPage extends React.Component {
 				// redirect if something is wrong 
 				else {
 					// redirect to '/'
-					console.log("redirect to index")
 				}
 			},
 			error: function(){
-				console.log("error")
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

@@ -40,7 +40,6 @@ export default class AddVariantForm extends React.Component {
 	}
 
 	addVariant(){
-		console.log(this.state.variant_type)
 			var data = {}
 
 			var form_data = JSON.stringify({
@@ -57,7 +56,6 @@ export default class AddVariantForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						console.log(data.error)
 						swal("Sorry!", "Something went wrong! \n Error : " + data.error, "warning")
 					}
 					else {
@@ -73,7 +71,6 @@ export default class AddVariantForm extends React.Component {
 					this.props.getProductInformation()
 				}.bind(this),
 				error : function(){
-					console.log("error")
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"

@@ -43,7 +43,6 @@ export default class SettingsPage extends React.Component {
 					this.refreshDisplay.bind(this)()
 				}
 				else {
-					console.log("an error")
 				}
 				this.setState({is_loading : false})
 			}.bind(this),
