@@ -126,7 +126,7 @@ export default class UpdateShippingForm extends React.Component {
 
 		return (
 				<div>
-					<form  className = "form-horizontal">
+					<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal">
 						<AddressForm header = {"Add an address"}
 						has_description = {true}
 						onSubmit = {this.onSubmitPress.bind(this)}

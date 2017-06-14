@@ -141,7 +141,7 @@ export default class ChangePasswordForm extends React.Component {
 		})
 
 		return (
-				<form className = "form-horizontal">
+				<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal">
 					<div className = "form-group">
 						<label className="col-md-8 col-lg-8 control-label text-left">
 							<span className = "form-heading"> Change Password </span>

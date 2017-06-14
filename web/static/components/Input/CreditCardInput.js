@@ -110,7 +110,7 @@ export default class CreditCardInput extends React.Component {
 	onKeyPress(e){
 		if (e.key == "Enter"){
 			if (this.props.onSubmit){
-			this.props.onSubmit()
+				this.props.onSubmit()
 			}
 		}
 	}
@@ -128,7 +128,7 @@ export default class CreditCardInput extends React.Component {
 
 		return (
 
-			<form id = "address_form" className="form-horizontal">
+			<form onSubmit = {this.props.onSubmit} id = "address_form" className="form-horizontal">
 			
 
 			{this.props.header && 

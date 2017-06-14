@@ -44,7 +44,6 @@ export default class AddToCartButton extends React.Component {
 
 
 	addToCart(){
-		ga('send', 'event', 'UX', 'click', 'add to cart');
 		if (this.props.product.has_variants && !this.state.variant) {
 			swal({
 				title : "You must select a type.",
@@ -86,11 +85,12 @@ export default class AddToCartButton extends React.Component {
 								'id': this.props.product.product_id.toString(),
 								'name': this.props.product.name,
 								'brand': this.props.product.manufacturer,
-								'price': this.props.product.price.toString(),
+								'price': formatPrice(this.props.product.price),
 								'quantity': this.state.quantity,
 								'variant' : this.state.variant ? this.state.variant.variant_type : "none"
 							});
 							ga('ec:setAction', 'add')
+							ga('send', 'event', 'UX', 'click', 'add to cart');
 						}
 						else {
 							swal({title: "Problem",

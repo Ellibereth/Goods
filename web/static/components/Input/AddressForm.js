@@ -66,7 +66,7 @@ export default class AddressForm extends React.Component {
 		var tab_index_start = this.props.tab_index ? this.props.tab_index : 0
 		return (
 
-		<form id = "address_form" className="form-horizontal">
+		<form onSubmit = {this.props.onSubmit} id = "address_form" className="form-horizontal">
 			<fieldset>
 
 			{this.props.header && 

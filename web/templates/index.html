@@ -40,11 +40,13 @@
 
 				ga('create', 'UA-96327145-1', 'auto');
 				ga('require', 'ec');
+				var account_id = JSON.parse(localStorage.CurrentUser).account_id
+				if (account_id){
+					ga('set', 'userId', account_id.toString());					
+				}
 				ga('send', 'pageview');
 
-				// var account_id = JSON.parse(localStorage.CurrentUser).account_id.toString()
-				// console.log(account_id)
-				// ga('set', 'userId', account_id);
+				
 		</script>
 	  
 		{% block content %}

@@ -41,6 +41,7 @@ export default class CartItemDisplay extends React.Component {
 						else {
 							ga('ec:setAction', 'add');
 						}
+						ga('send', 'event', 'UX', 'click', 'update cart');
 						
 						AppActions.updateCurrentUser(data.user)
 					}
@@ -135,7 +136,7 @@ export default class CartItemDisplay extends React.Component {
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
-							<form>
+							<form onSubmit = {(event) => event.preventDefault()}>
 								<div class="form-group">
 								  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
 								    {num_items_options}

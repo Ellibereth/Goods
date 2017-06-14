@@ -107,7 +107,7 @@ export default class RecoveryPage extends React.Component {
 
 									<div className = "panel-body account-panel-body">
 										<h2 className = "account-header"> Recover Account </h2>
-										<form className = "form-horizontal" onSubmit = {this.onSubmitEmail.bind(this)} >
+										<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal" onSubmit = {this.onSubmitEmail.bind(this)} >
 											{text_inputs}
 											<div className = "form-group row">
 												<div className = "col-sm-12 col-md-12 col-lg-12">

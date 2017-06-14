@@ -76,7 +76,7 @@ export default class UploadMarketPhoto extends React.Component {
 	render() {
 		var product = this.props.product
 		return (
-			<form className = "form-horizontal">
+			<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal">
 				<div className="col-sm-4">
 			  		Upload a product photo!
 		  		</div>

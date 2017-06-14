@@ -87,7 +87,7 @@ export default class CheckoutAddressSelect extends React.Component {
 								<span className = "checkout-select-title"> <b> 1. Select a shipping address </b> </span>
 							</div>
 						</div>
-						<form>
+						<form onSubmit = {(event) => event.preventDefault()}>
 							{address_display}
 						</form>
 						<hr/>

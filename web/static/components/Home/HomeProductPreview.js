@@ -22,6 +22,7 @@ export default class ProductPreview extends React.Component {
 			'list': 'Home',
 		}
 		ga('ec:addImpression', product_object);
+		
 	}
 
 	itemInStock(product){

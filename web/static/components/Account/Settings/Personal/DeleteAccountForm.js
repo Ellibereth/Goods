@@ -25,7 +25,8 @@ export default class DeleteAccountForm extends React.Component {
 	}
 
 	
-	handleDeleteClick(){
+	handleDeleteClick(event){
+		event.preventDefault()
 		swal({
 		  title: "You sure?",
 		  text: "It will be very difficult to undo this if you change your mind later?",
@@ -96,7 +97,7 @@ export default class DeleteAccountForm extends React.Component {
 		})
 
 		return (
-				<form className = "form-horizontal">
+				<form onSubmit = {(event) => event.preventDefault()} onSubmit = {this.handleDeleteClick.bind(this)} className = "form-horizontal">
 					<label className = "control-label"> <span id = "settings-header"> Delete Account </span> </label>
 					<br/>
 					{text_inputs}
@@ -104,19 +105,17 @@ export default class DeleteAccountForm extends React.Component {
 					<div className = "form-group">
 						
 							<div className = "col-sm-4 col-md-4 col-lg-4">
-								<button className = "btn btn-default delete-account-button">
+								<button className = "btn btn-default delete-account-button" 
 								onClick = {this.handleDeleteClick.bind(this)}>
 									Delete Account
 								</button>
 							</div>
-							<div className = "col-sm-4 col-md-4 col-lg-4 pull-right text-right" >
+							<div className = "col-sm-4 col-md-4 col-lg-4 text-right" >
 								<button className = "btn btn-default" onClick = {() => window.location = '/settings'}>
 									Return to settings
 								</button>
 							</div>
 					</div>
-					
-
 				</form>
 		)
 	}

@@ -145,7 +145,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 									
 									<div className = "panel-body account-panel-body">
 										<h2 className = "account-header"> Reset Password </h2>
-										<form className = "form-horizontal" onSubmit = {this.submitData.bind(this)} >
+										<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal" onSubmit = {this.submitData.bind(this)} >
 											{text_inputs}
 											<div className = "form-group row">
 												<div className = "col-sm-12 col-md-12 col-lg-12">

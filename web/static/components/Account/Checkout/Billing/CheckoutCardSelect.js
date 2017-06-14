@@ -105,7 +105,7 @@ export default class CheckoutCardSelect extends React.Component {
 								<span className = "checkout-card-details"> <b> Expiration Date </b> </span>
 							</div>
 						</div>
-						<form>
+						<form onSubmit = {(event) => event.preventDefault()}>
 							{card_display}	
 						</form>
 						<hr/>

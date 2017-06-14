@@ -167,7 +167,7 @@ ReactDOM.render(
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
 			{/* <Route path = "thanks" component = {ThanksPage}/> */}
 			<Route path = "landing" component = {LandingPage}/>
-			<Route path= "*" component={LandingPage} />
+			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 
 document.getElementById('app'));

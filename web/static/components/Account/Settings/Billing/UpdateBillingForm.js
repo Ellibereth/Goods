@@ -62,7 +62,8 @@ export default class UpdateBillingForm extends React.Component {
 		
 	}
 
-	submitData(){
+	submitData(event){
+		event.preventDefault()
 		this.setState({disabled : true})
 		this.props.setLoading(true)
 			var data = {}
@@ -149,7 +150,7 @@ export default class UpdateBillingForm extends React.Component {
 			<div className = "col-sm-12 col-md-12 col-lg-12">
 			<form className = "form-horizontal">
 				<CreditCardInput 
-				onSubmit = {this.onSubmitPress.bind(this)}
+				onSubmit = {this.submitData.bind(this)}
 				header = {"Add a payment method"}
 				onTextInputChange = {this.onTextInputChange.bind(this)} />
 				<div className = "row">
@@ -164,7 +165,7 @@ export default class UpdateBillingForm extends React.Component {
 				</div>
 				<div className = "small-buffer"/>
 				{ !this.state.skip_shipping && 
-					<AddressForm onSubmit = {this.onSubmitPress.bind(this)} header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
+					<AddressForm onSubmit = {this.submitData.bind(this)} header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
 				}
 
 				<div className = "form-group">

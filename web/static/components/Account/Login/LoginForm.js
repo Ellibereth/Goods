@@ -28,6 +28,7 @@ export default class LoginForm extends React.Component {
 
 
 	submitData(){
+		event.preventDefault()
 		this.setState({disabled : true})
 			var data = {}
 		for (var i = 0; i < form_inputs.length; i++){

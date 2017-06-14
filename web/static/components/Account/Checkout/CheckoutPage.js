@@ -202,6 +202,7 @@ export default class CheckoutPage extends React.Component {
 		})
 
 		ga('ec:setAction','checkout')
+		ga('send', 'pageview');
 	}
 
 	initializeInformation(){
@@ -322,6 +323,7 @@ export default class CheckoutPage extends React.Component {
 							'tax': formatPrice(order.sales_tax_price),
 							'shipping': formatPrice(order.order_shipping),
 						});
+						ga('send', 'event', 'UX', 'click', 'checkout complete');
 					}
 					setTimeout(function() {
 						window.location = `/checkoutConfirmed`

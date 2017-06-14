@@ -153,7 +153,7 @@ export default class AddProductForm extends React.Component {
 		
 
 		return (
-			<form className = "form-horizontal">
+			<form onSubmit = {(event) => event.preventDefault()} className = "form-horizontal">
 				{text_inputs}
 				{tag_input}
 
