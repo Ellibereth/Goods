@@ -31,7 +31,7 @@ export default class PleaseConfirmPage extends React.Component {
 					)
 				}
 				else {
-					swal("Oh no!", data.error, "error")
+					swal(data.error.title, data.error.text , data.error.type)
 				}
 			}.bind(this),
 			error: function(){

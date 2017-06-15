@@ -42,7 +42,7 @@ export default class LoginForm extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry", data.error, "error")
+					swal(data.error.title, data.error.text, data.error.type)
 				}
 				else {
 					ga('send', 'event', {

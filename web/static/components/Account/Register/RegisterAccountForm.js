@@ -67,11 +67,7 @@ export default class RegisterAccountForm extends React.Component {
 				success: function(data) {
 					this.props.setLoading(false)
 					if (!data.success) {
-						swal({
-							title : data.error,
-							text: "Please try again",
-							type: "warning"
-						})
+						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
 						ga('send', 'pageview', 'register-complete');

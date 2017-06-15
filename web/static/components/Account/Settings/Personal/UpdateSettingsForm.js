@@ -70,8 +70,7 @@ export default class SettingsFormPersonal extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "It seems there was an error in your submission! " + data.error 
-							+ ". Please try again!", "warning")
+						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
 						AppActions.removeCurrentUser()

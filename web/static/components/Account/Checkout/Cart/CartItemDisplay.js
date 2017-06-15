@@ -46,7 +46,7 @@ export default class CartItemDisplay extends React.Component {
 						AppActions.updateCurrentUser(data.user)
 					}
 					else {
-						swal("Sorry", "Something went wrong." + data.error, "error")
+						swal(data.error.title, data.error.text , data.error.type)
 					}
 					
 				}.bind(this),

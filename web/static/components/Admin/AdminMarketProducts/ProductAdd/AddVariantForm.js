@@ -56,7 +56,7 @@ export default class AddVariantForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "Something went wrong! \n Error : " + data.error, "warning")
+						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
 						swal("Nice man!", "You just added this product variant to the market"

@@ -290,7 +290,7 @@ export default class CheckoutPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry!", data.error, "error")
+					swal(data.error.title, data.error.text , data.error.type)
 					this.refreshCheckoutInformation.bind(this)()
 				}
 				else {

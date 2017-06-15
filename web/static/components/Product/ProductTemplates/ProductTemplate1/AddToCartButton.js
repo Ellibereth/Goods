@@ -93,11 +93,7 @@ export default class AddToCartButton extends React.Component {
 							ga('send', 'event', 'UX', 'click', 'add to cart');
 						}
 						else {
-							swal({title: "Problem",
-									text: data.error,
-									type: "error" 
-								})	
-
+							swal(data.error.title, data.error.text , data.error.type)
 						}
 						this.props.getProductInformation()
 						setTimeout(function () {

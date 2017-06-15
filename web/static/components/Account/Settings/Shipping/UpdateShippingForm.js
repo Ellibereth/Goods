@@ -53,11 +53,7 @@ export default class UpdateShippingForm extends React.Component {
 				success: function(data) {
 					this.props.setLoading(false)
 					if (!data.success) {
-						swal({
-							title : "Sorry",
-							text: data.error, 
-							type: "warning"
-						})
+						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
 						swal({
@@ -83,10 +79,7 @@ export default class UpdateShippingForm extends React.Component {
 										this.setState({
 											disabled : false
 										})
-										swal({
-											title : data.error,
-											type : "error"
-										})
+										swal(data.error.title, data.error.text , data.error.type)
 									}
 									this.props.setLoading(false)
 									

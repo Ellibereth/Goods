@@ -91,10 +91,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 						})
 					}
 					else {
-						swal({
-							title : data.error,
-							type : "error"
-						})
+						swal(data.error.title, data.error.text , data.error.type)
 					}
 					this.setState({is_loading : false, disabled : false})
 				}.bind(this),

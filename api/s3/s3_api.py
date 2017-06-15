@@ -11,11 +11,6 @@ CACHE_WEEKS = 4
 CACHE_MAX_AGE =  CACHE_WEEKS * 7 * 24 * 60 * 60 
 
 
-PREFIX = os.environ.get("ENVIRONMENT")
-if PREFIX == None:
-	PREFIX = "PRODUCTION"
-
-
 PRODUCT_IMAGES = "publicmarketproductphotos"
 STORY_IMAGES = "storyphotos"
 HOME_IMAGES = 'edgarusahomepage'

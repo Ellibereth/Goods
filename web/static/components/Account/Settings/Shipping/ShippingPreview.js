@@ -35,8 +35,7 @@ export default class ShippingPreview extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry", "It seems there was an error deleting your address. " + data.error 
-						+ ". Please try again", "warning")
+					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
 					swal({

@@ -59,7 +59,7 @@ export default class AdminEditVariant extends React.Component {
 				location.reload()
 			}
 			else {
-				swal("Something went wrong!", data.error, "error")
+				swal(data.error.title, data.error.text , data.error.type)
 			}
 	  	}.bind(this),
 	  	error : function(){
@@ -85,7 +85,7 @@ export default class AdminEditVariant extends React.Component {
 				location.reload()
 			}
 			else {
-				swal("Something went wrong!", data.error, "error")
+				swal(data.error.title, data.error.text , data.error.type)
 			}
 	  	}.bind(this),
 	  	error : function(){
@@ -111,7 +111,7 @@ export default class AdminEditVariant extends React.Component {
 				location.reload()
 			}
 			else {
-				swal("Something went wrong!", data.error, "error")
+				swal(data.error.title, data.error.text , data.error.type)
 			}
 	  	}.bind(this),
 	  	error : function(){
@@ -141,7 +141,7 @@ export default class AdminEditVariant extends React.Component {
 
 			}
 			else {
-				swal("Something went wrong!", data.error, "error")
+				swal(data.error.title, data.error.text , data.error.type)
 			}
 	  	}.bind(this),
 	  	error : function(){

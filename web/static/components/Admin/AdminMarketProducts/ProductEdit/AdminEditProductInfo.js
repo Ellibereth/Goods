@@ -78,7 +78,7 @@ export default class AdminEditProductInfo extends React.Component {
 				setTimeout(function () {location.reload()}, 4000)
 			}
 			else {
-				swal("Something went wrong!", data.error, "error")
+				swal(data.error.title, data.error.text , data.error.type)
 			}
 			
 	  	}.bind(this),
@@ -107,7 +107,7 @@ export default class AdminEditProductInfo extends React.Component {
 
 			}
 			else {
-				swal("Something went wrong!", data.error, "error")
+				swal(data.error.title, data.error.text , data.error.type)
 			}
 			this.props.getProductInformation()
 	  	}.bind(this),

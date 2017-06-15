@@ -83,11 +83,7 @@ export default class UpdateBillingForm extends React.Component {
 				success: function(data) {
 					this.props.setLoading(false)
 					if (!data.success) {
-						swal({
-							title : "Sorry",
-							text: data.error, 
-							type: "warning"
-						})
+						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
 						swal({
