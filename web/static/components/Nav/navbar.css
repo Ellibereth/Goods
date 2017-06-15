@@ -26,6 +26,9 @@
 	line-height : 44px;
 	font-size: 34px;
 	color: white;
+}
+
+.navbar-brand {
 	font-family: Futura, Arial, sans-serif !important;
 }
 
@@ -38,7 +41,6 @@
 .navbar-brand-no-user {
 	font-size: 36px;
 	color: white;
-	font-family: Futura, Arial, sans-serif !important;
 }
 
 .navbar-right {
@@ -145,7 +147,6 @@
 .navbar-brand-small {
 	color: white;
 	font-size: 18px;
-	font-family: Futura, Arial, sans-serif !important;
 }
 .navbar-brand-small:hover {
 	color: skyblue;
