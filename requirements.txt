@@ -14,6 +14,7 @@ click==6.7
 constantly==15.1.0
 cryptography==1.7.2
 cssselect==1.0.1
+ddt==1.1.1
 docutils==0.13.1
 et-xmlfile==1.0.1
 ez-setup==0.9

@@ -13,7 +13,7 @@ import os
 from base64 import b64encode
 import random
 from api.utility.checkout import Checkout
-
+from ddt import ddt, data
 
 
 BLANK_INPUT = ""
@@ -62,6 +62,43 @@ UNAVAILABLE_INVENTORY = 15
 
 TEST_INVENTORY = 2
 
+
+class TestData:
+	AddUserCardFailure = (
+			(BLANK_INPUT, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR),
+			(NAME, SHORT_CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR),
+			(NAME, BLANK_INPUT, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR),
+			(NAME, TEXT_INPUT, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR),
+			(NAME, CARD_NUMBER, TEXT_INPUT, CARD_EXP_MONTH, CARD_EXP_YEAR),
+			(NAME, CARD_NUMBER, BLANK_INPUT, CARD_EXP_MONTH, CARD_EXP_YEAR),
+			(NAME, CARD_NUMBER, CARD_CVC, TEXT_INPUT, CARD_EXP_YEAR),
+			(NAME, CARD_NUMBER, CARD_CVC, BLANK_INPUT, CARD_EXP_YEAR),
+			(NAME, CARD_NUMBER, CARD_CVC, SHORT_EXPIRY, CARD_EXP_YEAR),
+			(NAME, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, SHORT_EXPIRY),
+			(NAME, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, BLANK_INPUT),
+			(NAME, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, TEXT_INPUT)
+		)
+
+	AddUserAddressFailure = (
+		(DESCRIPTION, BLANK_INPUT, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, ADDRESS_COUNTRY),
+		(DESCRIPTION, ADDRESS_NAME, BLANK_INPUT, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, ADDRESS_COUNTRY),
+		(DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, BLANK_INPUT, ADDRESS_STATE, ADDRESS_ZIP, ADDRESS_COUNTRY),
+		(DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, BLANK_INPUT, ADDRESS_ZIP, ADDRESS_COUNTRY),
+		(DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, BLANK_INPUT, ADDRESS_COUNTRY),
+		(DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, WRONG_ZIP, ADDRESS_COUNTRY),
+		(DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, BLANK_INPUT),
+	)
+
+	AddUserFailure = (		
+		(BLANK_INPUT, EMAIL, PASSWORD, PASSWORD_CONFIRM),
+		(NAME, BLANK_INPUT, PASSWORD, PASSWORD_CONFIRM),
+		(NAME, EMAIL, BLANK_INPUT, PASSWORD_CONFIRM),
+		(NAME, EMAIL, PASSWORD, BLANK_INPUT),
+		(LONG_NAME, EMAIL, PASSWORD, PASSWORD_CONFIRM)
+	)
+
+
+
 class Labels:
 	TotalPrice = "total_price"
 	NumItems = "num_items"
@@ -85,15 +122,15 @@ class Labels:
 	Name = "name"
 
 
+@ddt
 class TestModels(TestCase):
-
 	def create_app(self):
 		secret_key = b64encode(b'L=\xbf=_\xa5P \xc5+\x9b3\xa4\xfdZ\x8fN\xc6\xd5\xb7/\x0f\xbe\x1b')
 		secret_key = secret_key.decode('utf-8')
 		
 		os.environ['SECRET_KEY'] = secret_key
 		app = Flask(__name__)
-		SQLALCHEMY_DATABASE_URI = "postgresql://sjlekkgepnocjg:cbaa9888fd46d74bf9491ecacde5e24b52de0c7d74e4047cf0cbfc40136bc73f@ec2-107-21-108-204.compute-1.amazonaws.com:5432/d9p390sjrd817i"
+		SQLALCHEMY_DATABASE_URI = "postgres://mzpdbglmqjwnqi:21d887dec2607ffb8cc89393d5862fb1e45589f504272ee095b6c844d5418e1e@ec2-23-21-220-48.compute-1.amazonaws.com:5432/dbit29q9v2i38u"
 		app.config['SECRET_KEY'] = secret_key
 		app.config['TESTING'] = True
 		app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
@@ -121,7 +158,6 @@ class TestModels(TestCase):
 		new_product.has_variants = False
 		new_product.price = PRICE
 		new_product.inventory = INVENTORY
-
 		db.session.add(new_product)
 		db.session.commit()
 		return new_product
@@ -132,12 +168,7 @@ class TestModels(TestCase):
 		db.session.add(new_product)
 		db.session.commit()
 		new_product.addProductVariant(variant_type = VARIANT_TYPE, price = PRICE, inventory = INVENTORY)
-		
 		return new_product
-
-
-
-	
 
 	def add_item_without_variant_to_cart(self, new_user, quantity):
 		new_product = self.add_product_without_variants()
@@ -162,24 +193,19 @@ class TestModels(TestCase):
 		return user.addAddress(description, name, line1,
 		 line2, city, state, zipcode, country)
 
-	def add_custom_card(self, user, name, number, cvc, exp_month, exp_year):
+	def add_custom_card(self, exp_month, exp_year , number, cvc, name):
 		return user.addCreditCard(ADDRESS_CITY, ADDRESS_LINE1, ADDRESS_LINE2, 
 			ADDRESS_ZIP, exp_month, exp_year, number,
 			cvc, name, ADDRESS_STATE, ADDRESS_COUNTRY)
 
-
-	def test_add_user(self):
-		bad_user =  User.registerUser(BLANK_INPUT, EMAIL, PASSWORD, PASSWORD_CONFIRM)
-		self.assertFalse(bad_user.get(Labels.Success))
-		bad_user =  User.registerUser(NAME, BLANK_INPUT, PASSWORD, PASSWORD_CONFIRM)
-		self.assertFalse(bad_user.get(Labels.Success))
-		bad_user =  User.registerUser(NAME, EMAIL, BLANK_INPUT, PASSWORD_CONFIRM)
-		self.assertFalse(bad_user.get(Labels.Success))
-		bad_user =  User.registerUser(NAME, EMAIL, PASSWORD, BLANK_INPUT)
-		self.assertFalse(bad_user.get(Labels.Success))
-		bad_user =  User.registerUser(LONG_NAME, EMAIL, PASSWORD, PASSWORD_CONFIRM)
+	
+	@data(*TestData.AddUserFailure)
+	def test_add_user_failure(self, value):
+		bad_user =  User.registerUser(*value)
 		self.assertFalse(bad_user.get(Labels.Success))
 
+	
+	def test_add_user_success(self):
 		new_user =  self.add_user()
 		self.assertTrue(new_user in db.session)
 		self.assertTrue(new_user.name == NAME)
@@ -187,6 +213,7 @@ class TestModels(TestCase):
 		self.assertTrue(new_user.checkLogin(PASSWORD))
 
 
+	
 	def test_add_product(self):
 		new_product = self.add_product_with_variants()
 		self.assertTrue(new_product in db.session)
@@ -199,95 +226,58 @@ class TestModels(TestCase):
 		self.assertTrue(new_product in db.session)
 		self.assertFalse(new_product.has_variants)
 
-
-
-
-	def test_add_user_card(self):
+	@data(*TestData.AddUserCardFailure)
+	def test_add_user_card_failure(self, value):
 		new_user = self.add_user()
-		bad_card = self.add_custom_card(new_user, BLANK_INPUT, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, SHORT_CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, BLANK_INPUT, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, TEXT_INPUT, CARD_CVC, CARD_EXP_MONTH, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, TEXT_INPUT, CARD_EXP_MONTH, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, BLANK_INPUT, CARD_EXP_MONTH, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, CARD_CVC, TEXT_INPUT, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, CARD_CVC, BLANK_INPUT, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, CARD_CVC, SHORT_EXPIRY, CARD_EXP_YEAR)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, SHORT_EXPIRY)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, BLANK_INPUT)
-		self.assertFalse(bad_card.get(Labels.Success))
-		bad_card = self.add_custom_card(new_user, NAME, CARD_NUMBER, CARD_CVC, CARD_EXP_MONTH, TEXT_INPUT)
+		bad_card = new_user.addCreditCard(ADDRESS_CITY, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_ZIP, *value, ADDRESS_STATE, ADDRESS_COUNTRY)
 		self.assertFalse(bad_card.get(Labels.Success))
 
-		
+	
+	def test_add_user_card_success(self):
+		new_user = self.add_user()
 		self.add_user_card(new_user)
 		public_dict = new_user.toPublicDict()
 		self.assertTrue(len(public_dict[Labels.Cards]) == 1)
 		self.assertTrue(public_dict[Labels.Cards][0][Labels.Last4] == CARD_NUMBER[-4:])
 
-	def test_add_user_address(self):
+	
+	@data(*TestData.AddUserAddressFailure)
+	def test_add_user_address_failure(self, value):
 		new_user = self.add_user()
-		bad_address = self.add_custom_address(new_user, DESCRIPTION, BLANK_INPUT, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, ADDRESS_COUNTRY)
-		self.assertFalse(bad_address.get(Labels.Success))
-		bad_address = self.add_custom_address(new_user, DESCRIPTION, ADDRESS_NAME, BLANK_INPUT, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, ADDRESS_COUNTRY)
+		bad_address = new_user.addAddress(*value)
 		self.assertFalse(bad_address.get(Labels.Success))
 
-		bad_address = self.add_custom_address(new_user, DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, BLANK_INPUT, ADDRESS_STATE, ADDRESS_ZIP, ADDRESS_COUNTRY)
-		self.assertFalse(bad_address.get(Labels.Success))
-		bad_address = self.add_custom_address(new_user, DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, BLANK_INPUT, ADDRESS_ZIP, ADDRESS_COUNTRY)
-		self.assertFalse(bad_address.get(Labels.Success))
-		bad_address = self.add_custom_address(new_user, DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, BLANK_INPUT, ADDRESS_COUNTRY)
-		self.assertFalse(bad_address.get(Labels.Success))
-		bad_address = self.add_custom_address(new_user, DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, WRONG_ZIP, ADDRESS_COUNTRY)
-		self.assertFalse(bad_address.get(Labels.Success))
-		bad_address = self.add_custom_address(new_user, DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE, ADDRESS_ZIP, BLANK_INPUT)
-		self.assertFalse(bad_address.get(Labels.Success))
-
+	
+	def test_add_user_address_success(self):
+		new_user = self.add_user()
 		self.add_user_address(new_user)
 		public_dict = new_user.toPublicDict()
 		self.assertTrue(len(public_dict[Labels.Addresses]) == 1)
 		self.assertTrue(public_dict[Labels.Addresses][0][Labels.AddressLine1] == ADDRESS_LINE1)
 
-
-
+	
 	def test_add_to_cart(self):
 		new_user = self.add_user()
 		response = self.add_item_with_variant_to_cart(new_user, UNAVAILABLE_INVENTORY)
 		self.assertFalse(response.get(Labels.Success))
-		
 		self.add_item_without_variant_to_cart(new_user, AVAILABLE_INVENTORY )
 		public_dict = new_user.toPublicDict()
 		self.assertTrue(len(public_dict[Labels.Cart][Labels.Items]) == 1)
-
 		response = self.add_item_without_variant_to_cart(new_user, UNAVAILABLE_INVENTORY)
 		self.assertFalse(response.get(Labels.Success))
-
-
 		self.add_item_with_variant_to_cart(new_user, AVAILABLE_INVENTORY)
 		public_dict = new_user.toPublicDict()
 		self.assertTrue(len(public_dict[Labels.Cart][Labels.Items]) == 2)		
 
-	# def test_email_confirm(self):
-	# 	new_user = self.add_user()
-	# 	new_user.confirmEmail()
-	# 	self.assertTrue(new_user.email_confirmed)
-
-
+	
+	def test_email_confirm(self):
+		new_user = self.add_user()
+		new_user.confirmEmail()
+		self.assertTrue(new_user.email_confirmed)
 
 	def checkout_user_cart(self, new_user, card_id, address_id):
 		checkout_cart_response = Checkout.checkoutCart(new_user, card_id, address_id)
 		return checkout_cart_response
-
 
 	def add_user_with_info(self):
 		new_user = self.add_user()
@@ -295,10 +285,9 @@ class TestModels(TestCase):
 		self.add_user_address(new_user)
 		return new_user
 
+	
 	def test_checkout_user_cart(self):
 		new_user = self.add_user_with_info()
-
-
 		response = self.add_item_with_variant_to_cart(new_user, AVAILABLE_INVENTORY)
 		self.assertTrue(response.get(Labels.Success))
 		response = self.add_item_without_variant_to_cart(new_user, AVAILABLE_INVENTORY)
@@ -308,7 +297,6 @@ class TestModels(TestCase):
 		for product in products:
 			product.inventory = 0
 			db.session.commit()
-
 
 		public_dict = new_user.toPublicDict()
 		card_id = public_dict[Labels.Cards][0][Labels.Id]
@@ -332,12 +320,8 @@ class TestModels(TestCase):
 
 		checkout_cart_response = self.checkout_user_cart(new_user, card_id, address_id)
 		self.assertTrue(checkout_cart_response[Labels.Success])
-
-
-
 		orders = new_user.getUserOrders()
 		self.assertTrue(len(orders) == 1)
-
 		for item in orders[0][Labels.Items]:
 			if item[Labels.VariantId]:
 				self.assertEqual(item[Labels.Name], NAME + "_" + VARIANT_TYPE)
@@ -346,15 +330,6 @@ class TestModels(TestCase):
 
 			self.assertEqual(item[Labels.NumItems], TEST_INVENTORY)			
 			self.assertEqual(item[Labels.TotalPrice], round(float(PRICE * TEST_INVENTORY),2))
-			
-
-			
-
-
-
-
-
-
 
 if __name__ == "__main__":
 	unittest.main(warnings = 'ignore')
