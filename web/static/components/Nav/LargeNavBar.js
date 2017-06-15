@@ -6,6 +6,7 @@ import styles from './navbar.css'
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
 
+
 export default class LargeNavBar extends React.Component {
 	constructor(props) {
 		super(props);

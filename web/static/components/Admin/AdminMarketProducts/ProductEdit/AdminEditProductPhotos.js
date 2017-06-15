@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
 var browserHistory = require('react-router').browserHistory;
+import Button from 'react-bootstrap/lib/Button'
 
 export default class AdminEditProductPhotos extends React.Component {
 	constructor(props) {

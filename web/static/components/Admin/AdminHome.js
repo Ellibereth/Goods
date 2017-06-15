@@ -5,6 +5,7 @@ import AppActions from '../../actions/AppActions'
 import PageContainer from '../Misc/PageContainer'
 import AddHomeImage from './AddHomeImage'
 import HomeImageDisplay from './HomeImageDisplay'
+import Button from 'react-bootstrap/lib/Button'
 
 
 export default class AdminLoginPage extends React.Component {

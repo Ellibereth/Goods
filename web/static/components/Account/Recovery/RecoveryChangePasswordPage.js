@@ -6,6 +6,7 @@ import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
+import Button from 'react-bootstrap/lib/Button'
 
 const form_labels = ["Password", "Password Confirm"]
 const form_inputs = ["password", "password_confirm"]

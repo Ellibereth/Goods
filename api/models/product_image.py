@@ -8,7 +8,9 @@ from api.utility.labels import ProductImageLabels as Labels
 from api.utility.id_util import IdUtil
 
 import os 
-ENVIRONMENT = os.environ.get("ENVIROMNET")
+
+ENVIRONMENT = os.environ.get("ENVIRONMENT")
+
 ## user object class
 class ProductImage(db.Model):
 	__tablename__ = ProdTables.ImageTable
