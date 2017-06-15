@@ -6,7 +6,9 @@ import random
 import string
 from api.utility.labels import ProductImageLabels as Labels
 from api.utility.id_util import IdUtil
+import os
 
+ENVIRONMENT = os.environ.get('ENVIRONMENT')
 
 
 ## user object class
@@ -26,10 +28,10 @@ class StoryImage(db.Model):
 
 	@staticmethod
 	def generateImageId():
-		new_image_id = IdUtil.id_generator()
+		new_image_id = ENVIRONMENT + "/" + IdUtil.id_generator()
 		missing = StoryImage.query.filter_by(image_id = new_image_id).first()
 		while missing is not None:
-			new_image_id = IdUtil.id_generator()
+			new_image_id = ENVIRONMENT + "/" +  IdUtil.id_generator()
 			missing = StoryImage.query.filter_by(image_id = new_image_id).first()
 		return new_image_id
 

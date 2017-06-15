@@ -8,7 +8,9 @@ from api.utility.labels import ProductImageLabels as Labels
 from api.utility.id_util import IdUtil
 from passlib.hash import argon2
 from api.s3.s3_api import S3
+import os 
 
+ENVIRONMENT = os.environ.get('ENVIRONMENT')
 
 class HomeImage(db.Model):
 	__tablename__ = ProdTables.HomeImageTable
@@ -29,10 +31,10 @@ class HomeImage(db.Model):
 
 	@staticmethod
 	def generateImageId():
-		new_image_id = IdUtil.id_generator()
+		new_image_id = ENVIRONMENT + "/" + IdUtil.id_generator()
 		missing = HomeImage.query.filter_by(image_id = new_image_id).first()
 		while missing is not None:
-			new_image_id = IdUtil.id_generator()
+			new_image_id = ENVIRONMENT + "/" + IdUtil.id_generator()
 			missing = HomeImage.query.filter_by(image_id = new_image_id).first()
 		return new_image_id
 

@@ -82,11 +82,10 @@ export default class AddHomeImage extends React.Component {
 			  		Upload New Home Image!
 		  		</div>
 				<input type = "file" placeholder="Image" id= "upload_home_image_input"
-				 className="form-control"
-				accept="image/*" 
+				 className="form-control" accept="image/*" 
 				onChange = {() => this.handleImageChange.bind(this)()} />
 				<div className = "form-group">
-				<div className = "col-sm-10 col-md-10">>
+				<div className = "col-sm-10 col-md-10">
 					<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this, this.uploadImage.bind(this))}>
 						Submit!
 					</button>

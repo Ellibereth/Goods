@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 
 
 import AdminTextInput from '../Input/AdminTextInput'
+import Button from 'react-bootstrap/lib/Button'
 
 const base_url = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
 export default class HomeImageDisplay extends React.Component {

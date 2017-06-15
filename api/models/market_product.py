@@ -72,6 +72,7 @@ class MarketProduct(db.Model):
 
 	def addProductImage(self, image_decoded, set_as_main_image = False):
 		# record the image_id in the database
+		
 		image_record = ProductImage(self.product_id)
 		db.session.add(image_record)
 		# upload the image to S3

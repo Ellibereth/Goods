@@ -26,6 +26,9 @@ os.environ['SECRET_KEY'] = secret_key
 
 DATABASE_URI = os.environ.get('DATABASE_URL')
 
+if os.environ.get('ENVIRONMENT') == None:
+	os.environ['ENVIRONMENT'] = "DEVELOPMENT"
+
 if DATABASE_URI == None:
 	# if testing locally we use the dev DB
 	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://srwigmxvvfclho:8c2a2e178f3f7729ed6d0f57e33a29938e2011366f27978f408a2293245e835b@ec2-50-19-83-146.compute-1.amazonaws.com:5432/ddfifja29586"

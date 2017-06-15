@@ -7,6 +7,8 @@ import string
 from api.utility.labels import ProductImageLabels as Labels
 from api.utility.id_util import IdUtil
 
+import os 
+ENVIRONMENT = os.environ.get("ENVIROMNET")
 ## user object class
 class ProductImage(db.Model):
 	__tablename__ = ProdTables.ImageTable
@@ -24,10 +26,10 @@ class ProductImage(db.Model):
 
 	@staticmethod
 	def generateImageId():
-		new_image_id = IdUtil.id_generator()
+		new_image_id = ENVIRONMENT + "/" +  IdUtil.id_generator()
 		missing = ProductImage.query.filter_by(image_id = new_image_id).first()
 		while missing is not None:
-			new_image_id = IdUtil.id_generator()
+			new_image_id = ENVIRONMENT + "/" +  IdUtil.id_generator()
 			missing = ProductImage.query.filter_by(image_id = new_image_id).first()
 		return new_image_id
 
