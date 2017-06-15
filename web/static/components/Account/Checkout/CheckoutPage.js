@@ -327,7 +327,7 @@ export default class CheckoutPage extends React.Component {
 					}
 					setTimeout(function() {
 						window.location = `/checkoutConfirmed`
-					}, 4000)
+					}, 2000)
 					AppActions.updateCurrentUser(data.user)
 				}
 				this.setLoading(false)
