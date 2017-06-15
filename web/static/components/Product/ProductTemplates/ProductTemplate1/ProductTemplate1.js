@@ -5,7 +5,6 @@ var Link = require('react-router').Link;
 import ProductImages from './ProductImages'
 import AppStore from '../../../../stores/AppStore'
 import AddToCartButton from './AddToCartButton.js'
-import styles from '..//product_styles.css'
 import {formatPrice} from '../../../Input/Util'
 import ProductDescriptionTab from './ProductDescriptionTab'
 

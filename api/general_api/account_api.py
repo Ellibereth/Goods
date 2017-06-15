@@ -88,9 +88,8 @@ def registerUserAccount():
 def confirmEmail():
 	email_confirmation_id = request.json.get(Labels.EmailConfirmationId)
 	this_user = User.query.filter_by(email_confirmation_id = email_confirmation_id).first()
-
 	if this_user == None:
-		return JsonUtil.failure(ErrorMessages.NonExistantEmailConfirmation)
+		return JsonUtil.failure()
 	else:
 		this_user.confirmEmail()
 		return JsonUtil.successWithOutput({
