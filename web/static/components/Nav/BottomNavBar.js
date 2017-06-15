@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link;
-import styles from './navbar.css'
 
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';

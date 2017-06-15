@@ -739,3 +739,170 @@
 .landing-container {
 	font-family: Arial;
 }
+
+
+.nav-icon {
+	display: block;
+	text-align: center;
+	padding-bottom: 4px;
+	font-size: x-large
+}
+
+.nav-icon-text {
+	display: block;
+	text-align: center;
+}
+
+.nav-greetings-text {
+	display: block;
+	text-align: center;
+	line-height : 72px;
+	font-size: 24px;
+	color: white;
+}
+
+.nav-greetings-text:hover {
+	cursor: default;
+}
+
+.navbar-brand-with-user {
+	line-height : 44px;
+	font-size: 34px;
+	color: white;
+}
+
+.navbar-brand {
+	font-family: Futura, Arial, sans-serif !important;
+}
+
+.navbar-brand-with-user:hover, .navbar-brand-with-user:focus,
+.navbar-brand-no-user:hover, .navbar-brand-no-user:focus {
+	color : skyblue;
+}
+
+
+.navbar-brand-no-user {
+	font-size: 36px;
+	color: white;
+}
+
+.navbar-right {
+	padding-right: 36px;
+}
+
+.top-navbar {
+	margin-bottom: 12px;
+	padding: 12px;
+}
+
+.bottom-navbar {
+	padding: 12px;
+}
+
+.navbar {
+	border-radius: 0 !important;
+}
+
+
+.no-user-link {
+	font-size: 20px;
+	padding: 24px;
+}
+
+.navbar-edgarusa {
+	/*background-color: blue;*/
+	background-color: #002868;
+}
+
+.edgar-search-bar.nav-large.with-user{
+	padding-top: 10px;
+}
+
+.edgar-search-bar.nav-large.no-user{
+	padding-top: 0px;
+}
+
+.edgar-search-bar.nav-small{
+	padding-top: 0px;
+}
+
+#srch-term:focus {
+	width: 240px;	
+}
+
+#srch-term {
+	/*width: 172px;*/
+	width: 240px !important;
+	transition: width 0.5s ease;
+}
+
+.search-bar-no-user {
+	padding-top: 0px;
+}
+
+.navbar-right > li > a {
+	color : white;
+}
+
+.navbar-right > li > a:hover {
+	background-color: transparent;
+	color : skyblue;
+}
+
+
+#account_dropdown {
+	background-color: transparent;
+}
+
+.cart-badge {
+	font-size: x-small;
+	position: absolute;
+	left: 32px;
+	top: 8px;
+	background-color: red;
+}
+
+#account_dropdown:hover + ul.dropdown-menu{
+	display: block;    
+}
+
+
+/* This should be renamed, don't forget about it later*/
+.none {
+	visibility: hidden;
+	opacity: 0;
+	/*-webkit-transition: all 0.4s ease;*/
+
+}
+
+.navbar-edgarusa {
+	/*background-color: blue;*/
+	background-color: #002868;
+	/*-webkit-transition: all 0.4s ease;*/
+}
+
+.navbar-edgarusa-small {
+	background-color: #002868;
+	 /*Look into this transition*/
+	/*-webkit-transition: all 0.4s ease;*/
+}
+
+.navbar-brand-small {
+	color: white;
+	font-size: 18px;
+}
+.navbar-brand-small:hover {
+	color: skyblue;
+}
+
+.nav-buffer {
+	padding-bottom: 50px;
+}
+
+.account-dropdown:hover .dropdown-menu {
+	display: block;
+    margin-top: 0; /*remove the gap so it doesn't close*/
+}
+
+
+
