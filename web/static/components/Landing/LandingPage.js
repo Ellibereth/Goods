@@ -31,19 +31,19 @@ export default class HomePage extends React.Component {
 							Edgar USA
 						</div>
 						<div className = "landing-after-title-text">
-							Borrowing, redefined
+							Live All-American
 						</div>
 						<div className = "small-buffer"/>
 						<div className = "landing-middle-text">
-							Need stuff? 
+							Buy goods Made in the USA for the cheapest prices on the web.  
 						</div>
 						
 						<div className = "landing-middle-text">
-							Buy it now, pay for it later
+							Featuring a rapidly rotating inventory from top American makers and manufacturers.
 						</div>
 						<div className = "top-buffer"/>
 						<div className = "landing-above-input-text">
-							Sign up to get notified when we launch
+							Coming July 2017 - Sign up to be notified for when we launch.
 						</div>
 						<div className = "small-buffer"/>
 						<div className = "row">
