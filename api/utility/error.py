@@ -41,8 +41,6 @@ class ErrorMessages:
 	ExpiredLink = SwalError("This link is invalid or has expired.").toDict()
 	BlankPassword = SwalError("Passwords cannot be blank.").toDict()
 	CartAddError = SwalError("Something went wrong while adding item to cart").toDict()
-	AddressUserMismatch = SwalError("Address does not go with this user.").toDict()
-	CartPriceCalculationError = SwalError("Error calculating price of cart").toDict()
 	CartCheckoutGeneralError = SwalError("There was an error with checking out your cart. Please check your cart and try again. \n \
 			If you continue to have issues, do not hesitate to contact customer service.").toDict()
 	CartCheckoutPaymentError = SwalError("Something went wrong while trying to process payment information. Please check your billing information and try again.").toDict()
@@ -66,7 +64,7 @@ class ErrorMessages:
 		return SwalError(email + " is not a valid email address.").toDict()
 
 	def inUseEmail(email):
-		return SwalError(email + " is associated with another account").toDict()
+		return SwalError(email + " is in user.").toDict()
 
 	def itemLimit(limit):
 		if limit == 0:

@@ -24,7 +24,7 @@ class Checkout:
 	def checkoutCart(this_user, card_id, address_id):
 		address = Lob.getAddressById(address_id)
 		if int(address.metadata.get(Labels.AccountId)) != this_user.account_id:
-			return {Labels.Success : False, Labels.Error : ErrorMessages.AddressUserMismatch}
+			return {Labels.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
 		this_cart = Cart(this_user.account_id)
 		date_created = db.func.current_timestamp()
 		record_order_response = Checkout.checkoutRecordOrder(this_user, this_cart, address)
@@ -64,7 +64,7 @@ class Checkout:
 	def checkoutChargeCustomer(this_user, this_cart, this_order, card_id, address):
 		total_price = this_cart.toPublicDict(address).get(Labels.TotalPrice)
 		if not total_price:
-			return {Lables.Success : False, Labels.Error : ErrorMessages.CartPriceCalculationError}
+			return {Lables.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
 		try:
 			charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
 			this_order.updateCharge(charge)
@@ -93,7 +93,7 @@ class Checkout:
 
 	def updateCartQuantity(this_user, this_product, this_cart_item, new_num_items):
 		if not this_product:
-			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidProduct}
+			return {Labels.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
 		if this_product.has_variants:
 			variant_id = this_cart_item.get(Labels.VariantId)
 			cart_item = CartItem.query.filter_by(account_id = this_user.account_id, product_id = this_product.product_id, variant_id = variant_id).first()
