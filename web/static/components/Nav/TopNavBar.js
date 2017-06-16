@@ -57,6 +57,8 @@ export default class TopNavBar extends React.Component {
 	}
 
 	getSearchBar(size){
+		// right now search bar will be down on staging
+		return <div/>
 		var current_user = AppStore.getCurrentUser()
 		var search_bar_class = "navbar-form navbar-left edgar-search-bar"
 		if (current_user == {} || !current_user) {
