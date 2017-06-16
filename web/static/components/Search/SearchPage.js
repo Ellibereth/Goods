@@ -35,9 +35,6 @@ export default class SearchPage extends React.Component {
 						num_results : data.products.length
 					})
 				}
-				else {
-					swal("nice try!")
-				}
 			}.bind(this),
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"

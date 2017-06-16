@@ -7,6 +7,7 @@ import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
+import AlertMessages from '../../Misc/AlertMessages'
 
 const form_labels = ["Email"]
 const form_inputs = ["email"]
@@ -50,10 +51,7 @@ export default class RecoveryPage extends React.Component {
 				url: "/setRecoveryPin",
 				data: form_data,
 				success: function(data) {
-					swal({
-						title : "A recovery email has been sent to " + this.state.email,
-						type: "success"
-					})
+					swal(AlertMessages.RECOVERY_PIN_SENT(this.state.email))
 					setTimeout( function () {
 						window.location = '/'
 					}, 2000)

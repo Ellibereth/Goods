@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class UploadStoryPhoto extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,16 +12,7 @@ export default class UploadStoryPhoto extends React.Component {
 
 
 	onSubmitPress(){
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.uploadImage.bind(this)()
 		}.bind(this))
@@ -60,11 +51,10 @@ export default class UploadStoryPhoto extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "Something went wrong", "warning")
+						swal(AlertMessages.INTERNAL_SERVER_ERROR)
 					}
 					else {
-						swal("Thank you!", "Image uploaded!"
-							, "success")
+						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 
 						location.reload()
 

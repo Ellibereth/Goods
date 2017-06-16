@@ -5,7 +5,7 @@ import AppActions from '../../actions/AppActions'
 import TextInput from '../Input/TextInput.js'
 import PageContainer from '../Misc/PageContainer'
 
-
+import {AlertMessages} from '../Misc/AlertMessages'
 export default class AdminLoginPage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -42,7 +42,7 @@ export default class AdminLoginPage extends React.Component {
 					window.location = '/yevgeniypoker555'
 				}
 				else {
-					swal("nice try!")
+					swal(AlertMessages.NICE_TRY_MAN)
 				}
 			}.bind(this),
 			dataType: "json",

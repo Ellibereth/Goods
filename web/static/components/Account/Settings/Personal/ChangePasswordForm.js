@@ -7,7 +7,7 @@ import TextInput from '../../../Input/TextInput.js'
 const form_labels = ['New Password', "Confirm Your New Password", "Confirm Current Password"]
 const form_inputs = ["password", "password_confirm", "old_password"]
 const input_types = ['password', 'password', 'password']
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class ChangePasswordForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -26,16 +26,7 @@ export default class ChangePasswordForm extends React.Component {
 	}
 
 	onSubmitPress(){
-		swal({
-		  title: "Ready?",
-		  text: "Are you sure you want to change your password?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
-		  closeOnCancel: true
-		},
+		swal(AlertMessage.ARE_YOU_SURE_CHANGE_PASSWORD,
 		function () {
 			this.submitData.bind(this)()
 		}.bind(this))
@@ -72,13 +63,7 @@ export default class ChangePasswordForm extends React.Component {
 							window.location = `/settings`
 						}, 2000)
 
-						swal({
-						  title: "Thank you!",
-						  text: "Your password has been changed! You will be redirected to settings shortly...",
-						  type: "success",
-						  confirmButtonText: "Ok!",
-						  closeOnConfirm: true,
-						})
+						swal(AlertMessage.CHANGE_WAS_SUCCESSFUL)
 
 					}
 				}.bind(this),
@@ -113,7 +98,7 @@ export default class ChangePasswordForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "Your password was incorrect. Please try again!", "warning")
+						swal(AlertMessage.INVALID_CREDENTIALS)
 					}
 					else {
 						this.updatePassword.bind(this)()

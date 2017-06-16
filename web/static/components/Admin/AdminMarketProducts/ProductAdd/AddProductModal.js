@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AddProductForm from './AddProductForm'
 import Modal from 'react-bootstrap/lib/Modal'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AddProductModal extends React.Component {
 	constructor(props) {
 	super(props);
@@ -12,16 +12,7 @@ export default class AddProductModal extends React.Component {
 	}
 
 	onModalClosePress(){
-		swal({
-			title: "Are you sure?",
-			text: "Closing this will delete all the information you have typed",
-			showCancelButton: true,
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "Close",
-			cancelButtonText: "No",
-			closeOnConfirm: true,
-			closeOnCancel: true
-			},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 			function () {
 				this.props.toggleAddProductModal()
 		}.bind(this))

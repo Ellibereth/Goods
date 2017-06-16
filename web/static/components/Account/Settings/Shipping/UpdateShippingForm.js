@@ -12,7 +12,7 @@ const form_inputs = ["address_name", "description", "address_city", "address_sta
 					"address_line1", "address_line2", "address_zip"]
 
 const input_types = ["text", "text", "text", "text", "text", "text", "text", "text"]
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class UpdateShippingForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -94,10 +94,7 @@ export default class UpdateShippingForm extends React.Component {
 					});
 					this.props.setLoading(false)
 					setTimeout(function() {
-						swal({
-							title :"Something went wrong",
-							type : "error"
-						})
+						swal(AlertMessages.INTERNAL_SERVER_ERROR)
 					}, 250)
 					this.setState({disabled : false})
 				}.bind(this),

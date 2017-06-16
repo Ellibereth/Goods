@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import CheckoutAddBilling from './CheckoutAddBilling.js'
 import Modal from 'react-bootstrap/lib/Modal'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class CheckoutAddBillingModal extends React.Component {
 	constructor(props) {
 		super(props);
@@ -10,16 +10,7 @@ export default class CheckoutAddBillingModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
-		swal({
-			title: "Are you sure?",
-			text: "Closing this will delete all the information you have typed",
-			showCancelButton: true,
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "Close",
-			cancelButtonText: "No",
-			closeOnConfirm: true,
-			closeOnCancel: true
-			},
+		swal(AlertMessages.YOU_WILL_LOSE_SAVED_INFORMATION,
 			function () {
 				this.props.toggleModal()
 		}.bind(this))

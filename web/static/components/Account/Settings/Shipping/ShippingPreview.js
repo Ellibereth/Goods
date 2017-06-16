@@ -6,7 +6,7 @@ import AppStore from '../../../../stores/AppStore.js';
 import AddressPreview from './AddressPreview'
 import EditAddressModal from './EditAddressModal.js'
 import AddAddressButton from './AddAddressButton'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class ShippingPreview extends React.Component {
 	constructor(props) {
 		super(props);
@@ -38,11 +38,7 @@ export default class ShippingPreview extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-					swal({
-							title: "Thank you", 
-							text : "Your changes have been made",
-							type: "success"
-						})
+					swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 					this.props.refreshSettings()
 				}
 				this.props.setLoading(false)

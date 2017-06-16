@@ -7,7 +7,7 @@ import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Input/TextInput.js'
 import CreditCardInput from '../../../Input/CreditCardInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 const form_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip",
@@ -86,11 +86,7 @@ export default class UpdateBillingForm extends React.Component {
 						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
-						swal({
-								title: "Thank you", 
-								text : "Your changes have been made",
-								type: "success"
-							})
+						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 						var form_data =  JSON.stringify({
 								jwt : localStorage.jwt
 							})
@@ -128,10 +124,7 @@ export default class UpdateBillingForm extends React.Component {
 					});
 					this.props.setLoading(false)
 					setTimeout(function() {
-						swal({
-							title :"Something went wrong with your submission",
-							type : "error"
-						})
+						swal(AlertMessages.INTERNAL_SERVER_ERROR)
 					}, 250)
 					this.setState({disabled : false})
 				}.bind(this),

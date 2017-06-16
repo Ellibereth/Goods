@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js'
 import AppActions from '../../../../actions/AppActions.js'
 import {formatPrice} from '../../../Input/Util.js'
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 var browserHistory = require('react-router').browserHistory
 
@@ -45,10 +46,7 @@ export default class AddToCartButton extends React.Component {
 
 	addToCart(){
 		if (this.props.product.has_variants && !this.state.variant) {
-			swal({
-				title : "You must select a type.",
-				type : "error"
-			})
+			swal(AlertMessages.MUST_SELECT_VARIANT)
 		}
 
 		else {
@@ -65,16 +63,7 @@ export default class AddToCartButton extends React.Component {
 				}),
 				success: function(data) {
 						if (data.success){
-							swal({
-								title: "This item is now in your cart.",
-								type: "success",
-								showCancelButton: true,
-								confirmButtonColor: "#DD6B55",
-								confirmButtonText: "View Cart",
-								cancelButtonText: "Continue Shopping",
-								closeOnConfirm: true,
-								closeOnCancel: true
-							},
+							swal(AlertMessages.ITEM_ADDED_TO_CART,
 							function(isConfirm){
 								if (isConfirm){
 									window.location =  '/myCart'
@@ -106,10 +95,7 @@ export default class AddToCartButton extends React.Component {
 						
 				}.bind(this),
 				error : function(){
-					swal({
-						title : "Something went wrong, try again",
-						type : "error"
-					})
+					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 					ga('send', 'event', {
 						eventCategory: 'server-error',
 						eventAction: 'add-to-cart',
@@ -135,14 +121,8 @@ export default class AddToCartButton extends React.Component {
 	}
 
 	onNonUserClick(){
-		swal({
-			title: "Sign up before adding items to cart",
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "Register Now",
-			showCloseButton: true,
-			closeOnConfirm: true,
-			allowOutsideClick: true
-			},
+		swal(AlertMessages.NON_USER_ADD_TO_CART_ATTEMPT
+			,
 			function(isConfirm){
 				if (isConfirm){
 					window.location = '/register'				

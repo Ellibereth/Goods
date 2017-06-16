@@ -31,10 +31,7 @@ export default class CardPreview extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-						swal({
-							title: "Default card set",
-							type: "success"
-						})
+						swal(AlertMessages.DEFAULT_CARD_SET_SUCCESS)
 						this.props.refreshSettings()
 					}
 				this.props.setLoading(false)

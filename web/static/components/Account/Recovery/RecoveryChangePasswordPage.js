@@ -8,6 +8,7 @@ import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
 import Button from 'react-bootstrap/lib/Button'
 
+import {AlertMessages} from '../../Misc/AlertMessages'
 const form_labels = ["Password", "Password Confirm"]
 const form_inputs = ["password", "password_confirm"]
 const input_types = ['password', 'password']
@@ -79,14 +80,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						swal({
-							title: "Password has been set",
-							// text: "You will not be able to recover this imaginary file!",
-							type: "success",
-							confirmButtonColor: "#DD6B55",
-							confirmButtonText: "Return to home page to login",
-							closeOnConfirm: true,
-						}, function(isConfirm){
+						swal(NEW_PASSWORD_HAS_BEEN_SET, function(isConfirm){
 							window.location = '/'
 						})
 					}

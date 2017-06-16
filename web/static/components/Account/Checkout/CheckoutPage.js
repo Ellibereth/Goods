@@ -10,7 +10,7 @@ import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
 import CheckoutPriceRow from './CheckoutPriceRow'
 import {formatPrice} from '../../Input/Util'
 import Spinner from '../../Misc/Spinner'
-
+import {AlertMessages} from '../../Misc/AlertMessages'
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
@@ -261,16 +261,7 @@ export default class CheckoutPage extends React.Component {
 		var selected_address = this.getSelectedAddress.bind(this)()
 		var text = "Are you ready to checkout with card ending in " + selected_card.last4    + 
 				"\n to address " + selected_address.address_line1 + "?"
-		swal({
-			title: "Confirm",
-			text: text,
-			showCancelButton: true,
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "Yes",
-			cancelButtonText: "No",
-			closeOnConfirm: true,
-			closeOnCancel: true
-		},
+		swal(AlertMessages.CHECKOUT_CONFIRM(text),
 		function () {
 			this.checkout.bind(this)()
 		}.bind(this))
@@ -299,9 +290,7 @@ export default class CheckoutPage extends React.Component {
 						, "warning")
 					}
 					else {
-						swal("Thank you!", "You will receive a confirmation email for this purchase. \
-							This will take the user to a checkout page soon. Will have to write that huh?"
-							, "success")
+						swal(AlertMessages.CHECKOUT_SUCCESSFUL)
 						
 						this.state.items.map((item) => {
 							ga('ec:addProduct', {
@@ -340,7 +329,7 @@ export default class CheckoutPage extends React.Component {
 						eventAction: 'checkoutCart',
 						eventLabel: AppStore.getCurrentUser().email
 					});
-				swal("We're sorry!", "Please contact customer service to discuss what you tried to do.","error")
+				swal(AlertMessages.CONTACT_CUSTOMER_SERVICE)
 				this.setState({is_loading : false})
 				this.setLoading(false)
 				this.setState({button_disabled : false})

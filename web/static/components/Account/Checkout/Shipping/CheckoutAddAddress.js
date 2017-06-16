@@ -11,6 +11,7 @@ const CART_INDEX = 2
 
 const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
 					"address_line1", "address_line2", "address_zip"]
+import {AlertMessages} from '../../../Misc/AlertMessages'
 // requires as props
 //	refreshCheckoutInformation
 
@@ -38,16 +39,7 @@ export default class CheckoutAddAddress extends React.Component {
 	}
 
 	onSubmitPress(){
-		swal({
-		  title: "Ready?",
-		  text: "Is all your information correct?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
 		function () {
 			this.addAddress.bind(this)()
 		}.bind(this))

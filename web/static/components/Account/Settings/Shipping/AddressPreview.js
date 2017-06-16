@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AddressPreview extends React.Component {
 	constructor(props) {
@@ -19,16 +20,7 @@ export default class AddressPreview extends React.Component {
 
 	onDeletePress(){
 		var address = this.props.address
-		swal({
-		  title: "Ready?",
-		  text: "Are you sure you want to delete : " + address.address_line1 + "?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.deleteAddress.bind(this)()
 		}.bind(this))
@@ -55,10 +47,7 @@ export default class AddressPreview extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-						swal({
-							title: "Default address set",
-							type: "success"
-						})
+						swal(AlertMessages.DEFAULT_ADDRESS_SET_SUCCESS)
 						this.props.refreshSettings()
 					}
 				this.props.setLoading(false)

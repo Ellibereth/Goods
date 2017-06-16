@@ -4,7 +4,7 @@ import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 var browserHistory = require('react-router').browserHistory;
 import {formatPrice} from '../../../Input/Util'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class CartItemDisplay extends React.Component {
 	constructor(props) {
 		super(props);
@@ -56,7 +56,7 @@ export default class CartItemDisplay extends React.Component {
 						eventAction: 'updateCartQuantity',
 						eventLabel: AppStore.getCurrentUser().email
 					});
-					swal("an internal server error")
+					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
@@ -71,16 +71,7 @@ export default class CartItemDisplay extends React.Component {
 
 	// removing item is the same as setting quatity to zero
 	removeItem(){
-		swal({
-		  title: "You sure?",
-		  text: "Are you sure you want to remove this item from your cart?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.ARE_YOU_SURE_REMOVE_ITEM_FROM_CART,
 		function () {
 			this.serverUpdateQuantity.bind(this)(0)
 		}.bind(this))	

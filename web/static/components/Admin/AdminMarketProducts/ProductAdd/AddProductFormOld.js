@@ -6,6 +6,7 @@ const form_labels = ["Product Name", "Product Description", "Manufacturer", "Pri
 const input_types = ['text', 'textarea', 'text', 'text', 'text', 'text', 'datetime-local']
 import TextInput from '../../../Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AddProductForm extends React.Component {
 	constructor(props) {
@@ -49,16 +50,7 @@ export default class AddProductForm extends React.Component {
 
 
 	onSubmitPress(){
-		swal({
-		  title: "Confirm",
-		  text: "Do you really want to show this product on the market?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.submitData.bind(this)()
 		}.bind(this))
@@ -88,8 +80,7 @@ export default class AddProductForm extends React.Component {
 					}
 					else {
 						this.props.toggleAddProductModal()
-						swal("Nice man!", "You just added this product to the market"
-							, "success")
+						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 					}
 					this.props.loadProducts()
 				}.bind(this),

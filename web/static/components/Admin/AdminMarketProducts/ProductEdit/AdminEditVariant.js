@@ -5,7 +5,7 @@ const form_fields = ['variant_type', 'inventory']
 const form_labels = ['Variant Type', 'Inventory']
 const input_types = ['text', 'text']
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 // takes product and variant in as props
 
@@ -29,16 +29,7 @@ export default class AdminEditVariant extends React.Component {
 	}
 
 	warningAlert(callback) {
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			callback()
 		}.bind(this))
@@ -136,7 +127,7 @@ export default class AdminEditVariant extends React.Component {
 			if (data.success){
 				this.props.getProductInformation()
 				setTimeout(function () {
-					swal("Complete", "Product variant inventory successfully updated", "success")
+					swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 				}, 500) 
 
 			}

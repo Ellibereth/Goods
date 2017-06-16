@@ -7,6 +7,7 @@ const input_types = ['text']
 import TextInput from '../../../Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
 var browserHistory = require('react-router').browserHistory
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AddProductForm extends React.Component {
 	constructor(props) {
@@ -23,20 +24,8 @@ export default class AddProductForm extends React.Component {
 		this.setState(obj)
 	}
 
-	
-
-
 	onSubmitPress(){
-		swal({
-		  title: "Confirm",
-		  text: "Do you really want to show this product on the market?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.submitData.bind(this)()
 		}.bind(this))
@@ -62,8 +51,7 @@ export default class AddProductForm extends React.Component {
 						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
-						swal("Nice man!", "You just added this product to the market"
-							, "success")
+						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 						setTimeout(function () {
 							window.location = '/yevgeniypoker555/editProduct/' + data.product.product_id
 						}, 2000)

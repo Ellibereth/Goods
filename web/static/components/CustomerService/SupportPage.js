@@ -11,6 +11,7 @@ const SITE_CATEGORY = "your site"
 const ACCOUNT_CATEGORY = "my account"
 const OTHER_CATEGORY = 'something else'
 const categories = ['', PURCHASE_CATEGORY, SITE_CATEGORY, ACCOUNT_CATEGORY, OTHER_CATEGORY]
+import {AlertMessages} from '../Misc/AlertMessages'
 
 export default class SupportPage extends React.Component {
 	constructor(props) {
@@ -58,14 +59,14 @@ export default class SupportPage extends React.Component {
 			url: "/addFeedback",
 			success: function(data) {
 				if (data.success) {
-					swal("Your feedback is appreaciated", "Redirecting you to the homepage shorlty", "success")
+					swal(AlertMessages.SUCCESFUL_FEEDBACK_COMPLETION)
 					setTimeout(function (){
 						window.location = '/'
 					}, 2000)
 
 				}
 				else {
-					swal("nice try, but something went wrong...")
+					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				}
 			}.bind(this),
 			dataType: "json",

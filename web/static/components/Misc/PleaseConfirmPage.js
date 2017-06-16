@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import PageContainer from './PageContainer'
 var browserHistory = require('react-router').browserHistory
 import AppStore from '../../stores/AppStore'
+import {AlertMessages} from '../Misc/AlertMessages'
 
 export default class PleaseConfirmPage extends React.Component {
 	constructor(props) {
@@ -25,9 +26,7 @@ export default class PleaseConfirmPage extends React.Component {
 			success: function(data) {
 				if (data.success){
 					swal(
-						"Confirmation email resent to " + AppStore.getCurrentUser().email,
-						"Check your email again",
-						"success"
+						AlertMessages.CONFIRMATION_EMAIL_SENT(AppStore.getCurrentUser().email)
 					)
 				}
 				else {

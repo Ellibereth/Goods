@@ -37,6 +37,7 @@ import RecoveryPage from './Account/Recovery/RecoveryPage'
 import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
 // import ThanksPage from './Misc/ThanksPage'
 import LandingPage from './Landing/LandingPage'
+import {AlertMessages} from './Misc/AlertMessages'
 
 export default class Main extends React.Component {
 	
@@ -66,20 +67,12 @@ export default class Main extends React.Component {
 								message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
 							}
 						})
-						swal({
-							title: "Some items in your cart have been modified",
-							text: message,
-							type : "info",
-							showCancelButton: false,
-							confirmButtonText: "View Changes",
-							cancelButtonText: "Keep Shopping",
-							closeOnConfirm: true,
-							closeOnCancel: true
-						},
-						function (isConfirm) {
-							window.location = '/myCart'
-						}.bind(this))
-					}
+						swal(
+							AlertMessages.ITEMS_IN_CART_HAVE_BEEN_MODIFIED(message),
+							function (isConfirm) {
+								window.location = '/myCart'
+							}.bind(this))
+						}
 					
 				}
 

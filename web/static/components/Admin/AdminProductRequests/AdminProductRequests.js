@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 
 const request_variables = ['request_id', 'name', 'email', 'description', 'price_range', 'confirmed', 'completed', 'date_created', 'date_completed']
 const headers = ['Delete', 'Request Id', 'Name', 'Email', 'Description', 'Price Range', 'Confirmed', 'Completed', 'Date Created', 'Date Completed']
+import {AlertMessages} from '../../Misc/AlertMessages'
 
 export default class AdminProductRequests extends React.Component {
 	constructor(props) {
@@ -36,23 +37,14 @@ export default class AdminProductRequests extends React.Component {
 
 	// index isn't used right now, but might be used later
 	onDeleteClick(r_id, index){
-		swal({
-		  title: "Ready?",
-		  text: "Are you sure you want to delete this?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
-		function () {
-			var temp = this.state.product_requests
-			temp.splice(index, 1)
-			this.setState({product_requests : temp})
-			this.softDeleteRequest.bind(this)(r_id)
-		}.bind(this))
-	}
+		swal(AlertMessages.ARE_YOU_SURE_YOU_WANT_TO_DELETE(""),
+			function () {
+				var temp = this.state.product_requests
+				temp.splice(index, 1)
+				this.setState({product_requests : temp})
+				this.softDeleteRequest.bind(this)(r_id)
+			}.bind(this))
+		}
 
 	softDeleteRequest(r_id){
 			var form_data = JSON.stringify({"request_id": r_id})
@@ -62,10 +54,10 @@ export default class AdminProductRequests extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "We weren't able to delete it!", "warning")
+						swal(AlertMessages.DELETE_FAILURE)
 					}
 					else {
-						swal("Thank you!", "You have deleted this request!", "success")
+						swal(AlertMessages.DELETE_SUCCESS)
 					}
 
 				}.bind(this),

@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 
 
@@ -57,32 +57,14 @@ export default class AdminActivateProduct extends React.Component {
 	}
 
 	onDeactivatePress(){
-		swal({
-		  title: "Ready?",
-		  text: "Are you sure you want to take this item off the market? Don't worry, it will still be saved.",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.deactivateProduct.bind(this)()
 		}.bind(this))
 	}
 
 	onActivatePress(){
-		swal({
-		  title: "Ready?",
-		  text: "Are you sure you want to put this product on the market?", 
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.activateProduct.bind(this)()
 		}.bind(this))

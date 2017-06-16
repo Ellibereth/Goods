@@ -5,6 +5,7 @@ const form_inputs = ['variant_type', 'inventory', 'price']
 const form_labels = ["Variant Name", 'Inventory', 'Price']
 const input_types = ['text', 'text']
 import AdminTextInput from '../../../Input/AdminTextInput.js'
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AddVariantForm extends React.Component {
 	constructor(props) {
@@ -24,16 +25,7 @@ export default class AddVariantForm extends React.Component {
 	}
 
 	onAddPress(){
-		swal({
-		  title: "Confirm",
-		  text: "Do you really want to show this variant on the market?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.addVariant.bind(this)()
 		}.bind(this))
@@ -59,8 +51,7 @@ export default class AddVariantForm extends React.Component {
 						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
-						swal("Nice man!", "You just added this product variant to the market"
-							, "success")
+						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 						this.setState({
 							price : "",
 							inventory : "",

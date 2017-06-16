@@ -9,6 +9,7 @@ const input_types = ['text', 'text', 'password', 'password']
 const popover_text = [null, null, "Passwords must be at least 6 characters" , "Passwords must be at least 6 characters"]
 var Link = require('react-router').Link
 import AccountInput from '../../Input/AccountInput'
+import {AlertMessages} from '../../Misc/AlertMessages'
 
 export default class RegisterAccountForm extends React.Component {
 	constructor(props) {
@@ -32,16 +33,7 @@ export default class RegisterAccountForm extends React.Component {
 
 	onSubmitPress(event){
 		event.preventDefault()
-		swal({
-			title: "Ready?",
-			text: "Is all your information correct?",
-			showCancelButton: true,
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "Yes",
-			cancelButtonText: "No",
-			closeOnConfirm: false,
-			closeOnCancel: true
-		},
+		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
 		function (isConfirm) {
 			if (isConfirm){
 				this.props.setLoading(true)
@@ -72,10 +64,7 @@ export default class RegisterAccountForm extends React.Component {
 					else {
 						ga('send', 'pageview', 'register-complete');
 						AppActions.addCurrentUser(data.user, data.jwt)
-						swal({
-							title: "Thank you", 
-							text : "Your account has been created. You should receive a confirmation email shortly",
-							type: "success"},
+						swal(AlertMessages.ACCOUNT_REGISTRATION_SUCCESS,
 							function () {
 								window.location = '/'
 							}.bind(this)

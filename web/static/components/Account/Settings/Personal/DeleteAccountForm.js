@@ -27,17 +27,7 @@ export default class DeleteAccountForm extends React.Component {
 	
 	handleDeleteClick(event){
 		event.preventDefault()
-		swal({
-		  title: "You sure?",
-		  text: "It will be very difficult to undo this if you change your mind later?",
-		  type : "warning",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
-		  closeOnCancel: true
-		},
+		swal(AlertMessage.ARE_YOU_SURE_DELETE_ACCOUNT,
 		function () {
 			this.deleteAccount.bind(this)()
 		}.bind(this))
@@ -63,13 +53,7 @@ export default class DeleteAccountForm extends React.Component {
 							window.location = `/`
 						}, 2000)
 
-						swal({
-						  title: "Thank you!",
-						  text: "Your account has been deleted! You will be redirected to home page shortly...",
-						  type: "success",
-						  confirmButtonText: "Ok!",
-						  closeOnConfirm: true,
-						})
+						swal(AlertMessage.ACCOUNT_DELETE_SUCCESS)
 
 					}
 				}.bind(this),

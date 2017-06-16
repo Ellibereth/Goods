@@ -7,6 +7,7 @@ import AddHomeImage from './AddHomeImage'
 import HomeImageDisplay from './HomeImageDisplay'
 import Button from 'react-bootstrap/lib/Button'
 
+import {AlertMessages} from '../Misc/AlertMessages'
 
 export default class AdminLoginPage extends React.Component {
 	constructor(props) {
@@ -33,7 +34,7 @@ export default class AdminLoginPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry!", "Something went wrong", "error")
+					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				}
 				else {
 					this.setState({home_images : data.images})

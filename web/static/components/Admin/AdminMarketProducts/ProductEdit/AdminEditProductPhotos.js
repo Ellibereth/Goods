@@ -4,6 +4,7 @@ var ReactDOM = require('react-dom');
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
 var browserHistory = require('react-router').browserHistory;
 import Button from 'react-bootstrap/lib/Button'
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AdminEditProductPhotos extends React.Component {
 	constructor(props) {
@@ -19,16 +20,7 @@ export default class AdminEditProductPhotos extends React.Component {
 
 
 	onSetMainPhoto(image_id, index) {
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.CHANGE_WAS_SUCCESFUL,
 		function () {
 			this.setMainPhoto.bind(this)(image_id, index)
 		}.bind(this))
@@ -62,16 +54,7 @@ export default class AdminEditProductPhotos extends React.Component {
 
 
 	onDeletePhoto(image_id, index) {
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.CHANGE_WAS_SUCCESFUL,
 		function () {
 			this.deletePhoto.bind(this)(image_id, index)
 		}.bind(this))

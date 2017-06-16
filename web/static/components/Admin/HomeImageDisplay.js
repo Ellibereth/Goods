@@ -6,6 +6,8 @@ import AdminTextInput from '../Input/AdminTextInput'
 import Button from 'react-bootstrap/lib/Button'
 
 const base_url = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
+import {AlertMessages} from '../Misc/AlertMessages'
+
 export default class HomeImageDisplay extends React.Component {
 	constructor(props) {
 		super(props);
@@ -30,16 +32,7 @@ export default class HomeImageDisplay extends React.Component {
 	}
 
 	onUpdatePress(){
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.updateHomeImage.bind(this)()
 		}.bind(this))
@@ -59,11 +52,11 @@ export default class HomeImageDisplay extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal("Sorry!", "Something went wrong", "error")
+					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				}
 				else {
 					setTimeout(function () {
-						swal("Success!", "It worked :)", "success")
+						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 					}, 500)
 				}
 			}.bind(this),

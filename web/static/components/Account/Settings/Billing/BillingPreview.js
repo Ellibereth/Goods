@@ -5,7 +5,7 @@ var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import CardPreview from './CardPreview'
 import AddCardButton from './AddCardButton'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class BillingPreview extends React.Component {
 	constructor(props) {
@@ -16,16 +16,7 @@ export default class BillingPreview extends React.Component {
 	}
 
 	deleteCardPress(card){
-		swal({
-		  title: "Ready?",
-		  text: "Are you sure you want to delete card ending in " + card.last4 + "?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.DELETE_CARD_ENDING_IN(card.last4),
 		function () {
 			this.deleteCard.bind(this)(card)
 		}.bind(this))
@@ -48,11 +39,7 @@ export default class BillingPreview extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-						swal({
-							title: "Thank you", 
-							text : "Your changes have been made",
-							type: "success"
-						})
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 						this.props.refreshSettings()
 					}
 					this.props.setLoading(false)

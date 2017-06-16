@@ -6,7 +6,7 @@ import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Input/TextInput.js'
 import CreditCardInput from '../../../Input/CreditCardInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 const address_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip",
 					"addresss_name"]
@@ -44,16 +44,7 @@ export default class CheckoutAddBilling extends React.Component {
 	}
 
 	onSubmitPress(){
-		swal({
-		  title: "Ready?",
-		  text: "Is all your information correct?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.IS_ALL_YOUR_iINFORMATION_CORRECT,
 		function () {
 			this.addCreditCard.bind(this)()
 		}.bind(this))
@@ -92,11 +83,7 @@ export default class CheckoutAddBilling extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-					swal({
-							title: "Thank you!", 
-							text : "Your changes have been made",
-							type: "success"
-						})
+					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 					
 					this.props.onAddingNewBillingMethod()
 				}

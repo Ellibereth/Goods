@@ -6,7 +6,7 @@ import AdminTextInput from '../../../Input/AdminTextInput.js'
 const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'story_text', 'story_template', 'product_template', 'num_items_limit']
 const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Story Text', 'Story Template', 'Product Template', 'Item Limit']
 const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'textarea', 'text', 'text', 'text', 'text']
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
 	constructor(props) {
 		super(props);
@@ -31,32 +31,14 @@ export default class AdminEditProductInfo extends React.Component {
 	}
 
 	onTextSubmitPress() {
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.submitTextData.bind(this)()
 		}.bind(this))
 	}
 
 	onToggleProductHasVariants(has_variants){
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.onToggleProductHasVariants.bind(this)(has_variants)
 		}.bind(this))
@@ -74,7 +56,7 @@ export default class AdminEditProductInfo extends React.Component {
 	  	data: form_data,
 	  	success: function(data) {
 			if (data.success){
-				swal("Complete!", "Product successfully updated", "success")
+				swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
 				setTimeout(function () {location.reload()}, 4000)
 			}
 			else {
@@ -103,7 +85,7 @@ export default class AdminEditProductInfo extends React.Component {
 			if (data.success){
 				this.setState({product : data.product})
 				this.props.getProductInformation.bind(this)()
-				setTimeout(function () {swal("Complete!", "Product successfully updated", "success")}, 500)
+				setTimeout(function () {swal(AlertMessagesCHANGE_WAS_SUCCESFUL)}, 500)
 
 			}
 			else {
@@ -119,16 +101,7 @@ export default class AdminEditProductInfo extends React.Component {
 	}
 
 	warningAlertToggleVariants(callback){
-		swal({
-		  title: "ARE YOU SURE?",
-		  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: true,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			callback()
 		}.bind(this))

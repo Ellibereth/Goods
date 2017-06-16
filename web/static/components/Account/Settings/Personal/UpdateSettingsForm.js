@@ -10,6 +10,8 @@ const input_types = ['text', 'text', 'password']
 
 const required_input = ["password"]
 
+import {AlertMessages} from '../../../Misc/AlertMessages'
+
 export default class SettingsFormPersonal extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,16 +31,7 @@ export default class SettingsFormPersonal extends React.Component {
 
 	onSubmitPress(event){
 		event.preventDefault()
-		swal({
-		  title: "Ready?",
-		  text: "Is all your information correct?",
-		  showCancelButton: true,
-		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "Yes",
-		  cancelButtonText: "No!",
-		  closeOnConfirm: false,
-		  closeOnCancel: true
-		},
+		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
 		function (isConfirm) {
 			if (isConfirm){
 				this.submitData.bind(this)()				
@@ -88,13 +81,7 @@ export default class SettingsFormPersonal extends React.Component {
 							window.location = `/settings`
 						}, 2000)
 
-						swal({
-						  title: "Thank you!",
-						  text: "Your changes have been saved! You will be returned to settings shortly...",
-						  type: "success",
-						  confirmButtonText: "Ok!",
-						  closeOnConfirm: true,
-						})
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 					
 					}
 				}.bind(this),
@@ -127,11 +114,10 @@ export default class SettingsFormPersonal extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal("Sorry!", "Your password was incorrect. Please try again!", "warning")
+						swal(AlertMessages.INVALID_CREDENTIALS)
 					}
 					else {
 						this.updateSettings.bind(this)()
-						// swal(title: "Thank you!", text : "Your changes have been made",type: "success")
 					}
 				}.bind(this),
 				error : function(){

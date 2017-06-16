@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import EditAddressForm from './EditAddressForm.js'
 import Modal from 'react-bootstrap/lib/Modal'
 
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class EditAddressModal extends React.Component {
 	constructor(props) {
@@ -11,16 +12,7 @@ export default class EditAddressModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
-		swal({
-			title: "Are you sure?",
-			text: "Typed information will not be saved",
-			showCancelButton: true,
-			confirmButtonColor: "#DD6B55",
-			confirmButtonText: "Close",
-			cancelButtonText: "No",
-			closeOnConfirm: true,
-			closeOnCancel: true
-			},
+		swal(AlertMessages.YOU_WILL_LOSE_SAVED_INFORMATION,
 			function () {
 				this.props.toggleModal(null)
 		}.bind(this))
