@@ -46,7 +46,7 @@ export default class AddToCartButton extends React.Component {
 
 	addToCart(){
 		if (this.props.product.has_variants && !this.state.variant) {
-			swal(AlertMessages.MUST_SELECT_VARIANT)
+			swal(AlertMessages.MUST_SELECT_VARIANT(this.props.product.variant_type_description))
 		}
 
 		else {

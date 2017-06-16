@@ -1,6 +1,11 @@
 
 export const AlertMessages = {
-	 MUST_SELECT_VARIANT : {title : "You must select a type.",type : "error"},
+	 MUST_SELECT_VARIANT  : function (variant_type_description) {
+	 	return {
+	 		title : "You must select a " + variant_type_description + ".",
+	 		type : "error"
+	 	}
+	 },
 	 INTERNAL_SERVER_ERROR : {title : "Something went wrong, try again",type : "error"},
 	 ITEM_ADDED_TO_CART : {
 									title: "This item is now in your cart.",
