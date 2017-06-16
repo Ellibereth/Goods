@@ -7,8 +7,12 @@
 	  </title>
 	  <meta charset="UTF-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	  
+	   <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/bootstrap/css/bootstrap_card.css') }}">
-	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/bootstrap/css/bootstrap.min.css') }}">
+	  
 	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/bootstrap/css/bootstrap-tagsinput.css') }}">
 	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/bootstrap/css/bootstrap-row-eq-height.css') }}">
 	  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='web_scripts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
@@ -18,7 +22,9 @@
 </head>
 <body>
 		<script src="{{ url_for('static', filename='web_scripts/jquery/dist/jquery.min.js') }}"></script>
-		<script src="{{ url_for('static', filename='web_scripts/bootstrap/js/bootstrap.min.js') }}"></script> 
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="{{ url_for('static', filename='web_scripts/bootstrap/js/bootstrap-dropdown.js') }}"></script> 
 		<script src="{{ url_for('static', filename='web_scripts/bootstrap/js/bootstrap-select.js') }}"></script> 
 
@@ -38,16 +44,19 @@
 				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 				})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-				var account_id = JSON.parse(localStorage.CurrentUser).account_id
-				account_id = account_id ? account_id.toString() : "No Account Id"
+				if (localStorage.CurrentUser){
 
-				ga('create', 'UA-96327145-1', 'auto', {
-					userId: account_id
-				});
-				ga('require', 'ec');
+					var account_id = JSON.parse(localStorage.CurrentUser).account_id
+					account_id = account_id ? account_id.toString() : "No Account Id"
 
-				if (account_id) {
-					ga('set', 'dimension1', account_id);
+					ga('create', 'UA-96327145-1', 'auto', {
+						userId: account_id
+					});
+					ga('require', 'ec');
+
+					if (account_id) {
+						ga('set', 'dimension1', account_id);
+					}
 				}
 
 				ga('send', 'pageview');

@@ -1,1 +1,1 @@
-node_modules/.bin/webpack --config=webpack.dll.js --progress -p -d
+node_modules/.bin/webpack --config=webpack.dll.js --progress -p -d --json > vendor_stats.json 

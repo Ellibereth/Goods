@@ -9,5 +9,3 @@ require("flux");
 require("object-assign");
 require("event-emitter");
 require("react-tagsinput");
-require("style-loader");
-require("css-loader");
