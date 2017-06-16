@@ -59,7 +59,7 @@ export default class RegisterAccountForm extends React.Component {
 				success: function(data) {
 					this.props.setLoading(false)
 					if (!data.success) {
-						swal(data.error.title, data.error.text , data.error.type)
+						setTimeout(function() {swal(data.error.title, data.error.text , data.error.type)}, 100)
 					}
 					else {
 						ga('send', 'pageview', 'register-complete');

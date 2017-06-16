@@ -198,6 +198,7 @@ export const AlertMessages = {
 							text : "Your account has been created. You should receive a confirmation email shortly",
 							type: "success"
 			},
+			
 	DELETE_CARD_ENDING_IN : function(last4) {
 		return  {
 		  title: "Ready?",
