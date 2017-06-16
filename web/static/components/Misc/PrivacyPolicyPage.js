@@ -74,11 +74,11 @@ export default class PrivacyPolicyPage extends React.Component {
 					<ul>
 						<li> Responding to 911 calls and other emergencies; </li>
 						<li> Complying with court orders and other legal process; </li>
-						<li> To assist with the identify verification, and to prevent fraud and identity threat </li>
+						<li> To assist with the identify verification, and to prevent fraud and identity threat; </li>
 						<li> Enforcing our agreements and property rights. </li>
 					</ul>
 
-				<div style = {{"font-size" : "24px"}}> <b> How we Safeguard your Information </b> </div>
+				<div style = {{"font-size" : "24px"}}> <b> How We Safeguard Your Information </b> </div>
 					<ul>
 						<li> We do not sell your Personal Information to anyone for any purpose;  </li>
 						<li> We maintain information about you in our business records while you are a user, or until it is no longer needed for business, tax, or legal purposes; </li>
@@ -102,7 +102,7 @@ export default class PrivacyPolicyPage extends React.Component {
 
 				<br/>
 				<div style = {{"font-size" : "24px"}}> 
-					<b> Updates to Our Privacy Notice </b>
+					<b> Updates to Our Privacy Policy </b>
 				</div>
 
 				<div>
