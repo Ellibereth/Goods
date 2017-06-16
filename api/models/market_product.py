@@ -36,6 +36,9 @@ class MarketProduct(db.Model):
 	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
 	product_template = db.Column(db.Integer, default = 1)
 	story_template = db.Column(db.Integer, default = 1)
+
+	second_tab_name = db.Column(db.String)
+	second_tab_text = db.Column(db.String)
 	
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
@@ -153,6 +156,15 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Active] = self.active
 		public_dict[Labels.HasVariants] = self.has_variants
 		public_dict[Labels.Live] = self.live
+
+		if not self.second_tab_name:
+			public_dict[Labels.SecondTabName] = ""
+		else:
+			public_dict[Labels.SecondTabName] = self.second_tab_name
+		if not self.second_tab_text:
+			public_dict[Labels.SecondTabText] = ""
+		else:
+			public_dict[Labels.SecondTabText] = self.second_tab_text
 		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]

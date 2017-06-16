@@ -66,6 +66,8 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	SecondTabName = "second_tab_name"
+	SecondTabText = "second_tab_text"
 	ImageText = "image_text"
 	LiveStatus = "live_status"
 	User = "user"
