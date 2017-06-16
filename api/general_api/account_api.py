@@ -13,7 +13,7 @@ from api.models.cart import Cart
 from api.security.tracking import LoginAttempt
 from api.utility.error import ErrorMessages
 from api.general_api import decorators
-
+from validate_email import validate_email
 
 
 
@@ -114,7 +114,7 @@ def updateSettings(this_user):
 		return JsonUtil.failure(ErrorMessages.InvalidName)
 	if len(new_settings.get(Labels.Name)) > User.NAME_MAX_LENGTH:
 		return JsonUtil.failure(ErrorMessages.LongName)
-	if not validate_email(new_settings.get(Labels.Email),verify=True):
+	if not validate_email(new_settings.get(Labels.Email)):
 		return JsonUtil.failure(ErrorMessages.InvalidEmail)
 
 	email_match = User.query.filter_by(email = new_settings[Labels.Email]).first()

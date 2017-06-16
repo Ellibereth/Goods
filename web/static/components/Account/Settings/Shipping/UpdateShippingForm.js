@@ -56,12 +56,6 @@ export default class UpdateShippingForm extends React.Component {
 						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
-						swal({
-								title: "Thank you", 
-								text : "Your changes have been made",
-								type: "success"
-							})
-
 						var form_data =  JSON.stringify({
 							jwt : localStorage.jwt
 							})

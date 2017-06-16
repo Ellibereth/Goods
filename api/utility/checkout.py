@@ -21,23 +21,17 @@ from api.utility.labels import ErrorLabels
 from api.utility.error import ErrorMessages
 
 class Checkout:
-
-
 	def checkoutCart(this_user, card_id, address_id):
 		address = Lob.getAddressById(address_id)
 		if int(address.metadata.get(Labels.AccountId)) != this_user.account_id:
 			return {Labels.Success : False, Labels.Error : ErrorMessages.AddressUserMismatch}
 		this_cart = Cart(this_user.account_id)
-
 		date_created = db.func.current_timestamp()
-
-
 		record_order_response = Checkout.checkoutRecordOrder(this_user, this_cart, address)
 		if record_order_response.get(Labels.Success) == False:
 			return record_order_response
 
 		this_order = record_order_response.get(Labels.Order)
-
 		charge_customer_response = Checkout.checkoutChargeCustomer(this_user, this_cart, this_order, card_id, address)
 		if charge_customer_response != None:
 			return charge_customer_response
@@ -54,7 +48,6 @@ class Checkout:
 	def checkoutRecordOrder(this_user,this_cart, address):
 		try:
 			this_order = Order(this_user, this_cart, address)
-
 			db.session.add(this_order)
 			error_result = this_order.addItems(this_user, this_cart, address)
 			if error_result:
@@ -73,7 +66,6 @@ class Checkout:
 		if not total_price:
 			return {Lables.Success : False, Labels.Error : ErrorMessages.CartPriceCalculationError}
 		try:
-
 			charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
 			this_order.updateCharge(charge)
 			return None

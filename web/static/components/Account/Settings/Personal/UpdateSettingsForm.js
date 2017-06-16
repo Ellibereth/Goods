@@ -39,8 +39,11 @@ export default class SettingsFormPersonal extends React.Component {
 		  closeOnConfirm: false,
 		  closeOnCancel: true
 		},
-		function () {
-			this.submitData.bind(this)()
+		function (isConfirm) {
+			if (isConfirm){
+				this.submitData.bind(this)()				
+			}
+			swal.close()
 		}.bind(this))
 	}
 
@@ -92,11 +95,7 @@ export default class SettingsFormPersonal extends React.Component {
 						  confirmButtonText: "Ok!",
 						  closeOnConfirm: true,
 						})
-
-						
-
-						
-						
+					
 					}
 				}.bind(this),
 				error : function(){

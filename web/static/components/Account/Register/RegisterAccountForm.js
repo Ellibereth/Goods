@@ -42,12 +42,12 @@ export default class RegisterAccountForm extends React.Component {
 			closeOnConfirm: false,
 			closeOnCancel: true
 		},
-		function () {
-			this.props.setLoading(true)
-			setTimeout(function (){
+		function (isConfirm) {
+			if (isConfirm){
+				this.props.setLoading(true)
 				this.submitData.bind(this)()
-			}.bind(this),100)
-			swal.close()
+				swal.close()
+			}
 		}.bind(this))
 	}
 
@@ -72,7 +72,6 @@ export default class RegisterAccountForm extends React.Component {
 					else {
 						ga('send', 'pageview', 'register-complete');
 						AppActions.addCurrentUser(data.user, data.jwt)
-						console.log(data.jwt)
 						swal({
 							title: "Thank you", 
 							text : "Your account has been created. You should receive a confirmation email shortly",
@@ -82,7 +81,6 @@ export default class RegisterAccountForm extends React.Component {
 							}.bind(this)
 						)
 					}
-					
 					this.setState({disabled : false})
 				}.bind(this),
 				error : function(){
