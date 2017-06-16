@@ -114,7 +114,7 @@ git checkout -b [BRANCH_NAME] # creates a new branch
 git add -A  # add files
 git commit -m  "COMMIT MESSAGE" # commit files
 # make this branch remote
-git remote add origin https://github.com/darekj28/Goods/
+git remote add [BRANCH_NAME] https://github.com/darekj28/Goods/
 git push --set-upstream origin [BRANCH_NAME]
 git checkout master # returns to master branch
 git push [ENV]-heroku [ENV]:master # push remote branch to Heroku
