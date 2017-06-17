@@ -7,7 +7,7 @@ import TextInput from '../../../Input/TextInput.js'
 const form_labels = ['Password', 'Confirm Password']
 const form_inputs = ["password", "password_confirm"]
 const input_types = ['password', 'password']
-
+import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class DeleteAccountForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -27,7 +27,7 @@ export default class DeleteAccountForm extends React.Component {
 	
 	handleDeleteClick(event){
 		event.preventDefault()
-		swal(AlertMessage.ARE_YOU_SURE_DELETE_ACCOUNT,
+		swal(AlertMessages.ARE_YOU_SURE_DELETE_ACCOUNT,
 		function () {
 			this.deleteAccount.bind(this)()
 		}.bind(this))
@@ -53,7 +53,7 @@ export default class DeleteAccountForm extends React.Component {
 							window.location = `/`
 						}, 2000)
 
-						swal(AlertMessage.ACCOUNT_DELETE_SUCCESS)
+						swal(AlertMessages.ACCOUNT_DELETE_SUCCESS)
 
 					}
 				}.bind(this),

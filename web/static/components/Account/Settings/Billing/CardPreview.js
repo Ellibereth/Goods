@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
+import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class CardPreview extends React.Component {
 	constructor(props) {

@@ -80,7 +80,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						swal(NEW_PASSWORD_HAS_BEEN_SET, function(isConfirm){
+						swal(AlertMessages.NEW_PASSWORD_HAS_BEEN_SET, function(isConfirm){
 							window.location = '/'
 						})
 					}

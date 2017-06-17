@@ -26,7 +26,7 @@ export default class ChangePasswordForm extends React.Component {
 	}
 
 	onSubmitPress(){
-		swal(AlertMessage.ARE_YOU_SURE_CHANGE_PASSWORD,
+		swal(AlertMessages.ARE_YOU_SURE_CHANGE_PASSWORD,
 		function () {
 			this.submitData.bind(this)()
 		}.bind(this))
@@ -63,7 +63,7 @@ export default class ChangePasswordForm extends React.Component {
 							window.location = `/settings`
 						}, 2000)
 
-						swal(AlertMessage.CHANGE_WAS_SUCCESSFUL)
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 
 					}
 				}.bind(this),
@@ -98,7 +98,7 @@ export default class ChangePasswordForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal(AlertMessage.INVALID_CREDENTIALS)
+						swal(AlertMessages.INVALID_CREDENTIALS)
 					}
 					else {
 						this.updatePassword.bind(this)()
