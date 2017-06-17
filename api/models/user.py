@@ -381,7 +381,8 @@ class User(db.Model):
 				self.default_address = address['id']
 				db.session.commit()
 			return {Labels.Success : True}
-		except:
+		except Exception as e:
+			print(e)
 			return {Labels.Success : False , Labels.Error :ErrorMessages.AddressAddError}
 
 	def getAddresses(self):

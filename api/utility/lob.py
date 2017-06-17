@@ -4,7 +4,7 @@ from uszipcode import ZipcodeSearchEngine
 LOB_LIVE_KEY = "live_823f35f6e24d9a3386eaf6b0c9e33ddf691"
 LOB_TEST_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc'
 lob.api_key = LOB_TEST_KEY
-lob.api_version = '2017-05-17'
+lob.api_version = '2017-06-16'
 AccountId = "account_id"
 DELIVERABILITY = "deliverability"
 ERROR_DELIVERABLE =  ['deliverable_missing_secondary', 'undeliverable', 'no_match']
