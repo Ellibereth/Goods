@@ -7,7 +7,7 @@ import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
-import AlertMessages from '../../Misc/AlertMessages'
+import {AlertMessages} from '../../Misc/AlertMessages'
 
 const form_labels = ["Email"]
 const form_inputs = ["email"]

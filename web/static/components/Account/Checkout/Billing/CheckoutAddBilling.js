@@ -43,8 +43,9 @@ export default class CheckoutAddBilling extends React.Component {
 		})
 	}
 
-	onSubmitPress(){
-		swal(AlertMessages.IS_ALL_YOUR_iINFORMATION_CORRECT,
+	onSubmitPress(event){
+		event.preventDefault()
+		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
 		function () {
 			this.addCreditCard.bind(this)()
 		}.bind(this))
@@ -140,7 +141,7 @@ export default class CheckoutAddBilling extends React.Component {
 						
 						<div className = "row">
 							<div className = "col-md-11 col-lg-11 ">
-								<button className = "btn btn-default" className = "pull-right"
+								<button className = "btn btn-default pull-right"
 								onClick = {this.onSubmitPress.bind(this)}>
 									Add Billing Method
 								</button>

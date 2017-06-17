@@ -25,7 +25,8 @@ export default class ChangePasswordForm extends React.Component {
 		this.setState(obj)
 	}
 
-	onSubmitPress(){
+	onSubmitPress(event){
+		event.preventDefault()
 		swal(AlertMessages.ARE_YOU_SURE_CHANGE_PASSWORD,
 		function () {
 			this.submitData.bind(this)()
@@ -126,7 +127,7 @@ export default class ChangePasswordForm extends React.Component {
 		})
 
 		return (
-				<form className = "form-horizontal">
+				<form onSubmit = {this.onSubmitPress.bind(this)} className = "form-horizontal">
 					<div className = "form-group">
 						<label className="col-md-8 col-lg-8 control-label text-left">
 							<span className = "form-heading"> Change Password </span>

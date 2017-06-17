@@ -99,7 +99,7 @@ export const AlertMessages = {
 		title : "nice try!"
 	},
 
-	YOU_WILL_LOSE_SAVED_INFORMATION  : {
+	YOU_WILL_LOSE_SAVED_INFORMATION : {
 				title: "Are you sure?",
 				text: "Typed information will not be saved",
 				showCancelButton: true,
@@ -189,7 +189,7 @@ export const AlertMessages = {
 							type: "success",
 							confirmButtonColor: "#DD6B55",
 							confirmButtonText: "Return to home page to login",
-							closeOnConfirm: true,
+							closeOnConfirm: true
 						},
 
 		RECOVERY_PIN_SENT : function (email)  {	

@@ -133,8 +133,8 @@ class User(db.Model):
 	# this will be used when user's are typing in their inputs on the screen too
 	@staticmethod
 	def validatePasswordSubimssion(password):
-		if len(password) < MIN_PASSWORD_LENGTH:
-			return {Labels.Success: False, Labels.Error : "Password must be at least " + str(MIN_PASSWORD_LENGTH) + " characters"}
+		if len(password) < User.MIN_PASSWORD_LENGTH:
+			return {Labels.Success: False, Labels.Error : "Password must be at least " + str(User.MIN_PASSWORD_LENGTH) + " characters"}
 		return {Labels.Success: True}
 
 	@staticmethod
@@ -382,7 +382,6 @@ class User(db.Model):
 				db.session.commit()
 			return {Labels.Success : True}
 		except Exception as e:
-			print(e)
 			return {Labels.Success : False , Labels.Error :ErrorMessages.AddressAddError}
 
 	def getAddresses(self):

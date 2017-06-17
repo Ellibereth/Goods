@@ -38,11 +38,13 @@ export default class CheckoutAddAddress extends React.Component {
 		this.setState(obj)
 	}
 
-	onSubmitPress(){
+	onSubmitPress(event){
+		event.preventDefault()
 		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
-		function () {
-			this.addAddress.bind(this)()
-		}.bind(this))
+			function () {
+				this.addAddress.bind(this)()
+			}.bind(this)
+		)
 	}
 
 	addAddress(){

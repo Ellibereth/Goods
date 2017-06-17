@@ -104,7 +104,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 
 	onKeyPress(e){
 		if (e.key == "Enter"){
-			this.submitData.bind(this)()
+			this.submitData.bind(this)(e)
 		}
 	}
 

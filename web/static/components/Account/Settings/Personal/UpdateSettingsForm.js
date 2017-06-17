@@ -36,7 +36,6 @@ export default class SettingsFormPersonal extends React.Component {
 			if (isConfirm){
 				this.submitData.bind(this)()				
 			}
-			swal.close()
 		}.bind(this))
 	}
 

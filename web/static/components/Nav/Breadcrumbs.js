@@ -37,7 +37,6 @@ export default class Breadcrumbs extends React.Component {
 			}
 		}	
 
-
 		return (
 			<div>
 				{AppStore.getCurrentUser() && <div style = {{"padding-top" : "25px"}}/>}
