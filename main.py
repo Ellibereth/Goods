@@ -92,8 +92,11 @@ def add_header(response):
 			response.headers['Expires'] = str(expire_time)
 
 	# otherwise we do not cache, this can be changed later
+		else:
+			response.headers['Cache-Control'] = 'public,max-age=0'
 	else:
 		response.headers['Cache-Control'] = 'public,max-age=0'
+
 
 	response.headers['Vary'] = 'Accept-Encoding'
 	response.headers.add('Access-Control-Allow-Origin', '*')
