@@ -253,7 +253,7 @@ def getUserInfo(this_user):
 	adjusted_items = this_user.adjustCart()
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-			Labels.User : this_user.toPublicDictFast(),
+			Labels.User : this_user.toPublicDict(),
 			Labels.AdjustedItems : adjusted_items
 		})
 

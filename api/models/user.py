@@ -161,9 +161,12 @@ class User(db.Model):
 		public_dict[Labels.AccountId] = self.account_id
 		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
 		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
+		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.Addresses] = []
 		public_dict[Labels.Cards] = []
 		public_dict[Labels.CartMessage] = self.cart_message
+		public_dict[Labels.DefaultCard] = self.default_card
+		public_dict[Labels.DefaultAddress] = self.default_address
 		return public_dict
 
 
