@@ -32,7 +32,7 @@ def checkLogin():
 		return JsonUtil.failure(InvalidCredentials)
 	ip = request.remote_addr
 	if LoginAttempt.blockIpAddress(ip):
-		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
+		
 		return JsonUtil.failure(ErrorMessages.IpBlocked)
 
 	this_user = User.query.filter_by(email = email).first()

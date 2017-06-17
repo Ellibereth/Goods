@@ -38,13 +38,25 @@ class LoginAttempt(db.Model):
 	@staticmethod
 	def getRecentLoginAttempts(ip):
 		interval_start = datetime.datetime.utcnow() - datetime.timedelta(minutes = MINUTE_LIMIT)
-		num_recent_logins = LoginAttempt.query.filter(LoginAttempt.date_created > interval_start).count()
+		login_query = LoginAttempt.query.filter_by(ip = ip, success = False).all()
+		num_recent_logins = 0
+		for login in login_query:
+			if login.date_created > interval_start:
+				num_recent_logins = num_recent_logins + 1
 		return num_recent_logins
+
+	@staticmethod
+	def getUnblockedLoginTime(ip):
+		last_logins = LoginAttempt.query.filter_by(ip = ip, success = False).all()
+		sorted_logins = sorted(last_logins, key=lambda x: x.date_created, reverse=True)
+		if len(sorted_logins) > LOGIN_LIMIT:
+			return sorted_logins[LOGIN_LIMIT].date_created + datetime.timedelta(minutes = MINUTE_LIMIT)
+		else:
+			return None
 
 	@staticmethod
 	def blockIpAddress(ip):
 		num_recent_logins = LoginAttempt.getRecentLoginAttempts(ip)
-		print(num_recent_logins)
 		return (num_recent_logins > LOGIN_LIMIT)
 
 	@staticmethod
