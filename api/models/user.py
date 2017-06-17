@@ -75,8 +75,8 @@ class User(db.Model):
 		if len(name) > User.NAME_MAX_LENGTH:
 			return {Labels.Success : False, Labels.Error : ErrorMessages.LongName}
 
-		if not all(x.isalpha() or x.isspace() for x in name):
-			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidName}
+		# if not all(x.isalpha() or x.isspace() for x in name):
+		# 	return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidName}
 
 		if len(password) < User.MIN_PASSWORD_LENGTH:
 			return {Labels.Success : False, Labels.Error :ErrorMessages.ShortPassword}

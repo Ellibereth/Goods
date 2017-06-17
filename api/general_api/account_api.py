@@ -76,7 +76,6 @@ def registerUserAccount():
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
 	register_user_response = User.registerUser(name, email_input, password, password_confirm)
-
 	if register_user_response.get(Labels.Success):
 		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.User])
 		return JsonUtil.successWithOutput(register_user_response)
@@ -123,8 +122,8 @@ def updateSettings(this_user):
 			return JsonUtil.failure(ErrorMessages.inUseEmail(new_settings[Labels.Email]))
 	if new_settings[Labels.Name] == "":
 		return JsonUtil.failure(ErrorMessages.BlankName)
-	if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):	
-		return JsonUtil.failure(ErrorMessages.InvalidName)
+	# if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):	
+	# 	return JsonUtil.failure(ErrorMessages.InvalidName)
 	this_user.updateSettings(new_settings)
 	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
 	return JsonUtil.successWithOutput(output)
