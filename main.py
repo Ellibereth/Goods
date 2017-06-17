@@ -83,7 +83,8 @@ def add_header(response):
 
 	path_splits = request.path.split('/')
 	# cache everything int he static/web_scripts folder
-	if len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
+	if len(path_splits) > 2 and path_splits[1] == 'static':
+		if path_splits[2] == 'web_scripts' or path_splits[2] == "dist":
 			response.headers['Cache-Control'] = 'public,max-age=' + str(CACHE_MAX_AGE)
 			# commented out since max-age should do enough by itself
 			right_now = datetime.datetime.now()

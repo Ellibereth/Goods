@@ -17,14 +17,9 @@ from api.models.order import Order
 import base64
 from api.s3.s3_api import S3
 
-
-	
 admin_api = Blueprint('admin_api', __name__)
 admin_login_username = "heathcliffe"
 admin_login_password = "powerplay"
-
-
-
 
 # this route needs to be udpdated for when we have admin accounts
 @admin_api.route('/checkAdminLogin', methods =['POST'])
