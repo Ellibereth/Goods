@@ -51,13 +51,9 @@ export default class ProductPreview extends React.Component {
 			'price' : product.price
 		});
 		ga('ec:setAction', 'click', {list: 'Home'});
-		ga('send', 'event', 'UX', 'click', 'HomeProduct', {
-			hitCallback: function() {
-				window.location = '/eg/' + product.product_id;
-			}
-		});
-		return !ga.loaded;
-
+		ga('send', 'event', 'UX', 'click', 'HomeProduct')
+		window.location = '/eg/' + product.product_id;
+		return true
 	}
 
 
