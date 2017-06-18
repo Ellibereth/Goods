@@ -162,7 +162,7 @@ ReactDOM.render(
 			<Route path = "billing" onEnter = {checkUser} component = {UpdateBillingPage} />
 			<Route path = "deleteAccount" onEnter = {checkUser} component = {DeleteAccountPage} />
 			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
-			<Route path = "myCart" onEnter = {checkUserAllowGuest} component = {ViewCartPage} />
+			<Route path = "myCart" component = {ViewCartPage} />
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>

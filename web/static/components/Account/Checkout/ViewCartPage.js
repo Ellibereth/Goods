@@ -99,15 +99,20 @@ export default class ViewCartPage extends React.Component {
 
 
 	componentDidMount(){
-		// this.refreshCheckoutInformation.bind(this)()
 		var user = AppStore.getCurrentUser()
-		this.setState({
-			items: user.cart.items, 
-			items_price : user.cart.items_price,
-			cards : user.cards,
-			addresses : user.addresses, 
-			is_loading : false
-		})
+		if (user == "") {
+			this.refreshCheckoutInformation.bind(this)()		
+		}
+		else {
+			this.setState({
+				items: user.cart.items, 
+				items_price : user.cart.items_price,
+				cards : user.cards,
+				addresses : user.addresses, 
+				is_loading : false
+			})
+		}
+		
 
 	}
 
