@@ -44,6 +44,8 @@ class User(db.Model):
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
+
+	is_guest = db.Column(db.Boolean, default = False)
 	NAME_MAX_LENGTH = 20
 	MIN_PASSWORD_LENGTH = 6
 

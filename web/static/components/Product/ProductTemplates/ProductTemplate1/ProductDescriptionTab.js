@@ -36,11 +36,6 @@ export default class ProuctDescriptionTab extends React.Component {
 					})}
 						<li> Manufactured by {this.props.product.manufacturer}        </li>
 						<li> Category: {this.props.product.category} </li>
-						<li> Manufactured by {this.props.product.manufacturer}        </li>
-						<li> Category: {this.props.product.category} </li>
-						<li> Manufactured by {this.props.product.manufacturer}        </li>
-						<li> Category: {this.props.product.category} </li>
-						<li> Category: {this.props.product.category} </li>
 						
 					</ul>
 				</div>

@@ -33,8 +33,10 @@ export default class HomeImageDisplay extends React.Component {
 
 	onUpdatePress(){
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.updateHomeImage.bind(this)()
+			function (isConfirm) {
+				if(isConfirm){
+					this.updateHomeImage.bind(this)()
+				}
 		}.bind(this))
 	}
 
@@ -52,12 +54,10 @@ export default class HomeImageDisplay extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal(AlertMessages.INTERNAL_SERVER_ERROR)
+					location.reload()
 				}
 				else {
-					setTimeout(function () {
-						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
-					}, 500)
+					location.reload()
 				}
 			}.bind(this),
 			error : function(){

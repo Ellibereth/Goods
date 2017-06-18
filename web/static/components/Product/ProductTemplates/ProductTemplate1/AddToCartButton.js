@@ -120,6 +120,7 @@ export default class AddToCartButton extends React.Component {
 		}
 	}
 
+	// edit this to allow user to checkout as guest
 	onNonUserClick(){
 		swal(AlertMessages.NON_USER_ADD_TO_CART_ATTEMPT
 			,
