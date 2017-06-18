@@ -8,7 +8,9 @@ import csv
 from flask_sqlalchemy import SQLAlchemy
 from api.models.shared_models import db
 from api.utility.jwt_util import JwtUtil
+from api.utility.json_util import JsonUtil
 from flask_compress import Compress
+from api.utility import email_api
 
 from base64 import b64encode
 from api.security.tracking import HttpRequest
@@ -130,8 +132,25 @@ def catch_all(path):
 	return render_template("index.html")
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+	email_api.reportServerError("404", error)
+	return render_template("index.html")
+
+
+@app.errorhandler(405)
+def method_not_allowed(error):
+	email_api.reportServerError("405", error)
+	return JsonUtil.failure("Method not allowed")
+
+@app.errorhandler(500)
+def internal_server_error(error):
+	email_api.reportServerError("500", error)
+	return JsonUtil.failure("Internal server error")
+
 if __name__ == '__main__':
-	app.debug = True
+	if os.environ.get('ENVIRONMENT') == "DEVELOPMENT":
+		app.debug = True
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host='0.0.0.0', port=port)
 

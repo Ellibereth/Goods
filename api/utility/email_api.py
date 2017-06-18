@@ -13,9 +13,12 @@ from api.utility.labels import CartLabels as Labels
 from api.models.cart import Cart
 from api.utility.labels import ErrorLabels
 import os
+import traceback
+
+
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
-ADMIN_RECIPIENTS = ['eli@edgarusa.com', 'darek@manaweb.com', 'darek@edgarusa.com']
+ADMIN_RECIPIENTS = ['eli@edgarusa.com', 'darek@manaweb.com', 'darek@edgarusa.com', 'darekjohnson28@gmail.com', 'spallstar28@gmail.com']
 
 
 URL = os.environ.get('HEROKU_APP_URL')
@@ -167,7 +170,7 @@ def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error =
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
 	msg['Subject'] = "USER CHECKOUT ERROR"
-	msg['From'] = "noreply@edgarusa.com"
+	msg['From'] = "errorbot@edgarusa.com"
 	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 	if not user:
 		return
@@ -190,9 +193,24 @@ def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error =
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
+def reportServerError(reponse, python_error, user = None):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	msg['Subject'] = reponse + " error"
+	msg['From'] = "errorbot@edgarusa.com"
+	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 
-
-
+	body =  traceback.format_exc()
+	textPart = MIMEText(body, 'plain')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	smtpserver.send_message(msg)
+	smtpserver.close()
 
 
 
