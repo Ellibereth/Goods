@@ -200,7 +200,7 @@ def notifyUserCheckoutErrorEmail(user, cart, address, error_type, python_error =
 	smtpserver.send_message(msg)
 	smtpserver.close()
 
-def reportServerError(reponse, python_error, user = None):
+def reportServerError(reponse, python_error, request, user = None):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	msg = MIMEMultipart()
@@ -208,7 +208,10 @@ def reportServerError(reponse, python_error, user = None):
 	msg['From'] = "errorbot@edgarusa.com"
 	msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 
-	body =  traceback.format_exc()
+	body = "Environment: " + str(os.environ.get("ENVIRONMENT")) + "\n"
+	body = body + "Path: " + str(request.path) + "\n" 
+	body = body + "Method: " + str(request.method) + "\n"
+	body =  body + traceback.format_exc()
 	textPart = MIMEText(body, 'plain')
 	msg.attach(textPart)
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)

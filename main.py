@@ -134,23 +134,23 @@ def catch_all(path):
 
 @app.errorhandler(404)
 def page_not_found(error):
-	email_api.reportServerError("404", error)
+	email_api.reportServerError("404", error, request)
 	return render_template("index.html")
 
 
 @app.errorhandler(405)
 def method_not_allowed(error):
-	email_api.reportServerError("405", error)
+	email_api.reportServerError("405", error, request)
 	return JsonUtil.failure("Method not allowed")
 
 @app.errorhandler(500)
 def internal_server_error(error):
-	email_api.reportServerError("500", error)
+	email_api.reportServerError("500", error, request)
 	return JsonUtil.failure("Internal server error")
 
 if __name__ == '__main__':
-	if os.environ.get('ENVIRONMENT') == "DEVELOPMENT":
-		app.debug = True
+	# if os.environ.get('ENVIRONMENT') == "DEVELOPMENT":
+	# 	app.debug = True
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host='0.0.0.0', port=port)
 
