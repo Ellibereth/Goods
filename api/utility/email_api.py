@@ -18,7 +18,14 @@ import traceback
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
-ADMIN_RECIPIENTS = ['eli@edgarusa.com', 'darek@manaweb.com', 'darek@edgarusa.com', 'darekjohnson28@gmail.com', 'spallstar28@gmail.com']
+ADMIN_RECIPIENTS = [
+	'eli@edgarusa.com', 
+	'darek@manaweb.com', 
+	'darek@edgarusa.com', 
+	'darekjohnson28@gmail.com', 
+	'spallstar28@gmail.com', 
+	'eli.change.iv@gmail.com'
+]
 
 
 URL = os.environ.get('HEROKU_APP_URL')
