@@ -5,6 +5,8 @@ var Route = require('react-router').Route;
 var Link = require('react-router').Link;
 var IndexRoute = require('react-router').IndexRoute;
 var browserHistory = require('react-router').browserHistory;
+import {AlertMessages} from './Misc/AlertMessages'
+
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
@@ -35,9 +37,8 @@ import SearchPage from './Search/SearchPage'
 import SupportPage from './CustomerService/SupportPage'
 import RecoveryPage from './Account/Recovery/RecoveryPage'
 import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
-// import ThanksPage from './Misc/ThanksPage'
 import LandingPage from './Landing/LandingPage'
-import {AlertMessages} from './Misc/AlertMessages'
+
 
 export default class Main extends React.Component {
 	
@@ -57,7 +58,6 @@ export default class Main extends React.Component {
 				if (data.success) {
 					AppActions.updateCurrentUser(data.user)
 					if (data.adjusted_items) {
-						
 						var message = ""
 						data.adjusted_items.map((item) => {
 							if (!item.num_items){
@@ -103,8 +103,19 @@ const checkUser = (nextState, replace) => {
 	var thisUser = AppStore.getCurrentUser();
 	if (!thisUser) {
 		replace({pathname: '/login', query: { target: target}})
+	} 
+	else  if (thisUser.is_guest) {
+		replace({pathname: '/login', query: { target: target}})	
 	}
 }
+
+const checkUserAllowGuest = (nextState, replace) => {
+	var target = nextState.location.pathname.replace("/", "")
+	var thisUser = AppStore.getCurrentUser();
+	if (!thisUser) {
+		replace({pathname: '/login', query: { target: target}})
+	} 
+} 
 
 const checkConfirmedUser = (nextState, replace) => {
 	var target = nextState.location.pathname.replace("/", "")
@@ -151,7 +162,7 @@ ReactDOM.render(
 			<Route path = "billing" onEnter = {checkUser} component = {UpdateBillingPage} />
 			<Route path = "deleteAccount" onEnter = {checkUser} component = {DeleteAccountPage} />
 			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
-			<Route path = "myCart" onEnter = {checkUser} component = {ViewCartPage} />
+			<Route path = "myCart" onEnter = {checkUserAllowGuest} component = {ViewCartPage} />
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>

@@ -26,6 +26,15 @@ export const AlertMessages = {
 				allowOutsideClick: true
 		},
 
+	NON_USER_ADD_TO_CART : {
+	 			title: "Added to cart",
+	 			title : "You will still have to use an account to complete checkout",
+	 			type : "success",
+
+				closeOnConfirm: true,
+				allowOutsideClick: true
+		},
+
 	 CONFIRMATION_EMAIL_SENT : function (email) {
 					return {
 						title : "Confirmation email resent to " + email,

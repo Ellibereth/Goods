@@ -33,7 +33,7 @@ export default class SmallNavBar extends React.Component {
 		var search_bar = this.props.getSearchBar()
 
 		var current_user = AppStore.getCurrentUser()
-		if (current_user == {} || !current_user){
+		if (current_user == {} || !current_user || current_user.is_guest){
 			return (
 				
 					<ul className="nav navbar-nav navbar-right">
@@ -41,6 +41,14 @@ export default class SmallNavBar extends React.Component {
 							{search_bar}
 						</li>
 
+						<li> 
+							<a href = "/myCart"> 
+								<span className = "nav-icon">
+									<span className = "glyphicon glyphicon-shopping-cart "/> 
+									{this.state.cart_badge > 0 && <span className ="badge badge-notify cart-badge"> {this.state.cart_badge} </span>}
+								</span>
+							</a>
+						</li>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
 					</ul>

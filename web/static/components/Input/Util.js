@@ -1,8 +1,13 @@
 var dateFormat = require('dateformat');
 
-export function isNumberKey(event) {
-	const re = /^[0-9\b]+$/;
-	return (event.target.value == '' || re.test(event.target.value)) 
+export function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 // takes price as float, outputs it into USD currency

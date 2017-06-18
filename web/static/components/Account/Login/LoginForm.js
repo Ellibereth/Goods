@@ -2,12 +2,14 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions.js';
+import AppStore from '../../../stores/AppStore.js'
 import TextInput from '../../Input/TextInput.js'
 const form_labels = ["Email", "Password"]
 const form_inputs = ["email", "password"]
 const input_types = ['text', 'password']
 var Link = require('react-router').Link
 import AccountInput from '../../Input/AccountInput'
+import {getParameterByName} from '../../Input/Util'
 
 export default class LoginForm extends React.Component {
 	constructor(props) {
@@ -35,6 +37,12 @@ export default class LoginForm extends React.Component {
 			var key = form_inputs[i]
 			data[key] = this.state[key]
 		}
+
+		var user = AppStore.getCurrentUser() 
+		if (user.is_guest) {
+			data['guest_jwt'] = localStorage.jwt
+		} 
+
 		var form_data = JSON.stringify(data)
 		$.ajax({
 			type: "POST",
@@ -94,7 +102,10 @@ export default class LoginForm extends React.Component {
 					/>
 		})
 
+		var target = getParameterByName('target')
+
 		return (
+
 			<div className = "panel panel-primary account-panel">
 
 				<div className = "panel-body account-panel-body">
@@ -118,7 +129,7 @@ export default class LoginForm extends React.Component {
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<a href = "/register"> New to Edgar USA? Register here </a>
+								<a href = {target ? "/register" + "?target=" + target : "/register"}> New to Edgar USA? Register here </a>
 							</div>
 						</div>
 

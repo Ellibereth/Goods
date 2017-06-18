@@ -5,6 +5,7 @@ import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import {formatPrice} from '../../Input/Util'
 import Spinner from '../../Misc/Spinner'
+import {AlertMessages} from '../../Misc/AlertMessages'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
 
@@ -19,6 +20,21 @@ export default class ViewCartPage extends React.Component {
 			is_loading: true,
 			cart_message : ""
 		}
+	}
+
+	toCheckoutClick(){
+		var user = AppStore.getCurrentUser()
+		// if a guest, then let them check in 
+		if (user.is_guest) {
+			// move this to alert messages after
+			window.location = "/login?target=viewCart"
+		}
+
+		// if not a guest can move to checkout
+		else {
+			window.location = '/checkout'	
+		}
+		
 	}
 
 	refreshCheckoutInformation(){
@@ -43,8 +59,6 @@ export default class ViewCartPage extends React.Component {
 					// 		() => this.readCartMessage())
 
 					// }
-				}
-				else {
 				}
 				this.setState({is_loading : false})
 				$('#view-cart-container').removeClass("faded");
@@ -134,7 +148,7 @@ export default class ViewCartPage extends React.Component {
 						</div>
 						<div className = "col-md-3 col-lg-3 col-sm-3">
 							<button className = "btn btn-default checkout-button" disabled = {this.state.items.length == 0} 
-							onClick = {() => window.location = '/checkout'}>
+							onClick = {this.toCheckoutClick.bind(this)}>
 								Proceed to Checkout 
 							</button>
 							{/*<div className = "row">

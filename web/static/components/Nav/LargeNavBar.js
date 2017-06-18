@@ -27,17 +27,21 @@ export default class LargeNavBar extends React.Component {
 	}
 
 	getRightNav() {
-		if (this.props.no_login) {
-			return <div/>
-		}
-
 		var search_bar = this.props.getSearchBar()
 		var current_user = AppStore.getCurrentUser()
-		if (current_user == {} || !current_user){
+		if (current_user == {} || !current_user || current_user.is_guest){
 			return (
 				
 					<ul className="nav navbar-nav navbar-right">
 						<li> {search_bar} </li>
+						<li> 
+							<a href = "/myCart"> 
+								<span className = "nav-icon">
+									<span className = "glyphicon glyphicon-shopping-cart "/> 
+									{this.state.cart_badge > 0 && <span className ="badge badge-notify cart-badge"> {this.state.cart_badge} </span>}
+								</span>
+							</a>
+						</li>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
 					</ul>
@@ -57,22 +61,22 @@ export default class LargeNavBar extends React.Component {
 							<span className = "nav-icon-text"> Cart </span>
 						</a>
 					</li>
-					<li className = "account-dropdown">
-						<a id = "account_dropdown" href="#" className="dropdown-toggle" 
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> 
-						 	<span className = "nav-icon">
-							 	<span className = "glyphicon glyphicon-user"/> 
-							</span>
-							<span className = "nav-icon-text"> You <span className = "caret"/> </span>
-						</a>
-						<ul className="dropdown-menu"> 
-							<li><a href ="/settings"> Settings </a> </li>
-							<li> <a href = '/myOrders'> Past Orders </a> </li>
-							<li><a href ="/support">Support</a></li>
-							<li> <a href = "/logout"> Logout </a></li>
-						</ul>
-					</li>
+						<li className = "account-dropdown">
+							<a id = "account_dropdown" href="#" className="dropdown-toggle" 
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false"> 
+							 	<span className = "nav-icon">
+								 	<span className = "glyphicon glyphicon-user"/> 
+								</span>
+								<span className = "nav-icon-text"> You <span className = "caret"/> </span>
+							</a>
+							<ul className="dropdown-menu"> 
+								<li><a href ="/settings"> Settings </a> </li>
+								<li> <a href = '/myOrders'> Past Orders </a> </li>
+								<li><a href ="/support">Support</a></li>
+								<li> <a href = "/logout"> Logout </a></li>
+							</ul>
+						</li>
 					<li>
 						<span className = "nav-greetings-text">
 							 Hello, {current_user.name.split(' ')[0]}! 

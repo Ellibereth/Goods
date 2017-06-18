@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions.js';
+import AppStore from '../../../stores/AppStore.js';
 import TextInput from '../../Input/TextInput.js'
 const form_labels = ['Name', "Email", "Password", "Confirm Password"]
 const form_inputs = ["name", "email", "password", "password_confirm"]
@@ -10,6 +11,7 @@ const popover_text = [null, null, "Passwords must be at least 6 characters" , "P
 var Link = require('react-router').Link
 import AccountInput from '../../Input/AccountInput'
 import {AlertMessages} from '../../Misc/AlertMessages'
+import {getParameterByName} from '../../Input/Util'
 
 export default class RegisterAccountForm extends React.Component {
 	constructor(props) {
@@ -51,6 +53,12 @@ export default class RegisterAccountForm extends React.Component {
 				var key = form_inputs[i]
 				data[key] = this.state[key]
 			}
+
+			var user = AppStore.getCurrentUser() 
+			if (user.is_guest) {
+				data['guest_jwt'] = localStorage.jwt
+			} 
+
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",
@@ -121,6 +129,8 @@ export default class RegisterAccountForm extends React.Component {
 					/>
 		})
 
+		var target = getParameterByName('target')
+
 		return (
 			<div className = "panel panel-primary account-panel">
 				<div className = "panel-body account-panel-body">
@@ -146,7 +156,7 @@ export default class RegisterAccountForm extends React.Component {
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
 								Already have an account? 
-								<a href = "/login"> {"Log in"} </a>
+								<a href = {target ? "/login" + "?target=" + target : "/login"}> {"Log in"} </a>
 							</div>
 						</div>
 					</form>

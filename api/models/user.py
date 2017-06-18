@@ -29,7 +29,7 @@ class User(db.Model):
 	__tablename__ = ProdTables.UserInfoTable
 	account_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
 	email = db.Column(db.String, unique = True)
-	email_confirmation_id = db.Column(db.String, unique = True, nullable = False)
+	email_confirmation_id = db.Column(db.String, unique = True)
 	email_confirmed = db.Column(db.Boolean, default = False)
 	password_hash = db.Column(db.String, nullable = False)
 	name = db.Column(db.String, nullable = False)
@@ -60,7 +60,7 @@ class User(db.Model):
 		db.Model.__init__(self)
 
 	@staticmethod
-	def registerUser(name, email_input, password, password_confirm):
+	def registerUser(name, email_input, password, password_confirm, guest_user = None):
 		if isinstance(email_input, str):
 			email = email_input.lower()
 		else:
@@ -96,11 +96,44 @@ class User(db.Model):
 			email_confirmation_id =email_confirmation_id)
 		db.session.add(new_user)
 		db.session.commit()
+
+		new_user.transferGuestCart(guest_user)
+
+
 		return {
 				Labels.Success : True,
-				Labels.User : new_user.toPublicDict()
+				Labels.User : new_user.toPublicDict(),
+				Labels.Jwt : new_user.toJwtDict()
 			}
 			
+
+
+	@staticmethod
+	def createGuestUser():
+		guest_user = User("Guest", None, "", None)
+		guest_user.is_guest = True
+		db.session.add(guest_user)
+		db.session.commit()
+		return {
+			Labels.Success : True,
+			Labels.User : guest_user.toPublicDict()
+		}
+
+	# move all the items from the guest cart to this users
+	def transferGuestCart(self, guest_user):
+		if guest_user == None:
+			return
+		if not guest_user.is_guest:
+			return
+		guest_items = CartItem.query.filter_by(account_id = guest_user.account_id).all()
+
+		for cart_item in guest_items:
+			print(cart_item.toPublicDict())
+			cart_item.account_id = self.account_id
+
+		db.session.commit()
+
+
 	@staticmethod
 	def argonHash(pre_hash):
 		return argon2.using(rounds=4).hash(pre_hash)
@@ -152,6 +185,7 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
+		public_dict[Labels.IsGuest] = self.is_guest
 		return public_dict
 
 
@@ -169,6 +203,7 @@ class User(db.Model):
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
+		public_dict[Labels.IsGuest] = self.is_guest
 		return public_dict
 
 
@@ -186,6 +221,7 @@ class User(db.Model):
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
+		public_dict[Labels.IsGuest] = self.is_guest
 		return public_dict
 
 	def toPublicDict(self):
@@ -202,6 +238,7 @@ class User(db.Model):
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
+		public_dict[Labels.IsGuest] = self.is_guest
 		return public_dict
 
 	def adjustCartItemWithVariant(self, cart_item):

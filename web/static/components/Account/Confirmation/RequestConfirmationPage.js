@@ -27,9 +27,6 @@ export default class EmailConfirmationPage extends React.Component {
 					this.setState({display : "confirmed"})
 				}
 				// redirect if something is wrong 
-				else {
-					// redirect to '/'
-				}
 			},
 			error: function(){
 			},

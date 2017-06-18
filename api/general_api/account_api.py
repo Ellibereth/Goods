@@ -26,10 +26,12 @@ account_api = Blueprint('account_api', __name__)
 def checkLogin():
 	email_input = request.json.get(Labels.Email)
 	input_password = request.json.get(Labels.Password)
+	if email_input == "":
+		return JsonUtil.failure(ErrorMessages.BlankEmail)
 	if isinstance(email_input, str):
 		email = email_input.lower()
 	else:
-		return JsonUtil.failure(InvalidCredentials)
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	ip = request.remote_addr
 	if LoginAttempt.blockIpAddress(ip):
 		
@@ -41,6 +43,11 @@ def checkLogin():
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 	if this_user.checkLogin(input_password):
+
+		guest_jwt = request.json.get(Labels.GuestJwt)
+		if guest_jwt:
+			guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
+			this_user.transferGuestCart(guest_user)
 		user_jwt = JwtUtil.create_jwt(this_user.toJwtDict())
 		user_info = this_user.toPublicDictFast()
 		output = {Labels.User : user_info,
@@ -51,6 +58,15 @@ def checkLogin():
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
+
+
+# checks the login information from a user
+# once they are logged in, mostly used for making changes to settings  
+@account_api.route('/createGuestUser', methods = ['POST'])
+def createGuestUser():
+	create_guest_user = User.createGuestUser()
+	create_guest_user[Labels.Jwt] = JwtUtil.create_jwt(create_guest_user[Labels.User])
+	return JsonUtil.successWithOutput(create_guest_user)
 
 # checks the login information from a user
 # once they are logged in, mostly used for making changes to settings  
@@ -75,9 +91,12 @@ def registerUserAccount():
 	email_input = request.json.get(Labels.Email)
 	password = request.json.get(Labels.Password)
 	password_confirm = request.json.get(Labels.PasswordConfirm)
-	register_user_response = User.registerUser(name, email_input, password, password_confirm)
+	guest_jwt = request.json.get(Labels.GuestJwt)
+	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
+	register_user_response = User.registerUser(name, email_input, password, password_confirm, guest_user)
 	if register_user_response.get(Labels.Success):
-		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.User])
+		print(register_user_response[Labels.User])
+		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.Jwt])
 		return JsonUtil.successWithOutput(register_user_response)
 	else:
 		return JsonUtil.failureWithOutput(register_user_response)

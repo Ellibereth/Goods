@@ -16,8 +16,11 @@ export default class LoginPage extends React.Component {
 	}
 
 	componentDidMount(){
-		if (AppStore.getCurrentUser()) {
-			window.location = '/'
+		var user = AppStore.getCurrentUser()
+		if (user) {
+			if (!user.is_guest) {
+				window.location = '/'	
+			}
 		}
 	}
 

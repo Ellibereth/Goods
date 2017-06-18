@@ -2,7 +2,8 @@
 
 
 class UserLabels:
-
+	GuestJwt = "guest_jwt"
+	IsGuest = "is_guest"
 	Order = "order"
 	JwtDict = "jwt_dict"
 	Type = "type"
