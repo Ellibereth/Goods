@@ -87,39 +87,39 @@ export default class SiteMap extends React.Component {
 				break;
 			case "settings":
 				routes = [pathname[1]]
-				labels = ["Settings"]
+				labels = ["Account"]
 				break;
 			case "updateSettings":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "Update Settings"]
+				labels = ["Account" , "Update Settings"]
 				break;
 			case "changePassword":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "Change Password"]
+				labels = ["Account" , "Change Password"]
 				break;
 			case "myOrders":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "Past Orders"]
+				labels = ["Account" , "Past Orders"]
 				break;
 			case "billing":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "Add Billing"]
+				labels = ["Account" , "Add Billing"]
 				break;
 			case "shipping":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "Add Shipping"]
+				labels = ["Account" , "Add Shipping"]
 				break;
 			case "myPlaces":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "My Places"]
+				labels = ["Account" , "My Places"]
 				break;
 			case "myCards":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "My Cards"]
+				labels = ["Account" , "My Cards"]
 				break;
 			case "deleteAccount":
 				routes = ["settings", pathname[1]]
-				labels = ["Settings" , "Delete Account"]
+				labels = ["Account" , "Delete Account"]
 				break;
 			case "myCart":
 				routes = [pathname[1]]

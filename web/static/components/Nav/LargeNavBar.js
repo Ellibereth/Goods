@@ -71,7 +71,7 @@ export default class LargeNavBar extends React.Component {
 								<span className = "nav-icon-text"> You <span className = "caret"/> </span>
 							</a>
 							<ul className="dropdown-menu"> 
-								<li><a href ="/settings"> Settings </a> </li>
+								<li><a href ="/settings"> Account </a> </li>
 								<li> <a href = '/myOrders'> Past Orders </a> </li>
 								<li><a href ="/support">Support</a></li>
 								<li> <a href = "/logout"> Logout </a></li>
