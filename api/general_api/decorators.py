@@ -20,7 +20,7 @@ def check_admin_jwt(func):
 		admin_user = JwtUtil.decodeAdminJwt(jwt)
 		if not admin_user:
 			AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
-			return JsonUtil.jwt_failure(ErrorMessages.InvalidCredentials)
+			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 		return func(admin_user)
 	return wrapper
 
