@@ -324,7 +324,7 @@ def setRecoveryPin():
 		email_api.sendRecoveryEmail(user)
 		return JsonUtil.success()
 	else:
-		return JsonUtil.success()
+		return JsonUtil.failure()
 
 
 @account_api.route('/checkRecoveryInformation', methods = ['POST'])

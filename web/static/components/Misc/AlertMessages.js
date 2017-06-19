@@ -201,12 +201,22 @@ export const AlertMessages = {
 							closeOnConfirm: true
 						},
 
-		RECOVERY_PIN_SENT : function (email)  {	
-						return {
-							title : "A recovery pin has been sent to " + email,
-							type: "success"
-						}
-					},
+	RECOVERY_PIN_SENT : function (email)  {	
+					return {
+						title : "A recovery pin has been sent to " + email,
+						type: "success"
+					}
+				},
+
+	RECOVERY_PIN_NOT_SENT : function (email)  {	
+					return {
+						title :  email + " is not associated with an account",
+						type: "error"
+					}
+				},
+
+
+
 	ACCOUNT_REGISTRATION_SUCCESS : {
 							title: "Thank you", 
 							text : "Your account has been created. You should receive a confirmation email shortly",
