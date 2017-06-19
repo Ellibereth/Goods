@@ -30,7 +30,7 @@ export default class OrdersPreview extends React.Component {
 					
 				<div className="panel panel-default">
 					<div className = "panel-heading">
-						<div className = "account-page-text"> Recent Orders </div>
+						<div className = "account-page-text"> Past Orders </div>
 					</div>
 					
 					{	order_display.length > 0 &&
