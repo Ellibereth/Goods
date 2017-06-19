@@ -80,7 +80,7 @@ export default class AddProductForm extends React.Component {
 					}
 					else {
 						this.props.toggleAddProductModal()
-						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 					}
 					this.props.loadProducts()
 				}.bind(this),

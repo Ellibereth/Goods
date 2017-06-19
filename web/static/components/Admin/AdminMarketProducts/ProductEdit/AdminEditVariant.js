@@ -127,7 +127,7 @@ export default class AdminEditVariant extends React.Component {
 			if (data.success){
 				this.props.getProductInformation()
 				setTimeout(function () {
-					swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 				}, 500) 
 
 			}

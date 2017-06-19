@@ -52,7 +52,7 @@ export default class UploadMarketPhoto extends React.Component {
 						swal(AlertMessages.INTERNAL_SERVER_ERROR)
 					}
 					else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 					}
 				}.bind(this),
 				error : function(){

@@ -31,12 +31,9 @@ export default class ProuctDescriptionTab extends React.Component {
 		var description = (
 				<div className = "product-info-tab">
 					<ul className = "features-list">
-					{this.props.product.description.split("\n").map(i => {
-						return <li>{i}</li>;
-					})}
-						<li> Manufactured by {this.props.product.manufacturer}        </li>
-						<li> Category: {this.props.product.category} </li>
-						
+						{this.props.product.description.split("\n").map(i => {
+							return <li>{i}</li>;
+						})}
 					</ul>
 				</div>
 		)

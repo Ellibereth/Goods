@@ -52,7 +52,7 @@ export default class AddHomeImage extends React.Component {
 					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				}
 				else {
-					swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 
 					setTimeout(function () {location.reload()}, 500)
 

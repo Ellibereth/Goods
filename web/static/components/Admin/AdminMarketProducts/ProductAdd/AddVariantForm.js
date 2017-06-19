@@ -51,7 +51,7 @@ export default class AddVariantForm extends React.Component {
 						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 						this.setState({
 							price : "",
 							inventory : "",

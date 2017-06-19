@@ -54,7 +54,7 @@ export default class UploadStoryPhoto extends React.Component {
 						swal(AlertMessages.INTERNAL_SERVER_ERROR)
 					}
 					else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 
 						location.reload()
 

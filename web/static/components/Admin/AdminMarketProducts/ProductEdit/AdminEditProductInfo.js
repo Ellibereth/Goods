@@ -3,9 +3,9 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
 import AdminActivateProduct from './AdminActivateProduct'
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'story_text', 'story_template', 'product_template', 'num_items_limit', 'second_tab_name', 'second_tab_text']
-const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Story Text', 'Story Template', 'Product Template', 'Item Limit', 'Second Tab Name', 'Second Tab Text']
-const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'textarea', 'text', 'text', 'text', 'text', 'textarea']
+const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'category', 'story_text', 'story_template', 'product_template', 'num_items_limit', 'second_tab_name', 'second_tab_text']
+const form_labels = ['Name', 'Manufacturer', 'Price', 'Description', "Sale End Date", 'Category', 'Story Text', 'Story Template', 'Product Template', 'Item Limit', 'Second Tab Name', 'Second Tab Text']
+const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea', 'text', 'text', 'text', 'text', 'textarea']
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
 	constructor(props) {
@@ -32,15 +32,15 @@ export default class AdminEditProductInfo extends React.Component {
 
 	onTextSubmitPress() {
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.submitTextData.bind(this)()
+			function () {
+				this.submitTextData.bind(this)()
 		}.bind(this))
 	}
 
 	onToggleProductHasVariants(has_variants){
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.onToggleProductHasVariants.bind(this)(has_variants)
+			function () {
+				this.onToggleProductHasVariants.bind(this)(has_variants)
 		}.bind(this))
 	}
 
@@ -56,7 +56,7 @@ export default class AdminEditProductInfo extends React.Component {
 	  	data: form_data,
 	  	success: function(data) {
 			if (data.success){
-				swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 				setTimeout(function () {location.reload()}, 4000)
 			}
 			else {
@@ -85,7 +85,7 @@ export default class AdminEditProductInfo extends React.Component {
 			if (data.success){
 				this.setState({product : data.product})
 				this.props.getProductInformation.bind(this)()
-				setTimeout(function () {swal(AlertMessages.CHANGE_WAS_SUCCESFUL)}, 500)
+				setTimeout(function () {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)}, 500)
 
 			}
 			else {

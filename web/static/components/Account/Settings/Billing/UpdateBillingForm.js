@@ -86,7 +86,7 @@ export default class UpdateBillingForm extends React.Component {
 						swal(data.error.title, data.error.text , data.error.type)
 					}
 					else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESFUL)
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 						var form_data =  JSON.stringify({
 								jwt : localStorage.jwt
 							})
