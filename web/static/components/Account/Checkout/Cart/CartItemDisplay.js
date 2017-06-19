@@ -136,7 +136,7 @@ export default class CartItemDisplay extends React.Component {
 							</form>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${formatPrice(item.price *  item.num_items)}  </span>
+							<span className = "cart-item-text"> ${formatPrice((item.price *  item.num_items).toFixed(2))}  </span>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
 							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />

@@ -12,10 +12,11 @@ class Pricing:
 
 
 	def getCartItemsTotalPrice(cart):
-		total_price = 0
+		total_price = 0.0
 		for cart_item in cart.items:
 			this_item_price = MarketProduct.query.filter_by(product_id = cart_item.product_id).first().price
-			total_price = total_price + this_item_price * cart_item.num_items
+			total_price = total_price + round(this_item_price * cart_item.num_items,2)
+
 		return total_price
 
 	def getCartShippingPrice(cart, address):

@@ -137,7 +137,7 @@ class MarketProduct(db.Model):
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
-		public_dict[Labels.Price] = self.price
+		public_dict[Labels.Price] = round(self.price, 2)
 		public_dict[Labels.Category] = self.category
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.Manufacturer] = self.manufacturer
