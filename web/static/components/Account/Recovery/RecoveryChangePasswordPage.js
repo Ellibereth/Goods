@@ -7,6 +7,7 @@ import PageContainer from '../../Misc/PageContainer'
 import AccountInput from '../../Input/AccountInput'
 import Spinner from '../../Misc/Spinner'
 import Button from 'react-bootstrap/lib/Button'
+import AppActions from '../../../actions/AppActions'
 
 import {AlertMessages} from '../../Misc/AlertMessages'
 const form_labels = ["Password", "Password Confirm"]
@@ -34,6 +35,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 
 
 	componentDidMount(){
+		AppActions.removeCurrentUser()
 		this.checkRecovery.bind(this)()
 	}
 

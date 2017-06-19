@@ -68,7 +68,7 @@ export default class ProductMainContainer extends React.Component {
 		this.getProductInformation.bind(this)()
 		setTimeout(function () {
 			ga('ec:addProduct', {
-				'id': this.state.product.product_id.toString(),
+				'id': this.state.product.product_id ? this.state.product.product_id.toString() : "",
 				'name': this.state.product.name,
 				'manufacturer' : this.state.product.manufacturer,
 				'price' : this.state.product.price.toString(),

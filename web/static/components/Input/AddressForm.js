@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import {isNumberKey} from './Util.js'
 
 export default class AddressForm extends React.Component {
 	constructor(props) {
@@ -43,12 +42,10 @@ export default class AddressForm extends React.Component {
 	}
 
 	onZipChange(event){
-		if (isNumberKey(event)) {
-			this.handleChange.bind(this)(event)
-			this.setState({
-				address_zip : event.target.value
-			})
-		}
+		this.handleChange.bind(this)(event)
+		this.setState({
+			address_zip : event.target.value
+		})
    	}
 
    	onKeyPress(e){

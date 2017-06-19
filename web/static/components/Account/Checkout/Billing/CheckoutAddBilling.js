@@ -56,10 +56,12 @@ export default class CheckoutAddBilling extends React.Component {
 		this.props.toggleModal()
 		var data = {}
 		if (this.state.use_same_as_shipping){
-			for (var i = 0; i < address_inputs.length; i++){
-				var key = address_inputs[i]
-				data[key] = this.props.selected_address[key]
-			}	
+			if (this.props.selected_address){
+				for (var i = 0; i < address_inputs.length; i++){
+					var key = address_inputs[i]
+					data[key] = this.props.selected_address[key]
+				}	
+			}
 		}	
 		else {
 			for (var i = 0; i < address_inputs.length; i++){
@@ -108,8 +110,6 @@ export default class CheckoutAddBilling extends React.Component {
 			<div className = "container">
 				<div className = "row">
 					<div className = "col-sm-10 col-md-10 col-lg-10">
-						
-						
 						<CreditCardInput onSubmit = {this.onSubmitPress.bind(this)}
 						 onTextInputChange = {this.onTextInputChange.bind(this)} />
 						
@@ -117,7 +117,7 @@ export default class CheckoutAddBilling extends React.Component {
 							<div className="checkbox">
 							  <label>
 							  	<input disabled = {!this.props.selected_address} 
-							  		checked = {this.state.use_same_as_shipping}
+							  		checked = {this.state.use_same_as_shipping && this.props.selected_address}
 							  		id = "same_address_checkbox" name = "same_address" 
 							  		 onClick = {this.useSameAddressChange.bind(this)} type="checkbox"/>
 							  	 Use same address from shipping </label>
