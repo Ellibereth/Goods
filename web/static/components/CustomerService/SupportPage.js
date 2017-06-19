@@ -6,10 +6,10 @@ import PageContainer from '../Misc/PageContainer'
 import AppStore from '../../stores/AppStore'
 
 
-const PURCHASE_CATEGORY = "a purchase"
-const SITE_CATEGORY = "your site"
-const ACCOUNT_CATEGORY = "my account"
-const OTHER_CATEGORY = 'something else'
+const PURCHASE_CATEGORY = "A Purchase"
+const SITE_CATEGORY = "Your Site"
+const ACCOUNT_CATEGORY = "My Account"
+const OTHER_CATEGORY = 'Something Else'
 const categories = ['', PURCHASE_CATEGORY, SITE_CATEGORY, ACCOUNT_CATEGORY, OTHER_CATEGORY]
 import {AlertMessages} from '../Misc/AlertMessages'
 
