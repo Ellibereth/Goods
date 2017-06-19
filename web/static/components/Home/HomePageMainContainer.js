@@ -44,6 +44,19 @@ export default class HomePageMainContainer extends React.Component {
 		  contentType : "application/json; charset=utf-8"
 		})
 	}
+
+	orderProducts(product_list) {
+		var ordered_products = []
+		product_list.map((product, index) => {
+			if (product.inventory == 0) {
+				ordered_products.push(product)
+			}
+			else {
+				ordered_products.unshift(product)
+			}
+		})
+		return ordered_products
+	}
 	
 	render() {
 		// for now these are hard coded preview products
@@ -52,7 +65,8 @@ export default class HomePageMainContainer extends React.Component {
 		var items_per_row = 4
 
 		var col_size = 12 / items_per_row
-		var products = this.state.products.map((product, index) =>
+		var ordered_products = this.orderProducts(this.state.products)
+		var products = ordered_products.map((product, index) =>
 				<HomeProductPreview col_size = {col_size} product = {product}/>
 			)
 
