@@ -57,7 +57,7 @@ export default class OrderHistoryPage extends React.Component {
 
 
 		if (orders.length == 0){
-			var order_display = <h3> You haven't bought anything on <a href = "/"> Edgar USA </a> yet.</h3>
+			var order_display = <h3> You haven't bought anything on <a href = "/">Edgar USA</a> yet.</h3>
 		}
 		else {
 			var order_display = this.getOrderDisplay.bind(this)(orders)
