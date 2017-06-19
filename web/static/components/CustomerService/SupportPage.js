@@ -59,14 +59,22 @@ export default class SupportPage extends React.Component {
 			url: "/addFeedback",
 			success: function(data) {
 				if (data.success) {
-					swal(AlertMessages.SUCCESFUL_FEEDBACK_COMPLETION)
-					setTimeout(function (){
-						window.location = '/'
-					}, 2000)
-
+					swal(AlertMessages.SUCCESFUL_FEEDBACK_COMPLETION,
+						function (isConfirm) {
+							if (isConfirm) {
+								window.location = '/'
+							}
+						})
 				}
 				else {
-					swal(AlertMessages.INTERNAL_SERVER_ERROR)
+					swal({
+						title : data.error.title, 
+						text : data.error.text,
+						type:  data.error.type,
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "Ok",
+						closeOnConfirm: true
+					})
 				}
 			}.bind(this),
 			dataType: "json",
@@ -137,34 +145,38 @@ export default class SupportPage extends React.Component {
 									</div>
 								</div>
 
-								<div className = "row">
-									<form onSubmit = {(event) =>  event.preventDefault()} className="form-inline">
-											<div className = "form-group" style = {{"padding-right" : "6px"}}>
-												<p className = "form-control-static"> {"Email: "} </p>
-											</div>
-											<div className = "form-group">
-												<input
-												style = {{'width' : '300px'}}
-												 type="text" className = "form-control" 
-												 onChange = {this.onChange} name = "email" value = {this.state.email} />
-											</div>
-									</form>
-								</div>
+								{!AppStore.getCurrentUser()&&
+									<div className = "row">
+										<form onSubmit = {(event) =>  event.preventDefault()} className="form-inline">
+												<div className = "form-group" style = {{"padding-right" : "6px"}}>
+													<p className = "form-control-static"> {"Email: "} </p>
+												</div>
+												<div className = "form-group">
+													<input
+													style = {{'width' : '300px'}}
+													 type="text" className = "form-control" 
+													 onChange = {this.onChange} name = "email" value = {this.state.email} />
+												</div>
+										</form>
+									</div>
+								}
 								<div className = "top-buffer"/>
 
-								<div className = "row">
-									<form className="form-inline">
-											<div className = "form-group" style = {{"padding-right" : "6px"}}>
-												<p className = "form-control-static"> {"Name: "} </p>
-											</div>
-											<div className = "form-group">
-												<input
-												style = {{'width' : '300px'}}
-												 type="text" className = "form-control" 
-												 onChange = {this.onChange} name = "name" value = {this.state.name} />
-											</div>
-									</form>
-								</div>
+								{!AppStore.getCurrentUser() && 
+									<div className = "row">
+										<form className="form-inline">
+												<div className = "form-group" style = {{"padding-right" : "6px"}}>
+													<p className = "form-control-static"> {"Name: "} </p>
+												</div>
+												<div className = "form-group">
+													<input
+													style = {{'width' : '300px'}}
+													 type="text" className = "form-control" 
+													 onChange = {this.onChange} name = "name" value = {this.state.name} />
+												</div>
+										</form>
+									</div>
+								}
 								
 								<div className = "top-buffer"/>
 

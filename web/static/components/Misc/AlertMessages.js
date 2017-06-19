@@ -59,7 +59,10 @@ export const AlertMessages = {
 	 SUCCESFUL_FEEDBACK_COMPLETION : {
 							title : "Your feedback is appreaciated", 
 							text : "Redirecting you to the homepage shorlty", 
-							type : "success"
+							type : "success",
+							confirmButtonColor: "#DD6B55",
+							confirmButtonText: "Ok",
+							closeOnConfirm: true
 						},
 
 	 LIVE_CHANGES_WILL_BE_MADE : {

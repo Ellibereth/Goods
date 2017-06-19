@@ -149,7 +149,7 @@ export default class CreditCardInput extends React.Component {
 			</div>
 			<div className = "row">
 				<div className= {this.state.name_error ? "form-group required" : "form-group required has-success"}>
-				  <label className="col-md-2 control-label text-left" for="State">Card Name</label>  
+				  <label className="col-md-2 control-label text-left" for="State">Name on Card</label>  
 				  <div className="col-md-6">
 				  <input 
 				  onKeyPress = {this.onKeyPress.bind(this)}

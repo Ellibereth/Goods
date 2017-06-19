@@ -60,6 +60,9 @@ class ErrorMessages:
 	CardCvcError = SwalError("Card CVC invalid").toDict()
 	CardZipError = SwalError("Card ZIP invalid").toDict()
 
+	BlankCategory = SwalError("You must select a topic").toDict()
+	BlankMessage = SwalError("Message cannot be blank").toDict()
+
 	def invalidEmail(email):
 		return SwalError(email + " is not a valid email address.").toDict()
 

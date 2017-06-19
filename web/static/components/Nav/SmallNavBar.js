@@ -81,7 +81,7 @@ export default class SmallNavBar extends React.Component {
 							<li> <a href ="/settings"> Account </a> </li>
 							<li> <a href = '/myOrders'> Past Orders </a> </li>
 							<li><a href ="/support" >Support</a></li>
-							<li> <a href = "/logout"> Logout </a></li>
+							<li> <a href = "/logout"> Sign Out </a></li>
 						</ul>
 					</li>
 				</ul>

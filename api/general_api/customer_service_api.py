@@ -5,6 +5,7 @@ from api.models.shared_models import db
 from api.utility.labels import FeedbackLabels as Labels
 from api.utility import email_api
 from api.utility.json_util import JsonUtil
+from api.utility.error import ErrorMessages
 
 customer_service_api = Blueprint('customer_service_api', __name__)
 
@@ -16,6 +17,12 @@ def addFeedback():
 	feedback_content = request.json.get(Labels.FeedbackContent)
 	category = request.json.get(Labels.Category)
 	order_id = request.json.get(Labels.OrderId)
+
+	if category == "":
+		return JsonUtil.failure(ErrorMessages.BlankCategory)
+	if feedback_content == "":
+		return JsonUtil.failure(ErrorMessages.BlankMessage)
+
 	this_feedback = Feedback(email, name, feedback_content, category, order_id)
 	db.session.add(this_feedback)
 	db.session.commit()
