@@ -204,14 +204,20 @@ export const AlertMessages = {
 	RECOVERY_PIN_SENT : function (email)  {	
 					return {
 						title : "A recovery pin has been sent to " + email,
-						type: "success"
+						type: "success",
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "Ok",
+						closeOnConfirm: true
 					}
 				},
 
 	RECOVERY_PIN_NOT_SENT : function (email)  {	
 					return {
 						title :  email + " is not associated with an account",
-						type: "error"
+						type: "error",
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "Try Again",
+						closeOnConfirm: true
 					}
 				},
 

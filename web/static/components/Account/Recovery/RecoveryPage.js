@@ -52,10 +52,10 @@ export default class RecoveryPage extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						swal(AlertMessages.RECOVERY_PIN_SENT(this.state.email))
-						setTimeout( function () {
-							window.location = '/'
-						}, 2000)	
+						swal(AlertMessages.RECOVERY_PIN_SENT(this.state.email),
+							function (isConfirm) {
+								window.location = '/'
+							})
 					}
 					else {
 						swal(AlertMessages.RECOVERY_PIN_NOT_SENT(this.state.email))
