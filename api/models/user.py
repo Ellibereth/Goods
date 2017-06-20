@@ -354,6 +354,12 @@ class User(db.Model):
 	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
 			exp_month, exp_year, number, cvc, name, address_state, address_country = "US"):
 		
+		if exp_year == None or exp_month == None:
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardExpiryError}
+
+		if number == None:
+			return {Labels.Success : False,Labels.Error : ErrorMessages.CardNumberError}
+			
 		exp_year = exp_year.replace(' ', '')
 		exp_month = exp_month.replace(' ', '')
 		number = number.replace(' ', '')
