@@ -24,7 +24,7 @@ class EmailHtml:
 		body = body + "<span style = \"display:block;font-size: 14px;\">  Click below to recover your account </span>"
 		body = body + "<span style = \"display:block;font-size: 14px;\">  This link will expire in 15 minutes </span>"
 		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:16px; border:none;border-radius:6px;\"> \
-			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">  Recover Account </a> </button> </div>"
+			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">Recover Account</a> </button> </div>"
 
 		textPart = MIMEText(body, 'html')
 		msg.attach(textPart)
@@ -35,7 +35,7 @@ class EmailHtml:
 		body = "<h2> Hello " + name.title() + ",</h2>"
 		body = body + "<span style = \"display:block;font-size: 14px;\"> Thank you for signing up! Click below to confirm your account </span>"
 		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
-			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">  Confirm Email </a> </button> </div>"
+			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">Confirm Email</a> </button> </div>"
 
 		return body
 

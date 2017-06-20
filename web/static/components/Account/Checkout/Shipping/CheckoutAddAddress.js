@@ -95,7 +95,6 @@ export default class CheckoutAddAddress extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.zip)
 		return (
 			<div className = "container">
 				<div className = "row">

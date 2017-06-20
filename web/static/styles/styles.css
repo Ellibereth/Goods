@@ -150,7 +150,7 @@
 
 
 .home-container {
-	opacity: 0.9
+	opacity: 0.9;
 }
 
 .footer {
@@ -1177,6 +1177,5 @@
 .dropdown-item.sold-out {
 	text-decoration : line-through !important;
 }
-
 
 
