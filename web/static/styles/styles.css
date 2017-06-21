@@ -168,12 +168,6 @@
 	display: block;
 }
 
-.delete-account-button {
-}
-
-.settings-preview-row {
-}
-
 .settings-preview-column {
 	margin: 6px;
 	padding: 12px;
@@ -850,11 +844,6 @@
 	color : skyblue;
 }
 
-
-#account_dropdown {
-	background-color: transparent;
-}
-
 .cart-badge {
 	font-size: x-small;
 	position: absolute;
@@ -863,9 +852,7 @@
 	background-color: red;
 }
 
-#account_dropdown:hover + ul.dropdown-menu{
-	display: block;    
-}
+
 
 
 /* This should be renamed, don't forget about it later*/
@@ -898,11 +885,6 @@
 
 .nav-buffer {
 	padding-bottom: 50px;
-}
-
-.account-dropdown:hover .dropdown-menu {
-	display: block;
-    margin-top: 0; /*remove the gap so it doesn't close*/
 }
 
 .story-overlay-container {
@@ -1180,4 +1162,34 @@
 	text-decoration : line-through !important;
 }
 
+.dropdown .dropdown-menu{
+    /*display: block;*/
+    opacity: 0;
 
+    -moz-transition:    all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition:      all 500ms ease;
+    -ms-transition:     all 500ms ease;
+    transition:         all 500ms ease;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+}
+
+
+.cart-dropdown{
+	display: inline-block
+}
+
+
+.nav-checkout-button {
+	background-color: orange;
+	color: white;
+}
+
+.nav-cart-item-image{
+	height : 60px;
+	width:60px;
+}
