@@ -1163,7 +1163,7 @@
 }
 
 .nav-dropdown.dropdown .dropdown-menu{
-    display: block;
+    /*display: block;*/
     opacity: 0;
     max-height: 0;
 
