@@ -19,9 +19,10 @@ export default class ChangePasswordForm extends React.Component {
 	}
 
 	// handle the text input changes
-	onTextInputChange(field, value){
+	onTextInputChange(event){
+
 		var obj = {}
-		obj[field] = value
+		obj[event.target.name] = event.target.value
 		this.setState(obj)
 	}
 
@@ -79,6 +80,7 @@ export default class ChangePasswordForm extends React.Component {
 			return (<SettingsInput onChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
 				input_type = {input_types[index]} 
+				name = {form_input}
 				label_col_size = "3"/>)
 		})
 
