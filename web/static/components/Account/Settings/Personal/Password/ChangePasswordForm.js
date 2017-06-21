@@ -87,12 +87,10 @@ export default class ChangePasswordForm extends React.Component {
 				<form onSubmit = {this.updatePassword.bind(this)} className = "form-horizontal">
 					{text_inputs}
 					
-					<div className = "form-group">
-						<div className = "col-sm-4 col-md-4 col-lg-4">
-							<button className = "btn btn-default" onClick = {this.updatePassword.bind(this)}>
-								Save
-							</button>
-						</div>
+					<div className = "form-group row">
+						<button className = "btn btn-default" onClick = {this.updatePassword.bind(this)}>
+							Save
+						</button>
 					</div>
 					
 

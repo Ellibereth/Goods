@@ -86,13 +86,11 @@ export default class DeleteAccountForm extends React.Component {
 					
 					{text_inputs}
 					
-					<div className = "form-group">
-						<div className = "col-sm-4 col-md-4 col-lg-4">
-							<button className = "btn btn-default delete-account-button" 
-							onClick = {this.handleDeleteClick.bind(this)}>
-								Delete Account
-							</button>
-						</div>
+					<div className = "form-group row">
+						<button className = "btn btn-default delete-account-button" 
+						onClick = {this.handleDeleteClick.bind(this)}>
+							Delete Account
+						</button>
 					</div>
 				</form>
 		)

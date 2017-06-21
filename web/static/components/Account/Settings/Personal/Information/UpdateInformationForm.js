@@ -59,7 +59,6 @@ export default class UpdateInformationForm extends React.Component {
 							name : data.user.name,
 							email : data.user.email,
 						})
-						this.props.setEditableIndex()
 						this.props.getUserInfo()
 						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 					}
@@ -97,13 +96,10 @@ export default class UpdateInformationForm extends React.Component {
 					{text_inputs}
 					
 
-					<div className = "form-group">
-						
-							<div className = "col-sm-4 col-md-4 col-lg-4">
-								<button className = "btn btn-default" onClick = {this.updateSettings.bind(this)}>
-									Save
-								</button>
-							</div>
+					<div className = "form-group row">
+						<button className = "btn btn-default" onClick = {this.updateSettings.bind(this)}>
+							Save
+						</button>
 					</div>
 					
 
