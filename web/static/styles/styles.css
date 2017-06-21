@@ -1162,9 +1162,10 @@
 	text-decoration : line-through !important;
 }
 
-.dropdown .dropdown-menu{
-    /*display: block;*/
+.nav-dropdown.dropdown .dropdown-menu{
+    display: block;
     opacity: 0;
+    max-height: 0;
 
     -moz-transition:    all 500ms ease;
     -webkit-transition: all 500ms ease;
@@ -1173,9 +1174,10 @@
     transition:         all 500ms ease;
 }
 
-.dropdown:hover .dropdown-menu {
+.nav-dropdown.dropdown:hover .dropdown-menu {
     display: block;
     opacity: 1;
+    max-height: 300px;
 }
 
 

@@ -122,35 +122,28 @@ export default class AddToCartButton extends React.Component {
 
 	// edit this to allow user to checkout as guest
 	onNonUserClick(){
-		swal(
-			AlertMessages.NON_USER_ADD_TO_CART_ATTEMPT,
-			function(isConfirm) {
-				if (isConfirm){
-					window.location = '/register'
+		
+		this.props.setLoading(true)
+		$.ajax({
+			type: "POST",
+			url: "/createGuestUser",
+			success: function(data) {
+				if (data.success){
+					AppActions.addCurrentUser(data.user, data.jwt)
+					this.addToCart.bind(this)()
 				}
-			}
-		)
-		// this.props.setLoading(true)
-		// $.ajax({
-		// 	type: "POST",
-		// 	url: "/createGuestUser",
-		// 	success: function(data) {
-		// 		if (data.success){
-		// 			AppActions.addCurrentUser(data.user, data.jwt)
-		// 			this.addToCart.bind(this)()
-		// 		}
-		// 		// this.props.setLoading(false)
-		// 	}.bind(this),
-		// 	error : function(){
-		// 		ga('send', 'event', {
-		// 			eventCategory: ' server-error',
-		// 			eventAction: 'getUserInfo',
-		// 			eventLabel: AppStore.getCurrentUser().email
-		// 		});
-		// 	},
-		// 	dataType: "json",
-		// 	contentType : "application/json; charset=utf-8"
-		// });
+				// this.props.setLoading(false)
+			}.bind(this),
+			error : function(){
+				ga('send', 'event', {
+					eventCategory: ' server-error',
+					eventAction: 'getUserInfo',
+					eventLabel: AppStore.getCurrentUser().email
+				});
+			},
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		});
 	}
 
 	render() {

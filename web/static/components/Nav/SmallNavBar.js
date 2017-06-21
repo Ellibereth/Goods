@@ -4,7 +4,8 @@ var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link;
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
-import NavCartIcon from './NavCartIcon'
+import NavCartIcon from './Cart/NavCartIcon'
+import NavAccountIcon from './Account/NavAccountIcon'
 
 export default class SmallNavBar extends React.Component {
 	constructor(props) {
@@ -42,9 +43,7 @@ export default class SmallNavBar extends React.Component {
 							{search_bar}
 						</li>
 
-						{/* <li> 
-							<NavCartIcon show_text = {false}/>
-						</li> */}
+						<NavCartIcon show_text = {false}/>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
 					</ul>
@@ -59,22 +58,7 @@ export default class SmallNavBar extends React.Component {
 					
 					<NavCartIcon show_text = {false}/>
 
-					<li className = "dropdown account-dropdown">
-						<a id = "account_dropdown"  className="dropdown-toggle" 
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false"> 
-						 	<span className = "nav-icon">
-							 	<span className = "glyphicon glyphicon-user"/> 
-							</span>
-						</a>
-
-						<ul className="dropdown-menu"> 
-							<li> <a href ="/settings"> Account </a> </li>
-							<li> <a href = '/myOrders'> Past Orders </a> </li>
-							<li><a href ="/support" >Support</a></li>
-							<li> <a href = "/logout"> Sign Out </a></li>
-						</ul>
-					</li>
+					<NavAccountIcon show_text = {false}/>
 				</ul>
 			)
 		}	

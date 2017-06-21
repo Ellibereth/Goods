@@ -4,7 +4,8 @@ var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link;
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
-import NavCartIcon from './NavCartIcon'
+import NavCartIcon from './Cart/NavCartIcon'
+import NavAccountIcon from './Account/NavAccountIcon'
 
 
 export default class LargeNavBar extends React.Component {
@@ -28,9 +29,7 @@ export default class LargeNavBar extends React.Component {
 				
 					<ul className="nav navbar-nav navbar-right">
 						<li> {search_bar} </li>
-						{/* <li> 
-							<NavCartIcon show_text = {true}/>
-						</li> */}
+						<NavCartIcon show_text = {false}/>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
 					</ul>
@@ -41,22 +40,7 @@ export default class LargeNavBar extends React.Component {
 				<ul className="nav navbar-nav navbar-right">
 					<li> {search_bar} </li>
 					<NavCartIcon show_text = {true}/> 
-						<li className = "dropdown">
-							<a href="#"
-							 className="dropdown-toggle" data-toggle="dropdown" 
-							 aria-haspopup="true" aria-expanded="false"> 
-							 	<span className = "nav-icon">
-								 	<span className = "glyphicon glyphicon-user"/> 
-								</span>
-								<span className = "nav-icon-text"> You <span className = "caret"/> </span>
-							</a>
-							<ul className="dropdown-menu"> 
-								<li> <a href ="/settings"> Account </a> </li>
-								<li> <a href = '/myOrders'> Past Orders </a> </li>
-								<li> <a href ="/support">Support</a></li>
-								<li> <a href = "/logout"> Sign Out </a></li>
-							</ul>
-						</li>
+					<NavAccountIcon show_text = {true}/>
 					<li>
 						<span className = "nav-greetings-text">
 							 Hello, {current_user.name.split(' ')[0]}! 
