@@ -4,6 +4,7 @@ var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link;
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
+import NavCartIcon from './NavCartIcon'
 
 
 export default class LargeNavBar extends React.Component {
@@ -12,18 +13,11 @@ export default class LargeNavBar extends React.Component {
 		this.state = {
 			current_user : null,
 			search_input : "",
-			cart_badge: 0
 		}
 	}
 
 	componentDidMount(){
-		setInterval(function(){ 
-			var current_cart_size = AppStore.getCurrentUser().cart_size
-			if (current_cart_size != this.state.cart_badge){
-				this.setState({cart_badge : AppStore.getCurrentUser().cart_size})	
-			}
-		}.bind(this), 1000)
-		this.setState({cart_badge : AppStore.getCurrentUser().cart_size})
+		
 	}
 
 	getRightNav() {
@@ -35,12 +29,7 @@ export default class LargeNavBar extends React.Component {
 					<ul className="nav navbar-nav navbar-right">
 						<li> {search_bar} </li>
 						{/* <li> 
-							<a href = "/myCart"> 
-								<span className = "nav-icon">
-									<span className = "glyphicon glyphicon-shopping-cart "/> 
-									{this.state.cart_badge > 0 && <span className ="badge badge-notify cart-badge"> {this.state.cart_badge} </span>}
-								</span>
-							</a>
+							<NavCartIcon show_text = {true}/>
 						</li> */}
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
@@ -51,29 +40,20 @@ export default class LargeNavBar extends React.Component {
 			return (
 				<ul className="nav navbar-nav navbar-right">
 					<li> {search_bar} </li>
-					<li> 
-						<a href = "/myCart"> 
-							<span className = "nav-icon">
-								<span className = "glyphicon glyphicon-shopping-cart "/> 
-								{this.state.cart_badge > 0 && <span className ="badge badge-notify cart-badge"> {this.state.cart_badge} </span>}
-							</span>
-
-							<span className = "nav-icon-text"> Cart </span>
-						</a>
-					</li>
-						<li className = "account-dropdown">
-							<a id = "account_dropdown" href="#" className="dropdown-toggle" 
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false"> 
+					<NavCartIcon show_text = {true}/> 
+						<li className = "dropdown">
+							<a href="#"
+							 className="dropdown-toggle" data-toggle="dropdown" 
+							 aria-haspopup="true" aria-expanded="false"> 
 							 	<span className = "nav-icon">
 								 	<span className = "glyphicon glyphicon-user"/> 
 								</span>
 								<span className = "nav-icon-text"> You <span className = "caret"/> </span>
 							</a>
 							<ul className="dropdown-menu"> 
-								<li><a href ="/settings"> Account </a> </li>
+								<li> <a href ="/settings"> Account </a> </li>
 								<li> <a href = '/myOrders'> Past Orders </a> </li>
-								<li><a href ="/support">Support</a></li>
+								<li> <a href ="/support">Support</a></li>
 								<li> <a href = "/logout"> Sign Out </a></li>
 							</ul>
 						</li>
