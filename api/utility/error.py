@@ -67,7 +67,7 @@ class ErrorMessages:
 		return SwalError(email + " is not a valid email address.").toDict()
 
 	def inUseEmail(email):
-		return SwalError(email + " is in user.").toDict()
+		return SwalError(email + " is in use.").toDict()
 
 	def itemLimit(limit):
 		if limit == 0:

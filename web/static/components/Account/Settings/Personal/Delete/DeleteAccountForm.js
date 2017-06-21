@@ -1,13 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
-import AppActions from '../../../../actions/AppActions.js';
-import AppStore from '../../../../stores/AppStore.js';
-import TextInput from '../../../Input/TextInput.js'
+import AppActions from '../../../../../actions/AppActions.js';
+import AppStore from '../../../../../stores/AppStore.js';
+import SettingsInput from '../../../../Input/SettingsInput.js'
 const form_labels = ['Password', 'Confirm Password']
 const form_inputs = ["password", "password_confirm"]
 const input_types = ['password', 'password']
-import {AlertMessages} from '../../../Misc/AlertMessages'
+import {AlertMessages} from '../../../../Misc/AlertMessages'
 export default class DeleteAccountForm extends React.Component {
 	constructor(props) {
 		super(props);
@@ -74,30 +74,24 @@ export default class DeleteAccountForm extends React.Component {
 
 	render() {
 		var text_inputs = form_inputs.map((form_input, index) => {
-			return (<TextInput colSize = {"8"} onTextInputChange = {this.onTextInputChange.bind(this)}
+			return (<SettingsInput onChange = {this.onTextInputChange.bind(this)}
 				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]} required = {true}/>)
+				input_type = {input_types[index]}
+				label_col_size = "3" />)
 		})
 
 		return (
 				<form onSubmit = {this.handleDeleteClick.bind(this)} className = "form-horizontal">
-					<label className = "control-label"> <span id = "settings-header"> Delete Account </span> </label>
-					<br/>
+					
 					{text_inputs}
 					
 					<div className = "form-group">
-						
-							<div className = "col-sm-4 col-md-4 col-lg-4">
-								<button className = "btn btn-default delete-account-button" 
-								onClick = {this.handleDeleteClick.bind(this)}>
-									Delete Account
-								</button>
-							</div>
-							<div className = "col-sm-4 col-md-4 col-lg-4 text-right" >
-								<button className = "btn btn-default" onClick = {() => window.location = '/settings'}>
-									Return to settings
-								</button>
-							</div>
+						<div className = "col-sm-4 col-md-4 col-lg-4">
+							<button className = "btn btn-default delete-account-button" 
+							onClick = {this.handleDeleteClick.bind(this)}>
+								Delete Account
+							</button>
+						</div>
 					</div>
 				</form>
 		)

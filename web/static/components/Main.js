@@ -20,9 +20,8 @@ import ProductPage from './Product/ProductPage.js'
 import RegisterPage from './Account/Register/RegisterPage.js'
 import LoginPage from './Account/Login/LoginPage.js'
 import SettingsPage from './Account/Settings/SettingsPage.js'
-import UpdateSettingsPage from './Account/Settings/Personal/UpdateSettingsPage.js'
+import UpdatePersonalPage from './Account/Settings/Personal/UpdatePersonalPage.js'
 import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
-import ChangePasswordPage from './Account/Settings/Personal/ChangePasswordPage.js'
 import LogoutPage from './Misc/LogoutPage.js'
 import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
 import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
@@ -32,7 +31,6 @@ import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.j
 import ViewCartPage from './Account/Checkout/ViewCartPage.js'
 import CheckoutPage from './Account/Checkout/CheckoutPage.js'
 import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
-import DeleteAccountPage from './Account/Settings/Personal/DeleteAccountPage'
 import SearchPage from './Search/SearchPage'
 import SupportPage from './CustomerService/SupportPage'
 import RecoveryPage from './Account/Recovery/RecoveryPage'
@@ -74,6 +72,9 @@ export default class Main extends React.Component {
 							}.bind(this))
 						}
 					
+				}
+				else {
+					AppActions.removeCurrentUser()
 				}
 
 			}.bind(this),
@@ -154,13 +155,11 @@ ReactDOM.render(
 			<Route path = "register" component = {RegisterPage}/>
 			<Route path = "login" component = {LoginPage}/>
 			<Route path = "settings" onEnter = {checkUser} component = {SettingsPage}/>
-			<Route path = "updateSettings" onEnter = {checkUser} component = {UpdateSettingsPage}/>
-			<Route path = "changePassword" onEnter = {checkUser} component = {ChangePasswordPage}/>
+			<Route path = "updatePersonal" onEnter = {checkUser} component = {UpdatePersonalPage}/>
 			<Route path = "myOrders" onEnter = {checkUser} component = {OrderHistoryPage}/>
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path = "billing" onEnter = {checkUser} component = {UpdateBillingPage} />
-			<Route path = "deleteAccount" onEnter = {checkUser} component = {DeleteAccountPage} />
 			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
 			<Route path = "myCart" component = {ViewCartPage} />
 			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
@@ -169,7 +168,6 @@ ReactDOM.render(
 			<Route path = "support" component = {SupportPage}/>
 			<Route path = "recoverAccount" component = {RecoveryPage}/>
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
-			{/* <Route path = "thanks" component = {ThanksPage}/> */}
 			<Route path = "landing" component = {LandingPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>

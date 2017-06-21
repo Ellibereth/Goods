@@ -132,6 +132,26 @@ def sendEmailConfirmation(email, email_confirmation_id, name):
 	smtpserver.close()
 
 
+def sendEmailChangeConfirmation(email, email_confirmation_id, name):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
+	msg = MIMEMultipart()
+	msg['Subject'] = "Please Confirm Your Email!"
+	msg['From'] = "noreply@edgarusa.com"
+	msg['To'] = email
+	body = EmailHtml.generateConfirmationChangeEmailHtml(email, email_confirmation_id, name)
+	textPart = MIMEText(body, 'html')
+	msg.attach(textPart)
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+	smtpserver.send_message(msg)
+	smtpserver.close()
+
+
+
 def sendPurchaseNotification(user, cart, address, order_id):
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"

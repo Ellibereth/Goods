@@ -95,7 +95,6 @@ def registerUserAccount():
 	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
 	register_user_response = User.registerUser(name, email_input, password, password_confirm, guest_user)
 	if register_user_response.get(Labels.Success):
-		print(register_user_response[Labels.User])
 		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.Jwt])
 		return JsonUtil.successWithOutput(register_user_response)
 	else:
@@ -120,9 +119,6 @@ def confirmEmail():
 @decorators.check_user_jwt
 def updateSettings(this_user):
 	new_settings = request.json.get(Labels.NewSettings)
-	password = request.json.get(Labels.Password)
-	if not this_user.checkLogin(password):
-		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	if not User.isValidEmail(new_settings[Labels.Email]):
 		return JsonUtil.failure(ErrorMessages.invalidEmail(new_settings[Labels.Email]))
 
@@ -135,7 +131,7 @@ def updateSettings(this_user):
 	if not validate_email(new_settings.get(Labels.Email)):
 		return JsonUtil.failure(ErrorMessages.InvalidEmail)
 
-	email_match = User.query.filter_by(email = new_settings[Labels.Email]).first()
+	email_match = User.query.filter_by(email = new_settings[Labels.Email].lower()).first()
 	if email_match:
 		if email_match.account_id != this_user.account_id:
 			return JsonUtil.failure(ErrorMessages.inUseEmail(new_settings[Labels.Email]))
@@ -143,9 +139,8 @@ def updateSettings(this_user):
 		return JsonUtil.failure(ErrorMessages.BlankName)
 	# if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):	
 	# 	return JsonUtil.failure(ErrorMessages.InvalidName)
-	this_user.updateSettings(new_settings)
-	output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
-	return JsonUtil.successWithOutput(output)
+	response = this_user.updateSettings(new_settings)
+	return JsonUtil.successWithOutput(response)
 
 @account_api.route('/changePassword', methods = ['POST'])
 @decorators.check_user_jwt

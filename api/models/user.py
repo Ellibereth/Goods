@@ -128,7 +128,6 @@ class User(db.Model):
 		guest_items = CartItem.query.filter_by(account_id = guest_user.account_id).all()
 
 		for cart_item in guest_items:
-			print(cart_item.toPublicDict())
 			cart_item.account_id = self.account_id
 
 		db.session.commit()
@@ -341,14 +340,24 @@ class User(db.Model):
 	# new settings is a dictionary object
 	# this part is slightly hard coded :P
 	def updateSettings(self, new_settings):
+
 		for key in new_settings.keys():
 			if key == Labels.Name:
 				self.name = new_settings[Labels.Name]
 			elif key == Labels.Email:
-				self.email = new_settings[Labels.Email]
+				if new_settings.get(Labels.Email).lower() != self.email.lower():
+					try:
+						email_confirmation_id = User.generateEmailConfirmationId()
+						email_api.sendEmailChangeConfirmation(new_settings[Labels.Email], email_confirmation_id, new_settings[Labels.Name])
+					except Exception as e:
+						return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
+					self.email_confirmed = False
+					self.email_confirmation_id = email_confirmation_id
+					self.email = new_settings[Labels.Email]
 			else:
 				raise Exception("Invalid setting submission!")
 		db.session.commit()
+		return {Labels.User : self.toPublicDict()}
 
 	# adds a credit card with billing and shipping information to stripe 
 	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
@@ -359,7 +368,7 @@ class User(db.Model):
 
 		if number == None:
 			return {Labels.Success : False,Labels.Error : ErrorMessages.CardNumberError}
-			
+
 		exp_year = exp_year.replace(' ', '')
 		exp_month = exp_month.replace(' ', '')
 		number = number.replace(' ', '')

@@ -24,15 +24,12 @@ export default class UpdateSettingsPreview extends React.Component {
 						<div className ="panel-body">
 							<span className = "account-page-text block-span"> Name: {current_user.name} </span>
 							<span className = "account-page-text block-span"> Email: {current_user.email} </span>
+							<span className = "account-page-text block-span">Password: &bull;&bull;&bull;&bull;&bull;&bull;</span>
 							<span className = "block-span"> <div className = "small-buffer"/></span>
 							<span className = "block-span"> 
 								<button style = {{"margin-right" : "6px"}} className = "btn btn-default btn-sm" id = "edit-address-button"
-									onClick = {() => window.location = '/updateSettings'}>
+									onClick = {() => window.location = '/updatePersonal'}>
 									Edit
-								</button>
-								<button className = "btn btn-default btn-sm" 
-									onClick = {() => window.location = '/deleteAccount'}>
-									Delete
 								</button>
 							</span>
 						</div>

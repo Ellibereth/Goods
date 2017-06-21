@@ -1,10 +1,11 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import DeleteAccountForm from './DeleteAccountForm.js'
+import AppStore from '../../../../stores/AppStore.js';
+import AccountCard from './AccountCard'
 import PageContainer from '../../../Misc/PageContainer'
 var browserHistory = require('react-router').browserHistory;
 
-export default class DeleteAccountPage extends React.Component {
+export default class UpdateSettings extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -12,14 +13,15 @@ export default class DeleteAccountPage extends React.Component {
 		}
 	}
 
-
 	render() {
 		return (
 			<PageContainer component = {
 				<div className = "container">
-					<DeleteAccountForm />
+					 {/* <SettingsFormPersonal /> */}
+					<AccountCard />
 				</div>
 			}/>
+			
 		)
 	}
 }
