@@ -89,7 +89,7 @@ export default class SiteMap extends React.Component {
 				routes = [pathname[1]]
 				labels = ["Account"]
 				break;
-			case "updateSettings":
+			case "updatePersonal":
 				routes = ["settings", pathname[1]]
 				labels = ["Account" , "Personal"]
 				break;

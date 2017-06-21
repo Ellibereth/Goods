@@ -8,28 +8,24 @@ import DeleteAccountForm from './Delete/DeleteAccountForm'
 import ChangePasswordForm from './Password/ChangePasswordForm'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 
-const DEFAULT_INDEX = 0
-const INFORMATION_INDEX = 1
-const PASSWORD_INDEX = 2
-const DELETE_INDEX = 3
+const INFORMATION_INDEX = 0
+const PASSWORD_INDEX = 1
+const DELETE_INDEX = 2
 
-const DISPLAYS = ['View', 'Edit Information', 'Change Password', 'Delete Account']
+const DISPLAYS = ['Edit Information', 'Change Password', 'Delete Account']
 
 export default class AccountCard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editable_index: DEFAULT_INDEX
+			editable_index: INFORMATION_INDEX
 		}
 		this.getPanelBody = this.getPanelBody.bind(this)
 	}
 
 	setEditableIndex(index) {
-		if (index){
+		if (index != null){
 			this.setState({editable_index : index})
-		}
-		else {
-			this.setState({editable_index : DEFAULT_INDEX})
 		}
 	}
 
@@ -64,24 +60,12 @@ export default class AccountCard extends React.Component {
 
 	getPanelBody(index) {
 		var current_user = AppStore.getCurrentUser()
-		if (index == INFORMATION_INDEX){
-			return (
-				<div className ="panel-body">
-					<div className = "container">
-						<UpdateInformationForm 
-						getUserInfo = {this.getUserInfo.bind(this)}
-						setEditableIndex = {this.setEditableIndex.bind(this, DEFAULT_INDEX)}/>
-					</div>
-				</div>
-			)
-		} 
-		else if (index == PASSWORD_INDEX){
+		if (index == PASSWORD_INDEX){
 			return (
 				<div className = "panel-body">
 					<div className = "container">
 						<ChangePasswordForm 
-						getUserInfo = {this.getUserInfo.bind(this)}
-						setEditableIndex = {this.setEditableIndex.bind(this, DEFAULT_INDEX)}/>
+						getUserInfo = {this.getUserInfo.bind(this)}/>
 					</div>
 				</div>
 			)
@@ -90,8 +74,7 @@ export default class AccountCard extends React.Component {
 			return (
 				<div className = "panel-body">
 					<div className = "container">
-						<DeleteAccountForm 
-						setEditableIndex = {this.setEditableIndex.bind(this, DEFAULT_INDEX)}/>
+						<DeleteAccountForm  getUserInfo = {this.getUserInfo.bind(this)}/>
 					</div>
 				</div>
 			)
@@ -99,13 +82,13 @@ export default class AccountCard extends React.Component {
 		else {
 			return (
 				<div className ="panel-body">
-					<span className = "account-page-text block-span">Name: {current_user.name}</span>
-					<span className = "account-page-text block-span">Email: {current_user.email}</span>
-					<span className = "account-page-text block-span">Password: &bull;&bull;&bull;&bull;&bull;&bull;</span>
-					<span className = "block-span"> <div className = "small-buffer"/></span>
+					<div className = "container">
+						<UpdateInformationForm 
+						getUserInfo = {this.getUserInfo.bind(this)}/>
+					</div>
 				</div>
 			)
-		}
+		} 
 	}
 
 
@@ -120,10 +103,10 @@ export default class AccountCard extends React.Component {
 						<div className = "panel-heading">
 							<ul className="nav nav-pills">
 								{DISPLAYS.map((display, index) => 
-										<li className= {this.state.editable_index == index && "active"}
-										onClick = {this.setEditableIndex.bind(this, index)}> 
-											<a href="#">{display}</a> 
-										</li>
+									<li className= {this.state.editable_index == index && "active"}
+									onClick = {this.setEditableIndex.bind(this, index)}> 
+										<a href="#">{display}</a> 
+									</li>
 								)}
 							</ul>
 						</div>

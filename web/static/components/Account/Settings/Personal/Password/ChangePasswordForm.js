@@ -57,7 +57,6 @@ export default class ChangePasswordForm extends React.Component {
 						})
 
 						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-						this.props.setEditableIndex()
 						this.props.getUserInfo()
 
 					}
