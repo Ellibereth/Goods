@@ -89,7 +89,7 @@ export default class ProductPreview extends React.Component {
 							:
 							<span className = "home-product-preview-price">
 								<s>${formatPrice(this.props.product.price)} </s> 
-								<span style = {{"color" : "red", "margin-left" : "12px"}}> {" Sold Out!"} </span>
+								<span className = "home-product-sold-out-textw" >{" Sold Out!"}</span>
 							</span>
 						}
 							<br/>
