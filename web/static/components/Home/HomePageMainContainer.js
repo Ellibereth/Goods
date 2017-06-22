@@ -93,22 +93,23 @@ export default class HomePageMainContainer extends React.Component {
 
 
 		return (
-			<div className = "container-fluid home-container">
-				<div className="row show-grid">
-					<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
-						<HomePageImageCarousel />
+			<div>
+				<div className = "container-fluid home-container">
+					<div className="row show-grid">
+						<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
+							<HomePageImageCarousel />
+						</div>
 					</div>
 				</div>
-
 				<div className = "home-large-buffer"/>
 
-				
+					
 				<div className = "container-fluid home-product-preview-container">
 					<div className = "container">
 						{product_rows}
 					</div>
 				</div>
-				
+					
 			</div>
 			);
 	}

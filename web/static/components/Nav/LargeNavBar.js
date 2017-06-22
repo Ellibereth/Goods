@@ -6,6 +6,7 @@ import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
 import NavCartIcon from './Cart/NavCartIcon'
 import NavAccountIcon from './Account/NavAccountIcon'
+import FaqIcon from './Icon/FaqIcon'
 
 
 export default class LargeNavBar extends React.Component {
@@ -29,6 +30,7 @@ export default class LargeNavBar extends React.Component {
 				
 					<ul className="nav navbar-nav navbar-right">
 						<li> {search_bar} </li>
+						<FaqIcon show_text = {false}/>
 						<NavCartIcon show_text = {false}/>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
@@ -38,7 +40,9 @@ export default class LargeNavBar extends React.Component {
 		else {
 			return (
 				<ul className="nav navbar-nav navbar-right">
+					
 					<li> {search_bar} </li>
+					<FaqIcon show_text = {true}/>
 					<NavCartIcon show_text = {true}/> 
 					<NavAccountIcon show_text = {true}/>
 					<li>

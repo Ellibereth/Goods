@@ -37,6 +37,10 @@ import RecoveryPage from './Account/Recovery/RecoveryPage'
 import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
 import LandingPage from './Landing/LandingPage'
 
+import RequestProductPage from './CustomerService/RequestProductPage'
+import FaqPage from './CustomerService/FaqPage'
+import AboutUsPage from './CustomerService/AboutUsPage'
+import ContactUsPage from './CustomerService/ContactUsPage'
 
 export default class Main extends React.Component {
 	
@@ -169,6 +173,10 @@ ReactDOM.render(
 			<Route path = "recoverAccount" component = {RecoveryPage}/>
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
 			<Route path = "landing" component = {LandingPage}/>
+			<Route path = "contact" component = {ContactUsPage}/>
+			<Route path = "about" component = {AboutUsPage}/>
+			<Route path = "requestProduct" component = {RequestProductPage}/>
+			<Route path = "faq" component = {FaqPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 
