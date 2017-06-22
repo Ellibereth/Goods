@@ -36,7 +36,10 @@ export default class ProductMainContainer extends React.Component {
 				})
 			}
 			else {
+
+				
 				if (data.product.active){
+					this.recordProductLoadEvent(data.product)
 					this.setState({
 						invalid_product : false,
 						product: data.product,
@@ -44,11 +47,13 @@ export default class ProductMainContainer extends React.Component {
 					})
 				}
 				else if (this.props.admin_view) {
+					this.recordProductLoadEvent(data.product)
 					this.setState({
 						invalid_product : false,
 						product: data.product,
 						is_loading : false
 					})
+
 				}
 			}
 		}.bind(this),
@@ -66,15 +71,6 @@ export default class ProductMainContainer extends React.Component {
 
 	componentDidMount(){
 		this.getProductInformation.bind(this)()
-		setTimeout(function () {
-			ga('ec:addProduct', {
-				'id': this.state.product.product_id ? this.state.product.product_id.toString() : "",
-				'name': this.state.product.name,
-				'manufacturer' : this.state.product.manufacturer,
-				'price' : this.state.product.price.toString(),
-			});
-			ga('ec:setAction', 'detail');	
-		}.bind(this), 1000)
 		
 	}
 
@@ -107,6 +103,16 @@ export default class ProductMainContainer extends React.Component {
 			</div>
 		)
 		
+	}
+
+	recordProductLoadEvent(product) {
+		ga('ec:addProduct', {
+				'id': product.product_id ? product.product_id.toString() : "",
+				'name': product.name,
+				'manufacturer' : product.manufacturer,
+				'price' : product.price ? product.price.toString() : "" , 
+			});
+		ga('ec:setAction', 'detail');	
 	}
 
 

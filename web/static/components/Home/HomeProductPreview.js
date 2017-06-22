@@ -88,8 +88,8 @@ export default class ProductPreview extends React.Component {
 							<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> 
 							:
 							<span className = "home-product-preview-price">
-								<s>${formatPrice(this.props.product.price)} </s> 
-								<span className = "home-product-sold-out-textw" >{" Sold Out!"}</span>
+								<s>${formatPrice(this.props.product.price)+ " "} </s> 
+								<span className = "home-product-sold-out-text" >{"Sold Out!"}</span>
 							</span>
 						}
 							<br/>

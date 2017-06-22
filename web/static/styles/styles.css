@@ -1,3 +1,5 @@
+/*
+Linda's Color Scheme
 :root{
     --Beige: #f0f0d8;
 	--DarkBeige: #d8c0a8;
@@ -6,15 +8,30 @@
 	--DarkBlue : #183048;
 	--LightBlue : #6090a8;
 
-	--oldblue : var(--DarkBlue);
-}
-/*
-with the blue as the main color
-dark blue
-and prices can be in that light blue
-sold out can be in that red
-*/
+}*/
 
+
+
+/* Flag Color Scheme */
+/*
+:root{
+    --Beige: #f0f0d8;
+	--DarkBeige: #d8c0a8;
+	--LightRed : #ff0000;
+	--DarkRed : #d42729;
+	--DarkBlue : #000654;
+	--LightBlue : #0157ae;
+}*/
+
+/* mix */
+:root{
+    --Beige: #f0f0d8;
+	--DarkBeige: #d8c0a8;
+	--LightRed : #ff0000;
+	--DarkRed : #d42729;
+	--DarkBlue : #183048;
+	--LightBlue: #6090a8;
+}
 
 .admin-table-entry-short {
 	word-wrap : "break-word",
@@ -284,7 +301,11 @@ sold out can be in that red
 }
 
 .home-product-preview-container {
-	background-color : var(--Beige) !important;
+	/* flag */
+	/*background-color :rgba(1,87,174, 0.3) !important;*/
+
+	/* Linda's */
+	background-color :rgba(96, 144, 168, 0.3) !important;
 }
 
 
@@ -500,7 +521,7 @@ sold out can be in that red
 
 
 .account-panel {
-	/*border: none !important;*/
+	border-color : var(--LightBlue) !important;
 	padding: 12px;
 }
 
@@ -510,23 +531,21 @@ sold out can be in that red
 
 .account-panel-body {
 	padding-bottom: 0px;
-
 }
 
 .account-button:hover {
-	opacity: 0.7;
-	background-color: #337ab7;
-	color: white;	
+	opacity: 0.7;	
 }
 
 .account-button{
-	background-color: #337ab7;
+	background-color: var(--LightBlue);
 	color: white;
 	padding-top: 16px;
 	padding-bottom: 16px;
 	font-size: 24px;
 	width: 100%;
-	border: none
+	border: none;
+	border-radius: 6px;
 }
 
 .account-header {
@@ -723,20 +742,20 @@ sold out can be in that red
 }
 
 .landing-subscribe-container{
-	border-color : #337ab7;
+	border-color : var(--LightBlue);
 }
 
 .landing-subscribe-input:focus {
-	border-color: #337ab7 !important;
+	border-color: var(--LightBlue) !important;
 }
 
 .landing-subscribe-input{
-	border-color: #337ab7 !important;
+	border-color: var(--LightBlue) !important;
 }
 
 .landing-subscribe-button{
-	border-color: #337ab7 !important;
-	background-color : #337ab7 !important;
+	border-color: var(--LightBlue) !important;
+	background-color : var(--LightBlue) !important;
 	color: white;
 }
 
@@ -902,7 +921,7 @@ sold out can be in that red
 
 .story-panel {
 	opacity: 0.85;
-	background-color : #367123;
+	background-color : var(--LightBlue);
 	border-width: 0;
 	padding: 12px;
 }
@@ -1044,8 +1063,8 @@ sold out can be in that red
 	padding: 18px 96px;
 	font-size: 24px;
 	line-height: normal;
-	background-color: var(--DarkBlue);	
-	border-color: var(--DarkBlue);
+	background-color: var(--LightRed);	
+	border-color: var(--LightRed);
 	height: 70px;
 }
 
@@ -1064,8 +1083,8 @@ sold out can be in that red
 	padding: 4px 24px;
 	font-size: 24px;
 	line-height: normal;
-	background-color: var(--DarkBlue);	
-	border-color: var(--DarkBlue);
+	background-color: var(--LightRed);	
+	border-color: var(--LightRed);
 	color: white !important;
 	text-align: center;
 	height:70px;
@@ -1099,7 +1118,7 @@ sold out can be in that red
 
 .product-page-tabs > li.active > a {
 	/*color : var(--LightBlue);*/
-	border-bottom: solid 4px var(--DarkBlue);
+	border-bottom: solid 4px var(--LightRed);
 }
 
 
@@ -1138,13 +1157,6 @@ a:hover {
 	/*font-weight: lighter*/
 }
 
-.features-list{
-
-}
-
-.features-list > li {
-	/*font-size: 24px;*/
-}
 
 .btn-group > .btn {
 	margin: 0;
@@ -1212,6 +1224,6 @@ a:hover {
 }
 
 .home-product-sold-out-text {
-	color : var(--LightRed);
+	color : var(--LightRed) !important;
 	margin-left: 12px;
 }
