@@ -73,9 +73,9 @@ export default class Main extends React.Component {
 						}
 					
 				}
-				else {
-					AppActions.removeCurrentUser()
-				}
+				// else {
+				// 	AppActions.removeCurrentUser()
+				// }
 
 			}.bind(this),
 			error : function(){

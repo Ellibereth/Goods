@@ -54,7 +54,6 @@ export default class AddHomeImage extends React.Component {
 				else {
 					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 
-					setTimeout(function () {location.reload()}, 500)
 
 				}
 			}.bind(this),
