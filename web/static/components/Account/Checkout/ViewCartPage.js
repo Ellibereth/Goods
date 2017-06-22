@@ -27,7 +27,7 @@ export default class ViewCartPage extends React.Component {
 		// if a guest, then let them check in 
 		if (user.is_guest) {
 			// move this to alert messages after
-			window.location = "/login?target=viewCart"
+			window.location = "/login?target=myCart"
 		}
 
 		// if not a guest can move to checkout
