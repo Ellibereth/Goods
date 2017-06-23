@@ -332,7 +332,7 @@ def checkRecoveryInformation():
 		else:
 			return JsonUtil.success()
 	else:
-		return JsonUtil.failure(ExpiredLink)
+		return JsonUtil.failure(ErrorMessages.ExpiredLink)
 
 
 @account_api.route('/recoverySetPassword', methods = ['POST'])
