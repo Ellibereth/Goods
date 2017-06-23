@@ -7,6 +7,7 @@ import AppActions from '../../actions/AppActions.js';
 import NavCartIcon from './Cart/NavCartIcon'
 import NavAccountIcon from './Account/NavAccountIcon'
 import FaqIcon from './Icon/FaqIcon'
+import AboutIcon from './Icon/AboutIcon'
 
 export default class SmallNavBar extends React.Component {
 	constructor(props) {
@@ -44,6 +45,7 @@ export default class SmallNavBar extends React.Component {
 							{search_bar}
 						</li>
 						<FaqIcon show_text = {false}/>
+						<AboutIcon show_text = {false}/>
 						<NavCartIcon show_text = {false}/>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
@@ -58,6 +60,7 @@ export default class SmallNavBar extends React.Component {
 					</li>
 					
 					<FaqIcon show_text = {false}/>
+					<AboutIcon show_text = {false}/>
 					<NavCartIcon show_text = {false}/>
 
 					<NavAccountIcon show_text = {false}/>

@@ -18,15 +18,19 @@ export default class Footer extends React.Component {
 	render() {
 		if (!this.state.ready) return <div/>
 		return(	
-				<div className="container-fluid">
+				<div className="container">
 					<footer className = "row edgarusa-footer">
 						<ul className ="nav navbar-nav">
 							<li><a href="/">© 2017 Edgar USA</a></li>
 							<li><a href="/">Home</a></li>
 							<li><a href="/terms">Terms</a></li>
 							<li><a href="/privacy">Privacy</a></li>
+							<li><a href="/contact">Contact Us</a></li>
+							<li><a href="/about">About Us</a></li>
+							<li><a href="/requestProduct">Request a Product</a></li>
 						</ul>
 					</footer>
+					<div className = "top-buffer"/>
 				</div>
 		);
 	}
