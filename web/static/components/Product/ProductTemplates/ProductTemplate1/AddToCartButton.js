@@ -240,7 +240,7 @@ export default class AddToCartButton extends React.Component {
 												<span> {this.state.quantity_display} </span>
 												<span className="caret"/>
 											</span>
-											<span className = "block-span" styles>
+											<span className = "block-span">
 												Qty.
 											</span>	
 										

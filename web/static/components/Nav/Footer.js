@@ -19,6 +19,7 @@ export default class Footer extends React.Component {
 		if (!this.state.ready) return <div/>
 		return(	
 				<div className="container">
+					<div className = "small-buffer"/>
 					<footer className = "row edgarusa-footer">
 						<ul className ="nav navbar-nav">
 							<li><a href="/">© 2017 Edgar USA</a></li>
@@ -30,7 +31,7 @@ export default class Footer extends React.Component {
 							<li><a href="/requestProduct">Request a Product</a></li>
 						</ul>
 					</footer>
-					<div className = "top-buffer"/>
+					<div className = "small-buffer"/>
 				</div>
 		);
 	}

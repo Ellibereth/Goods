@@ -56,7 +56,7 @@ Linda's Color Scheme
 }
 
 .body-container { 
-	padding-top: 95px;
+	padding-top: 120px;
 	background-color: white;
 	font-family: Arial;
 	overflow-x: hidden;
@@ -360,7 +360,7 @@ Linda's Color Scheme
 }
 
 .home-large-buffer {
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 .order-border {
@@ -788,26 +788,23 @@ Linda's Color Scheme
 	cursor: default;
 }
 
-.navbar-brand-with-user {
+.navbar-brand-edgarusa {
 	line-height : 44px;
 	font-size: 34px;
 	color: white;
+}
+
+.navbar-brand-edgarusa:hover, .navbar-brand-edgarusa:focus {
+	color : var(--LightBlue);
 }
 
 .navbar-brand {
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;
 }
 
-.navbar-brand-with-user:hover, .navbar-brand-with-user:focus,
-.navbar-brand-no-user:hover, .navbar-brand-no-user:focus {
-	color : var(--LightBlue);
-}
 
 
-.navbar-brand-no-user {
-	font-size: 36px;
-	color: white;
-}
+
 
 .navbar-right {
 	padding-right: 36px;
@@ -827,9 +824,10 @@ Linda's Color Scheme
 }
 
 
-.no-user-link {
+.nav-no-user-link {
 	font-size: 20px;
 	padding: 24px;
+	line-height: 44px !important;
 }
 
 .navbar-edgarusa {
@@ -840,9 +838,6 @@ Linda's Color Scheme
 	padding-top: 10px;
 }
 
-.edgar-search-bar.nav-large.no-user{
-	padding-top: 0px;
-}
 
 .edgar-search-bar.nav-small{
 	padding-top: 0px;
@@ -856,10 +851,6 @@ Linda's Color Scheme
 	/*width: 172px;*/
 	width: 240px !important;
 	transition: width 0.5s ease;
-}
-
-.search-bar-no-user {
-	padding-top: 0px;
 }
 
 .navbar-right > li > a {
@@ -1227,7 +1218,7 @@ a:hover {
 	width:60px;
 }
 
-.home-product-sold-out-text {
-	color : var(--LightRed) !important;
-	margin-left: 12px;
+.product-sold-out-text {
+	color : var(--DarkRed) !important;
+	margin-left: 12px;	
 }

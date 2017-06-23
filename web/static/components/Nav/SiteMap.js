@@ -128,7 +128,12 @@ export default class SiteMap extends React.Component {
 		labels.unshift("Home")
 		routes.unshift("")
 
-		return <Breadcrumbs labels = {labels} routes = {routes}/>
+		return ( 
+			<div>
+				<Breadcrumbs labels = {labels} routes = {routes}/>
+				<div className = "top-buffer"/>
+			</div>
+		)
 
 	}
 
@@ -138,7 +143,6 @@ export default class SiteMap extends React.Component {
 		return (
 			<div className = "container-fluid">
 				{site_map}
-				<div className = "top-buffer"/>
 			</div>
 		)
 	}
