@@ -771,6 +771,12 @@ Linda's Color Scheme
 	font-size: x-large
 }
 
+.navbar-header:focus {
+	background-color: var(--DarkBlue);
+	color: var(--DarkBlue);
+}
+
+
 .nav-icon-text {
 	display: block;
 	text-align: center;
@@ -800,6 +806,15 @@ Linda's Color Scheme
 
 .navbar-brand {
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;
+}
+
+.navbar-brand-small {
+	color: white;
+	font-size: 18px;
+}
+
+.navbar-brand-small:hover,.navbar-brand-small:focus {
+	color: var(--LightBlue);
 }
 
 
@@ -857,7 +872,7 @@ Linda's Color Scheme
 	color : white;
 }
 
-.navbar-right > li > a:hover {
+.navbar-right > li > a:hover, .navbar-right > li > a:focus {
 	background-color: transparent;
 	color : var(--LightBlue);
 }
@@ -896,13 +911,7 @@ Linda's Color Scheme
 	/*-webkit-transition: all 0.4s ease;*/
 }
 
-.navbar-brand-small {
-	color: white;
-	font-size: 18px;
-}
-.navbar-brand-small:hover {
-	color: var(--LightBlue);
-}
+
 
 .nav-buffer {
 	padding-bottom: 50px;
