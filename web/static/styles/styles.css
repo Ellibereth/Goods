@@ -1231,3 +1231,8 @@ a:hover {
 	color : var(--DarkRed) !important;
 	margin-left: 12px;	
 }
+
+.home-product-sold-out-text {
+	color : var(--DarkRed) !important;
+	margin-left: 12px;	
+}

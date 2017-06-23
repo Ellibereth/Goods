@@ -78,7 +78,7 @@ export const AlertMessages = {
 
 	 CHANGE_WAS_SUCCESSFUL : {
 		title : "Success!", 
-		text : "It worked :)", 
+		text : "Your change has been made.", 
 		type : "success"
 	},
 
@@ -187,7 +187,7 @@ export const AlertMessages = {
 	CHECKOUT_SUCCESSFUL : { 
 		title : "Thank you!", 
 		text : "You will receive a confirmation email for this purchase. \
-			This will take the user to a checkout page soon. Will have to write that huh?",
+			You will be redirected to a confirmation page shortly.",
 		type : "success"
 	},
 	CONTACT_CUSTOMER_SERVICE : {
