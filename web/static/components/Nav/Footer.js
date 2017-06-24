@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
 	render() {
 		if (!this.state.ready) return <div/>
 		return(	
-				<div className="container">
+				<div className="container-fluid">
 					<div className = "small-buffer"/>
 					<footer className = "row edgarusa-footer">
 						<ul className ="nav navbar-nav">

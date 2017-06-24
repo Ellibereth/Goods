@@ -3,8 +3,6 @@ var ReactDOM = require('react-dom');
 import HomeProductPreview from './HomeProductPreview'
 import HomePageImageCarousel from './HomePageImageCarousel'
 
-
-const product_id_list = [1,2,3,4,5,6,7,8, 21]
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
 		super(props);

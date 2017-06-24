@@ -387,7 +387,7 @@ export default class CheckoutPage extends React.Component {
 							onAddingNewBillingMethod = {this.onAddingNewBillingMethod.bind(this)}
 						/>
 
-						<div className = "col-sm-9 col-md-9 col-lg-9">
+						<div className = "col-sm-12 col-sm-12 col-md-9 col-lg-9 ">
 							<CheckoutAddressSelect 
 								selected_address_index = {this.state.selected_address_index}
 								toggleModal = {this.toggleAddressModal.bind(this)}
@@ -421,7 +421,7 @@ export default class CheckoutPage extends React.Component {
 							<hr/>
 							<div className = "well" >
 								<div className = "row">
-									<div className = "col-md-5 col-lg-5 col-sm-5 checkout-item-label-editable vcenter">
+									<div className = "col-md-5 col-lg-5 col-sm-5 col-xs-5 checkout-item-label-editable vcenter">
 										<span className = "checkout-section-title"> <b> 3. Items </b> </span>
 									</div>
 								</div>
@@ -438,50 +438,50 @@ export default class CheckoutPage extends React.Component {
 						<div className = "col-sm-3 col-md-3 col-lg-3">
 							<div className="panel panel-default">
 								<div className="panel-body">
-									<div className = "row">
-										<div className = "col-sm-12 col-md-12 col-lg-12 vcenter text-center">
-											<button className = "btn btn-default checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
-												Place your order!
-											</button>
-											<div className = "top-buffer"/>
-											<div className = "checkout-notice-of-terms-text">
-												By placing your order, you agree to our 
-												<a href = "terms">
-													{" terms of service "}
-												</a>
-												and 
-												<a href = "privacy">
-													{" privacy policy"}
-												</a>
+										<div className = "row text-center">
+											<div className = "col-sm-12 col-md-12 col-lg-12 col-xs-12 vcenter text-center">
+												<button className = "btn btn-default checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
+													Place your order!
+												</button>
+												<div className = "top-buffer"/>
+												<div className = "checkout-notice-of-terms-text">
+													By placing your order, you agree to our 
+													<a href = "terms">
+														{" terms of service "}
+													</a>
+													and 
+													<a href = "privacy">
+														{" privacy policy"}
+													</a>
+												</div>
 											</div>
 										</div>
-									</div>
-									<hr/>
-									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-									label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
-
-									{this.state.shipping_price ? 
-									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-									label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
-									: <div/>
-									}	
-
-
-									{this.state.sales_tax_price ?
+										<hr/>
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-										label = {"Sales Tax:"} price = {formatPrice(this.state.sales_tax_price)}/>
+										label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
+
+										{this.state.shipping_price ? 
+										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+										label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
 										: <div/>
-									}
+										}	
 
-									<hr/>
 
-									<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
-									label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
+										{this.state.sales_tax_price ?
+											<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+											label = {"Sales Tax:"} price = {formatPrice(this.state.sales_tax_price)}/>
+											: <div/>
+										}
+
+										<hr/>
+
+										<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
+										label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
 								</div>
 
 								<div className="panel-footer">
 									<div className = "row">
-										<div className = "col-sm-12 col-md-12 col-lg-12">
+										<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
 											<div className = "clickable-text checkout-footer-text">
 												How are shipping costs calculated?
 											</div>
