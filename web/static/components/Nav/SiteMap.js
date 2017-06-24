@@ -121,6 +121,27 @@ export default class SiteMap extends React.Component {
 				routes = ["myCart", pathname[1]]
 				labels = ["My Cart", "Checkout"]
 				break;
+
+			case "faq":
+				routes = [pathname[1]]
+				labels = ["FAQ"]
+				break;
+
+			case "about":
+				routes = [pathname[1]]
+				labels = ["About Us"]
+				break;
+
+			case "contact":
+				routes = [pathname[1]]
+				labels = ["Contact Us"]
+				break;
+
+			case "requestProduct":
+				routes = [pathname[1]]
+				labels = ["Request Product"]
+				break;
+
 			default:
 				return <div/>
 		}
