@@ -267,13 +267,21 @@ Linda's Color Scheme
 	margin-bottom: 12px;
 }
 
-.home-product-preview {
+
+.home-product-preview.filler-product {
+}
+
+.home-product-preview.live-product {
+	border-radius: 4px;
+	/*box-shadow: 4px 4px 2px #DFDFDF;*/
 	background-color: white;
+}
+
+.home-product-preview {
 	padding-left: 18px;
 	padding-right: 18px;
 	margin: 14px;
-	border-radius: 4px;
-	/*box-shadow: 4px 4px 2px #DFDFDF;*/
+	height: 316px;
 }
 
 .home-product-preview:hover {
@@ -285,6 +293,8 @@ Linda's Color Scheme
 }
 
 .home-product-preview-image {
+	height: 176px;
+	width : auto;
 	max-height: 100%
 }
 
@@ -688,12 +698,6 @@ Linda's Color Scheme
 
 .account-page-text {
 	font-size: 16px
-}
-
-.home-page-filler-product {
-	padding-left: 18px;
-    padding-right: 18px;
-    margin: 14px;
 }
 
 .cart-message{

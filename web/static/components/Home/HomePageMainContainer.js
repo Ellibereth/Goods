@@ -17,13 +17,9 @@ export default class HomePageMainContainer extends React.Component {
 
 
 	fetchProductInformation(){
-	  	var form_data = JSON.stringify({
-				"product_id_list" : product_id_list
-			})
 		$.ajax({
 		  type: "POST",
 		  url: "/getHomePageProducts",
-		  data: form_data,
 		  success: function(data) {
 			if (!data.success){
 			}
@@ -79,11 +75,11 @@ export default class HomePageMainContainer extends React.Component {
 				}
 				else {
 					this_row.push(<div 
-						className = {"home-page-filler-product col-md-" + col_size + " col-lg-" + col_size}/>)
+						className = {"home-product-preview filler-product col-md-" + col_size + " col-lg-" + col_size + " hidden-sm-down"}/>)
 				}
 			}
 			product_rows.push(
-				<div className = "row row-eq-height product-preview-row">
+				<div className = "row product-preview-row">
 					{this_row}
 				</div>
 			)
