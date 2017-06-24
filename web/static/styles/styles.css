@@ -809,7 +809,8 @@ Linda's Color Scheme
 }
 
 .navbar-brand {
-	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;
+	/*font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;*/
+	font-family: "Avenir Next"
 }
 
 .navbar-brand-small {
@@ -1076,8 +1077,9 @@ Linda's Color Scheme
 	height: 70px;
 }
 
-.add-to-cart-button.disabled, .quantity-dropdown.disabled{
+.add-to-cart-button.disabled, .quantity-button.disabled{
 	cursor : not-allowed !important;
+	opacity: 1 !important;
 }
 
 .add-to-cart-button:hover {

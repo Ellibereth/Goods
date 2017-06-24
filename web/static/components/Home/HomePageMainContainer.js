@@ -74,8 +74,11 @@ export default class HomePageMainContainer extends React.Component {
 					this_row.push(products[j])
 				}
 				else {
-					this_row.push(<div 
-						className = {"home-product-preview filler-product col-md-" + col_size + " col-lg-" + col_size + " hidden-sm-down"}/>)
+					this_row.push(
+						<div className = {"col-md-" + col_size + " col-lg-" + col_size + " col-sm-10 col-xs-10 hidden-sm-down"}>
+							<div className = {"home-product-preview filler-product"}/>
+						</div>
+					)
 				}
 			}
 			product_rows.push(
