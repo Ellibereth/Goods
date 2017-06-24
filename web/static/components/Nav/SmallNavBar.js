@@ -81,14 +81,12 @@ export default class SmallNavBar extends React.Component {
 					? "navbar navbar-edgarusa-small navbar-fixed-top" 
 					:  "navbar navbar-edgarusa-small navbar-fixed-top none"}
 					>
-					<div className="container-fluid">
-						<div className="navbar-header">
-							<a className= {brand_class} href="/"> Edgar USA </a>
-						</div>
-						<div className="collapse navbar-collapse">
-							{right_nav}
-						</div>
-					</div>	
+					<div className="navbar-header">
+						<a className= {brand_class} href="/"> Edgar USA </a>
+					</div>
+					<div className="collapse navbar-collapse">
+						{right_nav}
+					</div>
 				</nav>
 				
 			</div>

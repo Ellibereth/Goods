@@ -280,7 +280,7 @@ Linda's Color Scheme
 .home-product-preview {
 	padding-left: 18px;
 	padding-right: 18px;
-	margin: 14px;
+	margin: 8px;
 	height: 316px;
 }
 
@@ -353,7 +353,7 @@ Linda's Color Scheme
 }
 
 .home-image-carousel{
-	height: 600px;
+	max-height: 600px;
 }
 
 .home-image-carousel > .carousel-inner {
@@ -852,6 +852,7 @@ Linda's Color Scheme
 
 .navbar-edgarusa {
 	background-color: var(--DarkBlue);
+	height: 105px;
 }
 
 .edgar-search-bar.nav-large.with-user{
