@@ -15,10 +15,10 @@ from api.utility.stripe_api import StripeManager
 class Order(db.Model):
 	__tablename__ = ProdTables.OrderTable
 	order_id = db.Column(db.String, primary_key = True)
-	items_price = db.Column(db.Float)
-	order_shipping = db.Column(db.Float)
-	sales_tax_price = db.Column(db.Float, default = 0)
-	total_price = db.Column(db.Float)
+	items_price = db.Column(db.Integer)
+	order_shipping = db.Column(db.Integer)
+	sales_tax_price = db.Column(db.Integer, default = 0)
+	total_price = db.Column(db.Integer)
 	refund_date = db.Column(db.DateTime)
 	stripe_customer_id = db.Column(db.String, nullable = False)
 	stripe_charge_id = db.Column(db.String)
@@ -162,7 +162,7 @@ class OrderItem(db.Model):
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
-	price = db.Column(db.Float)
+	price = db.Column(db.Integer)
 	num_items = db.Column(db.Integer)
 	variant_id = db.Column(db.Integer)
 	name = db.Column(db.String)

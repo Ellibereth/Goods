@@ -15,10 +15,6 @@ Id = "id"
 
 class StripeManager:
 	def chargeCustomer(user, price, token = None):
-		# multiply by 100 since stripe works in pennies
-		# this casting is super lame, but can't cast "5.00" to an int apparently
-		# so I have to cast to float then int...there must be a better way but it's 7 am 
-		amount = int(float(price) * 100) 
 		# update the customer information if there is a token, otherwise 
 		# just use previous information
 		customer = stripe.Customer.retrieve(user.stripe_customer_id)
@@ -29,7 +25,7 @@ class StripeManager:
 		# then charge the customer
 		charge = stripe.Charge.create(
 			customer = customer,
-			amount = amount,
+			amount = price,
 			currency= "usd"
 		)
 		return charge
@@ -84,11 +80,10 @@ class StripeManager:
 		customer.sources.retrieve(card_id).delete()
 
 	def chargeCustomerCard(user, card_id, price):
-		amount = int(float(price) * 100)
 		customer = stripe.Customer.retrieve(user.stripe_customer_id)
 		charge = stripe.Charge.create(
 				customer = customer,
-				amount = amount,
+				amount = price,
 				source = card_id,
 				currency= "usd"
 			)

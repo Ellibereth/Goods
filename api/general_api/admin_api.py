@@ -106,9 +106,7 @@ def updateProductInfo(admin_user):
 	
 	for key in product.keys():
 		try:
-			if key == Labels.Price:
-				value = round(float(product.get(key)), 2)
-			elif key in MarketProduct.INTEGER_INPUTS:
+			if key in MarketProduct.INTEGER_INPUTS:
 				value = int(product.get(key))
 			else:
 				value = product.get(key)
