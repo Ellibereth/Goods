@@ -353,7 +353,7 @@ Linda's Color Scheme
 }
 
 .home-image-carousel{
-	max-height: 600px;
+	height: 600px;
 }
 
 .home-image-carousel > .carousel-inner {
