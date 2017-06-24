@@ -64,7 +64,7 @@ export default class ProductPreview extends React.Component {
 		// if (this.state.invalid_product) return <div id = {this.props.product.product_id}/>
 		var col_size = this.props.col_size
 		return (
-			<div className = {"col-md-" + col_size + " col-lg-" + col_size + " col-sm-10 col-xs-10"}>
+			<div className = {"col-md-" + col_size + " col-lg-" + col_size + " col-sm-" + col_size + " col-xs-8 col-sm-offset-0 col-xs-offset-2"}>
 
 			<div 
 			id = {this.props.product.product_id} 
