@@ -31,7 +31,6 @@ export default class LargeNavBar extends React.Component {
 					<ul className="nav navbar-nav navbar-right">
 						<li> {search_bar} </li>
 						<FaqIcon show_text = {true}/>
-						<AboutIcon show_text = {true}/>
 						<NavCartIcon show_text = {true}/>
 						<li><a href="/register" className = "nav-no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "nav-no-user-link">Login</a></li>
@@ -44,7 +43,6 @@ export default class LargeNavBar extends React.Component {
 					
 					<li> {search_bar} </li>
 					<FaqIcon show_text = {true}/>
-					<AboutIcon show_text = {true}/>
 					<NavCartIcon show_text = {true}/> 
 					<NavAccountIcon show_text = {true}/>
 					<li>
@@ -74,6 +72,7 @@ export default class LargeNavBar extends React.Component {
 						</button>
 						<a className= {brand_class} href="/">Edgar USA</a>
 					</div>
+
 					<div className="collapse navbar-collapse">
 						{right_nav}
 					</div>

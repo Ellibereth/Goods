@@ -62,14 +62,13 @@ export default class ProductPreview extends React.Component {
 		var date = this.props.product.sale_end_date
 		var item_in_stock = this.itemInStock(this.props.product)
 		// if (this.state.invalid_product) return <div id = {this.props.product.product_id}/>
-		var col_size = this.props.col_size
 		return (
-			<div className = {"col-md-" + col_size + " col-lg-" + col_size + " col-sm-" + col_size + " col-xs-8 col-sm-offset-0 col-xs-offset-2"}>
+			<div className = {"col-md-6  col-lg-3  col-sm-6 col-xs-8 col-sm-offset-0 col-xs-offset-2"}>
 
 			<div 
 			id = {this.props.product.product_id} 
 			// onClick = {this.goToProduct.bind(this)}
-			className = {"home-product-preview live-product"}
+			className = {"home-product-preview"}
 			>
 				<a className = "no-underline" onClick = {this.productClicked.bind(this)} href = {'/eg/' + this.props.product.product_id} style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
 					<div className = "row home-product-preview-image-row">

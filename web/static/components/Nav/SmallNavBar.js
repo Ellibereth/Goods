@@ -45,7 +45,6 @@ export default class SmallNavBar extends React.Component {
 							{search_bar}
 						</li>
 						<FaqIcon show_text = {false}/>
-						<AboutIcon show_text = {false}/>
 						<NavCartIcon show_text = {false}/>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
@@ -60,7 +59,6 @@ export default class SmallNavBar extends React.Component {
 					</li>
 					
 					<FaqIcon show_text = {false}/>
-					<AboutIcon show_text = {false}/>
 					<NavCartIcon show_text = {false}/>
 
 					<NavAccountIcon show_text = {false}/>

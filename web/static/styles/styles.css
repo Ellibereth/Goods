@@ -267,17 +267,9 @@ Linda's Color Scheme
 	margin-bottom: 12px;
 }
 
-
-.home-product-preview.filler-product {
-}
-
-.home-product-preview.live-product {
-	border-radius: 4px;
-	/*box-shadow: 4px 4px 2px #DFDFDF;*/
-	background-color: white;
-}
-
 .home-product-preview {
+	border-radius: 4px;
+	background-color: white;
 	padding-left: 18px;
 	padding-right: 18px;
 	margin: 8px;
@@ -1073,14 +1065,14 @@ Linda's Color Scheme
 	padding: 18px 96px;
 	font-size: 24px;
 	line-height: normal;
-	background-color: var(--LightRed);	
-	border-color: var(--LightRed);
+	background-color: var(--DarkRed);	
+	border-color: var(--DarkRed);
 	height: 70px;
 }
 
 .add-to-cart-button.disabled, .quantity-button.disabled{
 	cursor : not-allowed !important;
-	opacity: 1 !important;
+	/*opacity: 1 !important;*/
 }
 
 .add-to-cart-button:hover {
@@ -1094,8 +1086,8 @@ Linda's Color Scheme
 	padding: 4px 24px;
 	font-size: 24px;
 	line-height: normal;
-	background-color: var(--LightRed);	
-	border-color: var(--LightRed);
+	background-color: var(--DarkRed);	
+	border-color: var(--DarkRed);
 	color: white !important;
 	text-align: center;
 	height:70px;

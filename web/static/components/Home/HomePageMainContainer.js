@@ -56,39 +56,13 @@ export default class HomePageMainContainer extends React.Component {
 		// for now these are hard coded preview products
 		
 		// make sure this is divides 12
-		var items_per_row = 4
+		var items_per_row = 3
 
-		var col_size = 12 / items_per_row
 		var ordered_products = this.orderProducts(this.state.products)
 		var products = ordered_products.map((product, index) =>
-				<HomeProductPreview col_size = {col_size} product = {product}/>
+				<HomeProductPreview product = {product}/>
 			)
-
-		var product_rows = []
-
-		var num_rows = Math.floor((products.length - 1) / items_per_row + 1)
-		for (var i = 0; i < num_rows; i++){
-			var this_row = []
-			for (var j = i * items_per_row; j < items_per_row * (i+1); j++){
-				if (j < products.length){
-					this_row.push(products[j])
-				}
-				else {
-					this_row.push(
-						<div className = {"col-md-" + col_size + " col-lg-" + col_size + " col-sm-" + col_size + " hidden-sm-down"}>
-							<div className = {"home-product-preview filler-product"}/>
-						</div>
-					)
-				}
-			}
-			product_rows.push(
-				<div className = "row product-preview-row">
-					{this_row}
-				</div>
-			)
-		}
-
-
+		
 		return (
 			<div>
 				<div className = "container-fluid home-container">
@@ -103,7 +77,9 @@ export default class HomePageMainContainer extends React.Component {
 					
 				<div className = "container-fluid home-product-preview-container">
 					<div className = "container">
-						{product_rows}
+						<div className = "row product-preview-row">
+							{products}
+						</div>
 					</div>
 				</div>
 					
