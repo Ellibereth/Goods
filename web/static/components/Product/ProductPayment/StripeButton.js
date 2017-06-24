@@ -48,7 +48,7 @@ export default class StripeButton extends React.Component {
 	}
 
 	render() {
-		var amount = Number(this.props.product.price) * 100
+		var amount = this.props.product.price
 		return (
 			<StripeCheckout
 			name= {"Edgar USA"}

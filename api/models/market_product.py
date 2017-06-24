@@ -16,10 +16,10 @@ from api.utility.variants import ProductVariants as Variants
 ## user object class
 class MarketProduct(db.Model):
 	__tablename__ = ProdTables.MarketProductTable
-	INTEGER_INPUTS = [Labels.Inventory, Labels.NumItemsLimit, Labels.StoryTemplate, Labels.ProductTemplate]
+	INTEGER_INPUTS = [Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.StoryTemplate, Labels.ProductTemplate]
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	name = db.Column(db.String, default = "Sample Name")
-	price = db.Column(db.Float, default = 0)
+	price = db.Column(db.Integer, default = 0)
 	category = db.Column(db.String, default = "Sample Category")
 	description = db.Column(db.String, default = "Sample Description")
 	num_images = db.Column(db.Integer, nullable = False, default = 0)
@@ -137,7 +137,7 @@ class MarketProduct(db.Model):
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
-		public_dict[Labels.Price] = round(self.price, 2)
+		public_dict[Labels.Price] = self.price
 		public_dict[Labels.Category] = self.category
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.Manufacturer] = self.manufacturer
@@ -180,7 +180,7 @@ class ProductVariant(db.Model):
 	inventory = db.Column(db.Integer, default = 0)
 	variant_type = db.Column(db.String)
 	active = db.Column(db.Boolean, default = False)
-	price = db.Column(db.Float)
+	price = db.Column(db.Integer)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
@@ -233,6 +233,7 @@ class ProductVariant(db.Model):
 		public_dict[Labels.ProductId] = self.product_id
 		public_dict[Labels.VariantId] = self.variant_id
 		public_dict[Labels.Active] = self.active
+		public_dict[Labels.Price] = self.price
 		return public_dict
 
 
