@@ -560,6 +560,7 @@ Linda's Color Scheme
 .account-header {
 	margin-top :0px;
 	margin-bottom: 24px;
+	color : var(--LightBlue);
 }
 
 
@@ -901,7 +902,7 @@ Linda's Color Scheme
 
 }
 
-.edgarusa-footer: {
+.edgarusa-footer {
 	padding: 8px;
 }
 
@@ -1291,6 +1292,33 @@ a:hover {
 	.home-product-preview {
 		height: 300px;
 	}
+
+	.account-panel {
+		padding: 0px !important;
+	}
+
+	.account-text-input {
+		font-size: 12px !important;
+	}
+
+	.account-header {
+		font-size: 18px !important;
+	}
+
+	.account-button {
+		padding-top: 6px !important;
+		padding-bottom: 6px !important;
+		width: 60% !important;
+		font-size: 14px;
+	}
+	.account-notice {
+		font-size: 12px;
+	}
+
+	.register-notice {
+		font-size: 10px;
+	}
+
 }
 
 

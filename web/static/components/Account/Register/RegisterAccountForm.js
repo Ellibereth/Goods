@@ -134,11 +134,11 @@ export default class RegisterAccountForm extends React.Component {
 		return (
 			<div className = "panel panel-primary account-panel">
 				<div className = "panel-body account-panel-body">
-					<h2 className = "account-header"> Create Account </h2>
+					<h2 className = "account-header text-center"> Create Account </h2>
 					<form className = "form-horizontal" onSubmit = {this.onSubmitPress.bind(this)} >
 						{text_inputs}
 						<div className = "form-group row">
-							<div className = "col-sm-12 col-md-12 col-lg-12">
+							<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
 								<button className = "btn btn-default" disabled = {this.state.disabled}
 								 className = "account-button" onClick = {this.onSubmitPress.bind(this)}>
 									Sign Up
@@ -147,14 +147,14 @@ export default class RegisterAccountForm extends React.Component {
 						</div>
 
 						<div className = "form-group row text-center">
-							<div className = "col-sm-12 col-md-12 col-lg-12">
+							<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12 register-notice">
 								By creating an account you agree to Edgar USA's 
-								<a href = "/terms"> {"Terms of Service"} </a>
+								<a  href = "/terms"> {"Terms of Service"} </a>
 							</div>
 						</div>
 
 						<div className = "form-group row text-center">
-							<div className = "col-sm-12 col-md-12 col-lg-12">
+							<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12 register-notice">
 								Already have an account? 
 								<a href = {target ? "/login" + "?target=" + target : "/login"}> {"Log in"} </a>
 							</div>

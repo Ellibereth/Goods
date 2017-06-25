@@ -21,13 +21,13 @@ export default class AccountInput extends React.Component {
 
 		return (
 			<div className="form-group row">
-				<div className="col-lg-12 col-md-12 col-sm-12">
+				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<input 
 						tabindex = {this.props.index}
 						onKeyPress = {this.props.onKeyPress}
 						field = {this.props.field}
 						name = {this.props.name}
-						className="form-control input-lg" 
+						className="form-control input-lg account-text-input" 
 						type= {this.props.type}
 						onChange = {this.props.onChange}
 						value = {this.props.value} 
