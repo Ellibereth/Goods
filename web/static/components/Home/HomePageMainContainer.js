@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import HomeProductPreview from './HomeProductPreview'
 import HomePageImageCarousel from './HomePageImageCarousel'
+import HomePageSingleImage from './HomePageSingleImage'
 
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
@@ -62,13 +63,13 @@ export default class HomePageMainContainer extends React.Component {
 		var products = ordered_products.map((product, index) =>
 				<HomeProductPreview product = {product}/>
 			)
-		
+
 		return (
 			<div>
 				<div className = "container-fluid home-container">
 					<div className="row show-grid">
 						<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
-							<HomePageImageCarousel />
+							<HomePageSingleImage />
 						</div>
 					</div>
 				</div>

@@ -344,6 +344,12 @@ Linda's Color Scheme
 	font-size: 24px;
 }
 
+.home-single-image {
+	width: auto;
+	height: 75vh;
+	max-width: 90%;
+}
+
 .home-image-carousel{
 	height: 600px;
 }
@@ -412,7 +418,8 @@ Linda's Color Scheme
 }
 
 #content {
-	min-height: 90%;
+	min-height: 78vh;
+	height: 90%;
 }
 
 .home-carousel-text-container{
@@ -805,6 +812,10 @@ Linda's Color Scheme
 	font-family: "Avenir Next"
 }
 
+.nabbar-brand.mobile:hover,.nabbar-brand.mobile:focus  {
+	color: var(--LightBlue);
+}
+
 .navbar-brand-small {
 	color: white;
 	font-size: 18px;
@@ -813,10 +824,6 @@ Linda's Color Scheme
 .navbar-brand-small:hover,.navbar-brand-small:focus {
 	color: var(--LightBlue);
 }
-
-
-
-
 
 .navbar-right {
 	padding-right: 36px;
@@ -1058,8 +1065,6 @@ Linda's Color Scheme
 }
 
 
-
-
 .add-to-cart-button {
 	margin-top : 0px;
 	padding: 18px 96px;
@@ -1234,4 +1239,29 @@ a:hover {
 .home-product-sold-out-text {
 	color : var(--DarkRed) !important;
 	margin-left: 12px;	
+}
+
+.navbar-mobile-right-dropdown > li > a {
+	color: var(--LightBlue) !important;	
+}
+
+.navbar-mobile-account-dropdown > li > a {
+	color: var(--LightBlue) !important;		
+}
+
+.navbar-mobile{
+	margin-bottom : 12px;
+}
+
+.navbar-brand.mobile {
+	color : var(--LightBlue) !important;
+}
+
+
+.navbar-mobile-dropdown-toggle {
+	border-color : var(--LightBlue) !important;
+}
+
+.navbar-mobile-dropdown-toggle > span {
+	background-color : var(--LightBlue) !important;
 }

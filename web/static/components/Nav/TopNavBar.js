@@ -9,6 +9,7 @@ import AppActions from '../../actions/AppActions.js';
 import LargeNavBar from './LargeNavBar'
 import SmallNavBar from './SmallNavBar'
 import SiteMap from './SiteMap'
+import MobileNavBar from './MobileNavBar'
 
 const LARGE = 'large'
 const SMALL = 'small'

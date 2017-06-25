@@ -1,31 +1,22 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import TopNavBar from '../Nav/TopNavBar.js'
-import Footer from '../Nav/Footer.js'
+import TopNavBar from '../Nav/TopNavBar'
+import Footer from '../Nav/Footer'
+import MobileNavBar from '../Nav/MobileNavBar'
 // import BottomNavBar from '../Nav/BottomNavBar'
 
 
 
 
-export default class ProductPage extends React.Component {
+export default class PageContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			minHeight : 0
 		}
 	}
 
 	componentDidMount(){
-		$(document).ready(function() {
-			// executes when HTML-Document is loaded and DOM is ready
-			var height = $(window).height();
-			this.setState({minHeight : height})
-		}.bind(this));
 		
-		$( window ).resize(function() {
-			var height = $(window).height();
-			this.setState({minHeight : height})
-		}.bind(this));
 	}
 
 
@@ -33,17 +24,26 @@ export default class ProductPage extends React.Component {
 
 	render() {
 
-		var content_style = {
-				minHeight : this.state.minHeight * 0.78
-			};
-		
 		return (
-				<div className = "body-container">
-					<TopNavBar/>
-						<div id="content" style = {content_style}>
-							{this.props.component}
+				<div>
+					<div className = "body-container hidden-xs">
+						<div>
+							<TopNavBar/>
+								<div id="content">
+									{this.props.component}
+								</div>
+							<Footer/>
 						</div>
-					<Footer/>
+					</div>
+					<div className = "hidden-sm hidden-md hidden-lg">
+						<div>
+							<MobileNavBar/>
+								<div id="content">
+									{this.props.component}
+								</div>
+							<Footer/>
+						</div>
+					</div>
 				</div>
 		);
 	}
