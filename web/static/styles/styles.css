@@ -907,8 +907,9 @@ Linda's Color Scheme
 }
 
 .edgarusa-footer > ul > li > a {
-	color: var(--LightBlue);
+	color: var(--DarkBlue);
 }
+
 
 
 .navbar-edgarusa-small {
