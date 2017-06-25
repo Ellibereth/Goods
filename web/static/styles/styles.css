@@ -1077,12 +1077,14 @@ Linda's Color Scheme
 
 .add-to-cart-button {
 	margin-top : 0px;
-	padding: 2vh 7vw;
-	font-size: 24px;
+	padding-top: 2vh;
+	padding-bottom: 2vh;
+	font-size: 2vw;
 	line-height: normal;
 	background-color: var(--DarkRed);	
 	border-color: var(--DarkRed);
 	height: 10vh;
+	width: 24.15vw;
 }
 
 .add-to-cart-button.disabled, .quantity-button.disabled{
@@ -1097,21 +1099,20 @@ Linda's Color Scheme
 }
 
 .quantity-button{
-	
 	margin-top : 0px;
-	padding-top: 1.2vh;
-	padding-left: 2vw;
-	padding-right: 2vw;
+	padding-top: 1vh;
+	padding-left: 1vw;
+	padding-right: 1vw;
 	padding-bottom: 2vh;
-	font-size: 24px;
+	font-size: 2vw;
 	line-height: normal;
 	background-color: var(--DarkRed);	
 	border-color: var(--DarkRed);
 	color: white !important;
-	text-align: center;
 	height: 10vh;
 	border-right : lightgrey 1px solid !important;
 	z-index: 1 !important;
+	width: 6vw;
 }
 
 .quantity-button:hover {
@@ -1187,14 +1188,14 @@ a:hover {
 
 .variant-select-button{
 	margin-top : 0px;
-	padding-top: 1vw;
-	padding-bottom : 1vw;
-	font-size: 24px;
+	padding-top: 2vh;
+	padding-bottom : 2vh;
+	font-size: 16px;
 	line-height: normal;
 	background-color: white !important;	
 	color: grey !important;
 	border-color: lightgrey;
-	width: 29.5vw;
+	width: 30vw;
 	
 
 }
@@ -1206,7 +1207,7 @@ a:hover {
 
 .variant-dropdown > li > a {
 	/* this is 0.1vw shorter intentionally */
-	width: 29.4vw;
+	width: 30vw;
 	color:grey;
 }
 
