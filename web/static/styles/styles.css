@@ -810,7 +810,7 @@ Linda's Color Scheme
 
 .navbar-brand {
 	/*font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;*/
-	font-family: "Avenir Next", sans-serif !important;
+	font-family: "AvenirNext", sans-serif !important;
 }
 
 .nabbar-brand.mobile:hover,.nabbar-brand.mobile:focus  {
@@ -1368,3 +1368,9 @@ a:hover {
 }
 
 
+@font-face {
+	font-family: 'AvenirNext';
+	font-style: normal;
+	font-weight: 400;
+	src: url(./AvenirNext.woff) format('woff');
+}
