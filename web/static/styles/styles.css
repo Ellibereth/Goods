@@ -810,7 +810,7 @@ Linda's Color Scheme
 
 .navbar-brand {
 	/*font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;*/
-	font-family: "Avenir Next"
+	font-family: "Avenir Next", sans-serif !important;
 }
 
 .nabbar-brand.mobile:hover,.nabbar-brand.mobile:focus  {
@@ -1240,12 +1240,12 @@ a:hover {
 }
 
 .product-sold-out-text {
-	color : var(--DarkRed) !important;
+	color : var(--DarkBlue) !important;
 	margin-left: 12px;	
 }
 
 .home-product-sold-out-text {
-	color : var(--DarkRed) !important;
+	color : var(--DarkBlue) !important;
 	margin-left: 12px;	
 }
 

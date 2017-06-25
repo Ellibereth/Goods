@@ -30,6 +30,7 @@ export default class LargeNavBar extends React.Component {
 				
 					<ul className="nav navbar-nav navbar-right">
 						<li> {search_bar} </li>
+						<AboutIcon show_text = {true}/>
 						<FaqIcon show_text = {true}/>
 						<NavCartIcon show_text = {true}/>
 						<li><a href="/register" className = "nav-no-user-link">Sign Up</a></li>
@@ -42,6 +43,7 @@ export default class LargeNavBar extends React.Component {
 				<ul className="nav navbar-nav navbar-right">
 					
 					<li> {search_bar} </li>
+					<AboutIcon show_text = {true}/>
 					<FaqIcon show_text = {true}/>
 					<NavCartIcon show_text = {true}/> 
 					<NavAccountIcon show_text = {true}/>

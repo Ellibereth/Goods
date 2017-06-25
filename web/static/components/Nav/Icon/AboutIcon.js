@@ -21,9 +21,9 @@ export default class AboutIcon extends React.Component {
 			<li>
 				<a href = "/about"> 
 					<span className = "nav-icon">
-						<span className = "glyphicon glyphicon-question-sign"/> 
+						<span className = "glyphicon glyphicon-info-sign"/> 
 					</span>
-					{this.props.show_text && <span className = "nav-icon-text">About Us</span>}
+					{this.props.show_text && <span className = "nav-icon-text">About</span>}
 				</a>
 			</li>
 		)
