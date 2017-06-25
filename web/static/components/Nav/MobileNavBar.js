@@ -30,7 +30,6 @@ export default class MobileNavBar extends React.Component {
 			return (
 				
 					<ul className="nav navbar-nav navbar-mobile-right-dropdown">
-						<li><a href="/about">About Us <span className = "glyphicon glyphicon-info-sign"/></a></li>
 						<li><a href="/faq">FAQ <span className = "glyphicon glyphicon-question-sign"/></a></li>
 						<li><a href="/myCart">Cart <span className = "glyphicon glyphicon-cart"/></a></li>
 						<li><a href="/register">Sign Up</a></li>
@@ -41,7 +40,6 @@ export default class MobileNavBar extends React.Component {
 		else {
 			return (
 				<ul className="nav navbar-nav navbar-mobile-right-dropdown">
-					<li><a href="/about">About Us <span className = "glyphicon glyphicon-info-sign"/></a></li>
 					<li><a href="/faq">FAQ <span className = "glyphicon glyphicon-question-sign"/></a></li>
 					<li><a href="/myCart">Cart <span className = "glyphicon glyphicon-shopping-cart"/></a></li>
 					<MobileAccountMenu />

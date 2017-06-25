@@ -18,7 +18,7 @@ export default class FaqPage extends React.Component {
 
 		var component = (
 			<div className = "container">
-				<h1> FAQ </h1>
+				<h1> Request a Product Page </h1>
 			</div>
 
 		)
