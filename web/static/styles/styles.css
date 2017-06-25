@@ -1073,7 +1073,7 @@ Linda's Color Scheme
 	line-height: normal;
 	background-color: var(--DarkRed);	
 	border-color: var(--DarkRed);
-	height: 70px;
+	height: 10vh;
 }
 
 .add-to-cart-button.disabled, .quantity-button.disabled{
@@ -1089,14 +1089,14 @@ Linda's Color Scheme
 
 .quantity-button{
 	margin-top : 0px;
-	padding: 4px 24px;
+	padding: 1vw 2vw;
 	font-size: 24px;
 	line-height: normal;
 	background-color: var(--DarkRed);	
 	border-color: var(--DarkRed);
 	color: white !important;
 	text-align: center;
-	height:70px;
+	height: 10vh;
 	border-right : lightgrey 1px solid !important;
 	z-index: 1 !important;
 }
@@ -1174,13 +1174,15 @@ a:hover {
 
 .variant-select-button{
 	margin-top : 0px;
-	padding: 12px 12px;
+	padding-top: 1vw;
+	padding-bottom : 1vw;
 	font-size: 24px;
 	line-height: normal;
 	background-color: white !important;	
 	color: grey !important;
 	border-color: lightgrey;
-	width: 361px;
+	width: 29.5vw;
+	
 
 }
 
@@ -1190,7 +1192,8 @@ a:hover {
 
 
 .variant-dropdown > li > a {
-	width:368px;
+	/* this is 0.1vw shorter intentionally */
+	width: 29.4vw;
 	color:grey;
 }
 
@@ -1317,6 +1320,34 @@ a:hover {
 
 	.register-notice {
 		font-size: 10px;
+	}
+
+	.quantity-button {
+		padding: 2vw 8vw;
+		font-size: 6vw;
+		height: 16vh;
+	}
+
+	.add-to-cart-button {
+		padding: 2vw 14.5vw;
+		font-size: 6vw;
+		height: 16vh;
+	}
+
+	.variant-dropdown > li > a {
+		width : 89vw;
+	}
+
+	
+
+	.variant-select-button {
+		padding: 4vw 4vw;
+		width: 90vw;
+		font-size: 6vw;
+	}
+
+	.story-image {
+		max-height: 50vh
 	}
 
 }

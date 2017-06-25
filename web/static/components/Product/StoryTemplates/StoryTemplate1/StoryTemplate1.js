@@ -81,9 +81,9 @@ export default class StoryTemplate1 extends React.Component {
 			<div className = "row story-image" 
 			//className = "story-image"
 			 style = {story_style} id = "image_story">
-				<div className ="col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 story-overlay-container">
+				{/* <div className ="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 story-overlay-container">
 					{story_text}
-				</div>
+				</div> */}
 			</div>
 		)
 	}
