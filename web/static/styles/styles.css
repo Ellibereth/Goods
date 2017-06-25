@@ -904,10 +904,18 @@ Linda's Color Scheme
 
 .edgarusa-footer {
 	padding: 8px;
+	background-color: var(--DarkBlue)
+}
+
+
+
+.edgarusa-footer > ul > li > a:hover {
+	background-color: var(--DarkBlue) !important;
+	color : var(--LightBlue);	
 }
 
 .edgarusa-footer > ul > li > a {
-	color: var(--DarkBlue);
+	color: white;
 }
 
 
