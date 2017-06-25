@@ -1265,3 +1265,28 @@ a:hover {
 .navbar-mobile-dropdown-toggle > span {
 	background-color : var(--LightBlue) !important;
 }
+
+
+@media screen and (max-width: 600px) {
+	.home-product-preview-price {
+		font-size: 18px !important;
+	}
+
+	.home-product-preview-details{
+		padding-left: 18px;
+		padding-right: 18px;
+		padding-bottom : 10px
+	}
+
+	.home-product-preview-manufacturer {
+		font-size : 16px !important;
+		color: black;
+	}
+
+	.home-product-preview-name {
+		font-size : 14px !important;
+		color: black;
+	}
+}
+
+
