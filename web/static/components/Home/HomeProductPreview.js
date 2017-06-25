@@ -63,7 +63,7 @@ export default class ProductPreview extends React.Component {
 		var item_in_stock = this.itemInStock(this.props.product)
 		// if (this.state.invalid_product) return <div id = {this.props.product.product_id}/>
 		return (
-			<div className = {"col-md-6  col-lg-3  col-sm-6 col-xs-8 col-sm-offset-0 col-xs-offset-2"}>
+			<div className = {"col-md-6  col-lg-3  col-sm-6 col-xs-12 col-sm-offset-0 col-xs-offset-0"}>
 
 			<div 
 			id = {this.props.product.product_id} 

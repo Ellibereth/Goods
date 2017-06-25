@@ -902,7 +902,7 @@ Linda's Color Scheme
 }
 
 .edgarusa-footer: {
-	
+	padding: 8px;
 }
 
 .edgarusa-footer > ul > li > a {
@@ -1286,6 +1286,10 @@ a:hover {
 	.home-product-preview-name {
 		font-size : 14px !important;
 		color: black;
+	}
+
+	.home-product-preview {
+		height: 300px;
 	}
 }
 
