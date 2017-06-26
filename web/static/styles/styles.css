@@ -1312,7 +1312,7 @@ a:hover {
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 765px) {
 	.home-product-preview-price {
 		font-size: 18px !important;
 	}
@@ -1365,15 +1365,16 @@ a:hover {
 
 	.quantity-button {
 
-		padding: 2vw 8vw;
-		font-size: 6vw;
-		height: 16vh;
+		width: 20vmin;
+		font-size: 3vmin !important;
+		height: 16vmin;
 	}
 
 	.add-to-cart-button {
-		padding: 2vw 14.5vw;
-		font-size: 6vw;
-		height: 16vh;
+		width: 70vmin;
+		text-align: center;
+		font-size: 4vmin !important;
+		height: 16vmin;
 	}
 
 	.variant-dropdown > li > a {
