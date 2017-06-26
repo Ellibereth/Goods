@@ -96,6 +96,13 @@ def add_header(response):
 		# otherwise do not cache
 		else:
 			response.headers['Cache-Control'] = 'public,max-age=0'
+	elif len(path_splits) > 2 and path_splits[1] == 'static':
+		if path_splits[2] == 'styles':
+			response.headers['Cache-Control'] = 'public,max-age=120'
+
+		# otherwise do not cache
+		else:
+			response.headers['Cache-Control'] = 'public,max-age=0'
 
 	else:
 		response.headers['Cache-Control'] = 'public,max-age=0'

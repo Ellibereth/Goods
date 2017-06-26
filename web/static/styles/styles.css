@@ -34,6 +34,8 @@ Linda's Color Scheme
 }
 
 
+
+
 @font-face {
 	font-family: 'AvenirNext';
 	font-style: normal;
@@ -48,12 +50,6 @@ Linda's Color Scheme
 	src: url(./AvenirLight.woff) format('woff');
 }
 
-@font-face {
-	font-family: 'HelveticaNeue-CondensedBoldLocal';
-	font-style: normal;
-	font-weight: 400;
-	src: url(./HelveticaNeue-CondensedBoldLocal.woff) format('woff');
-}
 
 .admin-table-entry-short {
 	word-wrap : "break-word",
@@ -985,7 +981,7 @@ Linda's Color Scheme
 	color: var(--DarkRed);
 	font-size: 6vmin;
 	padding-right: 2vw;
-	font-family: "HelveticaNeue-CondensedBoldLocal","HelveticaNeue-CondensedBold", "FranklinGothicFSDemiCondensed", Arial, sans-serif;
+	font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;
 	vertical-align: middle;
 }
 
@@ -1063,14 +1059,14 @@ Linda's Color Scheme
 .product-name-text{
 	font-size : 8vmin;
 	display: block;
-	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;
 }
 .product-price-text {
 	font-weight : bold;
 	font-size : 6vmin;
 	display: block;
 	color : var(--DarkRed);
-	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;
 }
 
 .product-description-text {
