@@ -48,6 +48,13 @@ Linda's Color Scheme
 	src: url(./AvenirLight.woff) format('woff');
 }
 
+@font-face {
+	font-family: 'HelveticaNeue-CondensedBoldLocal';
+	font-style: normal;
+	font-weight: 400;
+	src: url(./HelveticaNeue-CondensedBoldLocal.woff) format('woff');
+}
+
 .admin-table-entry-short {
 	word-wrap : "break-word",
 	min-width : 160px,
@@ -978,7 +985,7 @@ Linda's Color Scheme
 	color: var(--DarkRed);
 	font-size: 6vmin;
 	padding-right: 2vw;
-	font-family: "HelveticaNeue-CondensedBold", "FranklinGothicFSDemiCondensed", Arial, sans-serif;
+	font-family: "HelveticaNeue-CondensedBoldLocal","HelveticaNeue-CondensedBold", "FranklinGothicFSDemiCondensed", Arial, sans-serif;
 	vertical-align: middle;
 }
 
