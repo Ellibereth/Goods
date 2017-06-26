@@ -134,17 +134,19 @@ export default class ProductTemplate1 extends React.Component {
 
 					<div className = "col-sm-6 col-md-6 col-lg-6">
 						<div className = "row">
-							<div className = "product-name-text">
+							<span className = "product-name-text">
 								{this.props.product.name} 
-							</div>
-							<div className = "product-manufacturer-text">
-								{this.props.product.manufacturer} 
-							</div>
+							</span>
 						</div>
-
-
 						<div className = "row">
-							
+							<span className = "product-manufacturer-text">
+								{this.props.product.manufacturer} 
+								<img className = "product-manufacturer-logo" 
+								src = "https://www.justourshoes.com/image/catalog/logos/allenedmondslogo.jpg"/>
+							</span>
+						</div>
+						<div className = "small-buffer"/>
+						<div className = "row">
 								{this.state.item_in_stock ? 
 									<span className = "product-price-text"> ${formatPrice(this.props.product.price)}  </span>
 								:
@@ -155,6 +157,7 @@ export default class ProductTemplate1 extends React.Component {
 								}
 						</div>
 
+						<div className = "small-buffer"/>
 
 
 

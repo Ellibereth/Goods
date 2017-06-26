@@ -124,7 +124,7 @@ export default class ProductMainContainer extends React.Component {
 		}
 		else if (this.state.invalid_product) {
 			var component = (
-				<div className = "container">
+				<div className = "container-fluid">
 					<h3>
 						You've reached a bad product page! Click <a href = "/"> here </a> to return home.
 					</h3>
