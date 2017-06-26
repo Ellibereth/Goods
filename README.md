@@ -96,7 +96,7 @@ git checkout -b [BRANCH_NAME] # creates a new branch
 git add -A  # add files
 git commit -m  "COMMIT MESSAGE" # commit files
 git checkout master # returns to master branch
-git merge [BRANCH_NAME] # merges your branch with master
+git merge --no-ff [BRANCH_NAME] # merges your branch with master
 git branch -d [BRANCH_NAME] # deletes your old branch
 ```
 
