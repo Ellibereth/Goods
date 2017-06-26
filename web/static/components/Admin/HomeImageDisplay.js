@@ -54,10 +54,17 @@ export default class HomeImageDisplay extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
+<<<<<<< HEAD
 					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				}
 				else {
 					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+=======
+					setTimeout(function() {swal(AlertMessages.INTERNAL_SERVER_ERROR)},500)
+				}
+				else {
+					setTimeout(function() {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)},500)
+>>>>>>> dev
 				}
 			}.bind(this),
 			error : function(){

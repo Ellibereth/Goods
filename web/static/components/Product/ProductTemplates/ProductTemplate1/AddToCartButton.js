@@ -169,7 +169,8 @@ export default class AddToCartButton extends React.Component {
 
 		var variant_options = []
 		this.props.product.variants.map((variant, index) => {
-					variant_options.push(
+
+					var variant_option = (
 						<li>
 							<a className = {variant.inventory > 0 ? "dropdown-item" 
 							: "dropdown-item sold-out"}
@@ -178,8 +179,13 @@ export default class AddToCartButton extends React.Component {
 							 {variant.variant_type} 
 							</a>
 						</li>
-						
 					)
+					if (variant.inventory > 0) {
+						variant_options.unshift(variant_option)
+					}
+					else {
+						variant_options.push(variant_option)
+					}
 			})
 
 
@@ -228,13 +234,14 @@ export default class AddToCartButton extends React.Component {
 							<div className = "btn-group">
 								<div id = "quantity_dropdown" className="btn-group dropdown">
 									<button  type="button" disabled = {button_disabled}
-									 className="btn quantity-button dropdown-toggle vertical-button-divider"
+									 className= {button_disabled ? "btn quantity-button dropdown-toggle vertical-button-divider disabled"
+									 : "btn quantity-button dropdown-toggle vertical-button-divider"}
 										data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											<span className = "block-span">
 												<span> {this.state.quantity_display} </span>
 												<span className="caret"/>
 											</span>
-											<span className = "block-span" styles>
+											<span className = "block-span">
 												Qty.
 											</span>	
 										

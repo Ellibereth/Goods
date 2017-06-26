@@ -51,9 +51,9 @@ export default class PleaseConfirmPage extends React.Component {
 	// class size 30 and centered 
 	var component = (
 			<div className = "container">
-				<h3> Please confirm your email to continue </h3>
-				<h3> If you need confirmation email to be resent click
-					<span className = "clickable-text" onClick = {this.resendConfirmation}> here </span>
+				<h3>Please confirm your email to continue</h3>
+				<h3>{"If you need confirmation email to be resent click "}
+					<span className = "clickable-text" onClick = {this.resendConfirmation}>here</span>
 				</h3>
 				
 			</div>

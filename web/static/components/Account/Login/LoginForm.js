@@ -109,11 +109,11 @@ export default class LoginForm extends React.Component {
 			<div className = "panel panel-primary account-panel">
 
 				<div className = "panel-body account-panel-body">
-					<h2 className = "account-header"> Login </h2>
+					<h2 className = "account-header text-center"> Login </h2>
 					<form className = "form-horizontal" onSubmit = {this.submitData.bind(this)} >
 						{text_inputs}
 						<div className = "form-group row">
-							<div className = "col-sm-12 col-md-12 col-lg-12">
+							<div className = "col-sm-12 col-md-12 col-lg-12 text-center">
 								<button className = "btn btn-default" disabled = {this.state.disabled}
 								 className = "account-button" onClick = {this.submitData.bind(this)}>
 									Login
@@ -123,13 +123,15 @@ export default class LoginForm extends React.Component {
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<a href = "/recoverAccount"> Forgot your password? </a>
+								<a className = "account-notice" href = "/recoverAccount"> Forgot your password? </a>
 							</div>
 						</div>
 
 						<div className = "form-group row text-center">
 							<div className = "col-sm-12 col-md-12 col-lg-12">
-								<a href = {target ? "/register" + "?target=" + target : "/register"}> New to Edgar USA? Register here </a>
+								<a className = "account-notice" href = {target ? "/register" + "?target=" + target : "/register"}>
+									New to Edgar USA? Register here 
+								</a>
 							</div>
 						</div>
 

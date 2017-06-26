@@ -173,23 +173,18 @@ class EmailHtml:
 
 	def formatPrice(price):
 
-		if not price:
-			if price == 0: 
-				return "$0.00"
-			else:
-				return ""	
-
-		rounded_price = round(price, 2)
-		decimal_splits = str(rounded_price).split('.')
-		dollars = decimal_splits[0]
-		
-		if len(decimal_splits) < 2:
-			cents = "00"
+		price_string = str(price)
+		if len(price_string) > 2:
+			return "$" + price_string[:-2] + "." + price_string[-2:]
+		elif len(price_string) == 2:
+			return "$0." + price_string
+		elif len(price_string) == 1:
+			return "$0.0" + price_string
+		elif price_string == "0":
+			return "$0.00"
 		else:
-			cents = decimal_splits[1]
-			if len(cents) == 1: 
-				cents = cents + "0"
+			return None
 			
-		return "$" + dollars + "." + cents
+
 	
 

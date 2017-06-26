@@ -6,6 +6,8 @@ import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
 import NavCartIcon from './Cart/NavCartIcon'
 import NavAccountIcon from './Account/NavAccountIcon'
+import FaqIcon from './Icon/FaqIcon'
+import AboutIcon from './Icon/AboutIcon'
 
 export default class SmallNavBar extends React.Component {
 	constructor(props) {
@@ -42,7 +44,8 @@ export default class SmallNavBar extends React.Component {
 						<li>
 							{search_bar}
 						</li>
-
+						<AboutIcon show_text = {false}/>
+						<FaqIcon show_text = {false}/>
 						<NavCartIcon show_text = {false}/>
 						<li><a href="/register" className = "no-user-link">Sign Up</a></li>
 						<li><a href ="/login" className = "no-user-link">Login</a></li>
@@ -55,7 +58,8 @@ export default class SmallNavBar extends React.Component {
 					<li>
 						{search_bar}
 					</li>
-					
+					<AboutIcon show_text = {false}/>
+					<FaqIcon show_text = {false}/>
 					<NavCartIcon show_text = {false}/>
 
 					<NavAccountIcon show_text = {false}/>
@@ -76,14 +80,12 @@ export default class SmallNavBar extends React.Component {
 					? "navbar navbar-edgarusa-small navbar-fixed-top" 
 					:  "navbar navbar-edgarusa-small navbar-fixed-top none"}
 					>
-					<div className="container-fluid">
-						<div className="navbar-header">
-							<a className= {brand_class} href="/"> Edgar USA </a>
-						</div>
-						<div className="collapse navbar-collapse">
-							{right_nav}
-						</div>
-					</div>	
+					<div className="navbar-header">
+						<a className= {brand_class} href="/"> Edgar USA </a>
+					</div>
+					<div className="collapse navbar-collapse">
+						{right_nav}
+					</div>
 				</nav>
 				
 			</div>

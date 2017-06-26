@@ -19,16 +19,16 @@ export default class CheckoutPriceRow extends React.Component {
 		return (
 			<div className = "row">
 				{this.is_final_row && <hr/>}
-				<div className = "col-lg-6 col-md-6 col-sm-6">
-					<div 
+				<div className = "col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					<span 
 					className = {label_class}>
 						 {this.props.label} 
-					</div>
+					</span>
 				</div>
-				<div className = "col-lg-6 col-md-6 col-sm-6 text-right">
-					<div className = {amount_class}>
+				<div className = "col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+					<span className = {amount_class}>
 						{this.props.price}
-					</div>
+					</span>
 					{this.props.has_underline && <hr/>}
 				</div>
 			</div>

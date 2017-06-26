@@ -57,7 +57,7 @@ export const AlertMessages = {
 					},
 
 	 SUCCESFUL_FEEDBACK_COMPLETION : {
-							title : "Your feedback is appreaciated", 
+							title : "Your feedback is appreciated", 
 							text : "Redirecting you to the homepage shorlty", 
 							type : "success",
 							confirmButtonColor: "#DD6B55",
@@ -78,7 +78,7 @@ export const AlertMessages = {
 
 	 CHANGE_WAS_SUCCESSFUL : {
 		title : "Success!", 
-		text : "It worked :)", 
+		text : "Your change was succesful", 
 		type : "success"
 	},
 
@@ -187,7 +187,7 @@ export const AlertMessages = {
 	CHECKOUT_SUCCESSFUL : { 
 		title : "Thank you!", 
 		text : "You will receive a confirmation email for this purchase. \
-			This will take the user to a checkout page soon. Will have to write that huh?",
+			You will be redirected to a confirmation page shortly.",
 		type : "success"
 	},
 	CONTACT_CUSTOMER_SERVICE : {

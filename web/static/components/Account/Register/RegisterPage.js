@@ -32,15 +32,11 @@ export default class RegisterPage extends React.Component {
 
 		return (
 			<PageContainer component = {
-				<div className = "container">
+				<div className = "container-fluid">
 					{this.state.is_loading && <Spinner />}
-					
-					
-							<div className = "container">
-								<div className = "col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
-									<RegisterAccountForm
-									setLoading = {this.setLoading.bind(this)}/>
-								</div>
+					<div className = "col-xs-12 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-md-4 col-lg-4 col-sm-4">
+						<RegisterAccountForm
+						setLoading = {this.setLoading.bind(this)}/>
 					</div>
 				</div>
 			}/>

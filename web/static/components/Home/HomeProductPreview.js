@@ -62,13 +62,13 @@ export default class ProductPreview extends React.Component {
 		var date = this.props.product.sale_end_date
 		var item_in_stock = this.itemInStock(this.props.product)
 		// if (this.state.invalid_product) return <div id = {this.props.product.product_id}/>
-		var col_size = this.props.col_size
 		return (
+			<div className = {"col-md-6  col-lg-3  col-sm-6 col-xs-12 col-sm-offset-0 col-xs-offset-0"}>
 
 			<div 
 			id = {this.props.product.product_id} 
 			// onClick = {this.goToProduct.bind(this)}
-			className = {"home-product-preview col-md-" + col_size + " col-lg-" + col_size}
+			className = {"home-product-preview"}
 			>
 				<a className = "no-underline" onClick = {this.productClicked.bind(this)} href = {'/eg/' + this.props.product.product_id} style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
 					<div className = "row home-product-preview-image-row">
@@ -82,14 +82,14 @@ export default class ProductPreview extends React.Component {
 								className = "img-responsive img-rounded center-block home-product-preview-image"/>
 						}
 					</div>
-					<div className = "row home-product-preview-details">
+					<div className = "row home-product-preview-details text-center">
 							
 						{item_in_stock ? 
 							<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> 
 							:
 							<span className = "home-product-preview-price">
-								<s>${formatPrice(this.props.product.price)} </s> 
-								<span style = {{"color" : "red", "margin-left" : "12px"}}> {" Sold Out!"} </span>
+								<s>${formatPrice(this.props.product.price)}</s> 
+								<span className = "home-product-sold-out-text" >{" Sold Out!"}</span>
 							</span>
 						}
 							<br/>
@@ -98,6 +98,7 @@ export default class ProductPreview extends React.Component {
 							<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
 					</div>
 				</a>
+			</div>
 			</div>
 		);
 	}
