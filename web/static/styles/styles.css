@@ -48,10 +48,6 @@ Linda's Color Scheme
 	src: url(./AvenirLight.woff) format('woff');
 }
 
-
-
-
-
 .admin-table-entry-short {
 	word-wrap : "break-word",
 	min-width : 160px,
@@ -828,7 +824,6 @@ Linda's Color Scheme
 }
 
 .navbar-brand {
-	/*font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif !important;*/
 	font-family: "AvenirNext", sans-serif !important;
 }
 
@@ -1061,14 +1056,14 @@ Linda's Color Scheme
 .product-name-text{
 	font-size : 8vmin;
 	display: block;
-	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue"
+	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 .product-price-text {
 	font-weight : bold;
 	font-size : 6vmin;
 	display: block;
 	color : var(--DarkRed);
-	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue"
+	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 .product-description-text {
@@ -1079,7 +1074,7 @@ Linda's Color Scheme
 	font-size : 4vmin;
 	display: block;
 	margin-left: 4px;
-	font-family: "AvenirNext"
+	font-family:  "AvenirLight", sans-serif !important;
 	/*text-decoration: underline*/
 }
 .product-more-images-header {

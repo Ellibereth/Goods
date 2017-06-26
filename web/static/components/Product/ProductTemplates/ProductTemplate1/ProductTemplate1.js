@@ -134,16 +134,12 @@ export default class ProductTemplate1 extends React.Component {
 
 					<div className = "col-sm-6 col-md-6 col-lg-6">
 						<div className = "row">
-							<span className = "product-name-text">
+							<div className = "product-name-text">
 								{this.props.product.name} 
-							</span>
-						</div>
-
-
-						<div className = "row">
-							<span className = "product-manufacturer-text">
+							</div>
+							<div className = "product-manufacturer-text">
 								{this.props.product.manufacturer} 
-							</span>
+							</div>
 						</div>
 
 
