@@ -33,6 +33,31 @@ Linda's Color Scheme
 	--LightBlue: #6090a8;
 }
 
+
+@font-face {
+	font-family: 'AvenirNext';
+	font-style: normal;
+	font-weight: 400;
+	src: url(./AvenirNext.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'AvenirLight';
+	font-style: normal;
+	font-weight: 400;
+	src: url(./AvenirLight.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'HelveticaNeue-CondensedBold';
+	font-style: normal;
+	font-weight: 400;
+	src: url(./HelveticaNeue-CondensedBold.tff) format('tff');
+}
+
+
+
+
 .admin-table-entry-short {
 	word-wrap : "break-word",
 	min-width : 160px,
@@ -962,9 +987,10 @@ Linda's Color Scheme
 
 .product-variant-type-description {
 	color: var(--DarkRed);
-	padding: 16px;
 	font-size: 2vw;
-	vertical-align: center;
+	padding-right: 2vw;
+	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue";
+	/* height: 1000px !important; */
 }
 
 .product-description-collapse-preview {
@@ -1041,13 +1067,14 @@ Linda's Color Scheme
 .product-name-text{
 	font-size : 36px;
 	display: block;
-	font-family: "HelveticaNeue-CondensedBold"
+	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue"
 }
 .product-price-text {
 	font-weight : bold;
 	font-size : 30px;
 	display: block;
 	color : var(--DarkRed);
+	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue"
 }
 
 .product-description-text {
@@ -1058,7 +1085,8 @@ Linda's Color Scheme
 	font-size : 18px;
 	display: block;
 	margin-left: 4px;
-	text-decoration: underline
+	font-family: "AvenirNext"
+	/*text-decoration: underline*/
 }
 .product-more-images-header {
 	font-size : 24px;
@@ -1373,28 +1401,6 @@ a:hover {
 		max-height: 50vh
 	}
 
-}
-
-
-@font-face {
-	font-family: 'AvenirNext';
-	font-style: normal;
-	font-weight: 400;
-	src: url(./AvenirNext.woff) format('woff');
-}
-
-@font-face {
-	font-family: 'AvenirLight';
-	font-style: normal;
-	font-weight: 400;
-	src: url(./AvenirLight.woff) format('woff');
-}
-
-@font-face {
-	font-family: 'HelveticaNeue-CondensedBold';
-	font-style: normal;
-	font-weight: 400;
-	src: url(./HelveticaNeue-CondensedBold.tff) format('tff');
 }
 
 
