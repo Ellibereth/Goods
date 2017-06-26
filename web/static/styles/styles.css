@@ -981,7 +981,6 @@ Linda's Color Scheme
 	color: var(--DarkRed);
 	font-size: 6vmin;
 	padding-right: 2vw;
-	font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;
 	vertical-align: middle;
 }
 
@@ -1059,14 +1058,12 @@ Linda's Color Scheme
 .product-name-text{
 	font-size : 8vmin;
 	display: block;
-	font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;
 }
 .product-price-text {
 	font-weight : bold;
 	font-size : 6vmin;
 	display: block;
 	color : var(--DarkRed);
-	font-family: "HelveticaNeue-CondensedBold", "HelveticaNeueBoldCondensed", "HelveticaNeue-Bold-Condensed", "Helvetica Neue Bold Condensed", "HelveticaNeueBold", "HelveticaNeue-Bold", "Helvetica Neue Bold", "HelveticaNeue", "Helvetica Neue", 'TeXGyreHerosCnBold', "Helvetica", "Tahoma", "Geneva", "Arial Narrow", "Arial", sans-serif; font-weight:600; font-stretch:condensed;
 }
 
 .product-description-text {
@@ -1078,8 +1075,8 @@ Linda's Color Scheme
 	display: block;
 	margin-left: 4px;
 	font-family:  "AvenirLight", sans-serif !important;
-	/*text-decoration: underline*/
 }
+
 .product-more-images-header {
 	font-size : 24px;
 	display: block;
