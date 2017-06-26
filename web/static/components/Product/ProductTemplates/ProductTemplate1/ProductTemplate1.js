@@ -121,7 +121,6 @@ export default class ProductTemplate1 extends React.Component {
 							</div>
 						</div>
 
-						<div className = "small-buffer"/>
 
 						<div className = "row">
 							<div className = "panel-content">
@@ -140,7 +139,6 @@ export default class ProductTemplate1 extends React.Component {
 							</span>
 						</div>
 
-						<div className = "top-buffer"/>
 
 						<div className = "row">
 							<span className = "product-manufacturer-text">
@@ -148,7 +146,6 @@ export default class ProductTemplate1 extends React.Component {
 							</span>
 						</div>
 
-						<div className = "top-buffer"/>
 
 						<div className = "row">
 							
@@ -162,7 +159,6 @@ export default class ProductTemplate1 extends React.Component {
 								}
 						</div>
 
-						<div className = "top-buffer"/>
 
 
 

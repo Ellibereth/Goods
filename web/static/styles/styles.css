@@ -987,10 +987,10 @@ Linda's Color Scheme
 
 .product-variant-type-description {
 	color: var(--DarkRed);
-	font-size: 2vw;
+	font-size: 6vmin;
 	padding-right: 2vw;
 	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue";
-	/* height: 1000px !important; */
+	vertical-align: middle;
 }
 
 .product-description-collapse-preview {
@@ -1065,24 +1065,24 @@ Linda's Color Scheme
 }
 
 .product-name-text{
-	font-size : 36px;
+	font-size : 8vmin;
 	display: block;
 	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue"
 }
 .product-price-text {
 	font-weight : bold;
-	font-size : 30px;
+	font-size : 6vmin;
 	display: block;
 	color : var(--DarkRed);
 	font-family: "HelveticaNeue-CondensedBold", "Helvetica Neue"
 }
 
 .product-description-text {
-	font-size : 24px;
+	font-size : 10vmin;
 	display: block;
 }
 .product-manufacturer-text {
-	font-size : 18px;
+	font-size : 4vmin;
 	display: block;
 	margin-left: 4px;
 	font-family: "AvenirNext"
@@ -1231,9 +1231,8 @@ a:hover {
 	background-color: white !important;	
 	color: grey !important;
 	border-color: lightgrey;
-	width: 30vw;
+	width: 23.5vw;
 	
-
 }
 
 .variant-select-button > span:hover {
@@ -1241,9 +1240,12 @@ a:hover {
 }
 
 
+.variant-dropdown {
+	margin-top: 2.5vh;
+}
+
 .variant-dropdown > li > a {
-	/* this is 0.1vw shorter intentionally */
-	width: 30vw;
+	width: 23.5vw;
 	color:grey;
 }
 
@@ -1402,9 +1404,4 @@ a:hover {
 	}
 
 }
-
-
-
-
-
 

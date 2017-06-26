@@ -197,7 +197,7 @@ export default class AddToCartButton extends React.Component {
 						{ this.props.product.has_variants &&
 							<div className = "row">
 								<span className = "product-variant-type-description">
-									{toTitleCase(this.props.product.variant_type_description)}
+									{toTitleCase(this.props.product.variant_type_description) + ":"}
 								</span>
 								<span id = "variant_dropdown" className="dropdown">
 									<button  className="btn dropdown dropdown-toggle variant-select-button " 
