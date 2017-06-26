@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js'
 import AppActions from '../../../../actions/AppActions.js'
-import {formatPrice} from '../../../Input/Util.js'
+import {formatPrice, toTitleCase} from '../../../Input/Util.js'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 
 var browserHistory = require('react-router').browserHistory
@@ -196,7 +196,10 @@ export default class AddToCartButton extends React.Component {
 				<div >
 						{ this.props.product.has_variants &&
 							<div className = "row">
-								<div id = "variant_dropdown" className="dropdown">
+								<span className = "product-variant-type-description">
+									{toTitleCase(this.props.product.variant_type_description)}
+								</span>
+								<span id = "variant_dropdown" className="dropdown">
 									<button  className="btn dropdown dropdown-toggle variant-select-button " 
 										type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 										<span className =" pull-left">
@@ -221,11 +224,11 @@ export default class AddToCartButton extends React.Component {
 										<li role="separator" className="divider"></li>
 										{variant_options}
 									</ul>
-								</div>
+								</span>
 							</div>
 						}
 
-						<div className = "small-buffer"/>
+						<div className = "top-buffer"/>
 						
 						
 						

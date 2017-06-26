@@ -960,6 +960,13 @@ Linda's Color Scheme
 }
 
 
+.product-variant-type-description {
+	color: var(--DarkRed);
+	padding: 16px;
+	font-size: 2vw;
+	vertical-align: center;
+}
+
 .product-description-collapse-preview {
 	color : green;
 	cursor:pointer;
@@ -1033,13 +1040,14 @@ Linda's Color Scheme
 
 .product-name-text{
 	font-size : 36px;
-	display: block
+	display: block;
+	font-family: "HelveticaNeue-CondensedBold"
 }
 .product-price-text {
 	font-weight : bold;
 	font-size : 30px;
 	display: block;
-	/*color : green;*/
+	color : var(--DarkRed);
 }
 
 .product-description-text {
@@ -1374,3 +1382,23 @@ a:hover {
 	font-weight: 400;
 	src: url(./AvenirNext.woff) format('woff');
 }
+
+@font-face {
+	font-family: 'AvenirLight';
+	font-style: normal;
+	font-weight: 400;
+	src: url(./AvenirLight.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'HelveticaNeue-CondensedBold';
+	font-style: normal;
+	font-weight: 400;
+	src: url(./HelveticaNeue-CondensedBold.tff) format('tff');
+}
+
+
+
+
+
+
