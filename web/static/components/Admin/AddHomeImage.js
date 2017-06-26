@@ -52,13 +52,8 @@ export default class AddHomeImage extends React.Component {
 					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				}
 				else {
-<<<<<<< HEAD
 					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-
-
-=======
 					setTimeout(function() {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)},500)
->>>>>>> dev
 				}
 			}.bind(this),
 			error : function(){
