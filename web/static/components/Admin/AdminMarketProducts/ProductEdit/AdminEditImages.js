@@ -6,7 +6,7 @@ import TextInput from '../../../Input/TextInput.js'
 import UploadMarketPhoto from '../ProductAdd/UploadMarketPhoto.js'
 import AdminEditProductPhotos from './AdminEditProductPhotos.js' 
 import UploadStoryPhoto from '../ProductAdd/UploadStoryPhoto'
-
+import UploadManufacturerLogo from '../ProductAdd/UploadManufacturerLogo'
 
 export default class AdminEditImages extends React.Component {
 	constructor(props) {
@@ -23,6 +23,10 @@ export default class AdminEditImages extends React.Component {
 
 				<div className = "row" id = "add_story">
 					<UploadStoryPhoto product = {this.props.product}/>
+				</div>
+
+				<div className = "row" id = "add_logo">
+					<UploadManufacturerLogo product = {this.props.product}/>
 				</div>
 				
 				

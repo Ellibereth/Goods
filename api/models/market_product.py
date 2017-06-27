@@ -9,6 +9,7 @@ import json
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
 from api.models.story_image import StoryImage
+from api.models.manufacturer_logo import ManufacturerLogo
 from api.s3.s3_api import S3
 from api.utility.variants import ProductVariants as Variants
 
@@ -40,6 +41,9 @@ class MarketProduct(db.Model):
 	second_tab_name = db.Column(db.String)
 	second_tab_text = db.Column(db.String)
 	
+	show_manufacturer_logo = db.Column(db.Boolean, default = False)
+	manufacturer_logo_id = db.Column(db.String)
+
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -102,6 +106,17 @@ class MarketProduct(db.Model):
 		# upload the image to S3
 		S3.uploadStoryImage(story_image_record.image_id, image_decoded)
 
+	def addManufacturerLogo(self, image_decoded):
+
+		# record the image_id in the database
+		manufacturer_logo = ManufacturerLogo(self.product_id)
+		self.manufacturer_logo_id = manufacturer_logo.logo_id
+		db.session.add(manufacturer_logo)
+		db.session.commit()
+
+		# upload the image to S3
+		S3.uploadManufacturerLogo(manufacturer_logo.logo_id, image_decoded)
+
 
 	def activateProduct(self):
 		self.active = True
@@ -156,6 +171,8 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Active] = self.active
 		public_dict[Labels.HasVariants] = self.has_variants
 		public_dict[Labels.Live] = self.live
+		public_dict[Labels.ManufacturerLogoId] = self.manufacturer_logo_id
+		public_dict[Labels.ShowManufacturerLogo] = self.show_manufacturer_logo
 
 		if not self.second_tab_name:
 			public_dict[Labels.SecondTabName] = ""
@@ -169,9 +186,6 @@ class MarketProduct(db.Model):
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
 		return public_dict
-
-
-	# def addVariant(self):
 
 class ProductVariant(db.Model):
 	__tablename__ = ProdTables.ProductVariantTable

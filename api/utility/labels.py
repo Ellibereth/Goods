@@ -67,6 +67,8 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	ShowManufacturerLogo = "show_manufacturer_logo"
+	ManufacturerLogoId = "manufacturer_logo_id"
 	SecondTabName = "second_tab_name"
 	SecondTabText = "second_tab_text"
 	ImageText = "image_text"

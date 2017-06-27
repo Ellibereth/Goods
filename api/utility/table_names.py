@@ -26,6 +26,7 @@ class ProdTables:
 	HomeImageTable = "HOME_IMAGE_TABLE"
 	AdminActionTable = "ADMIN_ACTION_TABLE"
 	HttpRequestTable = "HTTP_REQUEST_TABLE"
+	ManufacturerLogoTable = "MANUFACTURER_LOGO_TABLE"
 
 
 """ 
@@ -55,6 +56,7 @@ class TestTables:
 	HomeImageTable = TEST_PREFIX + ProdTables.HomeImageTable
 	AdminActionTable = TEST_PREFIX + ProdTables.AdminActionTable
 	HttpRequestTable = TEST_PREFIX + ProdTables.HttpRequestTable
+	ManufacturerLogoTable = TEST_PREFIX + ProdTables.ManufacturerLogoTable
 	SqlTestTable = "TEST_SQL"
 
 	

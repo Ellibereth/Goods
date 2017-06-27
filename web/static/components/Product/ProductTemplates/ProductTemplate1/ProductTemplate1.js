@@ -9,6 +9,8 @@ import {formatPrice} from '../../../Input/Util'
 import ProductDescriptionTab from './ProductDescriptionTab'
 
 
+const LOGO_SRC = "https://s3-us-west-2.amazonaws.com/edgarusamanufacturerlogos/"
+
 export default class ProductTemplate1 extends React.Component {
 	constructor(props) {
 		super(props);
@@ -36,6 +38,9 @@ export default class ProductTemplate1 extends React.Component {
 		}
 		return main_image_id
 	}
+
+
+
 
 	componentDidMount(){
 		this.refreshUserInformation.bind(this)()
@@ -141,8 +146,9 @@ export default class ProductTemplate1 extends React.Component {
 						<div className = "row">
 							<span className = "product-manufacturer-text">
 								{this.props.product.manufacturer} 
-								{/* <img className = "product-manufacturer-logo" 
-								src = "https://lh6.googleusercontent.com/-z2sy6vURcws/AAAAAAAAAAI/AAAAAAAAAEk/Iwy8Ffq0W84/s0-c-k-no-ns/photo.jpg"/> */}
+								{(this.props.product.show_manufacturer_logo && this.props.product.manufacturer_logo_id)&&
+									 <img className = "product-manufacturer-logo" 
+										src = {LOGO_SRC + this.props.product.manufacturer_logo_id}/> }
 							</span>
 						</div>
 						<div className = "small-buffer"/>
@@ -175,22 +181,7 @@ export default class ProductTemplate1 extends React.Component {
 						<div className = "top-buffer"/>
 
 						<ProductDescriptionTab product = {this.props.product}/>
-						{/* <div className = "small-buffer"/>
-						<div className = "row">
-							<span className = "product-features-heading"> FEATURES </span>
-							<ul>
-							{this.props.product.description.split("\n").map(i => {
-					            return <li>{i}</li>;
-					        })}
-					        	<li> Manufactured by {this.props.product.manufacturer}  </li>
-					        	<li> Category: {this.props.product.category} </li>
-					        </ul>
-						</div> */}
-
-					
-					
-
-
+						
 						<div className = "top-buffer"/>
 						<div className = "small-buffer"/>
 
