@@ -14,6 +14,7 @@ CACHE_MAX_AGE =  CACHE_WEEKS * 7 * 24 * 60 * 60
 PRODUCT_IMAGES = "publicmarketproductphotos"
 STORY_IMAGES = "storyphotos"
 HOME_IMAGES = 'edgarusahomepage'
+MANUFACTURER_LOGOS = "edgarusamanufacturerlogos"
 
 s3 = boto3.resource('s3',
 			aws_access_key_id="AKIAJDIH6XBW42FXQX2Q",
@@ -38,6 +39,11 @@ class S3:
 	@staticmethod
 	def uploadProductImage(image_key, image_data):
 		S3.uploadPhoto(PRODUCT_IMAGES, image_key, image_data)
+
+	# takes image_data input as a buffered reader
+	@staticmethod
+	def uploadManufacturerLogo(image_key, image_data):
+		S3.uploadPhoto(MANUFACTURER_LOGOS, image_key, image_data)
 
 	def uploadPhoto(bucket_name, image_key, image_data):
 		if image_data == None:

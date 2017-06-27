@@ -173,6 +173,22 @@ export default class AdminEditProductInfo extends React.Component {
 
 			)
 
+		var show_logo_toggle = (
+				<div className="form-group row">
+				<label className="col-md-2 col-lg-2 col-form-label">
+					Would you like to display the manufactuer logo?
+				</label>
+					<div className = "col-md-6 col-lg-6">
+					 	<select className="form-control" id="sel1" 
+					 	value = {this.state.product.show_manufacturer_logo ? this.state.product.show_manufacturer_logo : false}
+					 	onChange = {(event) => this.onTextInputChange("show_manufacturer_logo", event.target.value)}>
+					 		{this.state.product.manufacturer_logo_id && <option value = {true}> Show logo </option>}
+    						<option value = {false}> Do not show logo </option>
+					 	</select>
+					</div>
+				</div>
+
+			)
 
 
 
@@ -188,6 +204,7 @@ export default class AdminEditProductInfo extends React.Component {
 					<form className ="form-horizonal">
 						{input_forms}
 						{live_toggle}
+						{show_logo_toggle}
 						<div className = "form-group">
 							<div className = "col-md-10 col-lg-10">
 								<button  type = "button" className = "btn btn-default" 
