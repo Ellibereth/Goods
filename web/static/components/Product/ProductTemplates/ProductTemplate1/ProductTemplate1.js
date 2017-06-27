@@ -141,8 +141,8 @@ export default class ProductTemplate1 extends React.Component {
 						<div className = "row">
 							<span className = "product-manufacturer-text">
 								{this.props.product.manufacturer} 
-								<img className = "product-manufacturer-logo" 
-								src = "https://lh6.googleusercontent.com/-z2sy6vURcws/AAAAAAAAAAI/AAAAAAAAAEk/Iwy8Ffq0W84/s0-c-k-no-ns/photo.jpg"/>
+								{/* <img className = "product-manufacturer-logo" 
+								src = "https://lh6.googleusercontent.com/-z2sy6vURcws/AAAAAAAAAAI/AAAAAAAAAEk/Iwy8Ffq0W84/s0-c-k-no-ns/photo.jpg"/> */}
 							</span>
 						</div>
 						<div className = "small-buffer"/>

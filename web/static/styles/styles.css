@@ -338,16 +338,17 @@ Linda's Color Scheme
 	padding-left: 18px;
 	padding-right: 18px;
 	padding-bottom : 10px
+
 }
 
 .home-product-preview-manufacturer {
 	font-size : 18px;
-	color: black;
+	color: var(--DarkBlue)
 }
 
 .home-product-preview-name {
 	font-size : 18px;
-	color: black;
+	color: var(--DarkBlue);
 }
 
 .red-text {
@@ -827,7 +828,8 @@ Linda's Color Scheme
 }
 
 .navbar-brand {
-	font-family: "AvenirNext", sans-serif !important;
+	font-family: "Avenir", "Verdana", Geneva, sans-serif;
+	/*font-family: "AvenirNext", sans-serif !important;*/
 }
 
 .nabbar-brand.mobile:hover,.nabbar-brand.mobile:focus  {
@@ -978,10 +980,11 @@ Linda's Color Scheme
 
 
 .product-variant-type-description {
-	color: var(--DarkRed);
+	color: var(--DarkBlue);
 	font-size: 4vmin;
 	padding-right: 2.0vw;
 	vertical-align: middle;
+	font-weight: bold;
 }
 
 
@@ -1056,15 +1059,15 @@ Linda's Color Scheme
 }
 
 .product-name-text{
-	font-size : 8vmin;
-	font-family: "Arial Narrow", Arial, sans-serif;
+	font-size : 6vmin;
 	font-weight: bold;
+	color: var(--DarkBlue);
 }
 .product-price-text {
 	font-weight : bold;
 	font-size : 4vmin;
 	display: block;
-	color : var(--DarkRed);
+	color : var(--LightBlue);
 }
 
 .product-description-text {
@@ -1080,7 +1083,9 @@ Linda's Color Scheme
 .product-manufacturer-text {
 	font-size : 3vmin;
 	margin-left: 4px;
-	font-family:  "AvenirLight", sans-serif !important;
+	color: var(--DarkBlue);
+	text-decoration: underline;
+	/*font-family:  "AvenirLight", sans-serif !important;*/
 }
 
 .product-more-images-header {
@@ -1233,7 +1238,7 @@ a:hover {
 	background-color: white !important;	
 	color: grey !important;
 	border-color: lightgrey;
-	width: 22.5vw;
+	width: 22.5vw;	
 	
 }
 
