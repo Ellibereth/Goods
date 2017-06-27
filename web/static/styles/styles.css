@@ -982,8 +982,6 @@ Linda's Color Scheme
 	font-size: 4vmin;
 	padding-right: 2.0vw;
 	vertical-align: middle;
-	font-family: "Arial Narrow", Arial, sans-serif;
-	font-weight: bold;
 }
 
 
@@ -1060,13 +1058,13 @@ Linda's Color Scheme
 .product-name-text{
 	font-size : 8vmin;
 	font-family: "Arial Narrow", Arial, sans-serif;
+	font-weight: bold;
 }
 .product-price-text {
 	font-weight : bold;
 	font-size : 4vmin;
 	display: block;
 	color : var(--DarkRed);
-	font-family: "Arial Narrow", Arial, sans-serif;
 }
 
 .product-description-text {
