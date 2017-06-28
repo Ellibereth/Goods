@@ -983,7 +983,7 @@ Linda's Color Scheme
 .product-variant-type-description {
 	color: var(--DarkBlue);
 	font-size: 4vmin;
-	padding-right: 2.0vw;
+	padding-right: 1vw;
 	vertical-align: middle;
 	font-weight: bold;
 }
@@ -1239,7 +1239,7 @@ a:hover {
 	background-color: white !important;	
 	color: grey !important;
 	border-color: lightgrey;
-	width: 22.5vw;	
+	width: 22vw;	
 	
 }
 

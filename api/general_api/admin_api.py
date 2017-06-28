@@ -62,6 +62,7 @@ def uploadMarketProductImage(admin_user):
 	image_decoded = base64.decodestring(image_bytes)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if this_product == None:
+		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Product doesn't exist")
 	this_product.addProductImage(image_decoded)
 	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
@@ -79,6 +80,7 @@ def uploadManufacturerLogo(admin_user):
 	image_decoded = base64.decodestring(image_bytes)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if this_product == None:
+		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Product doesn't exist")
 	this_product.addManufacturerLogo(image_decoded)
 	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
