@@ -78,7 +78,6 @@ Linda's Color Scheme
 	background-color: white;
 	font-family: Arial;
 	overflow-x: hidden;
-	padding-bottom: 20px;
 }
 
 .nopadding {
@@ -283,7 +282,8 @@ Linda's Color Scheme
 }
 
 .product-preview-row {
-	margin-bottom: 12px;
+	margin-top: 16px;
+	margin-bottom: 16px;
 }
 
 .home-product-preview {
@@ -315,6 +315,7 @@ Linda's Color Scheme
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
+
 }
 
 .beige-container {
@@ -326,6 +327,7 @@ Linda's Color Scheme
 	/*background-color :rgba(1,87,174, 0.3) !important;*/
 
 	/* Linda's */
+	padding-top: 14px;
 	background-color :rgba(96, 144, 168, 0.3) !important;
 }
 
