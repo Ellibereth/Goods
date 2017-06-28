@@ -125,13 +125,37 @@ class User(db.Model):
 			return
 		if not guest_user.is_guest:
 			return
+
+
 		guest_items = CartItem.query.filter_by(account_id = guest_user.account_id).all()
 
-		for cart_item in guest_items:
-			cart_item.account_id = self.account_id
+		for guest_cart_item in guest_items:
+			self.transgerGuestCartItem(guest_user, guest_cart_item)
+
+
+	def transgerGuestCartItem(self, guest_user, guest_cart_item):
+		user_cart = Cart(self.account_id)
+
+		existing_item = False
+		for user_cart_item in user_cart.items:
+			if guest_cart_item.product_id == user_cart_item.product_id:
+				print("product_id match")
+				if guest_cart_item.variant_id:
+					print("has variant id")
+					if guest_cart_item.variant_id == user_cart_item.variant_id:
+						print("variant ids match")
+						user_cart_item.num_items = guest_cart_item.num_items	
+						existing_item = True
+				else:
+					user_cart_item.num_items = guest_cart_item.num_items
+					existing_item = True
+
+		if not existing_item:
+			guest_cart_item.account_id = self.account_id
+		else:
+			db.session.delete(guest_cart_item)
 
 		db.session.commit()
-
 
 	@staticmethod
 	def argonHash(pre_hash):
