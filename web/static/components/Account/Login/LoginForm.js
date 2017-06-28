@@ -60,11 +60,12 @@ export default class LoginForm extends React.Component {
 					});
 
 					AppActions.addCurrentUser(data.user, data.jwt)
-					if (!this.props.target){
+					var target = getParameterByName('target')
+					if (!target){
 						window.location = '/'
 					}
 					else {
-						window.location = '/' + this.props.target
+						window.location = '/' + target
 					}
 				}
 				this.setState({disabled : false})
