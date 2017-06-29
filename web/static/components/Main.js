@@ -42,6 +42,8 @@ import FaqPage from './CustomerService/FaqPage'
 import AboutUsPage from './CustomerService/AboutUsPage'
 import ContactUsPage from './CustomerService/ContactUsPage'
 
+import SalesPage from './Sales/SalesPage.js'
+
 export default class Main extends React.Component {
 	
 	componentDidMount() {
@@ -177,6 +179,7 @@ ReactDOM.render(
 			<Route path = "about" component = {AboutUsPage}/>
 			<Route path = "requestProduct" component = {RequestProductPage}/>
 			<Route path = "faq" component = {FaqPage}/>
+			<Route path = 'sales' component = {SalesPage}/>
 			<Route path= "*" component={PageNotFound} />
 		</Route>
 	</Router>, 

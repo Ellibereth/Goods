@@ -327,6 +327,7 @@ Linda's Color Scheme
 	/*background-color :rgba(1,87,174, 0.3) !important;*/
 
 	/* Linda's */
+	padding-bottom: 14px;
 	padding-top: 14px;
 	background-color :rgba(96, 144, 168, 0.3) !important;
 }
@@ -954,37 +955,15 @@ Linda's Color Scheme
 	padding-bottom: 50px;
 }
 
-.story-overlay-container {
-	position: relative;
-	top: 25%;
-	
-}
-
-.story-panel {
-	opacity: 0.85;
-	background-color : var(--LightBlue);
-	border-width: 0;
-	padding: 12px;
-}
-
-.story-panel > div {
-	opacity:  1.0;
-	color : white;
-	font-size: 24px
-
-}
-
-
 .story-image {
-	background-size : contain;
-	max-height : 700px;
-	height: 700px;
+	max-height : 1000px;
+	width:auto;
 }
 
 
 .product-variant-type-description {
 	color: var(--DarkBlue);
-	font-size: 4vmin;
+	font-size: 2vmax;
 	padding-right: 1vw;
 	vertical-align: middle;
 	font-weight: bold;
@@ -1130,7 +1109,7 @@ Linda's Color Scheme
 	background-color: var(--DarkRed);	
 	border-color: var(--DarkRed);
 	height: 10vh;
-	width: 24.15vw;
+	width: 20.15vmax;
 }
 
 .add-to-cart-button.disabled, .quantity-button.disabled{
@@ -1187,7 +1166,7 @@ Linda's Color Scheme
 
 .product-page-tabs > li.active > a {
 	/*color : var(--LightBlue);*/
-	border-bottom: solid 4px var(--LightRed);
+	border-bottom: solid 4px var(--DarkBlue);
 }
 
 
@@ -1236,12 +1215,12 @@ a:hover {
 	margin-top : 0px;
 	padding-top: 2vh;
 	padding-bottom : 2vh;
-	font-size: 16px;
+	font-size: 1.5vmax;
 	line-height: normal;
 	background-color: white !important;	
 	color: grey !important;
 	border-color: lightgrey;
-	width: 22vw;	
+	width: 18vmax;	
 	
 }
 

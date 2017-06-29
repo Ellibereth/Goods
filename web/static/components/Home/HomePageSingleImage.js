@@ -33,7 +33,7 @@ export default class HomePageImageCarousel extends React.Component {
 	render() {
 		var images = this.state.images
 		if (images[0]) {
-			return <img className = "home-single-image center-block" src= {base_url + images[0].image_id}/>
+			return  <a href = "/sales"> <img className = "home-single-image center-block" src= {base_url + images[0].image_id}/> </a>
 		}
 		else {
 			return <div/>
