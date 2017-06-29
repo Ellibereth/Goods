@@ -24,6 +24,38 @@ export default class ProductTemplate1 extends React.Component {
 		}
 	}
 
+	getPriceRow() {
+		if (this.state.item_in_stock) {
+			if (this.props.product.sale_price) {
+				return (
+					<div className = "row">
+						<span className = "light-red-line-through">
+							<span className = "product-price-text">Price: ${formatPrice(this.props.product.price)}</span>
+						</span>
+						<span className = "product-sale-price-text">Sale: ${formatPrice(this.props.product.sale_price)}</span>
+					</div>
+				)
+			}
+			else {
+				return (
+					<div className = "row">
+						<span className = "product-price-text">Price: ${formatPrice(this.props.product.price)}  </span>	
+					</div>
+				)
+			}
+			
+		} 
+		else {
+			return (
+				<div className = "row">
+					<span className = "light-blue-line-through"> <span className = "product-price-text">Price: ${formatPrice(this.props.product.price)}</span></span>
+					<span className = "product-sold-out-text"> {" Sold Out!"} </span>
+				</div>
+			)
+		}
+									
+	}
+
 
 	getMainImageId(product) {
 		if (product == null || product.product_id == null) return null;
@@ -116,7 +148,9 @@ export default class ProductTemplate1 extends React.Component {
 
 	render() {
 		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+
 		if (this.props.is_loading){return <div/>}		
+		var price_row = this.getPriceRow.bind(this)()
 		return (	
 			<div className = "container">	
 					<div className = "col-sm-6 col-md-6 col-lg-6" >
@@ -152,16 +186,9 @@ export default class ProductTemplate1 extends React.Component {
 							</span>
 						</div>
 						<div className = "small-buffer"/>
-						<div className = "row">
-								{this.state.item_in_stock ? 
-									<span className = "product-price-text"> ${formatPrice(this.props.product.price)}  </span>
-								:
-									<span className = "product-price-text">
-										<s>${formatPrice(this.props.product.price)} </s> 
-										<span className = "product-sold-out-text"> {" Sold Out!"} </span>
-									</span>
-								}
-						</div>
+						
+
+						{price_row}
 
 						<div className = "small-buffer"/>
 

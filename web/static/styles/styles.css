@@ -1041,6 +1041,21 @@ Linda's Color Scheme
 	height: 350px;
 }
 
+.dark-blue-line-through {
+	color: var(--DarkBlue);
+	text-decoration: line-through;
+}
+
+.light-blue-line-through {
+	color: var(--LightBlue);
+	text-decoration: line-through;
+}
+
+.light-red-line-through {
+	color: var(--LightRed);
+	text-decoration: line-through;
+}
+
 .product-name-text{
 	font-size : 6vmin;
 	font-weight: bold;
@@ -1049,8 +1064,22 @@ Linda's Color Scheme
 .product-price-text {
 	font-weight : bold;
 	font-size : 4vmin;
-	display: block;
 	color : var(--LightBlue);
+	display: block
+}
+
+.product-sold-out-text {
+	font-weight : bold;
+	font-size : 4vmin;
+	color : var(--DarkBlue);
+	display: block;
+}
+
+.product-sale-price-text {
+	font-weight : bold;
+	font-size : 4vmin;
+	color : var(--LightRed);
+	display: block;
 }
 
 .product-description-text {
@@ -1277,7 +1306,7 @@ a:hover {
 	width:60px;
 }
 
-.product-sold-out-text {
+.home-product-sold-out-text {
 	color : var(--DarkBlue) !important;
 	margin-left: 12px;	
 }

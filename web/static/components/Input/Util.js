@@ -13,6 +13,9 @@ export function getParameterByName(name, url) {
 // takes price as float, outputs it into USD currency
 // price is taken in an integer for number of cents
 export function formatPrice(price){
+    if (isNaN(price)) {
+        return ""
+    }
 	var dollars = price / 100
 	return dollars.toFixed(2);
 }

@@ -17,7 +17,7 @@ from api.utility.variants import ProductVariants as Variants
 ## user object class
 class MarketProduct(db.Model):
 	__tablename__ = ProdTables.MarketProductTable
-	INTEGER_INPUTS = [Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.StoryTemplate, Labels.ProductTemplate]
+	INTEGER_INPUTS = [Labels.SalePrice, Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.StoryTemplate, Labels.ProductTemplate]
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	name = db.Column(db.String, default = "Sample Name")
 	price = db.Column(db.Integer, default = 0)
@@ -43,6 +43,9 @@ class MarketProduct(db.Model):
 	
 	show_manufacturer_logo = db.Column(db.Boolean, default = False)
 	manufacturer_logo_id = db.Column(db.String)
+
+	sale_price = db.Column(db.Integer)
+	sale_text = db.Column(db.String)
 
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
@@ -96,18 +99,15 @@ class MarketProduct(db.Model):
 		db.session.commit()
 
 	def addStoryImage(self, image_decoded):
-
 		# record the image_id in the database
 		story_image_record = StoryImage(self.product_id)
 		self.story_image_id = story_image_record.image_id
 		db.session.add(story_image_record)
 		db.session.commit()
-
 		# upload the image to S3
 		S3.uploadStoryImage(story_image_record.image_id, image_decoded)
 
 	def addManufacturerLogo(self, image_decoded):
-
 		# record the image_id in the database
 		manufacturer_logo = ManufacturerLogo(self.product_id)
 		self.manufacturer_logo_id = manufacturer_logo.logo_id
@@ -116,7 +116,6 @@ class MarketProduct(db.Model):
 
 		# upload the image to S3
 		S3.uploadManufacturerLogo(manufacturer_logo.logo_id, image_decoded)
-
 
 	def activateProduct(self):
 		self.active = True
@@ -173,6 +172,8 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Live] = self.live
 		public_dict[Labels.ManufacturerLogoId] = self.manufacturer_logo_id
 		public_dict[Labels.ShowManufacturerLogo] = self.show_manufacturer_logo
+		public_dict[Labels.SaleText] = self.sale_text
+		public_dict[Labels.SalePrice] = self.sale_price
 
 		if not self.second_tab_name:
 			public_dict[Labels.SecondTabName] = ""
