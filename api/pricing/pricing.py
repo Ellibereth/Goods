@@ -14,7 +14,7 @@ class Pricing:
 	def getCartItemsTotalPrice(cart):
 		total_price = 0
 		for cart_item in cart.items:
-			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).one()
 			if this_product.sale_price:
 				this_item_price = this_product.sale_price
 			else:

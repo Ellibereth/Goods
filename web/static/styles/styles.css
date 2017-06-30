@@ -389,6 +389,7 @@ Linda's Color Scheme
 	width: auto;
 	height: 75vh;
 	max-width: 90%;
+	cursor: pointer;
 }
 
 .home-image-carousel{

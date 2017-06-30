@@ -11,6 +11,8 @@ if URL == None:
 	URL = 'https://edgarusa-devgeniy.herokuapp.com/'
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+SALE_PRICE = "sale_price"
+PRICE = "price"
 
 class EmailHtml:
 
@@ -186,10 +188,10 @@ class EmailHtml:
 			return None
 			
 	def getCurrentPrice(product):
-		if product.get('sale_price'):
-			return product.get('sale_price')
+		if product.get(SALE_PRICE):
+			return product.get(SALE_PRICE)
 		else:
-			return product.get('price')
+			return product.get(PRICE)
 
 
 	def formatCurrentPrice(product):
