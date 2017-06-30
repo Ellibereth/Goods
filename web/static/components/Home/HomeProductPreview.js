@@ -56,11 +56,42 @@ export default class ProductPreview extends React.Component {
 		return true
 	}
 
+	getPriceRow(item_in_stock) {
+		if(item_in_stock){
+			if (this.props.product.sale_price) {
+				return (
+					<span>
+						<span className = "home-product-preview-sale-price-text" >${formatPrice(this.props.product.sale_price)}</span>
+						<span className = "home-product-preview-price with-sale">${formatPrice(this.props.product.price)} </span> 
+					</span>
+				)
+			}
+
+			else {
+				return (
+					<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> 
+				)	
+			}
+			
+		}
+		else  {
+			return (
+				<span>
+					<span className = "dark-blue-line-through"> <span className = "home-product-preview-price">${formatPrice(this.props.product.price)} </span> </span>
+					<span className = "home-product-preview-sold-out-text" >{" Sold Out!"}</span>
+				</span>
+			)
+		}
+						
+							
+	}
+
 
 	render() {
 
 		var date = this.props.product.sale_end_date
 		var item_in_stock = this.itemInStock(this.props.product)
+		var price_row = this.getPriceRow(item_in_stock)
 		// if (this.state.invalid_product) return <div id = {this.props.product.product_id}/>
 		return (
 			<div className = {"col-md-6  col-lg-3  col-sm-6 col-xs-12 col-sm-offset-0 col-xs-offset-0"}>
@@ -84,18 +115,11 @@ export default class ProductPreview extends React.Component {
 					</div>
 					<div className = "row home-product-preview-details text-center">
 							
-						{item_in_stock ? 
-							<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> 
-							:
-							<span className = "home-product-preview-price">
-								<s>${formatPrice(this.props.product.price)}</s> 
-								<span className = "home-product-sold-out-text" >{" Sold Out!"}</span>
-							</span>
-						}
-							<br/>
-							<span className = "home-product-preview-name"> {this.props.product.name} </span> <br/>
-							
-							<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
+						{price_row}
+						<br/>
+						<span className = "home-product-preview-name"> {this.props.product.name} </span> <br/>
+						
+						<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
 					</div>
 				</a>
 			</div>

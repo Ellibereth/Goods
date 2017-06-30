@@ -29,17 +29,16 @@ export default class ProductTemplate1 extends React.Component {
 			if (this.props.product.sale_price) {
 				return (
 					<div className = "row">
-						<span className = "light-red-line-through">
-							<span className = "product-price-text">Price: ${formatPrice(this.props.product.price)}</span>
-						</span>
-						<span className = "product-sale-price-text">Sale: ${formatPrice(this.props.product.sale_price)}</span>
+						<span className = "product-sale-price-text">${formatPrice(this.props.product.sale_price)}</span>
+						<span className = "product-price-text with-sale">${formatPrice(this.props.product.price)}</span>
+						
 					</div>
 				)
 			}
 			else {
 				return (
 					<div className = "row">
-						<span className = "product-price-text">Price: ${formatPrice(this.props.product.price)}  </span>	
+						<span className = "product-price-text">${formatPrice(this.props.product.price)}  </span>	
 					</div>
 				)
 			}
@@ -48,7 +47,7 @@ export default class ProductTemplate1 extends React.Component {
 		else {
 			return (
 				<div className = "row">
-					<span className = "light-blue-line-through"> <span className = "product-price-text">Price: ${formatPrice(this.props.product.price)}</span></span>
+					<span className = "light-blue-line-through"> <span className = "product-price-text">${formatPrice(this.props.product.price)}</span></span>
 					<span className = "product-sold-out-text"> {" Sold Out!"} </span>
 				</div>
 			)

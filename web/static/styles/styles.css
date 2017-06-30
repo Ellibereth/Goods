@@ -333,9 +333,27 @@ Linda's Color Scheme
 }
 
 
+.home-product-preview-sale-price-text {
+	color: var(--LightRed);
+	font-size: 24px;
+}
+
+.home-product-preview-sold-out-text {
+	color : var(--DarkBlue) !important;
+	margin-left: 12px;	
+	font-size: 24px;
+}
+
 .home-product-preview-price {
 	font-size: 24px;
 	color : var(--LightBlue);
+}
+
+.home-product-preview-price.with-sale {
+	color: grey;
+	text-decoration: line-through;
+	font-size: 18px;
+	margin-left: 6px;
 }
 
 .home-product-preview-details{
@@ -1065,21 +1083,25 @@ Linda's Color Scheme
 	font-weight : bold;
 	font-size : 4vmin;
 	color : var(--LightBlue);
-	display: block
+}
+
+.product-price-text.with-sale {
+	font-size: 2.5vmin;
+	text-decoration: line-through;
+	color: grey;
+	margin-left: 8px;
 }
 
 .product-sold-out-text {
 	font-weight : bold;
 	font-size : 4vmin;
 	color : var(--DarkBlue);
-	display: block;
 }
 
 .product-sale-price-text {
 	font-weight : bold;
 	font-size : 4vmin;
 	color : var(--LightRed);
-	display: block;
 }
 
 .product-description-text {
@@ -1306,15 +1328,6 @@ a:hover {
 	width:60px;
 }
 
-.home-product-sold-out-text {
-	color : var(--DarkBlue) !important;
-	margin-left: 12px;	
-}
-
-.home-product-sold-out-text {
-	color : var(--DarkBlue) !important;
-	margin-left: 12px;	
-}
 
 .navbar-mobile-right-dropdown > li > a {
 	color: var(--LightBlue) !important;	
