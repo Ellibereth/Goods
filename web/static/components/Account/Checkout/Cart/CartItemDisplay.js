@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 var browserHistory = require('react-router').browserHistory;
-import {formatPrice} from '../../../Input/Util'
+import {formatPrice, formatCurrentPrice, getCurrentPrice} from '../../../Input/Util'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class CartItemDisplay extends React.Component {
 	constructor(props) {
@@ -31,7 +31,7 @@ export default class CartItemDisplay extends React.Component {
 						    'id': this.props.item.product_id.toString(),
 							'name': this.props.item.name,
 							'brand': this.props.item.manufacturer,
-							'price': formatPrice(this.props.item.price),
+							'price': formatCurrentPrice(this.props.item),
 							'quantity': Math.abs(this.props.item.num_items - new_quantity),
 							'variant' : this.props.item ? this.props.item.variant_type : "none"
 						});
@@ -123,7 +123,7 @@ export default class CartItemDisplay extends React.Component {
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${formatPrice(item.price)} </span>
+							<span className = "cart-item-text"> ${formatCurrentPrice(item)} </span>
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
@@ -136,7 +136,7 @@ export default class CartItemDisplay extends React.Component {
 							</form>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${formatPrice((item.price *  item.num_items).toFixed(2))}  </span>
+							<span className = "cart-item-text"> ${formatPrice((getCurrentPrice(item) *  item.num_items).toFixed(2))}  </span>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
 							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />

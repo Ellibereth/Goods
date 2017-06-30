@@ -150,7 +150,7 @@ class EmailHtml:
 			+ str(product[Labels.MainImage]) + "\"/>  </span> </td>\
 			<td align = \"right\" style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> <span style = \"display:block;padding:12px;\">  \
 			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
-			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatPrice(product[Labels.Price]) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product) + "</span> <br/> \
 			<span style = \"font-size: 18px\"> Quantity: " + str(product[Labels.NumItems]) + "</span> <br/> \
 			</span> </td>  </tr> "
 		)
@@ -185,6 +185,16 @@ class EmailHtml:
 		else:
 			return None
 			
+	def getCurrentPrice(product):
+		if product.get('sale_price'):
+			return product.get('sale_price')
+		else:
+			return product.get('price')
+
+
+	def formatCurrentPrice(product):
+		return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
+
 
 	
 

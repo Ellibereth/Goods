@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
-import {formatPrice} from '../../../Input/Util.js'
+import {formatPrice, formatCurrentPrice} from '../../../Input/Util.js'
 var dateFormat = require('dateformat');
 
 

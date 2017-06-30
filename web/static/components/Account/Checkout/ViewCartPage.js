@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore.js';
 import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
-import {formatPrice} from '../../Input/Util'
+import {formatPrice, formatCurrentPrice} from '../../Input/Util'
 import Spinner from '../../Misc/Spinner'
 import {AlertMessages} from '../../Misc/AlertMessages'
 var browserHistory = require('react-router').browserHistory;

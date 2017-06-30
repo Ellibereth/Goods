@@ -8,7 +8,7 @@ import CheckoutCardSelect from './Billing/CheckoutCardSelect.js'
 import CheckoutAddressSelect from './Shipping/CheckoutAddressSelect.js'
 import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
 import CheckoutPriceRow from './CheckoutPriceRow'
-import {formatPrice} from '../../Input/Util'
+import {formatPrice, formatCurrentPrice} from '../../Input/Util'
 import Spinner from '../../Misc/Spinner'
 import {AlertMessages} from '../../Misc/AlertMessages'
 
@@ -196,7 +196,7 @@ export default class CheckoutPage extends React.Component {
 				'name': item.name,
 				'brand': item.manufacturer,
 				'variant' : item.variant_type ? item.variant_type : "none",
-				'price': formatPrice(item.price),
+				'price': formatCurrentPrice(item),
 				'quantity': item.num_items
 			});
 		})
@@ -298,7 +298,7 @@ export default class CheckoutPage extends React.Component {
 								'name': item.name,
 								'variant' : item.variant_type ? item.variant_type : "none",
 								'brand': item.manufacturer,
-								'price': formatPrice(item.price),
+								'price': formatCurrentPrice(item),
 								'quantity': item.num_items
 							});
 						})

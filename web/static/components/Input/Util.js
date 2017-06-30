@@ -30,3 +30,19 @@ export function toTitleCase(str)
 {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
+
+export function getCurrentPrice(product){
+    if (!product)  {
+        return 0
+    }
+    else if (product.sale_price) {
+        return product.sale_price
+    }
+    else {
+        return product.price
+    }
+}
+
+export function formatCurrentPrice(product) {
+    return formatPrice(getCurrentPrice(product))
+}
