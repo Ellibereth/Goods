@@ -45,10 +45,7 @@ export default class CheckoutAddBilling extends React.Component {
 
 	onSubmitPress(event){
 		event.preventDefault()
-		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
-		function () {
-			this.addCreditCard.bind(this)()
-		}.bind(this))
+		this.addCreditCard.bind(this)()
 	}
 
 	addCreditCard(){
@@ -86,8 +83,6 @@ export default class CheckoutAddBilling extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-					
 					this.props.onAddingNewBillingMethod()
 				}
 				this.props.setLoading(false)

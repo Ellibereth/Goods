@@ -40,11 +40,7 @@ export default class CheckoutAddAddress extends React.Component {
 
 	onSubmitPress(event){
 		event.preventDefault()
-		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
-			function () {
-				this.addAddress.bind(this)()
-			}.bind(this)
-		)
+		this.addAddress.bind(this)()
 	}
 
 	addAddress(){
@@ -66,12 +62,6 @@ export default class CheckoutAddAddress extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-					swal({
-							title: "Thank you!", 
-							text : "Your changes have been made",
-							type: "success"
-						})
-					
 					this.props.onAddingNewShippingAddress(this.state.use_same_for_billing)
 				}
 				this.props.setLoading(false)

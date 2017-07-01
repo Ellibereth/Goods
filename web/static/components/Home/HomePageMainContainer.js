@@ -22,9 +22,7 @@ export default class HomePageMainContainer extends React.Component {
 		  type: "POST",
 		  url: "/getHomePageProducts",
 		  success: function(data) {
-			if (!data.success){
-			}
-			else {
+			if (data.success){
 				this.setState({products : data.products})
 			}
 		  }.bind(this),
