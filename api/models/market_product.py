@@ -28,6 +28,7 @@ class MarketProduct(db.Model):
 	inventory = db.Column(db.Integer, default = 0)
 	active = db.Column(db.Boolean, default = False)
 	manufacturer = db.Column(db.String, default = "Sample Manufacturer")
+	manufacturer_email = db.Column(db.String, default = "spallstar28@gmail.com")
 	num_items_limit = db.Column(db.Integer, default = 50)
 	has_variants = db.Column(db.Boolean, default = False)
 	variant_type_description = db.Column(db.String, default = "type")
@@ -174,6 +175,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.ShowManufacturerLogo] = self.show_manufacturer_logo
 		public_dict[Labels.SaleText] = self.sale_text
 		public_dict[Labels.SalePrice] = self.sale_price
+		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
 
 		if not self.second_tab_name:
 			public_dict[Labels.SecondTabName] = ""
@@ -226,8 +228,6 @@ class ProductVariant(db.Model):
 		 db.session.delete(self)
 		 db.session.commit()
 
-
-
 	@staticmethod
 	def activateVariant(variant_id):
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
@@ -238,7 +238,6 @@ class ProductVariant(db.Model):
 	def deactivateVariant(variant_id):
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
 		this_variant.active = False
-
 		db.session.commit()
 
 	def toPublicDict(self):

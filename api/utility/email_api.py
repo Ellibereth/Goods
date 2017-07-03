@@ -24,8 +24,12 @@ ADMIN_RECIPIENTS = [
 	'darek@edgarusa.com', 
 	'darekjohnson28@gmail.com', 
 	'spallstar28@gmail.com', 
-	'eli.change.iv@gmail.com'
+	'eli.chang.iv@gmail.com'
 ]
+
+ITEMS = "items"
+MANUFACTURER = "manufacturer"
+MANUFACTURER_EMAIL = "manufacturer_email"
 
 
 URL = os.environ.get('HEROKU_APP_URL')
@@ -152,10 +156,41 @@ def sendEmailChangeConfirmation(email, email_confirmation_id, name):
 
 
 
-def sendPurchaseNotification(user, cart, address, order_id):
+def sendVendorsOrders(user, cart, address, order_id):
+	vendors_dict = {}
+	for cart_item in cart.toPublicDict()[ITEMS]:
+		if vendors_dict.get(cart_item[MANUFACTURER_EMAIL]):
+			new_list = vendors_dict[cart_item[MANUFACTURER_EMAIL]]
+			new_list.append(cart_item)
+			vendors_dict[cart_item[MANUFACTURER_EMAIL]] = new_list
+		else:
+			new_list = [cart_item]
+			vendors_dict[cart_item[MANUFACTURER_EMAIL]] = new_list
+		
+
 	sender = 'darek@manaweb.com'
 	passW = "sqwcc23mrbnnjwcz"
 	
+	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo
+	smtpserver.login(sender, passW)
+
+	for key in vendors_dict.keys():
+		msg = MIMEMultipart()
+		msg['Subject'] = "Order Notification"
+		msg['From'] = "noreply@edgarusa.com"
+		msg['To'] = key
+		html = EmailHtml.generateVendorOrderNotification(user, vendors_dict[key], address, order_id)
+		htmlPart = MIMEText(html, 'html')
+		msg.attach(htmlPart)
+		smtpserver.send_message(msg)
+	smtpserver.close()	
+
+def sendPurchaseNotification(user, cart, address, order_id):
+	sender = 'darek@manaweb.com'
+	passW = "sqwcc23mrbnnjwcz"
 	smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
@@ -179,6 +214,10 @@ def sendPurchaseNotification(user, cart, address, order_id):
 	msg.attach(htmlPart)
 	smtpserver.send_message(msg)
 	smtpserver.close()
+
+	sendVendorsOrders(user, cart, address, order_id)
+
+
 
 def sendRecoveryEmail(user):
 	sender = 'darek@manaweb.com'

@@ -25,7 +25,7 @@ class EmailHtml:
 		body = "<h2> Hello " + user.name.title() + ",</h2>"
 		body = body + "<span style = \"display:block;font-size: 14px;\">  Click below to recover your account </span>"
 		body = body + "<span style = \"display:block;font-size: 14px;\">  This link will expire in 15 minutes </span>"
-		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:16px; border:none;border-radius:6px;\"> \
+		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:6090a8;color:white;padding:16px; border:none;border-radius:6px;\"> \
 			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">Recover Account</a> </button> </div>"
 
 		textPart = MIMEText(body, 'html')
@@ -36,7 +36,7 @@ class EmailHtml:
 		url = URL + "confirmEmail/" + email_confirmation_id
 		body = "<h2> Hello " + name.title() + ",</h2>"
 		body = body + "<span style = \"display:block;font-size: 14px;\"> Thank you for signing up! Click below to confirm your account </span>"
-		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
+		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:#6090a8;color:white;padding:24px; border:none;border-radius:6px;\"> \
 			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">Confirm Email</a> </button> </div>"
 
 		return body
@@ -45,7 +45,7 @@ class EmailHtml:
 		url = URL + "confirmEmail/" + email_confirmation_id
 		body = "<h2> Hello " + name.title() + ",</h2>"
 		body = body + "<span style = \"display:block;font-size: 14px;\"> Your email has been changed. Please click below to confirm this change. </span>"
-		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\"> \
+		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:#6090a8;color:white;padding:24px; border:none;border-radius:6px;\"> \
 			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">Confirm Email</a> </button> </div>"
 
 		return body
@@ -66,7 +66,7 @@ class EmailHtml:
 
 
 		body = body + "<div style = \"padding-top:12px\"> </div>"
-		body = body + "<span style = \"text-align:center\"> <button style = \"border-radius:8px; padding: 18px; border-style: none; background-color:skyblue\" type = \"button\"> \
+		body = body + "<span style = \"text-align:center\"> <button style = \"border-radius:8px; padding: 18px; border-style: none; background-color:#6090a8\" type = \"button\"> \
 		<a href= \"" + url_link + "\" style = \"text-decoration:none; color:white; font-size: 18px;\"> View Order </a> </button> </span>"
 		body = body + "<div style= \"padding-top:12px\"> </div>"
 
@@ -138,7 +138,7 @@ class EmailHtml:
 		body = body + "</div>"
 		body = body + "<div style = \"padding-top:12px\"></div>"
 		support_url = URL + "support"
-		body = body + "<div style = \"text-align:center\"> <button type = \"button\" style = \"background-color:skyblue;color:white;padding:24px; border:none;border-radius:6px;\">  \
+		body = body + "<div style = \"text-align:center\"> <button type = \"button\" style = \"background-color:#6090a8;color:white;padding:24px; border:none;border-radius:6px;\">  \
 		<a style = \"font-size: 18px;text-decoration:none;color:white;\" href = \"" + support_url + "\"> Contact Support </a> </button> </div>"
 		body = body + "</div>"
 		return body
@@ -159,6 +159,33 @@ class EmailHtml:
 
 		return html
 
+	def generateVendorItemRow(product, order_id):
+		html = (
+			"<div> \
+			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + str(PHOTO_SRC_BASE)
+			+ str(product[Labels.MainImage]) + "\"/>  </span> </td>\
+			<span style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> <span style = \"display:block;padding:12px;\">  \
+			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
+			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Quantity: " + str(product[Labels.NumItems]) + "</span> <br/> \
+			</span> </div> <br/> <hr/>"
+		)
+
+		return html
+
+
+	def generateVendorOrderNotification(user, items, address, order_id):
+		html = "<h1> Order Notification! </h1>"
+		html = html + "<h1> Order ID " + order_id + "</h1>"
+		html = html + EmailHtml.formatAddress(address)
+		html = html + "<br/> <hr/>"
+		for item in items:
+			html = html + EmailHtml.generateVendorItemRow(item, order_id)
+		return html
+
+
+
+
 	def generateCheckoutErrorHtml(user, cart, address, error_type, python_error):
 		right_now_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 		html = "<h2> Checkout error for " + user.name.title() + " with email " + str(user.email) + "</h2>"
@@ -172,6 +199,20 @@ class EmailHtml:
 		return html
 
 
+	def formatAddress(address):
+		body = "<div style = \"width:50%;\">"
+		body = body + "<span style = \"font-size:18px;\"> <b> Shipping Address </b> </span>"
+		body = body + "<div style = \"padding-top:12px;\"> </div>"
+		if address.address_line1 and address.address_line1 != "":
+			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.name + " </span> \
+		<span style = \"display:block;font-size: 18px;\"> " + address.address_line1 + " </span> "
+		if address.address_line2 and address.address_line2 != "":
+			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_line2 + " </span>"
+		if address.address_city and address.address_zip and address.address_state:
+			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_city + ", " + address.address_state \
+		+ " " + str(address.address_zip) + " </span>"
+		body = body + "</div>"
+		return body
 
 	def formatPrice(price):
 

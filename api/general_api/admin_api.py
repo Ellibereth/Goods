@@ -123,11 +123,14 @@ def updateProductInfo(admin_user):
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
 
-	
 	for key in product.keys():
+		print(key)
 		try:
 			if key in MarketProduct.INTEGER_INPUTS:
-				value = int(product.get(key))
+				if product.get(key):
+					value = int(product.get(key))
+				else:
+					value = None
 			else:
 				value = product.get(key)
 

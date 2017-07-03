@@ -3,9 +3,9 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
 import AdminActivateProduct from './AdminActivateProduct'
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'category', 'story_text', 'story_template', 'product_template', 'num_items_limit', 'second_tab_name', 'second_tab_text', 'sale_price', 'sale_text']
-const form_labels = ['Name', 'Manufacturer', 'Price (make sure this is in cents)', 'Description', "Sale End Date", 'Category', 'Story Text', 'Story Template', 'Product Template', 'Item Limit', 'Second Tab Name', 'Second Tab Text', 'Sale Price', 'Sale Text']
-const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea', 'text', 'text', 'text', 'text', 'textarea', 'text', 'text']
+const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'description', 'sale_end_date', 'category', 'story_text', 'story_template', 'product_template', 'num_items_limit', 'second_tab_name', 'second_tab_text', 'sale_price', 'sale_text']
+const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Price (make sure this is in cents)', 'Description', "Sale End Date", 'Category', 'Story Text', 'Story Template', 'Product Template', 'Item Limit', 'Second Tab Name', 'Second Tab Text', 'Sale Price', 'Sale Text']
+const input_types = ['text', 'text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea', 'text', 'text', 'text', 'text', 'textarea', 'text', 'text']
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
 	constructor(props) {
@@ -57,7 +57,6 @@ export default class AdminEditProductInfo extends React.Component {
 	  	success: function(data) {
 			if (data.success){
 				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-				setTimeout(function () {location.reload()}, 4000)
 			}
 			else {
 				swal(data.error.title, data.error.text , data.error.type)
@@ -85,8 +84,7 @@ export default class AdminEditProductInfo extends React.Component {
 			if (data.success){
 				this.setState({product : data.product})
 				this.props.getProductInformation.bind(this)()
-				setTimeout(function () {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)}, 500)
-
+				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 			}
 			else {
 				swal(data.error.title, data.error.text , data.error.type)
