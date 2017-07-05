@@ -48,6 +48,10 @@ class MarketProduct(db.Model):
 	sale_price = db.Column(db.Integer)
 	sale_text = db.Column(db.String)
 
+	# this value is stored in ten thousands
+	# so 500 => 5%
+	manufacturer_fee = db.Column(db.Integer)
+
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -176,6 +180,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.SaleText] = self.sale_text
 		public_dict[Labels.SalePrice] = self.sale_price
 		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
+		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee
 
 		if not self.second_tab_name:
 			public_dict[Labels.SecondTabName] = ""

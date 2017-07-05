@@ -67,6 +67,7 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	ManufacturerFee = "manufacturer_fee"
 	ManufacturerEmail = 'manufacturer_email'
 	SalePrice = "sale_price"
 	SaleText = "sale_text"
@@ -213,6 +214,7 @@ class PaymentLabels:
 
 
 class CartLabels:
+	ManufacturerFee = "manufacturer_fee"
 	JwtDict = "jwt_dict"
 	Order = "order"
 	Type = "type"

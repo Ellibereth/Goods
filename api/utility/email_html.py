@@ -168,6 +168,7 @@ class EmailHtml:
 			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
 			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product) + "</span> <br/> \
 			<span style = \"font-size: 18px\"> Quantity: " + str(product[Labels.NumItems]) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Vendor Fee: " + str(EmailHtml.formatManufacturerFee(product[Labels.ManufacturerFee])) + "%</span> <br/> \
 			</span> </div> <br/> <hr/>"
 		)
 
@@ -238,6 +239,8 @@ class EmailHtml:
 	def formatCurrentPrice(product):
 		return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
 
+	def formatManufacturerFee(fee):
+		return float(fee / 100.0)
 
 	
 
