@@ -62,36 +62,35 @@ export default class AddToCartButton extends React.Component {
 					"variant" : this.state.variant
 				}),
 				success: function(data) {
-						if (data.success){
-							swal(AlertMessages.ITEM_ADDED_TO_CART,
-							function(isConfirm){
-								if (isConfirm){
-									window.location =  '/myCart'
-								}
-							});
-							AppActions.updateCurrentUser(data.user)
-							ga('ec:addProduct', {
-								'id': this.props.product.product_id.toString(),
-								'name': this.props.product.name,
-								'brand': this.props.product.manufacturer,
-								'price': formatPrice(this.props.product.price),
-								'quantity': this.state.quantity,
-								'variant' : this.state.variant ? this.state.variant.variant_type : "none"
-							});
-							ga('ec:setAction', 'add')
-							ga('send', 'event', 'UX', 'click', 'add to cart');
-						}
-						else {
-							swal(data.error.title, data.error.text , data.error.type)
-						}
-						this.props.getProductInformation()
-						setTimeout(function () {
-							this.props.checkItemInStock(this.props.product, this.state.variant)
-						}.bind(this), 1000)
-						this.setState({buy_disabled : false},
-							() => this.props.setLoading(false)
-						)
-						
+					if (data.success){
+						swal(AlertMessages.ITEM_ADDED_TO_CART,
+						function(isConfirm){
+							if (isConfirm){
+								window.location =  '/myCart'
+							}
+						});
+						AppActions.updateCurrentUser(data.user)
+						ga('ec:addProduct', {
+							'id': this.props.product.product_id.toString(),
+							'name': this.props.product.name,
+							'brand': this.props.product.manufacturer,
+							'price': formatPrice(this.props.product.price),
+							'quantity': this.state.quantity,
+							'variant' : this.state.variant ? this.state.variant.variant_type : "none"
+						});
+						ga('ec:setAction', 'add')
+						ga('send', 'event', 'UX', 'click', 'add to cart');
+					}
+					else {
+						swal(data.error.title, data.error.text , data.error.type)
+					}
+					this.props.getProductInformation()
+					setTimeout(function () {
+						this.props.checkItemInStock(this.props.product, this.state.variant)
+					}.bind(this), 1000)
+					this.setState({buy_disabled : false},
+						() => this.props.setLoading(false)
+					)
 						
 				}.bind(this),
 				error : function(){
@@ -114,7 +113,6 @@ export default class AddToCartButton extends React.Component {
 	}
 
 	componentDidMount(){
-		this.props.refreshUserInformation()
 		if (!this.props.product.has_variants) {
 			this.props.checkItemInStock(this.props.product, null)
 		}

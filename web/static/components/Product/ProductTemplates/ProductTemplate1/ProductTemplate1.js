@@ -74,7 +74,6 @@ export default class ProductTemplate1 extends React.Component {
 
 
 	componentDidMount(){
-		this.refreshUserInformation.bind(this)()
 		this.setState({selected_image : this.getMainImageId(this.props.product)})
 	}
 

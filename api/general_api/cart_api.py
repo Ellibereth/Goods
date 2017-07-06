@@ -37,8 +37,6 @@ def addItemToCart(this_user):
 		variant_id = variant.get(Labels.VariantId)
 	else:
 		variant_id = None
-
-
 	add_to_cart_response = this_user.addItemToCart(product_id, quantity, variant_id)
 	if add_to_cart_response.get(Labels.Success):
 		return JsonUtil.successWithOutput(add_to_cart_response)
