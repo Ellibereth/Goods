@@ -13,7 +13,7 @@ from api.models.market_product import ProductVariant
 
 from api.utility.labels import CartLabels as Labels
 from api.utility.jwt_util import JwtUtil
-from api.utility import email_api 
+from api.utility.email import EmailLib
 from api.models.order import Order
 from api.models.order import OrderItem
 from api.utility.lob import Lob
@@ -58,7 +58,7 @@ class Checkout:
 			return {Labels.Success : True, Labels.Order : this_order}
 
 		except Exception as e:
-			email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database, str(e))
+			EmailLib.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Database, str(e))
 			return {Labels.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
 
 	def checkoutChargeCustomer(this_user, this_cart, this_order, card_id, address):
@@ -70,12 +70,12 @@ class Checkout:
 			this_order.updateCharge(charge)
 			return None
 		except Exception as e:
-			email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Charge, str(e))
+			EmailLib.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Charge, str(e))
 			return {Labels.Success: False, Labels.Error: ErrorMessages.CartCheckoutPaymentError}
 
 	def checkoutSendEmailConfirmation(this_user, this_cart, this_order, address):
 		try:
-			email_api.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
+			EmailLib.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
 			return {
 					Labels.Success : True,
 					Labels.User : this_user.toPublicDict(),
@@ -83,7 +83,7 @@ class Checkout:
 				}
 
 		except Exception as e:
-			email_api.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email, str(e))
+			EmailLib.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email, str(e))
 			return {
 					Labels.Success : True,
 					Labels.User : this_user.toPublicDict(),

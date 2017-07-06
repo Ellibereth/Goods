@@ -63,6 +63,8 @@ class ErrorMessages:
 	BlankCategory = SwalError("You must select a topic").toDict()
 	BlankMessage = SwalError("Message cannot be blank").toDict()
 
+
+	EmailListNameTaken = SwalError("Email List Name Taken").toDict()
 	def invalidEmail(email):
 		return SwalError(email + " is not a valid email address.").toDict()
 

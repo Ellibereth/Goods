@@ -58,8 +58,8 @@ class MarketProduct(db.Model):
 										   onupdate=db.func.current_timestamp())
 
 	# add relationships 
-	tag = db.relationship("ProductTag", backref = TestTables.ProductTagTable, lazy='dynamic')
-	image_id = db.relationship("ProductImage", backref = TestTables.ImageTable, lazy='dynamic')
+	tag = db.relationship("ProductTag", backref = ProdTables.ProductTagTable, lazy='dynamic')
+	image_id = db.relationship("ProductImage", backref = ProdTables.ImageTable, lazy='dynamic')
 
 
 	def __init__(self, name):

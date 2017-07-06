@@ -1,6 +1,18 @@
 # this file will have labels for most of the other classes
 
 
+class EmailLabels:
+	UnsubscribeId = "unsubscribe_id"
+	EmailList = "email_list"
+	NumSubscribers = "num_subscribers"
+	SubscribedUsers = "subscribed_users"
+	EmailListId = "email_list_id"
+	NewEmailListName = "new_email_list_name"
+	EmailListData = "email_list_data"
+	Email = "email"
+	EmailListName = "email_list_name"
+	Unsubscribed = "unsubscribed"
+
 class UserLabels:
 	GuestJwt = "guest_jwt"
 	IsGuest = "is_guest"

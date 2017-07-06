@@ -13,7 +13,7 @@ from api.models.market_product import ProductVariant
 from api.utility.json_util import JsonUtil
 from api.utility.labels import CartLabels as Labels
 from api.utility.jwt_util import JwtUtil
-from api.utility import email_api 
+from api.utility.email import EmailLib
 from api.models.order import Order
 from api.models.order import OrderItem
 from api.utility.lob import Lob

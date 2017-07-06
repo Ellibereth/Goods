@@ -20,7 +20,7 @@ import re
 from api.utility.error import ErrorMessages
 import os
 import sys
-from api.utility import email_api
+from api.utility.email import EmailLib
 from validate_email import validate_email
 
 
@@ -372,7 +372,7 @@ class User(db.Model):
 				if new_settings.get(Labels.Email).lower() != self.email.lower():
 					try:
 						email_confirmation_id = User.generateEmailConfirmationId()
-						email_api.sendEmailChangeConfirmation(new_settings[Labels.Email], email_confirmation_id, new_settings[Labels.Name])
+						EmailLib.sendEmailChangeConfirmation(new_settings[Labels.Email], email_confirmation_id, new_settings[Labels.Name])
 					except Exception as e:
 						return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
 					self.email_confirmed = False

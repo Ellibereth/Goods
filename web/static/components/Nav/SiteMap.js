@@ -40,6 +40,10 @@ export default class SiteMap extends React.Component {
 							routes.push(pathname[1] + "/" + pathname[2])
 							labels.push("Product")
 							break;
+						case "editEmailList":
+							routes.push(pathname[1] + "/" + pathname[2])
+							labels.push("Email List")
+							break;
 					}
 				}
 				

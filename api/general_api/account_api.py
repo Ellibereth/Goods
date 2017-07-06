@@ -3,7 +3,7 @@ import time
 import datetime
 from api.models.user import User
 from api.utility.table_names import ProdTables
-from api.utility import email_api
+from api.utility.email import EmailLib
 from api.models.shared_models import db
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
@@ -288,7 +288,7 @@ def softDeleteAccount(this_user):
 @account_api.route('/resendConfirmationEmail', methods = ['POST'])
 @decorators.check_user_jwt
 def resendConfirmationEmail(this_user):
-	email_api.sendEmailConfirmation(this_user.email, this_user.email_confirmation_id, this_user.name)
+	EmailLib.sendEmailConfirmation(this_user.email, this_user.email_confirmation_id, this_user.name)
 	return JsonUtil.success()
 
 
@@ -316,7 +316,7 @@ def setRecoveryPin():
 	user = User.query.filter_by(email = email).first()
 	if user:
 		user.setRecoveryPin()
-		email_api.sendRecoveryEmail(user)
+		EmailLib.sendRecoveryEmail(user)
 		return JsonUtil.success()
 	else:
 		return JsonUtil.failure()

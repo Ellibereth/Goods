@@ -10,7 +10,7 @@ from api.models.shared_models import db
 from api.utility.jwt_util import JwtUtil
 from api.utility.json_util import JsonUtil
 from flask_compress import Compress
-from api.utility import email_api
+from api.utility.email import EmailLib
 
 from base64 import b64encode
 from api.security.tracking import HttpRequest
@@ -40,6 +40,8 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+from api.general_api.email_api import email_api
+app.register_blueprint(email_api)
 from api.general_api.public_api import public_api
 app.register_blueprint(public_api)
 from api.general_api.search_api import search_api
@@ -136,18 +138,18 @@ def catch_all(path):
 
 @app.errorhandler(404)
 def page_not_found(error):
-	email_api.reportServerError("404", error, request)
+	EmailLib.reportServerError("404", error, request)
 	return render_template("index.html")
 
 
 @app.errorhandler(405)
 def method_not_allowed(error):
-	email_api.reportServerError("405", error, request)
+	EmailLib.reportServerError("405", error, request)
 	return JsonUtil.failure("Method not allowed")
 
 @app.errorhandler(500)
 def internal_server_error(error):
-	email_api.reportServerError("500", error, request)
+	EmailLib.reportServerError("500", error, request)
 	return JsonUtil.failure("Internal server error")
 
 if __name__ == '__main__':

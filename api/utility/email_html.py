@@ -122,7 +122,6 @@ class EmailHtml:
 		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartShippingPrice(address)) + "</span>"
 		body = body + "</span>"
 		body = body + "<br/>"
-		
 
 		if cart.getCartSalesTaxPrice(address) != 0:
 			body = body + "<span style = \"display:block\">"
@@ -176,7 +175,7 @@ class EmailHtml:
 
 
 	def generateVendorOrderNotification(user, items, address, order_id):
-		html = "<h1> Order Notification! </h1>"
+		html = "<h1> Order Notification </h1>"
 		html = html + "<h1> Order ID " + order_id + "</h1>"
 		html = html + EmailHtml.formatAddress(address)
 		html = html + "<br/> <hr/>"
@@ -216,7 +215,6 @@ class EmailHtml:
 		return body
 
 	def formatPrice(price):
-
 		price_string = str(price)
 		if len(price_string) > 2:
 			return "$" + price_string[:-2] + "." + price_string[-2:]

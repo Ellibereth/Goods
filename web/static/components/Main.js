@@ -43,6 +43,7 @@ import AboutUsPage from './CustomerService/AboutUsPage'
 import ContactUsPage from './CustomerService/ContactUsPage'
 
 import SalesPage from './Sales/SalesPage.js'
+import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
 
 export default class Main extends React.Component {
 	
@@ -153,6 +154,7 @@ ReactDOM.render(
 			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
+			<Route path= "yevgeniypoker555/editEmailList/:email_list_id" onEnter = {checkAdmin} component={AdminEmailListPage} />
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>

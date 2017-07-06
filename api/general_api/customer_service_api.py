@@ -3,7 +3,7 @@ from api.utility.table_names import ProdTables
 from api.models.feedback import Feedback
 from api.models.shared_models import db
 from api.utility.labels import FeedbackLabels as Labels
-from api.utility import email_api
+from api.utility.email import EmailLib
 from api.utility.json_util import JsonUtil
 from api.utility.error import ErrorMessages
 
@@ -28,6 +28,6 @@ def addFeedback():
 	db.session.commit()
 
 	# then email us about the feedback
-	email_api.sendFeedbackEmailNotification(this_feedback)
+	EmailLib.sendFeedbackEmailNotification(this_feedback)
 	return JsonUtil.success()
 

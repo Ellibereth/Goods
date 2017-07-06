@@ -27,6 +27,8 @@ class ProdTables:
 	AdminActionTable = "ADMIN_ACTION_TABLE"
 	HttpRequestTable = "HTTP_REQUEST_TABLE"
 	ManufacturerLogoTable = "MANUFACTURER_LOGO_TABLE"
+	EmailSubscriptionTable = "EMAIL_SUBSCRIPTION_TABLE"
+	EmailListTable = "EMAIL_LIST_TABLE"
 
 
 """ 
@@ -57,6 +59,8 @@ class TestTables:
 	AdminActionTable = TEST_PREFIX + ProdTables.AdminActionTable
 	HttpRequestTable = TEST_PREFIX + ProdTables.HttpRequestTable
 	ManufacturerLogoTable = TEST_PREFIX + ProdTables.ManufacturerLogoTable
+	EmailListTable = TEST_PREFIX + ProdTables.EmailListTable
+	EmailSubscriptionTable = TEST_PREFIX + ProdTables.EmailSubscriptionTable
 	SqlTestTable = "TEST_SQL"
 
 	
