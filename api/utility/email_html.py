@@ -11,8 +11,7 @@ if URL == None:
 	URL = 'https://edgarusa-devgeniy.herokuapp.com/'
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-SALE_PRICE = "sale_price"
-PRICE = "price"
+
 
 class EmailHtml:
 
@@ -167,7 +166,8 @@ class EmailHtml:
 			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
 			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product) + "</span> <br/> \
 			<span style = \"font-size: 18px\"> Quantity: " + str(product[Labels.NumItems]) + "</span> <br/> \
-			<span style = \"font-size: 18px\"> Vendor Fee: " + str(EmailHtml.formatManufacturerFee(product[Labels.ManufacturerFee])) + "%</span> <br/> \
+			<span style = \"font-size: 18px\"> Edgar USA Fee: " + str(EmailHtml.formatVendorFee(product)) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Vendor Charge: " + str(EmailHtml.formatVendorCut(product)) + "</span> <br/> \
 			</span> </div> <br/> <hr/>"
 		)
 
@@ -186,12 +186,16 @@ class EmailHtml:
 
 
 
-	def generateCheckoutErrorHtml(user, cart, address, error_type, python_error):
+	def generateCheckoutErrorHtml(user, cart, address, error_type, error_string):
+		stack_trace = error_string.split("\n")
 		right_now_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 		html = "<h2> Checkout error for " + user.name.title() + " with email " + str(user.email) + "</h2>"
 		html = html + "<span style = \"display:block;font-size: 14px;\"> Error Type: " + str(error_type) + " </span>"
-		html = html + "<span style = \"display:block;font-size: 14px;\"> Error Message: " + str(python_error) + " </span>"
 		html = html + "<span style = \"display:block;font-size: 14px;\"> Date : " + right_now_date + "  </span>"
+		html = html + "<span style = \"display:block;font-size: 14px;\"> Error Message: "
+		for line in stack_trace:
+			html = html + line + "<br/>"
+		html = html +  "</span>"
 		html = html + "<br/> <h1> User tried to buy </h1> <br/> <hr/>"
 
 		order_id = "SAMPLE_ORDERID"
@@ -213,7 +217,7 @@ class EmailHtml:
 		+ " " + str(address.address_zip) + " </span>"
 		body = body + "</div>"
 		return body
-
+	# input price must be integers in cents
 	def formatPrice(price):
 		price_string = str(price)
 		if len(price_string) > 2:
@@ -228,17 +232,29 @@ class EmailHtml:
 			return None
 			
 	def getCurrentPrice(product):
-		if product.get(SALE_PRICE):
-			return product.get(SALE_PRICE)
+		if product.get(Labels.SalePrice):
+			return product.get(Labels.SalePrice)
 		else:
-			return product.get(PRICE)
+			return product.get(Labels.Price)
 
 
 	def formatCurrentPrice(product):
 		return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
 
-	def formatManufacturerFee(fee):
-		return float(fee / 100.0)
+	def formatVendorFee(item):
+		vendor_fee = EmailHtml.calculateVendorFee(item)
+		return EmailHtml.formatPrice(vendor_fee)
+		
+	def calculateVendorFee(item):
+		marginal_fee = EmailHtml.getCurrentPrice(item) * item[Labels.ManufacturerFee] / 10000
+		return int(marginal_fee * item[Labels.NumItems])
+
+
+	def formatVendorCut(item):
+		vendor_cut = item[Labels.NumItems] * EmailHtml.getCurrentPrice(item) - EmailHtml.calculateVendorFee(item)
+		return EmailHtml.formatPrice(vendor_cut)
+
+
 
 	
 

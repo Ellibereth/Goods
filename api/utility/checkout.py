@@ -41,7 +41,7 @@ class Checkout:
 
 		#lastly send the email confirmation (or try to)
 		send_email_response = Checkout.checkoutSendEmailConfirmation(this_user, this_cart, this_order, address)
-		this_cart.clearCart()
+		# this_cart.clearCart()
 		return send_email_response
 			
 

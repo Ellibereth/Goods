@@ -157,7 +157,7 @@ class EmailLib:
 		smtpserver.close()
 
 
-
+	@staticmethod
 	def sendVendorsOrders(user, cart, address, order_id):
 		vendors_dict = {}
 		for cart_item in cart.toPublicDict()[ITEMS]:
@@ -217,7 +217,7 @@ class EmailLib:
 		smtpserver.send_message(msg)
 		smtpserver.close()
 
-		sendVendorsOrders(user, cart, address, order_id)
+		EmailLib.sendVendorsOrders(user, cart, address, order_id)
 
 
 
@@ -244,9 +244,10 @@ class EmailLib:
 			return
 
 		if python_error:
-			exc_type, exc_obj, exc_tb = sys.exc_info()
-			fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-			error_string  = (str(python_error), exc_type, fname, exc_tb.tb_lineno)
+			# exc_type, exc_obj, exc_tb = sys.exc_info()
+			# fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+			# error_string  = (str(python_error), exc_type, fname, exc_tb.tb_lineno)
+			error_string = traceback.format_exc()
 		else:
 			error_string = ""
 
