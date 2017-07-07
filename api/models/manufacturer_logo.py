@@ -11,7 +11,6 @@ import os
 ENVIRONMENT = os.environ.get('ENVIRONMENT')
 
 
-## user object class
 class ManufacturerLogo(db.Model):
 	__tablename__ = ProdTables.ManufacturerLogoTable
 	logo_id = db.Column(db.String, primary_key = True)

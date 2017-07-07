@@ -5,11 +5,7 @@ import random
 import string
 from api.utility.labels import RequestLabels as Labels
 from api.utility.id_util import IdUtil
-## I understand there are magic strings in this, but not sure the best way to get around it right now
-## it's mostly an issue in the updateSettings which takes a dictionary as input, but we'll see
 
-
-## user object class
 class Request(db.Model):
 	__tablename__ = ProdTables.UserRequestTable
 	request_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
@@ -28,8 +24,6 @@ class Request(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-	# name,email, password all come from user inputs
-	# email_confirmation_id, stripe_customer_id will be generated with try statements 
 	def __init__(self, email, name, description, price_range, phone_number, account_id = None):
 		self.confirmation_id = Request.generateConfirmationId()
 		self.name = name
@@ -61,7 +55,4 @@ class Request(db.Model):
 		public_dict[Labels.RequestId] = self.request_id
 		public_dict[Labels.DateCompleted] = self.date_completed
 		return public_dict
-
-
-
 

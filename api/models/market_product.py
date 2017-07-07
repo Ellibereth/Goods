@@ -13,8 +13,6 @@ from api.models.manufacturer_logo import ManufacturerLogo
 from api.s3.s3_api import S3
 from api.utility.variants import ProductVariants as Variants
 
-
-## user object class
 class MarketProduct(db.Model):
 	__tablename__ = ProdTables.MarketProductTable
 	INTEGER_INPUTS = [Labels.SalePrice, Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.StoryTemplate, Labels.ProductTemplate]
@@ -151,7 +149,6 @@ class MarketProduct(db.Model):
 	def getProductVariant(self, variant_id):
 		variant = ProductVariant.query.filter_by(product_id = self.product_id, variant_id = variant_id).first()
 		return variant
-
 
 	def toPublicDict(self):
 		public_dict = {}

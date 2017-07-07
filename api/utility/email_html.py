@@ -226,8 +226,6 @@ class EmailHtml:
 			return "$0." + price_string
 		elif len(price_string) == 1:
 			return "$0.0" + price_string
-		elif price_string == "0":
-			return "$0.00"
 		else:
 			return None
 			

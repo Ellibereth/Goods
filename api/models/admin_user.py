@@ -19,8 +19,6 @@ class AdminUser(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-	# name,email, password all come from user inputs
-	# email_confirmation_id, stripe_customer_id will be generated with try statements 
 	def __init__(self, username, password, name):
 		self.username = username
 		self.password_hash = AdminUser.argonHash(pre_hash)
@@ -35,7 +33,6 @@ class AdminUser(db.Model):
 	@staticmethod
 	def argonCheck(pre_hash, post_hash):
 		return argon2.verify(pre_hash, post_hash)
-	
 
 	@staticmethod
 	def checkLogin(username, password):
@@ -56,10 +53,5 @@ class AdminUser(db.Model):
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.IsAdmin] = True
 		return public_dict
-
-
-
-
-
 
 

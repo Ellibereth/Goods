@@ -159,15 +159,16 @@ class EmailLib:
 
 	@staticmethod
 	def sendVendorsOrders(user, cart, address, order_id):
-		vendors_dict = {}
+		email_to_vendors_dict = {}
 		for cart_item in cart.toPublicDict()[ITEMS]:
-			if vendors_dict.get(cart_item[MANUFACTURER_EMAIL]):
-				new_list = vendors_dict[cart_item[MANUFACTURER_EMAIL]]
+			manufacturer_email = cart_item.get(Labels.ManufacturerEmail)
+			if email_to_vendors_dict.get(manufacturer_email):
+				new_list = email_to_vendors_dict[manufacturer_email]
 				new_list.append(cart_item)
-				vendors_dict[cart_item[MANUFACTURER_EMAIL]] = new_list
+				email_to_vendors_dict[manufacturer_email] = new_list
 			else:
 				new_list = [cart_item]
-				vendors_dict[cart_item[MANUFACTURER_EMAIL]] = new_list
+				email_to_vendors_dict[manufacturer_email] = new_list
 			
 
 		sender = 'darek@manaweb.com'
@@ -179,12 +180,12 @@ class EmailLib:
 		smtpserver.ehlo
 		smtpserver.login(sender, passW)
 
-		for key in vendors_dict.keys():
+		for manufacturer_email in email_to_vendors_dict.keys():
 			msg = MIMEMultipart()
 			msg['Subject'] = "Order Notification"
 			msg['From'] = "noreply@edgarusa.com"
-			msg['To'] = key
-			html = EmailHtml.generateVendorOrderNotification(user, vendors_dict[key], address, order_id)
+			msg['To'] = manufacturer_email
+			html = EmailHtml.generateVendorOrderNotification(user, email_to_vendors_dict[manufacturer_email], address, order_id)
 			htmlPart = MIMEText(html, 'html')
 			msg.attach(htmlPart)
 			smtpserver.send_message(msg)
@@ -244,9 +245,6 @@ class EmailLib:
 			return
 
 		if python_error:
-			# exc_type, exc_obj, exc_tb = sys.exc_info()
-			# fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
-			# error_string  = (str(python_error), exc_type, fname, exc_tb.tb_lineno)
 			error_string = traceback.format_exc()
 		else:
 			error_string = ""

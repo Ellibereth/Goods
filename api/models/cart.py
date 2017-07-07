@@ -78,9 +78,6 @@ class Cart:
 		return public_dict
 
 	
-
-
-## user object class
 class CartItem(db.Model):
 	__tablename__ = ProdTables.ShoppingCartTable
 	cart_id = db.Column(db.Integer, primary_key = True, autoincrement = True)

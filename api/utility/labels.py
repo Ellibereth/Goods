@@ -226,6 +226,7 @@ class PaymentLabels:
 
 
 class CartLabels:
+	ManufacturerEmail = "manufacturer_email"
 	SalePrice = "sale_price"
 	ManufacturerFee = "manufacturer_fee"
 	JwtDict = "jwt_dict"
