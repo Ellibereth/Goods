@@ -33,7 +33,6 @@ def getMarketProductInfo():
 
 @product_api.route('/getBatchedProductInformation', methods = ['POST'])
 def getBatchedProductInformation():
-
 	product_id_list = request.json.get(Labels.ProductIdList)
 	market_products = MarketProduct.query.filter(MarketProduct.product_id.in_(product_id_list)
 		,MarketProduct.active).all()

@@ -1,0 +1,215 @@
+
+.nav-icon {
+	display: block;
+	text-align: center;
+	padding-bottom: 4px;
+	font-size: x-large
+}
+
+.navbar-header:focus {
+	background-color: var(--DarkBlue);
+	color: var(--DarkBlue);
+}
+
+
+.nav-icon-text {
+	display: block;
+	text-align: center;
+}
+
+.nav-greetings-text {
+	display: block;
+	text-align: center;
+	line-height : 72px;
+	font-size: 24px;
+	color: white;
+}
+
+.nav-greetings-text:hover {
+	cursor: default;
+}
+
+.navbar-brand-edgarusa {
+	line-height : 44px;
+	font-size: 34px;
+	color: white;
+}
+
+.navbar-brand-edgarusa:hover, .navbar-brand-edgarusa:focus {
+	color : var(--LightBlue);
+}
+
+.navbar-brand {
+	font-family: "Avenir", "Verdana", Geneva, sans-serif;
+	/*font-family: "AvenirNext", sans-serif !important;*/
+}
+
+.nabbar-brand.mobile:hover,.nabbar-brand.mobile:focus  {
+	color: var(--LightBlue);
+}
+
+.navbar-brand-small {
+	color: white;
+	font-size: 18px;
+}
+
+.navbar-brand-small:hover,.navbar-brand-small:focus {
+	color: var(--LightBlue);
+}
+
+.navbar-right {
+	padding-right: 36px;
+}
+
+.top-navbar {
+	margin-bottom: 12px;
+	padding: 12px;
+}
+
+.bottom-navbar {
+	padding: 12px;
+}
+
+.navbar {
+	border-radius: 0 !important;
+}
+
+
+.nav-no-user-link {
+	font-size: 20px;
+	padding: 24px;
+	line-height: 44px !important;
+}
+
+.navbar-edgarusa {
+	background-color: var(--DarkBlue);
+	height: 105px;
+}
+
+.edgar-search-bar.nav-large.with-user{
+	padding-top: 10px;
+}
+
+
+.edgar-search-bar.nav-small{
+	padding-top: 0px;
+}
+
+#srch-term:focus {
+	width: 240px;	
+}
+
+#srch-term {
+	/*width: 172px;*/
+	width: 240px !important;
+	transition: width 0.5s ease;
+}
+
+.navbar-right > li > a {
+	color : white;
+}
+
+.navbar-right > li > a:hover, .navbar-right > li > a:focus {
+	background-color: transparent;
+	color : var(--LightBlue);
+}
+
+.cart-badge {
+	font-size: x-small;
+	position: absolute;
+	left: 32px;
+	top: 8px;
+	background-color: var(--LightRed);
+}
+
+
+.edgarusa-footer {
+	padding: 8px;
+	background-color: var(--DarkBlue)
+}
+
+
+
+.edgarusa-footer > ul > li > a:hover {
+	background-color: var(--DarkBlue) !important;
+	color : var(--LightBlue);	
+}
+
+.edgarusa-footer > ul > li > a {
+	color: white;
+}
+
+
+
+.navbar-edgarusa-small {
+	background-color: var(--DarkBlue);
+	 /*Look into this transition*/
+	/*-webkit-transition: all 0.4s ease;*/
+}
+
+
+
+.nav-buffer {
+	padding-bottom: 50px;
+}
+
+
+.nav-dropdown.dropdown .dropdown-menu{
+    /*display: block;*/
+    opacity: 0;
+    max-height: 0;
+
+    -moz-transition:    all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition:      all 500ms ease;
+    -ms-transition:     all 500ms ease;
+    transition:         all 500ms ease;
+}
+
+.nav-dropdown.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    max-height: 300px;
+}
+
+
+.cart-dropdown{
+	display: inline-block
+}
+
+
+.nav-checkout-button {
+	background-color: orange;
+	color: white;
+}
+
+.nav-cart-item-image{
+	height : 60px;
+	width:60px;
+}
+
+
+.navbar-mobile-right-dropdown > li > a {
+	color: var(--LightBlue) !important;	
+}
+
+.navbar-mobile-account-dropdown > li > a {
+	color: var(--LightBlue) !important;		
+}
+
+.navbar-mobile{
+	margin-bottom : 12px;
+}
+
+.navbar-brand.mobile {
+	color : var(--LightBlue) !important;
+}
+
+
+.navbar-mobile-dropdown-toggle {
+	border-color : var(--LightBlue) !important;
+}
+
+.navbar-mobile-dropdown-toggle > span {
+	background-color : var(--LightBlue) !important;
+}

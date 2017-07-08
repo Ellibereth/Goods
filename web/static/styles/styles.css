@@ -50,7 +50,6 @@ Linda's Color Scheme
 	src: url(./AvenirLight.woff) format('woff');
 }
 
-
 .admin-table-entry-short {
 	word-wrap : "break-word",
 	min-width : 160px,
@@ -72,6 +71,8 @@ Linda's Color Scheme
 	border-color : black;
 	border-style: solid;
 }
+
+
 
 .body-container { 
 	padding-top: 120px;
@@ -201,10 +202,7 @@ Linda's Color Scheme
 }
 
 
-.home-container {
-	/*background-color: var(--Beige);*/
-	opacity: 0.9;
-}
+
 
 .block-span {
 	display: block;
@@ -286,92 +284,11 @@ Linda's Color Scheme
 	margin-bottom: 16px;
 }
 
-.home-product-preview {
-	border-radius: 4px;
-	background-color: white;
-	padding-left: 18px;
-	padding-right: 18px;
-	margin: 8px;
-	height: 316px;
-}
-
-.home-product-preview:hover {
-	cursor: pointer;
-}
-
-.home-product-preview:hover .home-product-preview-name {
-	text-decoration:underline;
-}
-
-.home-product-preview-image {
-	height: 176px;
-	width : auto;
-	max-height: 100%
-}
-
-.home-product-preview-image-row {
-	height: 200px;
-	padding: 12px;
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-
-}
-
 .beige-container {
 	background-color: var(--Beige) !important;
 }
 
-.home-product-preview-container {
-	/* flag */
-	/*background-color :rgba(1,87,174, 0.3) !important;*/
 
-	/* Linda's */
-	padding-bottom: 14px;
-	padding-top: 14px;
-	background-color :rgba(96, 144, 168, 0.3) !important;
-}
-
-
-.home-product-preview-sale-price-text {
-	color: var(--LightRed);
-	font-size: 24px;
-}
-
-.home-product-preview-sold-out-text {
-	color : var(--DarkBlue) !important;
-	margin-left: 12px;	
-	font-size: 24px;
-}
-
-.home-product-preview-price {
-	font-size: 24px;
-	color : var(--LightBlue);
-}
-
-.home-product-preview-price.with-sale {
-	color: grey;
-	text-decoration: line-through;
-	font-size: 18px;
-	margin-left: 6px;
-}
-
-.home-product-preview-details{
-	padding-left: 18px;
-	padding-right: 18px;
-	padding-bottom : 10px
-
-}
-
-.home-product-preview-manufacturer {
-	font-size : 18px;
-	color: var(--DarkBlue)
-}
-
-.home-product-preview-name {
-	font-size : 18px;
-	color: var(--DarkBlue);
-}
 
 .red-text {
 	color: var(--LightRed);
@@ -385,33 +302,6 @@ Linda's Color Scheme
 	font-size: 24px;
 }
 
-.home-single-image {
-	width: auto;
-	height: 75vh;
-	max-width: 90%;
-	cursor: pointer;
-}
-
-.home-image-carousel{
-	height: 600px;
-}
-
-.home-image-carousel > .carousel-inner {
-	height: 100%;
-}
-
-.home-image-carousel > .carousel-inner >.item {
-	height: 100%;
-}
-
-.home-image-carousel > .carousel-inner > .item > img{
-	max-height: 100%;
-	width : auto;
-}
-
-.home-large-buffer {
-	margin-top: 20px;
-}
 
 .order-border {
 	border-color: grey;
@@ -463,22 +353,6 @@ Linda's Color Scheme
 	min-height: 78vh;
 	height: 90%;
 }
-
-.home-carousel-text-container{
-	position: absolute;
-	top: 5%;
-	left: 30%;
-	width: 40%;
-	height: 30%;
-	background-color: white;
-	opacity: 0.7;
-	padding: 100px;
-}
-
-.carousel-caption{
-	color: var(--DarkBlue) 
-}
-
 
 #search-container {
 	background-color : #FAF9F8 !important;
@@ -810,130 +684,6 @@ Linda's Color Scheme
 }
 
 
-.nav-icon {
-	display: block;
-	text-align: center;
-	padding-bottom: 4px;
-	font-size: x-large
-}
-
-.navbar-header:focus {
-	background-color: var(--DarkBlue);
-	color: var(--DarkBlue);
-}
-
-
-.nav-icon-text {
-	display: block;
-	text-align: center;
-}
-
-.nav-greetings-text {
-	display: block;
-	text-align: center;
-	line-height : 72px;
-	font-size: 24px;
-	color: white;
-}
-
-.nav-greetings-text:hover {
-	cursor: default;
-}
-
-.navbar-brand-edgarusa {
-	line-height : 44px;
-	font-size: 34px;
-	color: white;
-}
-
-.navbar-brand-edgarusa:hover, .navbar-brand-edgarusa:focus {
-	color : var(--LightBlue);
-}
-
-.navbar-brand {
-	font-family: "Avenir", "Verdana", Geneva, sans-serif;
-	/*font-family: "AvenirNext", sans-serif !important;*/
-}
-
-.nabbar-brand.mobile:hover,.nabbar-brand.mobile:focus  {
-	color: var(--LightBlue);
-}
-
-.navbar-brand-small {
-	color: white;
-	font-size: 18px;
-}
-
-.navbar-brand-small:hover,.navbar-brand-small:focus {
-	color: var(--LightBlue);
-}
-
-.navbar-right {
-	padding-right: 36px;
-}
-
-.top-navbar {
-	margin-bottom: 12px;
-	padding: 12px;
-}
-
-.bottom-navbar {
-	padding: 12px;
-}
-
-.navbar {
-	border-radius: 0 !important;
-}
-
-
-.nav-no-user-link {
-	font-size: 20px;
-	padding: 24px;
-	line-height: 44px !important;
-}
-
-.navbar-edgarusa {
-	background-color: var(--DarkBlue);
-	height: 105px;
-}
-
-.edgar-search-bar.nav-large.with-user{
-	padding-top: 10px;
-}
-
-
-.edgar-search-bar.nav-small{
-	padding-top: 0px;
-}
-
-#srch-term:focus {
-	width: 240px;	
-}
-
-#srch-term {
-	/*width: 172px;*/
-	width: 240px !important;
-	transition: width 0.5s ease;
-}
-
-.navbar-right > li > a {
-	color : white;
-}
-
-.navbar-right > li > a:hover, .navbar-right > li > a:focus {
-	background-color: transparent;
-	color : var(--LightBlue);
-}
-
-.cart-badge {
-	font-size: x-small;
-	position: absolute;
-	left: 32px;
-	top: 8px;
-	background-color: var(--LightRed);
-}
-
-
 
 
 /* This should be renamed, don't forget about it later*/
@@ -942,36 +692,6 @@ Linda's Color Scheme
 	opacity: 0;
 	/*-webkit-transition: all 0.4s ease;*/
 
-}
-
-.edgarusa-footer {
-	padding: 8px;
-	background-color: var(--DarkBlue)
-}
-
-
-
-.edgarusa-footer > ul > li > a:hover {
-	background-color: var(--DarkBlue) !important;
-	color : var(--LightBlue);	
-}
-
-.edgarusa-footer > ul > li > a {
-	color: white;
-}
-
-
-
-.navbar-edgarusa-small {
-	background-color: var(--DarkBlue);
-	 /*Look into this transition*/
-	/*-webkit-transition: all 0.4s ease;*/
-}
-
-
-
-.nav-buffer {
-	padding-bottom: 50px;
 }
 
 .story-image {
@@ -1295,91 +1015,8 @@ a:hover {
 	text-decoration : line-through !important;
 }
 
-.nav-dropdown.dropdown .dropdown-menu{
-    /*display: block;*/
-    opacity: 0;
-    max-height: 0;
-
-    -moz-transition:    all 500ms ease;
-    -webkit-transition: all 500ms ease;
-    -o-transition:      all 500ms ease;
-    -ms-transition:     all 500ms ease;
-    transition:         all 500ms ease;
-}
-
-.nav-dropdown.dropdown:hover .dropdown-menu {
-    display: block;
-    opacity: 1;
-    max-height: 300px;
-}
-
-
-.cart-dropdown{
-	display: inline-block
-}
-
-
-.nav-checkout-button {
-	background-color: orange;
-	color: white;
-}
-
-.nav-cart-item-image{
-	height : 60px;
-	width:60px;
-}
-
-
-.navbar-mobile-right-dropdown > li > a {
-	color: var(--LightBlue) !important;	
-}
-
-.navbar-mobile-account-dropdown > li > a {
-	color: var(--LightBlue) !important;		
-}
-
-.navbar-mobile{
-	margin-bottom : 12px;
-}
-
-.navbar-brand.mobile {
-	color : var(--LightBlue) !important;
-}
-
-
-.navbar-mobile-dropdown-toggle {
-	border-color : var(--LightBlue) !important;
-}
-
-.navbar-mobile-dropdown-toggle > span {
-	background-color : var(--LightBlue) !important;
-}
-
 
 @media screen and (max-width: 765px) {
-	.home-product-preview-price {
-		font-size: 18px !important;
-	}
-
-	.home-product-preview-details{
-		padding-left: 18px;
-		padding-right: 18px;
-		padding-bottom : 10px
-	}
-
-	.home-product-preview-manufacturer {
-		font-size : 16px !important;
-		color: black;
-	}
-
-	.home-product-preview-name {
-		font-size : 14px !important;
-		color: black;
-	}
-
-	.home-product-preview {
-		height: 300px;
-	}
 
 	.account-panel {
 		padding: 0px !important;

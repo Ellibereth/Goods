@@ -3,8 +3,7 @@ var ReactDOM = require('react-dom');
 import HomeProductPreview from './HomeProductPreview'
 import HomePageImageCarousel from './HomePageImageCarousel'
 import HomePageSingleImage from './HomePageSingleImage'
-// this is hard coded for now
-const product_id_list = [2,5,3,4]
+
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
 		super(props);
@@ -19,13 +18,9 @@ export default class HomePageMainContainer extends React.Component {
 
 
 	fetchProductInformation(){
-		var form_data = JSON.stringify({
-			product_id_list : product_id_list
-		})
 		$.ajax({
 		  type: "POST",
-		  url: "/getBatchedProductInformation",
-		  data: form_data,
+		  url: "/getHomePageProducts",
 		  success: function(data) {
 			if (data.success){
 				this.setState({products : data.products})
@@ -35,6 +30,7 @@ export default class HomePageMainContainer extends React.Component {
 			ga('send', 'event', {
 						eventCategory: ' server-error',
 						eventAction: 'getHomePageProducts',
+						eventLabel: AppStore.getCurrentUser().email
 					});
 		  },
 		  dataType: "json",
@@ -56,11 +52,15 @@ export default class HomePageMainContainer extends React.Component {
 	}
 	
 	render() {
+		// for now these are hard coded preview products
+		
+		// make sure this is divides 12
+		var items_per_row = 3
+
 		var ordered_products = this.orderProducts(this.state.products)
 		var products = ordered_products.map((product, index) =>
 				<HomeProductPreview product = {product}/>
 			)
-
 
 		return (
 			<div>
@@ -71,34 +71,14 @@ export default class HomePageMainContainer extends React.Component {
 						</div>
 					</div>
 				</div>
-				<div className = "small-buffer"/>
-				<div className = "horizontal-line-lg"/>
-				<div className = "small-buffer"/>
-				<div className ="container-fluid">
-					<div className = "row">
-						<span className = "home-product-group-header">
-							Handpicked For You
-						</span>
-					</div>
-					<div className = "small-buffer"/>
-					<div className = "row">
-						{products}
-					</div>
-				</div>
-				
-				<div className = "small-buffer"/>
-				<div className = "horizontal-line-lg"/>
-				<div className = "small-buffer"/>
+				<div className = "home-large-buffer"/>
 
-				<div className = "container-fluid">
-					<div className = "row">
-						<span className = "home-product-group-header">
-							Popular in <span className = "home-category-link">New </span>
-						</span>
-					</div>
-					<div className = "small-buffer"/>
-					<div className = "row">
-						{products}
+					
+				<div className = "container-fluid home-product-preview-container">
+					<div className = "container">
+						<div className = "row product-preview-row">
+							{products}
+						</div>
 					</div>
 				</div>
 					
