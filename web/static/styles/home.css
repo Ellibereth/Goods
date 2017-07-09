@@ -56,25 +56,27 @@
 
 .home-product-preview-details {
 	/*width was 224 on FAB but caused overflow*/
-	width: 230px;
+	width: 220px;
 	background-color: #fff;
 	padding: 0 6px 6px;
 	height: 90px;
 	border-top: 1px solid #cfcfcf;
 	min-height: 80px;
 	z-index: 1;
+	text-align: center;
 }
 
 
 .home-product-preview-price.with-sale {
 	text-decoration: line-through;
-	color: #999;
+	color: red;
 	font-size: 12px;
+	padding-left: 6px;
 }
 
 .home-product-preview {
 	/*width was 236 on FAB but caused overflow*/
-	width: 230px;
+	width: 220px;
 	height: 346px;
 	float: left;
 	background-color: #fff;
@@ -99,3 +101,5 @@
     background-color: #bdbdbd; 
     width: 100%;
 }
+
+

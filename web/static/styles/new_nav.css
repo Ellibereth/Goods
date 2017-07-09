@@ -40,7 +40,7 @@ a {
 
 /*this will be our new container*/
 .page-wrapper { 
-	width: 980px;
+	width: 1176px;
 	position: relative;
 	display: block;
 	margin: auto;
@@ -59,7 +59,7 @@ a {
 	height : 100px;
 	background-color: white;
 	align-self: center;
-	width: 980px;
+	width: 1176px;
 }
 
 .page-top-row {
@@ -71,7 +71,7 @@ a {
 
 .top-row-inner {
 	align-self: center;
-	width: 980px;
+	width: 1176px;
 }
 
 .home-sub-menu {
@@ -209,7 +209,7 @@ a {
 
 #footer-wrapper {
 	margin: 0 auto;
-	width: 980px;
+	width: 1176px;
 	clear: both;
 }
 	
@@ -221,13 +221,17 @@ a {
 #edgar-footer-badges {
 	height: 150px;
 	padding: 0;
-	width: 980px;
+	width: 1176px;
 	border-bottom: 1px solid #bdbdbd;
 	border-top: 1px solid #bdbdbd;
 }
 
 #edgar-footer-badges #first-badge {
 	margin-left: 0px;
+}
+
+#edgar-footer-badges #last-badge {
+	margin-right: 0px;
 }
 
 
@@ -240,8 +244,8 @@ a {
 #edgar-footer-badges .home-badge {
 	background-color: #f2f2f2;
 	display: block;
-	width: 318px;
-	margin: 14px 5px;
+	width: 370px;
+	margin: 14px 16.5px;
 	float: left;
 	cursor: pointer;
 	padding: 15px;
@@ -269,7 +273,7 @@ a {
 
 #dynamic-footer-wrapper #dynamic-footer {
 	display: table;
-	width: 980px;
+	width: 1176px;
 	background-color: transparent;
 	padding: 0;
 	/*border-top: 1px solid #d5d5d5;*/
@@ -291,7 +295,7 @@ a {
 
 .most-popular-categories {
 	/* 666 on FAB */
-	width: 683px;
+	width: 880px;
 	padding: 15px 0 0 15px;
 }
 

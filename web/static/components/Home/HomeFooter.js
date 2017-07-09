@@ -19,17 +19,17 @@ export default class HomeFooter extends React.Component {
 					<div id = "edgar-footer-badges">
 						<a href = "#" id = "first-badge" className = "home-badge">
 							<i className="fa fa-2x fa-truck home-badge-icon"/>
-							<span className = "badgehead badgetext">Free Shipping</span>
+							<span className = "badgehead badgetext">Free Shipping</span> <br/>
 							<span className = "badgebody badgetext">FAB PLUS Orders over $49 ship free. DESIGNER DIRECT items ship directly from our global network of designers and incur a small shipping charge.</span>
 						</a>
 						<a href = "#" className = "home-badge">
 							<i className="fa fa-2x fa-smile-o home-badge-icon"/>
-							<span className = "badgehead badgetext">Smile Guarantee</span>
+							<span className = "badgehead badgetext">Smile Guarantee</span> <br/>
 							<span className = "badgebody badgetext">We promise you'll love it. <br/> If you don't, we fix it. </span>
 						</a>
-						<a href = "#" className = "home-badge">
+						<a href = "#" id = "last-badge" className = "home-badge">
 							<i className="fa fa-2x fa-gift home-badge-icon"/>
-							<span className = "badgehead badgetext">Free Returns</span>
+							<span className = "badgehead badgetext">Free Returns</span> <br/>
 							<span className = "badgebody badgetext">
 								We want you to love your purchase. If you don't, <br/>
 								send it back (for free) and get your money back. <br/>

@@ -4,7 +4,7 @@ import HomeProductPreview from './HomeProductPreview'
 import HomePageImageCarousel from './HomePageImageCarousel'
 import HomePageSingleImage from './HomePageSingleImage'
 // this is hard coded for now
-const product_id_list = [2,5,3,4]
+const product_id_list = [2,5,3,4, 1]
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
 		super(props);
