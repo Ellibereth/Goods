@@ -72,7 +72,7 @@ export default class HomePageMainContainer extends React.Component {
 					</div>
 				</div>
 				<div className = "small-buffer"/>
-				<div className = "horizontal-line-lg"/>
+				<div className = "dark-grey-horizontal-line"/>
 				<div className = "small-buffer"/>
 				<div className ="container-fluid">
 					<div className = "row">
@@ -87,7 +87,7 @@ export default class HomePageMainContainer extends React.Component {
 				</div>
 				
 				<div className = "small-buffer"/>
-				<div className = "horizontal-line-lg"/>
+				<div className = "dark-grey-horizontal-line"/>
 				<div className = "small-buffer"/>
 
 				<div className = "container-fluid">

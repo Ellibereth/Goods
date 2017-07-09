@@ -86,9 +86,16 @@
 	color: #dd0017;
 }
 
-.horizontal-line-lg {
+.dark-grey-horizontal-line {
     height: 1px;
     color: #d5d5d5;
     background-color: #d5d5d5; 
+    width: 100%;
+}
+
+.light-grey-horizontal-line {
+    height: 1px;
+    color: #d5d5d5;
+    background-color: #bdbdbd; 
     width: 100%;
 }
