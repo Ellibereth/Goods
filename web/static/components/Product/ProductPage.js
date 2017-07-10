@@ -6,7 +6,8 @@ import StoryTemplates from './StoryTemplates/StoryTemplates'
 import PageContainer from '../Misc/PageContainer'
 import Spinner from '../Misc/Spinner'
 import ProductMainContainer from './ProductMainContainer'
-
+import Navbar from '../Nav/Navbar'
+import Footer from '../Nav/Footer'
 
 
 export default class ProductPage extends React.Component {

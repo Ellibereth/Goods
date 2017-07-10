@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import HomeProductPreview from './HomeProductPreview'
-import HomePageImageCarousel from './HomePageImageCarousel'
 import HomePageSingleImage from './HomePageSingleImage'
 // this is hard coded for now
 const product_id_list = [2,5,3,4, 1]

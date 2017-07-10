@@ -1,10 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import TopNavBar from '../Nav/TopNavBar'
 import Footer from '../Nav/Footer'
-import MobileNavBar from '../Nav/MobileNavBar'
-import SiteMap from '../Nav/SiteMap'
-// import BottomNavBar from '../Nav/BottomNavBar'
+import Navbar from '../Nav/Navbar'
+
 
 
 
@@ -27,26 +25,26 @@ export default class PageContainer extends React.Component {
 
 		return (
 				<div>
-					<div className = "body-container hidden-xs">
-						<div>
-							<TopNavBar/>
-							<SiteMap />
-								<div id="content">
-									{this.props.component}
-								</div>
-							<Footer/>
+					<div className = "page-top-row">
+						<div className = "page-wrapper">
+							<div className = "top-row-inner">
+								<span className = "top-row-text"> Free Shipping. Free Returns. Smiles Guaranteed.</span>
+								<span className = "top-row-text float-right"> 
+									<span className = "glyphicon glyphicon-envelope top-row-envelope-icon"/>
+								 	<span>Email Us</span>
+								</span>
+							</div>
 						</div>
 					</div>
-					<div className = "hidden-sm hidden-md hidden-lg">
-						<div>
-							<MobileNavBar/>
-							<SiteMap />
-								<div id="content">
-									{this.props.component}
-								</div>
-							<Footer/>
+					<div className = "page-wrapper">
+						<Navbar />
+						<div className = "content-wrapper"> 
+							{this.props.component}
 						</div>
 					</div>
+					<div className = "top-buffer"/>
+					<Footer />
+					<div className = "top-buffer"/>
 				</div>
 		);
 	}

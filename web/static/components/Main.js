@@ -10,40 +10,42 @@ import {AlertMessages} from './Misc/AlertMessages'
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
-import AdminLoginPage from './Admin/AdminLoginPage.js'
-import PageNotFound from './Misc/PageNotFound.js'
-import EmailConfirmationPage from './Account/Confirmation/EmailConfirmationPage.js'
-import RequestConfirmationPage from './Account/Confirmation/RequestConfirmationPage.js'
-import TermsOfServicePage from './Misc/TermsOfServicePage.js'
-import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
 import ProductPage from './Product/ProductPage.js'
-import RegisterPage from './Account/Register/RegisterPage.js'
-import LoginPage from './Account/Login/LoginPage.js'
-import SettingsPage from './Account/Settings/SettingsPage.js'
-import UpdatePersonalPage from './Account/Settings/Personal/UpdatePersonalPage.js'
-import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
-import LogoutPage from './Misc/LogoutPage.js'
-import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
-import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
-import AdminToolsPage from './Admin/AdminToolsPage.js'
-import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
-import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
-import ViewCartPage from './Account/Checkout/ViewCartPage.js'
-import CheckoutPage from './Account/Checkout/CheckoutPage.js'
-import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
-import SearchPage from './Search/SearchPage'
-import SupportPage from './CustomerService/SupportPage'
-import RecoveryPage from './Account/Recovery/RecoveryPage'
-import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
-import LandingPage from './Landing/LandingPage'
 
-import RequestProductPage from './CustomerService/RequestProductPage'
-import FaqPage from './CustomerService/FaqPage'
-import AboutUsPage from './CustomerService/AboutUsPage'
-import ContactUsPage from './CustomerService/ContactUsPage'
+// import AdminLoginPage from './Admin/AdminLoginPage.js'
+// import PageNotFound from './Misc/PageNotFound.js'
+// import EmailConfirmationPage from './Account/Confirmation/EmailConfirmationPage.js'
+// import RequestConfirmationPage from './Account/Confirmation/RequestConfirmationPage.js'
+// import TermsOfServicePage from './Misc/TermsOfServicePage.js'
+// import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
 
-import SalesPage from './Sales/SalesPage.js'
-import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
+// import RegisterPage from './Account/Register/RegisterPage.js'
+// import LoginPage from './Account/Login/LoginPage.js'
+// import SettingsPage from './Account/Settings/SettingsPage.js'
+// import UpdatePersonalPage from './Account/Settings/Personal/UpdatePersonalPage.js'
+// import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
+// import LogoutPage from './Misc/LogoutPage.js'
+// import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
+// import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
+// import AdminToolsPage from './Admin/AdminToolsPage.js'
+// import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
+// import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
+// import ViewCartPage from './Account/Checkout/ViewCartPage.js'
+// import CheckoutPage from './Account/Checkout/CheckoutPage.js'
+// import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
+// import SearchPage from './Search/SearchPage'
+// import SupportPage from './CustomerService/SupportPage'
+// import RecoveryPage from './Account/Recovery/RecoveryPage'
+// import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
+// import LandingPage from './Landing/LandingPage'
+
+// import RequestProductPage from './CustomerService/RequestProductPage'
+// import FaqPage from './CustomerService/FaqPage'
+// import AboutUsPage from './CustomerService/AboutUsPage'
+// import ContactUsPage from './CustomerService/ContactUsPage'
+
+// import SalesPage from './Sales/SalesPage.js'
+// import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
 
 export default class Main extends React.Component {
 	
@@ -151,7 +153,9 @@ ReactDOM.render(
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
 			<IndexRoute component={HomePage} />
-			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
+			<Route path= "eg/:product_id" component={ProductPage}/>
+
+			{/* <Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
 			<Route path= "yevgeniypoker555/editEmailList/:email_list_id" onEnter = {checkAdmin} component={AdminEmailListPage} />
@@ -159,7 +163,6 @@ ReactDOM.render(
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
-			<Route path= "eg/:product_id" component={ProductPage}/>
 			<Route path = "register" component = {RegisterPage}/>
 			<Route path = "login" component = {LoginPage}/>
 			<Route path = "settings" onEnter = {checkUser} component = {SettingsPage}/>
@@ -182,7 +185,7 @@ ReactDOM.render(
 			<Route path = "requestProduct" component = {RequestProductPage}/>
 			<Route path = "faq" component = {FaqPage}/>
 			<Route path = 'sales' component = {SalesPage}/>
-			<Route path= "*" component={PageNotFound} />
+			<Route path= "*" component={PageNotFound} /> */}
 		</Route>
 	</Router>, 
 document.getElementById('app'));

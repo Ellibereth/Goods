@@ -1,10 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-
-
 const fab_logo = "https://web.archive.org/web/20140713231906im_/http://dnok91peocsw3.cloudfront.net/relaunch/fab_2_0_logo.png"
-
 
 export default class HomeNavBar extends React.Component {
 	constructor(props) {
@@ -47,7 +44,7 @@ export default class HomeNavBar extends React.Component {
 											<li><a href="#">New Arrivals</a></li>
 											<li><a href="#">Featured Design Deals</a></li>
 											<li><a href="#">Designed in America</a></li>
-											<li><a href="#">Clearence</a></li>
+											<li><a href="#">Clearance</a></li>
 										</ul>
 									</div>
 								</nav>
