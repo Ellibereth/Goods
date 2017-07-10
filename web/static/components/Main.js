@@ -12,7 +12,11 @@ import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
 import ProductPage from './Product/ProductPage.js'
 
-// import AdminLoginPage from './Admin/AdminLoginPage.js'
+import AdminLoginPage from './Admin/AdminLoginPage.js'
+import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
+import AdminToolsPage from './Admin/AdminToolsPage.js'
+import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
+
 // import PageNotFound from './Misc/PageNotFound.js'
 // import EmailConfirmationPage from './Account/Confirmation/EmailConfirmationPage.js'
 // import RequestConfirmationPage from './Account/Confirmation/RequestConfirmationPage.js'
@@ -25,9 +29,9 @@ import ProductPage from './Product/ProductPage.js'
 // import UpdatePersonalPage from './Account/Settings/Personal/UpdatePersonalPage.js'
 // import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
 // import LogoutPage from './Misc/LogoutPage.js'
-// import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
+
 // import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
-// import AdminToolsPage from './Admin/AdminToolsPage.js'
+
 // import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
 // import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
 // import ViewCartPage from './Account/Checkout/ViewCartPage.js'
@@ -45,7 +49,7 @@ import ProductPage from './Product/ProductPage.js'
 // import ContactUsPage from './CustomerService/ContactUsPage'
 
 // import SalesPage from './Sales/SalesPage.js'
-// import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
+
 
 export default class Main extends React.Component {
 	
@@ -155,11 +159,12 @@ ReactDOM.render(
 			<IndexRoute component={HomePage} />
 			<Route path= "eg/:product_id" component={ProductPage}/>
 
-			{/* <Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
+			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
 			<Route path= "yevgeniypoker555/editEmailList/:email_list_id" onEnter = {checkAdmin} component={AdminEmailListPage} />
-			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
+			
+			{/* <Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
