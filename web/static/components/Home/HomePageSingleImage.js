@@ -2,6 +2,10 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var base_url = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
 
+
+// temporary hard coded image
+const img_src = "https://web.archive.org/web/20140702093505im_/http://dnok91peocsw3.cloudfront.net/promotions/p1/3236-778x546-1403879303.png"
+
 export default class HomePageImageCarousel extends React.Component {
 	constructor(props) {
 		super(props);
@@ -33,7 +37,10 @@ export default class HomePageImageCarousel extends React.Component {
 	render() {
 		var images = this.state.images
 		if (images[0]) {
-			return  <img onClick = {() => window.location = '/sales'} className = "home-single-image center-block" src= {base_url + images[0].image_id}/>
+			return  <img onClick = {() => window.location = '/sales'}
+			 className = "home-single-image center-block"
+			 // src= {base_url + images[0].image_id}
+			 src = {img_src}/>
 		}
 		else {
 			return <div/>

@@ -6,6 +6,12 @@ import FeedbackModal from '../CustomerService/Feedback/FeedbackModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'
 import PageContainer from '../Misc/PageContainer'
 
+import Navbar from '../Nav/Navbar'
+
+import Footer from '../Nav/Footer'
+
+
+
 
 export default class HomePage extends React.Component {
 	constructor(props) {
@@ -15,12 +21,8 @@ export default class HomePage extends React.Component {
 	}
 
 
-
 	render() {
-		var component = (
-					<HomePageMainContainer    />
-				)
-
+		var component = <HomePageMainContainer />
 		return (
 				<PageContainer component = {component}/>
 		);

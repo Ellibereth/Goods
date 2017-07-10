@@ -70,9 +70,6 @@ export default class ProductTemplate1 extends React.Component {
 		return main_image_id
 	}
 
-
-
-
 	componentDidMount(){
 		this.setState({selected_image : this.getMainImageId(this.props.product)})
 	}

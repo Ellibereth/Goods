@@ -1,11 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import ProductTemplates from './ProductTemplates/ProductTemplates'
-import StoryTemplates from './StoryTemplates/StoryTemplates'
-import PageContainer from '../Misc/PageContainer'
 import Spinner from '../Misc/Spinner'
-
-
+import ProductTitle from './ProductTitle'
+import ProductDetails from './ProductDetails'
 
 export default class ProductMainContainer extends React.Component {
 	constructor(props) {
@@ -131,12 +128,17 @@ export default class ProductMainContainer extends React.Component {
 				</div>
 			)
 		}
-		else {
-			var component = this.generateMainComponent()			
-		}		
+		// else {
+		// 	var component = this.generateMainComponent()			
+		// }		
 
 
 
-		return component;
+		return (
+			<div>
+				<ProductTitle product = {this.state.product}/>
+				<ProductDetails product = {this.state.product}/>
+			</div>
+		);
 	}
 }
