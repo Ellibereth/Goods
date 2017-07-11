@@ -86,7 +86,7 @@ export default class HomeFooter extends React.Component {
 										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
 									</li>
 									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal Accessories</a>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
 									</li>
 								</ul>
 							</div>
@@ -175,7 +175,7 @@ export default class HomeFooter extends React.Component {
 										<a href="//web.archive.org/web/20140702093317/http://fab.com/browse/carpet-tiles/?ref=footer">Carpet Tiles</a>
 									</li>
 									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/browse/kitchen-storage-organization/?ref=footer">Kitchen Storage &amp; Organization</a>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/browse/kitchen-storage-organization/?ref=footer">Kitchen Storage</a>
 									</li>
 									<li>
 										<a href="//web.archive.org/web/20140702093317/http://fab.com/browse/throw-pillows/?ref=footer">Throw Pillows</a>

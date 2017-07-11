@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import Spinner from '../Misc/Spinner'
 import ProductTitle from './ProductTitle'
 import ProductDetails from './ProductDetails'
+import ProductExtraInfo from './ProductExtraInfo'
 
 export default class ProductMainContainer extends React.Component {
 	constructor(props) {
@@ -138,6 +139,7 @@ export default class ProductMainContainer extends React.Component {
 			<div>
 				<ProductTitle product = {this.state.product}/>
 				<ProductDetails product = {this.state.product}/>
+				<ProductExtraInfo product = {this.state.product}/>
 			</div>
 		);
 	}

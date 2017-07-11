@@ -294,7 +294,7 @@ a {
 
 .departments{
 	padding: 15px 0 0; 
-	width: 122px;
+	width: 130px;
 }
 
 .most-popular-categories {
@@ -327,7 +327,7 @@ a {
 
 #dynamic-footer .section li a {
 	color: #999;
-	font-size: 11px;
+	font-size: 16px;
 }
 
 #dynamic-footer .most-popular-categories li {
@@ -400,7 +400,7 @@ a {
 
 #edgar-footer ul.footerLinks li a, #dynamic-footer .section a {
 	color: #000;
-	font-size: 11px;
+	font-size: 14px;
 	text-decoration: none;
 	font-weight: normal;
 }
