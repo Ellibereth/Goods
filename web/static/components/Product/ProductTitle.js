@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import Footer from '../Nav/Footer'
-
+import ProductBreadcrumbs from './ProductBreadcrumbs'
 
 export default class ProductTitle extends React.Component {
 	constructor(props) {
@@ -20,13 +20,11 @@ export default class ProductTitle extends React.Component {
 		return (
 
 			<div id = "salesHeader" className = "floatingHeader newSaleShareHeader">
-				<div className = "row">
-					<div className = "col-sm-4 col-md-4 col-lg-4 col-md-offset-4 col-sm-offset-4 col-lg-offset-4">
-						The breadcrumbs sitemap will go here
-					</div>
-				</div>
-				<div className = "small-buffer"/>
+				
 				<div className = "salefacebookbannerHeader prodPgBrumOptions">
+				<ProductBreadcrumbs product = {this.props.product}/>
+				<div className = "clear"/>
+				
 				<div id="prdShareWithTitle">
 					<div className="float-left">
 						<h1 id="productTitle">{this.props.product.name}</h1>

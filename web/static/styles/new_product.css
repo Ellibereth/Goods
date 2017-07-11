@@ -208,7 +208,7 @@
 
 #productpgTopWrapper {
 	height: 100%;
-	padding: 13px 0 0 0;
+	padding: 13px 0 13px 0;
 	overflow: hidden;
 	border-bottom: 1px solid #d5d5d5;
 }
@@ -491,4 +491,57 @@ img {
     color: #666;
     padding-right: 6px;
     padding-left: 6px;
+}
+
+.taxonomyBCrumAchr {
+    float: left;
+    vertical-align: top;
+    color: #333;
+    font-size: 12px;
+}
+
+.bCrumpTringle {
+    background-position: -473px -101px;
+    height: 22px;
+    width: 7px;
+    margin-top: 3px;
+    border-bottom: 0;
+}
+.browsePageBC {
+    overflow: hidden;
+    height: 26px;
+    line-height: 26px;
+}
+
+.lastBreadCrumbContent, .breadCrumbContent {
+    padding: 0 10px;
+    height: 26px;
+    line-height: 28px;
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.firstBreadCrumbContent {
+    padding: 0 10px 0 0;
+    height: 26px;
+    line-height: 28px;
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.lastBreadCrumbContent {
+    max-width: 922px;
+    text-overflow: ellipsis;
+    padding: 0 10px;
+    height: 26px;
+    line-height: 28px;
+    vertical-align: top;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #666;
 }

@@ -47,11 +47,15 @@ a {
 }
 
 .content-wrapper {
-	padding-top: 10px;
+	padding-top: 0px;
 }
 
 .home-logo-no-margin {
 	margin-left:  0px;
+}
+
+.home-container {
+	padding-top: 10px;
 }
 
 .edgar-navbar {
