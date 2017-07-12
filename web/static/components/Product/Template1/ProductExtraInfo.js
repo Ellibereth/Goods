@@ -112,7 +112,7 @@ export default class ProductExtraInfo extends React.Component {
 										<span>
 											Friday, Jul. 11 to 
 										<span className="eadWrapCls" style= {{"display" : "inline"}}>
-											<span className="ead_zip_code" style= {{"color": "#999"}}>23454,</span> 
+											<span className="ead_zip_code" style= {{"color": "#999"}}>{" 23454,"}</span> 
 												<input type="text" maxlength="7" className="ead_zip_code_input" value="19131" original="19131"/>
 												<span className="ship_country" original="USA" style= {{"display" : "inline", "color" : "#999"}}>USA</span>
 												<span className="eadEdit float-right colorRed" style= {{"display" :" none"}}>Edit</span>

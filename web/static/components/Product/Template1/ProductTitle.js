@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import Footer from '../Nav/Footer'
+import Footer from '../../Nav/Footer'
 import ProductBreadcrumbs from './ProductBreadcrumbs'
 
 export default class ProductTitle extends React.Component {

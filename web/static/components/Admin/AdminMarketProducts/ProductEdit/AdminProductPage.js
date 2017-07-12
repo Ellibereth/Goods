@@ -85,9 +85,7 @@ export default class AdminProductPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = 
-
-			{
+			<PageContainer>
 				<div>
 					<div className = "container">
 						<div className = "row">
@@ -147,7 +145,7 @@ export default class AdminProductPage extends React.Component {
 
 					</div>
 				</div>
-			}/>
+			</PageContainer>
 		);
 	}
 }

@@ -21,14 +21,14 @@ export default class UpdateBillingPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div className = "container">
 					{this.state.is_loading && <Spinner />}
 					 {/* <SettingsFormPersonal /> */}
 					<UpdateBillingForm
 					setLoading = {this.setLoading.bind(this)}/>
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

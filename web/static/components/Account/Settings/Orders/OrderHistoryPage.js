@@ -66,12 +66,12 @@ export default class OrderHistoryPage extends React.Component {
 		
 		
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div id = "orders_container" className = "container">
 					{this.state.is_loading && <Spinner />}
 					{order_display}
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

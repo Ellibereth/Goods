@@ -1,9 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import Spinner from '../Misc/Spinner'
-import ProductTitle from './ProductTitle'
-import ProductDetails from './ProductDetails'
-import ProductExtraInfo from './ProductExtraInfo'
+
+import ProductTemplate1 from './Template1/ProductTemplate1'
+import ProductTemplate2 from './Template2/ProductTemplate2'
+
 
 export default class ProductMainContainer extends React.Component {
 	constructor(props) {
@@ -133,13 +134,15 @@ export default class ProductMainContainer extends React.Component {
 		// 	var component = this.generateMainComponent()			
 		// }		
 
-
-
 		return (
+
 			<div>
-				<ProductTitle product = {this.state.product}/>
-				<ProductDetails product = {this.state.product}/>
-				<ProductExtraInfo product = {this.state.product}/>
+				{this.state.product.product_template == 1 &&
+					<ProductTemplate1 product = {this.state.product}/>
+				}
+				{this.state.product.product_template == 2 && 
+					<ProductTemplate2 product = {this.state.product}/>
+				}
 			</div>
 		);
 	}

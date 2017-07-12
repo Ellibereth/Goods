@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import ProductRequestModal from '../Product/ProductRequest/ProductRequestModal.js'
 import FeedbackModal from '../CustomerService/Feedback/FeedbackModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'
 import PageContainer from '../Misc/PageContainer'
@@ -22,9 +21,10 @@ export default class HomePage extends React.Component {
 
 
 	render() {
-		var component = <HomePageMainContainer />
 		return (
-				<PageContainer component = {component}/>
+				<PageContainer>
+					<HomePageMainContainer />
+				</PageContainer>
 		);
 	}
 }

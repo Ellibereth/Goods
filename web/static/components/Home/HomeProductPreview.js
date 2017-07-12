@@ -27,12 +27,7 @@ export default class HomeProductPreview extends React.Component {
 
 	itemInStock(product){
 		if (!product.has_variants) {
-			if (product.inventory > 0){
-				return true
-			}
-			else {
-				return false
-			}
+			return (product.inventory > 0)
 		}
 		else {
 			return true

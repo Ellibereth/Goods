@@ -87,7 +87,7 @@ export default class SettingsPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div id = "settings-container" 
 				className = {this.state.is_loading ? "container faded" : "container"}
 				>
@@ -116,7 +116,7 @@ export default class SettingsPage extends React.Component {
 							</div>
 						}
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

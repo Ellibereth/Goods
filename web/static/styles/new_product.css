@@ -1,4 +1,4 @@
-.salefacebookbannerHeader {
+/*.salefacebookbannerHeader {
 	padding-bottom: 0;
 }
 
@@ -350,6 +350,16 @@ img {
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
+
+.prodPgAddcartButton .addToCart:hover {
+	cursor: not-allowed;
+}
+
+.soldOut .addToCart {
+	opacity: 0.7;
+}
+
+
 .colorsWithAddToCart .addToCart {
 	padding: 0 50px!important;
 }
@@ -516,7 +526,7 @@ img {
 .lastBreadCrumbContent, .breadCrumbContent {
 	padding: 0 10px;
 	height: 26px;
-	line-height: 28px;
+	line-height: 26px;
 	vertical-align: top;
 	display: inline-block;
 	overflow: hidden;
@@ -526,7 +536,7 @@ img {
 .firstBreadCrumbContent {
 	padding: 0 10px 0 0;
 	height: 26px;
-	line-height: 28px;
+	line-height: 26px;
 	vertical-align: top;
 	display: inline-block;
 	overflow: hidden;
@@ -538,7 +548,7 @@ img {
 	text-overflow: ellipsis;
 	padding: 0 10px;
 	height: 26px;
-	line-height: 28px;
+	line-height: 26px;
 	vertical-align: top;
 	display: inline-block;
 	overflow: hidden;
@@ -899,3 +909,27 @@ ul.tblList label {
 	height: 30px;
 	width: 50px;
 }
+
+#productPricingDetails .retailPrice {
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.retailPrice {
+    text-align: left;
+    font-size: 16px;
+    color: #9a9a9a;
+    text-decoration: line-through;
+    line-height: 16px;
+    font-weight: 200;
+}
+
+
+
+
+
+/* Here we try to copy the new fab product page styles */
+
+
+
+*/

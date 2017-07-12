@@ -119,7 +119,7 @@ export default class ViewCartPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div id = "view-cart-container" 
 				className = {this.state.is_loading ? "container faded" : "container"}
 				>
@@ -164,7 +164,7 @@ export default class ViewCartPage extends React.Component {
 						</div>
 					</div>
 				</div>
-			}/>
+			</PageContainer>
 			
 		)
 	}

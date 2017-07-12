@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import Footer from '../Nav/Footer'
-import {formatPrice} from '../Input/Util'
+import {formatPrice} from '../../Input/Util'
 import ProductAddToCart from './ProductAddToCart'
 
 const src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -84,9 +83,12 @@ export default class ProductDetails extends React.Component {
 	}
 
 	componentDidMount(){
+		if (!this.props.product) {
+			return;
+		}
 		this.checkItemInStock.bind(this)(this.props.product)
 		var main_image_id = this.getMainImage(this.props.product)
-		this.props.product.map((image,index) => {
+		this.props.product.images.map((image,index) => {
 			if (image.image_id == main_image_id){
 				this.setState({
 					selected_image_id : main_image_id,

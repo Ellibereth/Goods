@@ -56,7 +56,7 @@ export default class EmailConfirmationPage extends React.Component {
 	render() {
 
 		return (
-				<PageContainer component = {
+				<PageContainer>
 						<div className = "container">
 							<h1>
 								Welcome to Edgar USA! <br/>
@@ -64,8 +64,8 @@ export default class EmailConfirmationPage extends React.Component {
 								Click <a href ="/"> here </a> to start shopping now
 							</h1>
 						</div>
-					}
-				/>
+					
+				</PageContainer>
 		);
 	}
 }

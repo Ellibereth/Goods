@@ -17,7 +17,7 @@ export default class ProductBreadcrumbs extends React.Component {
 					<ul className="browsePageBC">
 						<li id="firstBreadCrumb" className="float-left">
 							<a className="taxonomyBCrumAchr" href="/">
-								<span className="firstBreadCrumbContent">Fab</span>
+								<span className="firstBreadCrumbContent">Edgar USA</span>
 							</a>
 							<i className="fa fa-chevron-right product-breadcrumb-divider" aria-hidden="true"></i>
 						</li>

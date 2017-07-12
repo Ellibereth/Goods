@@ -16,15 +16,12 @@ export default class FaqPage extends React.Component {
 
 	render() {
 
-		var component = (
-			<div className = "container">
-				<h1> Request a Product Page </h1>
-			</div>
-
-		)
-
 		return (
-				<PageContainer component = {component}/>
+				<PageContainer>
+					<div className = "container">
+						<h1> Request a Product Page </h1>
+					</div>
+				</PageContainer>
 		);
 	}
 }

@@ -44,33 +44,34 @@ export default class SalesPage extends React.Component {
 		var products = this.state.products.map((product, index) =>
 				<HomeProductPreview product = {product}/>
 			)
-		var component = <div>
-							<div className = "container">
-								<div className="row show-grid">
-									<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
-										<h1>
-											These products are on sale!
-										</h1>
-									</div>
-								</div>
-							</div>
-							<div className = "home-large-buffer"/>
-
-								
-							<div className = "container-fluid home-product-preview-container">
-								<div className = "container">
-									<div className = "row product-preview-row">
-										{products}
-									</div>
-								</div>
-							</div>
-								
-						</div>
 
 
 
 		return (
-				<PageContainer component ={component}/>
+				<PageContainer>
+					<div>
+						<div className = "container">
+							<div className="row show-grid">
+								<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
+									<h1>
+										These products are on sale!
+									</h1>
+								</div>
+							</div>
+						</div>
+						<div className = "home-large-buffer"/>
+
+							
+						<div className = "container-fluid home-product-preview-container">
+							<div className = "container">
+								<div className = "row product-preview-row">
+									{products}
+								</div>
+							</div>
+						</div>
+								
+					</div>
+				</PageContainer>
 		);
 	}
 }

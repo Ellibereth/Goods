@@ -39,7 +39,7 @@ export default class PageContainer extends React.Component {
 					<div className = "page-wrapper">
 						<Navbar />
 						<div className = "content-wrapper"> 
-							{this.props.component}
+							{this.props.children}
 						</div>
 					</div>
 					<div className = "top-buffer"/>

@@ -15,16 +15,12 @@ export default class AboutUsPage extends React.Component {
 
 
 	render() {
-
-		var component = (
-			<div className = "container">
-				<h1> About Us Page </h1>
-			</div>
-
-		)
-
 		return (
-				<PageContainer component = {component}/>
+				<PageContainer>
+					<div className = "container">
+						<h1> About Us Page </h1>
+					</div>
+				</PageContainer>
 		);
 	}
 }

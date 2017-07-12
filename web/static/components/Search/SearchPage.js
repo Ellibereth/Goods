@@ -48,19 +48,18 @@ export default class SearchPage extends React.Component {
 			<SearchProductPreview product = {product} index = {index}/>
 		)
 		
-		var component = (
-				<div id = "search-container" className = "container-fluid">
-					<div className = "container">
-						<div className = "row search-result-amount-text">
-							Showing {this.state.num_results} results for {this.props.params.search_input}
-						</div>
-						{products_display}
-					</div>
-				</div>
-			)
 
 		return (
-				<PageContainer component = {component}/>
+				<PageContainer>
+					<div id = "search-container" className = "container-fluid">
+						<div className = "container">
+							<div className = "row search-result-amount-text">
+								Showing {this.state.num_results} results for {this.props.params.search_input}
+							</div>
+							{products_display}
+						</div>
+					</div>
+				</PageContainer>
 		);
 	}
 }

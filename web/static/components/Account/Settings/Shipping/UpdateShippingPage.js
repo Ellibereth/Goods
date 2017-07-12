@@ -21,7 +21,7 @@ export default class UpdateShippingPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				
 				<div className = "container">
 					{this.state.is_loading && <Spinner/>}	 
@@ -30,7 +30,7 @@ export default class UpdateShippingPage extends React.Component {
 					 	setLoading = {this.setLoading.bind(this)} />
 					 </div>
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

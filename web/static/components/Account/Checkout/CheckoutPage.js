@@ -373,8 +373,7 @@ export default class CheckoutPage extends React.Component {
 	render() {
 		var can_checkout = this.canCheckout()
 		return (
-			<PageContainer {...this.props}
-				component = {
+			<PageContainer>
 					<div id = "checkout-container" 
 					className = {this.state.is_loading ? "container faded" : "container"}
 					>	
@@ -491,7 +490,7 @@ export default class CheckoutPage extends React.Component {
 							</div>
 						</div>
 					</div>
-			}/>	
+			</PageContainer>
 		)
 	}
 }

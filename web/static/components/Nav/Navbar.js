@@ -29,8 +29,8 @@ export default class HomeNavBar extends React.Component {
 								<div id = "top-right-navigation" className = "col-md-2 col-lg-2 col-sm-2 home-right-nav pull-right">
 									<div id="home-top-navigation" className = "float-right">
 										<ul>
-											<li><a href="#"><span className = "glyphicon glyphicon-shopping-cart"/></a></li>
-											<li><a href="#" id = "home-login-text">Login</a></li>
+											<li><a href="/myCart"><span className = "glyphicon glyphicon-shopping-cart"/></a></li>
+											<li><a href="/login" id = "home-login-text">Login</a></li>
 										</ul>
 									</div>
 								</div>
@@ -43,7 +43,6 @@ export default class HomeNavBar extends React.Component {
 											<li><a href="#">Shop By Department</a></li>
 											<li><a href="#">New Arrivals</a></li>
 											<li><a href="#">Featured Design Deals</a></li>
-											<li><a href="#">Designed in America</a></li>
 											<li><a href="#">Clearance</a></li>
 										</ul>
 									</div>

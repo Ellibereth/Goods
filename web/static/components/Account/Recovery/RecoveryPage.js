@@ -101,7 +101,7 @@ export default class RecoveryPage extends React.Component {
 		
 
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div className = "container">
 					{this.state.is_loading && <Spinner />}
 						<div className = "container">
@@ -126,7 +126,7 @@ export default class RecoveryPage extends React.Component {
 							</div>
 						</div>
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

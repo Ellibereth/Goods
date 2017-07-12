@@ -91,8 +91,9 @@ export default class SupportPage extends React.Component {
 				<option value = {category} index = {index}> {category} </option>
 			)
 
-		var component = (
-			<div className = "container">
+		return (
+				<PageContainer>
+					<div className = "container">
 				<div className = "row">
 					<div className = "col-sm-6 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
 						<div className = "panel panel-default ">
@@ -191,11 +192,7 @@ export default class SupportPage extends React.Component {
 					</div>
 				</div>
 			</div>
-
-		)
-
-		return (
-				<PageContainer component = {component}/>
+			</PageContainer>
 		);
 	}
 }

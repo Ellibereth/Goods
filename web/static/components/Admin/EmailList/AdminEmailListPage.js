@@ -87,9 +87,7 @@ export default class AdminProductPage extends React.Component {
 				</tr>
 			)
 		return (
-			<PageContainer component = 
-
-			{
+			<PageContainer>
 				<div>
 					<div className = "container">
 						<table className="table table-bordered">
@@ -110,7 +108,7 @@ export default class AdminProductPage extends React.Component {
 					</div>
 
 				</div>
-			}/>
+			</PageContainer>
 		);
 	}
 }

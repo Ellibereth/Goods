@@ -38,14 +38,13 @@ export default class EmailConfirmationPage extends React.Component {
 	render() {
 
 		return (
-				<PageContainer component = {
+				<PageContainer>
 						<h3>
 							Thank you for sending us a request! <br/>
 							We'll get back to you as soon as possible with suggestions or further questions! <br/>
 							Click <a href ="/"> here </a> to return to the home page.
 						</h3>
-					}
-				/>
+				</PageContainer>
 		);
 	}
 }

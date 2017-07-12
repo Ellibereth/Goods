@@ -31,7 +31,7 @@ export default class LoginPage extends React.Component {
 	render() {
 
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div className = "container-fluid">
 					{this.state.is_loading && <Spinner />}
 					<div className = "col-xs-12 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-md-4 col-lg-4 col-sm-4">
@@ -39,7 +39,7 @@ export default class LoginPage extends React.Component {
 						setLoading = {this.setLoading.bind(this)}/>
 					</div>
 				</div>
-			}/>
+			</PageContainer>
 			
 		)
 	}

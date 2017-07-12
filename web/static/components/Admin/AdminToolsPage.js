@@ -112,7 +112,7 @@ export default class AdminToolsPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div className = "container">
 					<Nav bsStyle="pills" activeKey={this.state.selected_tab} onSelect={this.switchTabs.bind(this)}>
 						<NavItem eventKey= {REQUEST_INDEX}> Requests </NavItem>
@@ -146,8 +146,7 @@ export default class AdminToolsPage extends React.Component {
 					</div>
 
 				</div>
-			}/>
-			
+			</PageContainer>	
 		);
 	}
 }
