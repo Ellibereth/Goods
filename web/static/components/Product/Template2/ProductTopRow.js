@@ -60,7 +60,7 @@ export default class ProductTopRow extends React.Component {
 																<link itemprop="url" href="https://fab.com/product/pink-banana-leaf-pillow-526543/ff7o4r?fref=fb-like"/>
 																	<div>
 																		<span id="byText" className="byText new-heading-3">by</span>
-																		<h2 className="designer-name new-heading-3"><a href="/designer/wilder-california/" alt="" title=""> Wilder California</a></h2>
+																		<h2 className="designer-name new-heading-3"><a href="/designer/wilder-california/" alt="" title="">{" Wilder California"}</a></h2>
 																	</div>
 															</div>
 														</div>

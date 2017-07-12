@@ -137,12 +137,13 @@ export default class ProductMainContainer extends React.Component {
 		return (
 
 			<div>
-				{this.state.product.product_template == 1 &&
+				<ProductTemplate2 product = {this.state.product}/>
+				{/* this.state.product.product_template == 1 &&
 					<ProductTemplate1 product = {this.state.product}/>
 				}
 				{this.state.product.product_template == 2 && 
 					<ProductTemplate2 product = {this.state.product}/>
-				}
+				}*/}
 			</div>
 		);
 	}
