@@ -79,6 +79,7 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	MoreDetails = "more_details"
 	ManufacturerFee = "manufacturer_fee"
 	ManufacturerEmail = 'manufacturer_email'
 	SalePrice = "sale_price"

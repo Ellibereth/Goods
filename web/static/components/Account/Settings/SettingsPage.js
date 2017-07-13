@@ -89,8 +89,7 @@ export default class SettingsPage extends React.Component {
 		return (
 			<PageContainer>
 				<div id = "settings-container" 
-				className = {this.state.is_loading ? "container faded" : "container"}
-				>
+				className = {this.state.is_loading ? "container faded" : "container"}>
 					{this.state.is_loading && <Spinner />}
 					<h1 style = {{"margin-left": "14px"}}> Your Account </h1> 
 					<br/>
@@ -113,7 +112,10 @@ export default class SettingsPage extends React.Component {
 								<br />
 								<OrdersPreview orders = {this.state.orders} />
 								<br/>
+
+								<button type = "button" className = "btn btn-default" onClick = {() => window.location = '/logout'}>Logout</button>
 							</div>
+
 						}
 				</div>
 			</PageContainer>

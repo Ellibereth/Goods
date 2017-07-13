@@ -18526,7 +18526,7 @@ body.use-2015-font #offerStrip {
     color: white;
     text-align: center;
     position: absolute;
-    right: 2px;
+    right: 77px;
     top: -9px
 }
 #sCart #proceedToCO:hover,
@@ -26529,4 +26529,13 @@ input[type=text]:focus:-moz-placeholder {
 }
 .no-border {
     border: 0
+}
+
+.newShareWidgetLinks li {
+    display: inline;
+}
+
+.addToCart.soldOut {
+    opacity: 0.7;
+    cursor: not-allowed;
 }

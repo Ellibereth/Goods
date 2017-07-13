@@ -3,9 +3,9 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
 import AdminActivateProduct from './AdminActivateProduct'
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'description', 'sale_end_date', 'category', 'story_text', 'story_template', 'product_template', 'num_items_limit', 'second_tab_name', 'second_tab_text', 'sale_price', 'sale_text', 'manufacturer_fee']
-const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Price (make sure this is in cents)', 'Description', "Sale End Date", 'Category', 'Story Text', 'Story Template', 'Product Template', 'Item Limit', 'Second Tab Name', 'Second Tab Text', 'Sale Price', 'Sale Text', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%']
-const input_types = ['text', 'text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea', 'text', 'text', 'text', 'text', 'textarea', 'text', 'text', 'text']
+const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'description', 'more_details', 'sale_end_date', 'category', 'story_text', 'story_template', 'product_template', 'num_items_limit', 'second_tab_name', 'second_tab_text', 'sale_price', 'sale_text', 'manufacturer_fee']
+const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Price (make sure this is in cents)', 'Description', 'More Details (separate bullets with newline)', "Sale End Date", 'Category', 'Story Text', 'Story Template', 'Product Template', 'Item Limit', 'Second Tab Name', 'Second Tab Text', 'Sale Price', 'Sale Text', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%']
+const input_types = ['text', 'text', 'text', 'text', 'textarea','textarea', 'datetime-local', 'text', 'textarea', 'text', 'text', 'text', 'text', 'textarea', 'text', 'text', 'text']
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
 	constructor(props) {

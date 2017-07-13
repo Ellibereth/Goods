@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
+import ProductAddToCart from './ProductAddToCart'
+import {formatPrice} from '../../Input/Util.js'
 const src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 
@@ -8,11 +9,167 @@ export default class ProductTopRow extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			selected_image_id : "",
+			selected_image_index : 0,
+			item_in_stock : true,
+			can_add_to_cart : true
 		}
 	}
 
+	selectImage(index, image_id) {
+		this.setState({
+			selected_image_id : image_id,
+			selected_image_index : index
+		})
+	}
+
+	
+
+	checkItemInStock(product, variant){
+
+		if (product.has_variants) {
+			if (variant) {
+				var item_in_stock = (variant.inventory > 0)
+			}
+			else {
+				var item_in_stock = true
+			}
+		}
+		// item does not have variants
+		else {
+			var item_in_stock = (product.inventory > 0)
+		}
+
+		this.setState({
+			item_in_stock : item_in_stock,
+			can_add_to_cart : item_in_stock
+		})
+	}
+
+	getPriceDisplay() {
+		var product = this.props.product
+		if (this.state.item_in_stock) {
+			if (product.sale_price) {
+				return (
+					<div>
+						<p className="fab-color-black new-heading-2 float-left fabPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="fab-color-black bold-texts">
+								${formatPrice(product.sale_price)}
+							</span>
+						</p>
+						<p className="fab-color-black new-heading-2 float-left fabPrice retailPrice" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="fab-color-black bold-texts">
+								${formatPrice(product.price)}
+							</span>
+						</p>
+					</div>
+				)
+			}
+
+			else {
+				return (
+					<p className="fab-color-black new-heading-2 float-left fabPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+						<span className="fab-color-black bold-texts">
+							${formatPrice(product.price)}
+						</span>
+					</p>
+				)
+			}
+		}
+		else {
+			return (
+				<div>
+						<p className="fab-color-black new-heading-2 float-left fabPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="fab-color-black bold-texts">
+								Sold Out
+							</span>
+						</p>
+						<p className="fab-color-black new-heading-2 float-left fabPrice retailPrice" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="fab-color-black bold-texts">
+								${formatPrice(product.price)}
+							</span>
+						</p>
+					</div>
+			)
+		}
+
+	}
+
+	componentDidMount(){
+		if (!this.props.product || !this.props.product.images) {
+			return;
+		}
+		if (!this.props.product.has_variants) {
+			this.checkItemInStock.bind(this)(this.props.product, null)
+		}
+		else {
+			this.checkItemInStock.bind(this)(this.props.product, this.props.product.variants[0])
+		}
+		var main_image_id = this.getMainImage(this.props.product)
+		this.props.product.images.map((image,index) => {
+			if (image.image_id == main_image_id){
+				this.setState({
+					selected_image_id : main_image_id,
+					selected_image_index : index
+				})		
+			}
+		})
+	}
+
+	componentWillReceiveProps(nextProps) {
+		var main_image_id = this.getMainImage(nextProps.product)
+		if (!nextProps.product.has_variants) {
+			this.checkItemInStock.bind(this)(nextProps.product, null)
+		}
+		else {
+			this.checkItemInStock.bind(this)(nextProps.product, nextProps.product.variants[0])
+		}
+		nextProps.product.images.map((image, index) => {
+			if (image.image_id == main_image_id){
+				this.setState({
+					selected_image_id : main_image_id,
+					selected_image_index : index
+				})		
+			}
+		})
+	}
+
+
+	getMainImage(product) {
+		if (product == null || product.product_id == null) return null;
+		if (product.images.length == 0) return null
+		// something better needs to be done about bad pages, but I'll figure something out soon
+		return !product.main_image ? product.images[0].image_id : product.main_image;
+	}
+
+	getProductImages (product) {
+		if (!product || !product.images){
+			return <div/>
+		}
+
+
+		return product.images.map((image,index) => {
+			var class_base = "poRel slide prd-alt-thumb-img-wrap prod-mini-thumb center-block img-responsive prdthumbimgwrap prdaltthumbimgwrap item "
+			var is_selected_class = (index == this.state.selected_image_index) ? " selected " : ""
+			var is_first_class = (index == 0) ? " primary " : ""
+			var class_name = class_base + is_selected_class + is_first_class
+			return <li className={class_name}>
+						<img onClick = {this.selectImage.bind(this, index, image.image_id)} src={src_base + image.image_id} className = "pthumbimg center-block img-responsive" />
+							<div className="material-mask">
+								<div className="material-inner-mask"></div>
+							</div>
+					</li>
+		})
+	}
+
+	
+
+
 	render() {
-		var main_image_id =  this.props.product ? src_base + this.props.product.main_image : ""
+		var product = this.props.product
+		var main_image_id = src_base + this.state.selected_image_id
+		var product_images = this.getProductImages(this.props.product)
+		var price_row = this.getPriceDisplay.bind(this)(product)
 
 		return (
 					<div className="fab-col-xs-offset-0 fab-col-sm-offset-1 fab-col-md-offset-2 fab-col-lg-offset-6 fab-col-xl-offset-6 fab-col-xs-60 fab-col-sm-58 fab-col-md-56 fab-col-lg-48 fab-col-xl-48" id="productpgTopWrapper">
@@ -21,19 +178,8 @@ export default class ProductTopRow extends React.Component {
 								<div className="hidden-xs fab-col-sm-4 no-padding fab-col-full-height vertical-slider">
 									<div className="res-moreProdImages">
 										<div className="res-optimizelySliderForMoreImages">
-											<ul className="res-moreIndvProdImages res-moreProductSmlImages bxslider">
-												<li className="poRel slide prd-alt-thumb-img-wrap prod-mini-thumb center-block img-responsive prdthumbimgwrap prdaltthumbimgwrap item    primary">
-													<img data-prod-id="526543" alt="" title="" data-sale-id="100000" src="//dnok91peocsw3.cloudfront.net/product/526543-70x70-1471870412-primary.png" className="pthumbimg center-block img-responsive"/>
-													<div className="material-mask">
-														<div className="material-inner-mask"></div>
-													</div>
-												</li>
-												<li className="poRel prd-alt-thumb-img-wrap prod-mini-thumb center-block img-responsive prdthumbimgwrap prdaltthumbimgwrap item selected">
-													<img data-prod-id="526543" alt="" title="" data-sale-id="100000" src="//dnok91peocsw3.cloudfront.net/product/526543-70x70-1471870426-s1.png" className="pthumbimg center-block img-responsive"/>
-													<div className="material-mask">
-														<div className="material-inner-mask"/>
-													</div>
-												</li>
+											<ul className="res-moreIndvProdImages res-moreProductSmlImages bxslider">	
+												{product_images}
 											</ul>
 										</div>
 									</div>
@@ -56,85 +202,27 @@ export default class ProductTopRow extends React.Component {
 													<li>
 														<div id="prdShareWithTitle">
 															<div className="floatLeft price-with-designers">
-																<h1 id="productTitle" className="product-title new-heading-1" itemprop="name">Pink Banana Leaf Pillow</h1>
+																<h1 id="productTitle" className="product-title new-heading-1" itemprop="name">{product.name}</h1>
 																<link itemprop="url" href="https://fab.com/product/pink-banana-leaf-pillow-526543/ff7o4r?fref=fb-like"/>
 																	<div>
 																		<span id="byText" className="byText new-heading-3">by</span>
-																		<h2 className="designer-name new-heading-3"><a href="/designer/wilder-california/" alt="" title="">{" Wilder California"}</a></h2>
+																		<h2 className="designer-name new-heading-3"><a href="/designer/wilder-california/" alt="" title="" style = {{"paddingLeft" : "4px"}}>{product.manufacturer}</a></h2>
 																	</div>
 															</div>
 														</div>
 													</li>
 													<li className="productPrice" data-refreshed-section="section_product_price_details">
-														<p className="fab-color-black new-heading-2 float-left fabPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-															<span itemprop="price" className="fab-color-black bold-texts">
-																$32
-															</span>
-														</p>
+														{price_row}
 														<div className="clear"></div>
 													</li>
 
 													<div className="cnfPg-mask"></div>
 													<div className="cnfPg-maskL"></div>
 													<li id="clickedOnColor" className="colorMask displayNone"></li>
-													<li className="colorsWithAddToCart reg-prod-pg">
-
-														<div className="quantitySelBlock " style= {{"visibility" : "visible"}}>
-															<select tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" className="quantityPgSizeDD def_select quantityDPP hide" >
-																<option value="1">1</option>
-																<option value="2">2</option>
-																<option value="3">3</option>
-																<option value="4">4</option>
-																<option value="5">5</option>
-																<option value="6">6</option>
-																<option value="7">7</option>
-																<option value="8">8</option>
-																<option value="9">9</option>
-																<option value="10">10</option>
-																<option value="11">11</option>
-																<option value="12">12</option>
-																<option value="13">13</option>
-																<option value="14">14</option>
-																<option value="15">15</option>
-																<option value="16">16</option>
-																<option value="17">17</option>
-																<option value="18">18</option>
-																<option value="19">19</option>
-																<option value="20">20</option>
-																<option value="21">21</option>
-																<option value="22">22</option>
-																<option value="23">23</option>
-																<option value="24">24</option>
-																<option value="25">25</option>
-																<option value="26">26</option>
-																<option value="27">27</option>
-																<option value="28">28</option>
-																<option value="29">29</option>
-																<option value="30">30</option>
-															</select><div className="chosen-container chosen-container-single chosen-container-single-nosearch" style= {{"width" : "75px"}} title="" id="qtyDropDownOnProductPg_chosen"><a className="chosen-single" tabindex="-1"><span>1</span><div><b></b></div></a><div className="chosen-drop"><div className="chosen-search"><input type="text" autocomplete="off" readonly="" tabindex="2"/></div><ul className="chosen-results"></ul></div></div>
-														</div>
-													<div className="productBadge">
-														<span className=" dIB"></span>
-														<span className="badgeRelatedContent dIB small-text-grey" style= {{"verticalAlign" : "top"}}><span className="fontB "></span> <span className="colorRed fontNr fontWeight500">FREE SHIPPING</span> above $75* <a href="/shipping-policy/?ref=product_pg"><i className="fa fa-question-circle"></i></a></span>
-														
-													</div>
-													<div className="prodPgAddcartButton clear">
-																<a tabindex="3" href="javascript:void(0)" data-attr-btnname="top_cart" className="btn btn-default-red    prodPgAddcartAchrButton fabSubmitBtn addToCart round5 noShadow fabGrad noPadding">
-																	<div className="add-to-bag-btn-ct">
-																		<span className="shop-bag-icon-white add-bag-btn-img"></span>
-																		<span>&nbsp;&nbsp;&nbsp;Add to Bag</span>
-																	</div>
-																</a>
-															<div className="prodNavFaveCt float-left prodPageFav">
-																<span data-tracker="fav_login" data-trackerevent-type="loginToFav" id="prodNavFaveImg" className="prodNavFaveImg favProduct new-heading-2 favedOnPNVC faveCountclassName" alt="Like this product? ADD TO YOUR LISTS" title="Like this product? ADD TO YOUR LISTS">
-																	<i id="heartContainer" className="fa fa-heart-o"></i>
-																	<span id="faveIconCount" style= {{"display" : "inline"}}>65</span>
-																</span>
-															<div className="list-dropdown-wrapper"><div className="arrow"></div><div className="non-content"><div className="curtain"><div className="error-msg-placeholder">Oops! Something went wrong.</div></div></div><div className="view-content"><ul className="wishlists"><li><label className="wishlist master-list" for="526543_2283159"><input type="checkbox" id="526543_2283159" data-id="2283159" className="master-list"/><label for="526543_2283159"></label><span className="list-name">Faves</span><span className="list-items-count">(0)</span></label></li></ul><form className="new-list"><input type="text" className="new-list-name" placeholder="Create New List"/><input type="submit" className="listBtn createList colorfff" value="Add"/></form></div></div></div>
-															<div className="clear"></div>
-														</div>
-													<div className="clear"></div>
-												</li>
+													<ProductAddToCart 
+													item_in_stock = {this.state.item_in_stock}
+													checkItemInStock = {this.checkItemInStock.bind(this)}
+													product = {this.props.product}/>
 								
 												<li className="clear">
 													<div className="clear"></div>

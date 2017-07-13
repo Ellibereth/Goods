@@ -31,7 +31,7 @@ class MarketProduct(db.Model):
 	has_variants = db.Column(db.Boolean, default = False)
 	variant_type_description = db.Column(db.String, default = "type")
 	live = db.Column(db.Boolean, default = False)
-
+	more_details = db.Column(db.String)
 	story_text = db.Column(db.String, default = "PUT IN SOME TEXT HERE ABOUT YOUR STORY")
 	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
 	product_template = db.Column(db.Integer, default = 1)
@@ -178,6 +178,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.SalePrice] = self.sale_price
 		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
 		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee
+		public_dict[Labels.MoreDetails] = self.more_details
 
 		if not self.second_tab_name:
 			public_dict[Labels.SecondTabName] = ""
