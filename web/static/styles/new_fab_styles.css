@@ -12998,7 +12998,9 @@ body.use-2015-font .fontFamG {
 }
 .p-normal-text {
     color: #666;
-    font-size: 1em
+    font-size: 1em;
+    /*Darek added this*/
+    padding-left: 4px;
 }
 .p-link-text {
     color: #d0021b;
@@ -23269,7 +23271,9 @@ only screen and (min-resolution: 144dpi) {
     padding-left: 4.66667%
 }
 .productPgMainImage {
-    margin: 0 auto
+    margin: 0 auto;
+    height: 504px;
+    width: 504px;
 }
 #review-heading {
     padding: 0

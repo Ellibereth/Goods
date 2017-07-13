@@ -33,6 +33,17 @@ a {
 }
 
 
+
+#top-email-glyph {
+	position: relative;
+	top :3px !important;
+}
+
+#top-contact-us:hover {
+	cursor: pointer;
+}
+
+
 #logo-column {
 	padding-left: 0px;
 	margin-left: 0px;
@@ -295,6 +306,12 @@ a {
 .departments{
 	padding: 15px 0 0; 
 	width: 130px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.departments.first-department {
+	padding-left: 0px;
 }
 
 .most-popular-categories {

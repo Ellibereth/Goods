@@ -18,7 +18,7 @@ export default class ProductPage extends React.Component {
 
 
 		return (
-				<PageContainer>
+				<PageContainer no_add_buffer = {true}>
 					<ProductMainContainer product_id = {this.props.params.product_id} />
 				</PageContainer>
 		);

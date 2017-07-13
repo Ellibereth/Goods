@@ -47,6 +47,10 @@ Linda's Color Scheme
     clear: both;
 }
 
+.content-buffer {
+	padding-top: 24px;
+}
+
 @font-face {
 	font-family: 'AvenirNext';
 	font-style: normal;

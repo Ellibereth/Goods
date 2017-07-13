@@ -22,7 +22,7 @@ export default class HomePage extends React.Component {
 
 	render() {
 		return (
-				<PageContainer>
+				<PageContainer no_add_buffer = {true}>
 					<HomePageMainContainer />
 				</PageContainer>
 		);

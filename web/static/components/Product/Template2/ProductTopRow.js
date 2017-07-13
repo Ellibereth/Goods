@@ -149,12 +149,12 @@ export default class ProductTopRow extends React.Component {
 
 
 		return product.images.map((image,index) => {
-			var class_base = "poRel slide prd-alt-thumb-img-wrap prod-mini-thumb center-block img-responsive prdthumbimgwrap prdaltthumbimgwrap item "
+			var class_base = "poRel slide prd-alt-thumb-img-wrap prod-mini-thumb center-block prdthumbimgwrap prdaltthumbimgwrap item "
 			var is_selected_class = (index == this.state.selected_image_index) ? " selected " : ""
 			var is_first_class = (index == 0) ? " primary " : ""
 			var class_name = class_base + is_selected_class + is_first_class
 			return <li className={class_name}>
-						<img onClick = {this.selectImage.bind(this, index, image.image_id)} src={src_base + image.image_id} className = "pthumbimg center-block img-responsive" />
+						<img height = "68" width = "68" onClick = {this.selectImage.bind(this, index, image.image_id)} src={src_base + image.image_id} className = "pthumbimg center-block img-responsive" />
 							<div className="material-mask">
 								<div className="material-inner-mask"></div>
 							</div>

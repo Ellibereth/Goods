@@ -29,9 +29,9 @@ export default class PageContainer extends React.Component {
 						<div className = "page-wrapper">
 							<div className = "top-row-inner">
 								<span className = "top-row-text"> Free Shipping. Free Returns. Smiles Guaranteed.</span>
-								<span className = "top-row-text float-right"> 
-									<span className = "glyphicon glyphicon-envelope top-row-envelope-icon"/>
-								 	<span>Email Us</span>
+								<span id = "top-contact-us" className = "top-row-text float-right" onClick = {() => window.location = "/contact"}> 
+									<span id = "top- email-glyph"className = "glyphicon glyphicon-envelope top-row-envelope-icon"/>
+								 	<span>Contact Us</span>
 								</span>
 							</div>
 						</div>
@@ -39,6 +39,7 @@ export default class PageContainer extends React.Component {
 					<div className = "page-wrapper">
 						<Navbar />
 						<div className = "content-wrapper"> 
+							{!this.props.no_add_buffer && <div className = "content-buffer"/>}
 							{this.props.children}
 						</div>
 					</div>

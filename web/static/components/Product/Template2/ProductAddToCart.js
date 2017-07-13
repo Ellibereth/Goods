@@ -178,10 +178,13 @@ export default class ProductAddToCart extends React.Component {
 							<option value="5">Qty. 5</option>
 						</select>
 					</div>
+
+					{/* 
 					<div className="productBadge">
 						<span className=" dIB"></span>
 						<span className="badgeRelatedContent dIB small-text-grey" style= {{"verticalAlign" : "top"}}><span className="fontB "></span> <span className="colorRed fontNr fontWeight500">FREE SHIPPING</span> above $75* <a href="/shipping-policy/?ref=product_pg"><i className="fa fa-question-circle"></i></a></span>
 					</div>
+					*/}
 					<div className="prodPgAddcartButton clear">
 						{this.props.item_in_stock ?
 						<a tabindex="3" onClick = {this.addToCart.bind(this)} className="btn btn-default-red prodPgAddcartAchrButton fabSubmitBtn addToCart round5 noShadow fabGrad noPadding ">
@@ -198,12 +201,17 @@ export default class ProductAddToCart extends React.Component {
 							</div>
 						</a>
 					}
-					<div className="prodNavFaveCt float-left prodPageFav">
+
+					{/* <div className="prodNavFaveCt float-left prodPageFav">
 						<span data-tracker="fav_login" data-trackerevent-type="loginToFav" id="prodNavFaveImg" className="prodNavFaveImg favProduct new-heading-2 favedOnPNVC faveCountclassName" alt="Like this product? ADD TO YOUR LISTS" title="Like this product? ADD TO YOUR LISTS">
 							<i id="heartContainer" className="fa fa-heart-o"></i>
 							<span id="faveIconCount" style= {{"display" : "inline"}}>65</span>
 						</span>
-					<div className="list-dropdown-wrapper"><div className="arrow"></div><div className="non-content"><div className="curtain"><div className="error-msg-placeholder">Oops! Something went wrong.</div></div></div><div className="view-content"><ul className="wishlists"><li><label className="wishlist master-list" for="526543_2283159"><input type="checkbox" id="526543_2283159" data-id="2283159" className="master-list"/><label for="526543_2283159"></label><span className="list-name">Faves</span><span className="list-items-count">(0)</span></label></li></ul><form className="new-list"><input type="text" className="new-list-name" placeholder="Create New List"/><input type="submit" className="listBtn createList colorfff" value="Add"/></form></div></div></div>
+						<div className="list-dropdown-wrapper">
+							<div className="arrow"></div>
+							<div className="non-content">
+								<div className="curtain">
+									<div className="error-msg-placeholder">Oops! Something went wrong.</div></div></div><div className="view-content"><ul className="wishlists"><li><label className="wishlist master-list" for="526543_2283159"><input type="checkbox" id="526543_2283159" data-id="2283159" className="master-list"/><label for="526543_2283159"></label><span className="list-name">Faves</span><span className="list-items-count">(0)</span></label></li></ul><form className="new-list"><input type="text" className="new-list-name" placeholder="Create New List"/><input type="submit" className="listBtn createList colorfff" value="Add"/></form></div></div></div>*/}
 					<div className="clear"/>
 					</div>
 					<div className="clear"/>

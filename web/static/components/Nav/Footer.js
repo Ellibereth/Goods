@@ -1,7 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-const footer_links = ['Smile', 'Guarantee', 'About', 'Fab', 'Cards', 'Mobile', 'Apps', 'Careers', 'Blog', 'FAQs', 'Contact Us', 'Return Policy', 'Shipping', 'Terms', 'Privacy']
+const footer_links = ['Smile', 'Guarantee', 'About', 'Fab', 'Cards', 'Mobile', 'Apps']
+// , 'Careers', 'Blog', 'FAQs', 'Contact Us', 'Return Policy', 'Shipping', 'Terms', 'Privacy']
 export default class HomeFooter extends React.Component {
 	constructor(props) {
 		super(props);
@@ -43,13 +44,13 @@ export default class HomeFooter extends React.Component {
 							{footer_links.map((footer_link) => <li> <a href = "#"> {footer_link} </a> </li> )}
 						</ul>
 
-						<div className="footerRightBlockRelatedCSS">
+						{/* <div className="footerRightBlockRelatedCSS">
 							<div className="footerStoreLinks float-left">
 								<span className="storeName">Fab US </span>
 								<i className="fa fa-chevron-circle-up fa-2x" id = "footer-language-select-icon" aria-hidden="true"/>
 								
 							</div>
-						</div>
+						</div> */}
 						<ul className="socialLinks float-right">
 							<li><a href="https://web.archive.org/web/20140702093317/http://www.twitter.com/fab/" target="_blank"><i className="fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
 							<li><a href="https://web.archive.org/web/20140702093317/http://facebook.com/fab.com/" target="_blank"><i className="fa fa-instagram fa-2x" aria-hidden="true"/></a></li>
@@ -64,7 +65,7 @@ export default class HomeFooter extends React.Component {
 				<footer>
 					<div id = "dynamic-footer-wrapper">
 						<div id="dynamic-footer">
-							<div className="departments section">
+							<div className="departments section first-department">
 								<span className="section-title">Departments</span>
 								<ul>
 									<li>
@@ -90,7 +91,86 @@ export default class HomeFooter extends React.Component {
 									</li>
 								</ul>
 							</div>
+							<div className="departments section">
+								<span className="section-title">Departments 2</span>
+								<ul>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/furniture/?ref=footer">Furniture</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/kitchen-dining/?ref=footer">Kitchen &amp; Dining</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/home/?ref=footer">Home</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/bed-bath/?ref=footer">Bed &amp; Bath</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/art/?ref=footer">Art</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
+									</li>
+								</ul>
+							</div>
+							<div className="departments section">
+								<span className="section-title">Departments 3</span>
+								<ul>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/furniture/?ref=footer">Furniture</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/kitchen-dining/?ref=footer">Kitchen &amp; Dining</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/home/?ref=footer">Home</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/bed-bath/?ref=footer">Bed &amp; Bath</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/art/?ref=footer">Art</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
+									</li>
+								</ul>
+							</div>
+							<div className="departments section">
+								<span className="section-title">Departments 4</span>
+								<ul>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/furniture/?ref=footer">Furniture</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/kitchen-dining/?ref=footer">Kitchen &amp; Dining</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/home/?ref=footer">Home</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/bed-bath/?ref=footer">Bed &amp; Bath</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/art/?ref=footer">Art</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
+									</li>
+									<li>
+										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
+									</li>
+								</ul>
+							</div>
 							<div className="most-popular-categories section">
+								{/* 
 								<span className="section-title">Most Popular Categories</span>
 								<ul>
 									<li>
@@ -192,8 +272,9 @@ export default class HomeFooter extends React.Component {
 									<li>
 										<a href="//web.archive.org/web/20140702093317/http://fab.com/browse/cook-prep/?ref=footer">Cook &amp; Prep</a>
 									</li>
-								</ul>
+								</ul>*/}
 								</div>
+							
 								<div className="top-designers section">
 									<span className="section-title" style= {{"text-transform" : "none"}}>Get It First</span>
 									<span className="updtdLatstArriTxt">You're just one step away from receiving fresh Happy Modern Designs and special offers in your inbox.</span>

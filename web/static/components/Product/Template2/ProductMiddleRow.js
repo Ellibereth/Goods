@@ -71,9 +71,8 @@ export default class ProductMiddleRow extends React.Component {
 														<span className="full">
 															<label className="ead-label p-bold-text">Estimated Arrival:</label>
 															<span className="p-normal-text local-ead-lng">
-																	Between Jul. 18 and Aug.    2
-																to 
-																<span className="eadWrapCls" style= {{"display" :"inline"}}>
+																	Between Jul. 18 and Aug. 2
+																{/* <span className="eadWrapCls" style= {{"display" :"inline"}}>
 																	<span className="ead_zip_code" style={{"color":"#999"}}>19711,</span> 
 																	<div className="ead-ui-adjust">
 																		<input type="text" maxlength="7" className="ead_zip_code_input" value="19711" original="19711"/>
@@ -81,7 +80,7 @@ export default class ProductMiddleRow extends React.Component {
 																	</div>
 																	<span className="eadEdit floatRight colorRed" style={{"display":"none"}}>Edit</span>
 																	<span className="eadErrMsg" style={{"display" : "none"}}>Please enter a valid zip code</span>
-																</span>
+																</span> */}
 															</span>
 														</span>
 													</li>
@@ -152,14 +151,14 @@ export default class ProductMiddleRow extends React.Component {
 										<span className="full">
 				<label className="ead-label p-bold-text">Estimated Arrival:</label>
 								<span className="p-normal-text local-ead-lng">
-														Between Jul. 18 and Aug.    2
-												to <span className="eadWrapCls" style= {{"display" :"inline"}}>
+														Between Jul. 18 and Aug. 2
+												{/* <span className="eadWrapCls" style= {{"display" :"inline"}}>
 																<span className="ead_zip_code" style={{"color":"#999"}}>19711,</span> 
 														<div className="ead-ui-adjust"><input type="text" maxlength="7" className="ead_zip_code_input" value="19711" original="19711"/>
 																		<span className="ship_country" original="USA" style={{"display":"inline","color":"#999"}}>USA</span>
 														</div><span className="eadEdit floatRight colorRed" style={{"display":"none"}}>Edit</span>
 														<span className="eadErrMsg" style={{"display": "none"}}>Please enter a valid zip code</span>
-												</span>
+												</span> */}
 				</span>
 </span>
 
