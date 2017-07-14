@@ -125,11 +125,11 @@ a {
 
 
 
-#home-top-navigation {
+#home-top-navigation-wrapper {
 	height: 20px;
 }
 
-#home-top-navigation ul li
+#home-top-navigation > li
 {
 	list-style-type: none;
 	display: inline-block;
@@ -137,21 +137,21 @@ a {
 	height: 18px;
 }
 
-#home-top-navigation ul li a {
+#home-top-navigation > li > a {
 	color: black;
 	font-weight: normal;
 }
 
-#home-top-navigation li:not(:first-child) {
+#home-top-navigation > li:not(:first-child) {
 	border-left: 1px solid #bdbdbd;
 }
 
-#home-top-navigation li:first-child {
+#home-top-navigation >  li:first-child {
 	padding: 0px 18px 10px 0px;
 	padding-left: 0px;
 }
 
-#home-top-navigation li:last-child {
+#home-top-navigation > li:last-child {
 	padding: 0px 0px 10px 18px;
 }
 

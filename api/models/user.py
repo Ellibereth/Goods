@@ -89,7 +89,7 @@ class User(db.Model):
 			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidEmail}
 		try:
 			email_confirmation_id = User.generateEmailConfirmationId()
-			email_api.sendEmailConfirmation(email, email_confirmation_id, name)
+			EmailLib.sendEmailConfirmation(email, email_confirmation_id, name)
 		except Exception as e:
 			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
 		new_user = User(name = name, email = email, password = password, 
@@ -130,20 +130,17 @@ class User(db.Model):
 		guest_items = CartItem.query.filter_by(account_id = guest_user.account_id).all()
 
 		for guest_cart_item in guest_items:
-			self.transgerGuestCartItem(guest_user, guest_cart_item)
+			self.transferGuestCartItem(guest_user, guest_cart_item)
 
 
-	def transgerGuestCartItem(self, guest_user, guest_cart_item):
+	def transferGuestCartItem(self, guest_user, guest_cart_item):
 		user_cart = Cart(self.account_id)
 
 		existing_item = False
 		for user_cart_item in user_cart.items:
 			if guest_cart_item.product_id == user_cart_item.product_id:
-				print("product_id match")
 				if guest_cart_item.variant_id:
-					print("has variant id")
 					if guest_cart_item.variant_id == user_cart_item.variant_id:
-						print("variant ids match")
 						user_cart_item.num_items = guest_cart_item.num_items	
 						existing_item = True
 				else:

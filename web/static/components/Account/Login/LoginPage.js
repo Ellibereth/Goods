@@ -2,16 +2,21 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../stores/AppStore'
-import LoginForm from './LoginForm'
 import PageContainer from '../../Misc/PageContainer'
 import Spinner from '../../Misc/Spinner'
+import LoginBox from './LoginBox'
 
+
+const LOGIN_STATE = 0
+const REGISTER_STATE = 1
+const BACKGROUND_IMAGE = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/usalarge.gif"
 
 export default class LoginPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			is_loading : false
+			is_loading : false,
+			form_state : REGISTER_STATE
 		}
 	}
 
@@ -28,15 +33,42 @@ export default class LoginPage extends React.Component {
 		this.setState({is_loading : is_loading})
 	}
 
-	render() {
+	setFormState(form_state) {
+		this.setState({form_state : form_state})
+	}
 
+
+
+	render() {
+		var background_style = {
+			backgroundImage : "url(" + BACKGROUND_IMAGE + ")",
+			height: "530px",
+			backgroundSize : "cover"
+		}
 		return (
 			<PageContainer>
-				<div className = "container-fluid">
-					{this.state.is_loading && <Spinner />}
-					<div className = "col-xs-12 col-sm-offset-4 col-md-offset-4 col-lg-offset-4 col-md-4 col-lg-4 col-sm-4">
-						<LoginForm
-						setLoading = {this.setLoading.bind(this)}/>
+				<div style = {background_style}>
+					<div className="fab-container-fluid" className = "responsive-site">
+						<div className="fab-fixed-container">
+							<div className="fab-row log-out-wrapper">
+								<div className="inviteWrapper fab-col-xs-60">
+									<div className="fab-row">
+										<div className="fab-col-xs-60">
+											<div className="newLoginProcess fab-row">
+												
+												<LoginBox 
+												setFormState = {this.setFormState.bind(this)}
+												form_state = {this.state.form_state} />
+
+
+												<div className="clear">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</PageContainer>

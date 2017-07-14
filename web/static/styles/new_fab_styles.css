@@ -18155,12 +18155,14 @@ body.use-2015-font #jq-top-header-phantom.else-cart-pg {
     font-weight: 300
 }
 .headerUserCt {
-    margin-top: 10px;
-    padding-bottom: 14px;
-    padding-left: 14px;
+    
     float: right;
     position: relative;
-    font-size: 12px
+    font-size: 12px;
+    /* Darek removed these */
+    padding-bottom: 14px;
+    /*padding-left: 14px;*/
+    /*margin-top: 10px;*/
 }
 @media(max-width:670px) {
     .headerUserCt {
@@ -26542,4 +26544,543 @@ input[type=text]:focus:-moz-placeholder {
 .addToCart.soldOut {
     opacity: 0.7;
     cursor: not-allowed;
+}
+
+*,
+html,
+body,
+form,
+fieldset,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+blockquote,
+ul,
+ol,
+dl,
+address {
+    margin: 0;
+    padding: 0
+}
+html {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: Helvetica, Arial, "Luxi Sans", sans-serif
+}
+body,
+html {
+    height: 100%
+}
+.responsive-site #header {
+    position: relative;
+    min-width: 980px;
+    height: 54px
+}
+.responsive-site #fabWrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%
+}
+.responsive-site #contentWrapper {
+    margin: 0 auto;
+    width: 720px
+}
+.responsive-site .fbIcon {
+    background-position: -28px 0
+}
+.responsive-site .fbIcon:hover {
+    background-position: -86px 0
+}
+.responsive-site .log-out-wrapper {
+    max-width: 600px;
+    margin: 0 auto
+}
+.responsive-site .storeSelFlagIconsSmalluse {
+    background-position: -99px -675px
+}
+.responsive-site .storeSelFlagIconsSmallde,
+.responsive-site .storeSelFlagIconsSmalluse {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    top: 6px
+}
+.responsive-site .storeSelFlagIconsSmalluse {
+    background-position: -99px -675px
+}
+.responsive-site .storeSelFlagIcons .linkBlock .hidedBlock li a {
+    margin: 0;
+    display: block;
+    height: 100%;
+    color: #333
+}
+.responsive-site .storeSelFlagIconsSmallde {
+    background-position: -137px -675px
+}
+.responsive-site .storeSelFlagIcons .linkBlock:hover .hidedBlock {
+    display: block
+}
+.responsive-site .inviteWrapper {
+    padding-top: 45px
+}
+.responsive-site .inviteWrapper #errBar {
+    margin: 0 -5px
+}
+.responsive-site .inviteWrapper .inviteBlock {
+    background-color: #fff;
+    padding: 30px 25px;
+    /*Darek did this*/
+    min-height: 393px;
+}
+@media(max-width:600px) {
+    .responsive-site .inviteWrapper .inviteBlock {
+        min-height: 330px
+    }
+}
+.responsive-site .inviteWrapper .mobInviteBlock {
+    background-color: #fff;
+    padding: 20px 25px;
+    border-top: 1px solid lightgrey
+}
+@media(min-width:601px) {
+    .responsive-site .newLoginProcess {
+        display: flex;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: -ms-flex
+    }
+}
+.responsive-site .inviteBlock.newLoginProcess {
+    border-left: 1px solid #d5d5d5
+}
+.responsive-site .inviteBlock.newLoginProcess.re-auth-page {
+    border-left: 0
+}
+.responsive-site .inviteWrapper #resInviteForm {
+    background-color: #fff
+}
+.responsive-site .loginBox .loginForm input[type="button"] {
+    border: medium none;
+    height: 33px;
+    padding: 0 25px
+}
+.responsive-site .StatusLangDiv {
+    font-size: 13px;
+    color: #fff;
+    margin-top: 40px
+}
+.responsive-site #chkInviteStatus {
+    cursor: pointer
+}
+.responsive-site .StatusLang {
+    text-decoration: underline
+}
+.responsive-site .inviteWrapper #resInviteMsg h1,
+.responsive-site .loginForm h1 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: normal;
+    padding: 0
+}
+.responsive-site #fabCt {
+    border: 0
+}
+.responsive-site .newLoginProcess #resInviteForm h2,
+.responsive-site #changePWWrapper h1 {
+    color: #000;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    padding: 0;
+    margin-top: 6px
+}
+.responsive-site #changePWWrapper h1 {
+    color: #333
+}
+.responsive-site .fabGradNew {
+    background-color: #dd0017;
+    color: #fff
+}
+.responsive-site .fbGradNew {
+    background-color: #354f83
+}
+.responsive-site .inputBoxNew,
+.responsive-site #newPW,
+.responsive-site #confirmPW {
+    margin-top: 7px;
+    width: 100%;
+    font-size: 13px;
+    line-height: 13px;
+    color: #7f7f7f;
+    border: 1px solid #d5d5d5;
+    padding: 7px 8px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none
+}
+.responsive-site #errBarNew {
+    padding: 15px 18px;
+    height: 20px;
+    background: #fff;
+    border-top: 1px solid #d5d5d5;
+    width: 565px
+}
+.responsive-site .errorMessage {
+    color: #dd0017;
+    font-size: 12px;
+    display: block;
+    line-height: 18px
+}
+.responsive-site .inviteWrapper #resInviteMsg h1,
+.responsive-site .loginForm h1 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: normal;
+    padding: 0
+}
+.responsive-site .inviteWrapper #resInviteMsg p {
+    bottom: 30px;
+    color: #999;
+    font-size: 13px;
+    font-weight: normal;
+    margin-top: 50px
+}
+.responsive-site #resInviteForm label,
+.responsive-site #inviteFormLB label {
+    color: #333;
+    display: block;
+    font-size: 11px;
+    font-weight: 500
+}
+.responsive-site .newLoginProcess #forgotPW,
+.responsive-site #forgotPWLB,
+.responsive-site #reDirIndex {
+    color: #999;
+    text-decoration: underline
+}
+.responsive-site .loginBox #resInviteFormLB .inputBox {
+    margin: 4px 0 10px
+}
+.responsive-site .fbconnectBtn {
+    font-size: 11px;
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    outline: 0;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 6px;
+    height: 34px;
+    width: 162px
+}
+.responsive-site #signUpBtnWrap .fblogindivider,
+.responsive-site .fblogindivider.singn-up {
+    height: 33px
+}
+.responsive-site #signUpBtnWrap .fblogwithface {
+    top: -13px
+}
+.responsive-site #loginAndFbButtons .fabSubmitBtn {
+    float: left;
+    padding: .7em .8em .7em;
+    font-size: 12px;
+    width: 79px
+}
+.responsive-site .reLoginWrapC,
+.responsive-site .reLoginWrap {
+    background: #fff;
+    margin: 0 auto
+}
+.responsive-site .loginBox #resInviteForm {
+    float: right;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #000;
+    min-height: 255px;
+    padding: 30px 25px;
+    position: relative
+}
+.responsive-site .loginBox #resInviteMsg {
+    background-color: #000;
+    float: left;
+    padding: 30px 25px;
+    position: relative;
+    width: 250px;
+    min-height: 255px
+}
+.responsive-site .loginBox #resInviteMsg h1 {
+    color: #7d7d7d;
+    font-size: 26px;
+    font-weight: normal;
+    padding: 0
+}
+.responsive-site .loginBox #resInviteMsg p {
+    bottom: 30px;
+    color: #999;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 50px
+}
+.responsive-site .loginBox label {
+    color: #333;
+    display: block;
+    font-size: 11px;
+    font-weight: bold
+}
+.responsive-site .loginBox #forgotPW {
+    color: #999;
+    text-decoration: underline
+}
+.responsive-site .loginBox h2 {
+    color: #7d7d7d;
+    font-size: 30px !important;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 0
+}
+.responsive-site #changePWWrapper {
+    width: 445px !important;
+    margin: 150px 0 0 149px !important;
+    background-color: #fff;
+    min-height: 160px;
+    padding: 30px
+}
+.responsive-site #changePWWrapper label {
+    display: block;
+    font-size: 12px;
+    color: #333
+}
+.responsive-site #errBarNew {
+    padding: 15px 18px;
+    height: 20px;
+    background: #fff;
+    border-top: 1px solid #d5d5d5;
+    width: 565px
+}
+.responsive-site #iRandomMsg span a.inactiveLink:hover {
+    text-decoration: none;
+    cursor: default;
+    color: #ccc
+}
+.responsive-site .errBar {
+    background: #fff !important;
+    border-top: 1px solid #d5d5d5
+}
+.responsive-site #reLoginFrm label {
+    color: #000;
+    font-weight: 500
+}
+.responsive-site .reauthpageNew .errBar {
+    background: #FFF;
+    border-top: 1px solid #d5d5d5
+}
+.responsive-site .newTwIcon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-position: -99px -59px
+}
+.responsive-site .newTwIcon:hover {
+    background-position: -99px -83px
+}
+.responsive-site .newFbIcon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-position: -125px -59px
+}
+.responsive-site .newFbIcon:hover {
+    background-position: -125px -83px
+}
+.responsive-site .newTumblrIcon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-position: -151px -59px
+}
+.responsive-site .newTumblrIcon:hover {
+    background-position: -151px -83px
+}
+.responsive-site .newInstagramIcon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    background-position: -177px -59px
+}
+.responsive-site .newInstagramIcon:hover {
+    background-position: -177px -83px
+}
+.responsive-site .languageSelect:first-child,
+.responsive-site .storeSelector:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0
+}
+.responsive-site .linkBlock li {
+    background-color: #000;
+    opacity: .7;
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    height: 35px;
+    line-height: 35px;
+    padding-left: 12px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px
+}
+.responsive-site .linkBlock li:hover {
+    opacity: .8
+}
+.responsive-site body.store_de .storeSelFlagIcons .linkBlock {
+    padding: 15px 10px 15px 10px;
+    width: 71px
+}
+.responsive-site .storeSelFlagIcons .linkBlock {
+    padding: 2px 6px 0;
+    position: relative;
+    display: block;
+    width: 98px
+}
+.responsive-site .storeSelFlagIcons .linkBlock .storeFlagLang {
+    font-size: 11px
+}
+.responsive-site .storeSelFlagIcons {
+    cursor: pointer;
+    line-height: 20px
+}
+.responsive-site .hidedBlock {
+    bottom: 43px;
+    display: none;
+    position: absolute;
+    left: 0;
+    width: 108px;
+    z-index: 101
+}
+.responsive-site .footLinksSelectTickMark {
+    float: right;
+    position: relative;
+    right: 8px;
+    top: 11px
+}
+.responsive-site .hidedBlock .footLinksSelectTickMark {
+    margin-left: 5px
+}
+.responsive-site .storeSelFlagIcons .footLinksSelectTickMark {
+    background-position: -9px -36px;
+    width: 11px;
+    height: 10px;
+    display: inline-block
+}
+.responsive-site .footerStoreLinks:hover .newFooterUpArrowIcon {
+    background-position: -125px -107px
+}
+.responsive-site .footerStoreLinks li:hover {
+    opacity: .8
+}
+.responsive-site .euErrorBar {
+    bottom: 62px;
+    position: absolute;
+    width: 77%
+}
+.responsive-site .footerRightBlockRelatedCSS.loggedOut {
+    width: auto !important;
+    border-left: 0
+}
+.responsive-site .linkBlock.loggedOut {
+    float: right !important;
+    border-left: 1px solid #d5d5d5
+}
+.responsive-site .moreInfoFooterWrap {
+    background: #e5e5e5;
+    display: block;
+    overflow: hidden;
+    padding: 10px 15px 13px 15px;
+    border-radius: 0 0 3px 3px;
+    border-top: 1px solid #000
+}
+.responsive-site .moreInfoFooterWrap .contUsPgHeadTxt {
+    font-size: 14px;
+    color: #333;
+    font-weight: normal
+}
+.responsive-site .footerIconInfoEuBand {
+    margin-left: 98px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333
+}
+.responsive-site .fabGreenGradNew,
+.responsive-site .fabGreenGrad.fabGreenGradNew {
+    background-color: #3f8f14;
+    color: #fff;
+    margin: 0 1px 1px 0
+}
+.responsive-site .borderR3,
+.responsive-site .round3 {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px
+}
+.responsive-site .loginFormNew {
+    width: 100%
+}
+.responsive-site #mobRequestInvite span {
+    cursor: pointer
+}
+.responsive-site .signUpBtnWrap {
+    position: relative;
+    margin-top: 8px
+}
+@media(max-width:600px) {
+    .responsive-site .signUpBtnWrap {
+        margin-top: 20px
+    }
+    .responsive-site .signUpBtnWrap #reqSubmit,
+    .responsive-site .signUpBtnWrap .or-devider {
+        width: 162px
+    }
+    .responsive-site .signUpBtnWrap .or-devider {
+        text-align: center
+    }
+}
+.responsive-site .signUpBtnWrap .or-devider {
+    padding: 12px 0 12px 39px
+}
+@media(max-width:600px) {
+    .responsive-site .signUpBtnWrap .or-devider {
+        padding: 12px 0
+    }
+}
+.responsive-site .newInviteWrap .inputBoxNew {
+    width: 100%
+}
+.responsive-site .g-recaptcha {
+    width: 100%;
+    margin-top: 20px;
+    ms-transform: scale(0.82);
+    -webkit-transform: scale(0.82);
+    transform: scale(0.82);
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0
+}
+.responsive-site iframe[src~=recaptcha] {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important
+}
+.responsive-site #requestInvite {
+    font-size: 13px
+}
+.responsive-site #resetPW {
+    position: relative
 }

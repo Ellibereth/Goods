@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../stores/AppStore'
-
+import AccountDropdown from './AccountDropdown'
 const fab_logo = "https://web.archive.org/web/20140713231906im_/http://dnok91peocsw3.cloudfront.net/relaunch/fab_2_0_logo.png"
 const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/logo.png"
 
@@ -43,10 +43,10 @@ export default class Navbar extends React.Component {
 									</div>
 								</div>
 								<div id = "top-right-navigation" className = "col-md-2 col-lg-2 col-sm-2 home-right-nav pull-right">
-									<div id="home-top-navigation" className = "float-right">
+									<div id="home-top-navigation-wrapper" className = "float-right">
 									{ 
-										AppStore.getCurrentUser() ?
-										<ul>
+										(AppStore.getCurrentUser() && !AppStore.getCurrentUser().is_guest)?
+										<ul id = "home-top-navigation">
 											<li>
 												<a href="/myCart">
 													<span className = "glyphicon glyphicon-shopping-cart"/>
@@ -57,7 +57,8 @@ export default class Navbar extends React.Component {
 													}
 												</a>
 											</li>
-											<li><a href="/settings" id = "home-login-text">Account</a></li>
+											<AccountDropdown user = {AppStore.getCurrentUser()}/>
+											{/* <li><a href="/settings" id = "home-login-text">Account</a></li> */}
 										</ul>
 										:
 										<ul>
