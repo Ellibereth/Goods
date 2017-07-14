@@ -47,7 +47,7 @@ export default class Navbar extends React.Component {
 									{ 
 										(AppStore.getCurrentUser() && !AppStore.getCurrentUser().is_guest)?
 										<ul id = "home-top-navigation">
-											<li>
+											<li style = {{"position" :"relative", "top" : "-2px"}}>
 												<a href="/myCart">
 													<span className = "glyphicon glyphicon-shopping-cart"/>
 													{this.state.cart_badge > 0 &&
@@ -57,11 +57,13 @@ export default class Navbar extends React.Component {
 													}
 												</a>
 											</li>
-											<AccountDropdown user = {AppStore.getCurrentUser()}/>
+											<li> 
+												<AccountDropdown user = {AppStore.getCurrentUser()}/>
+											</li>
 											{/* <li><a href="/settings" id = "home-login-text">Account</a></li> */}
 										</ul>
 										:
-										<ul>
+										<ul id = "home-top-navigation">
 											<li>
 												<a href="/myCart">
 													<span className = "glyphicon glyphicon-shopping-cart"/>
