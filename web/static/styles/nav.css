@@ -283,7 +283,7 @@ a {
 }
 
 #dynamic-footer-wrapper {
-
+	/*padding-bottom: 20px;*/
 }
 
 #dynamic-footer-wrapper #dynamic-footer {
@@ -304,8 +304,8 @@ a {
 }
 
 .departments{
-	padding: 15px 0 0; 
-	width: 130px;
+	padding: 15px 0 0;
+	width: 240px;
 	padding-left: 8px;
 	padding-right: 8px;
 }
@@ -314,6 +314,14 @@ a {
 	padding-left: 0px;
 }
 
+/*.first-department .section-title {
+	text-align: center;
+}
+
+.section-title {
+	text-align: left;
+}
+*/
 .most-popular-categories {
 	/* 666 on FAB */
 	width: 880px;
@@ -325,12 +333,16 @@ a {
 	padding: 15px 0 0 15px;
 }
 
-#dynamic-footer .section-title {
+#dynamic-footer .section-title .first {
+	align-self: left;
+}
+
+#dynamic-footer .section-title  {
 	text-transform: uppercase;
 	font-weight: bold;
 	color: #666;
-	font-size: 12px;
-	padding-bottom: 13px;
+	font-size: 18px;
+	padding-bottom: 10px;
 	display: block;
 }
 
@@ -340,11 +352,16 @@ a {
 
 #dynamic-footer .section li {
 	padding-bottom: 8px;
+	padding-top: 8px;
 }
 
 #dynamic-footer .section li a {
 	color: #999;
 	font-size: 16px;
+}
+
+#dynamic-footer .section li a:hover {
+	color: #666;
 }
 
 #dynamic-footer .most-popular-categories li {

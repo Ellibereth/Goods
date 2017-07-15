@@ -66,107 +66,35 @@ export default class HomeFooter extends React.Component {
 					<div id = "dynamic-footer-wrapper">
 						<div id="dynamic-footer">
 							<div className="departments section first-department">
-								<span className="section-title">Departments</span>
+								<span className="section-title">COMPANY</span>
 								<ul>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/furniture/?ref=footer">Furniture</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/kitchen-dining/?ref=footer">Kitchen &amp; Dining</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/home/?ref=footer">Home</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/bed-bath/?ref=footer">Bed &amp; Bath</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/art/?ref=footer">Art</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
-									</li>
+									<li> <a href="#">Company</a> </li>
+									<li> <a href="#">All Products</a> </li>
+									<li> <a href="#">How Edgar Works</a> </li>
+									<li> <a href="#">About Us</a> </li>
+									<li> <a href="#">Edgar for Fun</a> </li>
+									<li> <a href="#">Be an Edgar</a> </li>
+									<li> <a href="#">Shop with Edgar</a> </li>
+									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section">
-								<span className="section-title">Departments 2</span>
+								<span className="section-title">RESOURCES</span>
 								<ul>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/furniture/?ref=footer">Furniture</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/kitchen-dining/?ref=footer">Kitchen &amp; Dining</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/home/?ref=footer">Home</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/bed-bath/?ref=footer">Bed &amp; Bath</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/art/?ref=footer">Art</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
-									</li>
+									<li> <a href="#">Contact Us</a> </li>
+									<li> <a href="#">Press Room</a> </li>
+									<li> <a href="#">FAQ</a> </li>
+									<li> <a href="#">Hot Products</a> </li>
+									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section">
-								<span className="section-title">Departments 3</span>
+								<span className="section-title">QUICK LINKS</span>
 								<ul>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/furniture/?ref=footer">Furniture</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/kitchen-dining/?ref=footer">Kitchen &amp; Dining</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/home/?ref=footer">Home</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/bed-bath/?ref=footer">Bed &amp; Bath</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/art/?ref=footer">Art</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
-									</li>
-								</ul>
-							</div>
-							<div className="departments section">
-								<span className="section-title">Departments 4</span>
-								<ul>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/furniture/?ref=footer">Furniture</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/kitchen-dining/?ref=footer">Kitchen &amp; Dining</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/home/?ref=footer">Home</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/bed-bath/?ref=footer">Bed &amp; Bath</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/art/?ref=footer">Art</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/jewelry/?ref=footer">Jewelry</a>
-									</li>
-									<li>
-										<a href="//web.archive.org/web/20140702093317/http://fab.com/department/personal-accessories/?ref=footer">Personal</a>
-									</li>
+									<li> <a href="#">Terms of Service</a> </li>
+									<li> <a href="#">Privacy Policy</a> </li>
+									<li> <a href="#">Affiliates</a> </li>
+									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="most-popular-categories section">
@@ -287,6 +215,7 @@ export default class HomeFooter extends React.Component {
 							</div>
 						</div>
 				</footer>
+
 			</div>
 		);
 	}
