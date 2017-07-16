@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../stores/AppStore'
 import AccountDropdown from './AccountDropdown'
+import NavbarSearch from './NavbarSearch'
 const fab_logo = "https://web.archive.org/web/20140713231906im_/http://dnok91peocsw3.cloudfront.net/relaunch/fab_2_0_logo.png"
 const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/logo.png"
 
@@ -39,7 +40,8 @@ export default class Navbar extends React.Component {
 								<div className = "vcenter col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-6 col-md-6 col-lg-6">
 									<div className="input-group input-group-lg">
 										<span className="input-group-addon" id="basic-addon1"><span className = "glyphicon glyphicon-search" /></span>
-										<input type="text" className="form-control" placeholder="Search" aria-describedby="basic-addon1"/>
+										<NavbarSearch />
+										
 									</div>
 								</div>
 								<div id = "top-right-navigation" className = "col-md-2 col-lg-2 col-sm-2 home-right-nav pull-right">

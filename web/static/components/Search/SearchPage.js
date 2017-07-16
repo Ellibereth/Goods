@@ -54,7 +54,7 @@ export default class SearchPage extends React.Component {
 					<div id = "search-container" className = "container-fluid">
 						<div className = "container">
 							<div className = "row search-result-amount-text">
-								Showing {this.state.num_results} results for {this.props.params.search_input}
+								Showing {this.state.num_results} {this.state.num_results == 1 ? "result" : "results"} for <b> {this.props.params.search_input}</b>
 							</div>
 							{products_display}
 						</div>
