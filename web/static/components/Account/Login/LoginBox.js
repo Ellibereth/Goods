@@ -157,11 +157,9 @@ export default class LoginBox extends React.Component {
 		var register_styles = this.props.form_state == REGISTER_STATE ?  {display : "none"} :{"display" :"block"}
 		var login_styles = this.props.form_state == LOGIN_STATE ? {display : "none"} : {"display" :" block"} 
 
-		console.log(this.state)
+
 		return (
 			<div>
-				<LoginBoxLeft form_state = {this.props.form_state}
-				setFormState = {this.props.setFormState} />
 
 				<div className="inviteBlock newLoginProcess fab-col-sm-30" id="resInviteForm">
 					<div className='loginFormNew floatLeft'>
@@ -203,7 +201,9 @@ export default class LoginBox extends React.Component {
 									</div>
 								</form>
 								
-								<a href = "/recoverAccount" id="forgotPW" style= {{"marginTop" : "10px", "marginLeft" : "90px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
+
+								<a href = "/recoverAccount" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "70px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
+								<a href = "/register" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet?</a>
 							</div>
 						</div>
 
@@ -219,15 +219,18 @@ export default class LoginBox extends React.Component {
 									</div>
 								</div>
 							</div>
+
 							<label for="user[un_or_email]">NAME</label>
 							<input 
+							style = {{"marginBottom" : "12px"}}
 							onChange = {this.onTextChange.bind(this)}
 							className="inputBoxNew borderR3 NewLPUserName"
-							 id="user_email" name="name" 
-							 placeholder="" tabindex="1" type="text" value= {this.state.name}/>
+							id="user_email" name="name" 
+							placeholder="" tabindex="1" type="text" value= {this.state.name}/>
 
 							 <label for="user[un_or_email]">EMAIL</label>
 							<input 
+							style = {{"marginBottom" : "12px"}}
 							onChange = {this.onTextChange.bind(this)}
 							className="inputBoxNew borderR3 NewLPUserName"
 							 id="user_email" name="register_email" 
@@ -235,6 +238,7 @@ export default class LoginBox extends React.Component {
 
 							 <label for="user[un_or_email]">PASSWORD</label>
 							<input 
+							style = {{"marginBottom" : "12px"}}
 							onChange = {this.onTextChange.bind(this)}
 							className="inputBoxNew borderR3 NewLPUserName"
 							 id="user_email" name="register_password" 
@@ -242,6 +246,7 @@ export default class LoginBox extends React.Component {
 
 							 <label for="user[un_or_email]">CONFIRM PASSWORD</label>
 							<input 
+							style = {{"marginBottom" : "12px"}}
 							onChange = {this.onTextChange.bind(this)}
 							className="inputBoxNew borderR3 NewLPUserName"
 							 id="user_email" name="register_password_confirm" 
@@ -250,6 +255,8 @@ export default class LoginBox extends React.Component {
 							<div className="signUpBtnWrap">
 								<input onClick = {this.registerUser.bind(this)} className="fabSubmitBtn fabGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
 							</div>
+
+							<a href = "/login" id="forgotPW" style= {{"marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Already have an account?</a>
 						</div>
 					</form>
 				</div>

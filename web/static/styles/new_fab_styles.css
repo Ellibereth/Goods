@@ -26670,13 +26670,16 @@ html {
     }
 }
 .responsive-site .inviteBlock.newLoginProcess {
-    border-left: 1px solid #d5d5d5
+    /* Darek did this */
+    /*border-left: 1px solid #d5d5d5*/
 }
 .responsive-site .inviteBlock.newLoginProcess.re-auth-page {
     border-left: 0
 }
 .responsive-site .inviteWrapper #resInviteForm {
-    background-color: #fff
+    background-color: #fff;
+    /*Darek did this*/
+    width: 400px;
 }
 .responsive-site .loginBox .loginForm input[type="button"] {
     border: medium none;
@@ -26772,12 +26775,23 @@ html {
     font-size: 11px;
     font-weight: 500
 }
+
+/*Darek edits*/
 .responsive-site .newLoginProcess #forgotPW,
 .responsive-site #forgotPWLB,
 .responsive-site #reDirIndex {
     color: #999;
-    text-decoration: underline
+    /*text-decoration: underline*/
 }
+
+.responsive-site #forgotPW:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/* end of Darek edits */
+
+
 .responsive-site .loginBox #resInviteFormLB .inputBox {
     margin: 4px 0 10px
 }

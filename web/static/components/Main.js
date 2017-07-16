@@ -18,8 +18,7 @@ import AdminToolsPage from './Admin/AdminToolsPage.js'
 import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
 import PageNotFound from './Misc/PageNotFound.js'
 
-
-import RegisterPage from './Account/Register/RegisterPage.js'
+import RegisterPage from './Account/Login/RegisterPage.js'
 import LoginPage from './Account/Login/LoginPage.js'
 import ViewCartPage from './Account/Checkout/ViewCartPage.js'
 import CheckoutPage from './Account/Checkout/CheckoutPage.js'
