@@ -154,7 +154,9 @@ export default class ProductTopRow extends React.Component {
 			var is_first_class = (index == 0) ? " primary " : ""
 			var class_name = class_base + is_selected_class + is_first_class
 			return <li className={class_name}>
-						<img height = "68" width = "68" onClick = {this.selectImage.bind(this, index, image.image_id)} src={src_base + image.image_id} className = "pthumbimg center-block img-responsive" />
+						<img onClick = {this.selectImage.bind(this, index, image.image_id)} 
+						src={src_base + image.image_id} 
+						className = "product-more-images pthumbimg center-block img-responsive" />
 							<div className="material-mask">
 								<div className="material-inner-mask"></div>
 							</div>

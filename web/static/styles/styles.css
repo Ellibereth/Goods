@@ -43,6 +43,16 @@ Linda's Color Scheme
     line-height: 1em;
 }*/
 
+
+.edgar-logo {
+	width: 160px;
+	height: 42px;
+}
+.product-more-images {
+	height: 68px !important;
+	width: : 68px !important;
+}
+
 .clearBoth, .clear {
     clear: both;
 }

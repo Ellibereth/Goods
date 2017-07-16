@@ -33,7 +33,7 @@ export default class Navbar extends React.Component {
 							<div className = "row">
 								<div className = "col-sm-1 col-md-1 col-lg-1" id = "logo-column">
 									<a href = "/">
-										<img width = "115" height = "42" src = {edgar_logo}/>
+										<img className = "edgar-logo" src = {edgar_logo}/>
 									</a>
 								</div>
 								<div className = "vcenter col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-6 col-md-6 col-lg-6">
@@ -49,7 +49,8 @@ export default class Navbar extends React.Component {
 										<ul id = "home-top-navigation">
 											<li style = {{"position" :"relative", "top" : "-2px"}}>
 												<a href="/myCart">
-													<span className = "glyphicon glyphicon-shopping-cart"/>
+													<i className = "fa fa-shopping-cart" aria-hidden = {true}/>
+													{/* <span className = "glyphicon glyphicon-shopping-cart"/> */}
 													{this.state.cart_badge > 0 &&
 														<span className="noOfProdInCartIcon crtLstNotification " style= {{"display": "block"}}> 
 															{this.state.cart_badge}
@@ -66,7 +67,8 @@ export default class Navbar extends React.Component {
 										<ul id = "home-top-navigation">
 											<li>
 												<a href="/myCart">
-													<span className = "glyphicon glyphicon-shopping-cart"/>
+													<i className = "fa fa-shopping-cart" aria-hidden = {true}/>
+													{/* <span className = "glyphicon glyphicon-shopping-cart"/> */}
 													{this.state.cart_badge > 0 &&
 														<span className="noOfProdInCartIcon crtLstNotification " style= {{"display": "block"}}> 
 															{this.state.cart_badge}

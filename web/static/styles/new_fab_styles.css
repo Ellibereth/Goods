@@ -22491,7 +22491,7 @@ only screen and (min-resolution: 144dpi) {
     width: 100%
 }
 .prodPgAddcartButton {
-    padding: 0 0 15px 0
+    padding: 16px 0 15px 0;
 }
 .prodPgAddcartButton .fa-shopping-cart {
     margin-right: 10px
@@ -26541,10 +26541,18 @@ input[type=text]:focus:-moz-placeholder {
     display: inline;
 }
 
+
+/*Darek added these*/
 .addToCart.soldOut {
     opacity: 0.7;
     cursor: not-allowed;
 }
+
+.addToCart {
+    border-radius: 4px;
+}
+
+/*End of Darek edits*/
 
 *,
 html,

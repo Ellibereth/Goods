@@ -216,10 +216,14 @@ a {
 }
 
 #edgar-footer > ul.footer-links > li > a {
-	color: #000;
-	font-size: 11px;
+	color: #999;
+	font-size: 16px;
 	text-decoration: none;
 	font-weight: normal;
+}
+
+#edgar-footer ul.footer-links li a:hover {
+	color: #000;
 }
 
 #footer-wrapper {
@@ -361,7 +365,7 @@ a {
 }
 
 #dynamic-footer .section li a:hover {
-	color: #666;
+	color: black;
 }
 
 #dynamic-footer .most-popular-categories li {
@@ -432,12 +436,14 @@ a {
 	text-align: center;
 }
 
-#edgar-footer ul.footerLinks li a, #dynamic-footer .section a {
+#dynamic-footer .section a {
 	color: #000;
-	font-size: 14px;
+	font-size: 11px;
 	text-decoration: none;
 	font-weight: normal;
 }
+
+
 
 select, input, textarea, button {
 	font: 99% "Helvetica Neue",Helvetica,Arial,sans-serif;
