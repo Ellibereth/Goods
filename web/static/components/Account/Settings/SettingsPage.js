@@ -112,8 +112,6 @@ export default class SettingsPage extends React.Component {
 								<br />
 								<OrdersPreview orders = {this.state.orders} />
 								<br/>
-
-								<button type = "button" className = "btn btn-default" onClick = {() => window.location = '/logout'}>Logout</button>
 							</div>
 
 						}

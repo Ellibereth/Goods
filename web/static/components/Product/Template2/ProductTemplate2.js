@@ -14,10 +14,10 @@ export default class ProductTemplate2 extends React.Component {
 
 		return (
 
-				<div className="fabBlock newProductpgDesign">
-					<div className="fab-row">
+				<div className="edgarBlock newProductpgDesign">
+					<div className="edgar-row">
 						<ProductTopRow product = {this.props.product} />
-						<div className="horizontal-line-wrap fab-col-xs-60 no-padding"><hr className="bottom-margin-xs"/></div>
+						<div className="horizontal-line-wrap edgar-col-xs-60 no-padding"><hr className="bottom-margin-xs"/></div>
 						<ProductMiddleRow product = {this.props.product} />
 					</div>
 				</div>								

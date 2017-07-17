@@ -23,7 +23,7 @@ export default class ProductExtraInfo extends React.Component {
 							</div>
 							<div className="desc">
 								<ul>
-									<li><span className = "product-extra-info-bullet">Fabric wristband with genuine leather details and lining</span></li>
+									<li><span className = "product-extra-info-bullet">Edgarric wristband with genuine leather details and lining</span></li>
 									<li><span className = "">Japanese quartz movement</span></li>
 									<li><span className = "product-extra-info-bullet">Metal case; stainless steel back</span></li>
 									<li><span className = "product-extra-info-bullet">Water resistance: 3 ATM</span></li>
@@ -75,14 +75,14 @@ export default class ProductExtraInfo extends React.Component {
 							<div>
 								<h2 className="designerName font20 color333 fontLtr">KOMONO</h2>
 								<div className="designerImageWithProdPg float-left">
-									<a target="_blank" href="/web/20140708022006/http://fab.com:80/designer/komono/" title="More from: KOMONO">
+									<a target="_blank" href="/web/20140708022006/http://edgar.com:80/designer/komono/" title="More from: KOMONO">
 										<img src="//web.archive.org/web/20140708022006im_/http://dnok91peocsw3.cloudfront.net/designer/32549-175x175-1381504804-pri.png" alt="KOMONO" title="KOMONO" height="112" width="112"/>
 									</a>
 								</div>
 								<div className="float-right designerContent poRel">
 									<div className="font13 color666 marginTop2 designerDescription">Founded in 2009, KOMONO is on a mission to bring the world cool, street-style accessories. Designers Anton Jassens and Raf Maes are based in Belgium, but the label has garnered a major following all over Europe, Asia, and Australia. Its line of retro-futuristic watches, sunglasses, and apparel are updated, quirkier, and more colorful versions of classNameic designs. </div>
-										<a target="_blank" href="/web/20140708022006/http://fab.com:80/designer/komono/" title="More from: KOMONO" className="font13 color666 marginTop2 designerLink">
-											More from&nbsp;KOMONO<span className="dIB fabShopSpriteNew smallRightArrow vAm"></span>
+										<a target="_blank" href="/web/20140708022006/http://edgar.com:80/designer/komono/" title="More from: KOMONO" className="font13 color666 marginTop2 designerLink">
+											More from&nbsp;KOMONO<span className="dIB edgarShopSpriteNew smallRightArrow vAm"></span>
 										</a>
 									</div>
 								</div>
@@ -90,8 +90,8 @@ export default class ProductExtraInfo extends React.Component {
 
 
 
-						<div className="fabSeal round3 productPgWithSeal color666">
-							<span className = "fabSeal_icon">
+						<div className="edgarSeal round3 productPgWithSeal color666">
+							<span className = "edgarSeal_icon">
 								<img id = "product-edgar-flag-stamp"
 								 src = "https://images-na.ssl-images-amazon.com/images/I/41iFbTFN21L._SX300_.jpg"/>
 							</span>

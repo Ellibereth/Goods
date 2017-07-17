@@ -161,14 +161,14 @@ export default class LoginBox extends React.Component {
 		return (
 			<div>
 
-				<div className="inviteBlock newLoginProcess fab-col-sm-30" id="resInviteForm">
+				<div className="inviteBlock newLoginProcess edgar-col-sm-30" id="resInviteForm">
 					<div className='loginFormNew floatLeft'>
 						<div style = {login_styles} className="loginFormNew floatLeft" id="loginWrap" >
 							<div id="LoginScreen">
 								<form onSubmit = {this.loginUser.bind(this)} onKeyPress = {this.onLoginKeyPress.bind(this)}>
 									<h2 className="mainIndexTitle" style={{"color":"#333"}}>Member Sign In</h2>
-									<div className="fab-row" id="errBar" style= {{"*position" : "relative"}}>
-										<div className=" err-from-login fab-col-xs-60" style={{"padding": "10px 0"}}>
+									<div className="edgar-row" id="errBar" style= {{"*position" : "relative"}}>
+										<div className=" err-from-login edgar-col-xs-60" style={{"padding": "10px 0"}}>
 											<div className="errorMessage errorMessageNew loginErr" style={{"padding":"0 6px","width": "100%"}}>
 											</div>
 										</div>
@@ -193,7 +193,7 @@ export default class LoginBox extends React.Component {
 
 
 									<div id="loginAndFbButtons" style= {{"position": "relative", "marginTop": "20px"}}>
-										<input className="fabSubmitBtn fabGradNew borderR3 noShadow" id="reqSubmit"  type="submit" value="Login"/> 
+										<input className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit"  type="submit" value="Login"/> 
 
 										<div style= {{" clear": "both"}}>
 										</div>
@@ -208,13 +208,13 @@ export default class LoginBox extends React.Component {
 						</div>
 
 
-					<form onSubmit = {this.registerUser.bind(this)} onKeyPress = {this.onRegisterKeyPress.bind(this)} style = {register_styles} accept-charset="UTF-8" action="https://fab.com/login/?" className="newInviteWrap" id="uSignup" method="post" name="uSignup">
+					<form onSubmit = {this.registerUser.bind(this)} onKeyPress = {this.onRegisterKeyPress.bind(this)} style = {register_styles} accept-charset="UTF-8" action="https://edgar.com/login/?" className="newInviteWrap" id="uSignup" method="post" name="uSignup">
 						<div id="invSignUpWrap" style= {{"display": "block"}}>
 							<h2 className="mainIndexTitle reqAccess">Join Today!</h2>
 
 
-							<div className="fab-row" id="errBar" style= {{"*position" : "relative", "display":"none"}}>
-								<div className=" err-from-login fab-col-xs-60" style = {{"padding": "10px 0"}}>
+							<div className="edgar-row" id="errBar" style= {{"*position" : "relative", "display":"none"}}>
+								<div className=" err-from-login edgar-col-xs-60" style = {{"padding": "10px 0"}}>
 									<div className="errorMessage errorMessageNew loginErr" style={{"padding":"0 6px",width: "100%"}}>
 									</div>
 								</div>
@@ -253,7 +253,7 @@ export default class LoginBox extends React.Component {
 							 placeholder="" tabindex="4" type="password" value= {this.state.register_password_confirm}/>
 
 							<div className="signUpBtnWrap">
-								<input onClick = {this.registerUser.bind(this)} className="fabSubmitBtn fabGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
+								<input onClick = {this.registerUser.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
 							</div>
 
 							<a href = "/login" id="forgotPW" style= {{"marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Already have an account?</a>

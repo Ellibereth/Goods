@@ -48,13 +48,13 @@ export default class LoginPage extends React.Component {
 		return (
 			<PageContainer>
 				<div style = {background_style}>
-					<div className="fab-container-fluid" className = "responsive-site">
-						<div className="fab-fixed-container">
-							<div className="fab-row log-out-wrapper">
-								<div className="inviteWrapper fab-col-xs-60">
-									<div className="fab-row">
-										<div className="fab-col-xs-60">
-											<div className="newLoginProcess fab-row">
+					<div className="edgar-container-fluid" className = "responsive-site">
+						<div className="edgar-fixed-container">
+							<div className="edgar-row log-out-wrapper">
+								<div className="inviteWrapper edgar-col-xs-60">
+									<div className="edgar-row">
+										<div className="edgar-col-xs-60">
+											<div className="newLoginProcess edgar-row">
 												
 												<LoginBox 
 												setFormState = {this.setFormState.bind(this)}

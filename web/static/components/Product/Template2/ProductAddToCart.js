@@ -187,14 +187,14 @@ export default class ProductAddToCart extends React.Component {
 					*/}
 					<div className="prodPgAddcartButton clear">
 						{this.props.item_in_stock ?
-						<a tabindex="3" onClick = {this.addToCart.bind(this)} className="btn btn-default-red prodPgAddcartAchrButton fabSubmitBtn addToCart round5 noShadow fabGrad noPadding ">
+						<a tabindex="3" onClick = {this.addToCart.bind(this)} className="btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
 							<div className="add-to-bag-btn-ct">
 								<span className="shop-bag-icon-white add-bag-btn-img"></span>
 								<span>&nbsp;&nbsp;&nbsp;Add to Cart</span>
 							</div>
 						</a>
 						:
-						<a tabindex="3" className="soldOut btn btn-default-red prodPgAddcartAchrButton fabSubmitBtn addToCart round5 noShadow fabGrad noPadding ">
+						<a tabindex="3" className="soldOut btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
 							<div className="add-to-bag-btn-ct">
 								<span className="shop-bag-icon-white add-bag-btn-img"></span>
 								<span>&nbsp;&nbsp;&nbsp;Add to Cart</span>

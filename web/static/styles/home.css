@@ -55,7 +55,6 @@
 }
 
 .home-product-preview-details {
-	/*width was 224 on FAB but caused overflow*/
 	width: 220px;
 	background-color: #fff;
 	padding: 0 6px 6px;
@@ -75,7 +74,6 @@
 }
 
 .home-product-preview {
-	/*width was 236 on FAB but caused overflow*/
 	width: 220px;
 	height: 346px;
 	float: left;

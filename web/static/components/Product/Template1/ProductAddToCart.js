@@ -103,15 +103,15 @@ export default class ProductAddToCart extends React.Component {
 						</select>
 					</div>
 					<div className= {this.props.item_in_stock ? "prodPgAddcartButton clear" : "prodPgAddcartButton soldOut clear"}>
-						<a onClick = {this.addToCart.bind(this)} tabindex="3" href="javascript:void(0)" className="prodPgAddcartAchrButton fabSubmitBtn addToCart round5 noShadow fabGrad">
+						<a onClick = {this.addToCart.bind(this)} tabindex="3" href="javascript:void(0)" className="prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad">
 							Add to Cart
 						</a>
 					</div>
 					<div className="clear"></div>
 					<div className="productBadge">
-						<span className="fabShopSprite2 fabproductBigSizeLogo dIB"></span>
-						<span className="badgeRelatedContent font12 dIB"><span className="font14 fabProductTextColor">FAB PLUS</span> – This product ships immediately. <span className="colorRed font12 fontNr fontWeight500 free-shipping-link">FREE SHIPPING</span> above $49.</span>
-						<span data-badgetype="fabproduct_morecontentLeftopen" className=" productBadgeQuestionMark dIB fabShopSpriteNew productBadgeTooltipHandler">
+						<span className="edgarShopSprite2 edgarproductBigSizeLogo dIB"></span>
+						<span className="badgeRelatedContent font12 dIB"><span className="font14 edgarProductTextColor">FAB PLUS</span> – This product ships immediately. <span className="colorRed font12 fontNr fontWeight500 free-shipping-link">FREE SHIPPING</span> above $49.</span>
+						<span data-badgetype="edgarproduct_morecontentLeftopen" className=" productBadgeQuestionMark dIB edgarShopSpriteNew productBadgeTooltipHandler">
 						</span> 
 					</div>
 				</div>

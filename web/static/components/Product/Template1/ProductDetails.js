@@ -49,7 +49,7 @@ export default class ProductDetails extends React.Component {
 			if (product.sale_price) {
 				return (
 					<div>
-						<p className="fabPrice">
+						<p className="edgarPrice">
 							<span >${formatPrice(this.props.product.sale_price)}</span>
 						</p>
 						<p className="retailPrice">
@@ -61,7 +61,7 @@ export default class ProductDetails extends React.Component {
 
 			else {
 				return (
-					<p className="fabPrice retailPriceNotPresent">
+					<p className="edgarPrice retailPriceNotPresent">
 						<span >${formatPrice(this.props.product.price)}</span>
 					</p>
 				)
@@ -69,8 +69,8 @@ export default class ProductDetails extends React.Component {
 		}
 		else {
 			return (
-				<p className="fabPrice soldOut">
-					<p className="fabPrice">
+				<p className="edgarPrice soldOut">
+					<p className="edgarPrice">
 						<span >Sold Out</span>
 					</p>
 					<p className="retailPrice">

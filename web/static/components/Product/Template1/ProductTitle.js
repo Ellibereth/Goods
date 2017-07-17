@@ -48,7 +48,7 @@ export default class ProductTitle extends React.Component {
 									<li><a href="#"><i className="fa fa-pinterest fa-2x" aria-hidden="true"/></a></li>
 								</ul>
 							</div>
-							<span id="prodShareIcon" className="fabShopSpriteNew dIB"></span>
+							<span id="prodShareIcon" className="edgarShopSpriteNew dIB"></span>
 						</div>
 						<div className="singleSolidBorders"></div>
 							<div className="prodNavFaveCt float-right">
@@ -57,7 +57,7 @@ export default class ProductTitle extends React.Component {
 									<span className="addToFavorites h4 float-left">ADD TO YOUR LISTS</span>
 								</div>
 
-								<span data-tracker="fav_login" data-trackerevent-type="loginToFav" id="prodNavFaveImg" className="prodNavFaveImg fabShopSpriteNew favProduct"></span>
+								<span data-tracker="fav_login" data-trackerevent-type="loginToFav" id="prodNavFaveImg" className="prodNavFaveImg edgarShopSpriteNew favProduct"></span>
 								<i id = "addToFavoriteHeartIcon" className="fa fa-heart fa-2x" aria-hidden="true"></i>
 								<span id="prodNavFaveNum" className="prodNavFaveNum">0</span>
 							</div>

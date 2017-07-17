@@ -29,7 +29,7 @@ export default class PageContainer extends React.Component {
 						<div className = "page-wrapper">
 							<div className = "top-row-inner">
 								<span className = "top-row-text"> Free Shipping. Free Returns. Smiles Guaranteed.</span>
-								<span id = "top-contact-us" className = "top-row-text float-right" onClick = {() => window.location = "/contact"}> 
+								<span id = "top-contact-us" className = "top-row-text float-right" onClick = {() => window.location = "/support"}> 
 									<span id = "top- email-glyph"className = "glyphicon glyphicon-envelope top-row-envelope-icon"/>
 								 	<span>Contact Us</span>
 								</span>

@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../stores/AppStore'
 import AccountDropdown from './AccountDropdown'
 import NavbarSearch from './NavbarSearch'
-const fab_logo = "https://web.archive.org/web/20140713231906im_/http://dnok91peocsw3.cloudfront.net/relaunch/fab_2_0_logo.png"
 const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/logo.png"
 
 

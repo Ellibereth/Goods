@@ -28,23 +28,23 @@ export default class ProductMiddleRow extends React.Component {
 		var product = this.props.product
 		var product_more_details = this.generateMoreDetails(product)
 		return (
-				<div className="extra-info-wrap fab-col-xs-offset-0 fab-col-sm-offset-1 fab-col-md-offset-2 fab-col-lg-offset-6 fab-col-xl-offset-6 fab-col-xs-60 fab-col-sm-58 fab-col-md-56 fab-col-lg-48">
-					<div className="fab-row" id="productExtraInfo">
-						<div className="hidden-xs fab-col-sm-60">
-							<div className="fab-row">
-								<div className="fab-col-xs-60 fab-col-sm-29">
-									<div className="new-heading-2    fab-color-black margin-bottom-15">
+				<div className="extra-info-wrap edgar-col-xs-offset-0 edgar-col-sm-offset-1 edgar-col-md-offset-2 edgar-col-lg-offset-6 edgar-col-xl-offset-6 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48">
+					<div className="edgar-row" id="productExtraInfo">
+						<div className="hidden-xs edgar-col-sm-60">
+							<div className="edgar-row">
+								<div className="edgar-col-xs-60 edgar-col-sm-29">
+									<div className="new-heading-2    edgar-color-black margin-bottom-15">
 										Description
 									</div>
 									<div className="productPgDisc p-normal-text" itemprop="description">
 									<p>{product.description}</p>
 									</div>
 								</div>
-								<div className="fab-col-xs-60 fab-col-sm-29 fab-col-sm-offset-2">
+								<div className="edgar-col-xs-60 edgar-col-sm-29 edgar-col-sm-offset-2">
 									<div id="productPgMoreInfo" className="productMoreInfoInLeft">
 										<div className="prodMidblock" id="prodMDWrap" style= {{"padding" : "0 0 15px 0"}}>
 											<div>
-												<div className="new-heading-2 margin-bottom-15 hidden-xs">More Details&nbsp;<span className="fabShopSprite moreIconI dIB"></span>
+												<div className="new-heading-2 margin-bottom-15 hidden-xs">More Details&nbsp;<span className="edgarShopSprite moreIconI dIB"></span>
 													</div>
 														<div className="desc p-normal-text">
 																{product_more_details}
@@ -57,9 +57,9 @@ export default class ProductMiddleRow extends React.Component {
 										</div>
 									</div>
 								</div>
-								<div className="fab-row"><div className="fab-col-xs-60"><hr/></div></div>
-								<div className="fab-row">
-									<div className="fab-col-xs-60 fab-col-sm-29">
+								<div className="edgar-row"><div className="edgar-col-xs-60"><hr/></div></div>
+								<div className="edgar-row">
+									<div className="edgar-col-xs-60 edgar-col-sm-29">
 										<div id="productPgMoreShippingInfo" className="shippingInfoOnTop">
 											<div className="prodMidblock" style= {{"padding" :"0 0 15px 0"}}>
 												<div className="new-heading-2 hidden-xs margin-bottom-15">Shipping Info
@@ -109,13 +109,13 @@ export default class ProductMiddleRow extends React.Component {
 
 				</div>
 		</div>
-		<div className="visible-only-xs fab-col-xs-60">
+		<div className="visible-only-xs edgar-col-xs-60">
 				<div className="panel-group" id="accordion-extra-info" role="tablist" aria-multiselectable="true">
 						<div className="panel panel-default">
 								<div className="panel-heading" role="tab" id="heading-description">
 										<h4 className="panel-title">
 												<a data-toggle="collapse" data-parent="#accordion-extra-info" href="#collapse-description" aria-expanded="true" aria-controls="collapse-description">
-														<div className=" fab-color-black new-heading-3">Description</div>
+														<div className=" edgar-color-black new-heading-3">Description</div>
 												</a>
 										</h4>
 								</div>
@@ -131,7 +131,7 @@ export default class ProductMiddleRow extends React.Component {
 								<div className="panel-heading" role="tab" id="heading-shipping-info">
 										<h4 className="panel-title">
 												<a className="collapsed" data-toggle="collapse" data-parent="#accordion-extra-info" href="#collapse-shipping-info" aria-expanded="false" aria-controls="collapse-shipping-info">
-														<div className="new-heading-3 fab-color-black">Shipping Info
+														<div className="new-heading-3 edgar-color-black">Shipping Info
 																		 <span className="fa fa-truck shipping_icon"></span>
 														</div>
 												</a>
@@ -191,7 +191,7 @@ export default class ProductMiddleRow extends React.Component {
 								<div className="panel-heading" role="tab" id="heading-more-details">
 										<h4 className="panel-title">
 												<a className="collapsed" data-toggle="collapse" data-parent="#accordion-extra-info" href="#collapse-more-details" aria-expanded="false" aria-controls="collapse-more-details">
-														<div className="new-heading-3 fab-color-black">More Details&nbsp;<span className="fabShopSprite moreIconI dIB"></span>
+														<div className="new-heading-3 edgar-color-black">More Details&nbsp;<span className="edgarShopSprite moreIconI dIB"></span>
 														</div>
 												</a>
 										</h4>
@@ -201,7 +201,7 @@ export default class ProductMiddleRow extends React.Component {
 												<div id="productPgMoreInfo" className="productMoreInfoInLeft">
 														<div className="prodMidblock" id="prodMDWrap" style={{"padding": "0 0 15px 0"}}>
 		<div>
-				<div className="new-heading-2 margin-bottom-15 hidden-xs">More Details&nbsp;<span className="fabShopSprite moreIconI dIB"></span>
+				<div className="new-heading-2 margin-bottom-15 hidden-xs">More Details&nbsp;<span className="edgarShopSprite moreIconI dIB"></span>
 				</div>
 		</div>
 				<div className="desc p-normal-text">
@@ -215,7 +215,7 @@ export default class ProductMiddleRow extends React.Component {
 
 <li><span style={{"lineHeight" :"1.231"}}>Pillow insert included (handwash only)</span></li>
 
-<li><span style={{"lineHeight" :"1.231"}}>Printed on soft and super smooth fabric great for showing print detail</span></li>
+<li><span style={{"lineHeight" :"1.231"}}>Printed on soft and super smooth edgarric great for showing print detail</span></li>
 
 <li><span style={{"lineHeight" :"1.231"}}>This item is made to order and will ship to you directly from the designer. Please allow for extra shipping time.</span></li>
 

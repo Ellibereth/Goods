@@ -327,7 +327,6 @@ a {
 }
 */
 .most-popular-categories {
-	/* 666 on FAB */
 	width: 880px;
 	padding: 15px 0 0 15px;
 }
@@ -413,7 +412,7 @@ a {
 	-webkit-box-sizing: border-box;
 }
 
-.fabSubmitBtn {
+.edgarSubmitBtn {
 	font-size: 1.1em;
 	color: #FFF;
 	padding: .6em 1.5em;
@@ -426,7 +425,7 @@ a {
 	border: 0;
 }
 
-#dynamic-footer .section a.fabSubmitBtn {
+#dynamic-footer .section a.edgarSubmitBtn {
 	width: 160px;
 	box-sizing: border-box;
 	padding: 8px 15px;

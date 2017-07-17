@@ -52,13 +52,13 @@ export default class ProductTopRow extends React.Component {
 			if (product.sale_price) {
 				return (
 					<div>
-						<p className="fab-color-black new-heading-2 float-left fabPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-							<span className="fab-color-black bold-texts">
+						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="edgar-color-black bold-texts">
 								${formatPrice(product.sale_price)}
 							</span>
 						</p>
-						<p className="fab-color-black new-heading-2 float-left fabPrice retailPrice" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-							<span className="fab-color-black bold-texts">
+						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPrice" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="edgar-color-black bold-texts">
 								${formatPrice(product.price)}
 							</span>
 						</p>
@@ -68,8 +68,8 @@ export default class ProductTopRow extends React.Component {
 
 			else {
 				return (
-					<p className="fab-color-black new-heading-2 float-left fabPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-						<span className="fab-color-black bold-texts">
+					<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+						<span className="edgar-color-black bold-texts">
 							${formatPrice(product.price)}
 						</span>
 					</p>
@@ -79,13 +79,13 @@ export default class ProductTopRow extends React.Component {
 		else {
 			return (
 				<div>
-						<p className="fab-color-black new-heading-2 float-left fabPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-							<span className="fab-color-black bold-texts">
+						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="edgar-color-black bold-texts">
 								Sold Out
 							</span>
 						</p>
-						<p className="fab-color-black new-heading-2 float-left fabPrice retailPrice" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-							<span className="fab-color-black bold-texts">
+						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPrice" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+							<span className="edgar-color-black bold-texts">
 								${formatPrice(product.price)}
 							</span>
 						</p>
@@ -174,10 +174,10 @@ export default class ProductTopRow extends React.Component {
 		var price_row = this.getPriceDisplay.bind(this)(product)
 
 		return (
-					<div className="fab-col-xs-offset-0 fab-col-sm-offset-1 fab-col-md-offset-2 fab-col-lg-offset-6 fab-col-xl-offset-6 fab-col-xs-60 fab-col-sm-58 fab-col-md-56 fab-col-lg-48 fab-col-xl-48" id="productpgTopWrapper">
-						<div className="fab-row">
-							<div className="fab-row-same-height fab-row-full-height jq-i-parcel-info jq-parcel-product" data-product-size-value="526543">
-								<div className="hidden-xs fab-col-sm-4 no-padding fab-col-full-height vertical-slider">
+					<div className="edgar-col-xs-offset-0 edgar-col-sm-offset-1 edgar-col-md-offset-2 edgar-col-lg-offset-6 edgar-col-xl-offset-6 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48 edgar-col-xl-48" id="productpgTopWrapper">
+						<div className="edgar-row">
+							<div className="edgar-row-same-height edgar-row-full-height jq-i-parcel-info jq-parcel-product" data-product-size-value="526543">
+								<div className="hidden-xs edgar-col-sm-4 no-padding edgar-col-full-height vertical-slider">
 									<div className="res-moreProdImages">
 										<div className="res-optimizelySliderForMoreImages">
 											<ul className="res-moreIndvProdImages res-moreProductSmlImages bxslider">	
@@ -188,15 +188,15 @@ export default class ProductTopRow extends React.Component {
 								</div>
 							
 
-								<div className="hidden-xs fab-col-sm-32 no-padding fab-col-sm-offset-1 fab-col-full-height prod-main-img-left-offset">
+								<div className="hidden-xs edgar-col-sm-32 no-padding edgar-col-sm-offset-1 edgar-col-full-height prod-main-img-left-offset">
 									<div id="product-pg-images-wrap" className="zoomCursor">
 										<li>
-											<img className="productPgMainImage fab-img-responsive js-show-fs" src= {main_image_id}/>
+											<img className="productPgMainImage edgar-img-responsive js-show-fs" src= {main_image_id}/>
 									 	</li>
 									</div>
 								</div>
 
-								<div className="fab-col-sm-20 fab-col-sm-offset-1 fab-col-xs-60 fab-col-xs-offset-0    fab-col-full-height prod-img-left-offset">
+								<div className="edgar-col-sm-20 edgar-col-sm-offset-1 edgar-col-xs-60 edgar-col-xs-offset-0    edgar-col-full-height prod-img-left-offset">
 									<div className="productpgRight is_new_product_dpp">
 										<div id="productPricingDetails">
 											<div className="prodBFuyWrap newProductPgBuyList">
@@ -205,7 +205,7 @@ export default class ProductTopRow extends React.Component {
 														<div id="prdShareWithTitle">
 															<div className="floatLeft price-with-designers">
 																<h1 id="productTitle" className="product-title new-heading-1" itemprop="name">{product.name}</h1>
-																<link itemprop="url" href="https://fab.com/product/pink-banana-leaf-pillow-526543/ff7o4r?fref=fb-like"/>
+																<link itemprop="url" href="https://edgar.com/product/pink-banana-leaf-pillow-526543/ff7o4r?fref=fb-like"/>
 																	<div>
 																		<span id="byText" className="byText new-heading-3">by</span>
 																		<h2 className="designer-name new-heading-3"><a href="/designer/wilder-california/" alt="" title="" style = {{"paddingLeft" : "4px"}}>{product.manufacturer}</a></h2>
@@ -231,19 +231,19 @@ export default class ProductTopRow extends React.Component {
 													
 												<ul className="newShareWidgetLinks ">
 													<li className="facebook-li">
-														<a data-social-share="facebook" id="productPageNavFB" className="fb-a jShareIcon" href="javascript:void(0)" onclick="window.open(&quot;http:\/\/www.facebook.com\/sharer.php?u=&quot; + encodeURIComponent(&quot;http://fab.com/product/pink-banana-leaf-pillow-526543/?fref=product-invite-fb&quot;), &quot;my_window&quot;, &quot;height=440,width=620,scrollbars=true&quot;);return false;" title="Share on Facebook"><i className="fa fa-facebook font-size-1_6em "></i></a>
+														<a data-social-share="facebook" id="productPageNavFB" className="fb-a jShareIcon" href="javascript:void(0)" onclick="window.open(&quot;http:\/\/www.facebook.com\/sharer.php?u=&quot; + encodeURIComponent(&quot;http://edgar.com/product/pink-banana-leaf-pillow-526543/?fref=product-invite-fb&quot;), &quot;my_window&quot;, &quot;height=440,width=620,scrollbars=true&quot;);return false;" title="Share on Facebook"><i className="fa fa-facebook font-size-1_6em "></i></a>
 													</li>
 
 													<li className="twitter-li">
-														<a data-social-share="twitter" className="tw-a jShareIcon" id="productPageNavTweet" href="http://twitter.com/intent/tweet?text=So+into+this+design+on+Fab%21+Pink+Banana+Leaf+Pillow+%23FabForAll+http%3A%2F%2Ffab.com%2Fproduct%2Fpink-banana-leaf-pillow-526543%2F%3Ffref%3Dproduct-invite-tw&amp;via=Fab" target="_blank" title="Share on Twitter"><i className="fa fa-twitter font-size-1_6em "></i></a>
+														<a data-social-share="twitter" className="tw-a jShareIcon" id="productPageNavTweet" href="http://twitter.com/intent/tweet?text=So+into+this+design+on+Edgar%21+Pink+Banana+Leaf+Pillow+%23EdgarForAll+http%3A%2F%2Fedgar.com%2Fproduct%2Fpink-banana-leaf-pillow-526543%2F%3Ffref%3Dproduct-invite-tw&amp;via=Edgar" target="_blank" title="Share on Twitter"><i className="fa fa-twitter font-size-1_6em "></i></a>
 													</li>
 
 													<li className="tumblr-li ">
-														<a data-social-share="tumblr" className="tu-a jShareIcon" href="javascript:void(0)" onclick="window.open(&quot;http://www.tumblr.com/share/photo?source=http%3A%2F%2Fdnok91peocsw3.cloudfront.net%2Fproduct%2F526543-1200x1200-1471870412-primary.png&amp;tags=FabForAll&amp;caption=So into this design on Fab! Pink Banana Leaf Pillow %23FabForAll%3Ca+href%3D%27http%3A%2F%2Ffab.com%2Fproduct%2Fpink-banana-leaf-pillow-526543%2F%3Ffref%3Dproduct-invite-tu%27%3E%3C%2Fa%3E%3Cbr%2F%3EFab.com%3Cbr%2F%3E&quot;, &quot;my_window&quot;, &quot;height=440,width=620,scrollbars=true&quot;);return false;" title="Share on Tumblr"><i className="fa fa-tumblr font-size-1_6em "></i></a>
+														<a data-social-share="tumblr" className="tu-a jShareIcon" href="javascript:void(0)" onclick="window.open(&quot;http://www.tumblr.com/share/photo?source=http%3A%2F%2Fdnok91peocsw3.cloudfront.net%2Fproduct%2F526543-1200x1200-1471870412-primary.png&amp;tags=EdgarForAll&amp;caption=So into this design on Edgar! Pink Banana Leaf Pillow %23EdgarForAll%3Ca+href%3D%27http%3A%2F%2Fedgar.com%2Fproduct%2Fpink-banana-leaf-pillow-526543%2F%3Ffref%3Dproduct-invite-tu%27%3E%3C%2Fa%3E%3Cbr%2F%3EEdgar.com%3Cbr%2F%3E&quot;, &quot;my_window&quot;, &quot;height=440,width=620,scrollbars=true&quot;);return false;" title="Share on Tumblr"><i className="fa fa-tumblr font-size-1_6em "></i></a>
 													</li>
 
 													<li className="pinterest-li ">
-														<a className="pi-a" onclick="return false;" href="http://pinterest.com/pin/create/button/?url=http://fab.com/product/pink-banana-leaf-pillow-526543/?fref=product-invite-pinterest&amp;media=http://dnok91peocsw3.cloudfront.net/product/526543-360x360-1471870412-primary.png&amp;description=Currently inspired by: Pink+Banana+Leaf+Pillow on Fab.com" count-layout="horizontal"></a>
+														<a className="pi-a" onclick="return false;" href="http://pinterest.com/pin/create/button/?url=http://edgar.com/product/pink-banana-leaf-pillow-526543/?fref=product-invite-pinterest&amp;media=http://dnok91peocsw3.cloudfront.net/product/526543-360x360-1471870412-primary.png&amp;description=Currently inspired by: Pink+Banana+Leaf+Pillow on Edgar.com" count-layout="horizontal"></a>
 														<span data-social-share="pinterest" className="pinIcon2-0 pi-a jShareIcon" title="Pin it on Pinterest"><i className="fa fa-pinterest-p font-size-1_6em"></i></span>
 													</li>
 												</ul>
