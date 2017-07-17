@@ -53,9 +53,9 @@ export default class HomeFooter extends React.Component {
 						</div> */}
 						<ul className="socialLinks float-right">
 							<li><a href="#"><i className="fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
-							<li><a href = "#"> target="_blank"><i className="fa fa-instagram fa-2x" aria-hidden="true"/></a></li>
-							<li><a href="#" target="_blank"><i className="fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
-							<li><a href="#" target="_blank"><i className="fa fa-pinterest fa-2x" aria-hidden="true"/></a></li>
+							<li><a href="#"><i className="fa fa-instagram fa-2x" aria-hidden="true"/></a></li>
+							<li><a href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
+							<li><a href="#"><i className="fa fa-pinterest fa-2x" aria-hidden="true"/></a></li>
 						</ul>
 						<div className = "clear"/>
 					</div>

@@ -217,7 +217,7 @@ a {
 
 #edgar-footer > ul.footer-links > li > a {
 	color: #999;
-	font-size: 16px;
+	font-size: 14px;
 	text-decoration: none;
 	font-weight: normal;
 }
@@ -318,14 +318,7 @@ a {
 	padding-left: 0px;
 }
 
-/*.first-department .section-title {
-	text-align: center;
-}
 
-.section-title {
-	text-align: left;
-}
-*/
 .most-popular-categories {
 	width: 880px;
 	padding: 15px 0 0 15px;
@@ -344,7 +337,7 @@ a {
 	text-transform: uppercase;
 	font-weight: bold;
 	color: #666;
-	font-size: 18px;
+	font-size: 16px;
 	padding-bottom: 10px;
 	display: block;
 }
@@ -360,7 +353,7 @@ a {
 
 #dynamic-footer .section li a {
 	color: #999;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 #dynamic-footer .section li a:hover {
@@ -494,6 +487,7 @@ select, input, textarea, button {
 #edgar-footer .socialLinks li {
     float: left;
     padding-right: 5px;
+    padding-left: 5px;
 }
 
 
