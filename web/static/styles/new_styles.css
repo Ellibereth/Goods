@@ -26683,6 +26683,11 @@ html {
     background-color: #fff;
     /*Darek did this*/
     width: 400px;
+    border-width: 1px;
+    border-color: #666;
+    border-style: solid;
+    margin-top: 12px;
+    border-radius: 4px;
 }
 .responsive-site .loginBox .loginForm input[type="button"] {
     border: medium none;
