@@ -40,20 +40,14 @@ export default class LoginPage extends React.Component {
 
 
 	render() {
-		var background_style = {
-			backgroundImage : "url(" + BACKGROUND_IMAGE + ")",
-			height: "530px",
-			backgroundSize : "cover"
-		}
 		return (
-			<PageContainer>
-				<div style = {background_style}>
+			<PageContainer no_add_buffer = {true}>
 					<div className="edgar-container-fluid" className = "responsive-site">
 						<div className="edgar-fixed-container">
-							<div className="edgar-row log-out-wrapper">
+							<div className="edgar-row">
 								<div className="inviteWrapper edgar-col-xs-60">
 									<div className="edgar-row">
-										<div className="edgar-col-xs-60">
+										<div className="edgar-col-xs-20 edgar-col-xs-offset-20 ">
 											<div className="newLoginProcess edgar-row">
 												
 												<LoginBox 
@@ -70,7 +64,6 @@ export default class LoginPage extends React.Component {
 							</div>
 						</div>
 					</div>
-				</div>
 			</PageContainer>
 			
 		)

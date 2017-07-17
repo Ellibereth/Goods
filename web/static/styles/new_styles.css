@@ -26642,7 +26642,8 @@ html {
     display: block
 }
 .responsive-site .inviteWrapper {
-    padding-top: 45px
+    /*Darek removed*/
+    /*padding-top: 45px*/
 }
 .responsive-site .inviteWrapper #errBar {
     margin: 0 -5px
