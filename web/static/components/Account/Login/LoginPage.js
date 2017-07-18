@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../stores/AppStore'
 import PageContainer from '../../Misc/PageContainer'
-import Spinner from '../../Misc/Spinner'
 import LoginBox from './LoginBox'
 
 
@@ -41,7 +40,7 @@ export default class LoginPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer no_add_buffer = {true}>
+			<PageContainer is_loading = {this.state.is_loading} no_add_buffer = {true}>
 					<div className="edgar-container-fluid" className = "responsive-site">
 						<div className="edgar-fixed-container">
 							<div className="edgar-row">

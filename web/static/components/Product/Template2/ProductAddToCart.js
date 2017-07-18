@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../stores/AppStore'
 import AppActions from '../../../actions/AppActions'
 import {AlertMessages} from '../../Misc/AlertMessages'
+import {formatPrice} from '../../Input/Util'
 
 export default class ProductAddToCart extends React.Component {
     constructor(props) {
@@ -31,7 +32,6 @@ export default class ProductAddToCart extends React.Component {
 
 	// edit this to allow user to checkout as guest
 	onNonUserClick(){
-		
 		$.ajax({
 			type: "POST",
 			url: "/createGuestUser",
@@ -85,8 +85,7 @@ export default class ProductAddToCart extends React.Component {
 		}
 
 		else {
-
-			// this.props.setLoading(true)
+			this.props.setLoading(true)
 			this.setState({buy_disabled : true})
 			$.ajax({
 				type: "POST",
@@ -116,18 +115,13 @@ export default class ProductAddToCart extends React.Component {
 						});
 						ga('ec:setAction', 'add')
 						ga('send', 'event', 'UX', 'click', 'add to cart');
+						this.props.getProductInformation()
 					}
 					else {
+						this.setState({quantity : 1})
 						swal(data.error.title, data.error.text , data.error.type)
 					}
-					// this.props.getProductInformation()
-					// setTimeout(function () {
-					// 	this.props.checkItemInStock(this.props.product, this.state.variant)
-					// }.bind(this), 1000)
-					// this.setState({buy_disabled : false},
-					// 	() => this.props.setLoading(false)
-					// )
-						
+					this.props.setLoading(false)
 				}.bind(this),
 				error : function(){
 					swal(AlertMessages.INTERNAL_SERVER_ERROR)
@@ -142,6 +136,24 @@ export default class ProductAddToCart extends React.Component {
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
 			});	
+		}
+	}
+
+	componentWillReceiveProps(){
+		if (this.props.product.has_variants) {
+			this.setState({
+				variant : this.props.product.variants[0]
+			})
+		}
+	}
+
+	componentWillReceiveProps(nextProps){
+		if (!this.state.variant) {
+			if (nextProps.product.has_variants) {
+				this.setState({
+					variant : nextProps.product.variants[0]
+				})
+			}
 		}
 	}
 
@@ -162,20 +174,62 @@ export default class ProductAddToCart extends React.Component {
 		)
 	}
 
+	addToCartDisabled(product) {
+		var user = AppStore.getCurrentUser()
+		if (!user || !user.cart || !user.cart.items) return false;
+		var cart = user.cart
+		var items = user.cart.items
+		if (product.has_variants){
+			for (var i = 0; i < items.length; i++) {
+				var item = items[i]
+				if (item.product_id == product.product_id){
+					if (item.variant_id == this.state.variant.variant_id) {
+						if (item.num_items >= this.state.variant.inventory) {
+							return true
+						}
+					}
+				}
+			}
+		}
+		else {
+			for (var i = 0; i < items.length; i++) {
+				var item = items[i]
+				if (item.product_id == product.product_id){
+					if (item.num_items >= product.num_items_limit) {
+						return true
+					}
+					if (item.num_items >= product.inventory) {
+						return true
+					}
+
+				}
+			}
+		}
+		return false
+	}
+
 
     render() {    	
     	var variant_select = this.getVariantSelect.bind(this)(this.props.product)
+    	var quantity_options = []
+    	for (var i = 1; i <= this.props.product.num_items_limit; i++){
+			quantity_options.push(<option value={i}>{i}</option>)
+    	}
+
+    	var add_to_cart_disabled = this.addToCartDisabled.bind(this)(this.props.product)
+    	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? " quantity-select-disabled " : ""
+
 		return (
 				<li className="colorsWithAddToCart reg-prod-pg">
 					{variant_select}
 					<div className="quantitySelBlock ">
-						<select  onChange = {this.onQuantityChange.bind(this)}
-						tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" className="quantityPgSizeDD def_select quantityDPP" >
-							<option value="1">Qty. 1</option>
-							<option value="2">Qty. 2</option>
-							<option value="3">Qty. 3</option>
-							<option value="4">Qty. 4</option>
-							<option value="5">Qty. 5</option>
+						<select 
+						value = {this.state.quantity}
+						disabled = {add_to_cart_disabled}
+						 onChange = {this.onQuantityChange.bind(this)}
+						tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" 
+						className={"quantityPgSizeDD def_select quantityDPP " + disabled_class}>
+							{quantity_options}
 						</select>
 					</div>
 
@@ -186,8 +240,9 @@ export default class ProductAddToCart extends React.Component {
 					</div>
 					*/}
 					<div className="prodPgAddcartButton clear">
-						{this.props.item_in_stock ?
-						<a tabindex="3" onClick = {this.addToCart.bind(this)} className="btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
+						{this.props.item_in_stock && !add_to_cart_disabled ?
+						<a tabindex="3" onClick = {this.addToCart.bind(this)}
+						 className="btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
 							<div className="add-to-bag-btn-ct">
 								<span className="shop-bag-icon-white add-bag-btn-img"></span>
 								<span>&nbsp;&nbsp;&nbsp;Add to Cart</span>
@@ -202,6 +257,12 @@ export default class ProductAddToCart extends React.Component {
 						</a>
 					}
 
+					{add_to_cart_disabled &&
+					<div style = {{"paddingTop" : "64px"}}>
+						<span style = {{"color" : "red"}}>Sorry, but we're cutting you off at {this.props.product.num_items_limit} of this item</span>
+					</div>
+					}
+
 					{/* <div className="prodNavFaveCt float-left prodPageFav">
 						<span data-tracker="fav_login" data-trackerevent-type="loginToFav" id="prodNavFaveImg" className="prodNavFaveImg favProduct new-heading-2 favedOnPNVC faveCountclassName" alt="Like this product? ADD TO YOUR LISTS" title="Like this product? ADD TO YOUR LISTS">
 							<i id="heartContainer" className="fa fa-heart-o"></i>
@@ -212,7 +273,7 @@ export default class ProductAddToCart extends React.Component {
 							<div className="non-content">
 								<div className="curtain">
 									<div className="error-msg-placeholder">Oops! Something went wrong.</div></div></div><div className="view-content"><ul className="wishlists"><li><label className="wishlist master-list" for="526543_2283159"><input type="checkbox" id="526543_2283159" data-id="2283159" className="master-list"/><label for="526543_2283159"></label><span className="list-name">Faves</span><span className="list-items-count">(0)</span></label></li></ul><form className="new-list"><input type="text" className="new-list-name" placeholder="Create New List"/><input type="submit" className="listBtn createList colorfff" value="Add"/></form></div></div></div>*/}
-					<div className="clear"/>
+						<div className="clear"/>
 					</div>
 					<div className="clear"/>
 				</li>

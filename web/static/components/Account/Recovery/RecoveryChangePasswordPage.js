@@ -5,7 +5,6 @@ var browserHistory = require('react-router').browserHistory;
 import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import AccountInput from '../../Input/AccountInput'
-import Spinner from '../../Misc/Spinner'
 import Button from 'react-bootstrap/lib/Button'
 import AppActions from '../../../actions/AppActions'
 
@@ -131,9 +130,8 @@ export default class RecoveryChangePasswordPage extends React.Component {
 
 		
 		return (
-			<PageContainer>
+			<PageContainer is_loading = {this.state.is_loading}>
 				<div className = "container">
-					{this.state.is_loading && <Spinner />}
 						<div className = "container">
 							<div className = "col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
 								<div className = "panel panel-primary account-panel">

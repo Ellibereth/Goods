@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import ProductMainContainer from '../../../Product/ProductMainContainer'
+import ProductTemplate2 from '../../../Product/Template2/ProductTemplate2'
 import AdminEditProductInfo from './AdminEditProductInfo'
 import PageContainer from '../../../Misc/PageContainer.js'
 import AdminEditVariants from './AdminEditVariants'
@@ -121,7 +121,7 @@ export default class AdminProductPage extends React.Component {
 						<hr/>
 
 						<div className = {this.state.selected_tab == PREVIEW_VIEW ? "row" : "none" }>
-							<ProductMainContainer admin_view = {true} product_id = {this.props.params.product_id}/>
+							<ProductTemplate2 admin_view = {true} product_id = {this.props.params.product_id}/>
 						</div>
 
 						<div className = {this.state.selected_tab == INFO_VIEW ? "row" : "none"}>

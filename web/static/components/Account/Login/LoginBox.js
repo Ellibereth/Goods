@@ -160,7 +160,6 @@ export default class LoginBox extends React.Component {
 
 		return (
 			<div>
-
 				<div className="inviteBlock newLoginProcess edgar-col-sm-30" id="resInviteForm">
 					<div className='loginFormNew floatLeft'>
 						<div style = {login_styles} className="loginFormNew floatLeft" id="loginWrap" >

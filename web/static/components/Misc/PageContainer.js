@@ -2,8 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import Footer from '../Nav/Footer'
 import Navbar from '../Nav/Navbar'
-
-
+import Spinner from '../Misc/Spinner'
 
 
 
@@ -25,6 +24,7 @@ export default class PageContainer extends React.Component {
 
 		return (
 				<div>
+					{this.props.is_loading && <Spinner />}
 					<div className = "page-top-row">
 						<div className = "page-wrapper">
 							<div className = "top-row-inner">

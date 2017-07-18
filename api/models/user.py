@@ -536,7 +536,7 @@ class User(db.Model):
 				if quantity + cart_item.num_items > this_variant.inventory:
 					return {
 						Labels.Success : False,
-						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory - cart_item.num_items)),
+						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory)),
 						Labels.Type : "INVENTORY",
 					}
 				try:
@@ -580,7 +580,7 @@ class User(db.Model):
 			if quantity + cart_item.num_items > min(this_product.num_items_limit, this_product.inventory):
 				return {
 						Labels.Success : False,
-						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory) - cart_item.num_items)),
+						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory))),
 						Labels.Type : "INVENTORY"
 					}
 			try:
@@ -602,7 +602,6 @@ class User(db.Model):
 	def addItemToCart(self, product_id, quantity, variant_id = None):
 		if variant_id:
 			return self.addItemWithVariantToCart(product_id, quantity, variant_id)
-			
 		else:
 			return self.addItemWithoutVariantToCart(product_id, quantity)
 

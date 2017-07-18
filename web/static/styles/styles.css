@@ -44,6 +44,21 @@ Linda's Color Scheme
 }*/
 
 
+.quantity-select-disabled {
+	opacity: 0.5;
+}
+
+.quantity-select-disabled:hover {
+	cursor: no-drop;
+}
+
+.soldOut.addToCart {
+	background-color: grey !important;
+}
+
+.soldOut.addToCart:hover {
+	cursor: not-allowed;
+}
 
 
 

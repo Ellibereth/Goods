@@ -4,7 +4,6 @@ import AppStore from '../../../../stores/AppStore.js';
 import UpdateShippingForm from './UpdateShippingForm'
 import PageContainer from '../../../Misc/PageContainer'
 var browserHistory = require('react-router').browserHistory;
-import Spinner from '../../../Misc/Spinner'
 
 export default class UpdateShippingPage extends React.Component {
 	constructor(props) {
@@ -21,7 +20,7 @@ export default class UpdateShippingPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer>
+			<PageContainer is_loading = {this.state.is_loading}>
 				
 				<div className = "container">
 					{this.state.is_loading && <Spinner/>}	 

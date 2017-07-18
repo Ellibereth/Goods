@@ -4,7 +4,6 @@ import AppStore from '../../../stores/AppStore.js';
 import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import {formatPrice, formatCurrentPrice} from '../../Input/Util'
-import Spinner from '../../Misc/Spinner'
 import {AlertMessages} from '../../Misc/AlertMessages'
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
@@ -119,11 +118,11 @@ export default class ViewCartPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer>
+			<PageContainer is_loading  = {this.state.is_loading}>
 				<div id = "view-cart-container" 
 				className = {this.state.is_loading ? "container faded" : "container"}
 				>
-					{this.state.is_loading && <Spinner />}
+
 
 					<div className = "row">
 						<div className = "col-md-9 col-lg-9 col-sm-9 well">

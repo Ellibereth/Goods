@@ -9,7 +9,6 @@ import CheckoutAddressSelect from './Shipping/CheckoutAddressSelect.js'
 import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
 import CheckoutPriceRow from './CheckoutPriceRow'
 import {formatPrice, formatCurrentPrice} from '../../Input/Util'
-import Spinner from '../../Misc/Spinner'
 import {AlertMessages} from '../../Misc/AlertMessages'
 
 var browserHistory = require('react-router').browserHistory;
@@ -373,11 +372,11 @@ export default class CheckoutPage extends React.Component {
 	render() {
 		var can_checkout = this.canCheckout()
 		return (
-			<PageContainer>
+			<PageContainer is_loading = {this.state.is_loading}>
 					<div id = "checkout-container" 
 					className = {this.state.is_loading ? "container faded" : "container"}
 					>	
-						{this.state.is_loading && <Spinner />}
+						
 						<CheckoutAddBillingModal 
 							setLoading = {this.setLoading.bind(this)}
 							selected_address = {this.getSelectedAddress()}

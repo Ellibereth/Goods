@@ -172,7 +172,7 @@ export default class ProductTopRow extends React.Component {
 		var main_image_id = src_base + this.state.selected_image_id
 		var product_images = this.getProductImages(this.props.product)
 		var price_row = this.getPriceDisplay.bind(this)(product)
-
+		
 		return (
 					<div className="edgar-col-xs-offset-0 edgar-col-sm-offset-1 edgar-col-md-offset-2 edgar-col-lg-offset-6 edgar-col-xl-offset-6 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48 edgar-col-xl-48" id="productpgTopWrapper">
 						<div className="edgar-row">
@@ -222,6 +222,8 @@ export default class ProductTopRow extends React.Component {
 													<div className="cnfPg-maskL"></div>
 													<li id="clickedOnColor" className="colorMask displayNone"></li>
 													<ProductAddToCart 
+													setLoading = {this.props.setLoading}
+													getProductInformation = {this.props.getProductInformation}
 													item_in_stock = {this.state.item_in_stock}
 													checkItemInStock = {this.checkItemInStock.bind(this)}
 													product = {this.props.product}/>

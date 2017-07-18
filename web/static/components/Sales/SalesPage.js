@@ -3,7 +3,6 @@ var ReactDOM = require('react-dom');
 
 
 import PageContainer from '../Misc/PageContainer'
-import Spinner from '../Misc/Spinner'
 import HomeProductPreview from '../Home/HomeProductPreview'
 
 
