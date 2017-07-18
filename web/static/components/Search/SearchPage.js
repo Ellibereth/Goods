@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import PageContainer from '../Misc/PageContainer'
-import SearchProductPreview from './SearchProductPreview'
-
+// import SearchProductPreview from './SearchProductPreview'
+import HomeProductPreview from '../Home/HomeProductPreview'
 
 export default class SearchPage extends React.Component {
 	constructor(props) {
@@ -45,7 +45,7 @@ export default class SearchPage extends React.Component {
 		var products = this.state.products
 		if (!products) return <PageContainer component = {<div/>}/>
 		var products_display = products.map((product, index)=>
-			<SearchProductPreview product = {product} index = {index}/>
+			<HomeProductPreview product = {product} index = {index}/>
 		)
 		
 
@@ -56,7 +56,9 @@ export default class SearchPage extends React.Component {
 							<div className = "row search-result-amount-text">
 								Showing {this.state.num_results} {this.state.num_results == 1 ? "result" : "results"} for <b> {this.props.params.search_input}</b>
 							</div>
-							{products_display}
+							<div className = "row">
+								{products_display}
+							</div>
 						</div>
 					</div>
 				</PageContainer>
