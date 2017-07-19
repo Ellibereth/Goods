@@ -208,7 +208,7 @@ export default class ProductTopRow extends React.Component {
 																<link itemprop="url" href="https://edgar.com/product/pink-banana-leaf-pillow-526543/ff7o4r?fref=fb-like"/>
 																	<div>
 																		<span id="byText" className="byText new-heading-3">by</span>
-																		<h2 className="designer-name new-heading-3"><a href="/designer/wilder-california/" alt="" title="" style = {{"paddingLeft" : "4px"}}>{product.manufacturer}</a></h2>
+																		<h2 className="designer-name new-heading-3"><a href= {"/search/" + product.manufacturer} style = {{"paddingLeft" : "4px"}}>{product.manufacturer}</a></h2>
 																	</div>
 															</div>
 														</div>
@@ -231,7 +231,7 @@ export default class ProductTopRow extends React.Component {
 												<li className="clear">
 													<div className="clear"></div>
 													
-												<ul className="newShareWidgetLinks ">
+												{/* <ul className="newShareWidgetLinks ">
 													<li className="facebook-li">
 														<a data-social-share="facebook" id="productPageNavFB" className="fb-a jShareIcon" href="javascript:void(0)" onclick="window.open(&quot;http:\/\/www.facebook.com\/sharer.php?u=&quot; + encodeURIComponent(&quot;http://edgar.com/product/pink-banana-leaf-pillow-526543/?fref=product-invite-fb&quot;), &quot;my_window&quot;, &quot;height=440,width=620,scrollbars=true&quot;);return false;" title="Share on Facebook"><i className="fa fa-facebook font-size-1_6em "></i></a>
 													</li>
@@ -249,6 +249,7 @@ export default class ProductTopRow extends React.Component {
 														<span data-social-share="pinterest" className="pinIcon2-0 pi-a jShareIcon" title="Pin it on Pinterest"><i className="fa fa-pinterest-p font-size-1_6em"></i></span>
 													</li>
 												</ul>
+												*/}
 												</li>
 											</ul>
 										</div>

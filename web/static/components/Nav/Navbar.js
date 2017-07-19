@@ -50,7 +50,7 @@ export default class Navbar extends React.Component {
 										<ul id = "home-top-navigation">
 											<li style = {{"position" :"relative", "top" : "-2px"}}>
 												<a href="/myCart">
-													<i className = "fa fa-shopping-cart" aria-hidden = {true}/>
+													<i style = {{"fontSize" : "21px"}} className = "fa fa-shopping-cart" aria-hidden = {true}/>
 													{/* <span className = "glyphicon glyphicon-shopping-cart"/> */}
 													{this.state.cart_badge > 0 &&
 														<span className="noOfProdInCartIcon crtLstNotification " style= {{"display": "block"}}> 
@@ -68,7 +68,7 @@ export default class Navbar extends React.Component {
 										<ul id = "home-top-navigation">
 											<li>
 												<a href="/myCart">
-													<i className = "fa fa-shopping-cart" aria-hidden = {true}/>
+													<i style = {{"fontSize" : "21px"}} className = "fa fa-shopping-cart" aria-hidden = {true}/>
 													{/* <span className = "glyphicon glyphicon-shopping-cart"/> */}
 													{this.state.cart_badge > 0 &&
 														<span className="noOfProdInCartIcon crtLstNotification " style= {{"display": "block"}}> 
@@ -77,7 +77,7 @@ export default class Navbar extends React.Component {
 													}
 												</a>
 											</li>
-											
+											<li><a href="/register" id = "home-login-text">Register</a></li>
 											<li><a href="/login" id = "home-login-text">Login</a></li>
 										</ul>
 									}

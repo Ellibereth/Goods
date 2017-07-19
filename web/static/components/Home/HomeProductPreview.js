@@ -91,8 +91,13 @@ export default class HomeProductPreview extends React.Component {
 						}
 				</a>
 				<div className = "home-product-preview-details">		
-					<div className = "home-product-preview-name"> {this.props.product.name} </div> 
-					<div className = "home-product-preview-manufacturer"> by <span className = "home-product-preview-manufacturer-name">{this.props.product.manufacturer}</span> </div> 
+					<div onClick = {this.productClicked.bind(this)} className = "home-product-preview-name"> {this.props.product.name} </div> 
+					<div className = "home-product-preview-manufacturer">{" by "}
+						 <span onClick = {() => window.location = "/search/" + this.props.product.manufacturer} 
+							className = "home-product-preview-manufacturer-name">
+							{this.props.product.manufacturer}
+						</span>
+					</div> 
 					{price_row}
 				</div>
 			</div>

@@ -63,7 +63,7 @@ export default class ProductMiddleRow extends React.Component {
 										<div id="productPgMoreShippingInfo" className="shippingInfoOnTop">
 											<div className="prodMidblock" style= {{"padding" :"0 0 15px 0"}}>
 												<div className="new-heading-2 hidden-xs margin-bottom-15">Shipping Info
-													<span className="fa fa-truck shipping_icon"></span>
+													{/* <span className="fa fa-truck shipping_icon"></span> */}
 												</div>
 												<div className="clear"></div>
 													<ul className="" id="shippingDetails" style={{"overflow": "visible"}}>
