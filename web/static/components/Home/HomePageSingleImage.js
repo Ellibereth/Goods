@@ -4,7 +4,7 @@ var base_url = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
 
 
 // temporary hard coded image
-const img_src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/DEVELOPMENT/HUKM8ET2VY6EIOSX6LSZ"
+const img_src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/4.jpg"
 
 export default class HomePageImageCarousel extends React.Component {
 	constructor(props) {
