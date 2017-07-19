@@ -41,21 +41,20 @@ export default class LoginPage extends React.Component {
 	render() {
 		return (
 			<PageContainer is_loading = {this.state.is_loading} no_add_buffer = {true}>
-					<div className="edgar-container-fluid" className = "responsive-site">
-						<div className="edgar-fixed-container">
-							<div className="edgar-row">
-								<div className="inviteWrapper edgar-col-xs-60">
-									<div className="edgar-row">
-										<div className="edgar-col-xs-20 edgar-col-xs-offset-20 ">
-											<div className="newLoginProcess edgar-row">
-												
-												<LoginBox 
-												setFormState = {this.setFormState.bind(this)}
-												form_state = {this.state.form_state} />
+				<div className="edgar-container-fluid" className = "responsive-site">
+					<div className="edgar-fixed-container">
+						<div className="edgar-row">
+							<div className="inviteWrapper edgar-col-xs-60">
+								<div className="edgar-row">
+									<div className="edgar-col-xs-20 edgar-col-xs-offset-20 ">
+										<div className="newLoginProcess edgar-row">
+											
+											<LoginBox 
+											setFormState = {this.setFormState.bind(this)}
+											form_state = {this.state.form_state} />
 
 
-												<div className="clear">
-												</div>
+											<div className="clear">
 											</div>
 										</div>
 									</div>
@@ -63,6 +62,7 @@ export default class LoginPage extends React.Component {
 							</div>
 						</div>
 					</div>
+				</div>
 			</PageContainer>
 			
 		)

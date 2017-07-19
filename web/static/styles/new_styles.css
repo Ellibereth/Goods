@@ -18533,7 +18533,7 @@ body.use-2015-font #offerStrip {
     
     /*Darek change*/
     top: -10px;
-    left: 8px;
+    left: 10px;
 }
 #sCart #proceedToCO:hover,
 .prodPgAddcartButton .addToCart:hover {
@@ -26652,7 +26652,7 @@ html {
     background-color: #fff;
     padding: 30px 25px;
     /*Darek did this*/
-    min-height: 393px;
+    min-height: 303px;
 }
 @media(max-width:600px) {
     .responsive-site .inviteWrapper .inviteBlock {

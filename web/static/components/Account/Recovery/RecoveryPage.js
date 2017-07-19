@@ -1,133 +1,52 @@
-
 var React = require('react');
 var ReactDOM = require('react-dom');
-import AppStore from '../../../stores/AppStore.js';
 var browserHistory = require('react-router').browserHistory;
-import TextInput from '../../Input/TextInput'
+import AppStore from '../../../stores/AppStore'
 import PageContainer from '../../Misc/PageContainer'
-import AccountInput from '../../Input/AccountInput'
-import {AlertMessages} from '../../Misc/AlertMessages'
+import RecoveryForm from './RecoveryForm'
 
-const form_labels = ["Email"]
-const form_inputs = ["email"]
-const input_types = ['text']
-
-// you type email here
 export default class RecoveryPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email : "",
-			disabled : false,
-			is_loading : false
-
+			is_loading : false,
 		}
 	}
 
 	componentDidMount(){
-		if (AppStore.getCurrentUser()){
-			window.location = '/'
-		}
+		
 	}
 
-	// handle the text input changes
-	onTextInputChange(event) {
-		var obj = {}
-		obj[event.target.name] = event.target.value
-		this.setState(obj)
-	}
-
-
-	onSubmitEmail(event){
-		event.preventDefault()
-		if (!this.state.disabled){
-			this.setState({disabled: true, is_loading : true})
-			var form_data = JSON.stringify({
-				email : this.state.email
-			})
-			$.ajax({
-				type: "POST",
-				url: "/setRecoveryPin",
-				data: form_data,
-				success: function(data) {
-					if (data.success){
-						swal(AlertMessages.RECOVERY_PIN_SENT(this.state.email),
-							function (isConfirm) {
-								window.location = '/'
-							})
-					}
-					else {
-						swal(AlertMessages.RECOVERY_PIN_NOT_SENT(this.state.email))
-					}
-					
-					this.setState({disabled: false, is_loading : false})
-				}.bind(this),
-				error : function(){
-					ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'setRecoveryPin'
-					});
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
-		}
-	}
-
-	onKeyPress(e){
-		if (e.key == "Enter"){
-			this.onSubmitEmail.bind(this)(e)
-		}
+	setLoading(is_loading) {
+		this.setState({is_loading : is_loading})
 	}
 
 	render() {
-		var text_inputs = form_inputs.map((form_input, index) => {
-			return (
-					<AccountInput 
-						index = {index}
-						tabindex = {index}
-						onKeyPress = {this.onKeyPress.bind(this)}
-						field = {form_input}
-						name = {form_input}
-						type = {input_types[index]}
-						onChange = {this.onTextInputChange.bind(this)}
-						value = {this.state[form_input]} 
-						label = {form_labels[index]}
-					/>
-				)
-		})
-
-		
-
 		return (
-			<PageContainer is_loading = {this.state.is_loading}>
-				<div className = "container">
-						<div className = "container">
-							<div className = "col-md-offset-3 col-lg-offset-3 col-md-6 col-lg-6">
-								<div className = "panel panel-primary account-panel">
+			<PageContainer is_loading = {this.state.is_loading} no_add_buffer = {true}>
+				<div className="edgar-container-fluid" className = "responsive-site">
+					<div className="edgar-fixed-container">
+						<div className="edgar-row">
+							<div className="inviteWrapper edgar-col-xs-60">
+								<div className="edgar-row">
+									<div className="edgar-col-xs-20 edgar-col-xs-offset-20 ">
+										<div className="newLoginProcess edgar-row">
+											
+											<RecoveryForm
+											setLoading = {this.setLoading.bind(this)} />
 
-									<div className = "panel-body account-panel-body">
-										<h2 className = "account-header"> Recover Account </h2>
-										<form className = "form-horizontal" onSubmit = {this.onSubmitEmail.bind(this)} >
-											{text_inputs}
-											<div className = "form-group row">
-												<div className = "col-sm-12 col-md-12 col-lg-12">
-													<button className = "btn btn-default" disabled = {this.state.disabled}
-													 className = "account-button" onClick = {this.onSubmitEmail.bind(this)}>
-														Recover Account
-													</button>
-												</div>
+											<div className="clear">
 											</div>
-										</form>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+					</div>
 				</div>
 			</PageContainer>
+			
 		)
 	}
 }
-
-
 
