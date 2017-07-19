@@ -40,22 +40,32 @@ export default class HomeFooter extends React.Component {
 				</div>
 				<div id = "footer-wrapper">
 					<div id = "edgar-footer">
-						<ul className = "footer-links float-left">
+						
+
+						{/*
+							
+
+
+							<ul className = "footer-links float-left">
 							{footer_links.map((footer_link) => <li> <a href = "#"> {footer_link} </a> </li> )}
 						</ul>
 
-						{/* <div className="footerRightBlockRelatedCSS">
+						 <div className="footerRightBlockRelatedCSS">
 							<div className="footerStoreLinks float-left">
 								<span className="storeName">Edgar US </span>
 								<i className="fa fa-chevron-circle-up fa-2x" id = "footer-language-select-icon" aria-hidden="true"/>
 								
 							</div>
 						</div> */}
-						<ul className="socialLinks float-right">
-							<li><a href="#"><i className="fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
-							<li><a href="#"><i className="fa fa-instagram fa-2x" aria-hidden="true"/></a></li>
-							<li><a href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
-							<li><a href="#"><i className="fa fa-pinterest fa-2x" aria-hidden="true"/></a></li>
+						<ul className="socialLinks">
+							<li><a href="#"><i className="fa fa-facebook fa-3x" aria-hidden="true"/></a></li>
+							<li><a href="#"><i className="fa fa-instagram fa-3x" aria-hidden="true"/></a></li>
+							<li><a href="#"><i className="fa fa-twitter fa-3x" aria-hidden="true"/></a></li>
+							<li><a href="#"><i className="fa fa-pinterest fa-3x" aria-hidden="true"/></a></li>
+						</ul>
+
+						<ul className="socialLinks">
+							{footer_links.map((footer_link) => <li> <a href = "#"> {footer_link} </a> </li> )}
 						</ul>
 						<div className = "clear"/>
 					</div>
@@ -65,13 +75,30 @@ export default class HomeFooter extends React.Component {
 				<footer>
 					<div id = "dynamic-footer-wrapper">
 						<div id="dynamic-footer">
-							<div className="departments section first-department">
-								<span className="section-title">COMPANY</span>
+							<div className="top-designers section">
+								<span className="section-title" style= {{"text-transform" : "none"}}>Get It First</span>
+								<span className="updtdLatstArriTxt">You're just one step away from receiving fresh Happy Modern Designs and special offers in your inbox.</span>
+								<form accept-charset="UTF-8" action="#" id="uBtmSignup" method="post">
+									<div style= {{"margin" : "0", "padding" :"0", "display" : "inline"}}/>
+									<input style = {{"display" : "inline-block"}} type="text" placeholder="Your Email"  className="inputBoxSignUpFooter borderR5 dB boxSizing"/>
+									<a style = {{"marginLeft" : "12px"}} className="edgarSubmitBtn borderR3 boxSizing" id="signUpEmailCaptr">Sign Up</a>
+								</form>
+							</div>
+
+							<div className="departments section">
+							{/* <div className="departments section"> */}
+								<span className="section-title">INFO</span>
 								<ul>
 									<li> <a href="#">Company</a> </li>
 									<li> <a href="#">All Products</a> </li>
 									<li> <a href="#">How Edgar Works</a> </li>
 									<li> <a href="#">About Us</a> </li>
+									<li> <a href="#"></a> </li>
+								</ul>
+							</div>
+							<div className="departments section">
+								<span className="section-title">EDGAR</span>
+								<ul>
 									<li> <a href="#">Edgar for Fun</a> </li>
 									<li> <a href="#">Be an Edgar</a> </li>
 									<li> <a href="#">Shop with Edgar</a> </li>
@@ -88,7 +115,7 @@ export default class HomeFooter extends React.Component {
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
-							<div className="departments section">
+							<div className="departments section last-department">
 								<span className="section-title">QUICK LINKS</span>
 								<ul>
 									<li> <a href="#">Terms of Service</a> </li>
@@ -97,29 +124,20 @@ export default class HomeFooter extends React.Component {
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
-							<div className="most-popular-categories section">
-								{/* 
+							{/* <div className="most-popular-categories section">
+								
 								<span className="section-title">Most Popular Categories</span>
 								<ul>
 									<li>
 										<a href="#">Lighting</a>
 									</li>
-								</ul>*/}
-								</div>
+								</ul>
+							</div> */}
 							
-								<div className="top-designers section">
-									<span className="section-title" style= {{"text-transform" : "none"}}>Get It First</span>
-									<span className="updtdLatstArriTxt">You're just one step away from receiving fresh Happy Modern Designs and special offers in your inbox.</span>
-									<form accept-charset="UTF-8" action="#" id="uBtmSignup" method="post">
-										<div style= {{"margin" : "0", "padding" :"0", "display" : "inline"}}/>
-										<input type="text" placeholder="Your Email" autocomplete="off" name="user[email]" className="inputBoxSignUpFooter borderR5 dB boxSizing"/>
-										<a className="edgarSubmitBtn borderR3 boxSizing" id="signUpEmailCaptr">Sign Up</a>
-									</form>
-								</div>
-							</div>
+							
 						</div>
+					</div>
 				</footer>
-
 			</div>
 		);
 	}
