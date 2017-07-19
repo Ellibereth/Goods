@@ -235,7 +235,7 @@ export default class LoginBox extends React.Component {
 							 id="user_email" name="register_email" 
 							 placeholder="" tabindex="2" type="text" value={this.state.register_email}/>
 
-							 <label for="user[un_or_email]">PASSWORD</label>
+							 <label for="user[un_or_email]">PASSWORD (AT LEAST 6 CHARACTERS)</label>
 							<input 
 							style = {{"marginBottom" : "12px"}}
 							onChange = {this.onTextChange.bind(this)}
