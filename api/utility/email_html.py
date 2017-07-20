@@ -4,6 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from api.utility.labels import CartLabels as Labels
 import datetime
 import os
+from jinja2 import Template
 
 URL = os.environ.get('HEROKU_APP_URL')
 # in this use the dev environment
@@ -32,13 +33,11 @@ class EmailHtml:
 		return msg
 
 	def generateConfirmationEmailHtml(email, email_confirmation_id, name):
-		url = URL + "confirmEmail/" + email_confirmation_id
-		body = "<h2> Hello " + name.title() + ",</h2>"
-		body = body + "<span style = \"display:block;font-size: 14px;\"> Thank you for signing up! Click below to confirm your account </span>"
-		body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:#6090a8;color:white;padding:24px; border:none;border-radius:6px;\"> \
-			<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">Confirm Email</a> </button> </div>"
-
-		return body
+		f = open('./api/utility/email_templates/confirm_email.html')
+		template = Template(f.read())
+		confirmation_link = URL + "confirmEmail/" + email_confirmation_id
+		html = template.render(email = email, url_base = URL, confirmation_link = confirmation_link)
+		return html
 
 	def generateConfirmationChangeEmailHtml(email, email_confirmation_id, name):
 		url = URL + "confirmEmail/" + email_confirmation_id
@@ -251,8 +250,6 @@ class EmailHtml:
 	def formatVendorCut(item):
 		vendor_cut = item[Labels.NumItems] * EmailHtml.getCurrentPrice(item) - EmailHtml.calculateVendorFee(item)
 		return EmailHtml.formatPrice(vendor_cut)
-
-
 
 	
 

@@ -91,6 +91,7 @@ class User(db.Model):
 			email_confirmation_id = User.generateEmailConfirmationId()
 			EmailLib.sendEmailConfirmation(email, email_confirmation_id, name)
 		except Exception as e:
+			print(e)
 			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
 		new_user = User(name = name, email = email, password = password, 
 			email_confirmation_id =email_confirmation_id)
