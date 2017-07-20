@@ -123,7 +123,7 @@ class EmailLib:
 		sender = 'darek@manaweb.com'
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
-		msg['Subject'] = "Please Confirm Your Email!"
+		msg['Subject'] = "Please confirm your email"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = email
 		body = EmailHtml.generateConfirmationEmailHtml(email, email_confirmation_id, name)
@@ -142,7 +142,7 @@ class EmailLib:
 		sender = 'darek@manaweb.com'
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
-		msg['Subject'] = "Please Confirm Your Email!"
+		msg['Subject'] = "Please confirm your email"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = email
 		body = EmailHtml.generateConfirmationChangeEmailHtml(email, email_confirmation_id, name)
