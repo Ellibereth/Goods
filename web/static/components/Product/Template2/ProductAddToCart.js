@@ -218,15 +218,14 @@ export default class ProductAddToCart extends React.Component {
 
     	var add_to_cart_disabled = this.addToCartDisabled.bind(this)(this.props.product)
     	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? " quantity-select-disabled " : ""
-
 		return (
 				<li className="colorsWithAddToCart reg-prod-pg">
 					{variant_select}
 					<div className="quantitySelBlock ">
 						<select 
 						value = {this.state.quantity}
-						disabled = {add_to_cart_disabled}
-						 onChange = {this.onQuantityChange.bind(this)}
+						disabled = {add_to_cart_disabled || !this.props.item_in_stock}
+						onChange = {this.onQuantityChange.bind(this)}
 						tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" 
 						className={"quantityPgSizeDD def_select quantityDPP " + disabled_class}>
 							{quantity_options}
