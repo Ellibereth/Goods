@@ -192,8 +192,8 @@ a {
 }
 
 
-#edgar-footer {
-	/*border-top: 1px solid #bdbdbd;*/
+/*#edgar-footer {
+	// border-top: 1px solid #bdbdbd;
 	border-bottom: 1px solid #d5d5d5;
 	border-left: 0;
 	border-right: 0;
@@ -201,7 +201,7 @@ a {
 	height: 130px;
 	padding-top: 10px;
 }
-
+*/
 
 
 #edgar-footer .footer-links {
@@ -310,7 +310,7 @@ a {
 
 .departments{
 	padding-top: 15px;
-	width: 16.6666666%;
+	width: 16.667%;
 	padding-left: 8px;
 	padding-right: 8px;
 }
@@ -321,6 +321,7 @@ a {
 
 .departments.last-department {
 	/*padding-right: 0px;*/
+	width: 12% !important;
 }
 
 
@@ -333,8 +334,10 @@ a {
 	border-left: 0 !important;
 	padding-left: 0px;
 	padding-right:15px;
-	width: 33%;
+	width: 25%;
 }
+
+
 
 #dynamic-footer .section-title .first {
 	align-self: left;
@@ -387,7 +390,7 @@ a {
 	-moz-box-shadow: 0 1px 2px rgba(187,187,187,0.5) inset;
 	-webkit-box-shadow: 0 1px 2px rgba(187,187,187,0.5) inset;
 	box-shadow: 0 1px 2px rgba(187,187,187,0.5) inset;
-	width: 200px;
+	width: 160px;
 }
 
 .dB {
@@ -426,13 +429,14 @@ a {
 }
 
 #dynamic-footer .section a.edgarSubmitBtn {
-	width: 160px;
+	width: 90px;
 	box-sizing: border-box;
 	padding: 8px 15px;
 	font-size: 14px;
 	color: #fff;
 	background-color: #dd0017;
 	text-align: center;
+	margin-left: 12px;
 }
 
 #dynamic-footer .section a {
@@ -485,17 +489,17 @@ select, input, textarea, button {
 }
 
 #edgar-footer .socialLinks {
-	text-align: center;
-    list-style-type: none;
-    line-height: 36px;
-    height: 60px;
-    padding: 10px 4px 0 9px;
+	text-align: right;
+	list-style-type: none;
+	line-height: 36px;
+	height: 60px;
+	padding: 10px 4px 0 9px;
 }
 
 #edgar-footer .socialLinks li {
     display: inline;
     /* float: left; */
-    padding-right: 25px;
+    /* padding-right: 25px; */
     padding-left: 25px;
 }
 

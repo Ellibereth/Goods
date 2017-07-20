@@ -38,7 +38,7 @@ export default class HomeFooter extends React.Component {
 						</a>
 					</div>
 				</div>
-				<div id = "footer-wrapper">
+				{/* <div id = "footer-wrapper">
 					<div id = "edgar-footer">
 						
 
@@ -56,7 +56,7 @@ export default class HomeFooter extends React.Component {
 								<i className="fa fa-chevron-circle-up fa-2x" id = "footer-language-select-icon" aria-hidden="true"/>
 								
 							</div>
-						</div> */}
+						</div> 
 						<ul className="socialLinks">
 							<li><a href="#"><i className="fa fa-facebook fa-3x" aria-hidden="true"/></a></li>
 							<li><a href="#"><i className="fa fa-instagram fa-3x" aria-hidden="true"/></a></li>
@@ -69,9 +69,8 @@ export default class HomeFooter extends React.Component {
 						</ul>
 						<div className = "clear"/>
 					</div>
-
-					
 				</div>
+				*/}
 				<footer>
 					<div id = "dynamic-footer-wrapper">
 						<div id="dynamic-footer">
@@ -124,6 +123,13 @@ export default class HomeFooter extends React.Component {
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
+							<div id = "edgar-footer">
+								<ul className="socialLinks">
+									<li><a href="#"><i className="fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
+									<li><a href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
+								</ul>
+							</div>
+
 							{/* <div className="most-popular-categories section">
 								
 								<span className="section-title">Most Popular Categories</span>
