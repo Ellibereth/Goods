@@ -102,20 +102,20 @@ export default class CheckoutAddBilling extends React.Component {
 
 	render() {
 		return (
-			<div className = "container">
+			<div className = "container-fluid">
 				<div className = "row">
-					<div className = "col-sm-10 col-md-10 col-lg-10">
+					<div className = "col-sm-12 col-md-12 col-lg-12">
 						<CreditCardInput onSubmit = {this.onSubmitPress.bind(this)}
 						 onTextInputChange = {this.onTextInputChange.bind(this)} />
 						
 						<div className = "row">
 							<div className="checkbox">
-							  <label>
+							  <label> Use same address from shipping  </label>
 							  	<input disabled = {!this.props.selected_address} 
 							  		checked = {this.state.use_same_as_shipping && this.props.selected_address}
 							  		id = "same_address_checkbox" name = "same_address" 
 							  		 onClick = {this.useSameAddressChange.bind(this)} type="checkbox"/>
-							  	 Use same address from shipping </label>
+							  	 
 							</div>
 							{
 								!this.props.selected_address &&
@@ -135,7 +135,7 @@ export default class CheckoutAddBilling extends React.Component {
 						}
 						
 						<div className = "row">
-							<div className = "col-md-11 col-lg-11 ">
+							<div className = "col-sm-12 col-md-12 col-lg-12 ">
 								<button className = "btn btn-default pull-right"
 								onClick = {this.onSubmitPress.bind(this)}>
 									Add Billing Method

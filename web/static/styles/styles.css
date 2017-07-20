@@ -1,7 +1,7 @@
 /*
 Linda's Color Scheme
 :root{
-    --Beige: #f0f0d8;
+	--Beige: #f0f0d8;
 	--DarkBeige: #d8c0a8;
 	--LightRed : #d84848;
 	--DarkRed : #903030;
@@ -15,7 +15,7 @@ Linda's Color Scheme
 /* Flag Color Scheme */
 /*
 :root{
-    --Beige: #f0f0d8;
+	--Beige: #f0f0d8;
 	--DarkBeige: #d8c0a8;
 	--LightRed : #ff0000;
 	--DarkRed : #d42729;
@@ -25,7 +25,7 @@ Linda's Color Scheme
 
 /* mix */
 :root{
-    --Beige: #f0f0d8;
+	--Beige: #f0f0d8;
 	--DarkBeige: #d8c0a8;
 	--LightRed : #ff0000;
 	--DarkRed : #d42729;
@@ -36,11 +36,11 @@ Linda's Color Scheme
 
 
 /*h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-weight: bold;
-    text-align: left;
-    padding: 0 0 8px;
-    color: #ccc;
-    line-height: 1em;
+	font-weight: bold;
+	text-align: left;
+	padding: 0 0 8px;
+	color: #ccc;
+	line-height: 1em;
 }*/
 
 
@@ -72,7 +72,7 @@ Linda's Color Scheme
 }
 
 .clearBoth, .clear {
-    clear: both;
+	clear: both;
 }
 
 .content-buffer {
@@ -335,6 +335,8 @@ Linda's Color Scheme
 
 .modal-header-right {
 	margin-right: 6px;
+	position:relative;
+	top: -6px;
 }
 
 .form-heading {
@@ -578,71 +580,82 @@ Linda's Color Scheme
 
 @-webkit-keyframes spinner {
   0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	transform: rotate(360deg);
   }
 }
 @-moz-keyframes spinner {
   0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	transform: rotate(360deg);
   }
 }
 @-o-keyframes spinner {
   0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	transform: rotate(360deg);
   }
 }
 @keyframes spinner {
   0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
-    transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	transform: rotate(360deg);
   }
+}
+
+#same_address_checkbox {
+	margin-left: 20px;
+}
+
+.modal-header-right .centered-asterisk {
+	position: relative;
+	top: 4px;
 }
 
 .modal-header .close {
   font-size: 40px; /*bigger*/
+  position: relative;
+  top: -14px;
 }
 
 .register-popover {
@@ -666,7 +679,7 @@ Linda's Color Scheme
 
 
 .carousel-control.left, .carousel-control.right {
-    background-image: none
+	background-image: none
 }
 
 

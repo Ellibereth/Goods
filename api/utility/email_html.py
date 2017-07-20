@@ -57,109 +57,56 @@ class EmailHtml:
 	# returns MIMText to attach to a message
 	def generateCartEmailNotificationHtml(user, cart, address, order_id):
 		
-		body = "<div style = \"width:70%\">"
-		body = body + "<div style = \"text-align:center\">"
-		body = body + "<span style = \"display:block;font-size: 24px;color:#002868;\"> Hi " + user.name + ", </span>"
-		body = body + "<div style = \"border-top:solid; border-width: 1px; border-color:lightgrey; padding-bottom: 12px\"> </div>"
-		url_link = URL + "myOrders"
 		
 
-
-		body =  body + "<span style = \"display:block;font-size: 18px;\"> Your order has been confirmed. Thank you for shopping at Edgar USA. </span>"
-
-
-		body = body + "<div style = \"padding-top:12px\"> </div>"
-		body = body + "<span style = \"text-align:center\"> <button style = \"border-radius:8px; padding: 18px; border-style: none; background-color:#6090a8\" type = \"button\"> \
-		<a href= \"" + url_link + "\" style = \"text-decoration:none; color:white; font-size: 18px;\"> View Order </a> </button> </span>"
-		body = body + "<div style= \"padding-top:12px\"> </div>"
-
-		body = body + "</div>"
-		body = body + "<div style = \"border-radius:8px;border-color:lightgrey;border-style: solid;border-width:2px;border-radius:4px;padding:14px;width:100%\">"
-		body = body + "<div style = \"display:inline;\">"
-		body = body + "<span style = \"font-size:18px; float:left\"> Order </span>"
-		body = body + "<span style = \"font-size:18px; float:right\"> " + order_id + " </span>"
-		body = body + "</div> <br/>"
-
-		body = body + "<div style = \"padding-top: 18px;\"> </div>"
-		body = body + "<div style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> </div>"
-		body = body + "<div style = \"padding-top: 18px;\"> </div>"
-
-
-		body = body + "<div style = \"width:50%; float:left;\">"
-		body = body + "<span style = \"font-size:18px;\"> <b> Shipping Address </b> </span>"
-		body = body + "<div style = \"padding-top:12px;\"> </div>"
+		address_display = ""
 		if address.address_line1 and address.address_line1 != "":
-			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.name + " </span> \
-		<span style = \"display:block;font-size: 18px;\"> " + address.address_line1 + " </span> "
+			address_display = address_display + "<span style = \"display:block;font-size: 18px;\"> " + address.name + " </span> \
+			<span style = \"display:block;font-size: 18px;\"> " + address.address_line1 + " </span> "
 		if address.address_line2 and address.address_line2 != "":
-			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_line2 + " </span>"
+			address_display = address_display + "<span style = \"display:block;font-size: 18px;\"> " + address.address_line2 + " </span>"
 		if address.address_city and address.address_zip and address.address_state:
-			body = body + "<span style = \"display:block;font-size: 18px;\"> " + address.address_city + ", " + address.address_state \
+			address_display = address_display + "<span style = \"display:block;font-size: 18px;\"> " + address.address_city + ", " + address.address_state \
 		+ " " + str(address.address_zip) + " </span>"
-		body = body + "</div>"
 
-		body = body + "<div style = \"width:50%; float:right;\">"
-		body = body + "<span style = \"font-size:18px; \"> <b> Date of Purchase </b> </span> "
-		body = body + "<div style = \"padding-top:12px;\"> </div>"
-		body = body + "<div style = \"font-size:18px; display:block;\"> " +  datetime.date.today().strftime('%A %B %d, %Y') +  " </div>"
-		body = body + "</div>"
+		todays_date = datetime.date.today().strftime('%A %B %d, %Y')
 
-		body = body + "<div style = \"padding-top: 18px;\"> </div>"
-		body = body + " <table cellspacing = \"0\" cellpadding = \"0\" \
-		 style = \"width: 100%\"> "
 		
-		for product in cart.toPublicDict()['items']:
-			body = body + EmailHtml.generateCartItemRow(product, order_id)
+		# for product in cart.toPublicDict()['items']:
+		# 	body = body + EmailHtml.generateCartItemRow(product, order_id)
 
-		body = body + "</table>"
+		items_price = EmailHtml.formatPrice(cart.getCartItemsPrice())
+		shipping_price = EmailHtml.formatPrice(cart.getCartShippingPrice(address))
 
-		body = body + "<div style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> </div>"
-		body = body + "<div style = \"padding-top: 18px;\"> </div>"
-		body = body + "<span style = \"display:block\">"
-		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Items </span>"
-		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartItemsPrice()) + "</span>"
-		body = body + "</span>"
-		body = body + "<br/>"
-		body = body + "<span style = \"display:block\">"
-		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Shipping </span>"
-		body = body + "<span style= \"font-size: 18px;color:#002868; float:right;margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartShippingPrice(address)) + "</span>"
-		body = body + "</span>"
-		body = body + "<br/>"
+		total_price = EmailHtml.formatPrice(cart.getCartTotalPrice(address))
+		sales_tax_price = EmailHtml.formatPrice(cart.getCartSalesTaxPrice(address))
 
+		tax_disp = ""
+		print(cart.getCartSalesTaxPrice(address))
 		if cart.getCartSalesTaxPrice(address) != 0:
-			body = body + "<span style = \"display:block\">"
-			body = body + "<span style= \"font-size: 18px;color:#002868;\"> Sales Tax </span>"
-			body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartSalesTaxPrice(address)) + "</span>"
-			body = body + "</span>"
-			body = body + "<br/>"
+			tax_disp = tax_disp + "<span style = \"display:block\">"
+			tax_disp = tax_disp + "<span style= \"font-size: 18px;color:#002868;\"> Sales Tax </span>"
+			tax_disp = tax_disp + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + sales_tax_price + "</span>"
+			tax_disp = tax_disp + "</span>"
+			tax_disp = tax_disp + "<br/>"
 
-		body = body + "<span style = \"display:block\">"
-		body = body + "<span style= \"font-size: 18px;color:#002868;\"> Total </span>"
-		body = body + "<span style= \"font-size: 18px;color:#002868; float:right; margin-right: 12px\">" + EmailHtml.formatPrice(cart.getCartTotalPrice(address)) + "</span>"
-		body = body + "</span>"
-		body = body + "</div>"
-		body = body + "<div style = \"padding-top:12px\"></div>"
-		support_url = URL + "support"
-		body = body + "<div style = \"text-align:center\"> <button type = \"button\" style = \"background-color:#6090a8;color:white;padding:24px; border:none;border-radius:6px;\">  \
-		<a style = \"font-size: 18px;text-decoration:none;color:white;\" href = \"" + support_url + "\"> Contact Support </a> </button> </div>"
-		body = body + "</div>"
-		return body
+		support_link = URL + "support"
+		orders_link = URL + "myOrders"
 
 
-	def generateCartItemRow(product, order_id):
-		url_link = URL + "myOrders"
-		html = (
-			"<tr> <td align = \"left\" style =  \"border-top:solid; border-width: 1px; border-color:lightgrey\"> \
-			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + str(PHOTO_SRC_BASE)
-			+ str(product[Labels.MainImage]) + "\"/>  </span> </td>\
-			<td align = \"right\" style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> <span style = \"display:block;padding:12px;\">  \
-			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
-			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product) + "</span> <br/> \
-			<span style = \"font-size: 18px\"> Quantity: " + str(product[Labels.NumItems]) + "</span> <br/> \
-			</span> </td>  </tr> "
-		)
+		cart_items = cart.toPublicDict()['items']
+		for item in cart_items:
+			item['html_display_price'] = EmailHtml.formatCurrentPrice(item)
+		f = open('./api/utility/email_templates/checkout_confirm.html')
+		template = Template(f.read())
+		html = template.render(user = user, cart_items = cart_items, address = address, 
+			order_id = order_id, address_display = address_display, 
+			todays_date = todays_date, items_price = items_price, shipping_price = shipping_price, 
+			sales_tax_price = sales_tax_price, total_price = total_price,
+			support_link = support_link, orders_link = orders_link, tax_disp = tax_disp)
 
 		return html
+
 
 	def generateVendorItemRow(product, order_id):
 		html = (
@@ -221,6 +168,7 @@ class EmailHtml:
 		+ " " + str(address.address_zip) + " </span>"
 		body = body + "</div>"
 		return body
+
 	# input price must be integers in cents
 	def formatPrice(price):
 		price_string = str(price)

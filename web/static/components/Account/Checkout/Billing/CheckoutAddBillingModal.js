@@ -24,7 +24,7 @@ render() {
 			<Modal.Title id="contained-modal-title-lg"> 
 				<span> Add a payment method </span>
 				<span className = "pull-right modal-header-right"> 
-						<span className = "red-text"> * </span>
+						<span className = "red-text centered-asterisk"> * </span>
 						<span className = "vcenter"> Required  </span>
 				</span>
 			</Modal.Title>

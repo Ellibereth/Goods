@@ -86,9 +86,9 @@ export default class CheckoutAddAddress extends React.Component {
 
 	render() {
 		return (
-			<div className = "container">
+			<div className = "container-fluid">
 				<div className = "row">
-					<div className = "col-sm-10 col-md-10 col-lg-10">
+					<div className = "col-sm-12 col-md-12 col-lg-12">
 						<AddressForm onSubmit = {this.onSubmitPress.bind(this)}
 						has_description = {true}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
@@ -97,7 +97,7 @@ export default class CheckoutAddAddress extends React.Component {
 						<hr/>
 
 						<div className = "row">
-							<div className = "col-md-11 col-lg-11">
+							<div className = "col-sm-12 col-md-12 col-lg-12">
 								<button className = "btn btn-default pull-right" 
 									onClick = {this.onSubmitPress.bind(this)}>
 									Add Address
