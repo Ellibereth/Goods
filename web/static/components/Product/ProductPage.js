@@ -33,8 +33,6 @@ export default class ProductPage extends React.Component {
 				})
 			}
 			else {
-
-				
 				if (data.product.active){
 					this.recordProductLoadEvent(data.product)
 					this.setState({
@@ -50,7 +48,6 @@ export default class ProductPage extends React.Component {
 						product: data.product,
 						is_loading : false
 					})
-
 				}
 			}
 		}.bind(this),
@@ -88,7 +85,7 @@ export default class ProductPage extends React.Component {
 
 
 	render() {
-
+		console.log(this.state.invalid_product)
 
 		if (this.state.is_loading) {
 			var component = <div/>
@@ -101,18 +98,19 @@ export default class ProductPage extends React.Component {
 					</h3>
 				</div>
 			)
+		}	
+
+		else {
+			var component = <ProductTemplate2 
+				setLoading = {this.setLoading.bind(this)}
+				getProductInformation = {this.getProductInformation.bind(this)}
+				product = {this.state.product}/>
 		}
-		// else {
-		// 	var component = this.generateMainComponent()			
-		// }		
 
 		return (
 
 			<PageContainer is_loading = {this.state.spinner_loading} no_add_buffer = {true}>
-				<ProductTemplate2 
-				setLoading = {this.setLoading.bind(this)}
-				getProductInformation = {this.getProductInformation.bind(this)}
-				product = {this.state.product}/>
+				{component}
 				{/* this.state.product.product_template == 1 &&
 					<ProductTemplate1 product = {this.state.product}/>
 				}

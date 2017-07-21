@@ -124,7 +124,6 @@ def updateProductInfo(admin_user):
 		return JsonUtil.failure("Error retrieving product information")
 
 	for key in product.keys():
-		print(key)
 		try:
 			if key in MarketProduct.INTEGER_INPUTS:
 				if product.get(key):

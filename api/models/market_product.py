@@ -40,6 +40,11 @@ class MarketProduct(db.Model):
 	second_tab_name = db.Column(db.String)
 	second_tab_text = db.Column(db.String)
 	
+	quadrant1 = db.Column(db.String)
+	quadrant2 = db.Column(db.String)
+	quadrant3 = db.Column(db.String)
+	quadrant4 = db.Column(db.String)
+
 	show_manufacturer_logo = db.Column(db.Boolean, default = False)
 	manufacturer_logo_id = db.Column(db.String)
 
@@ -179,6 +184,10 @@ class MarketProduct(db.Model):
 		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
 		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee
 		public_dict[Labels.MoreDetails] = self.more_details
+		public_dict[Labels.Quadrant1] = self.quadrant1
+		public_dict[Labels.Quadrant2] = self.quadrant2
+		public_dict[Labels.Quadrant3] = self.quadrant3
+		public_dict[Labels.Quadrant4] = self.quadrant4
 
 		if not self.second_tab_name:
 			public_dict[Labels.SecondTabName] = ""

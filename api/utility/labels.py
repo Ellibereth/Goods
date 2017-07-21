@@ -79,6 +79,10 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	Quadrant1 = "quadrant1"
+	Quadrant2 = "quadrant2"
+	Quadrant3 = "quadrant3"
+	Quadrant4 = "quadrant4"
 	MoreDetails = "more_details"
 	ManufacturerFee = "manufacturer_fee"
 	ManufacturerEmail = 'manufacturer_email'
