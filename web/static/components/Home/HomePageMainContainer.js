@@ -72,8 +72,8 @@ export default class HomePageMainContainer extends React.Component {
 				<div className = "small-buffer"/>
 				<div className = "dark-grey-horizontal-line"/>
 				<div className = "small-buffer"/>
-				<div className ="container-fluid">
-					<div className = "row">
+				<div style = {{"marginBottom" : "-10px"}} className ="container-fluid">
+					<div className = "row home-product-group-header-row">
 						<span className = "home-product-group-header">
 							New this week
 						</span>

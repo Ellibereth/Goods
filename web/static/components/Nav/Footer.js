@@ -22,14 +22,16 @@ export default class HomeFooter extends React.Component {
 				<div id = "footer-badge-wrapper">
 					<div id = "edgar-footer-badges">
 						<a href = "#" id = "first-badge" className = "home-badge">
-							<i className="fa fa-2x fa-flag home-badge-icon"/>
+							<span>
+								<img className = "home-badge-icon home-badge-flag" src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/flag.png"/>
+							</span>
 							<span className = "badgehead badgetext">Made in the USA</span> <br/>
-							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. To learn more about what that means and why it's important click here.</span>
+							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. To learn more about what that means and why it's important click <a href = "#">here</a>.</span>
 						</a>
 						<a href = "#" className = "home-badge">
 							<i className="fa fa-2x fa-smile-o home-badge-icon"/>
 							<span className = "badgehead badgetext">Meet our Vendors</span> <br/>
-							<span className = "badgebody badgetext">We work with top-notch American makers and designers. Discover their stories while you shop.<br/> If you don't, we fix it. </span>
+							<span className = "badgebody badgetext">We work with top-notch American makers and designers. Discover their stories while you shop.</span>
 						</a>
 						<a href = "#" id = "last-badge" className = "home-badge">
 							<i className="fa fa-2x fa-thumbs-up home-badge-icon"/>
@@ -93,7 +95,6 @@ export default class HomeFooter extends React.Component {
 									<li> <a href="#">About Us</a> </li>
 									<li> <a href="#">FAQ</a> </li>
 									<li> <a href="#">Made in the USA</a> </li>
-									<li> <a href="#">All Products</a> </li>
 									<li> <a href="#">Suggest Products</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>

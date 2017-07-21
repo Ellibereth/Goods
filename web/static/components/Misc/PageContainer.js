@@ -22,7 +22,7 @@ export default class PageContainer extends React.Component {
 
 	render() {
 		var user = AppStore.getCurrentUser()
-		var top_text = user ? "Opening special! Get 10% off for your first month!" : "Register now and get 10% off!"
+		var top_text = user ? "Opening special! Get 10% off for your first month!*" : "Register now and get 10% off!*"
 
 		return (
 				<div>

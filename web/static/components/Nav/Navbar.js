@@ -92,6 +92,7 @@ export default class Navbar extends React.Component {
 											<li><a href="#">New Arrivals</a></li>
 											<li><a href="#">Flash Deals</a></li>
 											<li><a href="#">Only on Edgar USA</a></li>
+											<li><a href="#">All Products</a></li>
 											<li><a href="#">Last Chance</a></li>
 										</ul>
 									</div>

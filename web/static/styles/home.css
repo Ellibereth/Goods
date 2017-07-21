@@ -58,6 +58,11 @@
     outline: 0;
 }
 
+.home-product-group-header-row {
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
 .home-product-group-header {
 	font-size: 20px;
 	color: #000;
@@ -85,7 +90,7 @@
 
 .home-product-preview {
 	width: 220px;
-	height: 346px;
+	height: 326px;
 	float: left;
 	background-color: #fff;
 	margin: 0 12px 12px 0;
