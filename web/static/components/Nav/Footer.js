@@ -78,16 +78,7 @@ export default class HomeFooter extends React.Component {
 				<footer>
 					<div id = "dynamic-footer-wrapper">
 						<div id="dynamic-footer">
-							{/* 
-							<div className="top-designers section">
-								<span className="section-title" style= {{"text-transform" : "none"}}>Get It First</span>
-								<span className="updtdLatstArriTxt">You're just one step away from receiving fresh Happy Modern Designs and special offers in your inbox.</span>
-								<form accept-charset="UTF-8" action="#" id="uBtmSignup" method="post">
-									<div style= {{"margin" : "0", "padding" :"0", "display" : "inline"}}/>
-									<input style = {{"display" : "inline-block"}} type="text" placeholder="Your Email"  className="inputBoxSignUpFooter borderR5 dB boxSizing"/>
-									<a style = {{"marginLeft" : "12px"}} className="edgarSubmitBtn borderR3 boxSizing" id="signUpEmailCaptr">Sign Up</a>
-								</form>
-							</div> */}
+							
 
 							<div className="departments section">
 							{/* <div className="departments section"> */}
@@ -124,12 +115,26 @@ export default class HomeFooter extends React.Component {
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
+
+							
+
 							<div id = "edgar-footer">
 								<ul className="socialLinks">
 									<li><a href="#"><i className="fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
 									<li><a href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
 								</ul>
 							</div>
+
+							<div className="top-designers section">
+								<span className="section-title" style= {{"text-transform" : "none"}}>Opening Special!</span>
+								<span className="updtdLatstArriTxt">
+									Get 10% off for your first month!*
+								</span> 
+
+								<span className = "special-notice-text">
+									New customers only. Offer lasts first 30 days. See details <a href = "#">here</a>
+								</span>
+							</div> 
 
 							{/* <div className="most-popular-categories section">
 								

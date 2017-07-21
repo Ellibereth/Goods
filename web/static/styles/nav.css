@@ -377,7 +377,7 @@ a {
 
 .updtdLatstArriTxt {
 	color: #666;
-	font-size: 12px;
+	font-size: 14px;
 	line-height: 18px;
 }
 
@@ -489,18 +489,24 @@ select, input, textarea, button {
 }
 
 #edgar-footer .socialLinks {
-	text-align: right;
+	text-align: left;
 	list-style-type: none;
 	line-height: 36px;
 	height: 60px;
-	padding: 10px 4px 0 9px;
+	padding: 12px 4px 0 0px;
 }
 
 #edgar-footer .socialLinks li {
     display: inline;
     /* float: left; */
     /* padding-right: 25px; */
-    padding-left: 25px;
+    padding-left: 30px;
+}
+
+.special-notice-text {
+	display: block;
+	font-size: 10px;
+	padding-top: 12px;
 }
 
 

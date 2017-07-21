@@ -26,6 +26,7 @@ export default class ProductPage extends React.Component {
 		  url: "/getMarketProductInfo",
 		  data: form_data,
 		  success: function(data) {
+
 			if (!data.success){
 				this.setState({
 					invalid_product : true,
@@ -46,6 +47,12 @@ export default class ProductPage extends React.Component {
 					this.setState({
 						invalid_product : false,
 						product: data.product,
+						is_loading : false
+					})
+				}
+				else {
+					this.setState({
+						invalid_product : true,
 						is_loading : false
 					})
 				}
@@ -85,14 +92,15 @@ export default class ProductPage extends React.Component {
 
 
 	render() {
-		console.log(this.state.invalid_product)
+		console.log("invalid product ", this.state.invalid_product)
+		console.log("is loading ", this.state.is_loading)
 
 		if (this.state.is_loading) {
 			var component = <div/>
 		}
 		else if (this.state.invalid_product) {
 			var component = (
-				<div className = "container-fluid">
+				<div style = {{"paddingTop" : "12px"}} className = "container-fluid">
 					<h3>
 						You've reached a bad product page! Click <a href = "/"> here </a> to return home.
 					</h3>
