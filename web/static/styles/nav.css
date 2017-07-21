@@ -267,7 +267,7 @@ a {
 	width: 370px;
 	margin: 14px 16.5px;
 	float: left;
-	cursor: pointer;
+	cursor: default;
 	padding: 15px;
 	color: black;
 	height: 120px;

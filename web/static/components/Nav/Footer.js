@@ -92,35 +92,35 @@ export default class HomeFooter extends React.Component {
 							<div className="departments section">
 							{/* <div className="departments section"> */}
 								<ul>
-									<li> <a href="#">About Us</a> </li>
-									<li> <a href="#">FAQ</a> </li>
+									<li> <a href="/about">About Us</a> </li>
+									<li> <a href="/faq">FAQ</a> </li>
 									<li> <a href="#">Made in the USA</a> </li>
-									<li> <a href="#">Suggest Products</a> </li>
+									<li> <a href="/support">Suggest Products</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section">
 								<ul>
-									<li> <a href="#">Contact Us</a> </li>
+									<li> <a href="/contact">Contact Us</a> </li>
 									<li> <a href="#">Jobs</a> </li>
-									<li> <a href="#">Vendors</a> </li>
+									<li> <a href="/support">Vendors</a> </li>
 									<li> <a href="#">Sell on Edgar USA</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section">
 								<ul>
-									<li> <a href="#">Terms of Service</a> </li>
-									<li> <a href="#">Privacy Policy</a> </li>
-									<li> <a href="#">Returns</a> </li>
+									<li> <a href="/terms">Terms of Service</a> </li>
+									<li> <a href="/privacy">Privacy Policy</a> </li>
+									<li> <a href="/support">Returns</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section last-department">
 								<ul>
-									<li> <a href="#">Your Account</a> </li>
-									<li> <a href="#">Your Cart</a> </li>
-									<li> <a href="#">Your Orders</a> </li>
+									<li> <a href="/settings">Your Account</a> </li>
+									<li> <a href="/myCart">Your Cart</a> </li>
+									<li> <a href="/myOrders">Your Orders</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
