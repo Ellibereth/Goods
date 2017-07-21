@@ -16732,39 +16732,7 @@ html.android #search-overlay {
         min-width: 126px
     }
 }
-.edgar-logo {
-    padding: 0 4px
-}
-@media(max-width:600px) {
-    .edgar-logo {
-        padding-top: 4px;
-        position: absolute;
-        left: 39%
-    }
-}
-@media(min-width:400px) and (max-width:600px) {
-    .edgar-logo {
-        left: 43%
-    }
-}
-@media(max-width:600px) {
-    .edgar-logo img {
-        height: 25px;
-        width: 64px
-    }
-}
-@media(min-width:601px) and (max-width:1023px) {
-    .edgar-logo img {
-        height: 33px;
-        width: 84px
-    }
-}
-@media(min-width:1024px) {
-    .edgar-logo img {
-        height: 39px;
-        width: 99px
-    }
-}
+
 .cartBorder,
 .fa-shopping-cart,
 .mobileSearch .fa-search,

@@ -89,10 +89,10 @@ export default class Navbar extends React.Component {
 								<nav className = "home-sub-menu">
 									<div id="home-sub-navigation">
 										<ul>
-											<li><a href="#">Shop By Department</a></li>
 											<li><a href="#">New Arrivals</a></li>
-											<li><a href="#">Featured Design Deals</a></li>
-											<li><a href="#">Clearance</a></li>
+											<li><a href="#">Flash Deals</a></li>
+											<li><a href="#">Only on Edgar USA</a></li>
+											<li><a href="#">Last Chance</a></li>
 										</ul>
 									</div>
 								</nav>

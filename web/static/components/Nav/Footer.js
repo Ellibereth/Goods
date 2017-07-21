@@ -13,27 +13,29 @@ export default class HomeFooter extends React.Component {
 
 	render() {
 
+
+
+
+
 		return (
 			<div className = "page-wrapper"> 
 				<div id = "footer-badge-wrapper">
 					<div id = "edgar-footer-badges">
 						<a href = "#" id = "first-badge" className = "home-badge">
-							<i className="fa fa-2x fa-truck home-badge-icon"/>
-							<span className = "badgehead badgetext">Free Shipping</span> <br/>
-							<span className = "badgebody badgetext">PLUS Orders over $49 ship free. DESIGNER DIRECT items ship directly from our global network of designers and incur a small shipping charge.</span>
+							<i className="fa fa-2x fa-flag home-badge-icon"/>
+							<span className = "badgehead badgetext">Made in the USA</span> <br/>
+							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. To learn more about what that means and why it's important click here.</span>
 						</a>
 						<a href = "#" className = "home-badge">
 							<i className="fa fa-2x fa-smile-o home-badge-icon"/>
-							<span className = "badgehead badgetext">Smile Guarantee</span> <br/>
-							<span className = "badgebody badgetext">We promise you'll love it. <br/> If you don't, we fix it. </span>
+							<span className = "badgehead badgetext">Meet our Vendors</span> <br/>
+							<span className = "badgebody badgetext">We work with top-notch American makers and designers. Discover their stories while you shop.<br/> If you don't, we fix it. </span>
 						</a>
 						<a href = "#" id = "last-badge" className = "home-badge">
-							<i className="fa fa-2x fa-gift home-badge-icon"/>
-							<span className = "badgehead badgetext">Free Returns</span> <br/>
+							<i className="fa fa-2x fa-thumbs-up home-badge-icon"/>
+							<span className = "badgehead badgetext">Quality Guaranteed</span> <br/>
 							<span className = "badgebody badgetext">
-								We want you to love your purchase. If you don't, <br/>
-								send it back (for free) and get your money back. <br/>
-								No questions asked.
+								We only see the highest quality products. Not satisfied with your purchase? We'll fix it.
 							</span>
 						</a>
 					</div>
@@ -74,6 +76,7 @@ export default class HomeFooter extends React.Component {
 				<footer>
 					<div id = "dynamic-footer-wrapper">
 						<div id="dynamic-footer">
+							{/* 
 							<div className="top-designers section">
 								<span className="section-title" style= {{"text-transform" : "none"}}>Get It First</span>
 								<span className="updtdLatstArriTxt">You're just one step away from receiving fresh Happy Modern Designs and special offers in your inbox.</span>
@@ -82,44 +85,41 @@ export default class HomeFooter extends React.Component {
 									<input style = {{"display" : "inline-block"}} type="text" placeholder="Your Email"  className="inputBoxSignUpFooter borderR5 dB boxSizing"/>
 									<a style = {{"marginLeft" : "12px"}} className="edgarSubmitBtn borderR3 boxSizing" id="signUpEmailCaptr">Sign Up</a>
 								</form>
-							</div>
+							</div> */}
 
 							<div className="departments section">
 							{/* <div className="departments section"> */}
-								<span className="section-title">INFO</span>
 								<ul>
-									<li> <a href="#">Company</a> </li>
-									<li> <a href="#">All Products</a> </li>
-									<li> <a href="#">How Edgar Works</a> </li>
 									<li> <a href="#">About Us</a> </li>
+									<li> <a href="#">FAQ</a> </li>
+									<li> <a href="#">Made in the USA</a> </li>
+									<li> <a href="#">All Products</a> </li>
+									<li> <a href="#">Suggest Products</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section">
-								<span className="section-title">EDGAR</span>
-								<ul>
-									<li> <a href="#">Edgar for Fun</a> </li>
-									<li> <a href="#">Be an Edgar</a> </li>
-									<li> <a href="#">Shop with Edgar</a> </li>
-									<li> <a href="#"></a> </li>
-								</ul>
-							</div>
-							<div className="departments section">
-								<span className="section-title">RESOURCES</span>
 								<ul>
 									<li> <a href="#">Contact Us</a> </li>
-									<li> <a href="#">Press Room</a> </li>
-									<li> <a href="#">FAQ</a> </li>
-									<li> <a href="#">Hot Products</a> </li>
+									<li> <a href="#">Jobs</a> </li>
+									<li> <a href="#">Vendors</a> </li>
+									<li> <a href="#">Sell on Edgar USA</a> </li>
+									<li> <a href="#"></a> </li>
+								</ul>
+							</div>
+							<div className="departments section">
+								<ul>
+									<li> <a href="#">Terms of Service</a> </li>
+									<li> <a href="#">Privacy Policy</a> </li>
+									<li> <a href="#">Returns</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section last-department">
-								<span className="section-title">QUICK LINKS</span>
 								<ul>
-									<li> <a href="#">Terms of Service</a> </li>
-									<li> <a href="#">Privacy Policy</a> </li>
-									<li> <a href="#">Affiliates</a> </li>
+									<li> <a href="#">Your Account</a> </li>
+									<li> <a href="#">Your Cart</a> </li>
+									<li> <a href="#">Your Orders</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>

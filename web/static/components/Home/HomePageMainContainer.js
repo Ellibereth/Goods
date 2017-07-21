@@ -60,7 +60,6 @@ export default class HomePageMainContainer extends React.Component {
 				<HomeProductPreview product = {product}/>
 			)
 
-
 		return (
 			<div>
 				<div className = "container-fluid home-container">
@@ -76,31 +75,17 @@ export default class HomePageMainContainer extends React.Component {
 				<div className ="container-fluid">
 					<div className = "row">
 						<span className = "home-product-group-header">
-							Handpicked For You
+							New this week
 						</span>
 					</div>
 					<div className = "small-buffer"/>
 					<div className = "row">
-						{products}
+						{products}	
 					</div>
-				</div>
-				
-				<div className = "small-buffer"/>
-				<div className = "dark-grey-horizontal-line"/>
-				<div className = "small-buffer"/>
-
-				<div className = "container-fluid">
-					<div className = "row">
-						<span className = "home-product-group-header">
-							Popular in <span className = "home-category-link">New </span>
-						</span>
-					</div>
-					<div className = "small-buffer"/>
 					<div className = "row">
 						{products}
 					</div>
 				</div>
-					
 			</div>
 			);
 	}
