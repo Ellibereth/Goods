@@ -121,7 +121,7 @@ export default class AdminProductPage extends React.Component {
 						<hr/>
 
 						<div className = {this.state.selected_tab == PREVIEW_VIEW ? "row" : "none" }>
-							<ProductTemplate2 admin_view = {true} product_id = {this.props.params.product_id}/>
+							<ProductTemplate2 admin_view = {true} product = {this.state.product}/>
 						</div>
 
 						<div className = {this.state.selected_tab == INFO_VIEW ? "row" : "none"}>

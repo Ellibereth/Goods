@@ -48,6 +48,7 @@ export default class ProductTopRow extends React.Component {
 
 	getPriceDisplay() {
 		var product = this.props.product
+		if (!product) return "$0.00"
 		if (this.state.item_in_stock) {
 			if (product.sale_price) {
 				return (
