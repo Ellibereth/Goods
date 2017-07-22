@@ -46,6 +46,13 @@ import AboutUsPage from './CustomerService/AboutUsPage'
 import ContactUsPage from './CustomerService/ContactUsPage'
 import SalesPage from './Sales/SalesPage.js'
 import ProductListingsPage from './Listings/ProductListingsPage'
+import MadeInUsaPage from './CustomerService/MadeInUsaPage'
+import SuggestProductPage from './CustomerService/SuggestProductPage'
+import CareersPage from './CustomerService/CareersPage'
+import VendorsPage from './CustomerService/VendorsPage'
+import SellWithEdgarPage from './CustomerService/SellWithEdgarPage'
+import ReturnPolicyPage from './CustomerService/ReturnPolicyPage'
+
 
 export default class Main extends React.Component {
 	
@@ -190,6 +197,13 @@ ReactDOM.render(
 			<Route path = "faq" component = {FaqPage}/>
 			<Route path = "sales" component = {SalesPage}/> 
 			<Route path = "listings/:tag" component = {ProductListingsPage}/>
+			<Route path = "usa" component = {MadeInUsaPage}/>
+			<Route path = "suggestProduct" component = {SuggestProductPage}/>
+			<Route path = "careers" component = {CareersPage}/>
+			<Route path = "vendors" component = {VendorsPage}/>
+			<Route path = "sellWithEdgar" component = {SellWithEdgarPage}/>
+			<Route path = "returnPolicy" component = {ReturnPolicyPage}/>
+
 			<Route path= "*" component={PageNotFound} />  
 		</Route>
 	</Router>, 

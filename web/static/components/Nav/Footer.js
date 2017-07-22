@@ -26,7 +26,7 @@ export default class HomeFooter extends React.Component {
 								<img className = "home-badge-icon home-badge-flag" src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/flag.png"/>
 							</span>
 							<span className = "badgehead badgetext">Made in the USA</span> <br/>
-							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. To learn more about what that means and why it's important click <a href = "#">here</a>.</span>
+							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. To learn more about what that means and why it's important click <a href = "/usa">here</a>.</span>
 						</a>
 						<a href = "#" className = "home-badge">
 							<i className="fa fa-2x fa-smile-o home-badge-icon"/>
@@ -85,17 +85,17 @@ export default class HomeFooter extends React.Component {
 								<ul>
 									<li> <a href="/about">About Us</a> </li>
 									<li> <a href="/faq">FAQ</a> </li>
-									<li> <a href="#">Made in the USA</a> </li>
-									<li> <a href="/support">Suggest Products</a> </li>
+									<li> <a href="/usa">Made in the USA</a> </li>
+									<li> <a href="/suggestProduct">Suggest Products</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
 							<div className="departments section">
 								<ul>
 									<li> <a href="/contact">Contact Us</a> </li>
-									<li> <a href="#">Jobs</a> </li>
-									<li> <a href="/support">Vendors</a> </li>
-									<li> <a href="#">Sell on Edgar USA</a> </li>
+									<li> <a href="/careers">Careers</a> </li>
+									<li> <a href="/vendors">Vendors</a> </li>
+									<li> <a href="/sellWithEdgar">Sell on Edgar USA</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
@@ -103,7 +103,7 @@ export default class HomeFooter extends React.Component {
 								<ul>
 									<li> <a href="/terms">Terms of Service</a> </li>
 									<li> <a href="/privacy">Privacy Policy</a> </li>
-									<li> <a href="/support">Returns</a> </li>
+									<li> <a href="/returnPolicy">Returns</a> </li>
 									<li> <a href="#"></a> </li>
 								</ul>
 							</div>
