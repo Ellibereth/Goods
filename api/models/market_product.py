@@ -8,10 +8,11 @@ import json
 
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
+from api.models.product_tag import ProductTag
 from api.models.story_image import StoryImage
 from api.models.manufacturer_logo import ManufacturerLogo
 from api.s3.s3_api import S3
-from api.utility.variants import ProductVariants as Variants
+
 
 class MarketProduct(db.Model):
 	__tablename__ = ProdTables.MarketProductTable
@@ -155,6 +156,35 @@ class MarketProduct(db.Model):
 		variant = ProductVariant.query.filter_by(product_id = self.product_id, variant_id = variant_id).first()
 		return variant
 
+	@staticmethod
+	def getProductById(product_id):
+		return MarketProduct.query.filter_by(product_id = product_id).first()
+
+	@staticmethod
+	def getProductsByTag(tag):
+		tag_matches = ProductTag.query.filter_by(tag = tag).all()
+		product_matches = []
+		for match in tag_matches:
+			matching_product = MarketProduct.query.filter_by(product_id = match.product_id).first()
+			if matching_product:
+				product_matches.append(matching_product)
+
+		return product_matches
+
+
+	# tags input taken as a list of tags
+	def updateProductTags(self, tags):
+		old_tags = ProductTag.query.filter_by(product_id = self.product_id).all()
+		for old_tag in old_tags:
+			db.session.delete(old_tag)
+		db.session.commit()
+
+		for tag in tags:
+			new_tag = ProductTag(self.product_id, tag)
+			db.session.add(new_tag)
+		db.session.commit()
+
+
 	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
@@ -188,15 +218,9 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
+		tags = ProductTag.query.filter_by(product_id = self.product_id).all()
+		public_dict[Labels.Tags] = ",".join([tag.tag for tag in tags])
 
-		if not self.second_tab_name:
-			public_dict[Labels.SecondTabName] = ""
-		else:
-			public_dict[Labels.SecondTabName] = self.second_tab_name
-		if not self.second_tab_text:
-			public_dict[Labels.SecondTabText] = ""
-		else:
-			public_dict[Labels.SecondTabText] = self.second_tab_text
 		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]

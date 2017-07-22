@@ -114,6 +114,7 @@ def updateProductInfo(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	product = request.json.get(Labels.Product)
 	name = request.json.get(Labels.Name)
+	tags = request.json.get(Labels.Tags)
 
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if product == None:
@@ -133,7 +134,12 @@ def updateProductInfo(admin_user):
 			else:
 				value = product.get(key)
 
-			if value != None:
+			if key == Labels.Tags:
+				
+				tag_list = value.split(',')
+				this_product.updateProductTags(tag_list)
+
+			elif value != None:
 				setattr(this_product, key, value)
 		except:
 			AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)

@@ -45,7 +45,7 @@ import FaqPage from './CustomerService/FaqPage'
 import AboutUsPage from './CustomerService/AboutUsPage'
 import ContactUsPage from './CustomerService/ContactUsPage'
 import SalesPage from './Sales/SalesPage.js'
-
+import ProductListingsPage from './Listings/ProductListingsPage'
 
 export default class Main extends React.Component {
 	
@@ -188,7 +188,8 @@ ReactDOM.render(
 			<Route path = "about" component = {AboutUsPage}/>
 			<Route path = "requestProduct" component = {RequestProductPage}/>
 			<Route path = "faq" component = {FaqPage}/>
-			<Route path = 'sales' component = {SalesPage}/> 
+			<Route path = "sales" component = {SalesPage}/> 
+			<Route path = "listings/:tag" component = {ProductListingsPage}/>
 			<Route path= "*" component={PageNotFound} />  
 		</Route>
 	</Router>, 

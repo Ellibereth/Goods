@@ -3,9 +3,9 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
 import AdminActivateProduct from './AdminActivateProduct'
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'description', 'more_details', 'sale_end_date', 'category', 'product_template', 'num_items_limit', 'sale_price', 'sale_text', 'manufacturer_fee', 'quadrant1', 'quadrant2', 'quadrant3', 'quadrant4']
-const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Price (make sure this is in cents)', 'Description', 'More Details (separate bullets with newline)', "Sale End Date", 'Category', 'Product Template', 'Item Limit', 'Sale Price', 'Sale Text', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4']
-const input_types = ['text', 'text', 'text', 'text', 'textarea','textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea']
+const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'description',  'more_details', 'sale_end_date', 'category', 'product_template', 'num_items_limit', 'sale_price', 'sale_text', 'manufacturer_fee', 'quadrant1', 'quadrant2', 'quadrant3', 'quadrant4', 'tags']
+const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Price (make sure this is in cents)', 'Description', 'More Details (separate bullets with newline)', "Sale End Date", 'Category', 'Product Template', 'Item Limit', 'Sale Price', 'Sale Text', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Tags (Separate by commas) and use upper case only for categories. Otherwise all lower case for search']
+const input_types = ['text', 'text', 'text', 'text', 'textarea','textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea']
 
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
@@ -88,7 +88,7 @@ export default class AdminEditProductInfo extends React.Component {
 				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 			}
 			else {
-				swal(data.error.title, data.error.text , data.error.type)
+				swal({title: data.error, type: "error"})
 			}
 			this.props.getProductInformation()
 	  	}.bind(this),
@@ -107,12 +107,16 @@ export default class AdminEditProductInfo extends React.Component {
 	}
 	
 	render() {	
-		if (!this.state.product) return <div/>
-		var input_forms = form_fields.map((field, index) => 
-				<AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-				value = {this.state.product[field]} field = {field} label = {form_labels[index]}
-				input_type = {input_types[index]}/>
-			)
+		if (!this.state.product) return <div/>;
+
+
+		var input_forms = form_fields.map((field, index) => {
+				if(field != "sale_end_date"){
+					return <AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+					value = {this.state.product[field]} field = {field} label = {form_labels[index]}
+					input_type = {input_types[index]}/>
+				}
+			})
 
 
 		// allow us to edit invetory here for single products

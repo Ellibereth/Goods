@@ -22,7 +22,6 @@ export default class NavbarSearch extends React.Component {
 	}
 
 	onKeyPress(event) {
-		console.log(event)
 		if (event.key == "Enter"){
 			this.search(event)
 		}

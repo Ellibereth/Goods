@@ -79,6 +79,7 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	Tag = "tag"
 	Quadrant1 = "quadrant1"
 	Quadrant2 = "quadrant2"
 	Quadrant3 = "quadrant3"
