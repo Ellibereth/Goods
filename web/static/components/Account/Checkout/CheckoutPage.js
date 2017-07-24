@@ -139,6 +139,7 @@ export default class CheckoutPage extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success) {
+						console.log(data.user.cart)
 						this.setState({
 							items: data.user.cart.items, 
 							total_price : data.user.cart.total_price,

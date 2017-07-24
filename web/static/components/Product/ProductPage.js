@@ -92,9 +92,6 @@ export default class ProductPage extends React.Component {
 
 
 	render() {
-		console.log("invalid product ", this.state.invalid_product)
-		console.log("is loading ", this.state.is_loading)
-
 		if (this.state.is_loading) {
 			var component = <div/>
 		}
