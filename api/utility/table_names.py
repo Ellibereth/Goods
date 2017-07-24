@@ -29,6 +29,7 @@ class ProdTables:
 	ManufacturerLogoTable = "MANUFACTURER_LOGO_TABLE"
 	EmailSubscriptionTable = "EMAIL_SUBSCRIPTION_TABLE"
 	EmailListTable = "EMAIL_LIST_TABLE"
+	DiscountTable = "DISCOUNT_TABLE"
 
 
 """ 
@@ -61,6 +62,7 @@ class TestTables:
 	ManufacturerLogoTable = TEST_PREFIX + ProdTables.ManufacturerLogoTable
 	EmailListTable = TEST_PREFIX + ProdTables.EmailListTable
 	EmailSubscriptionTable = TEST_PREFIX + ProdTables.EmailSubscriptionTable
+	DiscountTable = TEST_PREFIX + ProdTables.DiscountTable
 	SqlTestTable = "TEST_SQL"
 
 	

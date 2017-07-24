@@ -1,5 +1,7 @@
 # this file will have labels for most of the other classes
 
+class DiscountLabels:
+	DiscountId = "discount_id"
 
 class EmailLabels:
 	UnsubscribeId = "unsubscribe_id"
@@ -14,6 +16,7 @@ class EmailLabels:
 	Unsubscribed = "unsubscribed"
 
 class UserLabels:
+	MembershipTier = "membership_tier"
 	GuestJwt = "guest_jwt"
 	IsGuest = "is_guest"
 	Order = "order"
@@ -232,6 +235,9 @@ class PaymentLabels:
 
 
 class CartLabels:
+	DiscountMessage = "discount_message"
+	DiscountedCartPrice = "discounted_cart_price"
+	MembershipTier = "membership_tier"
 	ManufacturerEmail = "manufacturer_email"
 	SalePrice = "sale_price"
 	ManufacturerFee = "manufacturer_fee"

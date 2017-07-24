@@ -59,7 +59,7 @@ def checkoutCart(this_user):
 @cart_api.route('/getUserCart', methods = ['POST'])
 @decorators.check_user_jwt
 def getUserCart(this_user):
-	this_cart = Cart(this_user.account_id)
+	this_cart = Cart(this_user)
 	total_price = this_cart.total_price
 	return JsonUtil.success(Labels.Cart, this_cart.toPublicDict())
 
@@ -67,7 +67,7 @@ def getUserCart(this_user):
 @cart_api.route('/getCheckoutInformation', methods = ['POST'])
 @decorators.check_user_jwt
 def getCheckoutInformation(this_user):
-	this_cart = Cart(this_user.account_id)
+	this_cart = Cart(this_user)
 	addresses = this_user.getAddresses()
 	cards = this_user.getCreditCards()
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 

@@ -6,23 +6,34 @@ import time
 from api.utility.labels import CartLabels as Labels
 from api.pricing.pricing import Pricing
 from api.models.market_product import MarketProduct
-
-
+from api.models.discount_code import DiscountCode
+from api.utility.membership_tiers import MembershipDiscount
 # this class should be a user's shopping cart
 # as a list of CartItems
 class Cart:
-	def __init__(self, account_id):
-		self.account_id = account_id
-		self.items = CartItem.query.filter(CartItem.account_id == account_id,
+	def __init__(self, user):
+		self.account_id = user.account_id
+		self.items = CartItem.query.filter(CartItem.account_id == user.account_id,
 				 CartItem.num_items > 0).all()
+		self.membership_tier = user.membership_tier
 		self.items_price = self.getCartItemsPrice()
+		
 
 	def getCartItemsPrice(self):
-		return Pricing.getCartPrice(self)
+		return Pricing.getCartItemsPrice(self)
 
 	def getCartShippingPrice(self, address):
 		return Pricing.getCartShippingPrice(self, address)
 
+	def getOriginalCartItemsPrice(self):
+		return Pricing.getOriginalCartItemsPrice(self)
+
+	def getOriginalShippingPrice(self, address):
+		return Pricing.getOriginalCartShippingPrice(self, address)
+
+	def getOriginalCartTotalPrice(self, address):
+		return int(self.getOriginalShippingPrice(address) \
+			+ self.getCartSalesTaxPrice(address) + self.getOriginalCartItemsPrice())
 
 	def getSalesTaxRate(self, address):
 		SALES_TAX_RATE = 0.05
@@ -32,6 +43,8 @@ class Cart:
 			return 0
 
 	def getCartSalesTaxPrice(self, address):
+		if address == None:
+			return 0
 		return int(self.getSalesTaxRate(address) * self.getCartItemsPrice())
 
 	def getCartTotalPrice(self, address):
@@ -69,11 +82,18 @@ class Cart:
 		public_dict[Labels.Items] = product_list
 		
 		public_dict[Labels.ItemsPrice] = self.getCartItemsPrice()
+		public_dict[Labels.MembershipTier] = self.membership_tier
+
+		# here a discount is applied
+		
 
 		if address:
-			public_dict[Labels.ShippingPrice] = self.getCartShippingPrice(address)
-			public_dict[Labels.SalesTaxPrice] = self.getCartSalesTaxPrice(address)
-			public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
+			if self.getCartTotalPrice(address) != self.getOriginalCartTotalPrice(address):
+				public_dict[Labels.DiscountMessage] = MembershipDiscount(self.membership_tier).discount_message
+				
+				public_dict[Labels.ShippingPrice] = self.getCartShippingPrice(address)
+				public_dict[Labels.SalesTaxPrice] = self.getCartSalesTaxPrice(address)
+				public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
 
 		return public_dict
 

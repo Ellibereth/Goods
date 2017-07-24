@@ -23,6 +23,8 @@ import sys
 from api.utility.email import EmailLib
 from validate_email import validate_email
 
+from api.utility.membership_tiers import MembershipTiers
+
 
 ## user object class
 class User(db.Model):
@@ -45,11 +47,13 @@ class User(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
+	membership_tier = db.Column(db.Integer)
+
 	is_guest = db.Column(db.Boolean, default = False)
 	NAME_MAX_LENGTH = 20
 	MIN_PASSWORD_LENGTH = 6
 
-	def __init__(self, name, email, password, email_confirmation_id):
+	def __init__(self, name, email, password, email_confirmation_id, membership_tier):
 		self.name = name
 		self.email = email
 		self.password_hash = User.argonHash(password)
@@ -57,10 +61,11 @@ class User(db.Model):
 		self.email_confirmed = False
 		stripe_customer_id = StripeManager.createCustomer(name, email)
 		self.stripe_customer_id = stripe_customer_id
+		self.membership_tier = membership_tier
 		db.Model.__init__(self)
 
 	@staticmethod
-	def registerUser(name, email_input, password, password_confirm, guest_user = None):
+	def registerUser(name, email_input, password, password_confirm, guest_user = None, membership_tier = 0):
 		if isinstance(email_input, str):
 			email = email_input.lower()
 		else:
@@ -93,8 +98,8 @@ class User(db.Model):
 		except Exception as e:
 			print(e)
 			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
-		new_user = User(name = name, email = email, password = password, 
-			email_confirmation_id =email_confirmation_id)
+		new_user = User(name, email, password, 
+			email_confirmation_id, membership_tier)
 		db.session.add(new_user)
 		db.session.commit()
 
@@ -216,8 +221,8 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
-		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
+		public_dict[Labels.CartSize] = Cart(self).getCartSize()
+		public_dict[Labels.Cart] = Cart(self).toPublicDict()
 		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.Addresses] = []
 		public_dict[Labels.Cards] = []
@@ -225,6 +230,7 @@ class User(db.Model):
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.IsGuest] = self.is_guest
+		public_dict[Labels.MembershipTier] = self.membership_tier
 		return public_dict
 
 
@@ -234,8 +240,8 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
-		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict(address)
+		public_dict[Labels.CartSize] = Cart(self).getCartSize()
+		public_dict[Labels.Cart] = Cart(self).toPublicDict(address)
 		public_dict[Labels.Addresses] = self.getAddresses()
 		public_dict[Labels.Cards] = self.getCreditCards()
 		public_dict[Labels.Orders] = self.getUserOrders()
@@ -243,6 +249,7 @@ class User(db.Model):
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
+		public_dict[Labels.MembershipTier] = self.membership_tier
 		return public_dict
 
 	def toPublicDict(self):
@@ -251,8 +258,8 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
-		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
+		public_dict[Labels.CartSize] = Cart(self).getCartSize()
+		public_dict[Labels.Cart] = Cart(self).toPublicDict()
 		public_dict[Labels.Addresses] = self.getAddresses()
 		public_dict[Labels.Cards] = self.getCreditCards()
 		public_dict[Labels.Orders] = self.getUserOrders()
@@ -260,6 +267,7 @@ class User(db.Model):
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
+		public_dict[Labels.MembershipTier] = self.membership_tier
 		return public_dict
 
 	def adjustCartItemWithVariant(self, cart_item):
@@ -295,7 +303,7 @@ class User(db.Model):
 		return None
 
 	def adjustCart(self):
-		cart = Cart(self.account_id)
+		cart = Cart(self)
 		adjusted_items = list()
 		for cart_item in cart.items:
 			adjusted_item = self.adjustCartItem(cart_item)
