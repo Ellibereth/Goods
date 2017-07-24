@@ -8,7 +8,8 @@ export default class ProductListingPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			products : []
+			products : [],
+			is_loading : true
 		}
 	}
 
@@ -28,6 +29,7 @@ export default class ProductListingPage extends React.Component {
 				if (data.success) {
 					this.setState({
 						products: data.products,
+						is_loading: false
 					})
 				}
 			}.bind(this),
@@ -56,12 +58,21 @@ export default class ProductListingPage extends React.Component {
 				<PageContainer>
 					<div id = "search-container" className = "container-fluid">
 						<div className = "container">
-							<div className = "row search-result-amount-text">
-								{display_title}
-							</div> 
-							<div className = "row">
-								{products_display}
-							</div>
+							{
+								this.state.is_loading
+								?
+									<div> </div>
+								:
+								<div>
+									<div className = "row search-result-amount-text">
+										{display_title}
+									</div> 
+									<div className = "row">
+										{products_display}
+									</div>
+								</div>
+							}
+							
 						</div>
 					</div>
 				</PageContainer>
