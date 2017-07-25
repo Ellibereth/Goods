@@ -6,7 +6,7 @@ export default class AccountDropdown extends React.Component {
 	render() {
 		var name_display = this.props.user ? this.props.user.name.split(" ")[0]  : "Account"
 		return (
-			<div className="hidden-xs float-right username-adjust edgar-color-gray-3 headerUserCt">
+			<div className="float-right username-adjust edgar-color-gray-3 headerUserCt">
 					  <span className="newUserName font14">
 						<span className="userNameText avant-garde-std-bk" style = {{"paddingRight" : "6px", "color" :"black"}}>
 							{name_display}
