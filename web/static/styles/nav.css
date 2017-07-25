@@ -87,6 +87,7 @@ a {
 .top-row-inner {
 	align-self: center;
 	width: 1176px;
+	background-color : #e4e6e5;
 }
 
 .home-sub-menu {
@@ -166,7 +167,7 @@ a {
 
 
 #top-right-navigation {
-	padding-right: 0px;
+	padding-right: 8px;
 	margin-right: 0px;
 }
 
@@ -178,8 +179,9 @@ a {
 	font-size: 12px;
 	line-height: 28px;
 	padding-right: 0px;
-	margin-right: 0px;
+	margin-right: 8px;
 	color: #666;
+	padding-left: 8px;
 }
 
 

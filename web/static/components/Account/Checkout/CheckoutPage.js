@@ -37,7 +37,8 @@ export default class CheckoutPage extends React.Component {
 			is_loading: true,
 			first_load_done : false,
 			button_disabled : false,
-			sales_tax_price: null
+			sales_tax_price: null,
+			cart : {}
 
 		}
 
@@ -141,6 +142,7 @@ export default class CheckoutPage extends React.Component {
 					if (data.success) {
 						console.log(data.user.cart)
 						this.setState({
+							cart : data.user.cart,
 							items: data.user.cart.items, 
 							total_price : data.user.cart.total_price,
 							shipping_price : data.user.cart.shipping_price,
@@ -372,6 +374,8 @@ export default class CheckoutPage extends React.Component {
 
 	render() {
 		var can_checkout = this.canCheckout()
+		var cart = this.state.cart
+		if (!cart) return <div/>
 		return (
 			<PageContainer is_loading = {this.state.is_loading}>
 					<div id = "checkout-container" 
@@ -456,8 +460,19 @@ export default class CheckoutPage extends React.Component {
 											</div>
 										</div>
 										<hr/>
+
+
+										{cart.original_items_price &&
+											<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
+											label = {"Originally:"} price = {formatPrice(cart.original_items_price)}/>
+										}
+
+
+
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
 										label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
+
+
 
 										{this.state.shipping_price ? 
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
@@ -473,9 +488,21 @@ export default class CheckoutPage extends React.Component {
 										}
 
 										<hr/>
+										
+										{cart.discount_message && 
+											<div className = "row">
+												<div style = {{textAlign : "center"}}
+												className = "col-sm-12 col-lg-12 col-md-12">
+													{cart.discount_message}
+												</div>
+											</div>
+										}
 
 										<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
 										label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
+										
+
+
 								</div>
 
 								<div className="panel-footer">

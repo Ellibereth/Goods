@@ -31,19 +31,18 @@ export default class Navbar extends React.Component {
 					<div className = "edgar-navbar">
 						<div className = "container-fluid">
 							<div className = "row">
-								<div className = "col-sm-1 col-md-1 col-lg-1" id = "logo-column">
+								<div className = "col-xs-2 col-sm-1 col-md-1 col-lg-1" id = "logo-column">
 									<a href = "/">
 										<img className = "edgar-logo" src = {edgar_logo}/>
 									</a>
 								</div>
-								<div className = "vcenter col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-sm-6 col-md-6 col-lg-6">
+								<div className = "vcenter col-xs-offset-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-4 col-sm-6 col-md-6 col-lg-6">
 									<div className="input-group input-group-lg">
 										<span className="input-group-addon" id="basic-addon1"><span className = "glyphicon glyphicon-search" /></span>
 										<NavbarSearch />
-										
 									</div>
 								</div>
-								<div id = "top-right-navigation" className = "col-md-2 col-lg-2 col-sm-2 home-right-nav pull-right">
+								<div id = "top-right-navigation" className = "col-xs-4 col-sm-2 col-md-2 col-lg-2  home-right-nav pull-right">
 									<div id="home-top-navigation-wrapper" className = "float-right">
 									{ 
 										(AppStore.getCurrentUser() && !AppStore.getCurrentUser().is_guest)?

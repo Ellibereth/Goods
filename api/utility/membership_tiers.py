@@ -27,7 +27,7 @@ class MembershipDiscount:
 		elif tier_level == 1:
 			self.free_shipping = False
 			self.item_discount = 10
-			self.discount_message = "10% OFF DISCOUNT APPLIED"
+			self.discount_message = "10% DISCOUNT APPLIED"
 
 	def toPublicDict(self):
 		public_dict = {}
