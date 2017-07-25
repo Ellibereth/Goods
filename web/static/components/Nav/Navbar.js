@@ -42,7 +42,7 @@ export default class Navbar extends React.Component {
 										<NavbarSearch />
 									</div>
 								</div>
-								<div id = "top-right-navigation" className = "col-xs-4 col-sm-2 col-md-2 col-lg-2  home-right-nav pull-right">
+								<div id = "top-right-navigation" className = "col-xs-4 col-sm-4 col-md-4 col-lg-4  home-right-nav pull-right">
 									<div id="home-top-navigation-wrapper" className = "float-right">
 									{ 
 										(AppStore.getCurrentUser() && !AppStore.getCurrentUser().is_guest)?
