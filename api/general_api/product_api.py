@@ -63,6 +63,7 @@ def getOnSaleProducts():
 def getProductsByTag():
 	tag = request.json.get(Labels.Tag)
 	matching_products = MarketProduct.getProductsByTag(tag)
+	
 	return JsonUtil.successWithOutput({
 			Labels.Products :  [product.toPublicDict() for product in matching_products]
 		})

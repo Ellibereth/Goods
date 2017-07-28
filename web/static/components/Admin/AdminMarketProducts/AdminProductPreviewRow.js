@@ -41,7 +41,7 @@ export default class AdminProductPreviewRow extends React.Component {
 		if (product[attr] == null) {
 			return "null"
 		}
-		else if (product[attr] == false || product[attr] == true) {
+		else if (product[attr] === false || product[attr] === true) {
 			return product[attr].toString()
 		}
 		else if (attr == "product_id") {

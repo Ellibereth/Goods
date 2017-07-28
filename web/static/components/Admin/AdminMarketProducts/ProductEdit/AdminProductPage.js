@@ -89,6 +89,15 @@ export default class AdminProductPage extends React.Component {
 				<div>
 					<div className = "container">
 						<div className = "row">
+							<button onClick = {() => window.location = '/yevgeniypoker555'}
+							type = "button" className = "btn btn-default">
+								Return to Admin Home
+							</button>
+						</div>
+
+						<div className = "top-buffer"/>
+
+						<div className = "row">
 							{!this.state.is_loading && <h1> {this.state.product.name + " by " + this.state.product.manufacturer}</h1>}
 						</div>
 

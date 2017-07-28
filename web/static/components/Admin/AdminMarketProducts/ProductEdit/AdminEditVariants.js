@@ -81,7 +81,7 @@ export default class AdminEditVariants extends React.Component {
 	render() {	
 		if (!this.props.product) return <div/>
 
-		if (this.props.product.variants) {
+		if (this.props.product.has_variants) {
 			var inventory_display = this.props.product.variants.map((variant, index) =>
 				<AdminEditVariant
 					product = {this.props.product}
