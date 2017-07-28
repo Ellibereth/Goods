@@ -73,7 +73,7 @@ export default class AdminEditVariants extends React.Component {
 			</div>
 			)
 		}
-		return toggle_variants
+		return variant_toggle
 	}
 
 	
@@ -89,7 +89,7 @@ export default class AdminEditVariants extends React.Component {
 					getProductInformation = {this.props.getProductInformation}
 					/>
 			)
-			if (inventory_display == 0){
+			if (inventory_display === 0){
 				var inventory_display = <div> This product supports variants but has none right now. </div>
 			}
 		}
