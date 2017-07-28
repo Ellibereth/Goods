@@ -462,15 +462,23 @@ export default class CheckoutPage extends React.Component {
 										<hr/>
 
 
-										{cart.original_items_price &&
-											<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
-											label = {"Originally:"} price = {formatPrice(cart.original_items_price)}/>
+										{cart.items_discount &&
+											<div>
+												<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
+												label = {"Items:"} price = {formatPrice(cart.original_items_price)}/>
+
+												<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
+												label = {"10% Discount:"}
+												show_minus = {true}
+												price = {formatPrice(cart.items_discount)}/>
+												<hr/>
+											</div>
 										}
 
 
 
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-										label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
+										label = {"After Discount:"} price = {formatPrice(this.state.items_price)}/>
 
 
 
@@ -489,14 +497,14 @@ export default class CheckoutPage extends React.Component {
 
 										<hr/>
 										
-										{cart.discount_message && 
+										{/* cart.discount_message && 
 											<div className = "row">
 												<div style = {{textAlign : "center"}}
 												className = "col-sm-12 col-lg-12 col-md-12">
 													{cart.discount_message}
 												</div>
 											</div>
-										}
+										*/}
 
 										<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
 										label = {"Total:"} price = {formatPrice(this.state.total_price)}/>

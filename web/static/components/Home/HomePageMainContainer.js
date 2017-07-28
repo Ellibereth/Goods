@@ -2,8 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import HomeProductPreview from './HomeProductPreview'
 import HomePageSingleImage from './HomePageSingleImage'
-// this is hard coded for now
-const product_id_list = [2,5,3,4, 1]
+
+const HOME_TAG = "Home_Page"
+
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
 		super(props);
@@ -13,33 +14,30 @@ export default class HomePageMainContainer extends React.Component {
 	}
 
 	componentDidMount(){
-		this.fetchProductInformation.bind(this)()
+		this.loadProducts.bind(this)(HOME_TAG)
 	}
 
-
-	fetchProductInformation(){
+	loadProducts(tag){
 		var form_data = JSON.stringify({
-			product_id_list : product_id_list
+			tag : tag
 		})
 		$.ajax({
-		  type: "POST",
-		  url: "/getBatchedProductInformation",
-		  data: form_data,
-		  success: function(data) {
-			if (data.success){
-				this.setState({products : data.products})
-			}
-		  }.bind(this),
-		  error : function(){
-			ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'getHomePageProducts',
-					});
-		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
+			type: "POST",
+			data: form_data,
+			url: "/getProductsByTag",
+			success: function(data) {
+				if (data.success) {
+					this.setState({
+						products: data.products,
+						is_loading: false
+					})
+				}
+			}.bind(this),
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
 		})
 	}
+
 
 	orderProducts(product_list) {
 		var ordered_products = []
@@ -81,9 +79,6 @@ export default class HomePageMainContainer extends React.Component {
 					<div className = "small-buffer"/>
 					<div className = "row">
 						{products}	
-					</div>
-					<div className = "row">
-						{products}
 					</div>
 				</div>
 			</div>

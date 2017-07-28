@@ -5,6 +5,7 @@ from api.utility.labels import CartLabels as Labels
 import datetime
 import os
 from jinja2 import Template
+from api.utility.membership_tiers import MembershipTiers
 
 URL = os.environ.get('HEROKU_APP_URL')
 # in this use the dev environment
@@ -26,12 +27,6 @@ class EmailHtml:
 		template = Template(f.read())
 		recovery_link = URL + "recovery/" + user.recovery_pin
 		html = template.render(user = user, url_base = URL, recovery_link = recovery_link)
-
-		# body = "<h2> Hello " + user.name.title() + ",</h2>"
-		# body = body + "<span style = \"display:block;font-size: 14px;\">  Click below to recover your account </span>"
-		# body = body + "<span style = \"display:block;font-size: 14px;\">  This link will expire in 15 minutes </span>"
-		# body = body + "<div style = \"padding-top:12px;\"> <button type = \"button\" style = \"background-color:6090a8;color:white;padding:16px; border:none;border-radius:6px;\"> \
-		# 	<a href = \"" + url + "\" style = \"font-size: 18px;text-decoration:none;color:white;\">Recover Account</a> </button> </div>"
 
 		textPart = MIMEText(html, 'html')
 		msg.attach(textPart)
@@ -115,10 +110,10 @@ class EmailHtml:
 			+ str(product[Labels.MainImage]) + "\"/>  </span> </td>\
 			<span style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> <span style = \"display:block;padding:12px;\">  \
 			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
-			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product, user) + "</span> <br/> \
 			<span style = \"font-size: 18px\"> Quantity: " + str(product[Labels.NumItems]) + "</span> <br/> \
-			<span style = \"font-size: 18px\"> Edgar USA Fee: " + str(EmailHtml.formatVendorFee(product)) + "</span> <br/> \
-			<span style = \"font-size: 18px\"> Vendor Charge: " + str(EmailHtml.formatVendorCut(product)) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Edgar USA Fee: " + str(EmailHtml.formatVendorFee(product, user)) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Vendor Charge: " + str(EmailHtml.formatVendorCut(product, user)) + "</span> <br/> \
 			</span> </div> <br/> <hr/>"
 		)
 
@@ -188,20 +183,27 @@ class EmailHtml:
 			return product.get(Labels.Price)
 
 
-	def formatCurrentPrice(product):
-		return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
+	def formatCurrentPrice(product, user = None):
+		if user == None:
+			return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
+		else:
+			if user[Labels.MembershipTier] == MembershipTiers.TEN_PERCENT_OFF:
+				return int(EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product)) * 90 / 100)
+			else:
+				return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
+
 
 	def formatVendorFee(item):
-		vendor_fee = EmailHtml.calculateVendorFee(item)
+		vendor_fee = EmailHtml.calculateVendorFee(item, user)
 		return EmailHtml.formatPrice(vendor_fee)
 		
-	def calculateVendorFee(item):
-		marginal_fee = EmailHtml.getCurrentPrice(item) * item[Labels.ManufacturerFee] / 10000
+	def calculateVendorFee(item, user = None):
+		marginal_fee = EmailHtml.getCurrentPrice(item, user) * item[Labels.ManufacturerFee] / 10000
 		return int(marginal_fee * item[Labels.NumItems])
 
 
-	def formatVendorCut(item):
-		vendor_cut = item[Labels.NumItems] * EmailHtml.getCurrentPrice(item) - EmailHtml.calculateVendorFee(item)
+	def formatVendorCut(item, user = None):
+		vendor_cut = item[Labels.NumItems] * EmailHtml.getCurrentPrice(item, user) - EmailHtml.calculateVendorFee(item, user)
 		return EmailHtml.formatPrice(vendor_cut)
 
 	

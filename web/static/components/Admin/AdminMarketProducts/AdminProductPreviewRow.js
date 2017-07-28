@@ -2,7 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 import AddProductModal from './ProductAdd/AddProductModal.js'
-import {formatDate} from '../../Input/Util'
+import {formatDate, formatPrice} from '../../Input/Util'
 
 var Link = require('react-router').Link;
 
@@ -38,7 +38,6 @@ export default class AdminProductPreviewRow extends React.Component {
 	}
 
 	getCellContents(product, attr) {
-
 		if (product[attr] == null) {
 			return "null"
 		}
@@ -51,6 +50,9 @@ export default class AdminProductPreviewRow extends React.Component {
 
 		else if (attr == 'date_created' || attr == 'sale_end_date') {
 			return formatDate(product[attr])
+		}
+		else if (attr == "price") {
+			return "$" + formatPrice(product.sale_price ? product.sale_price : product.price)
 		}
 		else {
 			return product[attr]

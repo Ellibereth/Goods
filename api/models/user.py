@@ -65,7 +65,7 @@ class User(db.Model):
 		db.Model.__init__(self)
 
 	@staticmethod
-	def registerUser(name, email_input, password, password_confirm, guest_user = None, membership_tier = 0):
+	def registerUser(name, email_input, password, password_confirm, guest_user = None, membership_tier = 1):
 		if isinstance(email_input, str):
 			email = email_input.lower()
 		else:

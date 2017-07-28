@@ -106,13 +106,10 @@ export default class AdminProductPage extends React.Component {
 								className = {this.state.selected_tab == IMAGES_VIEW && "active"}>
 									<a href="#info"> Images </a>
 								</li>
-								{
-									this.state.product.has_variants &&
-									<li onClick = {this.navivgateTab.bind(this, VARIANT_VIEW)}
-									className = {this.state.selected_tab == VARIANT_VIEW && "active"}>
-										<a href="#info">  Variants </a>
-									</li>
-								}
+								<li onClick = {this.navivgateTab.bind(this, VARIANT_VIEW)}
+								className = {this.state.selected_tab == VARIANT_VIEW && "active"}>
+									<a href="#info">  Variants </a>
+								</li>
 							</ul>
 						</div>
 

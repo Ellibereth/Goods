@@ -85,7 +85,7 @@ class Checkout:
 		except Exception as e:
 			EmailLib.notifyUserCheckoutErrorEmail(this_user, this_cart, address, ErrorLabels.Email, str(e))
 			return {
-					Labels.Success : True,
+					Labels.Success : False,
 					Labels.User : this_user.toPublicDict(),
 					Labels.Message : ErrorMessages.CartCheckoutEmailError,
 					Labels.Order : this_order.toPublicDict()

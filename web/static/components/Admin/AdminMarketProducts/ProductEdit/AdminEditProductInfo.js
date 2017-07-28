@@ -3,9 +3,9 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
 import AdminActivateProduct from './AdminActivateProduct'
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'description',  'more_details', 'sale_end_date', 'category', 'product_template', 'num_items_limit', 'sale_price', 'sale_text', 'manufacturer_fee', 'quadrant1', 'quadrant2', 'quadrant3', 'quadrant4', 'tags']
-const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Price (make sure this is in cents)', 'Description', 'More Details (separate bullets with newline)', "Sale End Date", 'Category', 'Product Template', 'Item Limit', 'Sale Price', 'Sale Text', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Tags (Separate by commas) and use upper case only for categories. Otherwise all lower case for search']
-const input_types = ['text', 'text', 'text', 'text', 'textarea','textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea']
+const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'sale_price', 'price', 'sale_text', 'sale_end_date', 'category', 'product_template', 'num_items_limit', 'manufacturer_fee', 'quadrant1', 'quadrant2', 'quadrant3', 'quadrant4', 'tags']
+const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Sale Price', 'Original Price (make sure this is in cents)', 'Sale Red Text (this is HTML)', "Sale End Date", 'Category', 'Product Template', 'Item Limit', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Tags (Separate by commas) and use upper case only for categories. Otherwise all lower case for search']
+const input_types = ['text', 'text', 'text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea']
 
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
@@ -14,6 +14,13 @@ export default class AdminEditProductInfo extends React.Component {
 		this.state = {
 			product : {}
 		}
+	}
+
+	warningAlertToggleVariants(callback){
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
+		function () {
+			callback()
+		}.bind(this))
 	}
 
 	// handle the text input changes
@@ -38,39 +45,7 @@ export default class AdminEditProductInfo extends React.Component {
 		}.bind(this))
 	}
 
-	onToggleProductHasVariants(has_variants){
-		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-			function () {
-				this.onToggleProductHasVariants.bind(this)(has_variants)
-		}.bind(this))
-	}
-
-	toggleProductHasVariants(has_variants){
-		var form_data = JSON.stringify({
-			"product_id" : this.state.product.product_id,
-			"has_variants" : has_variants,
-			"jwt" : localStorage.jwt
-		})
-		$.ajax({
-		type: "POST",
-	  	url: "/toggleProductHasVariants",
-	  	data: form_data,
-	  	success: function(data) {
-			if (data.success){
-				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-			}
-			else {
-				swal(data.error.title, data.error.text , data.error.type)
-			}
-			
-	  	}.bind(this),
-	  	error : function(){
-	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});
-	}
-
+	
 	submitTextData(){
 		var form_data = JSON.stringify({
 			"product_id" : this.state.product.product_id,
@@ -99,12 +74,7 @@ export default class AdminEditProductInfo extends React.Component {
 		});
 	}
 
-	warningAlertToggleVariants(callback){
-		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			callback()
-		}.bind(this))
-	}
+	
 	
 	render() {	
 		if (!this.state.product) return <div/>;
@@ -128,15 +98,6 @@ export default class AdminEditProductInfo extends React.Component {
 				input_type = "text"/>
 			)
 
-			var toggle_variants = (
-				<div>
-					<h3> Click to make this a product with variants. Note this will deactivate the product.</h3>
-					<button  type = "button" className = "btn btn-default" 
-						onClick = {this.warningAlertToggleVariants.bind(this, this.toggleProductHasVariants.bind(this, true))}>
-						Allow Variants
-					</button>
-				</div>
-			)
 		}
 
 		else {
@@ -147,15 +108,7 @@ export default class AdminEditProductInfo extends React.Component {
 				input_type = "text"/>
 
 			)
-			var toggle_variants = (
-				<div>
-					<h3> Click to make this a product without variants. Note this will deactivate the product. </h3>
-					<button  type = "button" className = "btn btn-default" 
-						onClick = {this.warningAlertToggleVariants.bind(this, this.toggleProductHasVariants.bind(this, false))}>
-						Remove Variants
-					</button>
-				</div>
-			)
+			
 		}
 
 
@@ -222,9 +175,6 @@ export default class AdminEditProductInfo extends React.Component {
 
 				<hr/>
 
-				<div className ="row">
-					{toggle_variants}
-				</div>
 
 			</div>
 		)

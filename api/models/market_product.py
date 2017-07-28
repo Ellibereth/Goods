@@ -195,9 +195,11 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Inventory] = self.inventory
 		public_dict[Labels.SaleEndDate] = self.sale_end_date
 		public_dict[Labels.DateCreated] = self.date_created
-		public_dict[Labels.NumImages] = self.num_images
+		
 		public_dict[Labels.ProductId] = self.product_id
-		public_dict[Labels.Images] = self.getProductImages()
+		images = self.getProductImages()
+		public_dict[Labels.Images] = images
+		public_dict[Labels.NumImages] = len(images)
 		public_dict[Labels.MainImage] = self.main_image
 		public_dict[Labels.StoryImageId] = self.story_image_id
 		public_dict[Labels.StoryText] = self.story_text

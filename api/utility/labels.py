@@ -235,6 +235,7 @@ class PaymentLabels:
 
 
 class CartLabels:
+	ItemsDiscount = "items_discount"
 	OriginalShippingPrice = "original_shipping_price"
 	OriginalItemsPrice = "original_items_price"
 	DiscountMessage = "discount_message"
