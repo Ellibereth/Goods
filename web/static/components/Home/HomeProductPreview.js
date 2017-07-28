@@ -57,7 +57,7 @@ export default class HomeProductPreview extends React.Component {
 			return (
 				<div>
 					<span className = "home-product-preview-current-price" >${formatPrice(this.props.product.sale_price)}</span>
-					<span className = "home-product-preview-price with-sale"
+					<span className = "home-product-preview-price"
 					dangerouslySetInnerHTML = {{__html : product.sale_text_home}}
 					></span> 
 				</div>
@@ -65,9 +65,21 @@ export default class HomeProductPreview extends React.Component {
 		}
 
 		else {
-			return (
-				<div className = "home-product-preview-current-price"> ${formatPrice(this.props.product.price)} </div> 
-			)	
+			if (product.inventory == 0) {
+				return (
+					<div>
+						<span className = "home-product-preview-current-price"> Sold Out  </span>
+						<span 
+						style = {{"fontWeight": "normal"}}
+						className = "home-product-preview-current-price"> <s>${formatPrice(this.props.product.price)} </s></span>
+					</div> 
+				)	
+			}
+			else {
+				return (
+					<div className = "home-product-preview-current-price"> ${formatPrice(this.props.product.price)} </div> 
+				)	
+			}
 		}
 
 	}
