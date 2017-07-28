@@ -260,7 +260,7 @@ a {
 #edgar-footer-badges .badgehead {
 	font-size: 22px;
 	font-weight: 300;
-	color: #666;
+	color: #000;
 }
 
 #edgar-footer-badges .home-badge {
@@ -277,12 +277,20 @@ a {
 }
 
 #edgar-footer-badges .badgebody {
-	color: #999;
+	color: #000;
 	margin-top: 12px;
 	font-size: 12px;
 	line-height: 17px;
 	font-weight: normal;
 	display: inline-block;
+}
+
+#edgar-footer-badges .badgetext-link {
+	color : #999;
+}
+
+#edgar-footer-badges .badgetext-link:hover {
+	color : #666;
 }
 
 .home-badge-icon{

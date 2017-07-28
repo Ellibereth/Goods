@@ -21,19 +21,19 @@ export default class HomeFooter extends React.Component {
 			<div className = "page-wrapper"> 
 				<div id = "footer-badge-wrapper">
 					<div id = "edgar-footer-badges">
-						<a href = "#" id = "first-badge" className = "home-badge">
+						<a href = "#/" id = "first-badge" className = "home-badge">
 							<span>
 								<img className = "home-badge-icon home-badge-flag" src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/flag.png"/>
 							</span>
 							<span className = "badgehead badgetext">Made in the USA</span> <br/>
-							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. To learn more about what that means and why it's important click <a href = "/usa">here</a>.</span>
+							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. <br/> To learn more about what that means and why it's important <a className = "badgetext-link" href = "/usa">click here</a>.</span>
 						</a>
-						<a href = "#" className = "home-badge">
+						<a href = "#/" className = "home-badge">
 							<i className="fa fa-2x fa-smile-o home-badge-icon"/>
 							<span className = "badgehead badgetext">Meet our Vendors</span> <br/>
 							<span className = "badgebody badgetext">We work with top-notch American makers and designers. Discover their stories while you shop.</span>
 						</a>
-						<a href = "#" id = "last-badge" className = "home-badge">
+						<a href = "#/" id = "last-badge" className = "home-badge">
 							<i className="fa fa-2x fa-thumbs-up home-badge-icon"/>
 							<span className = "badgehead badgetext">Quality Guaranteed</span> <br/>
 							<span className = "badgebody badgetext">
