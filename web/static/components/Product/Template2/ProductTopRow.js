@@ -47,20 +47,21 @@ export default class ProductTopRow extends React.Component {
 	}
 
 	getPriceDisplay() {
+
 		var product = this.props.product
-		if (!product) return "$0.00"
+		if (!product) return ""
 		if (this.state.item_in_stock) {
-			if (product.sale_price) {
+			if (product.sale_text_product) {
 				return (
 					<div>
-						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPriceNotPresent" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-							<span className="edgar-color-black bold-texts">
-								${formatPrice(product.sale_price)}
-							</span>
-						</p>
-						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPrice" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPriceNotPresent">
 							<span className="edgar-color-black bold-texts">
 								${formatPrice(product.price)}
+							</span>
+						</p>
+						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPrice">
+							<span className="bold-texts"
+								dangerouslySetInnerHTML = {{__html : product.sale_text_product}}>
 							</span>
 						</p>
 					</div>
@@ -190,7 +191,9 @@ export default class ProductTopRow extends React.Component {
 							
 
 								<div className="hidden-xs edgar-col-sm-32 no-padding edgar-col-sm-offset-1 edgar-col-full-height prod-main-img-left-offset">
-									<div id="product-pg-images-wrap" className="zoomCursor">
+									<div id="product-pg-images-wrap" 
+										// className="zoomCursor"
+									>
 										<li>
 											<img className="productPgMainImage edgar-img-responsive js-show-fs" src= {main_image_id}/>
 									 	</li>

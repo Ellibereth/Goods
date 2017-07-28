@@ -82,6 +82,8 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	SaleTextHome = "sale_text_home"
+	SaleTextProduct = "sale_text_product"
 	Tag = "tag"
 	Quadrant1 = "quadrant1"
 	Quadrant2 = "quadrant2"

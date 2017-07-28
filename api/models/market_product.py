@@ -50,7 +50,8 @@ class MarketProduct(db.Model):
 	manufacturer_logo_id = db.Column(db.String)
 
 	sale_price = db.Column(db.Integer)
-	sale_text = db.Column(db.String)
+	sale_text_product = db.Column(db.String)
+	sale_text_home = db.Column(db.String)
 
 	# this value is stored in ten thousands
 	# so 500 => 5%
@@ -211,7 +212,8 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Live] = self.live
 		public_dict[Labels.ManufacturerLogoId] = self.manufacturer_logo_id
 		public_dict[Labels.ShowManufacturerLogo] = self.show_manufacturer_logo
-		public_dict[Labels.SaleText] = self.sale_text
+		public_dict[Labels.SaleTextProduct] = self.sale_text_product
+		public_dict[Labels.SaleTextHome] = self.sale_text_home
 		public_dict[Labels.SalePrice] = self.sale_price
 		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
 		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee

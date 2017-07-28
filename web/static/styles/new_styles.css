@@ -21538,7 +21538,7 @@ only screen and (min-resolution: 144dpi) {
 }
 #productPricingDetails .retailPrice {
     margin: 0 0 10px 10px;
-    text-decoration: line-through
+    /*text-decoration: line-through*/
 }
 .edgarPrice.retailPriceNotPresent #prodEdgarPriceTxt {
     color: #000
