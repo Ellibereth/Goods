@@ -52,11 +52,14 @@ export default class HomeProductPreview extends React.Component {
 	}
 
 	getPriceRow(item_in_stock) {
-		if (this.props.product.sale_price) {
+		var product = this.props.product
+		if (product.sale_text_home) {
 			return (
 				<div>
 					<span className = "home-product-preview-current-price" >${formatPrice(this.props.product.sale_price)}</span>
-					<span className = "home-product-preview-price with-sale">${formatPrice(this.props.product.price)} </span> 
+					<span className = "home-product-preview-price with-sale"
+					dangerouslySetInnerHTML = {{__html : product.sale_text_home}}
+					></span> 
 				</div>
 			)
 		}

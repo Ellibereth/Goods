@@ -107,7 +107,6 @@ export default class Main extends React.Component {
 	}
 
 	render() {
-		console.log(AppStore.getCurrentUser())
 		return (
 			<div>
 				{this.props.children}
