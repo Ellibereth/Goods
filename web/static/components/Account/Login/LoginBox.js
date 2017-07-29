@@ -202,7 +202,7 @@ export default class LoginBox extends React.Component {
 								
 
 								<a href = "/recoverAccount" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "70px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
-								<a href = "/register" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet? Register today</a>
+								<span id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet? <a href = "/register">Register today</a></span>
 							</div>
 						</div>
 

@@ -158,7 +158,7 @@ class EmailLib:
 
 
 	@staticmethod
-	def sendVendorsOrders(user, cart, address, order_id):
+	def sendVendorsOrders(user, cart, address, order):
 		email_to_vendors_dict = {}
 		for cart_item in cart.toPublicDict()[ITEMS]:
 			manufacturer_email = cart_item.get(Labels.ManufacturerEmail)
@@ -185,13 +185,13 @@ class EmailLib:
 			msg['Subject'] = "Order Notification"
 			msg['From'] = "noreply@edgarusa.com"
 			msg['To'] = manufacturer_email
-			html = EmailHtml.generateVendorOrderNotification(user, email_to_vendors_dict[manufacturer_email], address, order_id)
+			html = EmailHtml.generateVendorOrderNotification(user, email_to_vendors_dict[manufacturer_email], address, order)
 			htmlPart = MIMEText(html, 'html')
 			msg.attach(htmlPart)
 			smtpserver.send_message(msg)
 		smtpserver.close()	
 
-	def sendPurchaseNotification(user, cart, address, order_id):
+	def sendPurchaseNotification(user, cart, address, order):
 		sender = 'darek@manaweb.com'
 		passW = "sqwcc23mrbnnjwcz"
 		smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
@@ -203,7 +203,7 @@ class EmailLib:
 		msg['Subject'] = "Order Confirmation"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = user.email
-		html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
+		html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order)
 		htmlPart = MIMEText(html, 'html')
 		msg.attach(htmlPart)
 		smtpserver.send_message(msg)
@@ -212,13 +212,13 @@ class EmailLib:
 		msg['Subject'] = "Order Confirmation"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
-		html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
+		html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order)
 		htmlPart = MIMEText(html, 'html')
 		msg.attach(htmlPart)
 		smtpserver.send_message(msg)
 		smtpserver.close()
 
-		EmailLib.sendVendorsOrders(user, cart, address, order_id)
+		EmailLib.sendVendorsOrders(user, cart, address, order)
 
 
 

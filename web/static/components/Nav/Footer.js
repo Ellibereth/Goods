@@ -10,13 +10,7 @@ export default class HomeFooter extends React.Component {
 		}
 	}
 
-
 	render() {
-
-
-
-
-
 		return (
 			<div className = "page-wrapper"> 
 				<div id = "footer-badge-wrapper">
@@ -37,7 +31,7 @@ export default class HomeFooter extends React.Component {
 							<i className="fa fa-2x fa-thumbs-up home-badge-icon"/>
 							<span className = "badgehead badgetext">Quality Guaranteed</span> <br/>
 							<span className = "badgebody badgetext">
-								We only see the highest quality products. Not satisfied with your purchase? We'll fix it.
+								We only sell the highest quality products. Not satisfied with your purchase? We'll fix it.
 							</span>
 						</a>
 					</div>

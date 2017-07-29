@@ -24,7 +24,7 @@
 		</div>
 
 
-		<div style="border-radius:8px;border-color:lightgrey;border-style: solid;border-width:2px;border-radius:4px;padding:14px;width:100%">
+		<div style="border-radius:8px;border-color:lightgrey;border-style: solid;border-width:2px;border-radius:4px;padding:14px;width:100%; padding-bottom: 6px;">
 			<div style="display:inline;">
 				<span style="font-size:18px; float:left">Order</span> <span style="font-size:18px; float:right">{{order_id}}</span>
 			</div>
@@ -88,20 +88,32 @@
 			<div style="border-top:solid; border-width: 1px; border-color:lightgrey">
 			</div>
 
+			{% if discount_disp %}
+			<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Items</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{before_discounts_price}}</span></span>
 
-			<div style="padding-top: 18px;">
-			</div>
-			<span style="display:block"><span style="font-size: 18px;color:#002868;">Items</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{items_price}}</span></span><br>
+				<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Discounts</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">-{{discount_disp}}</span></span>
+
+				<hr style = "margin-top:4px; margin-bottom:4px"/>
+
+				<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">After Discounts</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{items_price}}</span></span>
+
+				
+			{% else %}
+
+			<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Items</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{items_price}}</span></span>
+
+			{% endif %}
+
+
 
 			{{tax_disp}}
 
-			<span style="display:block"><span style="font-size: 18px;color:#002868;">Shipping</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{shipping_price}}</span></span><br>
+			<span style="display:block; margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Shipping</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{shipping_price}}</span></span>
 
+			<hr style = "margin-top:4px; margin-bottom:4px"/>
 
-
-			<span style="display:block"><span style="font-size: 18px;color:#002868;">Total</span> <span style="font-size: 18px;color:#002868; float:right; margin-right: 12px">{{total_price}}</span></span>
+			<span style="display:block;margin-top:6px; margin-bottom: 2px"><span style="font-size: 18px;color:#002868;">Total</span> <span style="font-size: 18px;color:#002868; float:right; margin-right: 12px">{{total_price}}</span></span>
 		</div>
-
 
 		<div style="padding-top:12px">
 		</div>

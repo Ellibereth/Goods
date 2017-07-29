@@ -64,7 +64,7 @@ class Checkout:
 	def checkoutChargeCustomer(this_user, this_cart, this_order, card_id, address):
 		total_price = this_cart.toPublicDict(address).get(Labels.TotalPrice)
 		if not total_price:
-			return {Lables.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
+			return {Labels.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
 		try:
 			charge = StripeManager.chargeCustomerCard(this_user, card_id, total_price)
 			this_order.updateCharge(charge)
@@ -75,7 +75,7 @@ class Checkout:
 
 	def checkoutSendEmailConfirmation(this_user, this_cart, this_order, address):
 		try:
-			EmailLib.sendPurchaseNotification(this_user, this_cart, address, this_order.order_id)
+			EmailLib.sendPurchaseNotification(this_user, this_cart, address, this_order)
 			return {
 					Labels.Success : True,
 					Labels.User : this_user.toPublicDict(),

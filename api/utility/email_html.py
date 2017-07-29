@@ -50,8 +50,8 @@ class EmailHtml:
 
 
 	# returns MIMText to attach to a message
-	def generateCartEmailNotificationHtml(user, cart, address, order_id):
-		
+	def generateCartEmailNotificationHtml(user, cart, address, order):
+		order_id = order.order_id
 		
 
 		address_display = ""
@@ -83,6 +83,12 @@ class EmailHtml:
 		support_link = URL + "support"
 		orders_link = URL + "myOrders"
 
+		if order.discounts > 0:
+			discount_disp = EmailHtml.formatPrice(order.discounts)
+			before_discounts_price = EmailHtml.formatPrice(cart.getCartItemsPrice() + order.discounts)
+		else:
+			discount_disp = None
+			before_discounts_price = None
 
 		cart_items = cart.toPublicDict()['items']
 		for item in cart_items:
@@ -93,12 +99,13 @@ class EmailHtml:
 			order_id = order_id, address_display = address_display, 
 			todays_date = todays_date, items_price = items_price, shipping_price = shipping_price, 
 			sales_tax_price = sales_tax_price, total_price = total_price,
-			support_link = support_link, orders_link = orders_link, tax_disp = tax_disp)
+			support_link = support_link, orders_link = orders_link, tax_disp = tax_disp,
+			discount_disp = discount_disp, before_discounts_price = before_discounts_price)
 
 		return html
 
 
-	def generateVendorItemRow(product, order_id, user):
+	def generateVendorItemRow(product, order, user):
 		html = (
 			"<div> \
 			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + str(PHOTO_SRC_BASE)
@@ -115,13 +122,13 @@ class EmailHtml:
 		return html
 
 
-	def generateVendorOrderNotification(user, items, address, order_id):
+	def generateVendorOrderNotification(user, items, address, order):
 		html = "<h1> Order Notification </h1>"
-		html = html + "<h1> Order ID " + order_id + "</h1>"
+		html = html + "<h1> Order ID " + order.order_id + "</h1>"
 		html = html + EmailHtml.formatAddress(address)
 		html = html + "<br/> <hr/>"
 		for item in items:
-			html = html + EmailHtml.generateVendorItemRow(item, order_id, user)
+			html = html + EmailHtml.generateVendorItemRow(item, order, user)
 		return html
 
 
@@ -138,9 +145,6 @@ class EmailHtml:
 			html = html + line + "<br/>"
 		html = html +  "</span>"
 		html = html + "<br/> <h1> User tried to buy </h1> <br/> <hr/>"
-
-		order_id = "SAMPLE_ORDERID"
-		html = html + EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order_id)
 		return html
 
 

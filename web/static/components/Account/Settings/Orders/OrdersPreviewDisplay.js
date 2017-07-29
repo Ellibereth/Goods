@@ -66,7 +66,13 @@ export default class OrdersPreview extends React.Component {
 				</div>
 
 				<div className = "panel-footer">
-					<div className = "order-history-panel-header"> {"Items: $" + formatPrice(order.items_price)} </div>
+					{order.discounts > 0 && 
+						<div>
+							<div className = "order-history-panel-header"> {"Items Before Discounts: $" + formatPrice(order.items_price + order.discounts)} </div>
+							<div className = "order-history-panel-header"> {"Discounts: $" + formatPrice(order.discounts)} </div>
+						</div>
+					}
+					<div className = "order-history-panel-header"> {"Items : $" + formatPrice(order.items_price)} </div>
 					<div className = "order-history-panel-header"> {"Shipping: $" + formatPrice(order.order_shipping)} </div>
 					{sales_tax_display}
 					<div className = "order-history-panel-header"> {"Order Total: $" + formatPrice(order.total_price)} </div>

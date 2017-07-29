@@ -33,6 +33,7 @@ class Order(db.Model):
 	address_state = db.Column(db.String)
 	card_last4 = db.Column(db.String)
 	card_brand = db.Column(db.String)
+	discounts = db.Column(db.Integer)
 
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
@@ -57,7 +58,10 @@ class Order(db.Model):
 		self.address_zip = address.address_zip
 		self.address_state = address.address_state
 		self.total_price = self.items_price + self.order_shipping + self.sales_tax_price
+		self.discounts = cart.toPublicDict().get(Labels.Discounts)
 		db.Model.__init__(self)
+
+
 
 	@staticmethod
 	def getOrderById(order_id):
@@ -130,6 +134,7 @@ class Order(db.Model):
 		public_dict = {}
 		public_dict[Labels.OrderId] = self.order_id
 
+
 		order_items = OrderItem.query.filter(OrderItem.order_id == self.order_id, OrderItem.num_items > 0).all()
 		public_dict[Labels.Items] = [item.toPublicDict() for item in order_items]
 		public_dict[Labels.ItemsPrice] = self.items_price
@@ -150,6 +155,7 @@ class Order(db.Model):
 		public_dict[Labels.CardLast4] = self.card_last4
 		public_dict[Labels.CardBrand] = self.card_brand
 		public_dict[Labels.SalesTaxPrice] = self.sales_tax_price
+		public_dict[Labels.Discounts] = self.discounts
 		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
 		
 		return public_dict

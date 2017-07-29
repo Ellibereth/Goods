@@ -183,6 +183,7 @@ class RequestLabels:
 	Jwt = "jwt"
 
 class PaymentLabels:
+	Discounts = "discounts"
 	Inventory = "inventory"
 	Error = "error"
 	CartItem = "cart_item"
@@ -232,6 +233,8 @@ class PaymentLabels:
 
 
 class CartLabels:
+	ShippingDiscount = "shipping_discount"
+	Discounts = "discounts"
 	ItemsDiscount = "items_discount"
 	OriginalShippingPrice = "original_shipping_price"
 	OriginalItemsPrice = "original_items_price"
