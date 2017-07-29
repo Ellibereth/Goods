@@ -177,10 +177,7 @@ class OrderItem(db.Model):
 	def __init__(self, order_id, user, product,
 			num_items = 1, variant_id = None, variant_type = None):
 		self.order_id = order_id
-		if product.sale_price:
-			self.price = product.sale_price
-		else:
-			self.price = product.price
+		self.price = product.price
 
 		self.num_items = num_items
 		

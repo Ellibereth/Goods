@@ -92,7 +92,6 @@ class MarketProductLabels:
 	MoreDetails = "more_details"
 	ManufacturerFee = "manufacturer_fee"
 	ManufacturerEmail = 'manufacturer_email'
-	SalePrice = "sale_price"
 	SaleText = "sale_text"
 	ShowManufacturerLogo = "show_manufacturer_logo"
 	ManufacturerLogoId = "manufacturer_logo_id"
@@ -244,7 +243,6 @@ class CartLabels:
 	DiscountedCartPrice = "discounted_cart_price"
 	MembershipTier = "membership_tier"
 	ManufacturerEmail = "manufacturer_email"
-	SalePrice = "sale_price"
 	ManufacturerFee = "manufacturer_fee"
 	JwtDict = "jwt_dict"
 	Order = "order"

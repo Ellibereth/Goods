@@ -177,10 +177,7 @@ class EmailHtml:
 			return None
 			
 	def getCurrentPrice(product):
-		if product.get(Labels.SalePrice):
-			return product.get(Labels.SalePrice)
-		else:
-			return product.get(Labels.Price)
+		product.get(Labels.Price)
 
 
 	def formatCurrentPrice(product, user = None):

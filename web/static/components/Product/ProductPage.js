@@ -1,6 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import ProductTemplate1 from './Template1/ProductTemplate1'
 import ProductTemplate2 from './Template2/ProductTemplate2'
 import PageContainer from '../Misc/PageContainer'
 

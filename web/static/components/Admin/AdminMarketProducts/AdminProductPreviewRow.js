@@ -52,7 +52,7 @@ export default class AdminProductPreviewRow extends React.Component {
 			return formatDate(product[attr])
 		}
 		else if (attr == "price") {
-			return "$" + formatPrice(product.sale_price ? product.sale_price : product.price)
+			return "$" + formatPrice(product.price)
 		}
 		else {
 			return product[attr]

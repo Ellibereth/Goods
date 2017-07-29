@@ -56,7 +56,7 @@ export default class HomeProductPreview extends React.Component {
 		if (product.sale_text_home) {
 			return (
 				<div>
-					<span className = "home-product-preview-current-price" >${formatPrice(this.props.product.sale_price)}</span>
+					<span className = "home-product-preview-current-price" >${formatPrice(this.props.product.price)}</span>
 					<span className = "home-product-preview-price"
 					dangerouslySetInnerHTML = {{__html : product.sale_text_home}}
 					></span> 

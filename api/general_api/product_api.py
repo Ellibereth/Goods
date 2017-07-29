@@ -53,7 +53,7 @@ def getHomePageProducts():
 
 @product_api.route('/getOnSaleProducts', methods = ['POST'])
 def getOnSaleProducts():
-	sale_products = MarketProduct.query.filter(MarketProduct.active and MarketProduct.sale_price != None).all()
+	sale_products = MarketProduct.query.filter(MarketProduct.active and MarketProduct.sale_text_home != None).all()
 	return JsonUtil.successWithOutput({
 			Labels.Products :  [sale_product.toPublicDict() for sale_product in sale_products]
 		})

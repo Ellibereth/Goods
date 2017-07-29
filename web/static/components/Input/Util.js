@@ -33,10 +33,7 @@ export function toTitleCase(str)
 
 export function getCurrentPrice(product){
     if (!product)  {
-        return 0
-    }
-    else if (product.sale_price) {
-        return product.sale_price
+        return ""
     }
     else {
         return product.price

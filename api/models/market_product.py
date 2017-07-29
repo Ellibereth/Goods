@@ -16,7 +16,7 @@ from api.s3.s3_api import S3
 
 class MarketProduct(db.Model):
 	__tablename__ = ProdTables.MarketProductTable
-	INTEGER_INPUTS = [Labels.SalePrice, Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.StoryTemplate, Labels.ProductTemplate]
+	INTEGER_INPUTS = [Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.ProductTemplate]
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	name = db.Column(db.String, default = "Sample Name")
 	price = db.Column(db.Integer, default = 0)
@@ -49,7 +49,6 @@ class MarketProduct(db.Model):
 	show_manufacturer_logo = db.Column(db.Boolean, default = False)
 	manufacturer_logo_id = db.Column(db.String)
 
-	sale_price = db.Column(db.Integer)
 	sale_text_product = db.Column(db.String)
 	sale_text_home = db.Column(db.String)
 
@@ -214,7 +213,6 @@ class MarketProduct(db.Model):
 		public_dict[Labels.ShowManufacturerLogo] = self.show_manufacturer_logo
 		public_dict[Labels.SaleTextProduct] = self.sale_text_product
 		public_dict[Labels.SaleTextHome] = self.sale_text_home
-		public_dict[Labels.SalePrice] = self.sale_price
 		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
 		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee
 		public_dict[Labels.MoreDetails] = self.more_details
