@@ -44,6 +44,11 @@ Linda's Color Scheme
 }*/
 
 
+.small-hr {
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+
 .home-badge-flag {
 	position: relative;
 	height: 24px;

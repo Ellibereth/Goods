@@ -407,7 +407,7 @@ export default class CheckoutPage extends React.Component {
 								setLoading = {this.setLoading.bind(this)}
 								/>
 
-							<hr/>
+							<hr className = "small-hr"/>
 
 							<CheckoutCardSelect 
 								selected_card_index = {this.state.selected_card_index}
@@ -421,14 +421,14 @@ export default class CheckoutPage extends React.Component {
 								openEditable = {this.openEditable.bind(this)}
 								closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
 							/>
-							<hr/>
+							<hr className = "small-hr"/>
 							<div className = "well" >
 								<div className = "row">
 									<div className = "col-md-5 col-lg-5 col-sm-5 col-xs-5 checkout-item-label-editable vcenter">
 										<span className = "checkout-section-title"> <b> 3. Items </b> </span>
 									</div>
 								</div>
-								<hr/>
+								<hr className = "small-hr"/>
 								<CartDisplay 
 								is_loading = {this.state.is_loading}
 								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
@@ -459,7 +459,7 @@ export default class CheckoutPage extends React.Component {
 												</div>
 											</div>
 										</div>
-										<hr/>
+										<hr className = "small-hr"/>
 
 
 										{cart.items_discount &&
@@ -471,7 +471,7 @@ export default class CheckoutPage extends React.Component {
 												label = {"10% Discount:"}
 												show_minus = {true}
 												price = {formatPrice(cart.items_discount)}/>
-												<hr/>
+												<hr className = "small-hr"/>
 											</div>
 										}
 
@@ -495,7 +495,7 @@ export default class CheckoutPage extends React.Component {
 											: <div/>
 										}
 
-										<hr/>
+										<hr className = "small-hr"/>
 										
 										{/* cart.discount_message && 
 											<div className = "row">
