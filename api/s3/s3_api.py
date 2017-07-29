@@ -12,7 +12,6 @@ CACHE_MAX_AGE =  CACHE_WEEKS * 7 * 24 * 60 * 60
 
 
 PRODUCT_IMAGES = "publicmarketproductphotos"
-STORY_IMAGES = "storyphotos"
 HOME_IMAGES = 'edgarusahomepage'
 MANUFACTURER_LOGOS = "edgarusamanufacturerlogos"
 
@@ -24,11 +23,6 @@ base_url = "https://s3-us-west-2.amazonaws.com"
 
 
 class S3:
-
-	@staticmethod
-	def uploadStoryImage(image_key, image_data):
-		S3.uploadPhoto(STORY_IMAGES, image_key, image_data)
-
 
 	# takes image_data input as a buffered reader
 	@staticmethod
@@ -73,11 +67,6 @@ class S3:
 		bucket = s3.Bucket(PRODUCT_IMAGES)
 		bucket.delete_key(image_key)
 
-	# deletes the image with the given key in the bucket for product images
-	@staticmethod
-	def deleteStoryImage(image_key):
-		bucket = s3.Bucket(STORY_IMAGES)
-		bucket.delete_key(image_key)
 
 	# returns the data as a bytes object
 	# returns none if the bucket does not containt that key

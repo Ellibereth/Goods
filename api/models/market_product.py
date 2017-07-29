@@ -9,7 +9,6 @@ import json
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
 from api.models.product_tag import ProductTag
-from api.models.story_image import StoryImage
 from api.models.manufacturer_logo import ManufacturerLogo
 from api.s3.s3_api import S3
 
@@ -32,11 +31,7 @@ class MarketProduct(db.Model):
 	has_variants = db.Column(db.Boolean, default = False)
 	variant_type_description = db.Column(db.String, default = "type")
 	live = db.Column(db.Boolean, default = False)
-	more_details = db.Column(db.String)
-	story_text = db.Column(db.String, default = "PUT IN SOME TEXT HERE ABOUT YOUR STORY")
-	story_image_id = db.Column(db.String, default = "DEFAULT_STORY")
-	product_template = db.Column(db.Integer, default = 1)
-	story_template = db.Column(db.Integer, default = 1)
+	product_template = db.Column(db.Integer, default = 2)
 
 	second_tab_name = db.Column(db.String)
 	second_tab_text = db.Column(db.String)
@@ -106,15 +101,6 @@ class MarketProduct(db.Model):
 			self.main_image = image_decoded.image_id
 
 		db.session.commit()
-
-	def addStoryImage(self, image_decoded):
-		# record the image_id in the database
-		story_image_record = StoryImage(self.product_id)
-		self.story_image_id = story_image_record.image_id
-		db.session.add(story_image_record)
-		db.session.commit()
-		# upload the image to S3
-		S3.uploadStoryImage(story_image_record.image_id, image_decoded)
 
 	def addManufacturerLogo(self, image_decoded):
 		# record the image_id in the database
@@ -201,9 +187,6 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Images] = images
 		public_dict[Labels.NumImages] = len(images)
 		public_dict[Labels.MainImage] = self.main_image
-		public_dict[Labels.StoryImageId] = self.story_image_id
-		public_dict[Labels.StoryText] = self.story_text
-		public_dict[Labels.StoryTemplate] = self.story_template
 		public_dict[Labels.ProductTemplate] = self.product_template
 		public_dict[Labels.NumItemsLimit] = self.num_items_limit
 		public_dict[Labels.Active] = self.active
@@ -215,7 +198,6 @@ class MarketProduct(db.Model):
 		public_dict[Labels.SaleTextHome] = self.sale_text_home
 		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
 		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee
-		public_dict[Labels.MoreDetails] = self.more_details
 		public_dict[Labels.Quadrant1] = self.quadrant1
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3

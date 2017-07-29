@@ -53,6 +53,10 @@ export default class AdminProductPage extends React.Component {
 		});
 	}
 
+	previewProduct(product){
+		this.setState({product : product})
+	}
+
 	componentDidMount(){
 		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
 		$.ajax({
@@ -79,8 +83,6 @@ export default class AdminProductPage extends React.Component {
 	navivgateTab(index){
 		this.setState({selected_tab : index})
 	}
-
-
 
 
 	render() {
@@ -132,6 +134,7 @@ export default class AdminProductPage extends React.Component {
 
 						<div className = {this.state.selected_tab == INFO_VIEW ? "row" : "none"}>
 							<AdminEditProductInfo
+							previewProduct = {this.previewProduct.bind(this)}
 							getProductInformation = {this.getProductInformation.bind(this)}
 							product = {this.state.product}/>
 						</div>

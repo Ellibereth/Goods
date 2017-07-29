@@ -162,7 +162,8 @@ export default class AdminEditProductInfo extends React.Component {
 						{live_toggle}
 						{show_logo_toggle}
 						<div className = "form-group">
-							<div className = "col-md-10 col-lg-10">
+
+							<div className = "col-md-4 col-lg-4">
 								<button  type = "button" className = "btn btn-default" 
 								onClick = {this.onTextSubmitPress.bind(this)}>
 									Submit

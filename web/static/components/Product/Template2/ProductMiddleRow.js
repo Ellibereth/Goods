@@ -11,22 +11,9 @@ export default class ProductMiddleRow extends React.Component {
 		}
 	}
 
-	generateMoreDetails(product){
-		if (!product || !product.more_details) return <div/>
-		return (
-			<ul>
-				{product.more_details.split("\n").map((row) => 
-					<li><span style={{"line-height" : "1.231"}}>{row}</span></li>
-					)
-				}
-			</ul>
-		)
-		
-	}
 
 	render() {
 		var product = this.props.product
-		var product_more_details = this.generateMoreDetails(product)
 		return (
 				<div className="extra-info-wrap edgar-col-xs-offset-0 edgar-col-sm-offset-1 edgar-col-md-offset-2 edgar-col-lg-offset-6 edgar-col-xl-offset-6 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48">
 					<div className="edgar-row" id="productExtraInfo">

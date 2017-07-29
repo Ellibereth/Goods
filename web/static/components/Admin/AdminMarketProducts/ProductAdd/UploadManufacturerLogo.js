@@ -30,7 +30,7 @@ export default class UploadManufacturerLogo extends React.Component {
 			// we trim this to get just the image data
 			// not the headers 
     		var trim_image_data = data.split(',')[1]
-			this.setState({story_image_data : trim_image_data})
+			this.setState({image_data : trim_image_data})
 		}.bind(this)
 		//fr.readAsText(file);
 		fr.readAsDataURL(file);
@@ -39,7 +39,7 @@ export default class UploadManufacturerLogo extends React.Component {
 	uploadImage(){
 
 			var data = {
-				"image_data" : this.state.story_image_data,
+				"image_data" : this.state.image_data,
 				"product_id" : this.props.product.product_id,
 				"jwt" : localStorage.jwt
 			}

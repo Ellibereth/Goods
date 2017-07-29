@@ -10,7 +10,6 @@ from api.models.market_product import MarketProduct
 from api.security.tracking import AdminAction
 from api.models.market_product import ProductVariant
 from api.models.product_image import ProductImage
-from api.models.story_image import StoryImage
 from api.general_api import decorators
 from api.utility.error import ErrorMessages
 from api.models.order import Order
@@ -331,27 +330,6 @@ def toggleProductHasVariants(admin_user):
 	db.session.commit()
 	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
 	return JsonUtil.success()
-
-@admin_api.route('/uploadProductStoryImage', methods = ['POST'])
-@decorators.check_admin_jwt
-def uploadProductStoryImage(admin_user):
-	product_id = request.json.get(Labels.ProductId)
-	image_data = request.json.get(Labels.ImageData)
-	if image_data == None:
-		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
-		return JsonUtil.failure("No image has been uploaded!")
-	image_bytes = image_data.encode('utf-8')
-	image_decoded = base64.decodestring(image_bytes)
-	# increment the number of images for the product
-	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
-		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
-		return JsonUtil.failure("Product doesn't exist")
-	this_product.addStoryImage(image_decoded)
-
-	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
-	return JsonUtil.success()
-
 
 
 @admin_api.route('/addMarketProduct', methods = ['POST'])
