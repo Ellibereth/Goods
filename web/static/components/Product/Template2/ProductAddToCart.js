@@ -157,6 +157,15 @@ export default class ProductAddToCart extends React.Component {
 		}
 	}
 
+	addToCartClick() {
+		if ((AppStore.getCurrentUser() && !AppStore.getCurrentUser().is_guest)) {
+			this.addToCart.bind(this)()
+		}
+		else {
+			this.onNonUserClick.bind(this)()
+		}
+	}
+
 	getVariantSelect(product) {
 		if (!product.has_variants){
 			return <div/>
@@ -240,7 +249,7 @@ export default class ProductAddToCart extends React.Component {
 					*/}
 					<div className="prodPgAddcartButton clear">
 						{this.props.item_in_stock && !add_to_cart_disabled ?
-						<a tabindex="3" onClick = {this.addToCart.bind(this)}
+						<a tabindex="3" onClick = {this.addToCartClick.bind(this)}
 						 className="btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
 							<div className="add-to-bag-btn-ct">
 								<span className="shop-bag-icon-white add-bag-btn-img"></span>

@@ -53,7 +53,7 @@ class User(db.Model):
 	NAME_MAX_LENGTH = 20
 	MIN_PASSWORD_LENGTH = 6
 
-	def __init__(self, name, email, password, email_confirmation_id, membership_tier):
+	def __init__(self, name, email, password, email_confirmation_id, membership_tier = 0):
 		self.name = name
 		self.email = email
 		self.password_hash = User.argonHash(password)
@@ -140,7 +140,7 @@ class User(db.Model):
 
 
 	def transferGuestCartItem(self, guest_user, guest_cart_item):
-		user_cart = Cart(self.account_id)
+		user_cart = Cart(self)
 
 		existing_item = False
 		for user_cart_item in user_cart.items:

@@ -27,6 +27,7 @@ export default class Navbar extends React.Component {
 
 	render() {
 		var current_user = AppStore.getCurrentUser()
+
 		return (
 					<div className = "edgar-navbar">
 						<div className = "container-fluid">
@@ -50,7 +51,6 @@ export default class Navbar extends React.Component {
 											<li style = {{"position" :"relative", "top" : "-2px"}}>
 												<a href="/myCart">
 													<i style = {{"fontSize" : "21px"}} className = "fa fa-shopping-cart" aria-hidden = {true}/>
-													{/* <span className = "glyphicon glyphicon-shopping-cart"/> */}
 													{this.state.cart_badge > 0 &&
 														<span className="noOfProdInCartIcon crtLstNotification " style= {{"display": "block"}}> 
 															{this.state.cart_badge}
@@ -70,7 +70,7 @@ export default class Navbar extends React.Component {
 													<i style = {{"fontSize" : "21px"}} className = "fa fa-shopping-cart" aria-hidden = {true}/>
 													{/* <span className = "glyphicon glyphicon-shopping-cart"/> */}
 													{this.state.cart_badge > 0 &&
-														<span className="noOfProdInCartIcon crtLstNotification " style= {{"display": "block"}}> 
+														<span className="noOfProdInCartIcon crtLstNotification " style= {{"display": "block", "left" : "215px"}}> 
 															{this.state.cart_badge}
 														</span>
 													}
