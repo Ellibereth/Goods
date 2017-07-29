@@ -77,7 +77,6 @@ class EmailHtml:
 		sales_tax_price = EmailHtml.formatPrice(cart.getCartSalesTaxPrice(address))
 
 		tax_disp = ""
-		print(cart.getCartSalesTaxPrice(address))
 		if cart.getCartSalesTaxPrice(address) != 0:
 			tax_disp = tax_disp + "<span style = \"display:block\">"
 			tax_disp = tax_disp + "<span style= \"font-size: 18px;color:#002868;\"> Sales Tax </span>"
@@ -103,14 +102,14 @@ class EmailHtml:
 		return html
 
 
-	def generateVendorItemRow(product, order_id):
+	def generateVendorItemRow(product, order_id, user):
 		html = (
 			"<div> \
 			<img style = \"height:100px;width:100px; padding: 6px;\" src=\"" + str(PHOTO_SRC_BASE)
 			+ str(product[Labels.MainImage]) + "\"/>  </span> </td>\
 			<span style = \"border-top:solid; border-width: 1px; border-color:lightgrey\"> <span style = \"display:block;padding:12px;\">  \
 			<span style = \"font-size: 18px\"> " + str(product[Labels.Name]) + " </span> <br/> \
-			<span style = \"font-size: 18px\"> Price: " + EmailHtml.formatCurrentPrice(product, user) + "</span> <br/> \
+			<span style = \"font-size: 18px\"> Price: " + str(EmailHtml.formatCurrentPrice(product, user)) + "</span> <br/> \
 			<span style = \"font-size: 18px\"> Quantity: " + str(product[Labels.NumItems]) + "</span> <br/> \
 			<span style = \"font-size: 18px\"> Edgar USA Fee: " + str(EmailHtml.formatVendorFee(product, user)) + "</span> <br/> \
 			<span style = \"font-size: 18px\"> Vendor Charge: " + str(EmailHtml.formatVendorCut(product, user)) + "</span> <br/> \
@@ -126,7 +125,7 @@ class EmailHtml:
 		html = html + EmailHtml.formatAddress(address)
 		html = html + "<br/> <hr/>"
 		for item in items:
-			html = html + EmailHtml.generateVendorItemRow(item, order_id)
+			html = html + EmailHtml.generateVendorItemRow(item, order_id, user)
 		return html
 
 
@@ -176,21 +175,21 @@ class EmailHtml:
 		else:
 			return None
 			
-	def getCurrentPrice(product):
-		product.get(Labels.Price)
+	def getCurrentPrice(product, user = None):
+		return product.get(Labels.Price)
 
 
 	def formatCurrentPrice(product, user = None):
 		if user == None:
 			return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
 		else:
-			if user[Labels.MembershipTier] == MembershipTiers.TEN_PERCENT_OFF:
-				return int(EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product)) * 90 / 100)
+			if user.membership_tier == MembershipTiers.TEN_PERCENT_OFF:
+				return EmailHtml.formatPrice(int(EmailHtml.getCurrentPrice(product) * 90 / 100))
 			else:
 				return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
 
 
-	def formatVendorFee(item):
+	def formatVendorFee(item, user = None):
 		vendor_fee = EmailHtml.calculateVendorFee(item, user)
 		return EmailHtml.formatPrice(vendor_fee)
 		
