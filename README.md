@@ -137,6 +137,14 @@ For production I have HEROKU_APP_URL set to https://edgarusa.herokuapp.com/ but 
 os.environ.get(FIELD_NAME)
 ```
 
+## Copying Databases Over
+Take a snapshot in Heroky of the devgeniy database. Then run the following command - a recent example of [SNAPSHOT_ID] have been b006.
+
+```
+heroku pg:backups:restore edgarusa-devgeniy::[SNAPSHOT_ID] DATABASE_URL --app edgarusa-testserver
+```
+
+
 ## Webpack notes for development
 ```
 # bundlevendors compiles vendor libraries
