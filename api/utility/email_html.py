@@ -66,10 +66,6 @@ class EmailHtml:
 
 		todays_date = datetime.date.today().strftime('%A %B %d, %Y')
 
-		
-		# for product in cart.toPublicDict()['items']:
-		# 	body = body + EmailHtml.generateCartItemRow(product, order_id)
-
 		items_price = EmailHtml.formatPrice(cart.getCartItemsPrice())
 		shipping_price = EmailHtml.formatPrice(cart.getCartShippingPrice(address))
 
@@ -176,17 +172,17 @@ class EmailHtml:
 			return None
 			
 	def getCurrentPrice(product, user = None):
-		return product.get(Labels.Price)
+		if user == None:
+			return product.get(Labels.Price)
+		else:
+			if user.membership_tier == MembershipTiers.TEN_PERCENT_OFF:
+				return int(product.get(Labels.Price) * 90 / 100)
+			else:
+				return product.get(Labels.Price)
 
 
 	def formatCurrentPrice(product, user = None):
-		if user == None:
-			return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
-		else:
-			if user.membership_tier == MembershipTiers.TEN_PERCENT_OFF:
-				return EmailHtml.formatPrice(int(EmailHtml.getCurrentPrice(product) * 90 / 100))
-			else:
-				return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product))
+		return EmailHtml.formatPrice(EmailHtml.getCurrentPrice(product, user))
 
 
 	def formatVendorFee(item, user = None):
