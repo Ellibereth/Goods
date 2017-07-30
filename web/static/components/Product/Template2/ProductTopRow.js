@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 import ProductAddToCart from './ProductAddToCart'
 import {formatPrice} from '../../Input/Util.js'
 const src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-
+const INVENTORY_ALERT_LIMIT = 5
 
 export default class ProductTopRow extends React.Component {
 	constructor(props) {
@@ -55,7 +55,7 @@ export default class ProductTopRow extends React.Component {
 				return (
 					<div>
 						<p className="edgar-color-black new-heading-2 float-left edgarPrice retailPriceNotPresent">
-							<span className="edgar-color-black bold-texts">
+							<span style = {{"color" : "#d42729"}} className="bold-texts">
 								${formatPrice(product.price)}
 							</span>
 						</p>
@@ -225,6 +225,9 @@ export default class ProductTopRow extends React.Component {
 													<div className="cnfPg-mask"></div>
 													<div className="cnfPg-maskL"></div>
 													<li id="clickedOnColor" className="colorMask displayNone"></li>
+													{(product.inventory < INVENTORY_ALERT_LIMIT && this.state.item_in_stock)&& 
+														<div className = "low-inventory-warning-text">Only {product.inventory} remaining - order soon</div>
+													}
 													<ProductAddToCart 
 													setLoading = {this.props.setLoading}
 													getProductInformation = {this.props.getProductInformation}

@@ -43,6 +43,11 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+.low-inventory-warning-text {
+	margin-bottom: 8px;
+	color: var(--DarkRed);
+	font-weight: bold;
+}
 
 .small-hr {
 	margin-top: 12px;
