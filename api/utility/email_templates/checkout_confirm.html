@@ -2,8 +2,18 @@
 
 <html>
 <head>
-	<title>
-	</title>
+<style>
+.end-price-display {
+	display:block;
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+.cart-item-row {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+</style>
 </head>
 
 <body>
@@ -15,9 +25,6 @@
 			</div>
 			<span style="display:block;font-size: 18px;">Your order has been confirmed. Thank you for shopping at Edgar USA.</span>
 
-			<div style="padding-top:12px">
-			</div>
-			<span style="text-align:center"><button style="border-radius:8px; padding: 18px; border-style: none; background-color:#6090a8" type="button"><span style="text-align:center"><a href="{{orders_link}}" style="text-decoration:none; color:white; font-size: 18px;">View Order</a></span></button></span>
 
 			<div style="padding-top:12px">
 			</div>
@@ -26,7 +33,10 @@
 
 		<div style="border-radius:8px;border-color:lightgrey;border-style: solid;border-width:2px;border-radius:4px;padding:14px;width:100%; padding-bottom: 6px;">
 			<div style="display:inline;">
-				<span style="font-size:18px; float:left">Order</span> <span style="font-size:18px; float:right">{{order_id}}</span>
+				<span style="font-size:18px; float:left">Order: {{order_id}}</span>
+				<span style="font-size:18px; float:right">
+					<a href="{{orders_link}}">View Order</a>
+				</span>
 			</div>
 			<br>
 
@@ -65,20 +75,36 @@
 			</div>
 
 
-			<div style="padding-top: 18px;">
+			<div style="padding-top: 130px;">
 			</div>
 
 
 			<table cellpadding="0" cellspacing="0" style="width: 100%">
 				
-
 				{% for item in cart_items %}
 					<tr>
-						<td align="left" style="border-top:solid; border-width: 1px; border-color:lightgrey"><img src="https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/{{item['main_image']}}" style="height:100px;width:100px; padding: 6px;"> </td>
+						<td class = "cart-item-row" align="left" style="border-top:solid; border-width: 1px; border-color:lightgrey">
+							<div>
+								<div style = "float:left">
+									<img src="https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/{{item['main_image']}}" style="height:80px;width:80px; padding: 6px;"> 
+									</img>
+								</div>
+								<span style = "margin-left: 100px;    
+									display: table-cell;
+									vertical-align: middle;
+									height: 92px;">
+									<span style="font-size: 18px">{{item.name}}</span><br>
+								
+									<span style="font-size: 18px">Quantity: {{item.num_items}}</span><br>
+								</span>
+							</div>
 
-						<td align="right" style="border-top:solid; border-width: 1px; border-color:lightgrey"><span style="display:block;padding:12px;"><span style="font-size: 18px">{{item.name}}</span><br>
-						<span style="font-size: 18px">Price: {{item.html_display_price}}</span><br>
-						<span style="font-size: 18px">Quantity: {{item.num_items}}</span><br></span>
+
+						</td>
+
+						<td  class = "cart-item-row" align="right" style="border-top:solid; border-width: 1px; border-color:lightgrey">
+						<span style="font-size: 18px;margin-right: 8px">{{item.html_display_price}}</span>
+						<br>
 						</td>
 					</tr>
 				{% endfor %} 
@@ -89,18 +115,32 @@
 			</div>
 
 			{% if discount_disp %}
-			<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Items</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{before_discounts_price}}</span></span>
+			<span class = "end-price-display">
+				<span style="font-size: 18px;color:#002868;">Items</span>
+				<span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{before_discounts_price}}
+				</span>
+			</span>
 
-				<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Discounts</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">-{{discount_disp}}</span></span>
+			<span class = "end-price-display">
+				<span style="font-size: 18px;color:#002868;">Discounts</span> 
+				<span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">-{{discount_disp}}
+				</span>
+			</span>
 
-				<hr style = "margin-top:4px; margin-bottom:4px"/>
+			<hr style = "margin-top:4px; margin-bottom:4px"/>
 
-				<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">After Discounts</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{items_price}}</span></span>
+			<span class = "end-price-display">
+				<span style="font-size: 18px;color:#002868;">After Discounts</span>
+				<span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{items_price}}</span>
+			</span>
 
 				
 			{% else %}
 
-			<span style="display:block;margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Items</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{items_price}}</span></span>
+			<span class = "end-price-display">
+				<span style="font-size: 18px;color:#002868;">Items</span> 
+				<span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{items_price}}</span>
+			</span>
 
 			{% endif %}
 
@@ -108,11 +148,17 @@
 
 			{{tax_disp}}
 
-			<span style="display:block; margin-top:6px; margin-bottom: 6px"><span style="font-size: 18px;color:#002868;">Shipping</span> <span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{shipping_price}}</span></span>
+			<span class = "end-price-display">
+				<span style="font-size: 18px;color:#002868;">Shipping</span> 
+				<span style="font-size: 18px;color:#002868; float:right;margin-right: 12px">{{shipping_price}}</span>
+			</span>
 
 			<hr style = "margin-top:4px; margin-bottom:4px"/>
 
-			<span style="display:block;margin-top:6px; margin-bottom: 2px"><span style="font-size: 18px;color:#002868;">Total</span> <span style="font-size: 18px;color:#002868; float:right; margin-right: 12px">{{total_price}}</span></span>
+			<span class = "end-price-display">
+				<span style="font-size: 18px;color:#002868;">Total</span>
+				<span style="font-size: 18px;color:#002868; float:right; margin-right: 12px">{{total_price}}</span>
+			</span>
 		</div>
 
 		<div style="padding-top:12px">
@@ -120,7 +166,11 @@
 
 
 		<div style="text-align:center">
-			<button style="background-color:#6090a8;color:white;padding:24px; border:none;border-radius:6px;" type="button"><a href= "{{support_link}}" style="font-size: 18px;text-decoration:none;color:white;">Contact Support</a></button>
+			<span style="font-size: 18px;">
+				Have questions? Click  
+				<a href= "{{support_link}}">here</a>
+				to contact support.
+			</span>
 		</div>
 	</div>
 </body>
