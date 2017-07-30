@@ -57,7 +57,11 @@ import ReturnPolicyPage from './CustomerService/ReturnPolicyPage'
 export default class Main extends React.Component {
 	
 	componentDidMount() {
-		this.getUserInfo()
+		var pathname = this.props.location.pathname
+		console.log(pathname)
+		if (pathname != "/checkout"){
+			this.getUserInfo()
+		}
 	}
 
 	getUserInfo(){
@@ -89,9 +93,6 @@ export default class Main extends React.Component {
 						}
 					
 				}
-				// else {
-				// 	AppActions.removeCurrentUser()
-				// }
 
 			}.bind(this),
 			error : function(){

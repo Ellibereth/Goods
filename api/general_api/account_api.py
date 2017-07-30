@@ -265,9 +265,10 @@ def getUserOrders(this_user):
 @decorators.check_user_jwt
 def getUserInfo(this_user):
 	adjusted_items = this_user.adjustCart()
+	public_user_dict = this_user.toPublicDict()
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-			Labels.User : this_user.toPublicDict(),
+			Labels.User : public_user_dict,
 			Labels.AdjustedItems : adjusted_items
 		})
 

@@ -240,16 +240,17 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self).getCartSize()
-		public_dict[Labels.Cart] = Cart(self).toPublicDict(address)
+		this_cart = Cart(self)
+		public_dict[Labels.CartSize] = this_cart.getCartSize()
+		public_dict[Labels.Cart] = this_cart.toPublicDict(address)
 		public_dict[Labels.Addresses] = self.getAddresses()
 		public_dict[Labels.Cards] = self.getCreditCards()
-		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
+
 		return public_dict
 
 	def toPublicDict(self):
@@ -262,7 +263,7 @@ class User(db.Model):
 		public_dict[Labels.Cart] = Cart(self).toPublicDict()
 		public_dict[Labels.Addresses] = self.getAddresses()
 		public_dict[Labels.Cards] = self.getCreditCards()
-		public_dict[Labels.Orders] = self.getUserOrders()
+		# public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
@@ -505,7 +506,7 @@ class User(db.Model):
 	# get last N orders from user
 	def getUserOrders(self, limit = 10):
 		orders = list()
-		for order in Order.query.filter_by(account_id = self.account_id).all():
+		for order in Order.query.filter_by(account_id = self.account_id).limit(limit).all():
 			orders.append(Order.getOrderById(order.order_id).toPublicDict())
 
 		sorted_orders = sorted(orders,  key=lambda k: k.get('date_created'))

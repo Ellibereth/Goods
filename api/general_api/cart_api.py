@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 import time
 import base64
 
-from ..utility.stripe_api import StripeManager
+from api.utility.stripe_api import StripeManager
 
 from api.models.shared_models import db
 from api.models.user import User
@@ -67,9 +67,11 @@ def getUserCart(this_user):
 @cart_api.route('/getCheckoutInformation', methods = ['POST'])
 @decorators.check_user_jwt
 def getCheckoutInformation(this_user):
+	
 	this_cart = Cart(this_user)
 	addresses = this_user.getAddresses()
 	cards = this_user.getCreditCards()
+	
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
 		Labels.Cart : this_cart.toPublicDict()})
 
@@ -89,11 +91,15 @@ def updateCartQuantity(this_user):
 
 @cart_api.route('/refreshCheckoutInfo', methods = ['POST'])
 @decorators.check_user_jwt
+
 def refreshCheckoutInfo(this_user):
 	address = request.json.get(Labels.Address)
+	time_0 = time.time()
+	public_user_dict = this_user.toPublicDictCheckout(address)
+	print("Total: ", time.time() - time_0)
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-			Labels.User : this_user.toPublicDictCheckout(address)
+			Labels.User : public_user_dict
 		})
 
 
