@@ -121,9 +121,12 @@ def before_request():
 def teardown_request(exception=None):
 	time_spent = time.time() - g.start
 	path_splits = request.path.split('/')
+
+	# this has been commented out as it is too database taxing
+	# perhaps we can modify to be more selective
 	# only record the request if it's non-static
-	if not(len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts'):
-		HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
+	# if not(len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts'):
+	# 	HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
 
 
 @app.route('/static/<path:path>', methods = ['GET'])
