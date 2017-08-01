@@ -96,7 +96,6 @@ def refreshCheckoutInfo(this_user):
 	address = request.json.get(Labels.Address)
 	time_0 = time.time()
 	public_user_dict = this_user.toPublicDictCheckout(address)
-	print("Total: ", time.time() - time_0)
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
 			Labels.User : public_user_dict

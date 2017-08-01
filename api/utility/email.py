@@ -37,6 +37,15 @@ URL = os.environ.get('HEROKU_APP_URL')
 if URL == None:
 	URL = "0.0.0.0:5000/"
 
+ENVIRONMENT = os.environ.get("ENVIRONMENT")
+
+
+if not ENVIRONMENT:
+	SUBJECT_HEADING = "(LOCAL) "
+elif ENVIRONMENT == "PRODUCTION":
+	SUBJECT_HEADING = ""
+else:
+	SUBJECT_HEADING = "(" + ENVIRONMENT + ") "
 
 class EmailLib:
 	## informs darek@manaweb.com of the incoming request 
@@ -96,7 +105,7 @@ class EmailLib:
 		sender = 'darek@manaweb.com'
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
-		msg['Subject'] = "User Feedback!"
+		msg['Subject'] = SUBJECT_HEADING + "User Feedback!"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 		name = feedback.name
@@ -182,9 +191,10 @@ class EmailLib:
 
 		for manufacturer_email in email_to_vendors_dict.keys():
 			msg = MIMEMultipart()
-			msg['Subject'] = "Order Notification"
+			msg['Subject'] = SUBJECT_HEADING + "Order Notification"
 			msg['From'] = "noreply@edgarusa.com"
 			msg['To'] = manufacturer_email
+			msg['CC'] = ", ".join(ADMIN_RECIPIENTS)
 			html = EmailHtml.generateVendorOrderNotification(user, email_to_vendors_dict[manufacturer_email], address, order)
 			htmlPart = MIMEText(html, 'html')
 			msg.attach(htmlPart)
@@ -200,22 +210,15 @@ class EmailLib:
 		smtpserver.ehlo
 		smtpserver.login(sender, passW)
 		msg = MIMEMultipart()
-		msg['Subject'] = "Order Confirmation"
+		msg['Subject'] = SUBJECT_HEADING + "Order Confirmation"
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] = user.email
+		msg['BCC'] = ", ".join(ADMIN_RECIPIENTS)
 		html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order)
 		htmlPart = MIMEText(html, 'html')
 		msg.attach(htmlPart)
 		smtpserver.send_message(msg)
 
-		msg = MIMEMultipart()
-		msg['Subject'] = "Order Confirmation"
-		msg['From'] = "noreply@edgarusa.com"
-		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
-		html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order)
-		htmlPart = MIMEText(html, 'html')
-		msg.attach(htmlPart)
-		smtpserver.send_message(msg)
 		smtpserver.close()
 
 		EmailLib.sendVendorsOrders(user, cart, address, order)
@@ -238,7 +241,7 @@ class EmailLib:
 		sender = 'darek@manaweb.com'
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
-		msg['Subject'] = "USER CHECKOUT ERROR"
+		msg['Subject'] = SUBJECT_HEADING + "USER CHECKOUT ERROR"
 		msg['From'] = "errorbot@edgarusa.com"
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 		if not user:
@@ -264,7 +267,7 @@ class EmailLib:
 		sender = 'darek@manaweb.com'
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
-		msg['Subject'] = reponse + " error"
+		msg['Subject'] = SUBJECT_HEADING + reponse + " error"
 		msg['From'] = "errorbot@edgarusa.com"
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 
