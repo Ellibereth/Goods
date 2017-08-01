@@ -58,7 +58,6 @@ export default class Main extends React.Component {
 	
 	componentDidMount() {
 		var pathname = this.props.location.pathname
-		console.log(pathname)
 		if (pathname != "/checkout"){
 			this.getUserInfo()
 		}

@@ -24,7 +24,7 @@ export default class AdminEditVariants extends React.Component {
 
 	toggleProductHasVariants(has_variants){
 		var form_data = JSON.stringify({
-			"product_id" : this.state.product.product_id,
+			"product_id" : this.props.product.product_id,
 			"has_variants" : has_variants,
 			"jwt" : localStorage.jwt
 		})
@@ -34,11 +34,12 @@ export default class AdminEditVariants extends React.Component {
 	  	data: form_data,
 	  	success: function(data) {
 			if (data.success){
-				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+				setTimeout(function() {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)}, 100)
 			}
 			else {
-				swal(data.error.title, data.error.text , data.error.type)
+				setTimeout(function() {swal(data.error.title, data.error.text , data.error.type)}, 100)
 			}
+			this.props.getProductInformation()
 			
 	  	}.bind(this),
 	  	error : function(){
@@ -107,9 +108,10 @@ export default class AdminEditVariants extends React.Component {
 					{variant_toggle}
 				</div>
 				<div className = "top-buffer"/>
-				<AddVariantForm 
+				{this.props.product.has_variants &&
+					<AddVariantForm 
 				product = {this.props.product}
-				getProductInformation ={this.props.getProductInformation} />
+				getProductInformation ={this.props.getProductInformation} /> }
 				<br/>
 				<hr/>
 
