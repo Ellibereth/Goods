@@ -171,10 +171,16 @@ export default class ProductTopRow extends React.Component {
 
 	render() {
 		var product = this.props.product
-		var main_image_id = src_base + this.state.selected_image_id
+		if (this.state.selected_image_id){
+			var main_image_id = src_base + this.state.selected_image_id
+		}
+		else if (product.images) {
+			var main_image_id = src_base + product.images[0].image_id
+		}
 		var product_images = this.getProductImages(this.props.product)
 		var price_row = this.getPriceDisplay.bind(this)(product)
 		
+		console.log(main_image_id)
 		return (
 					<div className="edgar-col-xs-offset-0 edgar-col-sm-offset-1 edgar-col-md-offset-2 edgar-col-lg-offset-6 edgar-col-xl-offset-6 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48 edgar-col-xl-48" id="productpgTopWrapper">
 						<div className="edgar-row">

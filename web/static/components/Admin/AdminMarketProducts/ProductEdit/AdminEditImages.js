@@ -21,13 +21,14 @@ export default class AdminEditImages extends React.Component {
 			<div className = "container" id = "admin_edit_product">
 
 
-				<div className = "row" id = "add_logo">
+				{/* <div className = "row" id = "add_logo">
 					<UploadManufacturerLogo product = {this.props.product}/>
-				</div>
+				</div> */}
 				
 				
 				<div className = "row" id = "image_edit">
-					<UploadMarketPhoto product = {this.props.product}/>
+					<UploadMarketPhoto getProductInformation = {this.props.getProductInformation} 
+					 product = {this.props.product}/>
 					<AdminEditProductPhotos getProductInformation = {this.props.getProductInformation} 
 						product = {this.props.product}/>
 				</div>

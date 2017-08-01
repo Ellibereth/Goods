@@ -35,7 +35,7 @@ export default class CheckoutPriceRow extends React.Component {
 					className = {amount_class}>
 						{this.props.show_minus ? "-" + "$" + this.props.price :  "$" + this.props.price}
 					</span>
-					{this.props.has_underline && <hr/>}
+					{this.props.has_underline && <hr className = "small-hr"/>}
 				</div>
 			
 			</div>

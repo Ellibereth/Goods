@@ -112,10 +112,9 @@ Linda's Color Scheme
 	src: url(./AvenirLight.woff) format('woff');
 }
 
-.admin-table-entry-short {
-	word-wrap : "break-word",
-	min-width : 160px,
-	max-width : 160px
+.admin-table-cell-short {
+	word-wrap : "break-word";
+	max-width : 160px;
 }
 
 

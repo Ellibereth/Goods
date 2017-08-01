@@ -53,6 +53,7 @@ export default class UploadMarketPhoto extends React.Component {
 					}
 					else {
 						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+						this.props.getProductInformation()
 					}
 				}.bind(this),
 				error : function(){

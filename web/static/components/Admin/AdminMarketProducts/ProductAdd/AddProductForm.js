@@ -24,12 +24,7 @@ export default class AddProductForm extends React.Component {
 		this.setState(obj)
 	}
 
-	onSubmitPress(){
-		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.submitData.bind(this)()
-		}.bind(this))
-	}
+
 
 	submitData(){
 			var data = {}
@@ -86,7 +81,7 @@ export default class AddProductForm extends React.Component {
 				<div className = "form-group">
 
 				<div className = "col-sm-10">
-					<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
+					<button type = "button" className = "btn btn-default" onClick = {this.submitData.bind(this)}>
 					Submit!
 					</button>
 				</div>
