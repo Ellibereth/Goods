@@ -8678,22 +8678,22 @@ button.close {
     }
 }
 @media(max-width:600px) {
-    .hidden-xs {
+    .edgar-hidden-xs {
         display: none !important
     }
 }
 @media(min-width:601px) and (max-width:1023px) {
-    .hidden-sm {
+    .edgar-hidden-sm {
         display: none !important
     }
 }
 @media(min-width:1024px) and (max-width:1200px) {
-    .hidden-md {
+    .edgar-hidden-md {
         display: none !important
     }
 }
 @media(min-width:1201px) {
-    .hidden-lg {
+    .edgar-hidden-lg {
         display: none !important
     }
 }
@@ -8740,7 +8740,7 @@ button.close {
     }
 }
 @media print {
-    .hidden-print {
+    .edgar-hidden-print {
         display: none !important
     }
 }
@@ -9579,7 +9579,7 @@ button.close {
     .visible-only-xl {
         display: block
     }
-    .hidden-xl {
+    .edgar-hidden-xl {
         display: none !important
     }
 }

@@ -841,5 +841,14 @@ a:hover {
 		max-height: 50vh
 	}
 
+	.product-more-images{
+		width: 90%;
+		height: auto;
+	}
+
 }
 
+.mobile-product-page-image {
+	width: 80%;
+	height:auto;
+}

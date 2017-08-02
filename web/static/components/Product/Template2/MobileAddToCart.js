@@ -5,7 +5,7 @@ import AppActions from '../../../actions/AppActions'
 import {AlertMessages} from '../../Misc/AlertMessages'
 import {formatPrice} from '../../Input/Util'
 
-export default class ProductAddToCart extends React.Component {
+export default class MobileAddToCart extends React.Component {
     constructor(props) {
 		super(props);
 		this.state = {
@@ -172,14 +172,12 @@ export default class ProductAddToCart extends React.Component {
 		}
 
 		return (
-			<div className="quantitySelBlock ">
-				<select  onChange = {this.onVariantChange.bind(this)}
-				tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" className="quantityPgSizeDD def_select quantityDPP" >
-					{product.variants.map((variant,index) => 
-							<option name = "name" value= {variant.variant_id}>{variant.variant_type}</option>
-						)}
-				</select>
-			</div>
+			<select  onChange = {this.onVariantChange.bind(this)}
+			tabindex="-1" data-placeholder="Qty">
+				{product.variants.map((variant,index) => 
+						<option name = "name" value= {variant.variant_id}>{variant.variant_type}</option>
+				)}
+			</select>
 		)
 	}
 
@@ -228,47 +226,53 @@ export default class ProductAddToCart extends React.Component {
     	var add_to_cart_disabled = this.addToCartDisabled.bind(this)(this.props.product)
     	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? " quantity-select-disabled " : ""
 		return (
-				<li className="colorsWithAddToCart reg-prod-pg">
-					{variant_select}
-					<div className="quantitySelBlock hidden-xs">
-						<select 
-						value = {this.state.quantity}
-						disabled = {add_to_cart_disabled || !this.props.item_in_stock}
-						onChange = {this.onQuantityChange.bind(this)}
-						tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" 
-						className={"quantityPgSizeDD def_select quantityDPP " + disabled_class}>
-							{quantity_options}
-						</select>
+				<div>
+					<div className = "row">
+						<div className = "col-xs-4 col-xs-offset-4 text-center">
+							{variant_select}
+						</div>
 					</div>
-
-					<div className="prodPgAddcartButton clear">
-						{this.props.item_in_stock && !add_to_cart_disabled ?
-						<a tabindex="3" onClick = {this.addToCartClick.bind(this)}
-						 className="btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
-							<div className="add-to-bag-btn-ct">
-								<span className="shop-bag-icon-white add-bag-btn-img"></span>
-								<span>&nbsp;&nbsp;&nbsp;Add to Cart</span>
+					<div className = "small-buffer"/>
+					<div className = "row">
+						<div className = "col-xs-4 col-xs-offset-4 text-center">
+							<select 
+							value = {this.state.quantity}
+							disabled = {add_to_cart_disabled || !this.props.item_in_stock}
+							onChange = {this.onQuantityChange.bind(this)}
+							tabindex="-1" data-placeholder="Qty" 
+							className= {disabled_class}>
+								{quantity_options}
+							</select>
+						</div>
+					</div>
+					<div className = "small-buffer"/>
+					<div className = "row">
+						<div className = "col-xs-12 text-center">
+							{
+								this.props.item_in_stock && !add_to_cart_disabled ?
+								<a tabindex="3" onClick = {this.addToCartClick.bind(this)}
+								 className="btn btn-default-red" style = {{"borderRadius" : "4px"}}>
+										<span>Add to Cart</span>
+								</a>
+								:
+								<a tabindex="3" className="soldOut btn btn-default-red"
+								style = {{"borderRadius" : "4px"}}>
+									<span>Add to Cart</span>
+								</a>
+							}
+						</div>
+					</div>
+					<div className = "small-buffer"/>
+					<div className = "row">
+						<div className = "col-xs-12 text-center">
+							{add_to_cart_disabled &&
+							<div style = {{"paddingTop" : "64px"}}>
+								<span style = {{"color" : "red"}}>Sorry, but we're cutting you off at {this.props.product.num_items_limit} of this item</span>
 							</div>
-						</a>
-						:
-						<a tabindex="3" className="soldOut btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
-							<div className="add-to-bag-btn-ct">
-								<span className="shop-bag-icon-white add-bag-btn-img"></span>
-								<span>&nbsp;&nbsp;&nbsp;Add to Cart</span>
-							</div>
-						</a>
-					}
-
-					{add_to_cart_disabled &&
-					<div style = {{"paddingTop" : "64px"}}>
-						<span style = {{"color" : "red"}}>Sorry, but we're cutting you off at {this.props.product.num_items_limit} of this item</span>
+							}
+						</div>
 					</div>
-					}
-
-						<div className="clear"/>
-					</div>
-					<div className="clear"/>
-				</li>
+				</div>
 		);
     }
 }

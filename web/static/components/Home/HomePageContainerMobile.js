@@ -55,7 +55,7 @@ export default class HomePageContainerMobile extends React.Component {
 		var ordered_products = this.orderProducts(this.state.products)
 		var products = ordered_products.map((product, index) =>
 				<div className = "row">
-				<HomeProductPreviewMobile product = {product}/>
+					<HomeProductPreviewMobile product = {product}/>
 				</div>
 			)
 

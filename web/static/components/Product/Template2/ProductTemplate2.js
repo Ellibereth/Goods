@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import ProductTopRow from './ProductTopRow'
 import ProductMiddleRow from './ProductMiddleRow'
+import MobileProductDisplay from './MobileProductDisplay'
 
 export default class ProductTemplate2 extends React.Component {
 	constructor(props) {
@@ -12,17 +13,25 @@ export default class ProductTemplate2 extends React.Component {
 
 	render() {
 		return (
-
-				<div className="edgarBlock newProductpgDesign">
+			<div>
+				<div className="edgarBlock newProductpgDesign hidden-xs">
 					<div className="edgar-row">
 						<ProductTopRow
 						setLoading = {this.props.setLoading}
-						 getProductInformation = {this.props.getProductInformation}
-						 product = {this.props.product} />
+						getProductInformation = {this.props.getProductInformation}
+						product = {this.props.product} />
 						<div className="horizontal-line-wrap edgar-col-xs-60 no-padding"><hr className="bottom-margin-xs"/></div>
 						<ProductMiddleRow product = {this.props.product} />
 					</div>
-				</div>								
+				</div>	
+				<div className = "hidden-sm hidden-md hidden-lg">
+					<MobileProductDisplay 
+						setLoading = {this.props.setLoading}
+						getProductInformation = {this.props.getProductInformation}
+						product = {this.props.product}
+					/>
+				</div>
+			</div>							
 		);
 	}
 }
