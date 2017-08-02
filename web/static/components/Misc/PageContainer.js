@@ -27,27 +27,33 @@ export default class PageContainer extends React.Component {
 		return (
 				<div>
 					{this.props.is_loading && <Spinner />}
-					<div className = "page-top-row">
-						<div className = "page-wrapper">
-							<div className = "top-row-inner">
-								<span className = "top-row-text">{top_text}</span>
-								<span id = "top-contact-us" className = "top-row-text float-right" onClick = {() => window.location = "/support"}> 
-									<span id = "top- email-glyph"className = "glyphicon glyphicon-envelope top-row-envelope-icon"/>
-								 	<span>Contact Support</span>
-								</span>
+					<div className = "hidden-xs">
+						<div className = "page-top-row">
+							<div className = "page-wrapper">
+								<div className = "top-row-inner">
+									<span className = "top-row-text">{top_text}</span>
+									<span id = "top-contact-us" className = "top-row-text float-right" onClick = {() => window.location = "/support"}> 
+										<span id = "top- email-glyph"className = "glyphicon glyphicon-envelope top-row-envelope-icon"/>
+									 	<span>Contact Support</span>
+									</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div className = "page-wrapper">
-						<Navbar />
-						<div className = "content-wrapper"> 
-							{!this.props.no_add_buffer && <div className = "content-buffer"/>}
-							{this.props.children}
+						<div className = "page-wrapper">
+							<Navbar />
+							<div className = "content-wrapper"> 
+								{!this.props.no_add_buffer && <div className = "content-buffer"/>}
+								{this.props.children}
+							</div>
 						</div>
+						<div className = "top-buffer"/>
+						<Footer />
+						<div className = "top-buffer"/>
 					</div>
-					<div className = "top-buffer"/>
-					<Footer />
-					<div className = "top-buffer"/>
+					<div style = {{"width" : "100%"}} className = "hidden-sm hidden-md hidden-lg">
+						<Navbar/>
+						{this.props.children}
+					</div>
 				</div>
 		);
 	}

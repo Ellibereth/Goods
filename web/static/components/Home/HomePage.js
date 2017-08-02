@@ -4,10 +4,7 @@ var ReactDOM = require('react-dom');
 import FeedbackModal from '../CustomerService/Feedback/FeedbackModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'
 import PageContainer from '../Misc/PageContainer'
-
-import Navbar from '../Nav/Navbar'
-
-import Footer from '../Nav/Footer'
+import HomePageContainerMobile from './HomePageContainerMobile'
 
 
 
@@ -23,6 +20,7 @@ export default class HomePage extends React.Component {
 	render() {
 		return (
 				<PageContainer no_add_buffer = {true}>
+					<HomePageContainerMobile/>
 					<HomePageMainContainer />
 				</PageContainer>
 		);

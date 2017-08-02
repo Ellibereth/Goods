@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../stores/AppStore'
 import AccountDropdown from './AccountDropdown'
 import NavbarSearch from './NavbarSearch'
+import MobileNavBar from './MobileNavBar'
 const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/logo.png"
 
 
@@ -29,7 +30,8 @@ export default class Navbar extends React.Component {
 		var current_user = AppStore.getCurrentUser()
 
 		return (
-					<div className = "edgar-navbar">
+				<div>
+					<div className = "edgar-navbar hidden-xs">
 						<div className = "container-fluid">
 							<div className = "row">
 								<div className = "col-xs-2 col-sm-1 col-md-1 col-lg-1" id = "logo-column">
@@ -99,6 +101,10 @@ export default class Navbar extends React.Component {
 							</div>
 						</div>
 					</div>
+					<div className = "hidden-sm hidden-md hidden-lg">
+						<MobileNavBar />
+					</div>
+				</div>
 		);
 	}
 }

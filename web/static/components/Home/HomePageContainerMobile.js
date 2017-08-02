@@ -1,11 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import HomeProductPreview from './HomeProductPreview'
-import HomePageSingleImage from './HomePageSingleImage'
+import HomeProductPreviewMobile from './HomeProductPreviewMobile'
 
 const HOME_TAG = "Home_Page"
 
-export default class HomePageMainContainer extends React.Component {
+export default class HomePageContainerMobile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -55,31 +54,15 @@ export default class HomePageMainContainer extends React.Component {
 	render() {
 		var ordered_products = this.orderProducts(this.state.products)
 		var products = ordered_products.map((product, index) =>
-				<HomeProductPreview product = {product}/>
+				<div className = "row">
+				<HomeProductPreviewMobile product = {product}/>
+				</div>
 			)
 
 		return (
-			<div className = "hidden-xs">
-				<div className = "container-fluid home-container">
-					<div className="row show-grid">
-						<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
-							<HomePageSingleImage />
-						</div>
-					</div>
-				</div>
-				<div className = "small-buffer"/>
-				<div className = "dark-grey-horizontal-line"/>
-				<div className = "small-buffer"/>
+			<div className = "hidden-sm hidden-md hidden-lg">
 				<div style = {{"marginBottom" : "-10px"}} className ="container-fluid">
-					<div className = "row home-product-group-header-row">
-						<span className = "home-product-group-header">
-							New this week
-						</span>
-					</div>
-					<div className = "small-buffer"/>
-					<div className = "row">
-						{products}	
-					</div>
+					{products}
 				</div>
 			</div>
 			);
