@@ -207,7 +207,8 @@ export default class LoginBox extends React.Component {
 						</div>
 
 
-					<form onSubmit = {this.registerUser.bind(this)} onKeyPress = {this.onRegisterKeyPress.bind(this)} style = {register_styles} accept-charset="UTF-8" action="https://edgar.com/login/?" className="newInviteWrap" id="uSignup" method="post" name="uSignup">
+					<form onSubmit = {this.registerUser.bind(this)} onKeyPress = {this.onRegisterKeyPress.bind(this)}
+					 style = {register_styles} className="newInviteWrap" id="uSignup">
 						<div id="invSignUpWrap" style= {{"display": "block"}}>
 							<h2 className="mainIndexTitle reqAccess">Join Today!</h2>
 

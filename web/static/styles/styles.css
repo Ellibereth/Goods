@@ -852,3 +852,10 @@ a:hover {
 	width: 80%;
 	height:auto;
 }
+
+
+@media(max-width:600px) {
+	.responsive-site .inviteWrapper #resInviteForm{
+		max-width: 100% !important;
+	}
+}
