@@ -13,7 +13,7 @@ const PASSWORD_INDEX = 1
 const DELETE_INDEX = 2
 
 const DISPLAYS = ['Edit Information', 'Change Password', 'Delete Account']
-
+const FB_DISPLAYS = ['Edit Information', 'Delete Account']
 export default class AccountCard extends React.Component {
 	constructor(props) {
 		super(props);
@@ -97,12 +97,20 @@ export default class AccountCard extends React.Component {
 	render() {
 		
 		var panel_body = this.getPanelBody(this.state.editable_index)
+		var user = AppStore.getCurrentUser()
+		if (user.fb_id) {
+			var pills = FB_DISPLAYS
+		}
+		else {
+			var pills = DISPLAYS
+		}
 		return (
 				<div className = "container-fluid">
 					<div className = "panel panel-default">
 						<div className = "panel-heading">
 							<ul className="nav nav-pills">
-								{DISPLAYS.map((display, index) => 
+
+								{pills.map((display, index) => 
 									<li className= {this.state.editable_index == index && "active"}
 									onClick = {this.setEditableIndex.bind(this, index)}> 
 										<a href="#">{display}</a> 

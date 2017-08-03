@@ -279,6 +279,7 @@ class User(db.Model):
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
+		public_dict[Labels.FbId] = self.fb_id
 		return public_dict
 
 
@@ -298,6 +299,7 @@ class User(db.Model):
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
+		public_dict[Labels.FbId] = self.fb_id
 
 		return public_dict
 
@@ -317,6 +319,7 @@ class User(db.Model):
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
+		public_dict[Labels.FbId] = self.fb_id
 		return public_dict
 
 	def adjustCartItemWithVariant(self, cart_item):
