@@ -48,21 +48,65 @@ class User(db.Model):
 										   onupdate=db.func.current_timestamp())
 
 	membership_tier = db.Column(db.Integer)
+	fb_id = db.Column(db.String)
 
 	is_guest = db.Column(db.Boolean, default = False)
 	NAME_MAX_LENGTH = 20
 	MIN_PASSWORD_LENGTH = 6
 
-	def __init__(self, name, email, password, email_confirmation_id, membership_tier = 0):
+	def __init__(self, name, email, password = None, email_confirmation_id = None, membership_tier = 0):
 		self.name = name
 		self.email = email
-		self.password_hash = User.argonHash(password)
+		if password:
+			self.password_hash = User.argonHash(password)
+		else:
+			self.password_hash = "FB_USER_NO_HASH"
 		self.email_confirmation_id = email_confirmation_id
 		self.email_confirmed = False
 		stripe_customer_id = StripeManager.createCustomer(name, email)
 		self.stripe_customer_id = stripe_customer_id
 		self.membership_tier = membership_tier
 		db.Model.__init__(self)
+
+
+	@staticmethod
+	def registerFacebookUser(fb_response, guest_user = None, membership_tier = 1):
+		name = fb_response.get(Labels.Name)
+		email_input = fb_response.get(Labels.Email)
+		fb_id = fb_response.get(Labels.Id)
+		if isinstance(email_input, str):
+			email = email_input.lower()
+		else:
+			return {Labels.Success : False , Labels.Error: ErrorMessages.InvalidEmail}
+		if email == "":
+			return {Labels.Success : False, Labels.Error : ErrorMessages.BlankEmail}
+		old_user = User.query.filter_by(email = email).first()
+		if old_user != None:
+			return {Labels.Success: False, Labels.Error : ErrorMessages.ExistingEmail}
+		if not isinstance(name, str):
+			return {Labels.Success: False, Labels.Error : ErrorMessages.InvalidName}
+		if not validate_email(email):
+			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidEmail}
+		try:
+			email_confirmation_id = User.generateEmailConfirmationId()
+			EmailLib.sendEmailConfirmation(email, email_confirmation_id, name)
+		except Exception as e:
+			print(e)
+			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
+		new_user = User(name, email, membership_tier = membership_tier)
+		new_user.fb_id = fb_id
+		new_user.email_confirmed = True
+		db.session.add(new_user)
+		db.session.commit()
+		new_user.transferGuestCart(guest_user)
+
+
+		return {
+				Labels.Success : True,
+				Labels.User : new_user.toPublicDict(),
+				Labels.Jwt : new_user.toJwtDict()
+			}
+
 
 	@staticmethod
 	def registerUser(name, email_input, password, password_confirm, guest_user = None, membership_tier = 1):

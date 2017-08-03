@@ -19,12 +19,16 @@ export default class OrdersPreview extends React.Component {
 		// var order_display = this.props.orders.map((order,index) =>
 		// 			<OrdersPreviewDisplay order = {order}/>
 		// 	)
-		if (this.props.orders.length > 0){
+		if (!this.props.orders) {
+			var order_display = <span> No orders </span>
+		}
+		else if (this.props.orders.length > 0){
 			var order_display = <OrdersPreviewDisplay order = {this.props.orders[0]}/>
 		}
 		else {
 			var order_display = <span> No orders </span>
 		}
+		var num_orders = this.props.orders ? this.props.orders.length : 0
 		return (
 			<div className = "container-fluid">
 					
@@ -43,14 +47,14 @@ export default class OrdersPreview extends React.Component {
 					
 
 					<div className="panel-body">			
-						{this.props.orders.length == 1 ?
-							<span className = "account-page-text block-span"> You have {this.props.orders.length} order </span>
+						{num_orders == 1 ?
+							<span className = "account-page-text block-span"> You have {num_orders} order </span>
 							:
-							<span className = "account-page-text block-span"> You have {this.props.orders.length} orders </span>
+							<span className = "account-page-text block-span"> You have {num_orders} orders </span>
 						}
 
 						{
-							this.props.orders.length > 0 ?
+							num_orders > 0 ?
 							<span className = "account-page-text block-span"> <a href = "/myOrders"> View more </a> </span>
 							:
 							<span className = "account-page-text block-span"> Start shopping at our store by clicking <a href = "/"> here </a> </span>

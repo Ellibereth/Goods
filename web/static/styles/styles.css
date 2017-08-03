@@ -43,6 +43,26 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+
+
+.fb-connect-button {
+	border-radius: 4px !important;
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	border-width: 1px;
+	border-style: solid;
+	color: #FFF;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 12px;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: background-color .3s, border-color .3s;
+	background-color: #4C69BA;
+	border-color: #4C69BA;
+	padding: 8px;
+}
+
 .low-inventory-warning-text {
 	margin-bottom: 8px;
 	color: var(--DarkRed);

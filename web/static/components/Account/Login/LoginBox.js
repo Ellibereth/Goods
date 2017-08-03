@@ -6,6 +6,7 @@ import AppActions from '../../../actions/AppActions'
 import LoginBoxLeft from './LoginBoxLeft'
 import {getParameterByName} from '../../Input/Util'
 import {AlertMessages} from '../../Misc/AlertMessages'
+import FacebookConnect from './FacebookConnect'
 
 const LOGIN_STATE = 0
 const REGISTER_STATE = 1
@@ -144,7 +145,6 @@ export default class LoginBox extends React.Component {
 	}
 
 	onRegisterKeyPress(event){
-		console.log(event)
 		// e.preventDefault()
 		if (event.key === 'Enter') {
 			this.registerUser.bind(this)(event)
@@ -197,6 +197,9 @@ export default class LoginBox extends React.Component {
 										<div style= {{" clear": "both"}}>
 										</div>
 										<span id="login_user_loader" style={{"bottom":"17px",position:"absolute",left:"99px","*bottom": "21px","*left": "140px"}}></span>
+										<div style = {{"float" : "right"}}>
+											<FacebookConnect />
+										</div>
 									</div>
 								</form>
 								

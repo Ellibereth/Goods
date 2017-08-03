@@ -372,5 +372,31 @@ def readCartMessage(this_user):
 	db.session.commit()
 	return JsonUtil.success()
 
+# registers a user with facebook
+@account_api.route('/handleFacebookUser', methods = ['POST'])
+def handleFacebookUser():
+	fb_response = request.json.get(Labels.FbResponse)
+	guest_jwt = request.json.get(Labels.Jwt)
+	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
 
+	print(fb_response[Labels.Id])
+	fb_user = User.query.filter_by(fb_id = fb_response.get(Labels.Id)).first()
 
+	# if the fb_user already has an account
+	if fb_user:
+		fb_user.transferGuestCart(guest_user)
+		user_jwt = JwtUtil.create_jwt(fb_user.toJwtDict())
+		user_info = fb_user.toPublicDictFast()
+		output = {
+			Labels.User : user_info,
+			Labels.Jwt : user_jwt
+		}
+		return JsonUtil.successWithOutput(output)
+
+	register_user_response = User.registerFacebookUser(fb_response, guest_user)
+	if register_user_response.get(Labels.Success):
+		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.Jwt])
+		return JsonUtil.successWithOutput(register_user_response)
+	else:
+		return JsonUtil.failureWithOutput(register_user_response)
+	return JsonUtil.failure()

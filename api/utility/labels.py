@@ -16,6 +16,10 @@ class EmailLabels:
 	Unsubscribed = "unsubscribed"
 
 class UserLabels:
+	Id = "id"
+	FirstName = "first_name"
+	LastName = "last_name"
+	FbResponse = "fb_response"
 	MembershipTier = "membership_tier"
 	GuestJwt = "guest_jwt"
 	IsGuest = "is_guest"
