@@ -26,6 +26,8 @@ from validate_email import validate_email
 from api.utility.membership_tiers import MembershipTiers
 
 
+FB_USER_NO_HASH = "FB_USER_NO_HASH"
+
 ## user object class
 class User(db.Model):
 	__tablename__ = ProdTables.UserInfoTable
@@ -60,7 +62,7 @@ class User(db.Model):
 		if password:
 			self.password_hash = User.argonHash(password)
 		else:
-			self.password_hash = "FB_USER_NO_HASH"
+			self.password_hash = FB_USER_NO_HASH
 		self.email_confirmation_id = email_confirmation_id
 		self.email_confirmed = False
 		stripe_customer_id = StripeManager.createCustomer(name, email)
@@ -155,7 +157,9 @@ class User(db.Model):
 				Labels.User : new_user.toPublicDict(),
 				Labels.Jwt : new_user.toJwtDict()
 			}
-			
+	
+	def isFacebookUser(self):
+		return self.fb_id != None
 
 
 	@staticmethod

@@ -39,6 +39,10 @@ def checkLogin():
 	if this_user == None:
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+	elif this_user.isFacebookUser():
+		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+
 
 	if this_user.checkLogin(input_password):
 
@@ -393,7 +397,6 @@ def handleFacebookUser():
 	guest_jwt = request.json.get(Labels.Jwt)
 	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
 
-	print(fb_response[Labels.Id])
 	fb_user = User.query.filter_by(fb_id = fb_response.get(Labels.Id)).first()
 
 	# if the fb_user already has an account
