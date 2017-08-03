@@ -44,6 +44,10 @@ Linda's Color Scheme
 }*/
 
 
+.fb-icon {
+	padding-left: 6px;
+	padding-right:6px;
+}
 
 .fb-connect-button {
 	border-radius: 4px !important;
@@ -61,6 +65,7 @@ Linda's Color Scheme
 	background-color: #4C69BA;
 	border-color: #4C69BA;
 	padding: 8px;
+	padding-right: 12px;
 }
 
 .low-inventory-warning-text {

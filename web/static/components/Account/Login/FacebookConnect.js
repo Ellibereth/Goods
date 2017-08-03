@@ -70,9 +70,9 @@ export default class FacebookConnect extends React.Component {
 					fields="first_name,email, last_name, name"
 					onClick={this.handleFacebookLoginClick.bind(this)}
 					callback={this.responseFacebook.bind(this)}
-					icon="fa-facebook"
+					icon="fa-facebook fb-icon"
 					cssClass = "fb-connect-button"
-					textButton = "Connect with Facebook" />
+					textButton = {this.props.button_text} />
 					:
 					<div/>
 			}
