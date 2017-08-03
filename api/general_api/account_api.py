@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 import time
 import datetime
+import os
 from api.models.user import User
 from api.utility.table_names import ProdTables
 from api.utility.email import EmailLib
@@ -14,9 +15,6 @@ from api.security.tracking import LoginAttempt
 from api.utility.error import ErrorMessages
 from api.general_api import decorators
 from validate_email import validate_email
-
-
-
 
 
 account_api = Blueprint('account_api', __name__)
@@ -371,6 +369,22 @@ def readCartMessage(this_user):
 	this_user.cart_message = ""
 	db.session.commit()
 	return JsonUtil.success()
+
+# get the correct FB app id
+@account_api.route('/getFbAppId', methods = ['POST'])
+def getFbAppId():
+
+	ENVIRONMENT = os.environ.get('ENVIRONMENT')
+	app_id = ""
+	if request.remote_addr == "127.0.0.1":
+		app_id = "301430330267358"
+	elif ENVIRONMENT == "DEVELOPMENT":
+		app_id = "255033931670343"
+	elif ENVIRONMENT == "STAGING":
+		app_id = "333196410460893"
+	elif ENVIRONMENT == "PRODUCTION":
+		app_id = "120813588560588"
+	return JsonUtil.successWithOutput({"app_id" : app_id})
 
 # registers a user with facebook
 @account_api.route('/handleFacebookUser', methods = ['POST'])
