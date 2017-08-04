@@ -50,7 +50,7 @@ export default class FacebookConnect extends React.Component {
 				console.log(data)
 				if (data.success) {
 					AppActions.addCurrentUser(data.user, data.jwt)
-					// window.location = "/"
+					window.location = "/"
 				} 
 				// else {
 				// 	swal(data.error)
