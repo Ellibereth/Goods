@@ -16,7 +16,7 @@ export default class AccountDropdown extends React.Component {
 					  <ul className="newEdgarUserDD">
 						<li className="newEdgarUserDDItem"><a className="newEdgarUserDDLink dIB" href="/settings/">My Account</a></li>
 						<li className="arrow_box"></li>
-						<li className="newEdgarUserDDItem"><a className="newEdgarUserDDLink dIB" href="/myOrders">My Cart</a></li>
+						<li className="newEdgarUserDDItem"><a className="newEdgarUserDDLink dIB" href="/myCart">My Cart</a></li>
 						<li className="newEdgarUserDDItem"><a className="newEdgarUserDDLink dIB" href="/myOrders">My Orders</a></li>
 						<li className="newEdgarUserDDItem"><a className="newEdgarUserDDLink dIB" href="/logout">Logout</a></li>
 						

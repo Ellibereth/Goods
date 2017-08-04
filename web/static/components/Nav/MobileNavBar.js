@@ -29,8 +29,8 @@ export default class MobileNavBar extends React.Component {
 			return (
 				
 					<ul className="nav navbar-nav navbar-mobile-right-dropdown">
-						<li><a href="/faq">FAQ <span className = "glyphicon glyphicon-question-sign"/></a></li>
-						<li><a href="/myCart">Cart <span className = "glyphicon glyphicon-cart"/></a></li>
+						<li><a href="/faq">FAQ</a></li>
+						<li><a href="/myCart">Cart</a></li>
 						<li><a href="/register">Sign Up</a></li>
 						<li><a href ="/login">Login</a></li>
 					</ul>
@@ -39,14 +39,14 @@ export default class MobileNavBar extends React.Component {
 		else {
 			return (
 				<ul className="nav navbar-nav navbar-mobile-right-dropdown">
-					<li><a href="/faq">FAQ <span className = "glyphicon glyphicon-question-sign"/></a></li>
-					<li><a href="/myCart">Cart <span className = "glyphicon glyphicon-shopping-cart"/></a></li>
+					<li><a href="/faq">FAQ</a></li>
+					<li><a href="/myCart">Cart</a></li>
 					<li className="dropdown">
 					<a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						You <span className="caret"></span>
 					</a>
 					<ul className="dropdown-menu navbar-mobile-account-dropdown">
-						<li><a href="/settings">Acccount <span className = "glyphicon glyphicon-user"/></a></li>
+						<li><a href="/settings">Account <span className = "glyphicon glyphicon-user"/></a></li>
 						<li><a href="/myOrders">Past Orders <span className = "glyphicon glyphicon-list-alt"/></a></li>
 						<li><a href="/support">Support <span className = "glyphicon glyphicon-info-sign"/></a></li>
 						<li><a href="/logout">Sign Out <span className = "glyphicon glyphicon-log-out"/></a></li>
