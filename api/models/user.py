@@ -89,12 +89,7 @@ class User(db.Model):
 			return {Labels.Success: False, Labels.Error : ErrorMessages.InvalidName}
 		if not validate_email(email):
 			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidEmail}
-		try:
-			email_confirmation_id = User.generateEmailConfirmationId()
-			EmailLib.sendEmailConfirmation(email, email_confirmation_id, name)
-		except Exception as e:
-			print(e)
-			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
+		
 		new_user = User(name, email, membership_tier = membership_tier)
 		new_user.fb_id = fb_id
 		new_user.email_confirmed = True
