@@ -396,6 +396,9 @@ def handleFacebookUser():
 	fb_response = request.json.get(Labels.FbResponse)
 	guest_jwt = request.json.get(Labels.Jwt)
 	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
+	fb_id = fb_response.get(Labels.Id)
+	if fb_id == None:
+		return JsonUtil.failure()
 
 	fb_user = User.query.filter_by(fb_id = fb_response.get(Labels.Id)).first()
 

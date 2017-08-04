@@ -570,6 +570,7 @@ class User(db.Model):
 		self.soft_deleted = True
 		self.deleted_account_email = self.email
 		self.email = None
+		self.fb_id = None
 		db.session.commit()
 
 	def addItemWithVariantToCart(self, product_id,quantity, variant_id):
