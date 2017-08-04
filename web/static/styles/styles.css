@@ -43,11 +43,14 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+
+
 .edgar-link {
 	color : #999;
 }
 
 .edgar-link:hover {
+	color: #999;
 	text-decoration: underline;
 }
 
@@ -114,6 +117,8 @@ Linda's Color Scheme
 .edgar-logo {
 	width: auto;
 	height: 42px;
+	position: relative;
+	left: -11px;
 }
 
 
@@ -404,12 +409,19 @@ Linda's Color Scheme
 	background-color: lightgrey;
 }
 
-.order-preview-image {
-	height: 100px;
+
+.order-image-table-row {
 	width: 100px;
+	height:100px;
+}
+
+.order-preview-image {
+	height: 100%;
+	width: 100%;
 }
 .order-preview-image:hover {
 	opacity: 0.7;
+	cursor: pointer;
 }
 
 .order-preview-table  > tbody > tr > td {
@@ -456,9 +468,20 @@ Linda's Color Scheme
 
 .checkout-button{
 	width: 95%;
-	/*background-color: #f0c14b;  yellow */
 	background-color: var(--DarkBlue);
 	color: white;
+}
+
+.checkout-button.block-checkout {
+	pointer-events: all !important;
+	text-decoration: line-through !important;
+	color: var(--LightRed) !important;
+	border-color: var(--LightRed) !important;
+}
+.checkout-button.block-checkout:hover {
+	background-color: white !important;
+	color: var(--LightRed) !important;
+	border-color: var(--LightRed) !important;
 }
 
 .checkout-price-amount-text{
@@ -503,7 +526,7 @@ Linda's Color Scheme
 }
 
 .cart-column-title{
-	font-size: 20px;
+	font-size: 14px;
 }
 
 .checkout-section-title {
@@ -803,17 +826,10 @@ Linda's Color Scheme
 }
 
 
-
-
-a {
-	color : var(--LightBlue);
+.footer-social-links {
+	color: #999;
+	padding-top:8px;
 }
-
-a:hover {
-	color : var(--DarkBlue);
-}
-
-
 
 @media screen and (max-width: 765px) {
 

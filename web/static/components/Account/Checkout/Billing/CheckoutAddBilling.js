@@ -103,47 +103,47 @@ export default class CheckoutAddBilling extends React.Component {
 	render() {
 		return (
 			<div className = "container-fluid">
-				<div className = "row">
-					<div className = "col-sm-12 col-md-12 col-lg-12">
+				<div className = "col-sm-12 col-md-12 col-lg-12">
+					<div className = "row">
 						<CreditCardInput onSubmit = {this.onSubmitPress.bind(this)}
 						 onTextInputChange = {this.onTextInputChange.bind(this)} />
-						
-						<div className = "row">
-							<div className="checkbox">
-							  <label> Use same address from shipping  </label>
-							  	<input disabled = {!this.props.selected_address} 
-							  		checked = {this.state.use_same_as_shipping && this.props.selected_address}
-							  		id = "same_address_checkbox" name = "same_address" 
-							  		 onClick = {this.useSameAddressChange.bind(this)} type="checkbox"/>
-							  	 
-							</div>
-							{
-								!this.props.selected_address &&
-								<small>	
-									You must select an address before you can use this option. 
-								</small>
-							}
-						</div>
-
-
-						{ !this.state.use_same_as_shipping &&
-							
-								<AddressForm 
-								onSubmit = {this.onSubmitPress.bind(this)}
-								has_description = {false}
-								onTextInputChange = {this.onTextInputChange.bind(this)}/>
-						}
-						
-						<div className = "row">
-							<div className = "col-sm-12 col-md-12 col-lg-12 ">
-								<button className = "btn btn-default pull-right"
-								onClick = {this.onSubmitPress.bind(this)}>
-									Add Billing Method
-								</button>
-							</div>
-						</div>
-						
 					</div>
+					<div className = "row">
+						<div className="checkbox">
+						  <label> Use same address from shipping  </label>
+						  	<input disabled = {!this.props.selected_address} 
+						  		checked = {this.state.use_same_as_shipping && this.props.selected_address}
+						  		id = "same_address_checkbox" name = "same_address" 
+						  		 onClick = {this.useSameAddressChange.bind(this)} type="checkbox"/>
+						  	 
+						</div>
+						{
+							!this.props.selected_address &&
+							<small>	
+								You must select an address before you can use this option. 
+							</small>
+						}
+					</div>
+
+
+					{ !this.state.use_same_as_shipping &&
+						<div className = "row">
+							<AddressForm 
+							onSubmit = {this.onSubmitPress.bind(this)}
+							has_description = {false}
+							onTextInputChange = {this.onTextInputChange.bind(this)}/>
+						</div>
+					}
+					<div className = "top-buffer"/>
+					<div className = "top-buffer"/>
+
+					<div className = "row">
+							<button className = "btn btn-default "
+							onClick = {this.onSubmitPress.bind(this)}>
+								Add Billing Method
+							</button>
+					</div>
+						
 				</div>
 			</div>
 			

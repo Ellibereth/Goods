@@ -17,9 +17,7 @@ export default class OrderItemDisplay extends React.Component {
 		this.goToProduct = this.goToProduct.bind(this)
 	}
 
-	goToProduct(){
-		window.location = '/eg/' + this.props.order.product_id;
-	}
+	
 
 	render() {
 		var order = this.props.order
@@ -29,16 +27,22 @@ export default class OrderItemDisplay extends React.Component {
 		var local_date = new Date(order.date_created)
 		var formatted_date = dateFormat(local_date, "dddd, mmmm dS, yyyy, h:MM:ss TT");
 		return (
-				<div className = "col-md-6 col-lg-6 col-sm-6">
+				<div className = "col-md-4 col-lg-4 col-sm-4">
 					<div className="table-responsive">
         				<table className="table table-bordered order-preview-table">
         					<thead>
         						<tr className = "noborder">
-        							<th> <img onClick = {this.goToProduct}
-        							className = "order-preview-image" src = {src_base + order.main_image} /> </th>
-        							<th className = "clickable-text table-header-vertical-align-center">  
-        								<div  onClick = {this.goToProduct}> {order.name} </div>
-        								<div  onClick = {this.goToProduct}> Quantity: {order.num_items} @ ${formatPrice(order.price)} (each) </div>
+        							<th className = "order-image-table-row">
+        								<a href = {'/eg/' + this.props.order.product_id}> 
+        									<img 
+        									className = "order-preview-image" src = {src_base + order.main_image} />
+        								</a>
+        							</th>
+        							<th className = "table-header-vertical-align-center">
+        								<a href = {'/eg/' + this.props.order.product_id}>
+	        								<div> {order.name} </div>
+	        								<div> Quantity: {order.num_items} @ ${formatPrice(order.price)} (each) </div>
+        								</a>
         							</th>
         						</tr>
         					</thead>

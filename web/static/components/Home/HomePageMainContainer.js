@@ -60,12 +60,8 @@ export default class HomePageMainContainer extends React.Component {
 
 		return (
 			<div className = "hidden-xs">
-				<div className = "container-fluid home-container">
-					<div className="row show-grid">
-						<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
-							<HomePageSingleImage />
-						</div>
-					</div>
+				<div className = "home-container">
+					<HomePageSingleImage />
 				</div>
 				<div className = "small-buffer"/>
 				<div className = "dark-grey-horizontal-line"/>

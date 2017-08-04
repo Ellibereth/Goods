@@ -36,39 +36,7 @@ export default class HomeFooter extends React.Component {
 						</a>
 					</div>
 				</div>
-				{/* <div id = "footer-wrapper">
-					<div id = "edgar-footer">
-						
-
-						{/*
-							
-
-
-							<ul className = "footer-links float-left">
-							{footer_links.map((footer_link) => <li> <a href = "#"> {footer_link} </a> </li> )}
-						</ul>
-
-						 <div className="footerRightBlockRelatedCSS">
-							<div className="footerStoreLinks float-left">
-								<span className="storeName">Edgar US </span>
-								<i className="fa fa-chevron-circle-up fa-2x" id = "footer-language-select-icon" aria-hidden="true"/>
-								
-							</div>
-						</div> 
-						<ul className="socialLinks">
-							<li><a href="#"><i className="fa fa-facebook fa-3x" aria-hidden="true"/></a></li>
-							<li><a href="#"><i className="fa fa-instagram fa-3x" aria-hidden="true"/></a></li>
-							<li><a href="#"><i className="fa fa-twitter fa-3x" aria-hidden="true"/></a></li>
-							<li><a href="#"><i className="fa fa-pinterest fa-3x" aria-hidden="true"/></a></li>
-						</ul>
-
-						<ul className="socialLinks">
-							{footer_links.map((footer_link) => <li> <a href = "#"> {footer_link} </a> </li> )}
-						</ul>
-						<div className = "clear"/>
-					</div>
-				</div>
-				*/}
+				
 				<footer>
 					<div id = "dynamic-footer-wrapper">
 						<div id="dynamic-footer">
@@ -114,8 +82,8 @@ export default class HomeFooter extends React.Component {
 
 							<div id = "edgar-footer">
 								<ul className="socialLinks">
-									<li><a href="#"><i className="fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
-									<li><a href="#"><i className="fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
+									<li><a href="#"><i className="footer-social-links fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
+									<li><a href="#"><i className="footer-social-links fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
 								</ul>
 							</div>
 
@@ -129,16 +97,6 @@ export default class HomeFooter extends React.Component {
 									New customers only. Offer lasts first 30 days. See details <a href = "#">here</a>
 								</span>
 							</div> 
-
-							{/* <div className="most-popular-categories section">
-								
-								<span className="section-title">Most Popular Categories</span>
-								<ul>
-									<li>
-										<a href="#">Lighting</a>
-									</li>
-								</ul>
-							</div> */}
 							
 							
 						</div>

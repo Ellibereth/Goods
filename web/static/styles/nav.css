@@ -24,13 +24,6 @@ ul {
 	margin: 0;
 	padding: 0;
 }
-a {
-	margin: 0;
-	padding: 0;
-	font-size: 100%;
-	vertical-align: baseline;
-	background: transparent;
-}
 
 
 
@@ -181,7 +174,6 @@ a {
 	padding-right: 0px;
 	margin-right: 8px;
 	color: #666;
-	padding-left: 8px;
 }
 
 

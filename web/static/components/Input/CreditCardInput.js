@@ -111,7 +111,6 @@ export default class CreditCardInput extends React.Component {
 	}
 
 	render() {
-		
 		var card_icon_base = "https://s3-us-west-2.amazonaws.com/edgarusapublicicons/cardicons/"
 
 		// VISA, Mastercard, Discover, AMEX

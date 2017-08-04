@@ -140,7 +140,6 @@ export default class CheckoutPage extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success) {
-						console.log(data.user.cart)
 						this.setState({
 							cart : data.user.cart,
 							items: data.user.cart.items, 
@@ -258,7 +257,8 @@ export default class CheckoutPage extends React.Component {
 		return (this.state.selected_address == null || this.state.selected_card == null)
 	}
 
-	onCheckoutClick(){
+	onCheckoutClick(can_checkout){
+		if (!can_checkout) return;
 		var selected_card = this.getSelectedCard.bind(this)()
 		var selected_address = this.getSelectedAddress.bind(this)()
 		var text = "Are you ready to checkout with card ending in " + selected_card.last4    + 
@@ -373,7 +373,9 @@ export default class CheckoutPage extends React.Component {
 
 
 	render() {
+
 		var can_checkout = this.canCheckout()
+		var checkout_button_class = can_checkout ? " checkout-button btn btn-default " :"checkout-button block-checkout btn btn-default "
 		var cart = this.state.cart
 		if (!cart) return <div/>
 		return (
@@ -443,7 +445,8 @@ export default class CheckoutPage extends React.Component {
 								<div className="panel-body">
 										<div className = "row text-center">
 											<div className = "col-sm-12 col-md-12 col-lg-12 col-xs-12 vcenter text-center">
-												<button className = "btn btn-default checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
+												<button className = {checkout_button_class} disabled = {!can_checkout} 
+												onClick = {this.onCheckoutClick.bind(this, can_checkout)}>
 													Place your order!
 												</button>
 												<div className = "top-buffer"/>

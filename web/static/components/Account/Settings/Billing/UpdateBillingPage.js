@@ -23,8 +23,10 @@ export default class UpdateBillingPage extends React.Component {
 			<PageContainer is_loading = {this.state.is_loading}>
 				<div className = "container">
 					 {/* <SettingsFormPersonal /> */}
-					<UpdateBillingForm
-					setLoading = {this.setLoading.bind(this)}/>
+					 <div className = "row">
+						<UpdateBillingForm
+						setLoading = {this.setLoading.bind(this)}/>
+					</div>
 				</div>
 			</PageContainer>
 		)

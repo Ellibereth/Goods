@@ -102,11 +102,11 @@ export default class AccountCard extends React.Component {
 		var user = AppStore.getCurrentUser()
 		if (user.fb_id) {
 			var pills = FB_DISPLAYS
-			var indices = INDEX
+			var indices = FB_INDEX
 		}
 		else {
 			var pills = DISPLAYS
-			var indices = FB_INDEX
+			var indices = INDEX
 		}
 		return (
 				<div className = "container-fluid">

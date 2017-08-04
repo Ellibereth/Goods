@@ -144,7 +144,7 @@ class MarketProduct(db.Model):
 		tag_matches = ProductTag.query.filter_by(tag = tag).all()
 		product_matches = []
 		for match in tag_matches:
-			matching_product = MarketProduct.query.filter_by(product_id = match.product_id).first()
+			matching_product = MarketProduct.query.filter_by(active = True, product_id = match.product_id).first()
 			if matching_product:
 				product_matches.append(matching_product)
 

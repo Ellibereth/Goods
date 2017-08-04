@@ -53,7 +53,9 @@ export default class OrderHistoryPage extends React.Component {
 
 	render() {
 		var orders = this.state.orders
-
+		if (this.state.is_loading){
+			return <div/>
+		}
 
 		if (orders.length == 0){
 			var order_display = <h3> You haven't bought anything on <a href = "/">Edgar USA</a> yet.</h3>

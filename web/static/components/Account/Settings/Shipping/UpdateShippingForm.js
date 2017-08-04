@@ -117,11 +117,13 @@ export default class UpdateShippingForm extends React.Component {
 						onSubmit = {this.submitData.bind(this)}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 						<div className = "form-group" id = "submit_button">
-							<div className = "col-md-10 col-lg-10">
-								<button type = "button pull-right" className = "btn btn-default"  disabled = {this.state.disabled}
-								onClick = {this.submitData.bind(this)}>
-									Submit
-								</button>
+							<div className = "row">
+								<div className = "col-md-10 col-lg-10">
+									<button type = "button pull-right" className = "btn btn-default"  disabled = {this.state.disabled}
+									onClick = {this.submitData.bind(this)}>
+										Submit
+									</button>
+								</div>
 							</div>
 						</div>
 					</form>
