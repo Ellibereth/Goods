@@ -198,7 +198,7 @@ export default class LoginBox extends React.Component {
 										</div>
 										<span id="login_user_loader" style={{"bottom":"17px",position:"absolute",left:"99px","*bottom": "21px","*left": "140px"}}></span>
 										<div style = {{"float" : "right"}}>
-											{/* <FacebookConnect button_text = "LOGIN WITH FACEBOOK" /> */}
+											<FacebookConnect button_text = "LOGIN WITH FACEBOOK" /> 
 										</div>
 									</div>
 								</form>
@@ -258,7 +258,7 @@ export default class LoginBox extends React.Component {
 							<div className="signUpBtnWrap">
 								<input onClick = {this.registerUser.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
 								<div style = {{"float" : "right"}}>
-									{/*  <FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/> */}
+									<FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/>
 								</div>
 							</div>
 
