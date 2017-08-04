@@ -12,6 +12,8 @@ const INFORMATION_INDEX = 0
 const PASSWORD_INDEX = 1
 const DELETE_INDEX = 2
 
+const INDEX = [INFORMATION_INDEX, PASSWORD_INDEX, DELETE_INDEX]
+const FB_INDEX = [INFORMATION_INDEX, DELETE_INDEX]
 const DISPLAYS = ['Edit Information', 'Change Password', 'Delete Account']
 const FB_DISPLAYS = ['Edit Information', 'Delete Account']
 export default class AccountCard extends React.Component {
@@ -100,9 +102,11 @@ export default class AccountCard extends React.Component {
 		var user = AppStore.getCurrentUser()
 		if (user.fb_id) {
 			var pills = FB_DISPLAYS
+			var indices = INDEX
 		}
 		else {
 			var pills = DISPLAYS
+			var indices = FB_INDEX
 		}
 		return (
 				<div className = "container-fluid">
@@ -112,7 +116,7 @@ export default class AccountCard extends React.Component {
 
 								{pills.map((display, index) => 
 									<li className= {this.state.editable_index == index && "active"}
-									onClick = {this.setEditableIndex.bind(this, index)}> 
+									onClick = {this.setEditableIndex.bind(this, indices[index])}> 
 										<a href="#">{display}</a> 
 									</li>
 								)}

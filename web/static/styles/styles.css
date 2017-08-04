@@ -43,6 +43,13 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+.edgar-link {
+	color : #999;
+}
+
+.edgar-link:hover {
+	text-decoration: underline;
+}
 
 .fb-icon {
 	padding-left: 6px;

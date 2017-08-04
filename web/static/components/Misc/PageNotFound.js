@@ -13,12 +13,10 @@ export default class PageNotFound extends React.Component {
 
 	return (
 		<PageContainer> 
-			<div className = "container">
-				<h1>
+				<h3>
 					What a prank! You tried to go to a bad page! <br/>
-					Click <a href ="/"> here </a> to return to the home page.
-				</h1>
-			</div>
+					Click <a className = "edgar-link" href ="/">here</a> to return to the home page.
+				</h3>
 		</PageContainer>
 		);
 	}
