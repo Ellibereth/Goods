@@ -29,6 +29,10 @@ class MembershipDiscount:
 			self.free_shipping = False
 			self.item_discount = 10
 			self.discount_message = "10% DISCOUNT APPLIED"
+		else:
+			self.free_shipping = False
+			self.item_discount = 0
+			self.discount_message = ""
 
 	def toPublicDict(self):
 		public_dict = {}
