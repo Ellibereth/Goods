@@ -14,7 +14,6 @@ export default class OrderItemDisplay extends React.Component {
 		this.state = {
 			
 		}
-		this.goToProduct = this.goToProduct.bind(this)
 	}
 
 	

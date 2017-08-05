@@ -48,11 +48,11 @@ Linda's Color Scheme
 	
 
 .edgar-link {
-	color : #999;
+	color : var(--LightBlue);
 }
 
 .edgar-link:hover {
-	color: #999;
+	color : var(--LightBlue);
 	text-decoration: underline;
 }
 
@@ -247,7 +247,7 @@ Linda's Color Scheme
 .cart-remove-item-icon {
 	color : var(--LightRed);
 	cursor : pointer;
-	font-size: 20px;
+	font-size: 14px;
 }
 
 .cart-remove-item-icon:hover {
@@ -536,7 +536,7 @@ Linda's Color Scheme
 }
 
 .cart-item-text {
-	font-size : 18px;
+	font-size: 14px;
 }
 
 .checkout-select-title{
