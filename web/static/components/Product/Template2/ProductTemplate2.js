@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 import ProductTopRow from './ProductTopRow'
 import ProductMiddleRow from './ProductMiddleRow'
 import MobileProductDisplay from './MobileProductDisplay'
+import RelatedProducts from './RelatedProducts'
 
 export default class ProductTemplate2 extends React.Component {
 	constructor(props) {
@@ -22,6 +23,7 @@ export default class ProductTemplate2 extends React.Component {
 						product = {this.props.product} />
 						<div className="horizontal-line-wrap edgar-col-xs-60 no-padding"><hr className="bottom-margin-xs"/></div>
 						<ProductMiddleRow product = {this.props.product} />
+						<RelatedProducts product = {this.props.product} />
 					</div>
 				</div>	
 				<div className = "hidden-sm hidden-md hidden-lg">

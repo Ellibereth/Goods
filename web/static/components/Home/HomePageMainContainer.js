@@ -24,7 +24,7 @@ export default class HomePageMainContainer extends React.Component {
 		$.ajax({
 			type: "POST",
 			data: form_data,
-			url: "/getProductsByTag",
+			url: "/getProductsByListingTag",
 			success: function(data) {
 				if (data.success) {
 					this.setState({
@@ -69,7 +69,7 @@ export default class HomePageMainContainer extends React.Component {
 				<div style = {{"marginBottom" : "-10px"}} className ="container-fluid">
 					<div className = "row home-product-group-header-row">
 						<span className = "home-product-group-header">
-							New this week
+							Featured
 						</span>
 					</div>
 					<div className = "small-buffer"/>

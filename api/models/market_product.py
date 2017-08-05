@@ -5,10 +5,11 @@ import time
 import random
 import string
 import json
-
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
-from api.models.product_tag import ProductTag
+from api.models.product_search_tag import ProductSearchTag
+from api.models.product_listing_tag import ProductListingTag
+from api.models.related_product_tag import RelatedProductTag
 from api.models.manufacturer_logo import ManufacturerLogo
 from api.s3.s3_api import S3
 
@@ -57,7 +58,9 @@ class MarketProduct(db.Model):
 										   onupdate=db.func.current_timestamp())
 
 	# add relationships 
-	tag = db.relationship("ProductTag", backref = ProdTables.ProductTagTable, lazy='dynamic')
+	search_tag = db.relationship("ProductSearchTag", backref = ProdTables.ProductSearchTagTable, lazy='dynamic')
+	listing_tag = db.relationship("ProductListingTag", backref = ProdTables.ProductListingTagTable, lazy='dynamic')
+	related_product_tag = db.relationship("RelatedProductTag", backref = ProdTables.RelatedProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = ProdTables.ImageTable, lazy='dynamic')
 
 
@@ -140,19 +143,56 @@ class MarketProduct(db.Model):
 		return MarketProduct.query.filter_by(product_id = product_id).first()
 
 	@staticmethod
-	def getProductsByTag(tag):
-		tag_matches = ProductTag.query.filter_by(tag = tag).all()
+	def getProductsByListingTag(tag):
+		tag_matches = ProductListingTag.query.filter_by(tag = tag).all()
 		product_matches = []
 		for match in tag_matches:
 			matching_product = MarketProduct.query.filter_by(active = True, product_id = match.product_id).first()
 			if matching_product:
 				product_matches.append(matching_product)
-
 		return product_matches
+
+	@staticmethod
+	def getProductsBySearchTag(tag):
+		tag_matches = ProductSearchTag.query.filter_by(tag = tag).all()
+		product_matches = []
+		for match in tag_matches:
+			matching_product = MarketProduct.query.filter_by(active = True, product_id = match.product_id).first()
+			if matching_product:
+				product_matches.append(matching_product)
+		return product_matches
+
+	@staticmethod
+	def getProductsByRelatedProductsTag(tag):
+		tag_matches = RelatedProductTag.query.filter_by(tag = tag).all()
+		product_matches = []
+		for match in tag_matches:
+			matching_product = MarketProduct.query.filter_by(active = True, product_id = match.product_id).first()
+			if matching_product:
+				product_matches.append(matching_product)
+		return product_matches
+
+	def getRelatedProductsByTag(self):
+		this_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
+		merged_list = list()
+		for tag in this_product_tags:
+			product_matches = MarketProduct.getProductsByRelatedProductsTag(tag.tag)
+			merged_list = merged_list + product_matches 
+		hit_product_ids = list()
+		all_matches = list()
+		# remove duplicates from the merged list
+		for product in merged_list:
+			if product.product_id not in hit_product_ids:
+				all_matches.append(product)
+				hit_product_ids.append(product.product_id)
+		random.shuffle(all_matches)
+		# this 0:5 is hard coded as a limit for now, will discuss limits 
+		# and filters moving forward
+		return all_matches[0:5]
 
 
 	# tags input taken as a list of tags
-	def updateProductTags(self, tags):
+	def updateProductSearchTags(self, tags):
 		old_tags = ProductTag.query.filter_by(product_id = self.product_id).all()
 		for old_tag in old_tags:
 			db.session.delete(old_tag)
@@ -160,6 +200,42 @@ class MarketProduct(db.Model):
 
 		for tag in tags:
 			new_tag = ProductTag(self.product_id, tag)
+			db.session.add(new_tag)
+		db.session.commit()
+
+	# tags input taken as a list of tags
+	def updateProductSearchTags(self, tags):
+		old_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
+		for old_tag in old_tags:
+			db.session.delete(old_tag)
+		db.session.commit()
+
+		for tag in tags:
+			new_tag = ProductSearchTag(self.product_id, tag)
+			db.session.add(new_tag)
+		db.session.commit()
+
+	# tags input taken as a list of tags
+	def updateProductListingTags(self, tags):
+		old_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
+		for old_tag in old_tags:
+			db.session.delete(old_tag)
+		db.session.commit()
+
+		for tag in tags:
+			new_tag = ProductListingTag(self.product_id, tag)
+			db.session.add(new_tag)
+		db.session.commit()
+
+	# tags input taken as a list of tags
+	def updateRelatedProductTags(self, tags):
+		old_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
+		for old_tag in old_tags:
+			db.session.delete(old_tag)
+		db.session.commit()
+
+		for tag in tags:
+			new_tag = RelatedProductTag(self.product_id, tag)
 			db.session.add(new_tag)
 		db.session.commit()
 
@@ -195,8 +271,13 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
-		tags = ProductTag.query.filter_by(product_id = self.product_id).all()
-		public_dict[Labels.Tags] = ",".join([tag.tag for tag in tags])
+		
+		product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
+		related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
+		product_listing_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
+		public_dict[Labels.RelatedProductTags] = ",".join([tag.tag for tag in related_product_tags])
+		public_dict[Labels.ProductSearchTags] = ",".join([tag.tag for tag in product_search_tags])
+		public_dict[Labels.ProductListingTags] = ",".join([tag.tag for tag in product_listing_tags])
 
 		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()

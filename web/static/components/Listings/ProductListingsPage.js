@@ -24,7 +24,7 @@ export default class ProductListingPage extends React.Component {
 		$.ajax({
 			type: "POST",
 			data: form_data,
-			url: "/getProductsByTag",
+			url: "/getProductsByListingTag",
 			success: function(data) {
 				if (data.success) {
 					this.setState({

@@ -152,7 +152,7 @@ Linda's Color Scheme
 }
 
 .admin-table-cell-short {
-	word-wrap : "break-word";
+	word-wrap : break-word !important;
 	max-width : 160px;
 }
 

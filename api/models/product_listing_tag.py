@@ -8,8 +8,8 @@ from api.utility.labels import ProductTagLabels as Labels
 
 MARKET_PHOTO_STORAGE_BUCKET = "publicmarketproductphotos" 	
 
-class ProductTag(db.Model):
-	__tablename__ = ProdTables.ProductTagTable
+class ProductListingTag(db.Model):
+	__tablename__ = ProdTables.ProductListingTagTable
 	product_tag_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	tag = db.Column(db.String)
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))

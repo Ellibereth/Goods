@@ -5,8 +5,8 @@ import AddProductModal from './ProductAdd/AddProductModal.js'
 
 var Link = require('react-router').Link;
 import AdminProductPreviewRow from './AdminProductPreviewRow'
-const headers = ['Go To This Product', 'Image', 'Name', "Inventory", 'Tags', 'URL', 'On Home Page', 'Is Active','Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
-const product_variables = ['name', 'inventory', 'tags', 'product_id', 'live', 'active', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date'] 
+const headers = ['Go To This Product', 'Image', 'Name', "Inventory", 'Search Tags', 'Listing Tags', 'Related Product Tags', 'URL', 'On Home Page', 'Is Active','Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date']
+const product_variables = ['name', 'inventory', 'product_search_tags', 'product_listing_tags', 'related_product_tags', 'product_id', 'live', 'active', 'manufacturer', 'price',  'num_images', 'date_created', 'sale_end_date'] 
 
 export default class AdminMarketProducts extends React.Component {
 	constructor(props) {

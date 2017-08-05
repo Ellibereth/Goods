@@ -87,6 +87,9 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	RelatedProductTags = "related_product_tags"
+	ProductSearchTags = "product_search_tags"
+	ProductListingTags = "product_listing_tags"
 	SaleTextHome = "sale_text_home"
 	SaleTextProduct = "sale_text_product"
 	Tag = "tag"

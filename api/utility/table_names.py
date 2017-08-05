@@ -16,7 +16,10 @@ class ProdTables:
 	OrderTable = "ORDER_TABLE"
 	OrderItemTable = "ORDER_ITEM_TABLE"
 	ImageTable = "IMAGE_TABLE"
-	ProductTagTable = "PRODUCT_TAG_TABLE"
+	ProductSearchTagTable = "PRODUCT_SEARCH_TAG_TABLE"
+	ProductListingTagTable = "PRODUCT_LISTING_TAG_TABLE"
+	RelatedProductTagTable = "RELATED_PRODUCT_TAG_TABLE"
+
 	ShoppingCartTable = "SHOPPING_CART_TABLE"
 	UserAddressTable = "USER_ADDRESS_TABLE"
 	StoryImageTable = "STORY_IMAGE_TABLE"
@@ -48,7 +51,9 @@ class TestTables:
 	MarketProductTable = TEST_PREFIX + ProdTables.MarketProductTable
 	OrderTable = TEST_PREFIX + ProdTables.OrderTable
 	ImageTable = TEST_PREFIX + ProdTables.ImageTable
-	ProductTagTable = TEST_PREFIX + ProdTables.ProductTagTable
+	ProductSearchTagTable = TEST_PREFIX + ProdTables.ProductSearchTagTable
+	ProductListingTagTable = TEST_PREFIX + ProdTables.ProductSearchTagTable
+	RelatedProductTagTable = TEST_PREFIX + ProdTables.RelatedProductTagTable
 	ShoppingCartTable = TEST_PREFIX + ProdTables.ShoppingCartTable
 	UserAddressTable = TEST_PREFIX + ProdTables.UserAddressTable
 	StoryImageTable = TEST_PREFIX + ProdTables.StoryImageTable

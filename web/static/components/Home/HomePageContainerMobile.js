@@ -23,7 +23,7 @@ export default class HomePageContainerMobile extends React.Component {
 		$.ajax({
 			type: "POST",
 			data: form_data,
-			url: "/getProductsByTag",
+			url: "/getProductsByListingTag",
 			success: function(data) {
 				if (data.success) {
 					this.setState({

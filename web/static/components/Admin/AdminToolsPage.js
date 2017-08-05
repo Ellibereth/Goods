@@ -18,9 +18,8 @@ import Button from 'react-bootstrap/lib/Button'
 const REQUEST_INDEX = 0
 const ACTIVE_PRODUCT_INDEX = 1
 const INACTIVE_PRODUCT_INDEX = 2
-const HOME_PAGE_INDEX = 3
-const ADD_PRODUCT_INDEX = 4
-const EMAIL_LIST_INDEX = 5
+const ADD_PRODUCT_INDEX = 3
+const EMAIL_LIST_INDEX = 4
 
 
 export default class AdminToolsPage extends React.Component {
@@ -118,7 +117,6 @@ export default class AdminToolsPage extends React.Component {
 						<NavItem eventKey= {REQUEST_INDEX}> Requests </NavItem>
 						<NavItem eventKey= {ACTIVE_PRODUCT_INDEX}> Active Products </NavItem>	
 						<NavItem eventKey= {INACTIVE_PRODUCT_INDEX}> Not Active Products </NavItem>	
-						<NavItem eventKey= {HOME_PAGE_INDEX}> Home Page </NavItem>	
 						<NavItem eventKey= {ADD_PRODUCT_INDEX}> Add Product </NavItem>
 						<NavItem eventKey= {EMAIL_LIST_INDEX}> Email Lists </NavItem>	
 					</Nav>
@@ -131,10 +129,6 @@ export default class AdminToolsPage extends React.Component {
 					</div>
 					<div className = {this.state.selected_tab != INACTIVE_PRODUCT_INDEX && "none"} > 
 						<AdminMarketProducts products = {this.state.products} active = {false} />
-					</div>
-
-					<div className = {this.state.selected_tab != HOME_PAGE_INDEX && "none"} > 
-						<AdminHome products = {this.state.products} active = {false} />
 					</div>
 
 					<div className = {this.state.selected_tab != ADD_PRODUCT_INDEX && "none"} > 

@@ -55,9 +55,9 @@ export default class AdminProductPreviewRow extends React.Component {
 			return "$" + formatPrice(product.price)
 		}
 
-		else if (attr == "tags") {
-			if (product.tags) {
-				return product.tags.replace(/,/g,'\n')	
+		else if (attr == "product_listing_tags" || attr == "product_search_tags" || attr == "related_product_tags") {
+			if (product[attr]) {
+				return product[attr].replace(/,/g,',\n')	
 			}
 			else {
 				return ""

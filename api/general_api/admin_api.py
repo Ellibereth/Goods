@@ -133,10 +133,16 @@ def updateProductInfo(admin_user):
 			else:
 				value = product.get(key)
 
-			if key == Labels.Tags:
-				
+			if key == Labels.ProductListingTags:
 				tag_list = value.split(',')
-				this_product.updateProductTags(tag_list)
+				print(tag_list)
+				this_product.updateProductListingTags(tag_list)
+			if key == Labels.ProductSearchTags:
+				tag_list = value.split(',')
+				this_product.updateProductSearchTags(tag_list)
+			if key == Labels.RelatedProductTags:
+				tag_list = value.split(',')
+				this_product.updateRelatedProductTags(tag_list)
 
 			elif value != None:
 				setattr(this_product, key, value)
