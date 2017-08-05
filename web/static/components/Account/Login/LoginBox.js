@@ -197,15 +197,23 @@ export default class LoginBox extends React.Component {
 										<div style= {{" clear": "both"}}>
 										</div>
 										<span id="login_user_loader" style={{"bottom":"17px",position:"absolute",left:"99px","*bottom": "21px","*left": "140px"}}></span>
-										<div style = {{"float" : "right"}}>
-											<FacebookConnect button_text = "LOGIN WITH FACEBOOK" /> 
-										</div>
+										<span className = "hidden-xs">
+											<div style = {{"float" : "right"}}>
+												<FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/>
+											</div>
+										</span>
+										<span className = "hidden-sm hidden-md hidden-lg">
+											<div style=  {{"paddingTop" : "48px"}}>
+												<FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/>
+											</div>
+										</span>
 									</div>
 								</form>
 								
-
-								<a href = "/recoverAccount" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "70px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
-								<a href= "/register" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet? Register today</a>
+								<a href = "/recoverAccount" className = "hidden-xs" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "70px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
+								<a href = "/recoverAccount" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
+								<a href= "/register" className = "hidden-xs" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet? Register today</a>
+								<a href= "/register" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Register</a>
 							</div>
 						</div>
 
@@ -257,9 +265,16 @@ export default class LoginBox extends React.Component {
 
 							<div className="signUpBtnWrap">
 								<input onClick = {this.registerUser.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
-								<div style = {{"float" : "right"}}>
-									<FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/>
-								</div>
+								<span className = "hidden-xs">
+									<div style = {{"float" : "right"}}>
+										<FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/>
+									</div>
+								</span>
+								<span className = "hidden-sm hidden-md hidden-lg">
+									<div style=  {{"paddingTop" : "12px"}}>
+										<FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/>
+									</div>
+								</span>
 							</div>
 
 							<a href = "/login" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Already have an account?</a>

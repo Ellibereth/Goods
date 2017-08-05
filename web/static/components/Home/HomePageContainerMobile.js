@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import HomeProductPreviewMobile from './HomeProductPreviewMobile'
-
+import HomePageSingleImage from './HomePageSingleImage'
 const HOME_TAG = "Home_Page"
 
 export default class HomePageContainerMobile extends React.Component {
@@ -61,6 +61,8 @@ export default class HomePageContainerMobile extends React.Component {
 
 		return (
 			<div className = "hidden-sm hidden-md hidden-lg">
+				<div className = "top-buffer"/>
+				<HomePageSingleImage />
 				<div style = {{"marginBottom" : "-10px"}} className ="container-fluid">
 					{products}
 				</div>
