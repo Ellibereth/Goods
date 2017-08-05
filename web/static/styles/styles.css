@@ -916,11 +916,14 @@ Linda's Color Scheme
 		padding: 8px;
 		background-color: var(--DarkBlue);
 	}
-	.mobile-footer-links a {
+	.mobile-footer-links .row {
+		padding-top: 8px;
+		padding-bottom: 8px;
+	}
+	.mobile-footer-links  a {
 		padding-left: 8px;
 		color: #bfbfbf;
-		font-size: 12px;
-		padding-top: 10px;
+		font-size: 15px;
 	}
 
 	.mobile-footer-links a:hover {
