@@ -4,6 +4,7 @@ import Footer from '../Nav/Footer'
 import Navbar from '../Nav/Navbar'
 import Spinner from '../Misc/Spinner'
 import AppStore from '../../stores/AppStore'
+import MobileFooter from '../Nav/MobileFooter'
 
 
 export default class PageContainer extends React.Component {
@@ -69,6 +70,8 @@ updateWindowDimensions() {
 						<div style = {{"width" : "100%"}} className = "hidden-sm hidden-md hidden-lg">
 							<Navbar/>
 							{this.props.children}
+							<div className = "top-buffer"/>
+							<MobileFooter/>
 						</div>
 					}
 				</div>
