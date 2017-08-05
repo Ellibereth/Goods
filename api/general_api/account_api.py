@@ -278,14 +278,17 @@ def getUserInfo(this_user):
 @account_api.route('/softDeleteAccount', methods = ['POST'])
 @decorators.check_user_jwt
 def softDeleteAccount(this_user):
-	password = request.json.get(Labels.Password)
-	password_confirm = request.json.get(Labels.PasswordConfirm)
-	if password != password_confirm:
-		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
-	if not this_user.checkLogin(password):
-		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+	if this_user.fb_id:
+		this_user.softDeleteAccount()
+	else:
 
-	this_user.softDeleteAccount()
+		password = request.json.get(Labels.Password)
+		password_confirm = request.json.get(Labels.PasswordConfirm)
+		if password != password_confirm:
+			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+		if not this_user.checkLogin(password):
+			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+		this_user.softDeleteAccount()
 	return JsonUtil.success()
 
 @account_api.route('/resendConfirmationEmail', methods = ['POST'])

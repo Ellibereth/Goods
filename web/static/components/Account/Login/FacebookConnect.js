@@ -47,7 +47,6 @@ export default class FacebookConnect extends React.Component {
 			data : JSON.stringify(obj, null, '\t'),
 			contentType : 'application/json;charset=UTF-8',
 			success: function (data){
-				console.log(data)
 				if (data.success) {
 					AppActions.addCurrentUser(data.user, data.jwt)
 					window.location = "/"
