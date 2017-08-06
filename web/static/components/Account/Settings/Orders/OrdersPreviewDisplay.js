@@ -30,7 +30,7 @@ export default class OrdersPreview extends React.Component {
 		var sales_tax_display = order.sales_tax_price ? <div className = "order-history-panel-header"> {"Sales Tax: $" + formatPrice(order.sales_tax_price)} </div> : <span/>
 		return (
 			<div className="panel panel-default">
-				<div className = "panel-heading">
+				<div className = "panel-heading darker-heading">
 					<div className = "order-history-panel-header">
 						 {"Order: " + this.props.order_id}  
 					</div>

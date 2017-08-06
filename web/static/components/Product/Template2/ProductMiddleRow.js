@@ -15,7 +15,7 @@ export default class ProductMiddleRow extends React.Component {
 	render() {
 		var product = this.props.product
 		return (
-				<div className="extra-info-wrap edgar-col-xs-offset-0 edgar-col-sm-offset-1 edgar-col-md-offset-2 edgar-col-lg-offset-6 edgar-col-xl-offset-6 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48">
+				<div className="extra-info-wrap edgar-col-xs-offset-0 edgar-col-sm-offset-0 edgar-col-md-offset-0 edgar-col-lg-offset-0 edgar-col-xl-offset-0 edgar-col-xs-60 edgar-col-sm-60 edgar-col-md-60 edgar-col-lg-60">
 					<div className="edgar-row" id="productExtraInfo">
 						<div className="hidden-xs edgar-col-sm-60">
 							<div className="edgar-row">

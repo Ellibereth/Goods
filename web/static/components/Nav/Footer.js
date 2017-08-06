@@ -20,7 +20,7 @@ export default class HomeFooter extends React.Component {
 								<img className = "home-badge-icon home-badge-flag" src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/flag.png"/>
 							</span>
 							<span className = "badgehead badgetext">Made in the USA</span> <br/>
-							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. <br/> To learn more about what that means and why it's important <a className = "badgetext-link" href = "/usa">click here</a>.</span>
+							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. <br/> To learn more about what that means and why it's important <a className = "edgar-link" href = "/usa">click here</a>.</span>
 						</a>
 						<a href = "#/" className = "home-badge">
 							<i className="fa fa-2x fa-smile-o home-badge-icon"/>

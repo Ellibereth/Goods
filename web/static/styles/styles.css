@@ -44,8 +44,9 @@ Linda's Color Scheme
 }*/
 
 
-
-	
+.darker-heading {
+	background-color: #cacaca !important;
+}
 
 .edgar-link {
 	color : var(--LightBlue);

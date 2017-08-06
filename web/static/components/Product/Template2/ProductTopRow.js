@@ -181,7 +181,7 @@ export default class ProductTopRow extends React.Component {
 		var price_row = this.getPriceDisplay.bind(this)(product)
 		
 		return (
-					<div className="edgar-col-xs-offset-0 edgar-col-sm-offset-1 edgar-col-md-offset-2 edgar-col-lg-offset-6 edgar-col-xl-offset-6 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48 edgar-col-xl-48" id="productpgTopWrapper">
+					<div className="edgar-col-xs-offset-0 edgar-col-sm-offset-0 edgar-col-md-offset-0 edgar-col-lg-offset-0 edgar-col-xl-offset-0 edgar-col-xs-60 edgar-col-sm-58 edgar-col-md-56 edgar-col-lg-48 edgar-col-xl-48" id="productpgTopWrapper">
 						<div className="edgar-row">
 							<div className="edgar-row-same-height edgar-row-full-height jq-i-parcel-info jq-parcel-product" data-product-size-value="526543">
 								<div className="hidden-xs edgar-col-sm-4 no-padding edgar-col-full-height vertical-slider">
