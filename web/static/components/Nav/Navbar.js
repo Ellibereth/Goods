@@ -4,8 +4,8 @@ import AppStore from '../../stores/AppStore'
 import AccountDropdown from './AccountDropdown'
 import NavbarSearch from './NavbarSearch'
 import MobileNavBar from './MobileNavBar'
-const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/logo.png"
-
+// const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/logo.png"
+const edgar_logos = ["https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda1.png", "https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda2.png"]
 
 export default class Navbar extends React.Component {
 	constructor(props) {
@@ -28,6 +28,7 @@ export default class Navbar extends React.Component {
 
 	render() {
 		var current_user = AppStore.getCurrentUser()
+		var rand_logo = edgar_logos[Math.floor(Math.random() * edgar_logos.length)];
 
 		return (
 				<div>
@@ -36,7 +37,7 @@ export default class Navbar extends React.Component {
 							<div className = "row">
 								<div className = "col-xs-2 col-sm-1 col-md-1 col-lg-1" id = "logo-column">
 									<a href = "/">
-										<img className = "edgar-logo" src = {edgar_logo}/>
+										<img className = "edgar-logo" src = {rand_logo}/>
 									</a>
 								</div>
 								<div className = "vcenter col-xs-offset-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-4 col-sm-6 col-md-6 col-lg-6">
