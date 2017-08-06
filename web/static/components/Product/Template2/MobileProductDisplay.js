@@ -212,6 +212,8 @@ export default class MobileProductDisplay extends React.Component {
 								</div>
 							</div>
 						}
+
+
 								
 
 
@@ -220,7 +222,31 @@ export default class MobileProductDisplay extends React.Component {
 						getProductInformation = {this.props.getProductInformation}
 						item_in_stock = {this.state.item_in_stock}
 						checkItemInStock = {this.checkItemInStock.bind(this)}
-						product = {this.props.product}/>			
+						product = {this.props.product}/>
+
+
+						<div className="row">
+							<div className = "col-xs-12"
+							dangerouslySetInnerHTML={{__html: product.quadrant1}}/>
+						</div>
+						<div className="row">
+							<div className = "col-xs-12"
+							dangerouslySetInnerHTML = {{__html : product.quadrant2}}/>
+						</div>
+
+						<hr/>
+
+						<div className="row">
+							<div className = "col-xs-12"
+							dangerouslySetInnerHTML = {{__html : product.quadrant3}}/>
+						</div>
+
+						<div className="row">
+							<div className = "col-xs-12"
+							dangerouslySetInnerHTML = {{__html : product.quadrant4}}/>
+						</div>
+
+
 					</div>
 
 		);
