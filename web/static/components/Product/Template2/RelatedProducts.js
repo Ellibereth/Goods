@@ -53,7 +53,6 @@ export default class RelatedProducts extends React.Component {
 				<HomeProductPreview product = {product}/>
 			)
 		return (
-			<div className ="container-fluid">
 				<div className = "col-sm-12 col-md-12 col-lg-12">
 					<div className = "top-buffer"/>
 					<div className = "row home-product-group-header-row">
@@ -66,7 +65,6 @@ export default class RelatedProducts extends React.Component {
 						{products}	
 					</div>
 				</div>
-			</div>	
 		);
 	}
 }
