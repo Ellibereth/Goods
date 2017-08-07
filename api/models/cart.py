@@ -11,12 +11,13 @@ from api.utility.membership_tiers import MembershipDiscount
 # this class should be a user's shopping cart
 # as a list of CartItems
 class Cart:
-	def __init__(self, user):
+	def __init__(self, user, discount_code = None):
 		self.account_id = user.account_id
 		self.items = CartItem.query.filter(CartItem.account_id == user.account_id,
 				 CartItem.num_items > 0).all()
 		self.membership_tier = user.membership_tier
 		self.items_price = self.getCartItemsPrice()
+		self.discount_code = discount_code
 		
 
 	def getCartItemsPrice(self):

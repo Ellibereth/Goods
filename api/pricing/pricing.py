@@ -3,6 +3,7 @@
 
 from api.models.market_product import MarketProduct
 from api.utility.membership_tiers import MembershipDiscount
+from api.utility.discount_codes import DiscountCode
 
 FLAT_SHIPPING_PRICE = 500
 
