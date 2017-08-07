@@ -45,7 +45,7 @@ Linda's Color Scheme
 
 
 .navbar-brand.mobile {
-	padding-left: 8px;
+	padding-left: 12px;
 	padding-top: 6px;
 	padding-bottom: 6px;
 }
@@ -223,17 +223,6 @@ Linda's Color Scheme
 	color : black;
 }
 
-.cart-image-display {
-	max-height: 80px;
-	max-width: 80px;
-	height: auto;
-	width: auto;
-}
-
-.cart-checkout-preview {
-	border-color : black;
-}
-
 .address-checkout-preview {
 	padding: 10px;
 }
@@ -250,45 +239,7 @@ Linda's Color Scheme
 	text-align: center;
 }
 
-.cart-item-price-text  {
-	color : var(--LightBlue);
-}
-	
 
-.cart-remove-item-icon {
-	color : var(--LightRed);
-	cursor : pointer;
-	font-size: 14px;
-}
-
-.cart-remove-item-icon:hover {
-	opacity: 0.7
-}
-
-.cart-title {
-	font-size: 36px
-}
-
-.span-block {
-	display: block;
-}
-
-.checkout-item-selected{
-	color: var(--LightRed)    ;
-}
-
-.clickable-text {
-	cursor : pointer;
-	color: var(--LightBlue);
-}
-
-.clickable-text:hover {
-	text-decoration:underline;
-}
-
-.checkout-container{
-	opacity : 1;
-}
 
 .faded{
 	opacity: 0.40
@@ -479,45 +430,8 @@ Linda's Color Scheme
 	padding : 8px;
 }
 
-.checkout-button{
-	width: 95%;
-	background-color: var(--DarkBlue);
-	color: white;
-}
 
-.checkout-button.block-checkout {
-	pointer-events: all !important;
-	text-decoration: line-through !important;
-	color: var(--LightRed) !important;
-	border-color: var(--LightRed) !important;
-}
-.checkout-button.block-checkout:hover {
-	background-color: white !important;
-	color: var(--LightRed) !important;
-	border-color: var(--LightRed) !important;
-}
 
-.checkout-price-amount-text{
-	font-size: 14px;
-}
-
-.checkout-price-label-text{
-	font-size: 14px;
-}
-
-.checkout-price-last-row{
-	font-size: 24px;
-	color : var(--DarkRed);
-}
-
-.checkout-footer-text{
-	font-size: 12px;
-	text-align: center;
-}
-
-.checkout-notice-of-terms-text{
-	font-size: 12px;
-}
 
 .support-panel-body{
 	padding: 25px;
@@ -538,30 +452,7 @@ Linda's Color Scheme
 	color : white !important;
 }
 
-.cart-column-title{
-	font-size: 14px;
-}
 
-.checkout-section-title {
-	font-size: 18px;
-}
-
-.cart-item-text {
-	font-size: 14px;
-}
-
-.checkout-select-title{
-	font-size: 16px
-}
-
-
-.checkout-card-details {
-	font-size:16px;
-}
-
-.checkout-address-details {
-	font-size:16px;
-}
 
 .order-history-panel-header{
 	font-size: 18px;
@@ -844,7 +735,7 @@ Linda's Color Scheme
 	padding-top:8px;
 }
 
-@media screen and (max-width: 765px) {
+@media screen and (max-width: 600px) {
 
 	.account-panel {
 		padding: 0px !important;
@@ -915,6 +806,122 @@ Linda's Color Scheme
 }
 
 
+.cart-image-display {
+	max-height: 80px;
+	max-width: 80px;
+	height: auto;
+	width: auto;
+}
+
+.cart-checkout-preview {
+	border-color : black;
+}
+
+
+.checkout-button{
+	width: 95%;
+	background-color: var(--DarkBlue);
+	color: white;
+}
+
+.checkout-button.block-checkout {
+	pointer-events: all !important;
+	text-decoration: line-through !important;
+	color: var(--LightRed) !important;
+	border-color: var(--LightRed) !important;
+}
+.checkout-button.block-checkout:hover {
+	background-color: white !important;
+	color: var(--LightRed) !important;
+	border-color: var(--LightRed) !important;
+}
+
+.checkout-price-amount-text{
+	font-size: 14px;
+}
+
+.checkout-price-label-text{
+	font-size: 14px;
+}
+
+.checkout-price-last-row{
+	font-size: 24px;
+	color : var(--DarkRed);
+}
+
+.checkout-footer-text{
+	font-size: 12px;
+	text-align: center;
+}
+
+.checkout-notice-of-terms-text{
+	font-size: 12px;
+}
+
+.cart-column-title{
+	font-size: 14px;
+}
+
+.checkout-section-title {
+	font-size: 18px;
+}
+
+.checkout-select-title{
+	font-size: 16px
+}
+
+
+.checkout-card-details {
+	font-size:16px;
+}
+
+.checkout-address-details {
+	font-size:16px;
+}
+
+.cart-item-text {
+	font-size: 14px;
+}
+
+.cart-item-price-text  {
+	color : var(--LightBlue);
+}
+
+.cart-remove-item-icon {
+	color : var(--LightRed);
+	cursor : pointer;
+	font-size: 14px;
+}
+
+.cart-remove-item-icon:hover {
+	opacity: 0.7
+}
+
+.cart-title {
+	font-size: 36px
+}
+
+.span-block {
+	display: block;
+}
+
+.checkout-item-selected{
+	color: var(--LightRed)    ;
+}
+
+.clickable-text {
+	cursor : pointer;
+	color: var(--LightBlue);
+}
+
+.clickable-text:hover {
+	text-decoration:underline;
+}
+
+.checkout-container{
+	opacity : 1;
+}
+
 @media(max-width:600px) {
 	.responsive-site .inviteWrapper #resInviteForm{
 		max-width: 100% !important;
@@ -937,7 +944,132 @@ Linda's Color Scheme
 		font-size: 15px;
 	}
 
-	.mobile-footer-links a:hover {
-
+	.cart-image-display {
+		width: 90%;
+		height: auto;
 	}
+
+	.cart-checkout-preview {
+		border-color : black;
+	}
+
+	.checkout-button{
+		width: 95%;
+		background-color: var(--DarkBlue);
+		color: white;
+	}
+
+	.checkout-button.block-checkout {
+		pointer-events: all !important;
+		text-decoration: line-through !important;
+		color: var(--LightRed) !important;
+		border-color: var(--LightRed) !important;
+	}
+	.checkout-button.block-checkout:hover {
+		background-color: white !important;
+		color: var(--LightRed) !important;
+		border-color: var(--LightRed) !important;
+	}
+
+	.checkout-price-amount-text{
+		font-size: 8px;
+	}
+
+	.checkout-price-label-text{
+		font-size: 8px;
+	}
+
+	.checkout-price-last-row{
+		font-size: 15px;
+		color : var(--DarkRed);
+	}
+
+	.checkout-footer-text{
+		font-size: 8px;
+		text-align: center;
+	}
+
+	.checkout-notice-of-terms-text{
+		font-size: 8px;
+	}
+
+	.cart-column-title{
+		font-size: 8px;
+	}
+
+	.checkout-section-title {
+		font-size: 12px;
+	}
+
+	.checkout-select-title{
+		font-size: 10px
+	}
+
+
+	.checkout-card-details {
+		font-size:10px;
+	}
+
+	.checkout-address-details {
+		font-size:10px;
+	}
+
+	.cart-item-text {
+		font-size: 8px;
+	}
+
+	.cart-item-price-text  {
+		color : var(--LightBlue);
+	}
+		
+
+	.cart-remove-item-icon {
+		color : var(--LightRed);
+		cursor : pointer;
+		font-size: 8px;
+	}
+
+	.cart-remove-item-icon:hover {
+		opacity: 0.7
+	}
+
+	.cart-title {
+		font-size: 20px;
+	}
+
+	.span-block {
+		display: block;
+	}
+
+	.checkout-item-selected{
+		color: var(--LightRed)    ;
+	}
+
+	.clickable-text {
+		cursor : pointer;
+		color: var(--LightBlue);
+	}
+
+	.clickable-text:hover {
+		text-decoration:underline;
+	}
+
+	.checkout-container{
+		opacity : 1;
+	}
+
+	h4 {
+		font-size: 10px !important;
+	}
+
+	.clickable-text {
+		font-size:10px;
+	}
+	.payment-info {
+		font-size: 10px;
+	}
+	.checkout-section-title{
+		font-size: 10px;
+	}
+	
 }

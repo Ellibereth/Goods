@@ -440,7 +440,7 @@ export default class CheckoutPage extends React.Component {
 							</div>
 						</div>
 
-						<div className = "col-sm-3 col-md-3 col-lg-3">
+						<div className = "col-xs-12 col-sm-3 col-md-3 col-lg-3">
 							<div className="panel panel-default">
 								<div className="panel-body">
 										<div className = "row text-center">
