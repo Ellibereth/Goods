@@ -44,6 +44,16 @@ Linda's Color Scheme
 }*/
 
 
+.navbar-brand.mobile {
+	padding-left: 8px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.mobile-logo {
+	height: 90%;
+}
+
 .darker-heading {
 	background-color: #cacaca !important;
 }

@@ -5,7 +5,7 @@ import AccountDropdown from './AccountDropdown'
 import NavbarSearch from './NavbarSearch'
 import MobileNavBar from './MobileNavBar'
 // const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/logo.png"
-const edgar_logos = ["https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda1.png", "https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda2.png"]
+const edgar_logos = ["https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda3.png"]
 
 export default class Navbar extends React.Component {
 	constructor(props) {

@@ -5,6 +5,7 @@ var Link = require('react-router').Link;
 import AppStore from '../../stores/AppStore.js';
 import AppActions from '../../actions/AppActions.js';
 
+const edgar_logo = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda3.png"
 export default class MobileNavBar extends React.Component {
 	constructor(props) {
 		super(props);
@@ -62,7 +63,7 @@ export default class MobileNavBar extends React.Component {
 		return (
 				<nav className = "nav navbar-default navbar-mobile">
 					<div className = "container-fluid">
-						<div className="navbar-header mobile">
+						<div style = {{"backgroundColor" : "white"}} className="navbar-header mobile">
 							<button type="button" className="navbar-toggle collapsed navbar-mobile-dropdown-toggle" data-toggle="collapse"
 							 data-target=".mobile-nav-menu" aria-expanded="false" aria-controls="navbar">
 								<span className="sr-only">Toggle navigation</span>
@@ -70,7 +71,7 @@ export default class MobileNavBar extends React.Component {
 								<span className="icon-bar"></span>
 								<span className="icon-bar"></span>
 							</button>
-							<a className = "navbar-brand mobile" href="/">Edgar USA</a>
+							<a className = "navbar-brand mobile" href="/"><img className = "mobile-logo" src = {edgar_logo}/></a>
 						</div>
 						<div id = "mobile-nav" 
 						className = "navbar-collapse collapse mobile-nav-menu"
