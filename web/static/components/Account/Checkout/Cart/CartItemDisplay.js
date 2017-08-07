@@ -100,7 +100,7 @@ export default class CartItemDisplay extends React.Component {
 		limit = Math.max(limit, this.props.item.num_items)
 		for (var i = 1; i <= limit && i <= 10; i++){
 			if (this.props.item.num_items == i){
-				num_items_options.push(<option selected value = {i}> {i} </option>)
+				num_items_options.push(<option selected value = {i}>{i}</option>)
 			}
 			else {
 				num_items_options.push(<option value = {i}> {i} </option>)
@@ -126,15 +126,21 @@ export default class CartItemDisplay extends React.Component {
 							<span className = "cart-item-text"> ${formatCurrentPrice(item)} </span>
 						</div>
 
-						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
-							<form>
-								<div class="form-group">
-								  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
-								    {num_items_options}
-								  </select>
-								</div>
-							</form>
+						<div className = "hidden-xs col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
+							  <select onChange = {this.handleQuantityChange.bind(this)} 
+							  className="checkout-quantity-select "
+							  >
+							    {num_items_options}
+							  </select>
 						</div>
+						<div className = "col-xs-2 hidden-sm hidden-lg hidden-md vcenter hcenter ">
+							  <select onChange = {this.handleQuantityChange.bind(this)} 
+							  className="checkout-quantity-select"
+							  >
+							    {num_items_options}
+							  </select>
+						</div>
+
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
 							<span className = "cart-item-text"> ${formatPrice((getCurrentPrice(item) *  item.num_items).toFixed(2))}  </span>
 						</div>

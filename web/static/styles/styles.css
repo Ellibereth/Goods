@@ -1015,7 +1015,7 @@ Linda's Color Scheme
 	}
 
 	.cart-item-text {
-		font-size: 8px;
+		font-size: 8px !important;
 	}
 
 	.cart-item-price-text  {
@@ -1070,6 +1070,13 @@ Linda's Color Scheme
 	}
 	.checkout-section-title{
 		font-size: 10px;
+	}
+
+	.checkout-quantity-select {
+		font-size: 8px;
+		border-width: 1px;
+		border-color: #999;
+		border-radius: 2px;
 	}
 	
 }
