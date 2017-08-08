@@ -112,6 +112,9 @@ def updateProductInfo(admin_user):
 	
 	product_id = request.json.get(Labels.ProductId)
 	product = request.json.get(Labels.Product)
+	sale_end_date = product.get('sale_end_date')
+	print(sale_end_date)
+	
 	name = request.json.get(Labels.Name)
 	tags = request.json.get(Labels.Tags)
 

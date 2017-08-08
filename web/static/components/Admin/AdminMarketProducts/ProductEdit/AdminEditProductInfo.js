@@ -80,13 +80,11 @@ export default class AdminEditProductInfo extends React.Component {
 		if (!this.state.product) return <div/>;
 
 
-		var input_forms = form_fields.map((field, index) => {
-				if(field != "sale_end_date"){
-					return <AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
-					value = {this.state.product[field]} field = {field} label = {form_labels[index]}
-					input_type = {input_types[index]}/>
-				}
-			})
+		var input_forms = form_fields.map((field, index) => 
+				<AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+				value = {this.state.product[field]} field = {field} label = {form_labels[index]}
+				input_type = {input_types[index]}/>
+			)
 
 
 		// allow us to edit invetory here for single products

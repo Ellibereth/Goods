@@ -57,7 +57,6 @@ export default class ProductListingPage extends React.Component {
 		return (
 				<PageContainer>
 					<div id = "search-container" className = "container-fluid">
-						<div className = "container">
 							{
 								this.state.is_loading
 								?
@@ -67,13 +66,13 @@ export default class ProductListingPage extends React.Component {
 									<div className = "row search-result-amount-text">
 										{display_title}
 									</div> 
+									<div className = "small-buffer"/>
 									<div className = "row">
 										{products_display}
 									</div>
 								</div>
 							}
 							
-						</div>
 					</div>
 				</PageContainer>
 		);

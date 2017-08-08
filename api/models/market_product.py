@@ -248,7 +248,10 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.Manufacturer] = self.manufacturer
 		public_dict[Labels.Inventory] = self.inventory
-		public_dict[Labels.SaleEndDate] = self.sale_end_date
+		if self.sale_end_date:
+			public_dict[Labels.SaleEndDate] = self.sale_end_date.strftime("%Y-%m-%dT%H:%M")
+		else:
+			public_dict[Labels.SaleEndDate] = None
 		public_dict[Labels.DateCreated] = self.date_created
 		
 		public_dict[Labels.ProductId] = self.product_id

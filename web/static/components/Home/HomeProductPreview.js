@@ -9,8 +9,9 @@ export default class HomeProductPreview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-
+			countdown_time : null,
 		}
+		this.countdown_interval = setInterval(this.updateCountdown.bind(this), 1000)	
 	}
 
 	componentDidMount () {
@@ -23,6 +24,38 @@ export default class HomeProductPreview extends React.Component {
 		}
 		ga('ec:addImpression', product_object);
 		
+	}
+
+	updateCountdown() {
+		if (this.props.product){
+			if (this.props.product.sale_end_date){
+
+				// Get todays date and time
+				var now = new Date();
+
+				// Find the distance between now an the count down date
+				var string = this.props.product.sale_end_date
+				var sale_end_date = new Date(string)
+			  	var distance = sale_end_date - now;
+			  	// Time calculations for days, hours, minutes and seconds
+			  	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			  	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			  	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			  	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			  	if (days == 0){
+			  		// Display the result in the element with id="demo"
+				  	var countdown_time = days + "d " + hours + "h "
+				  		+ minutes + "m " + seconds + "s ";
+				  	this.setState({countdown_time : countdown_time})
+					// If the count down is finished, write some text 
+					if (distance < 0) {
+				    	clearInterval(this.countdown_interval);
+				    	this.setState({countdown_time : "EXPIRED"})
+				  	}
+			  	}
+			  	
+			}
+		}
 	}
 
 	itemInStock(product){
@@ -114,6 +147,10 @@ export default class HomeProductPreview extends React.Component {
 						</span>
 					</div> 
 					{price_row}
+					<div
+						className = "home-product-preview-manufacturer-name">
+						{this.state.countdown_time}
+					</div>
 				</div>
 			</div>
 		);
