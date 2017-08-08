@@ -73,13 +73,16 @@ export default class DeleteAccountForm extends React.Component {
 
 
 	render() {
-		var text_inputs = form_inputs.map((form_input, index) => {
-			return (<SettingsInput onChange = {this.onTextInputChange.bind(this)}
-				value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
-				input_type = {input_types[index]}
-				name = {form_input}
-				label_col_size = "3" />)
-		})
+		var user = AppStore.getCurrentUser()
+		if (!user.fb_id) {
+			var text_inputs = form_inputs.map((form_input, index) => {
+				return (<SettingsInput onChange = {this.onTextInputChange.bind(this)}
+					value = {this.state[form_input]} field = {form_input} label = {form_labels[index]}
+					input_type = {input_types[index]}
+					name = {form_input}
+					label_col_size = "3" />)
+			})
+		}
 
 		return (
 				<form onSubmit = {this.handleDeleteClick.bind(this)} className = "form-horizontal">

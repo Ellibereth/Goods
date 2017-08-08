@@ -50,7 +50,8 @@ export default class RegisterPage extends React.Component {
 											<div className="newLoginProcess edgar-row">	
 												<LoginBox 
 												setFormState = {this.setFormState.bind(this)}
-												form_state = {this.state.form_state} />
+												form_state = {this.state.form_state}
+												setLoading = {this.setLoading.bind(this)} />
 												<div className="clear">
 												</div>
 											</div>

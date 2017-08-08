@@ -38,49 +38,55 @@ export default class LoginBox extends React.Component {
 
 	loginUser(event){
 		event.preventDefault()
-		
+		if (!this.state.disabled) {
+			this.setState({disabled : true})
+			this.props.setLoading(true)
 
-		var data = {
-			'email' : this.state.login_email,
-			'password' : this.state.login_password,
-		}
-		var user = AppStore.getCurrentUser() 
-		if (user.is_guest) {
-			data['guest_jwt'] = localStorage.jwt
-		} 
+			var data = {
+				'email' : this.state.login_email,
+				'password' : this.state.login_password,
+			}
+			var user = AppStore.getCurrentUser() 
+			if (user.is_guest) {
+				data['guest_jwt'] = localStorage.jwt
+			} 
 
-		var form_data = JSON.stringify(data)
-		$.ajax({
-			type: "POST",
-			url: "/checkLogin",
-			data: form_data,
-			success: function(data) {
-				if (!data.success) {
-					swal(data.error.title, data.error.text, data.error.type)
-				}
-				else {
-					ga('send', 'event', {
-							eventCategory: 'Account',
-							eventAction: 'Login',
-							eventLabel: data.user.email
-					});
-
-					AppActions.addCurrentUser(data.user, data.jwt)
-					var target = getParameterByName('target')
-					if (!target){
-						window.location = '/'
+			var form_data = JSON.stringify(data)
+			$.ajax({
+				type: "POST",
+				url: "/checkLogin",
+				data: form_data,
+				success: function(data) {
+					if (!data.success) {
+						swal(data.error.title, data.error.text, data.error.type)
 					}
 					else {
-						window.location = '/' + target
+						ga('send', 'event', {
+								eventCategory: 'Account',
+								eventAction: 'Login',
+								eventLabel: data.user.email
+						});
+
+						AppActions.addCurrentUser(data.user, data.jwt)
+						var target = getParameterByName('target')
+						if (!target){
+							window.location = '/'
+						}
+						else {
+							window.location = '/' + target
+						}
 					}
-				}
-				this.setState({disabled : false})
-			}.bind(this),
-			error : function(){
-			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+					this.setState({disabled : false})
+					this.props.setLoading(false)
+				}.bind(this),
+				error : function(){
+					this.props.setLoading(false)
+					this.setState({disabled : false})
+				},
+				dataType: "json",
+				contentType : "application/json; charset=utf-8"
+			});
+		}
 
 	}
 
@@ -93,7 +99,9 @@ export default class LoginBox extends React.Component {
 
 	registerUser(event){
 		event.preventDefault()
+
 		if (!this.state.disabled) {
+			this.props.setLoading(true)
 			this.setState({disabled : true})
 			var data = {}
 			data = {
@@ -128,12 +136,14 @@ export default class LoginBox extends React.Component {
 						)
 					}
 					this.setState({disabled : false})
+					this.props.setLoading(false)
 				}.bind(this),
 				error : function(){
 					ga('send', 'event', {
 						eventCategory: ' server-error',
 						eventAction: 'registerUserAccount'
 					});
+					this.props.setLoading(false)
 					// this.props.setLoading(false)
 					this.setState({disabled : false})
 				}.bind(this),
@@ -199,12 +209,15 @@ export default class LoginBox extends React.Component {
 										<span id="login_user_loader" style={{"bottom":"17px",position:"absolute",left:"99px","*bottom": "21px","*left": "140px"}}></span>
 										<span className = "hidden-xs">
 											<div style = {{"float" : "right"}}>
-												{/* <FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/> */}
+												<FacebookConnect  
+												setLoading = {this.props.setLoading}
+												button_text = "LOGIN WITH FACEBOOK"/>
 											</div>
 										</span>
 										<span className = "hidden-sm hidden-md hidden-lg">
 											<div style=  {{"paddingTop" : "48px"}}>
-												{/* <FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/> */}
+												<FacebookConnect setLoading = {this.props.setLoading}
+												 button_text = "LOGIN WITH FACEBOOK"/>
 											</div>
 										</span>
 									</div>
@@ -267,12 +280,16 @@ export default class LoginBox extends React.Component {
 								<input onClick = {this.registerUser.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
 								<span className = "hidden-xs">
 									<div style = {{"float" : "right"}}>
-										{/* <FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/> */}
+										 <FacebookConnect 
+										 setLoading = {this.props.setLoading}
+										  button_text = "LOGIN WITH FACEBOOK"/> 
 									</div>
 								</span>
 								<span className = "hidden-sm hidden-md hidden-lg">
 									<div style=  {{"paddingTop" : "12px"}}>
-										{/* <FacebookConnect  button_text = "LOGIN WITH FACEBOOK"/> */}
+										<FacebookConnect  
+										setLoading = {this.props.setLoading}
+										button_text = "LOGIN WITH FACEBOOK"/> 
 									</div>
 								</span>
 							</div>
