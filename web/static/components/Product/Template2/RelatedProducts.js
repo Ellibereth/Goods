@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+import Slider from 'react-slick';
 import HomeProductPreview from '../../Home/HomeProductPreview'
 
 export default class RelatedProducts extends React.Component {
@@ -42,6 +43,8 @@ export default class RelatedProducts extends React.Component {
 		this.getRelatedProducts(nextProps.product.product_id)	
 	}
 
+
+
 	
 
 
@@ -50,8 +53,11 @@ export default class RelatedProducts extends React.Component {
 			return <div/>
 		}
 		var products = this.state.products.map((product, index) =>
-				<HomeProductPreview product = {product}/>
+				<div><HomeProductPreview product = {product}/></div>
 			)
+		var slidesToShow = Math.min(5, products.length)
+
+
 		return (
 				<div className = "col-sm-12 col-md-12 col-lg-12">
 					<div className = "top-buffer"/>
@@ -62,7 +68,17 @@ export default class RelatedProducts extends React.Component {
 					</div>
 					<div className = "small-buffer"/>
 					<div className = "row">
-						{products}	
+						{products.length > 5 ? 
+								<Slider arrows = {true} infinite = {true}
+								speed = {500} slidesToShow = {slidesToShow}
+								slidesToScroll = {1}
+								className = 'react-slick-slides'
+								>
+									{products}
+								</Slider> 
+						:
+							<div>{products}</div>
+						}
 					</div>
 				</div>
 		);

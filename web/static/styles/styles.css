@@ -44,6 +44,19 @@ Linda's Color Scheme
 }*/
 
 
+.react-slick-slides .slick-arrow:before {
+	color: var(--DarkBlue);
+}
+
+.react-slick-slides .slick-slide {
+	
+}
+
+.react-slick-slides .slick-arrow {
+	top:36% !important;
+}
+
+
 .navbar-brand.mobile {
 	padding-left: 12px;
 	padding-top: 6px;
