@@ -4,6 +4,7 @@ import ProductAddToCart from './ProductAddToCart'
 import {formatPrice} from '../../Input/Util.js'
 const src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 const INVENTORY_ALERT_LIMIT = 5
+import ImageZoom from 'react-medium-image-zoom'
 
 export default class ProductTopRow extends React.Component {
 	constructor(props) {
@@ -159,9 +160,9 @@ export default class ProductTopRow extends React.Component {
 						<img onClick = {this.selectImage.bind(this, index, image.image_id)} 
 						src={src_base + image.image_id} 
 						className = "product-more-images pthumbimg center-block img-responsive" />
-							<div className="material-mask">
-								<div className="material-inner-mask"></div>
-							</div>
+						<div className="material-mask">
+							<div className="material-inner-mask"></div>
+						</div>
 					</li>
 		})
 	}
@@ -200,8 +201,20 @@ export default class ProductTopRow extends React.Component {
 										// className="zoomCursor"
 									>
 										<li>
-											<img className="productPgMainImage edgar-img-responsive js-show-fs" src= {main_image_id}/>
-									 	</li>
+											
+											<ImageZoom
+												image={{
+												  src: main_image_id,
+												  alt: 'Golden Gate Bridge',
+												  className: 'productPgMainImage edgar-img-responsive js-show-fs',
+												}}
+												zoomImage={{
+												  src: main_image_id,
+												}}
+											  />
+											
+											{/* <img className="productPgMainImage edgar-img-responsive js-show-fs" src= {main_image_id}/> */}
+										</li>
 									</div>
 								</div>
 

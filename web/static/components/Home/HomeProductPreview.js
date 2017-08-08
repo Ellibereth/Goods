@@ -4,7 +4,6 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import {formatPrice} from '../Input/Util'
 
-
 export default class HomeProductPreview extends React.Component {
 	constructor(props) {
 		super(props);
