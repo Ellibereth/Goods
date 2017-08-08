@@ -3,40 +3,20 @@ var ReactDOM = require('react-dom');
 import HomeProductPreview from './HomeProductPreview'
 import HomePageSingleImage from './HomePageSingleImage'
 
-const HOME_TAG = "Home_Page"
+
 
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			products : [],
 		}
 	}
 
 	componentDidMount(){
-		this.loadProducts.bind(this)(HOME_TAG)
+
 	}
 
-	loadProducts(tag){
-		var form_data = JSON.stringify({
-			tag : tag
-		})
-		$.ajax({
-			type: "POST",
-			data: form_data,
-			url: "/getProductsByListingTag",
-			success: function(data) {
-				if (data.success) {
-					this.setState({
-						products: data.products,
-						is_loading: false
-					})
-				}
-			}.bind(this),
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		})
-	}
+	
 
 
 	orderProducts(product_list) {
@@ -53,7 +33,7 @@ export default class HomePageMainContainer extends React.Component {
 	}
 	
 	render() {
-		var ordered_products = this.orderProducts(this.state.products)
+		var ordered_products = this.orderProducts(this.props.products)
 		var products = ordered_products.map((product, index) =>
 				<HomeProductPreview product = {product}/>
 			)

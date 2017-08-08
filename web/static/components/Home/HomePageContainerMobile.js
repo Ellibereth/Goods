@@ -13,28 +13,6 @@ export default class HomePageContainerMobile extends React.Component {
 	}
 
 	componentDidMount(){
-		this.loadProducts.bind(this)(HOME_TAG)
-	}
-
-	loadProducts(tag){
-		var form_data = JSON.stringify({
-			tag : tag
-		})
-		$.ajax({
-			type: "POST",
-			data: form_data,
-			url: "/getProductsByListingTag",
-			success: function(data) {
-				if (data.success) {
-					this.setState({
-						products: data.products,
-						is_loading: false
-					})
-				}
-			}.bind(this),
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		})
 	}
 
 
@@ -52,7 +30,7 @@ export default class HomePageContainerMobile extends React.Component {
 	}
 	
 	render() {
-		var ordered_products = this.orderProducts(this.state.products)
+		var ordered_products = this.orderProducts(this.props.products)
 		var products = ordered_products.map((product, index) =>
 				<div className = "row">
 					<HomeProductPreviewMobile product = {product}/>
