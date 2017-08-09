@@ -15,6 +15,7 @@ from api.security.tracking import LoginAttempt
 from api.utility.error import ErrorMessages
 from api.general_api import decorators
 from validate_email import validate_email
+from api.models.launch_list_email import LaunchListEmail
 
 
 account_api = Blueprint('account_api', __name__)
@@ -423,3 +424,21 @@ def handleFacebookUser():
 	else:
 		return JsonUtil.failureWithOutput(register_user_response)
 	return JsonUtil.failure()
+
+
+@account_api.route('/signUpForLandingList', methods = ['POST'])
+def signUpForLandingList():
+	email = request.json.get(Labels.Email)
+	email_matches = LaunchListEmail.query.filter_by(email = email).first()
+	if email_matches:
+		return JsonUtil.failure("You've already subscribed")
+
+	if not validate_email(email):
+		return JsonUtil.failure("Invalid email, please try again")
+
+	try:
+		EmailLib.sendLaunchListEmail(email)
+	except Exception as e:
+		return JsonUtil.failure("Error sending email, please try again")		
+
+	return JsonUtil.success()

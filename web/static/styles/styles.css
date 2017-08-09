@@ -43,6 +43,7 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+
 .product-page-countdown {
 	font-size: 24px;
 	color : var(--LightRed);
@@ -709,28 +710,66 @@ Linda's Color Scheme
 }
 
 .landing-subscribe-container{
-	border-color : var(--LightBlue);
+	border-color : #337ab7;
 }
 
 .landing-subscribe-input:focus {
-	border-color: var(--LightBlue) !important;
+	border-color: #337ab7 !important;
 }
 
 .landing-subscribe-input{
-	border-color: var(--LightBlue) !important;
+	border-color: #337ab7 !important;
 }
 
 .landing-subscribe-button{
-	border-color: var(--LightBlue) !important;
-	background-color : var(--LightBlue) !important;
+	height: 100% !important;
+	border-color: #337ab7 !important;
+	background-color : #337ab7 !important;
 	color: white;
+	    border-color: #337ab7 !important;
+    background-color: #337ab7 !important;
+    color: white;
+    z-index: 2;
+    margin-left: -1px; 
+    display: inline-block !important;
+    padding: 6px 12px !important;
+    margin-bottom: 0 !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.42857143 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    -ms-touch-action: manipulation !important;
+    touch-action: manipulation !important;
+    cursor: pointer;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    border-radius: 4px !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    position: relative !important;
+}
+
+.landing-subscribe-button:focus{
+	border-color: #337ab7 !important;
+	background-color : #337ab7 !important;
+	color: white !important;
+	opacity : 0.7 !important;
 }
 
 .landing-container {
 	font-family: Arial;
 }
 
-
+.landing-subscribe-button:hover{
+	cursor: pointer;
+	opacity : 0.7;
+}
 
 
 /* This should be renamed, don't forget about it later*/

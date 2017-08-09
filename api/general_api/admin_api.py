@@ -13,6 +13,9 @@ from api.models.product_image import ProductImage
 from api.general_api import decorators
 from api.utility.error import ErrorMessages
 from api.models.order import Order
+from api.models.launch_list_email import LaunchListEmail
+
+
 import base64
 from api.s3.s3_api import S3
 

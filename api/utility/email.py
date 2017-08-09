@@ -287,5 +287,28 @@ class EmailLib:
 		smtpserver.send_message(msg)
 		smtpserver.close()
 
+	def sendLaunchListEmail(email):
+		sender = 'darek@manaweb.com'
+		passW = "sqwcc23mrbnnjwcz"
+		smtpserver = smtplib.SMTP('smtp.fastmail.com',587)
+		smtpserver.ehlo()
+		smtpserver.starttls()
+		smtpserver.ehlo
+		smtpserver.login(sender, passW)
+		msg = MIMEMultipart()
+		msg['Subject'] = "Thanks for Subscribing"
+		msg['From'] = "noreply@edgarusa.com"
+		msg['To'] = ", ".join(ADMIN_RECIPIENTS) + ", " + email
+
+		body = "<span style = \"display:block;font-size: 14px;\">Thanks for your interest in Edgar USA!</span> <br/>"
+		body = body + "<span style = \"display:block;font-size: 14px;\">We'll let you know when we launch.  Until then, you can contact us with any comments or suggestions at support@edgarusa.com. </span> <br/> "
+		body = body + "<span style = \"display:block;font-size: 14px;\">Thanks,</span> "
+		body = body + "<span style = \"display:block;font-size: 14px;\">The Edgar USA team</span>"
+		textPart = MIMEText(body, 'html')
+		msg.attach(textPart)
+		smtpserver.send_message(msg)
+		smtpserver.close()
+
+
 
 
