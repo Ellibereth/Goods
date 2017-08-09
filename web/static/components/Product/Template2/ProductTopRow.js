@@ -13,7 +13,8 @@ export default class ProductTopRow extends React.Component {
 			selected_image_id : "",
 			selected_image_index : 0,
 			item_in_stock : true,
-			can_add_to_cart : true
+			can_add_to_cart : true,
+			expired: false
 		}
 	}
 
@@ -27,8 +28,16 @@ export default class ProductTopRow extends React.Component {
 	
 
 	checkItemInStock(product, variant){
+		var now = new Date();
+		// if the item is expired it is not in stock
+		var string = product.sale_end_date
+		var sale_end_date = new Date(string)
+		if (!product.sale_end_date || now > sale_end_date) {
+			var item_in_stock = false
+			this.setState({expired : true})
+		}
 
-		if (product.has_variants) {
+		else if (product.has_variants) {
 			if (variant) {
 				var item_in_stock = (variant.inventory > 0)
 			}
@@ -223,10 +232,18 @@ export default class ProductTopRow extends React.Component {
 										<div id="productPricingDetails">
 											<div className="prodBFuyWrap newProductPgBuyList">
 												<ul className="prodBuyList">
-													{this.props.countdown_time && 
+													{this.props.countdown_time &&
 														<li>
 															<div className = "product-page-countdown">
 																{this.props.countdown_time} remaining
+															</div>
+														</li>
+													}
+
+													{(this.props.countdown_time == null && this.state.expired) &&
+														<li>
+															<div className = "product-page-countdown">
+																This product is no longer available
 															</div>
 														</li>
 													}

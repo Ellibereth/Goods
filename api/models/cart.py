@@ -3,6 +3,7 @@ from api.utility.table_names import TestTables
 from passlib.hash import argon2
 from api.models.shared_models import db
 import time
+import datetime
 from api.utility.labels import CartLabels as Labels
 from api.pricing.pricing import Pricing
 from api.models.market_product import MarketProduct
@@ -13,8 +14,20 @@ from api.utility.membership_tiers import MembershipDiscount
 class Cart:
 	def __init__(self, user, discount_code = None):
 		self.account_id = user.account_id
-		self.items = CartItem.query.filter(CartItem.account_id == user.account_id,
-				 CartItem.num_items > 0).all()
+
+		cart_items = CartItem.query.filter(CartItem.account_id == user.account_id,
+			CartItem.num_items > 0).all()
+		
+		self.items = []
+
+		for cart_item in cart_items:
+			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+			if this_product:
+				if this_product.sale_end_date:
+					if datetime.datetime.now() < this_product.sale_end_date :
+						self.items.append(cart_item)
+
+
 		self.membership_tier = user.membership_tier
 		self.items_price = self.getCartItemsPrice()
 		self.discount_code = discount_code
