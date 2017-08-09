@@ -20,7 +20,8 @@ export default class ProductTemplate2 extends React.Component {
 						<ProductTopRow
 						setLoading = {this.props.setLoading}
 						getProductInformation = {this.props.getProductInformation}
-						product = {this.props.product} />
+						product = {this.props.product}
+						countdown_time = {this.props.countdown_time} />
 						<div className="horizontal-line-wrap edgar-col-xs-60 no-padding"><hr className="bottom-margin-xs"/></div>
 						<ProductMiddleRow product = {this.props.product} />
 						<RelatedProducts product = {this.props.product} />
@@ -31,6 +32,7 @@ export default class ProductTemplate2 extends React.Component {
 						setLoading = {this.props.setLoading}
 						getProductInformation = {this.props.getProductInformation}
 						product = {this.props.product}
+						countdown_time = {this.props.countdown_time}
 					/>
 				</div>
 			</div>							

@@ -146,10 +146,12 @@ export default class HomeProductPreview extends React.Component {
 						</span>
 					</div> 
 					{price_row}
-					<div
+					{this.state.countdown_time && 
+						<div
 						className = "home-product-preview-manufacturer-name">
 						{this.state.countdown_time}
-					</div>
+						</div>
+					}
 				</div>
 			</div>
 		);

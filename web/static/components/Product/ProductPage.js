@@ -10,7 +10,41 @@ export default class ProductPage extends React.Component {
 			product : [],
 			invalid_product : true,
 			is_loading : true,
-			spinner_loading : false
+			spinner_loading : false,
+			countdown_time : null
+		}
+		this.countdown_interval = setInterval(this.updateCountdown.bind(this), 1000)	
+	}
+
+	updateCountdown() {
+		if (this.state.product){
+			if (this.state.product.sale_end_date){
+
+				// Get todays date and time
+				var now = new Date();
+
+				// Find the distance between now an the count down date
+				var string = this.state.product.sale_end_date
+				var sale_end_date = new Date(string)
+			  	var distance = sale_end_date - now;
+			  	// Time calculations for days, hours, minutes and seconds
+			  	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			  	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			  	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			  	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			  	if (days == 0){
+			  		// Display the result in the element with id="demo"
+				  	var countdown_time = hours + "h "
+				  		+ minutes + "m " + seconds + "s ";
+				  	this.setState({countdown_time : countdown_time})
+					// If the count down is finished, write some text 
+					if (distance < 0) {
+				    	clearInterval(this.countdown_interval);
+				    	this.setState({countdown_time : "EXPIRED"})
+				  	}
+			  	}
+			  	
+			}
 		}
 	}
 
@@ -70,6 +104,7 @@ export default class ProductPage extends React.Component {
 
 
 	componentDidMount(){
+
 		this.getProductInformation.bind(this)()
 		
 	}
@@ -108,7 +143,8 @@ export default class ProductPage extends React.Component {
 			var component = <ProductTemplate2 
 				setLoading = {this.setLoading.bind(this)}
 				getProductInformation = {this.getProductInformation.bind(this)}
-				product = {this.state.product}/>
+				product = {this.state.product}
+				countdown_time = {this.state.countdown_time}/>
 		}
 
 		return (

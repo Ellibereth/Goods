@@ -223,6 +223,15 @@ export default class ProductTopRow extends React.Component {
 										<div id="productPricingDetails">
 											<div className="prodBFuyWrap newProductPgBuyList">
 												<ul className="prodBuyList">
+													{this.props.countdown_time && 
+														<li>
+															<div className = "product-page-countdown">
+																{this.props.countdown_time} remaining
+															</div>
+														</li>
+													}
+
+
 													<li>
 														<div id="prdShareWithTitle">
 															<div className="floatLeft price-with-designers">

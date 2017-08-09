@@ -39,9 +39,9 @@ export default class RelatedProducts extends React.Component {
 		this.getRelatedProducts(this.props.product.product_id)
 	}
 
-	componentWillReceiveProps(nextProps){
-		this.getRelatedProducts(nextProps.product.product_id)	
-	}
+	// componentWillReceiveProps(nextProps){
+	// 	this.getRelatedProducts(nextProps.product.product_id)	
+	// }
 
 
 

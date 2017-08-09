@@ -43,6 +43,11 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+.product-page-countdown {
+	font-size: 24px;
+	color : var(--LightRed);
+	padding-bottom: 24px;
+}
 
 .react-slick-slides .slick-arrow:before {
 	color: var(--DarkBlue);
