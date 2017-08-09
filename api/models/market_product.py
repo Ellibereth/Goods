@@ -174,6 +174,9 @@ class MarketProduct(db.Model):
 
 	def getRelatedProductsByTag(self):
 		this_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
+		if len(this_product_tags) == 0:
+			return []
+			
 		merged_list = list()
 		for tag in this_product_tags:
 			product_matches = MarketProduct.getProductsByRelatedProductsTag(tag.tag)
@@ -182,9 +185,11 @@ class MarketProduct(db.Model):
 		all_matches = list()
 		# remove duplicates from the merged list
 		for product in merged_list:
-			if product.product_id not in hit_product_ids:
-				all_matches.append(product)
-				hit_product_ids.append(product.product_id)
+			if product.product_id != self.product_id:
+				if product.product_id not in hit_product_ids:
+					all_matches.append(product)
+					hit_product_ids.append(product.product_id)
+
 		random.shuffle(all_matches)
 		# this 0:5 is hard coded as a limit for now, will discuss limits 
 		# and filters moving forward

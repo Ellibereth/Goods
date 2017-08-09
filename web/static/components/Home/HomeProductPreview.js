@@ -43,7 +43,7 @@ export default class HomeProductPreview extends React.Component {
 			  	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 			  	if (days == 0){
 			  		// Display the result in the element with id="demo"
-				  	var countdown_time = days + "d " + hours + "h "
+				  	var countdown_time = hours + "h "
 				  		+ minutes + "m " + seconds + "s ";
 				  	this.setState({countdown_time : countdown_time})
 					// If the count down is finished, write some text 
