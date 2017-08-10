@@ -162,9 +162,23 @@ const checkAdmin = (nextState, replace) => {
 ReactDOM.render(    
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
-			<IndexRoute component={HomePage} />
-			<Route path= "eg/:product_id" component={ProductPage}/>
+			<IndexRoute component={LandingPage} />
+			
 
+			<Route path = "landing" component = {LandingPage}/>
+			<Route path = "support" component = {SupportPage}/>
+			<Route path= "privacy" component={PrivacyPolicyPage}/>
+			
+
+
+			{/* 
+			<Route path= "terms" component={TermsOfServicePage}/>
+			
+			<Route path = "contact" component = {ContactUsPage}/>
+			<Route path = "about" component = {AboutUsPage}/>
+			<Route path = "usa" component = {MadeInUsaPage}/>
+				
+			<Route path= "eg/:product_id" component={ProductPage}/>
 			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
@@ -177,8 +191,7 @@ ReactDOM.render(
 			<Route path = "settings" onEnter = {checkUser} component = {SettingsPage}/>
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
-			<Route path= "privacy" component={PrivacyPolicyPage}/>
-			<Route path= "terms" component={TermsOfServicePage}/>
+			
 			
 			<Route path = "updatePersonal" onEnter = {checkUser} component = {UpdatePersonalPage}/>
 			<Route path = "myOrders" onEnter = {checkUser} component = {OrderHistoryPage}/>
@@ -187,24 +200,24 @@ ReactDOM.render(
 			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>
-			<Route path = "support" component = {SupportPage}/>
+			
 			<Route path = "recoverAccount" component = {RecoveryPage}/>
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
-			<Route path = "landing" component = {LandingPage}/>
-			<Route path = "contact" component = {ContactUsPage}/>
-			<Route path = "about" component = {AboutUsPage}/>
+			
+			
 			<Route path = "requestProduct" component = {RequestProductPage}/>
 			<Route path = "faq" component = {FaqPage}/>
 			<Route path = "sales" component = {SalesPage}/> 
 			<Route path = "listings/:tag" component = {ProductListingsPage}/>
-			<Route path = "usa" component = {MadeInUsaPage}/>
 			<Route path = "suggestProduct" component = {SuggestProductPage}/>
 			<Route path = "careers" component = {CareersPage}/>
 			<Route path = "vendors" component = {VendorsPage}/>
 			<Route path = "sellWithEdgar" component = {SellWithEdgarPage}/>
 			<Route path = "returnPolicy" component = {ReturnPolicyPage}/>
-
 			<Route path= "*" component={PageNotFound} />  
+			*/}
+			
+			<Route path= "*" component={LandingPage} />  
 		</Route>
 	</Router>, 
 document.getElementById('app'));

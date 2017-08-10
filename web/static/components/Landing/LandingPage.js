@@ -118,11 +118,13 @@ export default class LandingPage extends React.Component {
 					</Modal.Body>
 					</Modal>
 				<div className="landing-floating-footer hidden-xs">
-					<a href="/about">About Us</a>
 					<a href="/privacy">Privacy</a>
 					<a href="/support">Contact Us</a>
+					{/* <a href="/about">About Us</a>
+					
 					<a href="/careers">Careers</a>
 					<a href="/usa">Made in USA</a>
+					*/}
 					
 				</div>	
 				<HomePage />
