@@ -1174,10 +1174,11 @@ Linda's Color Scheme
 	}
 
 	.landing-container {
-		height: 440px;
+		height: 400px;
 	}
 	.landing-subscribe-button{
 		font-size: 16px !important;
+		height: 44px !important;
 	}
 	.landing-subscribe-input {
 		font-size: 16px !important;

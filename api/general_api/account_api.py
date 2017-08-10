@@ -429,6 +429,8 @@ def handleFacebookUser():
 @account_api.route('/signUpForLandingList', methods = ['POST'])
 def signUpForLandingList():
 	email = request.json.get(Labels.Email)
+	if not email:
+		return JsonUtil.failure("Invalid email, please try again")
 	email_matches = LaunchListEmail.query.filter_by(email = email).first()
 	if email_matches:
 		return JsonUtil.failure("You've already subscribed")
