@@ -88,7 +88,7 @@ export default class LandingPage extends React.Component {
 							Sign up to get notified when we launch
 						</div>
 						<div className = "small-buffer"/> */}
-						<div className = "row">
+						<div className = "row hidden-xs">
 							<div className = "col-md-12 col-lg-8 col-md-offset-0 col-lg-offset-2">
 								<div className="input-group landing-subscribe-container">
 									<input tabindex = {1} onKeyPress = {this.handleKeyPress.bind(this)} 
@@ -103,6 +103,28 @@ export default class LandingPage extends React.Component {
 								</div>
 							</div>
 						</div>
+
+						<div className = "row hidden-sm hidden-md hidden-lg">
+							<div className = " col-xs-12">
+								<div className="input-group-lg landing-subscribe-container">
+									<input tabindex = {1} onKeyPress = {this.handleKeyPress.bind(this)} 
+									value = {this.state.email} onChange = {this.onEmailChange.bind(this)} type="text" 
+									className="form-control landing-subscribe-input" placeholder="Type your email here" />
+								</div>
+							</div>
+						</div>
+						<div className = "hidden-sm hidden-md hidden-lg top-buffer"/>
+						<div className = "row hidden-sm hidden-md hidden-lg">
+							<div className = "col-xs-12">
+								<div className="input-group landing-subscribe-container">
+									<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
+									type="button" className="landing-subscribe-button btn ">
+										Notify Me!
+									</button>
+								</div>
+							</div>
+						</div>
+
 						<div className = "top-buffer"/>
 						</div>
 					</div>
