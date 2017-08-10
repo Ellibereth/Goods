@@ -60,7 +60,7 @@ export default class LandingPage extends React.Component {
 			// backgroundImage : "url(" + PHOTO_SRC + ")",
 			// backgroundRepeat: "no-repeat",
 			// backgroundSize: "100% 100%",
-			height : "360px"
+			height : "380px"
 		}
 
 
