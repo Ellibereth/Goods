@@ -76,15 +76,19 @@ export default class LandingPage extends React.Component {
 						</div>
 						<div className = "row">
 							<div className = "landing-after-title-text">
-								Sign up to get notified when we launch
+							
+								Find the best American goods on Edgar USA
 							</div>
 						</div>
 						<div className = "top-buffer"/>
-						{/* <div className = "small-buffer"/>
-						<div className = "landing-middle-text">
-							Need stuff? 
+						<div className = "top-buffer"/>
+						<div className = "small-buffer"/>
+							<div className = "landing-after-title-text">
+							Sign up to get notified when we launch
 						</div>
-						
+						<div className = "top-buffer"/>
+						<div className = "top-buffer"/>
+						{/* 
 						<div className = "landing-middle-text">
 							Buy it now, pay for it later
 						</div>
@@ -108,6 +112,7 @@ export default class LandingPage extends React.Component {
 								</div>
 							</div>
 						</div>
+						<div className = "top-buffer"/>
 						</div>
 					</div>
 					</Modal.Body>
