@@ -61,6 +61,11 @@ def getProductsByListingTag():
 			if product.sale_end_date:
 				if product.sale_end_date < tomorrow and product.sale_end_date > present:
 					matching_products.append(product)
+
+	elif tag == "Home_Page":
+		all_products = MarketProduct.query.filter_by(active = True).all()
+		matching_products = [product for product in all_products if not product.isExpired()]
+
 	else:
 		matching_products = MarketProduct.getProductsByListingTag(tag)
 	

@@ -15,18 +15,14 @@ class Cart:
 	def __init__(self, user, discount_code = None):
 		self.account_id = user.account_id
 
-		cart_items = CartItem.query.filter(CartItem.account_id == user.account_id,
-			CartItem.num_items > 0).all()
+		cart_items = CartItem.query.filter(CartItem.account_id == user.account_id).all()
 		
 		self.items = []
 
 		for cart_item in cart_items:
 			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-			if this_product:
-				if this_product.sale_end_date:
-					if datetime.datetime.now() < this_product.sale_end_date :
-						self.items.append(cart_item)
-
+			if this_product.isAvailable():
+				self.items.append(cart_item)
 
 		self.membership_tier = user.membership_tier
 		self.items_price = self.getCartItemsPrice()

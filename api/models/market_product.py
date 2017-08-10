@@ -5,6 +5,7 @@ import time
 import random
 import string
 import json
+import datetime
 from api.utility.labels import MarketProductLabels as Labels
 from api.models.product_image import ProductImage
 from api.models.product_search_tag import ProductSearchTag
@@ -67,6 +68,34 @@ class MarketProduct(db.Model):
 	def __init__(self, name):
 		self.name = name
 		db.Model.__init__(self)
+
+	# a product is unavaialble if it has no inventory 
+	# products with variants must have all variants out of stock to be unavailable
+	# or the sale end date has passed
+	def isAvailable(self):
+		if self.has_variants:	
+			product_variants = self.getProductVariants()
+			variants_in_stock = False
+			for variant in product_variants:
+				if variant.inventory > 0:
+					variants_in_stock = True
+			if not variants_in_stock:
+				return False
+		else:
+			if self.inventory == 0:
+				return False
+
+		return not self.isExpired()
+
+
+	def isExpired(self):
+		present = datetime.datetime.now()
+		if self.sale_end_date == None:
+			return False
+		if present > self.sale_end_date:
+			return True
+		return False
+
 		
 	def getProductImages(self):
 		images = ProductImage.query.filter_by(product_id = self.product_id).all()
@@ -290,6 +319,8 @@ class MarketProduct(db.Model):
 		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
+
+		public_dict[Labels.IsAvailable] = self.isAvailable()
 		return public_dict
 
 class ProductVariant(db.Model):

@@ -162,16 +162,13 @@ const checkAdmin = (nextState, replace) => {
 ReactDOM.render(    
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
-			<IndexRoute component={LandingPage} />
+			<IndexRoute component={HomePage} />
 			
 
 			<Route path = "landing" component = {LandingPage}/>
 			<Route path = "support" component = {SupportPage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			
-
-
-			{/* 
 			<Route path= "terms" component={TermsOfServicePage}/>
 			
 			<Route path = "contact" component = {ContactUsPage}/>
@@ -192,7 +189,6 @@ ReactDOM.render(
 			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
 			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
 			
-			
 			<Route path = "updatePersonal" onEnter = {checkUser} component = {UpdatePersonalPage}/>
 			<Route path = "myOrders" onEnter = {checkUser} component = {OrderHistoryPage}/>
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
@@ -203,8 +199,6 @@ ReactDOM.render(
 			
 			<Route path = "recoverAccount" component = {RecoveryPage}/>
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
-			
-			
 			<Route path = "requestProduct" component = {RequestProductPage}/>
 			<Route path = "faq" component = {FaqPage}/>
 			<Route path = "sales" component = {SalesPage}/> 
@@ -215,9 +209,7 @@ ReactDOM.render(
 			<Route path = "sellWithEdgar" component = {SellWithEdgarPage}/>
 			<Route path = "returnPolicy" component = {ReturnPolicyPage}/>
 			<Route path= "*" component={PageNotFound} />  
-			*/}
 			
-			<Route path= "*" component={LandingPage} />  
 		</Route>
 	</Router>, 
 document.getElementById('app'));

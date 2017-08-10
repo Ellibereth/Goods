@@ -17,7 +17,6 @@ from api.general_api import decorators
 from validate_email import validate_email
 from api.models.launch_list_email import LaunchListEmail
 
-
 account_api = Blueprint('account_api', __name__)
 
 # checks the login information from a user 

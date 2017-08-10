@@ -22,12 +22,14 @@ export default class HomePageMainContainer extends React.Component {
 	orderProducts(product_list) {
 		var ordered_products = []
 		product_list.map((product, index) => {
-			if (product.inventory == 0) {
-				ordered_products.push(product)
-			}
-			else {
+			console.log(product.name, product.is_available)
+			if (product.is_available) {
 				ordered_products.unshift(product)
 			}
+			else {
+				ordered_products.push(product)
+			}
+
 		})
 		return ordered_products
 	}
