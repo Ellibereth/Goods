@@ -44,32 +44,6 @@ Linda's Color Scheme
 }*/
 
 
-.landing-floating-footer {
-	position: fixed;
-    bottom: 0;
-    text-align: center;
-    background-color: #55688b;
-    width: 100%;
-    padding: 5px;
-    z-index: 99999999999;
-    border-top: 1px solid white;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-top-color: white;
-}
-
-.landing-floating-footer a {
-	color: white;
-    text-transform: uppercase;
-    font-size: 85%;
-    padding: 5px 10px 5px 10px;
-}
-
-.landing-page-logo {
-	height: 200px;
-	width: auto;
-}
-
 .product-page-countdown {
 	font-size: 24px;
 	color : var(--LightRed);
@@ -705,6 +679,38 @@ Linda's Color Scheme
 }
 
 
+.landing-container {
+	height: 380px;
+}
+
+.landing-floating-footer {
+	position: fixed;
+    bottom: 0;
+    text-align: center;
+    background-color: #55688b;
+    width: 100%;
+    padding: 5px;
+    z-index: 99999999999;
+    border-top: 1px solid white;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: white;
+}
+
+.landing-floating-footer a {
+	color: white;
+    text-transform: uppercase;
+    font-size: 85%;
+    padding: 5px 10px 5px 10px;
+}
+
+.landing-page-logo {
+	height: 200px;
+	width: auto;
+}
+
+
+
 .landing-card {
 	background-color: white;
 	background: rgba(255,255,255,0.93);
@@ -752,33 +758,33 @@ Linda's Color Scheme
 	border-color: #337ab7 !important;
 	background-color : #337ab7 !important;
 	color: white;
-	    border-color: #337ab7 !important;
-    background-color: #337ab7 !important;
-    color: white;
-    z-index: 2;
-    margin-left: -1px; 
-    display: inline-block !important;
-    padding: 6px 12px !important;
-    margin-bottom: 0 !important;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    line-height: 1.42857143 !important;
-    text-align: center !important;
-    white-space: nowrap !important;
-    vertical-align: middle !important;
-    -ms-touch-action: manipulation !important;
-    touch-action: manipulation !important;
-    cursor: pointer;
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
-    background-image: none !important;
-    border: 1px solid transparent !important;
-    border-radius: 4px !important;
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-    position: relative !important;
+		border-color: #337ab7 !important;
+	background-color: #337ab7 !important;
+	color: white;
+	z-index: 2;
+	margin-left: -1px; 
+	display: inline-block !important;
+	padding: 6px 12px !important;
+	margin-bottom: 0 !important;
+	font-size: 14px !important;
+	font-weight: 400 !important;
+	line-height: 1.42857143 !important;
+	text-align: center !important;
+	white-space: nowrap !important;
+	vertical-align: middle !important;
+	-ms-touch-action: manipulation !important;
+	touch-action: manipulation !important;
+	cursor: pointer;
+	-webkit-user-select: none !important;
+	-moz-user-select: none !important;
+	-ms-user-select: none !important;
+	user-select: none !important;
+	background-image: none !important;
+	border: 1px solid transparent !important;
+	border-radius: 4px !important;
+	border-top-left-radius: 0 !important;
+	border-bottom-left-radius: 0 !important;
+	position: relative !important;
 }
 
 .landing-subscribe-button:focus{
@@ -1162,4 +1168,21 @@ Linda's Color Scheme
 		border-radius: 2px;
 	}
 	
+	.landing-page-logo {
+		height: 100px;
+		width: auto;
+	}
+
+	.landing-container {
+		height: 400px;
+	}
+	.landing-subscribe-button{
+		font-size: 14px !important;
+	}
+	.landing-subscribe-input {
+		font-size: 12px !important;
+	}
+	.landing-subscribe-button{
+		padding: 6px 12px !important;
+	}
 }

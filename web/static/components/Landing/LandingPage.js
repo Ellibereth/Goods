@@ -55,20 +55,11 @@ export default class LandingPage extends React.Component {
 
 	render() {
 		
-
-		var image_style = {
-			// backgroundImage : "url(" + PHOTO_SRC + ")",
-			// backgroundRepeat: "no-repeat",
-			// backgroundSize: "100% 100%",
-			height : "380px"
-		}
-
-
 		return (
 			<div>
 				<Modal show = {true}>
 					<Modal.Body>
-					<div className = "landing-container" style = {image_style}>
+					<div className = "landing-container">
 						<div className = "landing-card col-sm-12 col-md-12 col-lg-12">
 						<div className = "row">
 							<img className = "landing-page-logo"
