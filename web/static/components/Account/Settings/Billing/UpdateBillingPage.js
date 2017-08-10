@@ -4,7 +4,6 @@ import AppStore from '../../../../stores/AppStore.js';
 import UpdateBillingForm from './UpdateBillingForm'
 import PageContainer from '../../../Misc/PageContainer'
 var browserHistory = require('react-router').browserHistory;
-import Spinner from '../../../Misc/Spinner'
 
 export default class UpdateBillingPage extends React.Component {
 	constructor(props) {
@@ -21,14 +20,15 @@ export default class UpdateBillingPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer is_loading = {this.state.is_loading}>
 				<div className = "container">
-					{this.state.is_loading && <Spinner />}
 					 {/* <SettingsFormPersonal /> */}
-					<UpdateBillingForm
-					setLoading = {this.setLoading.bind(this)}/>
+					 <div className = "row">
+						<UpdateBillingForm
+						setLoading = {this.setLoading.bind(this)}/>
+					</div>
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

@@ -83,7 +83,7 @@ export default class AdminActivateProduct extends React.Component {
 			return <h2> {"This product is active at url "} <a href=  {url}> {url} </a> </h2>
 		}
 		else {
-			return <h2> {"This product is inactive but would be have url "} <a href=  {url}> {url} </a> </h2>
+			return <h2> {"This product is inactive but would have url "} <a href=  {url}> {url} </a> </h2>
 		}
 	}
 

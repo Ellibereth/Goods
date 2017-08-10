@@ -18,6 +18,12 @@ export default class CheckoutAddressSelect extends React.Component {
 		}
 	}
 
+	componentDidMount(){
+	}
+
+	componentWillUnmount() {
+	}
+
 	setAddress(){	
 		this.props.openEditable(BILLING_INDEX)	
 	}

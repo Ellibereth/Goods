@@ -11,7 +11,6 @@ import os
 
 ENVIRONMENT = os.environ.get("ENVIRONMENT")
 
-## user object class
 class ProductImage(db.Model):
 	__tablename__ = ProdTables.ImageTable
 	image_id = db.Column(db.String, primary_key = True)

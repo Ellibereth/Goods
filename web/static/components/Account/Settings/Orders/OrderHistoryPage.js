@@ -4,7 +4,6 @@ import AppStore from '../../../../stores/AppStore.js';
 import PageContainer from '../../../Misc/PageContainer.js'
 import OrdersPreviewDisplay from './OrdersPreviewDisplay'
 var browserHistory = require('react-router').browserHistory;
-import Spinner from '../../../Misc/Spinner'
 
 export default class OrderHistoryPage extends React.Component {
 	constructor(props) {
@@ -54,7 +53,9 @@ export default class OrderHistoryPage extends React.Component {
 
 	render() {
 		var orders = this.state.orders
-
+		if (this.state.is_loading){
+			return <div/>
+		}
 
 		if (orders.length == 0){
 			var order_display = <h3> You haven't bought anything on <a href = "/">Edgar USA</a> yet.</h3>
@@ -66,12 +67,11 @@ export default class OrderHistoryPage extends React.Component {
 		
 		
 		return (
-			<PageContainer component = {
+			<PageContainer is_loading = {this.state.is_loading}>
 				<div id = "orders_container" className = "container">
-					{this.state.is_loading && <Spinner />}
 					{order_display}
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

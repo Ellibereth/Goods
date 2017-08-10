@@ -8,8 +8,7 @@ import CheckoutCardSelect from './Billing/CheckoutCardSelect.js'
 import CheckoutAddressSelect from './Shipping/CheckoutAddressSelect.js'
 import CheckoutAddBillingModal from './Billing/CheckoutAddBillingModal.js'
 import CheckoutPriceRow from './CheckoutPriceRow'
-import {formatPrice} from '../../Input/Util'
-import Spinner from '../../Misc/Spinner'
+import {formatPrice, formatCurrentPrice} from '../../Input/Util'
 import {AlertMessages} from '../../Misc/AlertMessages'
 
 var browserHistory = require('react-router').browserHistory;
@@ -38,7 +37,8 @@ export default class CheckoutPage extends React.Component {
 			is_loading: true,
 			first_load_done : false,
 			button_disabled : false,
-			sales_tax_price: null
+			sales_tax_price: null,
+			cart : {}
 
 		}
 
@@ -141,6 +141,7 @@ export default class CheckoutPage extends React.Component {
 				success: function(data) {
 					if (data.success) {
 						this.setState({
+							cart : data.user.cart,
 							items: data.user.cart.items, 
 							total_price : data.user.cart.total_price,
 							shipping_price : data.user.cart.shipping_price,
@@ -196,7 +197,7 @@ export default class CheckoutPage extends React.Component {
 				'name': item.name,
 				'brand': item.manufacturer,
 				'variant' : item.variant_type ? item.variant_type : "none",
-				'price': formatPrice(item.price),
+				'price': formatCurrentPrice(item),
 				'quantity': item.num_items
 			});
 		})
@@ -256,7 +257,8 @@ export default class CheckoutPage extends React.Component {
 		return (this.state.selected_address == null || this.state.selected_card == null)
 	}
 
-	onCheckoutClick(){
+	onCheckoutClick(can_checkout){
+		if (!can_checkout) return;
 		var selected_card = this.getSelectedCard.bind(this)()
 		var selected_address = this.getSelectedAddress.bind(this)()
 		var text = "Are you ready to checkout with card ending in " + selected_card.last4    + 
@@ -298,7 +300,7 @@ export default class CheckoutPage extends React.Component {
 								'name': item.name,
 								'variant' : item.variant_type ? item.variant_type : "none",
 								'brand': item.manufacturer,
-								'price': formatPrice(item.price),
+								'price': formatCurrentPrice(item),
 								'quantity': item.num_items
 							});
 						})
@@ -371,14 +373,17 @@ export default class CheckoutPage extends React.Component {
 
 
 	render() {
+
 		var can_checkout = this.canCheckout()
+		var checkout_button_class = can_checkout ? " checkout-button btn btn-default " :"checkout-button block-checkout btn btn-default "
+		var cart = this.state.cart
+		if (!cart) return <div/>
 		return (
-			<PageContainer {...this.props}
-				component = {
+			<PageContainer is_loading = {this.state.is_loading}>
 					<div id = "checkout-container" 
 					className = {this.state.is_loading ? "container faded" : "container"}
 					>	
-						{this.state.is_loading && <Spinner />}
+						
 						<CheckoutAddBillingModal 
 							setLoading = {this.setLoading.bind(this)}
 							selected_address = {this.getSelectedAddress()}
@@ -404,7 +409,7 @@ export default class CheckoutPage extends React.Component {
 								setLoading = {this.setLoading.bind(this)}
 								/>
 
-							<hr/>
+							<hr className = "small-hr"/>
 
 							<CheckoutCardSelect 
 								selected_card_index = {this.state.selected_card_index}
@@ -418,14 +423,14 @@ export default class CheckoutPage extends React.Component {
 								openEditable = {this.openEditable.bind(this)}
 								closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
 							/>
-							<hr/>
+							<hr className = "small-hr"/>
 							<div className = "well" >
 								<div className = "row">
 									<div className = "col-md-5 col-lg-5 col-sm-5 col-xs-5 checkout-item-label-editable vcenter">
 										<span className = "checkout-section-title"> <b> 3. Items </b> </span>
 									</div>
 								</div>
-								<hr/>
+								<hr className = "small-hr"/>
 								<CartDisplay 
 								is_loading = {this.state.is_loading}
 								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
@@ -435,12 +440,13 @@ export default class CheckoutPage extends React.Component {
 							</div>
 						</div>
 
-						<div className = "col-sm-3 col-md-3 col-lg-3">
+						<div className = "col-xs-12 col-sm-3 col-md-3 col-lg-3">
 							<div className="panel panel-default">
 								<div className="panel-body">
 										<div className = "row text-center">
 											<div className = "col-sm-12 col-md-12 col-lg-12 col-xs-12 vcenter text-center">
-												<button className = "btn btn-default checkout-button" disabled = {!can_checkout} onClick = {this.onCheckoutClick.bind(this)}>
+												<button className = {checkout_button_class} disabled = {!can_checkout} 
+												onClick = {this.onCheckoutClick.bind(this, can_checkout)}>
 													Place your order!
 												</button>
 												<div className = "top-buffer"/>
@@ -456,9 +462,28 @@ export default class CheckoutPage extends React.Component {
 												</div>
 											</div>
 										</div>
-										<hr/>
+										<hr className = "small-hr"/>
+
+
+										{cart.items_discount &&
+											<div>
+												<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
+												label = {"Items:"} price = {formatPrice(cart.original_items_price)}/>
+
+												<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
+												label = {"10% Discount:"}
+												show_minus = {true}
+												price = {formatPrice(cart.items_discount)}/>
+												<hr className = "small-hr"/>
+											</div>
+										}
+
+
+
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-										label = {"Items:"} price = {formatPrice(this.state.items_price)}/>
+										label = {"After Discount:"} price = {formatPrice(this.state.items_price)}/>
+
+
 
 										{this.state.shipping_price ? 
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
@@ -473,10 +498,22 @@ export default class CheckoutPage extends React.Component {
 											: <div/>
 										}
 
-										<hr/>
+										<hr className = "small-hr"/>
+										
+										{/* cart.discount_message && 
+											<div className = "row">
+												<div style = {{textAlign : "center"}}
+												className = "col-sm-12 col-lg-12 col-md-12">
+													{cart.discount_message}
+												</div>
+											</div>
+										*/}
 
 										<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
 										label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
+										
+
+
 								</div>
 
 								<div className="panel-footer">
@@ -491,7 +528,7 @@ export default class CheckoutPage extends React.Component {
 							</div>
 						</div>
 					</div>
-			}/>	
+			</PageContainer>
 		)
 	}
 }

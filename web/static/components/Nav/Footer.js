@@ -1,36 +1,108 @@
 var React = require('react');
-var Link = require('react-router').Link;
-export default class Footer extends React.Component {
+var ReactDOM = require('react-dom');
 
+const footer_links = ['Smile', 'Guarantee', 'About', 'Edgar', 'Cards', 'Mobile', 'Apps']
+// , 'Careers', 'Blog', 'FAQs', 'Contact Us', 'Return Policy', 'Shipping', 'Terms', 'Privacy']
+export default class HomeFooter extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			ready : false
 		}
 	}
 
-	componentDidMount(){
-		setTimeout( function() {
-			this.setState({ready : true}) 
-		}.bind(this), 1000);
-	}
-
 	render() {
-		if (!this.state.ready) return <div/>
-		return(	
-				<div className="container-fluid">
-					<footer className = "row edgarusa-footer">
-						<ul className ="nav navbar-nav">
-							<li><a href="/">© 2017 Edgar USA</a></li>
-							<li><a href="/">Home</a></li>
-							<li><a href="/terms">Terms</a></li>
-							<li><a href="/privacy">Privacy</a></li>
-							<li><a href="/contact">Contact Us</a></li>
-							<li><a href="/about">About Us</a></li>
-							<li><a href="/requestProduct">Request a Product</a></li>
-						</ul>
-					</footer>
+		return (
+			<div className = "page-wrapper"> 
+				<div id = "footer-badge-wrapper">
+					<div id = "edgar-footer-badges">
+						<a href = "#/" id = "first-badge" className = "home-badge">
+							<span>
+								<img className = "home-badge-icon home-badge-flag" src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/flag.png"/>
+							</span>
+							<span className = "badgehead badgetext">Made in the USA</span> <br/>
+							<span className = "badgebody badgetext">We proudly only carry products that were made in the USA. <br/> To learn more about what that means and why it's important <a className = "edgar-link" href = "/usa">click here</a>.</span>
+						</a>
+						<a href = "#/" className = "home-badge">
+							<i className="fa fa-2x fa-smile-o home-badge-icon"/>
+							<span className = "badgehead badgetext">Meet our Vendors</span> <br/>
+							<span className = "badgebody badgetext">We work with top-notch American makers and designers. Discover their stories while you shop.</span>
+						</a>
+						<a href = "#/" id = "last-badge" className = "home-badge">
+							<i className="fa fa-2x fa-thumbs-up home-badge-icon"/>
+							<span className = "badgehead badgetext">Quality Guaranteed</span> <br/>
+							<span className = "badgebody badgetext">
+								We only sell the highest quality products. Not satisfied with your purchase? We'll fix it.
+							</span>
+						</a>
+					</div>
 				</div>
+				
+				<footer>
+					<div id = "dynamic-footer-wrapper">
+						<div id="dynamic-footer">
+							
+
+							<div className="departments section">
+							{/* <div className="departments section"> */}
+								<ul>
+									<li> <a href="/about">About Us</a> </li>
+									<li> <a href="/faq">FAQ</a> </li>
+									<li> <a href="/usa">Made in the USA</a> </li>
+									<li> <a href="/suggestProduct">Suggest Products</a> </li>
+									<li> <a href="#"></a> </li>
+								</ul>
+							</div>
+							<div className="departments section">
+								<ul>
+									<li> <a href="/contact">Contact Us</a> </li>
+									<li> <a href="/careers">Careers</a> </li>
+									<li> <a href="/vendors">Vendors</a> </li>
+									<li> <a href="/sellWithEdgar">Sell on Edgar USA</a> </li>
+									<li> <a href="#"></a> </li>
+								</ul>
+							</div>
+							<div className="departments section">
+								<ul>
+									<li> <a href="/terms">Terms of Service</a> </li>
+									<li> <a href="/privacy">Privacy Policy</a> </li>
+									<li> <a href="/returnPolicy">Returns</a> </li>
+									<li> <a href="#"></a> </li>
+								</ul>
+							</div>
+							<div className="departments section last-department">
+								<ul>
+									<li> <a href="/settings">Your Account</a> </li>
+									<li> <a href="/myCart">Your Cart</a> </li>
+									<li> <a href="/myOrders">Your Orders</a> </li>
+									<li> <a href="#"></a> </li>
+								</ul>
+							</div>
+
+							
+
+							<div id = "edgar-footer">
+								<ul className="socialLinks">
+									<li><a href="#"><i className="footer-social-links fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
+									<li><a href="#"><i className="footer-social-links fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
+								</ul>
+							</div>
+
+							<div className="top-designers section">
+								<span className="section-title" style= {{"text-transform" : "none"}}>Opening Special!</span>
+								<span className="updtdLatstArriTxt">
+									Get 10% off for your first month!*
+								</span> 
+
+								<span className = "special-notice-text">
+									New customers only. Offer lasts first 30 days. See details <a href = "#">here</a>
+								</span>
+							</div> 
+							
+							
+						</div>
+					</div>
+				</footer>
+			</div>
 		);
 	}
 }

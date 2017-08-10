@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, request
 import time
 import datetime
+import os
 from api.models.user import User
 from api.utility.table_names import ProdTables
-from api.utility import email_api
+from api.utility.email import EmailLib
 from api.models.shared_models import db
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
@@ -14,9 +15,7 @@ from api.security.tracking import LoginAttempt
 from api.utility.error import ErrorMessages
 from api.general_api import decorators
 from validate_email import validate_email
-
-
-
+from api.models.launch_list_email import LaunchListEmail
 
 
 account_api = Blueprint('account_api', __name__)
@@ -41,6 +40,10 @@ def checkLogin():
 	if this_user == None:
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+	elif this_user.isFacebookUser():
+		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
+		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+
 
 	if this_user.checkLogin(input_password):
 
@@ -265,9 +268,10 @@ def getUserOrders(this_user):
 @decorators.check_user_jwt
 def getUserInfo(this_user):
 	adjusted_items = this_user.adjustCart()
+	public_user_dict = this_user.toPublicDict()
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-			Labels.User : this_user.toPublicDict(),
+			Labels.User : public_user_dict,
 			Labels.AdjustedItems : adjusted_items
 		})
 
@@ -275,20 +279,23 @@ def getUserInfo(this_user):
 @account_api.route('/softDeleteAccount', methods = ['POST'])
 @decorators.check_user_jwt
 def softDeleteAccount(this_user):
-	password = request.json.get(Labels.Password)
-	password_confirm = request.json.get(Labels.PasswordConfirm)
-	if password != password_confirm:
-		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
-	if not this_user.checkLogin(password):
-		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+	if this_user.fb_id:
+		this_user.softDeleteAccount()
+	else:
 
-	this_user.softDeleteAccount()
+		password = request.json.get(Labels.Password)
+		password_confirm = request.json.get(Labels.PasswordConfirm)
+		if password != password_confirm:
+			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+		if not this_user.checkLogin(password):
+			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+		this_user.softDeleteAccount()
 	return JsonUtil.success()
 
 @account_api.route('/resendConfirmationEmail', methods = ['POST'])
 @decorators.check_user_jwt
 def resendConfirmationEmail(this_user):
-	email_api.sendEmailConfirmation(this_user.email, this_user.email_confirmation_id, this_user.name)
+	EmailLib.sendEmailConfirmation(this_user.email, this_user.email_confirmation_id, this_user.name)
 	return JsonUtil.success()
 
 
@@ -316,7 +323,7 @@ def setRecoveryPin():
 	user = User.query.filter_by(email = email).first()
 	if user:
 		user.setRecoveryPin()
-		email_api.sendRecoveryEmail(user)
+		EmailLib.sendRecoveryEmail(user)
 		return JsonUtil.success()
 	else:
 		return JsonUtil.failure()
@@ -371,5 +378,67 @@ def readCartMessage(this_user):
 	db.session.commit()
 	return JsonUtil.success()
 
+# get the correct FB app id
+@account_api.route('/getFbAppId', methods = ['POST'])
+def getFbAppId():
+
+	ENVIRONMENT = os.environ.get('ENVIRONMENT')
+	app_id = ""
+	if request.remote_addr == "127.0.0.1":
+		app_id = "301430330267358"
+	elif ENVIRONMENT == "DEVELOPMENT":
+		app_id = "255033931670343"
+	elif ENVIRONMENT == "STAGING":
+		app_id = "333196410460893"
+	elif ENVIRONMENT == "PRODUCTION":
+		app_id = "120813588560588"
+	return JsonUtil.successWithOutput({"app_id" : app_id})
+
+# registers a user with facebook
+@account_api.route('/handleFacebookUser', methods = ['POST'])
+def handleFacebookUser():
+	fb_response = request.json.get(Labels.FbResponse)
+	guest_jwt = request.json.get(Labels.Jwt)
+	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
+	fb_id = fb_response.get(Labels.Id)
+	if fb_id == None:
+		return JsonUtil.failure()
+
+	fb_user = User.query.filter_by(fb_id = fb_response.get(Labels.Id)).first()
+
+	# if the fb_user already has an account
+	if fb_user:
+		fb_user.transferGuestCart(guest_user)
+		user_jwt = JwtUtil.create_jwt(fb_user.toJwtDict())
+		user_info = fb_user.toPublicDictFast()
+		output = {
+			Labels.User : user_info,
+			Labels.Jwt : user_jwt
+		}
+		return JsonUtil.successWithOutput(output)
+
+	register_user_response = User.registerFacebookUser(fb_response, guest_user)
+	if register_user_response.get(Labels.Success):
+		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.Jwt])
+		return JsonUtil.successWithOutput(register_user_response)
+	else:
+		return JsonUtil.failureWithOutput(register_user_response)
+	return JsonUtil.failure()
 
 
+@account_api.route('/signUpForLandingList', methods = ['POST'])
+def signUpForLandingList():
+	email = request.json.get(Labels.Email)
+	email_matches = LaunchListEmail.query.filter_by(email = email).first()
+	if email_matches:
+		return JsonUtil.failure("You've already subscribed")
+
+	if not validate_email(email):
+		return JsonUtil.failure("Invalid email, please try again")
+
+	try:
+		EmailLib.sendLaunchListEmail(email)
+	except Exception as e:
+		return JsonUtil.failure("Error sending email, please try again")		
+
+	return JsonUtil.success()

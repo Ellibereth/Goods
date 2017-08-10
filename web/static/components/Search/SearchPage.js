@@ -1,15 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 import PageContainer from '../Misc/PageContainer'
-import SearchProductPreview from './SearchProductPreview'
-
+// import SearchProductPreview from './SearchProductPreview'
+import HomeProductPreview from '../Home/HomeProductPreview'
 
 export default class SearchPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			products : [],
-			num_results:  0
+			num_results:  0,
+			is_loading : true
 		}
 	}
 	componentDidMount(){
@@ -32,7 +33,8 @@ export default class SearchPage extends React.Component {
 				if (data.success) {
 					this.setState({
 						products: data.products,
-						num_results : data.products.length
+						num_results : data.products.length,
+						is_loading : false
 					})
 				}
 			}.bind(this),
@@ -45,22 +47,31 @@ export default class SearchPage extends React.Component {
 		var products = this.state.products
 		if (!products) return <PageContainer component = {<div/>}/>
 		var products_display = products.map((product, index)=>
-			<SearchProductPreview product = {product} index = {index}/>
+			<HomeProductPreview product = {product} index = {index}/>
 		)
 		
-		var component = (
-				<div id = "search-container" className = "container-fluid">
-					<div className = "container">
-						<div className = "row search-result-amount-text">
-							Showing {this.state.num_results} results for {this.props.params.search_input}
-						</div>
-						{products_display}
-					</div>
-				</div>
-			)
 
 		return (
-				<PageContainer component = {component}/>
+				<PageContainer>
+					<div id = "search-container" className = "container-fluid">
+						<div className = "container">
+							{this.state.is_loading 
+								? 
+									<div></div>
+								:
+								<div>
+									<div className = "row search-result-amount-text">
+										Showing {this.state.num_results} {this.state.num_results == 1 ? "result" : "results"} for <b> {this.props.params.search_input}</b>
+									</div>
+									<div className = "row">
+										{products_display}
+									</div>
+								</div>
+							}
+							
+						</div>
+					</div>
+				</PageContainer>
 		);
 	}
 }

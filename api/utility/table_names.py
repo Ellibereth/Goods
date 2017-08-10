@@ -16,7 +16,10 @@ class ProdTables:
 	OrderTable = "ORDER_TABLE"
 	OrderItemTable = "ORDER_ITEM_TABLE"
 	ImageTable = "IMAGE_TABLE"
-	ProductTagTable = "PRODUCT_TAG_TABLE"
+	ProductSearchTagTable = "PRODUCT_SEARCH_TAG_TABLE"
+	ProductListingTagTable = "PRODUCT_LISTING_TAG_TABLE"
+	RelatedProductTagTable = "RELATED_PRODUCT_TAG_TABLE"
+
 	ShoppingCartTable = "SHOPPING_CART_TABLE"
 	UserAddressTable = "USER_ADDRESS_TABLE"
 	StoryImageTable = "STORY_IMAGE_TABLE"
@@ -26,6 +29,11 @@ class ProdTables:
 	HomeImageTable = "HOME_IMAGE_TABLE"
 	AdminActionTable = "ADMIN_ACTION_TABLE"
 	HttpRequestTable = "HTTP_REQUEST_TABLE"
+	ManufacturerLogoTable = "MANUFACTURER_LOGO_TABLE"
+	EmailSubscriptionTable = "EMAIL_SUBSCRIPTION_TABLE"
+	EmailListTable = "EMAIL_LIST_TABLE"
+	DiscountTable = "DISCOUNT_TABLE"
+	LaunchListEmailTable = "LAUNCH_LIST_EMAIL_TABLE"
 
 
 """ 
@@ -44,7 +52,9 @@ class TestTables:
 	MarketProductTable = TEST_PREFIX + ProdTables.MarketProductTable
 	OrderTable = TEST_PREFIX + ProdTables.OrderTable
 	ImageTable = TEST_PREFIX + ProdTables.ImageTable
-	ProductTagTable = TEST_PREFIX + ProdTables.ProductTagTable
+	ProductSearchTagTable = TEST_PREFIX + ProdTables.ProductSearchTagTable
+	ProductListingTagTable = TEST_PREFIX + ProdTables.ProductSearchTagTable
+	RelatedProductTagTable = TEST_PREFIX + ProdTables.RelatedProductTagTable
 	ShoppingCartTable = TEST_PREFIX + ProdTables.ShoppingCartTable
 	UserAddressTable = TEST_PREFIX + ProdTables.UserAddressTable
 	StoryImageTable = TEST_PREFIX + ProdTables.StoryImageTable
@@ -55,6 +65,11 @@ class TestTables:
 	HomeImageTable = TEST_PREFIX + ProdTables.HomeImageTable
 	AdminActionTable = TEST_PREFIX + ProdTables.AdminActionTable
 	HttpRequestTable = TEST_PREFIX + ProdTables.HttpRequestTable
+	ManufacturerLogoTable = TEST_PREFIX + ProdTables.ManufacturerLogoTable
+	EmailListTable = TEST_PREFIX + ProdTables.EmailListTable
+	EmailSubscriptionTable = TEST_PREFIX + ProdTables.EmailSubscriptionTable
+	DiscountTable = TEST_PREFIX + ProdTables.DiscountTable
+	LaunchListEmailTable = TEST_PREFIX + ProdTables.LaunchListEmailTable
 	SqlTestTable = "TEST_SQL"
 
 	

@@ -18,7 +18,7 @@ export default class CheckoutConfirmedPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div id = "checkout-confirmed-container" className = "container">
 					<div className = "row">
 						<div style = {{"font-size" : "18px"}} className = "col-sm-10 col-md-10 col-lg-10">
@@ -28,7 +28,7 @@ export default class CheckoutConfirmedPage extends React.Component {
 						</div>
 					</div>
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

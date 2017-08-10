@@ -1,7 +1,27 @@
 # this file will have labels for most of the other classes
 
+class DiscountLabels:
+	DiscountId = "discount_id"
+
+class EmailLabels:
+	UnsubscribeId = "unsubscribe_id"
+	EmailList = "email_list"
+	NumSubscribers = "num_subscribers"
+	SubscribedUsers = "subscribed_users"
+	EmailListId = "email_list_id"
+	NewEmailListName = "new_email_list_name"
+	EmailListData = "email_list_data"
+	Email = "email"
+	EmailListName = "email_list_name"
+	Unsubscribed = "unsubscribed"
 
 class UserLabels:
+	FbId = "fb_id"
+	Id = "id"
+	FirstName = "first_name"
+	LastName = "last_name"
+	FbResponse = "fb_response"
+	MembershipTier = "membership_tier"
 	GuestJwt = "guest_jwt"
 	IsGuest = "is_guest"
 	Order = "order"
@@ -67,6 +87,22 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	RelatedProductTags = "related_product_tags"
+	ProductSearchTags = "product_search_tags"
+	ProductListingTags = "product_listing_tags"
+	SaleTextHome = "sale_text_home"
+	SaleTextProduct = "sale_text_product"
+	Tag = "tag"
+	Quadrant1 = "quadrant1"
+	Quadrant2 = "quadrant2"
+	Quadrant3 = "quadrant3"
+	Quadrant4 = "quadrant4"
+	MoreDetails = "more_details"
+	ManufacturerFee = "manufacturer_fee"
+	ManufacturerEmail = 'manufacturer_email'
+	SaleText = "sale_text"
+	ShowManufacturerLogo = "show_manufacturer_logo"
+	ManufacturerLogoId = "manufacturer_logo_id"
 	SecondTabName = "second_tab_name"
 	SecondTabText = "second_tab_text"
 	ImageText = "image_text"
@@ -99,11 +135,7 @@ class MarketProductLabels:
 	ImageData = "image_data"
 	ImageId = "image_id"
 	Jwt = "jwt"
-	StoryImageId = "story_image_id"
-	StoryText = "story_text"
-	StoryTemplate = "story_template"
 	ProductTemplate = "product_template"
-	StoryText = "story_text"
 	NumItemsLimit = "num_items_limit"
 	Active = "active"
 	Color = "color"
@@ -159,6 +191,7 @@ class RequestLabels:
 	Jwt = "jwt"
 
 class PaymentLabels:
+	Discounts = "discounts"
 	Inventory = "inventory"
 	Error = "error"
 	CartItem = "cart_item"
@@ -208,6 +241,16 @@ class PaymentLabels:
 
 
 class CartLabels:
+	ShippingDiscount = "shipping_discount"
+	Discounts = "discounts"
+	ItemsDiscount = "items_discount"
+	OriginalShippingPrice = "original_shipping_price"
+	OriginalItemsPrice = "original_items_price"
+	DiscountMessage = "discount_message"
+	DiscountedCartPrice = "discounted_cart_price"
+	MembershipTier = "membership_tier"
+	ManufacturerEmail = "manufacturer_email"
+	ManufacturerFee = "manufacturer_fee"
 	JwtDict = "jwt_dict"
 	Order = "order"
 	Type = "type"

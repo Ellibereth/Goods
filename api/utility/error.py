@@ -32,7 +32,7 @@ class ErrorMessages:
 	BlankName = SwalError("Name cannot be blank.").toDict()
 	BlankEmail = SwalError("Email cannot be blank.").toDict()
 	InvalidName = SwalError("Name must be alphabetical characters only").toDict()
-	InvalidEmail = SwalError("Invald Email").toDict()
+	InvalidEmail = SwalError("Invalid Email").toDict()
 	CardAddError = SwalError("Something went wrong while adding credit card").toDict()
 	AddressAddError = SwalError("Something went wrong while adding address").toDict()
 	AddressEditError = SwalError("Something went wrong while editing address").toDict()
@@ -63,6 +63,8 @@ class ErrorMessages:
 	BlankCategory = SwalError("You must select a topic").toDict()
 	BlankMessage = SwalError("Message cannot be blank").toDict()
 
+
+	EmailListNameTaken = SwalError("Email List Name Taken").toDict()
 	def invalidEmail(email):
 		return SwalError(email + " is not a valid email address.").toDict()
 

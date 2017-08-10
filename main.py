@@ -10,7 +10,7 @@ from api.models.shared_models import db
 from api.utility.jwt_util import JwtUtil
 from api.utility.json_util import JsonUtil
 from flask_compress import Compress
-from api.utility import email_api
+from api.utility.email import EmailLib
 
 from base64 import b64encode
 from api.security.tracking import HttpRequest
@@ -33,13 +33,15 @@ if os.environ.get('ENVIRONMENT') == None:
 
 if DATABASE_URI == None:
 	# if testing locally we use the dev DB
-	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://srwigmxvvfclho:8c2a2e178f3f7729ed6d0f57e33a29938e2011366f27978f408a2293245e835b@ec2-50-19-83-146.compute-1.amazonaws.com:5432/ddfifja29586"
+	app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://qcyekddfbkmsly:bb555734313b859808b602403e8eb13a061601df0c709826b2f25b94fb1c170d@ec2-23-21-85-76.compute-1.amazonaws.com:5432/d7namsk8b63mqs"
 
 else:
 	app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+from api.general_api.email_api import email_api
+app.register_blueprint(email_api)
 from api.general_api.public_api import public_api
 app.register_blueprint(public_api)
 from api.general_api.search_api import search_api
@@ -96,13 +98,7 @@ def add_header(response):
 		# otherwise do not cache
 		else:
 			response.headers['Cache-Control'] = 'public,max-age=0'
-	elif len(path_splits) > 2 and path_splits[1] == 'static':
-		if path_splits[2] == 'styles':
-			response.headers['Cache-Control'] = 'public,max-age=120'
 
-		# otherwise do not cache
-		else:
-			response.headers['Cache-Control'] = 'public,max-age=0'
 
 	else:
 		response.headers['Cache-Control'] = 'public,max-age=0'
@@ -125,9 +121,12 @@ def before_request():
 def teardown_request(exception=None):
 	time_spent = time.time() - g.start
 	path_splits = request.path.split('/')
+
+	# this has been commented out as it is too database taxing
+	# perhaps we can modify to be more selective
 	# only record the request if it's non-static
-	if len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts':
-		HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
+	# if not(len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts'):
+	# 	HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
 
 
 @app.route('/static/<path:path>', methods = ['GET'])
@@ -142,18 +141,18 @@ def catch_all(path):
 
 @app.errorhandler(404)
 def page_not_found(error):
-	email_api.reportServerError("404", error, request)
+	EmailLib.reportServerError("404", error, request)
 	return render_template("index.html")
 
 
 @app.errorhandler(405)
 def method_not_allowed(error):
-	email_api.reportServerError("405", error, request)
+	EmailLib.reportServerError("405", error, request)
 	return JsonUtil.failure("Method not allowed")
 
 @app.errorhandler(500)
 def internal_server_error(error):
-	email_api.reportServerError("500", error, request)
+	EmailLib.reportServerError("500", error, request)
 	return JsonUtil.failure("Internal server error")
 
 if __name__ == '__main__':

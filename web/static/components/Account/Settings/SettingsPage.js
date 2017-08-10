@@ -7,7 +7,6 @@ import UpdateSettingsPreview from './Personal/UpdateSettingsPreview.js'
 import BillingPreview from './Billing/BillingPreview.js'
 import ShippingPreview from './Shipping/ShippingPreview'
 import OrdersPreview from './Orders/OrdersPreview'
-import Spinner from '../../Misc/Spinner'
 var browserHistory = require('react-router').browserHistory;
 
 export default class SettingsPage extends React.Component {
@@ -87,11 +86,9 @@ export default class SettingsPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer is_loading = {this.state.is_loading}>
 				<div id = "settings-container" 
-				className = {this.state.is_loading ? "container faded" : "container"}
-				>
-					{this.state.is_loading && <Spinner />}
+				className = {this.state.is_loading ? "container faded" : "container"}>
 					<h1 style = {{"margin-left": "14px"}}> Your Account </h1> 
 					<br/>
 					<UpdateSettingsPreview  />
@@ -114,9 +111,10 @@ export default class SettingsPage extends React.Component {
 								<OrdersPreview orders = {this.state.orders} />
 								<br/>
 							</div>
+
 						}
 				</div>
-			}/>
+			</PageContainer>
 		)
 	}
 }

@@ -3,26 +3,51 @@ from api.utility.table_names import TestTables
 from passlib.hash import argon2
 from api.models.shared_models import db
 import time
+import datetime
 from api.utility.labels import CartLabels as Labels
 from api.pricing.pricing import Pricing
 from api.models.market_product import MarketProduct
-
-
+from api.models.discount_code import DiscountCode
+from api.utility.membership_tiers import MembershipDiscount
 # this class should be a user's shopping cart
 # as a list of CartItems
 class Cart:
-	def __init__(self, account_id):
-		self.account_id = account_id
-		self.items = CartItem.query.filter(CartItem.account_id == account_id,
-				 CartItem.num_items > 0).all()
+	def __init__(self, user, discount_code = None):
+		self.account_id = user.account_id
+
+		cart_items = CartItem.query.filter(CartItem.account_id == user.account_id,
+			CartItem.num_items > 0).all()
+		
+		self.items = []
+
+		for cart_item in cart_items:
+			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
+			if this_product:
+				if this_product.sale_end_date:
+					if datetime.datetime.now() < this_product.sale_end_date :
+						self.items.append(cart_item)
+
+
+		self.membership_tier = user.membership_tier
 		self.items_price = self.getCartItemsPrice()
+		self.discount_code = discount_code
+		
 
 	def getCartItemsPrice(self):
-		return Pricing.getCartPrice(self)
+		return Pricing.getCartItemsPrice(self)
 
 	def getCartShippingPrice(self, address):
 		return Pricing.getCartShippingPrice(self, address)
 
+	def getOriginalCartItemsPrice(self):
+		return Pricing.getOriginalCartItemsPrice(self)
+
+	def getOriginalShippingPrice(self, address):
+		return Pricing.getOriginalCartShippingPrice(self, address)
+
+	def getOriginalCartTotalPrice(self, address):
+		return int(self.getOriginalShippingPrice(address) \
+			+ self.getCartSalesTaxPrice(address) + self.getOriginalCartItemsPrice())
 
 	def getSalesTaxRate(self, address):
 		SALES_TAX_RATE = 0.05
@@ -32,11 +57,13 @@ class Cart:
 			return 0
 
 	def getCartSalesTaxPrice(self, address):
-		return self.getSalesTaxRate(address) * self.getCartItemsPrice()
+		if address == None:
+			return 0
+		return int(self.getSalesTaxRate(address) * self.getCartItemsPrice())
 
 	def getCartTotalPrice(self, address):
-		return self.getCartShippingPrice(address) \
-			+ self.getCartSalesTaxPrice(address) + self.items_price
+		return int(self.getCartShippingPrice(address) \
+			+ self.getCartSalesTaxPrice(address) + self.items_price)
 
 	def clearCart(self):
 		for cart_item in self.items:
@@ -69,18 +96,26 @@ class Cart:
 		public_dict[Labels.Items] = product_list
 		
 		public_dict[Labels.ItemsPrice] = self.getCartItemsPrice()
+		public_dict[Labels.MembershipTier] = self.membership_tier
+		public_dict[Labels.OriginalItemsPrice] = self.getOriginalCartItemsPrice()
+		public_dict[Labels.ItemsDiscount] = public_dict[Labels.OriginalItemsPrice] - public_dict[Labels.ItemsPrice]
+		# here a discount is applied
+		public_dict[Labels.Discounts] = public_dict[Labels.ItemsDiscount]
 
 		if address:
-			public_dict[Labels.ShippingPrice] = self.getCartShippingPrice(address)
-			public_dict[Labels.SalesTaxPrice] = self.getCartSalesTaxPrice(address)
-			public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
+			if self.getCartTotalPrice(address) != self.getOriginalCartTotalPrice(address):
+				public_dict[Labels.DiscountMessage] = MembershipDiscount(self.membership_tier).discount_message
+				public_dict[Labels.OriginalShippingPrice] = self.getOriginalShippingPrice(address)
 
+				public_dict[Labels.ShippingPrice] = self.getCartShippingPrice(address)
+				public_dict[Labels.SalesTaxPrice] = self.getCartSalesTaxPrice(address)
+				public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
+				public_dict[Labels.ShippingDiscount] = public_dict[Labels.OriginalShippingPrice] - public_dict[Labels.ShippingPrice]
+				public_dict[Labels.Discounts] = public_dict[Labels.Discounts] + public_dict[Labels.ShippingDiscount]
+				 
 		return public_dict
 
 	
-
-
-## user object class
 class CartItem(db.Model):
 	__tablename__ = ProdTables.ShoppingCartTable
 	cart_id = db.Column(db.Integer, primary_key = True, autoincrement = True)

@@ -68,6 +68,7 @@ export const AlertMessages = {
 	 LIVE_CHANGES_WILL_BE_MADE : {
 			  title: "ARE YOU SURE?",
 			  text: "ONCE YOU HIT OKAY, THIS CHANGE WILL BE SEEN LIVE",
+			  type: "warning",
 			  showCancelButton: true,
 			  confirmButtonColor: "#DD6B55",
 			  confirmButtonText: "Yes",

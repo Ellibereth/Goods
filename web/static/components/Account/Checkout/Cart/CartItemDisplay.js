@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 var browserHistory = require('react-router').browserHistory;
-import {formatPrice} from '../../../Input/Util'
+import {formatPrice, formatCurrentPrice, getCurrentPrice} from '../../../Input/Util'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class CartItemDisplay extends React.Component {
 	constructor(props) {
@@ -31,7 +31,7 @@ export default class CartItemDisplay extends React.Component {
 						    'id': this.props.item.product_id.toString(),
 							'name': this.props.item.name,
 							'brand': this.props.item.manufacturer,
-							'price': formatPrice(this.props.item.price),
+							'price': formatCurrentPrice(this.props.item),
 							'quantity': Math.abs(this.props.item.num_items - new_quantity),
 							'variant' : this.props.item ? this.props.item.variant_type : "none"
 						});
@@ -98,9 +98,9 @@ export default class CartItemDisplay extends React.Component {
 		var num_items_options = []
 		var limit = this.props.item.num_items_limit ? Math.min(this.props.item.num_items_limit, this.props.item.inventory) : this.props.item.inventory
 		limit = Math.max(limit, this.props.item.num_items)
-		for (var i = 1; i <= limit; i++){
+		for (var i = 1; i <= limit && i <= 10; i++){
 			if (this.props.item.num_items == i){
-				num_items_options.push(<option selected value = {i}> {i} </option>)
+				num_items_options.push(<option selected value = {i}>{i}</option>)
 			}
 			else {
 				num_items_options.push(<option value = {i}> {i} </option>)
@@ -123,20 +123,26 @@ export default class CartItemDisplay extends React.Component {
 						</div>
 
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${formatPrice(item.price)} </span>
+							<span className = "cart-item-text"> ${formatCurrentPrice(item)} </span>
 						</div>
 
-						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
-							<form>
-								<div class="form-group">
-								  <select onChange = {this.handleQuantityChange.bind(this)} class="form-control">
-								    {num_items_options}
-								  </select>
-								</div>
-							</form>
+						<div className = "hidden-xs col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
+							  <select onChange = {this.handleQuantityChange.bind(this)} 
+							  className="checkout-quantity-select "
+							  >
+							    {num_items_options}
+							  </select>
 						</div>
+						<div className = "col-xs-2 hidden-sm hidden-lg hidden-md vcenter hcenter ">
+							  <select onChange = {this.handleQuantityChange.bind(this)} 
+							  className="checkout-quantity-select"
+							  >
+							    {num_items_options}
+							  </select>
+						</div>
+
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${formatPrice((item.price *  item.num_items).toFixed(2))}  </span>
+							<span className = "cart-item-text"> ${formatPrice((getCurrentPrice(item) *  item.num_items).toFixed(2))}  </span>
 						</div>
 						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
 							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />

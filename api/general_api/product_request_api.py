@@ -5,7 +5,7 @@ import base64
 
 from ..utility.table_names import ProdTables
 
-from api.utility import email_api
+from api.utility.email import EmailLib
 from api.models.shared_models import db
 from api.models.request import Request
 from api.utility.labels import RequestLabels as Labels
@@ -65,12 +65,12 @@ def addProductRequest():
 	# send the confirmation email to all
 	new_request = Request(email, name, description, price_range, phone_number)
 	try: 
-		email_api.sendRequestConfirmation(new_request)
+		EmailLib.sendRequestConfirmation(new_request)
 		# otherwise there's an error in the email
 	except:
 		return JsonUtil.failure("This email is not valid")
 	# now send us the email too
-	email_api.sendRequestEmail(new_request)
+	EmailLib.sendRequestEmail(new_request)
 
 	# once this is all good, we can commit to database
 	db.session.add(new_request)

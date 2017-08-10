@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 import time
 import base64
 
-from ..utility.stripe_api import StripeManager
+from api.utility.stripe_api import StripeManager
 
 from api.models.shared_models import db
 from api.models.user import User
@@ -13,7 +13,7 @@ from api.models.market_product import ProductVariant
 from api.utility.json_util import JsonUtil
 from api.utility.labels import CartLabels as Labels
 from api.utility.jwt_util import JwtUtil
-from api.utility import email_api 
+from api.utility.email import EmailLib
 from api.models.order import Order
 from api.models.order import OrderItem
 from api.utility.lob import Lob
@@ -37,8 +37,6 @@ def addItemToCart(this_user):
 		variant_id = variant.get(Labels.VariantId)
 	else:
 		variant_id = None
-
-
 	add_to_cart_response = this_user.addItemToCart(product_id, quantity, variant_id)
 	if add_to_cart_response.get(Labels.Success):
 		return JsonUtil.successWithOutput(add_to_cart_response)
@@ -61,7 +59,7 @@ def checkoutCart(this_user):
 @cart_api.route('/getUserCart', methods = ['POST'])
 @decorators.check_user_jwt
 def getUserCart(this_user):
-	this_cart = Cart(this_user.account_id)
+	this_cart = Cart(this_user)
 	total_price = this_cart.total_price
 	return JsonUtil.success(Labels.Cart, this_cart.toPublicDict())
 
@@ -69,9 +67,11 @@ def getUserCart(this_user):
 @cart_api.route('/getCheckoutInformation', methods = ['POST'])
 @decorators.check_user_jwt
 def getCheckoutInformation(this_user):
-	this_cart = Cart(this_user.account_id)
+	
+	this_cart = Cart(this_user)
 	addresses = this_user.getAddresses()
 	cards = this_user.getCreditCards()
+	
 	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
 		Labels.Cart : this_cart.toPublicDict()})
 
@@ -91,11 +91,14 @@ def updateCartQuantity(this_user):
 
 @cart_api.route('/refreshCheckoutInfo', methods = ['POST'])
 @decorators.check_user_jwt
+
 def refreshCheckoutInfo(this_user):
 	address = request.json.get(Labels.Address)
+	time_0 = time.time()
+	public_user_dict = this_user.toPublicDictCheckout(address)
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-			Labels.User : this_user.toPublicDictCheckout(address)
+			Labels.User : public_user_dict
 		})
 
 

@@ -1,12 +1,8 @@
 from flask import Blueprint, jsonify, request
 import time
 import base64
-
-from ..utility.stripe_api import StripeManager
-
 from api.models.shared_models import db
 from api.models.market_product import MarketProduct
-from api.models.market_product import ProductVariant
 from api.utility.json_util import JsonUtil
 from api.utility.labels import SearchLabels as Labels
 from api.utility.jwt_util import JwtUtil
@@ -31,7 +27,9 @@ def searchProducts():
 	manufacturer_filter = [product for product in all_products if product.manufacturer]
 	manufacturer_filter = [product for product in manufacturer_filter if search_input.lower() in product.manufacturer.lower()]
 
-	merged_list = name_filter + description_filter + manufacturer_filter
+	tag_filter = MarketProduct.getProductsBySearchTag(search_input)
+
+	merged_list = name_filter + description_filter + manufacturer_filter + tag_filter
 	hit_product_ids = list()
 	all_matches = list()
 	for product in merged_list:

@@ -2,7 +2,6 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../actions/AppActions'
-import PageContainer from '../Misc/PageContainer'
 import AddHomeImage from './AddHomeImage'
 import HomeImageDisplay from './HomeImageDisplay'
 import Button from 'react-bootstrap/lib/Button'

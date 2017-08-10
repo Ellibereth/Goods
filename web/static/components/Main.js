@@ -10,42 +10,57 @@ import {AlertMessages} from './Misc/AlertMessages'
 import AppStore from '../stores/AppStore.js';
 import AppActions from '../actions/AppActions.js';
 import HomePage from './Home/HomePage.js'
+import ProductPage from './Product/ProductPage.js'
+
 import AdminLoginPage from './Admin/AdminLoginPage.js'
+import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
+import AdminToolsPage from './Admin/AdminToolsPage.js'
+import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
 import PageNotFound from './Misc/PageNotFound.js'
+
+import RegisterPage from './Account/Login/RegisterPage.js'
+import LoginPage from './Account/Login/LoginPage.js'
+import ViewCartPage from './Account/Checkout/ViewCartPage.js'
+import CheckoutPage from './Account/Checkout/CheckoutPage.js'
+import LogoutPage from './Misc/LogoutPage.js'
+
+import SettingsPage from './Account/Settings/SettingsPage.js'
 import EmailConfirmationPage from './Account/Confirmation/EmailConfirmationPage.js'
 import RequestConfirmationPage from './Account/Confirmation/RequestConfirmationPage.js'
 import TermsOfServicePage from './Misc/TermsOfServicePage.js'
 import PrivacyPolicyPage from './Misc/PrivacyPolicyPage.js'
-import ProductPage from './Product/ProductPage.js'
-import RegisterPage from './Account/Register/RegisterPage.js'
-import LoginPage from './Account/Login/LoginPage.js'
-import SettingsPage from './Account/Settings/SettingsPage.js'
 import UpdatePersonalPage from './Account/Settings/Personal/UpdatePersonalPage.js'
 import OrderHistoryPage from './Account/Settings/Orders/OrderHistoryPage.js'
-import LogoutPage from './Misc/LogoutPage.js'
-import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
 import PleaseConfirmPage    from './Misc/PleaseConfirmPage.js'
-import AdminToolsPage from './Admin/AdminToolsPage.js'
 import UpdateBillingPage from './Account/Settings/Billing/UpdateBillingPage.js'
 import UpdateShippingPage from './Account/Settings/Shipping/UpdateShippingPage.js'
-import ViewCartPage from './Account/Checkout/ViewCartPage.js'
-import CheckoutPage from './Account/Checkout/CheckoutPage.js'
 import CheckoutConfirmedPage from './Account/Checkout/Confirmed/CheckoutConfirmedPage'
 import SearchPage from './Search/SearchPage'
 import SupportPage from './CustomerService/SupportPage'
 import RecoveryPage from './Account/Recovery/RecoveryPage'
 import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
 import LandingPage from './Landing/LandingPage'
-
 import RequestProductPage from './CustomerService/RequestProductPage'
 import FaqPage from './CustomerService/FaqPage'
 import AboutUsPage from './CustomerService/AboutUsPage'
 import ContactUsPage from './CustomerService/ContactUsPage'
+import SalesPage from './Sales/SalesPage.js'
+import ProductListingsPage from './Listings/ProductListingsPage'
+import MadeInUsaPage from './CustomerService/MadeInUsaPage'
+import SuggestProductPage from './CustomerService/SuggestProductPage'
+import CareersPage from './CustomerService/CareersPage'
+import VendorsPage from './CustomerService/VendorsPage'
+import SellWithEdgarPage from './CustomerService/SellWithEdgarPage'
+import ReturnPolicyPage from './CustomerService/ReturnPolicyPage'
+
 
 export default class Main extends React.Component {
 	
 	componentDidMount() {
-		this.getUserInfo()
+		var pathname = this.props.location.pathname
+		if (pathname != "/checkout"){
+			this.getUserInfo()
+		}
 	}
 
 	getUserInfo(){
@@ -77,9 +92,6 @@ export default class Main extends React.Component {
 						}
 					
 				}
-				// else {
-				// 	AppActions.removeCurrentUser()
-				// }
 
 			}.bind(this),
 			error : function(){
@@ -110,6 +122,9 @@ const checkUser = (nextState, replace) => {
 		replace({pathname: '/login', query: { target: target}})
 	} 
 	else  if (thisUser.is_guest) {
+		replace({pathname: '/login', query: { target: target}})	
+	}
+	else if (thisUser.is_admin){
 		replace({pathname: '/login', query: { target: target}})	
 	}
 }
@@ -147,37 +162,62 @@ const checkAdmin = (nextState, replace) => {
 ReactDOM.render(    
 	<Router history={ browserHistory }>
 		<Route path='/' component={ Main }>
-			<IndexRoute component={HomePage} />
+			<IndexRoute component={LandingPage} />
+			
+
+			<Route path = "landing" component = {LandingPage}/>
+			<Route path = "support" component = {SupportPage}/>
+			<Route path= "privacy" component={PrivacyPolicyPage}/>
+			
+
+
+			{/* 
+			<Route path= "terms" component={TermsOfServicePage}/>
+			
+			<Route path = "contact" component = {ContactUsPage}/>
+			<Route path = "about" component = {AboutUsPage}/>
+			<Route path = "usa" component = {MadeInUsaPage}/>
+				
+			<Route path= "eg/:product_id" component={ProductPage}/>
 			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
-			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
-			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
-			<Route path= "privacy" component={PrivacyPolicyPage}/>
-			<Route path= "terms" component={TermsOfServicePage}/>
-			<Route path= "eg/:product_id" component={ProductPage}/>
+			<Route path= "yevgeniypoker555/editEmailList/:email_list_id" onEnter = {checkAdmin} component={AdminEmailListPage} />
+			<Route path= "logout" component={LogoutPage} />
 			<Route path = "register" component = {RegisterPage}/>
 			<Route path = "login" component = {LoginPage}/>
+			<Route path = "myCart" component = {ViewCartPage} />
+			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "settings" onEnter = {checkUser} component = {SettingsPage}/>
+			<Route path= "confirmRequest/:confirmation_id" component={RequestConfirmationPage}/>
+			<Route path= "confirmEmail/:email_confirmation_id" component={EmailConfirmationPage}/>
+			
+			
 			<Route path = "updatePersonal" onEnter = {checkUser} component = {UpdatePersonalPage}/>
 			<Route path = "myOrders" onEnter = {checkUser} component = {OrderHistoryPage}/>
-			<Route path= "logout" component={LogoutPage} />
 			<Route path = "pleaseConfirm" component = {PleaseConfirmPage}/>
 			<Route path = "billing" onEnter = {checkUser} component = {UpdateBillingPage} />
 			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
-			<Route path = "myCart" component = {ViewCartPage} />
-			<Route path = "checkout" onEnter = {checkConfirmedUser} component = {CheckoutPage} />
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>
-			<Route path = "support" component = {SupportPage}/>
+			
 			<Route path = "recoverAccount" component = {RecoveryPage}/>
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>
-			<Route path = "landing" component = {LandingPage}/>
-			<Route path = "contact" component = {ContactUsPage}/>
-			<Route path = "about" component = {AboutUsPage}/>
+			
+			
 			<Route path = "requestProduct" component = {RequestProductPage}/>
 			<Route path = "faq" component = {FaqPage}/>
-			<Route path= "*" component={PageNotFound} />
+			<Route path = "sales" component = {SalesPage}/> 
+			<Route path = "listings/:tag" component = {ProductListingsPage}/>
+			<Route path = "suggestProduct" component = {SuggestProductPage}/>
+			<Route path = "careers" component = {CareersPage}/>
+			<Route path = "vendors" component = {VendorsPage}/>
+			<Route path = "sellWithEdgar" component = {SellWithEdgarPage}/>
+			<Route path = "returnPolicy" component = {ReturnPolicyPage}/>
+			<Route path= "*" component={PageNotFound} />  
+			*/}
+			
+			<Route path= "*" component={LandingPage} />  
 		</Route>
 	</Router>, 
 document.getElementById('app'));

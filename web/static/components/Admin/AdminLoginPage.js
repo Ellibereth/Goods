@@ -71,7 +71,7 @@ export default class AdminLoginPage extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div className = "container">
 					<h2> Heathcliffe required </h2>
 					<TextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
@@ -82,7 +82,7 @@ export default class AdminLoginPage extends React.Component {
 						<button onClick = {this.onLoginSubmit.bind(this)}> Admin Login </button>
 					</div>
 				</div>
-			}/>
+			</PageContainer>
 		);
 	}
 }

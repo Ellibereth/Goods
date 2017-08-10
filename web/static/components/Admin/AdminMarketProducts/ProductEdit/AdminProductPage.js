@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import ProductMainContainer from '../../../Product/ProductMainContainer'
+import ProductTemplate2 from '../../../Product/Template2/ProductTemplate2'
 import AdminEditProductInfo from './AdminEditProductInfo'
 import PageContainer from '../../../Misc/PageContainer.js'
 import AdminEditVariants from './AdminEditVariants'
@@ -53,6 +53,10 @@ export default class AdminProductPage extends React.Component {
 		});
 	}
 
+	previewProduct(product){
+		this.setState({product : product})
+	}
+
 	componentDidMount(){
 		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
 		$.ajax({
@@ -81,15 +85,20 @@ export default class AdminProductPage extends React.Component {
 	}
 
 
-
-
 	render() {
 		return (
-			<PageContainer component = 
-
-			{
+			<PageContainer>
 				<div>
 					<div className = "container">
+						<div className = "row">
+							<button onClick = {() => window.location = '/yevgeniypoker555'}
+							type = "button" className = "btn btn-default">
+								Return to Admin Home
+							</button>
+						</div>
+
+						<div className = "top-buffer"/>
+
 						<div className = "row">
 							{!this.state.is_loading && <h1> {this.state.product.name + " by " + this.state.product.manufacturer}</h1>}
 						</div>
@@ -108,13 +117,10 @@ export default class AdminProductPage extends React.Component {
 								className = {this.state.selected_tab == IMAGES_VIEW && "active"}>
 									<a href="#info"> Images </a>
 								</li>
-								{
-									this.state.product.has_variants &&
-									<li onClick = {this.navivgateTab.bind(this, VARIANT_VIEW)}
-									className = {this.state.selected_tab == VARIANT_VIEW && "active"}>
-										<a href="#info">  Variants </a>
-									</li>
-								}
+								<li onClick = {this.navivgateTab.bind(this, VARIANT_VIEW)}
+								className = {this.state.selected_tab == VARIANT_VIEW && "active"}>
+									<a href="#info">  Variants </a>
+								</li>
 							</ul>
 						</div>
 
@@ -123,11 +129,12 @@ export default class AdminProductPage extends React.Component {
 						<hr/>
 
 						<div className = {this.state.selected_tab == PREVIEW_VIEW ? "row" : "none" }>
-							<ProductMainContainer admin_view = {true} product_id = {this.props.params.product_id}/>
+							<ProductTemplate2 admin_view = {true} product = {this.state.product}/>
 						</div>
 
 						<div className = {this.state.selected_tab == INFO_VIEW ? "row" : "none"}>
 							<AdminEditProductInfo
+							previewProduct = {this.previewProduct.bind(this)}
 							getProductInformation = {this.getProductInformation.bind(this)}
 							product = {this.state.product}/>
 						</div>
@@ -147,7 +154,7 @@ export default class AdminProductPage extends React.Component {
 
 					</div>
 				</div>
-			}/>
+			</PageContainer>
 		);
 	}
 }

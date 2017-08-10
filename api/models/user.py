@@ -20,9 +20,13 @@ import re
 from api.utility.error import ErrorMessages
 import os
 import sys
-from api.utility import email_api
+from api.utility.email import EmailLib
 from validate_email import validate_email
 
+from api.utility.membership_tiers import MembershipTiers
+
+
+FB_USER_NO_HASH = "FB_USER_NO_HASH"
 
 ## user object class
 class User(db.Model):
@@ -45,22 +49,64 @@ class User(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
+	membership_tier = db.Column(db.Integer)
+	fb_id = db.Column(db.String)
+
 	is_guest = db.Column(db.Boolean, default = False)
 	NAME_MAX_LENGTH = 20
 	MIN_PASSWORD_LENGTH = 6
 
-	def __init__(self, name, email, password, email_confirmation_id):
+	def __init__(self, name, email, password = None, email_confirmation_id = None, membership_tier = 0):
 		self.name = name
 		self.email = email
-		self.password_hash = User.argonHash(password)
+		if password:
+			self.password_hash = User.argonHash(password)
+		else:
+			self.password_hash = FB_USER_NO_HASH
 		self.email_confirmation_id = email_confirmation_id
 		self.email_confirmed = False
 		stripe_customer_id = StripeManager.createCustomer(name, email)
 		self.stripe_customer_id = stripe_customer_id
+		self.membership_tier = membership_tier
 		db.Model.__init__(self)
 
+
 	@staticmethod
-	def registerUser(name, email_input, password, password_confirm, guest_user = None):
+	def registerFacebookUser(fb_response, guest_user = None, membership_tier = 1):
+		name = fb_response.get(Labels.Name)
+		email_input = fb_response.get(Labels.Email)
+		fb_id = fb_response.get(Labels.Id)
+		if isinstance(email_input, str):
+			email = email_input.lower()
+		else:
+			return {Labels.Success : False , Labels.Error: ErrorMessages.InvalidEmail}
+		if email == "":
+			return {Labels.Success : False, Labels.Error : ErrorMessages.BlankEmail}
+		old_user = User.query.filter_by(email = email).first()
+		if old_user != None:
+			return {Labels.Success: False, Labels.Error : ErrorMessages.ExistingEmail}
+		if not isinstance(name, str):
+			return {Labels.Success: False, Labels.Error : ErrorMessages.InvalidName}
+		if not validate_email(email):
+			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidEmail}
+		
+		new_user = User(name, email, membership_tier = membership_tier)
+		new_user.fb_id = fb_id
+		new_user.email_confirmed = True
+		db.session.add(new_user)
+		db.session.commit()
+		new_user.transferGuestCart(guest_user)
+
+
+		return {
+				Labels.Success : True,
+				Labels.User : new_user.toPublicDict(),
+				Labels.Jwt : new_user.toJwtDict()
+			}
+
+
+	@staticmethod
+	def registerUser(name, email_input, password, password_confirm, guest_user = None, membership_tier = 1):
 		if isinstance(email_input, str):
 			email = email_input.lower()
 		else:
@@ -89,11 +135,12 @@ class User(db.Model):
 			return {Labels.Success : False, Labels.Error : ErrorMessages.InvalidEmail}
 		try:
 			email_confirmation_id = User.generateEmailConfirmationId()
-			email_api.sendEmailConfirmation(email, email_confirmation_id, name)
+			EmailLib.sendEmailConfirmation(email, email_confirmation_id, name)
 		except Exception as e:
+			print(e)
 			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
-		new_user = User(name = name, email = email, password = password, 
-			email_confirmation_id =email_confirmation_id)
+		new_user = User(name, email, password, 
+			email_confirmation_id, membership_tier)
 		db.session.add(new_user)
 		db.session.commit()
 
@@ -105,7 +152,9 @@ class User(db.Model):
 				Labels.User : new_user.toPublicDict(),
 				Labels.Jwt : new_user.toJwtDict()
 			}
-			
+	
+	def isFacebookUser(self):
+		return self.fb_id != None
 
 
 	@staticmethod
@@ -125,13 +174,34 @@ class User(db.Model):
 			return
 		if not guest_user.is_guest:
 			return
+
+
 		guest_items = CartItem.query.filter_by(account_id = guest_user.account_id).all()
 
-		for cart_item in guest_items:
-			cart_item.account_id = self.account_id
+		for guest_cart_item in guest_items:
+			self.transferGuestCartItem(guest_user, guest_cart_item)
+
+
+	def transferGuestCartItem(self, guest_user, guest_cart_item):
+		user_cart = Cart(self)
+
+		existing_item = False
+		for user_cart_item in user_cart.items:
+			if guest_cart_item.product_id == user_cart_item.product_id:
+				if guest_cart_item.variant_id:
+					if guest_cart_item.variant_id == user_cart_item.variant_id:
+						user_cart_item.num_items = guest_cart_item.num_items	
+						existing_item = True
+				else:
+					user_cart_item.num_items = guest_cart_item.num_items
+					existing_item = True
+
+		if not existing_item:
+			guest_cart_item.account_id = self.account_id
+		else:
+			db.session.delete(guest_cart_item)
 
 		db.session.commit()
-
 
 	@staticmethod
 	def argonHash(pre_hash):
@@ -194,8 +264,8 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
-		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
+		public_dict[Labels.CartSize] = Cart(self).getCartSize()
+		public_dict[Labels.Cart] = Cart(self).toPublicDict()
 		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.Addresses] = []
 		public_dict[Labels.Cards] = []
@@ -203,6 +273,8 @@ class User(db.Model):
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.IsGuest] = self.is_guest
+		public_dict[Labels.MembershipTier] = self.membership_tier
+		public_dict[Labels.FbId] = self.fb_id
 		return public_dict
 
 
@@ -212,15 +284,18 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
-		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict(address)
+		this_cart = Cart(self)
+		public_dict[Labels.CartSize] = this_cart.getCartSize()
+		public_dict[Labels.Cart] = this_cart.toPublicDict(address)
 		public_dict[Labels.Addresses] = self.getAddresses()
 		public_dict[Labels.Cards] = self.getCreditCards()
-		public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
+		public_dict[Labels.MembershipTier] = self.membership_tier
+		public_dict[Labels.FbId] = self.fb_id
+
 		return public_dict
 
 	def toPublicDict(self):
@@ -229,15 +304,17 @@ class User(db.Model):
 		public_dict[Labels.Email] = self.email
 		public_dict[Labels.EmailConfirmed] = self.email_confirmed
 		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self.account_id).getCartSize()
-		public_dict[Labels.Cart] = Cart(self.account_id).toPublicDict()
+		public_dict[Labels.CartSize] = Cart(self).getCartSize()
+		public_dict[Labels.Cart] = Cart(self).toPublicDict()
 		public_dict[Labels.Addresses] = self.getAddresses()
 		public_dict[Labels.Cards] = self.getCreditCards()
-		public_dict[Labels.Orders] = self.getUserOrders()
+		# public_dict[Labels.Orders] = self.getUserOrders()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
+		public_dict[Labels.MembershipTier] = self.membership_tier
+		public_dict[Labels.FbId] = self.fb_id
 		return public_dict
 
 	def adjustCartItemWithVariant(self, cart_item):
@@ -273,7 +350,7 @@ class User(db.Model):
 		return None
 
 	def adjustCart(self):
-		cart = Cart(self.account_id)
+		cart = Cart(self)
 		adjusted_items = list()
 		for cart_item in cart.items:
 			adjusted_item = self.adjustCartItem(cart_item)
@@ -348,7 +425,7 @@ class User(db.Model):
 				if new_settings.get(Labels.Email).lower() != self.email.lower():
 					try:
 						email_confirmation_id = User.generateEmailConfirmationId()
-						email_api.sendEmailChangeConfirmation(new_settings[Labels.Email], email_confirmation_id, new_settings[Labels.Name])
+						EmailLib.sendEmailChangeConfirmation(new_settings[Labels.Email], email_confirmation_id, new_settings[Labels.Name])
 					except Exception as e:
 						return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
 					self.email_confirmed = False
@@ -475,7 +552,7 @@ class User(db.Model):
 	# get last N orders from user
 	def getUserOrders(self, limit = 10):
 		orders = list()
-		for order in Order.query.filter_by(account_id = self.account_id).all():
+		for order in Order.query.filter_by(account_id = self.account_id).limit(limit).all():
 			orders.append(Order.getOrderById(order.order_id).toPublicDict())
 
 		sorted_orders = sorted(orders,  key=lambda k: k.get('date_created'))
@@ -488,6 +565,7 @@ class User(db.Model):
 		self.soft_deleted = True
 		self.deleted_account_email = self.email
 		self.email = None
+		self.fb_id = None
 		db.session.commit()
 
 	def addItemWithVariantToCart(self, product_id,quantity, variant_id):
@@ -515,7 +593,7 @@ class User(db.Model):
 				if quantity + cart_item.num_items > this_variant.inventory:
 					return {
 						Labels.Success : False,
-						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory - cart_item.num_items)),
+						Labels.Error : ErrorMessages.itemLimit(str(this_variant.inventory)),
 						Labels.Type : "INVENTORY",
 					}
 				try:
@@ -559,7 +637,7 @@ class User(db.Model):
 			if quantity + cart_item.num_items > min(this_product.num_items_limit, this_product.inventory):
 				return {
 						Labels.Success : False,
-						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory) - cart_item.num_items)),
+						Labels.Error : ErrorMessages.itemLimit(str(min(this_product.num_items_limit, this_product.inventory))),
 						Labels.Type : "INVENTORY"
 					}
 			try:
@@ -581,7 +659,6 @@ class User(db.Model):
 	def addItemToCart(self, product_id, quantity, variant_id = None):
 		if variant_id:
 			return self.addItemWithVariantToCart(product_id, quantity, variant_id)
-			
 		else:
 			return self.addItemWithoutVariantToCart(product_id, quantity)
 

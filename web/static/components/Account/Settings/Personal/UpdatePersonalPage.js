@@ -15,12 +15,12 @@ export default class UpdateSettings extends React.Component {
 
 	render() {
 		return (
-			<PageContainer component = {
+			<PageContainer>
 				<div className = "container">
 					 {/* <SettingsFormPersonal /> */}
 					<AccountCard />
 				</div>
-			}/>
+			</PageContainer>
 			
 		)
 	}

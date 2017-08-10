@@ -4,7 +4,6 @@ import random
 import psycopg2
 import base64
 import sys
-from api.utility import email_api
 from api.utility.sql_manager import SqlManager
 from api.utility import string_util 
 from api.utility.table_names import ProdTables

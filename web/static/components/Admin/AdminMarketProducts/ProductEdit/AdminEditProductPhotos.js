@@ -20,7 +20,7 @@ export default class AdminEditProductPhotos extends React.Component {
 
 
 	onSetMainPhoto(image_id, index) {
-		swal(AlertMessages.CHANGE_WAS_SUCCESSFUL,
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.setMainPhoto.bind(this)(image_id, index)
 		}.bind(this))
@@ -54,7 +54,7 @@ export default class AdminEditProductPhotos extends React.Component {
 
 
 	onDeletePhoto(image_id, index) {
-		swal(AlertMessages.CHANGE_WAS_SUCCESSFUL,
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 		function () {
 			this.deletePhoto.bind(this)(image_id, index)
 		}.bind(this))

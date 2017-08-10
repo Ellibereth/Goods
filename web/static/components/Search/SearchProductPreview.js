@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory;
 import {formatPrice} from '../Input/Util'
 
-const COL_SIZE = 6
+const COL_SIZE = 1
 export default class SearchProductPreview extends React.Component {
   	constructor(props) {
 		super(props);
@@ -21,13 +21,13 @@ export default class SearchProductPreview extends React.Component {
   		var date = this.props.product.sale_end_date
   		if (this.state.invalid_product) return <div/>
 		return (
-			<div className = "row search-row">
+			<div className = "search-row">
 				<div 
 				id = {this.props.product.product_id} 
 				onClick = {this.goToProduct.bind(this)}
 				className = {"home-product-preview col-md-" + COL_SIZE + " col-lg-" + COL_SIZE}
 				>
-					<div className = "row home-product-preview-image-row">
+					<div className = "home-product-preview-image-row">
 						{this.props.product.images.length == 0 ? 
 							<div> No Image For This Product </div>
 

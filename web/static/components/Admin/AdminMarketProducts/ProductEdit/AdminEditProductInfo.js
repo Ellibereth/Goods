@@ -3,9 +3,10 @@ var ReactDOM = require('react-dom');
 var browserHistory = require('react-router').browserHistory
 import AdminActivateProduct from './AdminActivateProduct'
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-const form_fields = ['name', 'manufacturer', 'price', 'description', 'sale_end_date', 'category', 'story_text', 'story_template', 'product_template', 'num_items_limit', 'second_tab_name', 'second_tab_text']
-const form_labels = ['Name', 'Manufacturer', 'Price (make sure this is in cents)', 'Description', "Sale End Date", 'Category', 'Story Text', 'Story Template', 'Product Template', 'Item Limit', 'Second Tab Name', 'Second Tab Text']
-const input_types = ['text', 'text', 'text', 'textarea', 'datetime-local', 'text', 'textarea', 'text', 'text', 'text', 'text', 'textarea']
+const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'sale_text_product', 'sale_text_home', 'sale_end_date', 'category', 'product_template', 'num_items_limit', 'manufacturer_fee', 'quadrant1', 'quadrant2', 'quadrant3', 'quadrant4', 'product_search_tags', 'product_listing_tags', 'related_product_tags']
+const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Original Price (make sure this is in cents)', 'Sale Red Text Product (this is HTML)', 'Sale Red Text Home (this is HTML)', "Sale End Date", 'Category', 'Product Template', 'Item Limit', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Search Tags (Separate by commas)', 'Listing Tags (Separate by commas)', 'Related Product Tags (Separate by commas)']
+const input_types = ['text', 'text', 'text', 'text', 'textarea', 'textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea','textarea','textarea']
+
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
 	constructor(props) {
@@ -13,6 +14,13 @@ export default class AdminEditProductInfo extends React.Component {
 		this.state = {
 			product : {}
 		}
+	}
+
+	warningAlertToggleVariants(callback){
+		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
+		function () {
+			callback()
+		}.bind(this))
 	}
 
 	// handle the text input changes
@@ -37,40 +45,7 @@ export default class AdminEditProductInfo extends React.Component {
 		}.bind(this))
 	}
 
-	onToggleProductHasVariants(has_variants){
-		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-			function () {
-				this.onToggleProductHasVariants.bind(this)(has_variants)
-		}.bind(this))
-	}
-
-	toggleProductHasVariants(has_variants){
-		var form_data = JSON.stringify({
-			"product_id" : this.state.product.product_id,
-			"has_variants" : has_variants,
-			"jwt" : localStorage.jwt
-		})
-		$.ajax({
-		type: "POST",
-	  	url: "/toggleProductHasVariants",
-	  	data: form_data,
-	  	success: function(data) {
-			if (data.success){
-				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-				setTimeout(function () {location.reload()}, 4000)
-			}
-			else {
-				swal(data.error.title, data.error.text , data.error.type)
-			}
-			
-	  	}.bind(this),
-	  	error : function(){
-	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});
-	}
-
+	
 	submitTextData(){
 		var form_data = JSON.stringify({
 			"product_id" : this.state.product.product_id,
@@ -85,11 +60,10 @@ export default class AdminEditProductInfo extends React.Component {
 			if (data.success){
 				this.setState({product : data.product})
 				this.props.getProductInformation.bind(this)()
-				setTimeout(function () {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)}, 500)
-
+				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 			}
 			else {
-				swal(data.error.title, data.error.text , data.error.type)
+				swal({title: data.error, type: "error"})
 			}
 			this.props.getProductInformation()
 	  	}.bind(this),
@@ -100,15 +74,12 @@ export default class AdminEditProductInfo extends React.Component {
 		});
 	}
 
-	warningAlertToggleVariants(callback){
-		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			callback()
-		}.bind(this))
-	}
+	
 	
 	render() {	
-		if (!this.state.product) return <div/>
+		if (!this.state.product) return <div/>;
+
+
 		var input_forms = form_fields.map((field, index) => 
 				<AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state.product[field]} field = {field} label = {form_labels[index]}
@@ -125,15 +96,6 @@ export default class AdminEditProductInfo extends React.Component {
 				input_type = "text"/>
 			)
 
-			var toggle_variants = (
-				<div>
-					<h3> Click to make this a product with variants. Note this will deactivate the product.</h3>
-					<button  type = "button" className = "btn btn-default" 
-						onClick = {this.warningAlertToggleVariants.bind(this, this.toggleProductHasVariants.bind(this, true))}>
-						Allow Variants
-					</button>
-				</div>
-			)
 		}
 
 		else {
@@ -144,15 +106,7 @@ export default class AdminEditProductInfo extends React.Component {
 				input_type = "text"/>
 
 			)
-			var toggle_variants = (
-				<div>
-					<h3> Click to make this a product without variants. Note this will deactivate the product. </h3>
-					<button  type = "button" className = "btn btn-default" 
-						onClick = {this.warningAlertToggleVariants.bind(this, this.toggleProductHasVariants.bind(this, false))}>
-						Remove Variants
-					</button>
-				</div>
-			)
+			
 		}
 
 
@@ -173,6 +127,22 @@ export default class AdminEditProductInfo extends React.Component {
 
 			)
 
+		var show_logo_toggle = (
+				<div className="form-group row">
+				<label className="col-md-2 col-lg-2 col-form-label">
+					Would you like to display the manufactuer logo?
+				</label>
+					<div className = "col-md-6 col-lg-6">
+					 	<select className="form-control" id="sel1" 
+					 	value = {this.state.product.show_manufacturer_logo ? this.state.product.show_manufacturer_logo : false}
+					 	onChange = {(event) => this.onTextInputChange("show_manufacturer_logo", event.target.value)}>
+					 		{this.state.product.manufacturer_logo_id && <option value = {true}> Show logo </option>}
+    						<option value = {false}> Do not show logo </option>
+					 	</select>
+					</div>
+				</div>
+
+			)
 
 
 
@@ -188,8 +158,10 @@ export default class AdminEditProductInfo extends React.Component {
 					<form className ="form-horizonal">
 						{input_forms}
 						{live_toggle}
+						{show_logo_toggle}
 						<div className = "form-group">
-							<div className = "col-md-10 col-lg-10">
+
+							<div className = "col-md-4 col-lg-4">
 								<button  type = "button" className = "btn btn-default" 
 								onClick = {this.onTextSubmitPress.bind(this)}>
 									Submit
@@ -202,9 +174,6 @@ export default class AdminEditProductInfo extends React.Component {
 
 				<hr/>
 
-				<div className ="row">
-					{toggle_variants}
-				</div>
 
 			</div>
 		)

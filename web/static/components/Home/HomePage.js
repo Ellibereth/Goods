@@ -1,41 +1,54 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-import ProductRequestModal from '../Product/ProductRequest/ProductRequestModal.js'
 import FeedbackModal from '../CustomerService/Feedback/FeedbackModal.js'
 import HomePageMainContainer from './HomePageMainContainer.js'
 import PageContainer from '../Misc/PageContainer'
+import HomePageContainerMobile from './HomePageContainerMobile'
 
+
+const HOME_TAG = "Home_Page"
 
 export default class HomePage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			show_request_modal: false,
-			show_feedback_modal: false
+			products : [],
 		}
 	}
 
-	//we make sure only one modal isopen at a time
-	toggleRequestFormModal() {
-		this.setState({show_feedback_modal : false})
-		this.setState({show_request_modal : !this.state.show_request_modal})
+	loadProducts(tag){
+		var form_data = JSON.stringify({
+			tag : tag
+		})
+		$.ajax({
+			type: "POST",
+			data: form_data,
+			url: "/getProductsByListingTag",
+			success: function(data) {
+				if (data.success) {
+					this.setState({
+						products: data.products,
+						is_loading: false
+					})
+				}
+			}.bind(this),
+			dataType: "json",
+			contentType : "application/json; charset=utf-8"
+		})
 	}
 
-	toggleFeedbackModal (){
-		this.setState({show_request_modal : false})
-		this.setState({show_feedback_modal : !this.state.show_feedback_modal})
-	} 
+	componentDidMount() {
+		this.loadProducts.bind(this)(HOME_TAG)
+	}
+
 
 	render() {
-		var component = (
-					<HomePageMainContainer    
-					toggleFeedbackModal ={this.toggleFeedbackModal.bind(this)}
-					toggleRequestFormModal = {this.toggleRequestFormModal.bind(this)}/>
-				)
-
 		return (
-				<PageContainer component = {component}/>
+				<PageContainer no_add_buffer = {true}>
+					<HomePageContainerMobile products = {this.state.products}/>
+					<HomePageMainContainer products = {this.state.products} />
+				</PageContainer>
 		);
 	}
 }

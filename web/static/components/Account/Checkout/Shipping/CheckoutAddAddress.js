@@ -40,11 +40,7 @@ export default class CheckoutAddAddress extends React.Component {
 
 	onSubmitPress(event){
 		event.preventDefault()
-		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
-			function () {
-				this.addAddress.bind(this)()
-			}.bind(this)
-		)
+		this.addAddress.bind(this)()
 	}
 
 	addAddress(){
@@ -66,12 +62,6 @@ export default class CheckoutAddAddress extends React.Component {
 					swal(data.error.title, data.error.text , data.error.type)
 				}
 				else {
-					swal({
-							title: "Thank you!", 
-							text : "Your changes have been made",
-							type: "success"
-						})
-					
 					this.props.onAddingNewShippingAddress(this.state.use_same_for_billing)
 				}
 				this.props.setLoading(false)
@@ -96,24 +86,23 @@ export default class CheckoutAddAddress extends React.Component {
 
 	render() {
 		return (
-			<div className = "container">
-				<div className = "row">
-					<div className = "col-sm-10 col-md-10 col-lg-10">
+			<div className = "container-fluid">
+				<div className = "col-sm-12 col-md-12 col-lg-12">
+					<div className = "row">
+					
 						<AddressForm onSubmit = {this.onSubmitPress.bind(this)}
 						has_description = {true}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 
-
+					</div>
 						<hr/>
 
-						<div className = "row">
-							<div className = "col-md-11 col-lg-11">
-								<button className = "btn btn-default pull-right" 
-									onClick = {this.onSubmitPress.bind(this)}>
-									Add Address
-								</button>
-							</div>
-						</div>
+					<div className = "row">
+							
+						<button className = "btn btn-default" 
+							onClick = {this.onSubmitPress.bind(this)}>
+							Add Address
+						</button>
 					</div>
 				</div>
 			</div>

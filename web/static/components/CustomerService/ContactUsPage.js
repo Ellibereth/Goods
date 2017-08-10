@@ -15,15 +15,12 @@ export default class ContactUsPage extends React.Component {
 
 	render() {
 
-		var component = (
-			<div className = "container">
-				<h1> Contact Us Page </h1>
-			</div>
-
-		)
-
 		return (
-				<PageContainer component = {component}/>
+				<PageContainer>
+					<div className = "container">
+						<h1> Contact Us Page </h1>
+					</div>
+				</PageContainer>
 		);
 	}
 }
