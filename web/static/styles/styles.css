@@ -44,6 +44,32 @@ Linda's Color Scheme
 }*/
 
 
+.landing-floating-footer {
+	position: fixed;
+    bottom: 0;
+    text-align: center;
+    background-color: #55688b;
+    width: 100%;
+    padding: 5px;
+    z-index: 99999999999;
+    border-top: 1px solid white;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: white;
+}
+
+.landing-floating-footer a {
+	color: white;
+    text-transform: uppercase;
+    font-size: 85%;
+    padding: 5px 10px 5px 10px;
+}
+
+.landing-page-logo {
+	height: 200px;
+	width: auto;
+}
+
 .product-page-countdown {
 	font-size: 24px;
 	color : var(--LightRed);
@@ -683,7 +709,7 @@ Linda's Color Scheme
 	background-color: white;
 	background: rgba(255,255,255,0.93);
 	position: relative;
-	top: 15%;
+	/*top: 15%;*/
 	text-align: center;
 	border-radius: 8px;
 	padding: 16px;

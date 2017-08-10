@@ -60,7 +60,7 @@ export default class LandingPage extends React.Component {
 			// backgroundImage : "url(" + PHOTO_SRC + ")",
 			// backgroundRepeat: "no-repeat",
 			// backgroundSize: "100% 100%",
-			height : "500px"
+			height : "360px"
 		}
 
 
@@ -69,15 +69,18 @@ export default class LandingPage extends React.Component {
 				<Modal show = {true}>
 					<Modal.Body>
 					<div className = "landing-container" style = {image_style}>
-						<div className = "landing-card col-sm-12 col-md-12 col-lg-12"
-						>
-								<div className = "landing-title">
-							Edgar USA
+						<div className = "landing-card col-sm-12 col-md-12 col-lg-12">
+						<div className = "row">
+							<img className = "landing-page-logo"
+							src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/landing_logo.png"/>
 						</div>
-						<div className = "landing-after-title-text">
-							Buying, redefined
+						<div className = "row">
+							<div className = "landing-after-title-text">
+								Sign up to get notified when we launch
+							</div>
 						</div>
-						<div className = "small-buffer"/>
+						<div className = "top-buffer"/>
+						{/* <div className = "small-buffer"/>
 						<div className = "landing-middle-text">
 							Need stuff? 
 						</div>
@@ -89,7 +92,7 @@ export default class LandingPage extends React.Component {
 						<div className = "landing-above-input-text">
 							Sign up to get notified when we launch
 						</div>
-						<div className = "small-buffer"/>
+						<div className = "small-buffer"/> */}
 						<div className = "row">
 							<div className = "col-md-12 col-lg-8 col-md-offset-0 col-lg-offset-2">
 								<div className="input-group landing-subscribe-container">
@@ -105,14 +108,18 @@ export default class LandingPage extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className = "top-buffer"/>
-						<div className = "landing-privacy-policy-notice">
-							<a href = '/privacy'>Privacy Policy </a>
-						</div>
 						</div>
 					</div>
 					</Modal.Body>
 					</Modal>
+				<div className="landing-floating-footer hidden-xs">
+					<a href="/about">About Us</a>
+					<a href="/privacy">Privacy</a>
+					<a href="/support">Contact Us</a>
+					<a href="/careers">Careers</a>
+					<a href="/usa">Made in USA</a>
+					
+				</div>	
 				<HomePage />
 			</div>
 		);
