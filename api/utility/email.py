@@ -197,7 +197,7 @@ class EmailLib:
 		for manufacturer_email in email_to_vendors_dict.keys():
 			msg = MIMEMultipart()
 			msg['Subject'] = SUBJECT_HEADING + "Order Notification"
-			msg['From'] = "noreply@edgarusa.com"
+			msg['From'] = FROM_NO_REPLY
 			msg['To'] = manufacturer_email
 			msg['CC'] = ", ".join(ADMIN_RECIPIENTS)
 			html = EmailHtml.generateVendorOrderNotification(user, email_to_vendors_dict[manufacturer_email], address, order)
