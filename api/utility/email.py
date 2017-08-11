@@ -9,11 +9,12 @@ from email.mime.multipart import MIMEMultipart
 
 from api.utility.email_html import EmailHtml
 from api.utility.labels import CartLabels as Labels
-
 from api.models.cart import Cart
 from api.utility.labels import ErrorLabels
 import os
 import traceback
+from email.utils import formataddr
+from email.header import Header
 
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -296,10 +297,11 @@ class EmailLib:
 		smtpserver.ehlo
 		smtpserver.login(sender, passW)
 		msg = MIMEMultipart()
-		msg['Subject'] = "Thanks for Interest"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['Subject'] = "Thanks For Your Interest"
+		msg['From'] = formataddr((str(Header('Edgar USA', 'utf-8')), 'noreply@edgarusa.com'))
 		msg['To'] =  email
 		msg['BCC'] = ", ".join(ADMIN_RECIPIENTS)
+		msg['Name'] = "Edgar USA"
 		body = ""
 		body = body + "<img src='https://s3-us-west-2.amazonaws.com/edgarusahomepage/landing_logo.png' style = 'width:auto; height : 100px'/> <br/>"
 		body = body +  "<span style = \"display:block;font-size: 14px;\">Thanks for your interest in Edgar USA!</span> <br/>"
