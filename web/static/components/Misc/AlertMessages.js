@@ -207,13 +207,14 @@ export const AlertMessages = {
 
 	RECOVERY_PIN_SENT : function (email)  {	
 					return {
-						title : "A recovery pin has been sent to " + email,
+						title : "A recovery email has been sent to " + email,
 						type: "success",
 						confirmButtonColor: "#DD6B55",
 						confirmButtonText: "Ok",
 						closeOnConfirm: true
 					}
 				},
+				
 
 	RECOVERY_PIN_NOT_SENT : function (email)  {	
 					return {

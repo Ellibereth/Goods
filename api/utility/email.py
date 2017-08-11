@@ -14,7 +14,10 @@ from api.models.cart import Cart
 from api.utility.labels import ErrorLabels
 import os
 import traceback
+from email.header import Header
+from email.utils import formataddr
 
+FROM_NO_REPLY = formataddr((str(Header('Edgar USA', 'utf-8')), 'noreplay@edgarusa.com'))
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -56,7 +59,7 @@ class EmailLib:
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
 		msg['Subject'] = "User Request!"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['From'] = FROM_NO_REPLY
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 		body = 'Here is a request from ' + request.email + "\n" + "Looking for a " + request.description + \
 			" in the price range : " + request.price_range
@@ -77,7 +80,7 @@ class EmailLib:
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
 		msg['Subject'] = "User Request!"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['From'] = FROM_NO_REPLY
 		email = str(request.email)
 		msg['To'] = email
 		product_description = request.description
@@ -108,7 +111,7 @@ class EmailLib:
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
 		msg['Subject'] = SUBJECT_HEADING + "User Feedback!"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['From'] = FROM_NO_REPLY
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 		name = feedback.name
 		if feedback.order_id == None or feedback.order_id == "":
@@ -135,7 +138,7 @@ class EmailLib:
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
 		msg['Subject'] = "Please confirm your email"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['From'] = FROM_NO_REPLY
 		msg['To'] = email
 		body = EmailHtml.generateConfirmationEmailHtml(email, email_confirmation_id, name)
 		textPart = MIMEText(body, 'html')
@@ -154,7 +157,7 @@ class EmailLib:
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
 		msg['Subject'] = "Please confirm your email"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['From'] = FROM_NO_REPLY
 		msg['To'] = email
 		body = EmailHtml.generateConfirmationChangeEmailHtml(email, email_confirmation_id, name)
 		textPart = MIMEText(body, 'html')
@@ -213,7 +216,7 @@ class EmailLib:
 		smtpserver.login(sender, passW)
 		msg = MIMEMultipart()
 		msg['Subject'] = SUBJECT_HEADING + "Order Confirmation"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['From'] = FROM_NO_REPLY
 		msg['To'] = user.email
 		msg['BCC'] = ", ".join(ADMIN_RECIPIENTS)
 		html = EmailHtml.generateCartEmailNotificationHtml(user, cart, address, order)
@@ -244,7 +247,7 @@ class EmailLib:
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
 		msg['Subject'] = SUBJECT_HEADING + "USER CHECKOUT ERROR"
-		msg['From'] = "errorbot@edgarusa.com"
+		msg['From'] = formataddr((str(Header('ERROR', 'utf-8')), 'errorbot@edgarusa.com'))
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 		if not user:
 			return
@@ -270,7 +273,7 @@ class EmailLib:
 		passW = "sqwcc23mrbnnjwcz"
 		msg = MIMEMultipart()
 		msg['Subject'] = SUBJECT_HEADING + reponse + " error"
-		msg['From'] = "errorbot@edgarusa.com"
+		msg['From'] = formataddr((str(Header('ERROR', 'utf-8')), 'errorbot@edgarusa.com'))
 		msg['To'] = ", ".join(ADMIN_RECIPIENTS)
 
 		body = "Environment: " + str(os.environ.get("ENVIRONMENT")) + "\n"
@@ -297,7 +300,7 @@ class EmailLib:
 		smtpserver.login(sender, passW)
 		msg = MIMEMultipart()
 		msg['Subject'] = "Thanks for Subscribing"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['From'] = FROM_NO_REPLY
 		msg['To'] = email
 		msg['BCC'] = ", ".join(ADMIN_RECIPIENTS)
 

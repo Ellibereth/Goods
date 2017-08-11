@@ -22,7 +22,6 @@ export default class HomePageMainContainer extends React.Component {
 	orderProducts(product_list) {
 		var ordered_products = []
 		product_list.map((product, index) => {
-			console.log(product.name, product.is_available)
 			if (product.is_available) {
 				ordered_products.unshift(product)
 			}

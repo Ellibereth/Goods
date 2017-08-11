@@ -51,15 +51,13 @@ export default class RecoveryForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						swal(AlertMessages.RECOVERY_PIN_SENT(this.state.email),
-							function (isConfirm) {
-								window.location = '/'
-							})
+						swal(AlertMessages.RECOVERY_PIN_SENT(this.state.email))
+						this.setState({email : ""})
 					}
 					else {
 						swal(AlertMessages.RECOVERY_PIN_NOT_SENT(this.state.email))
 					}
-					
+					this.setState({disabled : false})
 					this.props.setLoading(false)
 				}.bind(this),
 				error : function(){
@@ -92,7 +90,7 @@ export default class RecoveryForm extends React.Component {
 					 onKeyPress = {this.onKeyPress.bind(this)} 
 					 className="newInviteWrap" id="uSignup">
 						<div id="invSignUpWrap" style= {{"display": "block"}}>
-							<h2 className="mainIndexTitle reqAccess">Join Today!</h2>
+							<h2 className="mainIndexTitle reqAccess">Forgot Password?</h2>
 							<div className="edgar-row" id="errBar" style= {{"*position" : "relative", "display":"none"}}>
 								<div className=" err-from-login edgar-col-xs-60" style = {{"padding": "10px 0"}}>
 									<div className="errorMessage errorMessageNew loginErr" style={{"padding":"0 6px",width: "100%"}}>
@@ -113,7 +111,7 @@ export default class RecoveryForm extends React.Component {
 								<input onClick = {this.onSubmitEmail.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Recover Account"/> 
 							</div>
 
-							<a href = "/login" id="forgotPW" style= {{"marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Know your password?</a>
+							<a href = "/login" id="forgotPW" style= {{"marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Remember your password? Sign in</a>
 						</div>
 					</form>
 				</div>

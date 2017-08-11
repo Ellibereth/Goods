@@ -6,6 +6,8 @@ import datetime
 import os
 from jinja2 import Template
 from api.utility.membership_tiers import MembershipTiers
+from email.header import Header
+from email.utils import formataddr
 
 URL = os.environ.get('HEROKU_APP_URL')
 # in this use the dev environment
@@ -13,14 +15,14 @@ if URL == None:
 	URL = 'https://edgarusa-devgeniy.herokuapp.com/'
 
 PHOTO_SRC_BASE = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-
+FROM_NO_REPLY = formataddr((str(Header('Edgar USA', 'utf-8')), 'noreplay@edgarusa.com'))
 
 class EmailHtml:
 
 	def generateRecoveryEmail(user):
 		msg = MIMEMultipart()
-		msg['Subject'] = "Account Recovery"
-		msg['From'] = "noreply@edgarusa.com"
+		msg['Subject'] = "Password Reset"
+		msg['From'] = FROM_NO_REPLY
 		msg['To'] = user.email
 
 		f = open('./api/utility/email_templates/recovery_email.html')
