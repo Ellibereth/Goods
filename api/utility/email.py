@@ -300,8 +300,9 @@ class EmailLib:
 		msg['From'] = "noreply@edgarusa.com"
 		msg['To'] =  email
 		msg['BCC'] = ", ".join(ADMIN_RECIPIENTS)
-
-		body = "<span style = \"display:block;font-size: 14px;\">Thanks for your interest in Edgar USA!</span> <br/>"
+		body = ""
+		body = body + "<img src='https://s3-us-west-2.amazonaws.com/edgarusahomepage/landing_logo.png' style = 'width:auto; height : 100px'/> <br/>"
+		body = body +  "<span style = \"display:block;font-size: 14px;\">Thanks for your interest in Edgar USA!</span> <br/>"
 		body = body + "<span style = \"display:block;font-size: 14px;\">We'll let you know when we launch.  Until then, you can contact us with any comments or suggestions at support@edgarusa.com. </span> <br/> "
 		body = body + "<span style = \"display:block;font-size: 14px;\">Thanks,</span> "
 		body = body + "<span style = \"display:block;font-size: 14px;\">The Edgar USA team</span>"
