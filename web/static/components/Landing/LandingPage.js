@@ -116,12 +116,10 @@ export default class LandingPage extends React.Component {
 						<div className = "hidden-sm hidden-md hidden-lg top-buffer"/>
 						<div className = "row hidden-sm hidden-md hidden-lg">
 							<div className = "col-xs-12">
-								<div className="input-group landing-subscribe-container">
-									<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
-									type="button" className="landing-subscribe-button btn ">
-										Notify Me!
-									</button>
-								</div>
+								<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
+								type="button" className="landing-subscribe-button btn ">
+									Notify Me!
+								</button>
 							</div>
 						</div>
 
