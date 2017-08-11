@@ -115,7 +115,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 					<form onSubmit = {this.submitData.bind(this)} onKeyPress = {this.onKeyPress.bind(this)} 
 					className="newInviteWrap" id="uSignup">
 						<div id="invSignUpWrap" style= {{"display": "block"}}>
-							<h2 className="mainIndexTitle reqAccess">Join Today!</h2>
+							<h2 className="mainIndexTitle reqAccess">Reset Password</h2>
 							<div className="edgar-row" id="errBar" style= {{"*position" : "relative", "display":"none"}}>
 								<div className=" err-from-login edgar-col-xs-60" style = {{"padding": "10px 0"}}>
 									<div className="errorMessage errorMessageNew loginErr" style={{"padding":"0 6px",width: "100%"}}>
@@ -144,7 +144,7 @@ export default class RecoveryChangePasswordPage extends React.Component {
 								<input onClick = {this.submitData.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Recover Account"/> 
 							</div>
 
-							<a href = "/login" id="forgotPW" style= {{"marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Know your password?</a>
+					
 						</div>
 					</form>
 				</div>
