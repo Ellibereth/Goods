@@ -691,10 +691,10 @@ Linda's Color Scheme
     width: 100%;
     padding: 5px;
     z-index: 99999999999;
-    border-top: 1px solid white;
+    /*border-top: 1px solid white;*/
     border-top-width: 1px;
     border-top-style: solid;
-    border-top-color: white;
+    border-top-color: #55688b;
 }
 
 .landing-floating-footer a {

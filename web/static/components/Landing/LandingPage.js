@@ -137,8 +137,10 @@ export default class LandingPage extends React.Component {
 					<a href="/usa">Made in USA</a>
 					*/}
 					
-				</div>	
-				<HomePage />
+				</div>
+				<div className = "hidden-xs">	
+					<HomePage />
+				</div>
 			</div>
 		);
 	}
