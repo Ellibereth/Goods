@@ -47,6 +47,7 @@ export default class FacebookConnect extends React.Component {
 			data : JSON.stringify(obj, null, '\t'),
 			contentType : 'application/json;charset=UTF-8',
 			success: function (data){
+				browserHistory.push('/')
 				if (data.success) {
 					// console.log(data.user)
 					AppActions.addCurrentUser(data.user, data.jwt)
@@ -72,7 +73,9 @@ export default class FacebookConnect extends React.Component {
 					callback={this.responseFacebook.bind(this)}
 					icon="fa-facebook fb-icon"
 					cssClass = "fb-connect-button"
-					textButton = {this.props.button_text} />
+					textButton = {this.props.button_text}
+					isMobile = {true}
+					 />
 					:
 					<div/>
 			}
