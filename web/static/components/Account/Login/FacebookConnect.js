@@ -51,6 +51,7 @@ export default class FacebookConnect extends React.Component {
 					// console.log(data.user)
 					AppActions.addCurrentUser(data.user, data.jwt)
 					swal(data.user.name)
+					setTimeout(function(){window.location = "/"}, 100)
 				} 
 				// else {
 				// 	swal(data.error)
