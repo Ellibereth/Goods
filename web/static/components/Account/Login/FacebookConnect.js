@@ -47,7 +47,7 @@ export default class FacebookConnect extends React.Component {
 			data : JSON.stringify(obj, null, '\t'),
 			contentType : 'application/json;charset=UTF-8',
 			success: function (data){
-				swal("test")
+				swal(data.user.name)
 				// if (data.success) {
 				// 	// console.log(data.user)
 				// 	AppActions.addCurrentUser(data.user, data.jwt)
