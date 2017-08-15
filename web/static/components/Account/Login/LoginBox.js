@@ -209,15 +209,15 @@ export default class LoginBox extends React.Component {
 										<span id="login_user_loader" style={{"bottom":"17px",position:"absolute",left:"99px","*bottom": "21px","*left": "140px"}}></span>
 										<span className = "hidden-xs">
 											<div style = {{"float" : "right"}}>
-												<FacebookConnect  
+												{/* <FacebookConnect  
 												setLoading = {this.props.setLoading}
-												button_text = "LOGIN WITH FACEBOOK"/>
+												button_text = "LOGIN WITH FACEBOOK"/> */}
 											</div>
 										</span>
 										<span className = "hidden-sm hidden-md hidden-lg">
 											<div style=  {{"paddingTop" : "48px"}}>
-												<FacebookConnect setLoading = {this.props.setLoading}
-												 button_text = "LOGIN WITH FACEBOOK"/>
+												{/* <FacebookConnect setLoading = {this.props.setLoading}
+												 button_text = "LOGIN WITH FACEBOOK"/> */}
 											</div>
 										</span>
 									</div>
@@ -280,16 +280,16 @@ export default class LoginBox extends React.Component {
 								<input onClick = {this.registerUser.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
 								<span className = "hidden-xs">
 									<div style = {{"float" : "right"}}>
-										 <FacebookConnect 
+										 {/* <FacebookConnect 
 										 setLoading = {this.props.setLoading}
-										  button_text = "LOGIN WITH FACEBOOK"/> 
+										  button_text = "LOGIN WITH FACEBOOK"/> */}
 									</div>
 								</span>
 								<span className = "hidden-sm hidden-md hidden-lg">
 									<div style=  {{"paddingTop" : "12px"}}>
-										<FacebookConnect  
+										{/* <FacebookConnect  
 										setLoading = {this.props.setLoading}
-										button_text = "LOGIN WITH FACEBOOK"/> 
+										button_text = "LOGIN WITH FACEBOOK"/>  */}
 									</div>
 								</span>
 							</div>

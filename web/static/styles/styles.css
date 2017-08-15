@@ -44,6 +44,20 @@ Linda's Color Scheme
 }*/
 
 
+.add-to-cart-success-text {
+	visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+    color : var(--DarkRed);
+}
+
+.add-to-cart-success-text-hidden { 
+	visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+    color : var(--DarkRed);
+}
+
 .landing-floating-footer {
 	position: fixed;
     bottom: 0;

@@ -13,7 +13,8 @@ export default class ProductAddToCart extends React.Component {
 			variant : null,
 			buy_disabled : false,
 			variant : null,
-			variant_display : this.getVariantDefaultText.bind(this)()
+			variant_display : this.getVariantDefaultText.bind(this)(),
+			add_to_cart_success: null
 		}
     }
 
@@ -98,12 +99,14 @@ export default class ProductAddToCart extends React.Component {
 				}),
 				success: function(data) {
 					if (data.success){
-						swal(AlertMessages.ITEM_ADDED_TO_CART,
-						function(isConfirm){
-							if (isConfirm){
-								window.location =  '/myCart'
-							}
-						});
+						$("#add_to_cart_success_text").toggleClass("add-to-cart-success-text-hidden add-to-cart-success-text");
+						// setTimeout(function() {this.setState({add_to_cart_success : null})}.bind(this), 2000)
+						// swal(AlertMessages.ITEM_ADDED_TO_CART,
+						// function(isConfirm){
+						// 	if (isConfirm){
+						// 		window.location =  '/myCart'
+						// 	}
+						// });
 						AppActions.updateCurrentUser(data.user)
 						ga('ec:addProduct', {
 							'id': this.props.product.product_id.toString(),
@@ -227,6 +230,8 @@ export default class ProductAddToCart extends React.Component {
 
     	var add_to_cart_disabled = this.addToCartDisabled.bind(this)(this.props.product)
     	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? " quantity-select-disabled " : ""
+
+    	
 		return (
 				<li className="colorsWithAddToCart reg-prod-pg">
 					{variant_select}
@@ -264,6 +269,13 @@ export default class ProductAddToCart extends React.Component {
 						<span style = {{"color" : "red"}}>Sorry, but we're cutting you off at {this.props.product.num_items_limit} of this item</span>
 					</div>
 					}
+					
+					<div style = {{"paddingTop" : "64px"}}>
+						<span id ="add_to_cart_success_text" 
+						className = "add-to-cart-success-text-hidden">
+							Item added to cart
+						</span>
+					</div>
 
 						<div className="clear"/>
 					</div>
