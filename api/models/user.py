@@ -48,7 +48,7 @@ class User(db.Model):
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
-
+	search_tag = db.relationship("CartItem", backref = ProdTables.ShoppingCartTable, lazy='dynamic', cascade = "save-update")
 	membership_tier = db.Column(db.Integer)
 	fb_id = db.Column(db.String)
 
