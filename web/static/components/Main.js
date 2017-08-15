@@ -68,6 +68,7 @@ export default class Main extends React.Component {
 		var form_data =  JSON.stringify({
 			jwt : localStorage.jwt
 		})
+		
 		$.ajax({
 			type: "POST",
 			url: "/getUserInfo",
@@ -96,7 +97,7 @@ export default class Main extends React.Component {
 				else {
 					console.log("failure to laod user, logging out")
 					AppActions.removeCurrentUser()
-					window.location = "/"
+					// window.location = "/"
 				}
 
 			}.bind(this),
