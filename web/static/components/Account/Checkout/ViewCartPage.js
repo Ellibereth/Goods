@@ -151,10 +151,22 @@ export default class ViewCartPage extends React.Component {
 							</div>
 						</div>
 						<div className = "col-md-3 col-lg-3 col-sm-3">
-							<button className = "btn btn-default checkout-button" disabled = {this.state.items.length == 0} 
-							onClick = {this.toCheckoutClick.bind(this)}>
-								Proceed to Checkout 
-							</button>
+							<div className = "row">
+								<div className = "col-sm-12 col-md-12 col-lg-12">
+									<button className = "btn btn-default checkout-button" 
+									onClick = {() => window.location = "/"}>
+										Continue Shopping
+									</button>
+								</div>
+							</div>
+							<div className = "row">
+								<div className = "col-sm-12 col-md-12 col-lg-12">
+									<button className = "btn btn-default checkout-button" disabled = {this.state.items.length == 0} 
+									onClick = {this.toCheckoutClick.bind(this)}>
+										Proceed to Checkout 
+									</button>
+								</div>
+							</div>
 							{/*<div className = "row">
 								<div className = "cart-message">
 									{this.state.cart_message}

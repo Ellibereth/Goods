@@ -64,6 +64,7 @@ export default class Main extends React.Component {
 	}
 
 	getUserInfo(){
+
 		var form_data =  JSON.stringify({
 			jwt : localStorage.jwt
 		})
@@ -91,6 +92,9 @@ export default class Main extends React.Component {
 							}.bind(this))
 						}
 					
+				}
+				else {
+					AppActions.removeCurrentUser()
 				}
 
 			}.bind(this),

@@ -266,6 +266,9 @@ def getUserOrders(this_user):
 @account_api.route('/getUserInfo', methods = ['POST'])
 @decorators.check_user_jwt
 def getUserInfo(this_user):
+	if not this_user:
+		return JsonUtil.failure()
+		
 	adjusted_items = this_user.adjustCart()
 	public_user_dict = this_user.toPublicDict()
 	return JsonUtil.successWithOutput({
