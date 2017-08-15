@@ -7,6 +7,7 @@ export default class LandingPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			result_text : ""
 		}
 	}
 
@@ -24,17 +25,16 @@ export default class LandingPage extends React.Component {
 			data : form_data,
 			success: function(data) {
 				if (data.success) {
-					swal({
-						title: "Thanks! We'll e-mail you when we're live",
-						type: "success"
-					})
-					this.setState({email : ""})
+					$("#success_text").toggleClass("email-success email-success-hidden")
+					this.setState({email : "", result_text : " It worked! You'll hear from us soon."})
 				}
 				else {
-					swal({
-						title : data.error,
-						type : "error"
-					})
+					$("#success_text").toggleClass("email-success email-success-hidden")
+					this.setState({result_text : "Something didn't work...try again"})
+					setTimeout(function(){ 
+						// this.setState({result_text : ""})
+						$("#success_text").toggleClass("email-success email-success-hidden")
+					}.bind(this), 5000)
 				}
 
 			}.bind(this),
@@ -121,6 +121,10 @@ export default class LandingPage extends React.Component {
 									Notify Me!
 								</button>
 							</div>
+						</div>
+						<div className = "small-buffer"/>
+						<div className = "row">
+							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
 						</div>
 
 						<div className = "top-buffer"/>

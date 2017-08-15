@@ -43,6 +43,20 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+.email-success {
+	visibility: visible;
+    opacity: 1;
+    transition: opacity 2s linear;
+    color : var(--DarkBlue);
+}
+
+.email-success-hidden { 
+	visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+    color : var(--DarkBlue);
+}
+
 
 .product-page-countdown {
 	font-size: 24px;
