@@ -242,6 +242,8 @@ class PaymentLabels:
 
 
 class CartLabels:
+	DateCreated = "date_created"
+	DateModified = "date_modified"
 	ShippingDiscount = "shipping_discount"
 	Discounts = "discounts"
 	ItemsDiscount = "items_discount"

@@ -95,7 +95,6 @@ export default class Main extends React.Component {
 					
 				}
 				else {
-					console.log("failure to load user, logging out")
 					AppActions.removeCurrentUser()
 					// window.location = "/"
 				}
@@ -114,7 +113,6 @@ export default class Main extends React.Component {
 	}
 
 	render() {
-		console.log(localStorage.jwt, AppStore.getCurrentUser())
 		return (
 			<div>
 				{this.props.children}

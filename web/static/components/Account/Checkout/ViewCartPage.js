@@ -159,6 +159,7 @@ export default class ViewCartPage extends React.Component {
 									</button>
 								</div>
 							</div>
+							<div className = "top-buffer"/>i
 							<div className = "row">
 								<div className = "col-sm-12 col-md-12 col-lg-12">
 									<button className = "btn btn-default checkout-button" disabled = {this.state.items.length == 0} 

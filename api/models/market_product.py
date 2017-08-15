@@ -108,7 +108,7 @@ class MarketProduct(db.Model):
 
 	@staticmethod
 	def getAllProducts():
-		products = MarketProduct.query.filter_by().all()
+		products = MarketProduct.query.filter().order_by(MarketProduct.date_created).all()
 		return [product.toPublicDict() for product in products]
 
 	@staticmethod

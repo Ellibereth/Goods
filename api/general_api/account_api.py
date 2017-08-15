@@ -264,18 +264,30 @@ def getUserOrders(this_user):
 	return JsonUtil.successWithOutput({Labels.Orders : orders})
 
 @account_api.route('/getUserInfo', methods = ['POST'])
-@decorators.check_user_jwt
+@decorators.check_jwt
 def getUserInfo(this_user):
+
 	if not this_user:
 		return JsonUtil.failure()
-		
-	adjusted_items = this_user.adjustCart()
-	public_user_dict = this_user.toPublicDict()
-	return JsonUtil.successWithOutput({
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
-			Labels.User : public_user_dict,
-			Labels.AdjustedItems : adjusted_items
-		})
+	
+	if hasattr(this_user, 'is_admin'):
+		if this_user.is_admin:
+			admin_jwt = JwtUtil.create_jwt(this_user.toPublicDict())
+			return JsonUtil.successWithOutput({
+				Labels.User : this_user.toPublicDict(), 
+				"jwt" : admin_jwt})
+		else:
+			return JsonUtil.failure()
+
+	else:
+		adjusted_items = this_user.adjustCart()
+		public_user_dict = this_user.toPublicDict()
+		return JsonUtil.successWithOutput({
+				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
+				Labels.User : public_user_dict,
+				Labels.AdjustedItems : adjusted_items
+			})
+
 
 
 @account_api.route('/softDeleteAccount', methods = ['POST'])

@@ -34,3 +34,18 @@ def check_user_jwt(func):
 			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 		return func(this_user)
 	return wrapper
+
+def check_jwt(func):
+	@wraps(func)
+	def wrapper():
+		jwt = request.json.get(Labels.Jwt)
+		this_user = JwtUtil.getUserInfoFromJwt(jwt)
+		if this_user == None:
+			admin_user = JwtUtil.decodeAdminJwt(jwt)
+			if admin_user == None:
+				return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+			else:
+				return func(admin_user)
+		return func(this_user)
+	return wrapper
+

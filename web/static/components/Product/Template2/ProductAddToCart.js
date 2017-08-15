@@ -4,6 +4,7 @@ import AppStore from '../../../stores/AppStore'
 import AppActions from '../../../actions/AppActions'
 import {AlertMessages} from '../../Misc/AlertMessages'
 import {formatPrice} from '../../Input/Util'
+import FadingText from '../../Misc/FadingText'
 
 export default class ProductAddToCart extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class ProductAddToCart extends React.Component {
 			buy_disabled : false,
 			variant : null,
 			variant_display : this.getVariantDefaultText.bind(this)(),
-			add_to_cart_success: null
+			add_to_cart_success: false,
 		}
     }
 
@@ -33,6 +34,7 @@ export default class ProductAddToCart extends React.Component {
 
 	// edit this to allow user to checkout as guest
 	onNonUserClick(){
+		console.log("creating guest user")
 		$.ajax({
 			type: "POST",
 			url: "/createGuestUser",
@@ -99,14 +101,7 @@ export default class ProductAddToCart extends React.Component {
 				}),
 				success: function(data) {
 					if (data.success){
-						$("#add_to_cart_success_text").toggleClass("add-to-cart-success-text-hidden add-to-cart-success-text");
-						// setTimeout(function() {this.setState({add_to_cart_success : null})}.bind(this), 2000)
-						// swal(AlertMessages.ITEM_ADDED_TO_CART,
-						// function(isConfirm){
-						// 	if (isConfirm){
-						// 		window.location =  '/myCart'
-						// 	}
-						// });
+						
 						AppActions.updateCurrentUser(data.user)
 						ga('ec:addProduct', {
 							'id': this.props.product.product_id.toString(),
@@ -118,7 +113,8 @@ export default class ProductAddToCart extends React.Component {
 						});
 						ga('ec:setAction', 'add')
 						ga('send', 'event', 'UX', 'click', 'add to cart');
-						this.props.getProductInformation()
+						window.location = "/myCart"
+						// this.props.getProductInformation()
 					}
 					else {
 						this.setState({quantity : 1})
@@ -133,7 +129,7 @@ export default class ProductAddToCart extends React.Component {
 						eventAction: 'add-to-cart',
 						eventLabel : AppStore.getCurrentUser().email
 					});
-					// this.props.setLoading(false)
+					this.props.setLoading(false)
 					this.setState({buy_disabled : false})
 				}.bind(this),
 				dataType: "json",
@@ -161,7 +157,8 @@ export default class ProductAddToCart extends React.Component {
 	}
 
 	addToCartClick() {
-		if ((AppStore.getCurrentUser() && !AppStore.getCurrentUser().is_guest)) {
+		var user = AppStore.getCurrentUser()
+		if (user || user.is_guest) {
 			this.addToCart.bind(this)()
 		}
 		else {
@@ -270,12 +267,7 @@ export default class ProductAddToCart extends React.Component {
 					</div>
 					}
 					
-					<div style = {{"paddingTop" : "64px"}}>
-						<span id ="add_to_cart_success_text" 
-						className = "add-to-cart-success-text-hidden">
-							Item added to cart
-						</span>
-					</div>
+
 
 						<div className="clear"/>
 					</div>

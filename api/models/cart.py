@@ -14,11 +14,9 @@ from api.utility.membership_tiers import MembershipDiscount
 class Cart:
 	def __init__(self, user, discount_code = None):
 		self.account_id = user.account_id
-
-		cart_items = CartItem.query.filter(CartItem.account_id == user.account_id).all()
-		
+		#  put the cart items in date modified reverse order
+		cart_items = CartItem.query.filter(CartItem.account_id == user.account_id).order_by(CartItem.date_modified).all()
 		self.items = []
-
 		for cart_item in cart_items:
 			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
 			if this_product.isAvailable():
@@ -83,12 +81,14 @@ class Cart:
 				product[Labels.NumItems] = cart_item.num_items
 				product[Labels.VariantType] = cart_item.variant_type
 				product[Labels.VariantId] = cart_item.variant_id
+				product[Labels.DateModified] = cart_item.date_modified
 				if cart_item.variant_type != None:
 					product[Labels.Name] = product[Labels.Name]  + " - " + cart_item.variant_type
 					this_variant = db_product.getProductVariant(cart_item.variant_id)
 					product[Labels.Inventory] = this_variant.inventory
 				product_list.append(product)
-		product_list.sort(key=lambda x: x[Labels.Name])
+		product_list.sort(key=lambda x: x.get(Labels.DateModified))
+		product_list.reverse()
 		public_dict[Labels.Items] = product_list
 		
 		public_dict[Labels.ItemsPrice] = self.getCartItemsPrice()
@@ -160,6 +160,7 @@ class CartItem(db.Model):
 		public_dict[Labels.AccountId] = self.account_id
 		public_dict[Labels.NumItemsLimit] = min(self.num_items_limit, self.num_items)
 		public_dict[Labels.VariantId] = self.variant_id
+		public_dict[Labels.DateModified] = self.date_modified
 		return public_dict
 
 
