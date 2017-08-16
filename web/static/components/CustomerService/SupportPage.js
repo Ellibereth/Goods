@@ -67,6 +67,10 @@ export default class SupportPage extends React.Component {
 						feedback_content : "",
 						email : ""
 					})
+					setTimeout(function(){ 
+						$("#success_text").addClass("email-success-hidden")
+						$("#success_text").removeClass("email-success")
+					}.bind(this), 3000)
 				}
 				else {
 					$("#success_text").addClass("email-success")
@@ -76,7 +80,7 @@ export default class SupportPage extends React.Component {
 						// this.setState({result_text : ""})
 						$("#success_text").addClass("email-success-hidden")
 						$("#success_text").removeClass("email-success")	
-					}.bind(this), 5000)
+					}.bind(this), 3000)
 				}
 			}.bind(this),
 			dataType: "json",

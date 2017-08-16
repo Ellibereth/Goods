@@ -28,6 +28,10 @@ export default class LandingPage extends React.Component {
 					$("#success_text").addClass("email-success")
 					$("#success_text").removeClass("email-success-hidden")
 					this.setState({email : "", result_text : " It worked! You'll hear from us soon."})
+					setTimeout(function(){ 
+						$("#success_text").addClass("email-success-hidden")
+						$("#success_text").removeClass("email-success")
+					}.bind(this), 3000)
 				}
 				else {
 					$("#success_text").addClass("email-success")
@@ -36,7 +40,7 @@ export default class LandingPage extends React.Component {
 					setTimeout(function(){ 
 						$("#success_text").addClass("email-success-hidden")
 						$("#success_text").removeClass("email-success")
-					}.bind(this), 5000)
+					}.bind(this), 3000)
 				}
 
 			}.bind(this),
