@@ -21,9 +21,14 @@ class LaunchListEmail(db.Model):
 
 	@staticmethod
 	def AddToLaunchList(email, ip):
+		num_matching_ips = LaunchListEmail.query.filter_by(ip = ip).count()
+		IP_LIMIT = 1000
+		if num_matching_ips > IP_LIMIT:
+			return None
 		new_entry = LaunchListEmail(email, ip)
 		db.session.add(new_entry)
-		db.session.commit(new_entry)
+		db.session.commit()
+		return new_entry
 
 
 

@@ -431,16 +431,21 @@ def signUpForLandingList():
 	email = request.json.get(Labels.Email)
 	if not email:
 		return JsonUtil.failure("Invalid email, please try again")
-	email_matches = LaunchListEmail.query.filter_by(email = email).first()
-	if email_matches:
-		return JsonUtil.failure("You've already subscribed")
-
+	
 	if not validate_email(email):
 		return JsonUtil.failure("Invalid email, please try again")
 
+	email_matches = LaunchListEmail.query.filter_by(email = email).first()
+	if email_matches:
+		return JsonUtil.failure("This email is already subcribed")	
 	try:
 		EmailLib.sendLaunchListEmail(email)
 	except Exception as e:
-		return JsonUtil.failure("Error sending email, please try again")		
+		return JsonUtil.failure("Error sending email, please try again")
 
-	return JsonUtil.success()
+	
+	result = LaunchListEmail.AddToLaunchList(email, request.remote_addr)
+	if result:
+		return JsonUtil.success()
+	else:
+		return JsonUtil.failure("Your IP has been blocked for sending a large number of requests in a short time. If you believe you have received this message in error, please contact us via the support page.")

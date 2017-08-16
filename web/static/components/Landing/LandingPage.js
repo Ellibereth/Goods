@@ -46,7 +46,7 @@ export default class LandingPage extends React.Component {
 				else {
 					$("#success_text").addClass("email-success")
 					$("#success_text").removeClass("email-success-hidden")
-					this.setState({result_text : "Something didn't quite work...try again"})
+					this.setState({result_text : data.error})
 					setTimeout(function(){ 
 						$("#success_text").addClass("email-success-hidden")
 						$("#success_text").removeClass("email-success")
