@@ -21,7 +21,8 @@ export default class SupportPage extends React.Component {
 			email : "",
 			name: "",
 			category: "",
-			order_id : ""
+			order_id : "",
+			success_text : "",
 		}
 		this.onChange = this.onChange.bind(this)
 		this.sendFeedback = this.sendFeedback.bind(this)
@@ -59,15 +60,27 @@ export default class SupportPage extends React.Component {
 			url: "/addFeedback",
 			success: function(data) {
 				if (data.success) {
-					$("#success_text").addClass("email-success")
-					$("#success_text").removeClass("email-success-hidden")
+					if (this.state.success_text) {
+						$("#success_text").removeClass("email-success")	
+						$("#success_text").addClass("email-success-hidden")	
+
+						setTimeout(function() {
+							$("#success_text").removeClass("email-success-hidden")	
+							$("#success_text").addClass("email-success")
+
+						},2000)
+					}
+					else {
+						$("#success_text").addClass("email-success")
+						$("#success_text").removeClass("email-success-hidden")	
+					}
 
 					this.setState({
 						success_text : "Your feedback has been received", 
 						feedback_content : "",
 						email : ""
 					})
-					
+
 				}
 				else {
 					$("#success_text").addClass("email-success")
