@@ -43,6 +43,10 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+.no-link:hover {
+	cursor: text
+}
+
 .email-success {
 	visibility: visible;
     opacity: 1;
@@ -465,11 +469,17 @@ Linda's Color Scheme
 
 
 
-
+.support-panel {
+	/*border-width : 0px;*/
+}
 .support-panel-body{
-	padding: 25px;
+	padding: 32px;
 	padding-top: 2px;
 	padding-bottom :2px;
+}
+
+.support-text {
+	font-size: 16px;
 }
 
 .textarea-resize-vertical {
@@ -482,6 +492,10 @@ Linda's Color Scheme
 }
 
 .send-feedback-button:hover{
+	color : white !important;
+}
+
+.send-feedback-button:focus{
 	color : white !important;
 }
 
@@ -694,7 +708,7 @@ Linda's Color Scheme
 
 
 .landing-container {
-	height: 440px;
+	height: 540px;
 }
 
 .landing-floating-footer {
@@ -732,8 +746,6 @@ Linda's Color Scheme
 	/*top: 15%;*/
 	text-align: center;
 	border-radius: 8px;
-	padding: 16px;
-
 }
 
 .landing-title {
@@ -743,8 +755,8 @@ Linda's Color Scheme
 }
 
 .landing-after-title-text {
-	font-size: 16px;	
-	font-weight: bold;
+	font-size: 20px;	
+	/*font-weight: bold;*/
 }
 
 .landing-middle-text {
@@ -765,6 +777,8 @@ Linda's Color Scheme
 
 .landing-subscribe-input{
 	border-color: #337ab7 !important;
+	border-top-left-radius: 20px !important;
+	border-bottom-left-radius: 20px !important;
 }
 
 .landing-subscribe-button{
@@ -795,7 +809,7 @@ Linda's Color Scheme
 	user-select: none !important;
 	background-image: none !important;
 	border: 1px solid transparent !important;
-	border-radius: 4px !important;
+	border-radius: 20px !important;
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
 	position: relative !important;

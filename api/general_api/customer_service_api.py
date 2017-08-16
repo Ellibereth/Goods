@@ -17,9 +17,9 @@ def addFeedback():
 	feedback_content = request.json.get(Labels.FeedbackContent)
 	category = request.json.get(Labels.Category)
 	order_id = request.json.get(Labels.OrderId)
+	if email == None:
+		email = "NO EMAIL PROVIDED"
 
-	if category == "":
-		return JsonUtil.failure(ErrorMessages.BlankCategory)
 	if feedback_content == "":
 		return JsonUtil.failure(ErrorMessages.BlankMessage)
 

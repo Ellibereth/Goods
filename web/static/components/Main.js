@@ -167,11 +167,12 @@ ReactDOM.render(
 
 			<Route path = "landing" component = {LandingPage}/>
 			<Route path = "support" component = {SupportPage}/>
-			<Route path= "privacy" component={PrivacyPolicyPage}/>
+			
 			
 
 
 			{/* 
+			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			<Route path= "terms" component={TermsOfServicePage}/>
 			
 			<Route path = "contact" component = {ContactUsPage}/>

@@ -2,15 +2,15 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var browserHistory = require('react-router').browserHistory
-import PageContainer from '../Misc/PageContainer'
+import TrimmedPageContainer from '../Misc/TrimmedPageContainer'
 import AppStore from '../../stores/AppStore'
 
 
-const PURCHASE_CATEGORY = "A Purchase"
-const SITE_CATEGORY = "Your Site"
-const ACCOUNT_CATEGORY = "My Account"
-const OTHER_CATEGORY = 'Something Else'
-const categories = ['', PURCHASE_CATEGORY, SITE_CATEGORY, ACCOUNT_CATEGORY, OTHER_CATEGORY]
+// const PURCHASE_CATEGORY = "A Purchase"
+// const SITE_CATEGORY = "Your Site"
+// const ACCOUNT_CATEGORY = "My Account"
+// const OTHER_CATEGORY = 'Something Else'
+// const categories = ['', PURCHASE_CATEGORY, SITE_CATEGORY, ACCOUNT_CATEGORY, OTHER_CATEGORY]
 import {AlertMessages} from '../Misc/AlertMessages'
 
 export default class SupportPage extends React.Component {
@@ -20,7 +20,7 @@ export default class SupportPage extends React.Component {
 			feedback_content: "",
 			email : "",
 			name: "",
-			category: categories[0],
+			category: "",
 			order_id : ""
 		}
 		this.onChange = this.onChange.bind(this)
@@ -59,22 +59,22 @@ export default class SupportPage extends React.Component {
 			url: "/addFeedback",
 			success: function(data) {
 				if (data.success) {
-					swal(AlertMessages.SUCCESFUL_FEEDBACK_COMPLETION,
-						function (isConfirm) {
-							if (isConfirm) {
-								window.location = '/'
-							}
-						})
+					$("#success_text").toggleClass("email-success email-success-hidden")
+					this.setState({
+						success_text : "Your feedback has been received", 
+						feedback_content : ""
+					})
 				}
 				else {
-					swal({
-						title : data.error.title, 
-						text : data.error.text,
-						type:  data.error.type,
-						confirmButtonColor: "#DD6B55",
-						confirmButtonText: "Ok",
-						closeOnConfirm: true
+					this.setState({
+						success_text : "There was an error sending your feedback", 
 					})
+					$("#success_text").toggleClass("email-success email-success-hidden")
+					this.setState({result_text : "Something didn't work...perhaps your input was blank"})
+					setTimeout(function(){ 
+						// this.setState({result_text : ""})
+						$("#success_text").toggleClass("email-success email-success-hidden")
+					}.bind(this), 5000)
 				}
 			}.bind(this),
 			dataType: "json",
@@ -82,117 +82,66 @@ export default class SupportPage extends React.Component {
 		})
 	}
 
-
+// for image 2, don't break lines between questions, 
+// more padding between edges of box and inside content
+// , font change, use placeholder instead of "Message", 
+// and the page could use a header saying "Support"
 
 
 	render() {
 
-		var select_options = categories.map((category, index)=>
-				<option value = {category} index = {index}> {category} </option>
-			)
 
 		return (
-				<PageContainer>
+				<TrimmedPageContainer>
 					<div className = "container">
-				<div className = "row">
-					<div className = "col-sm-6 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
-						<div className = "panel panel-default ">
-							<div className = "panel-body support-panel-body" >
-								<div className = "top-buffer"/>
-								<div className = "row">
-									 <form onSubmit = {this.sendFeedback.bind(this)} className="form-inline">
-										<div className = "form-group" style = {{"padding-right" : "6px"}}>
-											<p className = "form-control-static"> {"Topic: "} </p>
-										</div>
-										<div className = "form-group">
-											<select className = "form-control" 
-											 onChange = {this.onChange} name = "category">
-											 	{select_options}
-											 </select>
-										</div>
-									</form>
-								</div>
-								<div className = "top-buffer"/>
-
-								{
-									this.state.category == PURCHASE_CATEGORY &&
-									<div>
+						<div className = "row">
+							<div className = "col-sm-6 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3 col-sm-offset-3">
+								<div className = "panel panel-default support-panel">
+									<div className = "panel-body support-panel-body" >
+										<div className = "top-buffer"/>
 										<div className = "row">
-											<form className="form-inline">
-												<div className = "form-group" style = {{"padding-right" : "6px"}}>
-													<p className = "form-control-static"> {"Order Id: "} </p>
-												</div>
-													<div className = "form-group">
-														<input type="text" className = "form-control" 
-														 onChange = {this.onChange} name = "order_id" value = {this.state.order_id} />
-													</div>
-											</form>
+											<div className = "support-text">Anything you want us to carry? </div>
+											<div className = "support-text">Want to work with us?</div> <br/>
+											<div className = "support-text">Any other questions, comments, or suggestions?</div>
+											<div className = "support-text">Let us know! We'll get back to you.</div>
 										</div>
+										
+										<div className = "top-buffer"/>
+
+										<div className = "top-buffer"/>
+
+										<div className = "row">
+											<span className = "support-text">Message</span>
+										</div>
+
+										<div className = "small-buffer"/>
+
+										<div className = "row">
+											<div className = "form-group">
+												<textarea className="form-control textarea-resize-vertical"
+												 rows="8" value = {this.state.feedback_content} onChange = {this.onChange} name = "feedback_content"/> 
+											</div>
+										</div>
+										
+										<div className = "top-buffer"/>
+
+										<div className = "row">
+											<button onClick = {this.sendFeedback} type = "button" className = "btn send-feedback-button">
+												Send
+											</button>
+										</div>
+										<div className = "top-buffer"/>
+										<div className = "row">
+											<span id = "success_text" className = "email-success-hidden">{this.state.success_text}</span>
+										</div>
+
+										<div className = "small-buffer"/>
 									</div>
-								}
-
-								<div className = "top-buffer"/>
-
-								<div className = "row">
-									Message
 								</div>
-
-								<div className = "small-buffer"/>
-
-								<div className = "row">
-									<div className = "form-group">
-										<textarea className="form-control textarea-resize-vertical"
-										 rows="8" onChange = {this.onChange} name = "feedback_content"/> 
-									</div>
-								</div>
-
-								{!AppStore.getCurrentUser()&&
-									<div className = "row">
-										<form onSubmit = {(event) =>  event.preventDefault()} className="form-inline">
-												<div className = "form-group" style = {{"padding-right" : "6px"}}>
-													<p className = "form-control-static"> {"Email: "} </p>
-												</div>
-												<div className = "form-group">
-													<input
-													style = {{'width' : '300px'}}
-													 type="text" className = "form-control" 
-													 onChange = {this.onChange} name = "email" value = {this.state.email} />
-												</div>
-										</form>
-									</div>
-								}
-								<div className = "top-buffer"/>
-
-								{!AppStore.getCurrentUser() && 
-									<div className = "row">
-										<form className="form-inline">
-												<div className = "form-group" style = {{"padding-right" : "6px"}}>
-													<p className = "form-control-static"> {"Name: "} </p>
-												</div>
-												<div className = "form-group">
-													<input
-													style = {{'width' : '300px'}}
-													 type="text" className = "form-control" 
-													 onChange = {this.onChange} name = "name" value = {this.state.name} />
-												</div>
-										</form>
-									</div>
-								}
-								
-								<div className = "top-buffer"/>
-
-								<div className = "row">
-									<button onClick = {this.sendFeedback} type = "button" className = "btn send-feedback-button">
-										Send
-									</button>
-								</div>
-								<div className = "small-buffer"/>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			</PageContainer>
+				</TrimmedPageContainer>
 		);
 	}
 }

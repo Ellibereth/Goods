@@ -30,9 +30,8 @@ export default class LandingPage extends React.Component {
 				}
 				else {
 					$("#success_text").toggleClass("email-success email-success-hidden")
-					this.setState({result_text : "Something didn't work...try again"})
+					this.setState({result_text : "Something didn't quite work...try again"})
 					setTimeout(function(){ 
-						// this.setState({result_text : ""})
 						$("#success_text").toggleClass("email-success email-success-hidden")
 					}.bind(this), 5000)
 				}
@@ -51,8 +50,13 @@ export default class LandingPage extends React.Component {
 		}
 	}
 
-	
+	// for image 1, slightly more spacing between lines, larger, 
+	// 	thinner font, black is fine, more spacing above input box
+	// , 20px border radius for the left input and right corners
+	//  of button, "Auguest", no periods, be consistent with capitalization
 
+
+	
 	render() {
 		
 		return (
@@ -67,27 +71,28 @@ export default class LandingPage extends React.Component {
 						</div>
 						<div className = "row">
 							<div className = "landing-after-title-text">
-							
-								Find the best American goods on Edgar USA
+								A Made in USA ONLY Deals Store
 							</div>
 						</div>
 						<div className = "top-buffer"/>
-						<div className = "top-buffer"/>
-						<div className = "small-buffer"/>
-							<div className = "landing-after-title-text">
-							Sign up to get notified when we launch
+						<div className = "landing-after-title-text">
+							Exclusive Prices
 						</div>
 						<div className = "top-buffer"/>
-						<div className = "top-buffer"/>
-						{/* 
-						<div className = "landing-middle-text">
-							Buy it now, pay for it later
+						<div className = "landing-after-title-text">
+							New Selection Weekly
 						</div>
 						<div className = "top-buffer"/>
-						<div className = "landing-above-input-text">
-							Sign up to get notified when we launch
+						<div className = "landing-after-title-text">
+							Great American Vendors and Designers
 						</div>
-						<div className = "small-buffer"/> */}
+						<div className = "top-buffer"/>
+						<div className = "landing-after-title-text">
+							Coming soon, August 2017
+						</div>
+						<div className = "top-buffer"/>
+
+				
 						<div className = "row hidden-xs">
 							<div className = "col-md-12 col-lg-8 col-md-offset-0 col-lg-offset-2">
 								<div className="input-group landing-subscribe-container">
@@ -133,14 +138,8 @@ export default class LandingPage extends React.Component {
 					</Modal.Body>
 					</Modal>
 				<div className="landing-floating-footer hidden-xs">
-					<a href="/privacy">Privacy</a>
+					<a className = "no-link" href="#">©Edgar USA, 2017</a>
 					<a href="/support">Contact Us</a>
-					{/* <a href="/about">About Us</a>
-					
-					<a href="/careers">Careers</a>
-					<a href="/usa">Made in USA</a>
-					*/}
-					
 				</div>
 				<div className = "hidden-xs">	
 					<HomePage />
