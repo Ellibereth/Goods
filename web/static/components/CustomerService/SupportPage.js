@@ -62,15 +62,13 @@ export default class SupportPage extends React.Component {
 					$("#success_text").toggleClass("email-success email-success-hidden")
 					this.setState({
 						success_text : "Your feedback has been received", 
-						feedback_content : ""
+						feedback_content : "",
+						email : ""
 					})
 				}
 				else {
-					this.setState({
-						success_text : "There was an error sending your feedback", 
-					})
 					$("#success_text").toggleClass("email-success email-success-hidden")
-					this.setState({result_text : "Something didn't work...perhaps your input was blank"})
+					this.setState({success_text : "Something didn't work...perhaps your input was blank"})
 					setTimeout(function(){ 
 						// this.setState({result_text : ""})
 						$("#success_text").toggleClass("email-success email-success-hidden")
@@ -122,6 +120,23 @@ export default class SupportPage extends React.Component {
 												 rows="8" value = {this.state.feedback_content} onChange = {this.onChange} name = "feedback_content"/> 
 											</div>
 										</div>
+
+										<div className = "top-buffer"/>
+
+										<div className = "row">
+											<form onSubmit = {(event) =>  event.preventDefault()} className="form-inline">
+													<div className = "form-group" style = {{"padding-right" : "6px"}}>
+														<p className = "form-control-static"> {"Email: "} </p>
+													</div>
+													<div className = "form-group">
+														<input
+														style = {{'width' : '300px', 'fontSize' : "16px"}}
+														 type="text" className = "form-control" 
+														 onChange = {this.onChange} name = "email" value = {this.state.email} />
+													</div>
+											</form>
+										</div>
+
 										
 										<div className = "top-buffer"/>
 
