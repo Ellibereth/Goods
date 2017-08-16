@@ -59,7 +59,9 @@ export default class SupportPage extends React.Component {
 			url: "/addFeedback",
 			success: function(data) {
 				if (data.success) {
-					$("#success_text").toggleClass("email-success email-success-hidden")
+					$("#success_text").addClass("email-success")
+					$("#success_text").removeClass("email-success-hidden")
+
 					this.setState({
 						success_text : "Your feedback has been received", 
 						feedback_content : "",
@@ -67,11 +69,13 @@ export default class SupportPage extends React.Component {
 					})
 				}
 				else {
-					$("#success_text").toggleClass("email-success email-success-hidden")
+					$("#success_text").addClass("email-success")
+					$("#success_text").removeClass("email-success-hidden")
 					this.setState({success_text : "Something didn't work...perhaps your input was blank"})
 					setTimeout(function(){ 
 						// this.setState({result_text : ""})
-						$("#success_text").toggleClass("email-success email-success-hidden")
+						$("#success_text").addClass("email-success-hidden")
+						$("#success_text").removeClass("email-success")	
 					}.bind(this), 5000)
 				}
 			}.bind(this),

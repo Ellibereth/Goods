@@ -25,14 +25,17 @@ export default class LandingPage extends React.Component {
 			data : form_data,
 			success: function(data) {
 				if (data.success) {
-					$("#success_text").toggleClass("email-success email-success-hidden")
+					$("#success_text").addClass("email-success")
+					$("#success_text").removeClass("email-success-hidden")
 					this.setState({email : "", result_text : " It worked! You'll hear from us soon."})
 				}
 				else {
-					$("#success_text").toggleClass("email-success email-success-hidden")
+					$("#success_text").addClass("email-success")
+					$("#success_text").removeClass("email-success-hidden")
 					this.setState({result_text : "Something didn't quite work...try again"})
 					setTimeout(function(){ 
-						$("#success_text").toggleClass("email-success email-success-hidden")
+						$("#success_text").addClass("email-success-hidden")
+						$("#success_text").removeClass("email-success")
 					}.bind(this), 5000)
 				}
 
