@@ -40,7 +40,7 @@ export default class LandingPage extends React.Component {
 						$("#success_text").removeClass("email-success-hidden")	
 					}
 					
-					this.setState({email : "", result_text : " It worked! You'll hear from us soon."})
+					this.setState({email : "", result_text : " Thanks for your interest! We'll let you know when we launch."})
 
 				}
 				else {
