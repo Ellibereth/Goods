@@ -61,6 +61,12 @@ Linda's Color Scheme
     color : var(--DarkBlue);
 }
 
+.straight-hidden { 
+	visibility: hidden;
+    opacity: 0;
+    
+}
+
 
 .product-page-countdown {
 	font-size: 24px;

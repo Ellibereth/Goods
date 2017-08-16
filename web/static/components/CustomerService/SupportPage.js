@@ -62,13 +62,13 @@ export default class SupportPage extends React.Component {
 				if (data.success) {
 					if (this.state.success_text) {
 						$("#success_text").removeClass("email-success")	
-						$("#success_text").addClass("email-success-hidden")	
+						$("#success_text").addClass("straight-hidden")	
 
 						setTimeout(function() {
-							$("#success_text").removeClass("email-success-hidden")	
+							$("#success_text").removeClass("straight-hidden")	
 							$("#success_text").addClass("email-success")
 
-						},2000)
+						},100)
 					}
 					else {
 						$("#success_text").addClass("email-success")

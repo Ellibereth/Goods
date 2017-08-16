@@ -27,13 +27,13 @@ export default class LandingPage extends React.Component {
 				if (data.success) {
 					if (this.state.result_text) {
 						$("#success_text").removeClass("email-success")	
-						$("#success_text").addClass("email-success-hidden")	
+						$("#success_text").addClass("straight-hidden")	
 
 						setTimeout(function() {
-							$("#success_text").removeClass("email-success-hidden")	
+							$("#success_text").removeClass("straight-hidden")	
 							$("#success_text").addClass("email-success")
 
-						},2000)
+						},100)
 					}
 					else {
 						$("#success_text").addClass("email-success")
