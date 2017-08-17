@@ -43,6 +43,18 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+.landing-desc {
+	color : var(--DarkRed);
+	font-style: italic;
+	font-size: 20px;
+}
+
+.landing-after-input-text {
+	color : var(--DarkRed);
+	font-size: 20px;
+	font-weight: bold;
+}
+
 .no-link:hover {
 	cursor: text
 }
@@ -714,7 +726,7 @@ Linda's Color Scheme
 
 
 .landing-container {
-	height: 540px;
+	height: 500px;
 }
 
 .landing-floating-footer {
@@ -762,7 +774,7 @@ Linda's Color Scheme
 
 .landing-after-title-text {
 	font-size: 20px;	
-	/*font-weight: bold;*/
+	font-weight: bold;
 }
 
 .landing-middle-text {
@@ -783,8 +795,8 @@ Linda's Color Scheme
 
 .landing-subscribe-input{
 	border-color: #337ab7 !important;
-	border-top-left-radius: 20px !important;
-	border-bottom-left-radius: 20px !important;
+	border-top-left-radius: 6px !important;
+	border-bottom-left-radius: 6px !important;
 }
 
 .landing-subscribe-button{
@@ -815,7 +827,7 @@ Linda's Color Scheme
 	user-select: none !important;
 	background-image: none !important;
 	border: 1px solid transparent !important;
-	border-radius: 20px !important;
+	border-radius: 6px !important;
 	border-top-left-radius: 0 !important;
 	border-bottom-left-radius: 0 !important;
 	position: relative !important;
@@ -835,6 +847,18 @@ Linda's Color Scheme
 .landing-subscribe-button:hover{
 	cursor: pointer;
 	opacity : 0.7;
+}
+
+.landing-desc {
+	color : var(--DarkRed);
+	font-style: italic;
+	font-size: 20px;
+}
+
+.landing-after-input-text {
+	color : var(--DarkRed);
+	font-size: 20px;
+	font-weight: bold;
 }
 
 
@@ -859,6 +883,7 @@ Linda's Color Scheme
 }
 
 @media screen and (max-width: 600px) {
+	
 
 	.account-panel {
 		padding: 0px !important;
@@ -1222,7 +1247,18 @@ Linda's Color Scheme
 		height: 44px !important;
 	}
 	.landing-after-title-text {
-		font-size: 18px;
+		font-size: 14px;
+	}
+	.landing-desc {
+		color : var(--DarkRed);
+		font-style: italic;
+		font-size: 16px;
+	}
+
+	.landing-after-input-text {
+		color : var(--DarkRed);
+		font-size: 16px;
+		font-weight: bold;
 	}
 
 }

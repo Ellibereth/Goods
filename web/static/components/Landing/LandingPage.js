@@ -87,31 +87,25 @@ export default class LandingPage extends React.Component {
 							src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/landing_logo.png"/>
 						</div>
 						<div className = "row">
-							<div className = "landing-after-title-text">
+							<div className = "landing-desc">
 								A Made in USA ONLY Deals Store
 							</div>
 						</div>
 						<div className = "top-buffer"/>
 						<div className = "landing-after-title-text">
-							Exclusive Prices
+							Exclusive Prices & New Selection Weekly
 						</div>
-						<div className = "top-buffer"/>
-						<div className = "landing-after-title-text">
-							New Selection Weekly
-						</div>
-						<div className = "top-buffer"/>
+						<div className = "small-buffer"/>
 						<div className = "landing-after-title-text">
 							Great American Vendors and Designers
 						</div>
 						<div className = "top-buffer"/>
-						<div className = "landing-after-title-text">
-							Coming soon, August 2017
-						</div>
-						<div className = "top-buffer"/>
+						
+						
 
 				
 						<div className = "row hidden-xs">
-							<div className = "col-md-12 col-lg-8 col-md-offset-0 col-lg-offset-2">
+							<div className = "col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
 								<div className="input-group landing-subscribe-container">
 									<input tabindex = {1} onKeyPress = {this.handleKeyPress.bind(this)} 
 									value = {this.state.email} onChange = {this.onEmailChange.bind(this)} type="text" 
@@ -144,12 +138,18 @@ export default class LandingPage extends React.Component {
 								</button>
 							</div>
 						</div>
-						<div className = "small-buffer"/>
+						<div className = "top-buffer"/>
 						<div className = "row">
 							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
 						</div>
 
 						<div className = "top-buffer"/>
+
+						<div className = "row">
+							<div className = "landing-after-input-text">
+								Coming soon, August 2017
+							</div>
+						</div>
 						</div>
 					</div>
 					</Modal.Body>
