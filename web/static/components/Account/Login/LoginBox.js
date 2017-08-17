@@ -7,6 +7,7 @@ import LoginBoxLeft from './LoginBoxLeft'
 import {getParameterByName} from '../../Input/Util'
 import {AlertMessages} from '../../Misc/AlertMessages'
 import FacebookConnect from './FacebookConnect'
+import FadingText from '../../Misc/FadingText'
 
 const LOGIN_STATE = 0
 const REGISTER_STATE = 1
@@ -22,7 +23,9 @@ export default class LoginBox extends React.Component {
 			name : "",
 			register_password : "",
 			disabled : false,
-			register_password_confirm: ""
+			register_password_confirm: "",
+			login_faded_text : "",
+			register_faded_text : "",
 		}
 	}
 
@@ -58,7 +61,8 @@ export default class LoginBox extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal(data.error.title, data.error.text, data.error.type)
+						this.setState({login_faded_text : data.error.title})
+						setTimeout(function(){this.setState({login_faded_text : ""})}.bind(this), 5000)
 					}
 					else {
 						ga('send', 'event', {
@@ -124,7 +128,8 @@ export default class LoginBox extends React.Component {
 				success: function(data) {
 					// this.props.setLoading(false)
 					if (!data.success) {
-						setTimeout(function() {swal(data.error.title, data.error.text , data.error.type)}, 100)
+						this.setState({register_faded_text : data.error.title})
+						setTimeout(function() {this.setState({register_faded_text : ""})},bind(this), 5000)
 					}
 					else {
 						ga('send', 'pageview', 'register-complete');
@@ -170,7 +175,7 @@ export default class LoginBox extends React.Component {
 
 		return (
 			<div>
-				<div className="inviteBlock newLoginProcess edgar-col-sm-30" id="resInviteForm">
+				<div className="inviteBlock newLoginProcess edgar-col-sm-30 edgar-col-md-30 edgar-col-lg-30 " id="resInviteForm">
 					<div className='loginFormNew floatLeft'>
 						<div style = {login_styles} className="loginFormNew floatLeft" id="loginWrap" >
 							<div id="LoginScreen">
@@ -227,6 +232,9 @@ export default class LoginBox extends React.Component {
 								<a href = "/recoverAccount" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
 								<a href= "/register" className = "hidden-xs" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet? Register today</a>
 								<a href= "/register" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Register</a>
+								<FadingText show = {Boolean(this.state.login_faded_text)}>
+									<span href = "/recoverAccount" className = "hidden-xs login-error-alert-text" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>{this.state.login_faded_text}</span>
+								</FadingText>
 							</div>
 						</div>
 
@@ -295,6 +303,11 @@ export default class LoginBox extends React.Component {
 							</div>
 
 							<a href = "/login" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Already have an account?</a>
+
+							<FadingText show = {Boolean(this.state.register_faded_text)}>
+								<span href = "/recoverAccount" className = "hidden-xs login-error-alert-text" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>{this.state.register_faded_text}</span>
+							</FadingText>
+
 						</div>
 					</form>
 				</div>

@@ -41,7 +41,7 @@ updateWindowDimensions() {
 		return (
 				<div>
 					{this.props.is_loading && <Spinner />}
-					{this.state.width >= 600 &&
+					{this.state.width >= 761 ?
 					<div className = "hidden-xs">
 						<div className = "page-top-row">
 							<div className = "page-wrapper">
@@ -65,8 +65,7 @@ updateWindowDimensions() {
 						<Footer />
 						<div className = "top-buffer"/>
 					</div>
-					}
-					{this.state.width < 600 && 
+					: 
 						<div style = {{"width" : "100%"}} className = "hidden-sm hidden-md hidden-lg">
 							<Navbar/>
 							{this.props.children}

@@ -44,6 +44,10 @@ Linda's Color Scheme
 }*/
 
 
+.login-error-alert-text {
+	color : var(--DarkRed);
+}
+
 .fading-text-shown {
 	visibility: visible;
     opacity: 1;
@@ -836,8 +840,8 @@ Linda's Color Scheme
 	padding-top:8px;
 }
 
-@media screen and (max-width: 600px) {
 
+@media screen and (max-width: 760px) {
 	.account-panel {
 		padding: 0px !important;
 	}
@@ -1023,7 +1027,7 @@ Linda's Color Scheme
 	opacity : 1;
 }
 
-@media(max-width:600px) {
+@media(max-width:760px) {
 	.responsive-site .inviteWrapper #resInviteForm{
 		max-width: 100% !important;
 	}
