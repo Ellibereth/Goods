@@ -5,6 +5,7 @@ import AppActions from '../../../../../actions/AppActions.js';
 import AppStore from '../../../../../stores/AppStore.js';
 import SettingsInput from '../../../../Input/SettingsInput.js'
 import {AlertMessages} from '../../../../Misc/AlertMessages'
+import FadingText from '../../../../Misc/FadingText'
 
 const form_labels = ['Name', "Email"]
 const form_inputs = ["name", "email"]
@@ -18,8 +19,26 @@ export default class UpdateInformationForm extends React.Component {
 		this.state = {
 			name: "",
 			email: "",
+			fading_text : "",
+			show_fading_text : false,
+			is_success : true
 		}
 	}
+
+	setFadingText(fading_text, is_success) {
+		this.setState({
+			fading_text : fading_text,
+			show_fading_text : true,
+			is_success : is_success
+		})
+		setTimeout(function() {
+			this.setState({
+				show_fading_text : false,
+			})	
+		}.bind(this), 5000)
+	}
+
+
 
 	// handle the text input changes
 	onTextInputChange(event){
@@ -52,7 +71,7 @@ export default class UpdateInformationForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal(data.error.title, data.error.text , data.error.type)
+						this.setFadingText(data.error.title, false)
 					}
 					else {
 						this.setState({
@@ -60,7 +79,7 @@ export default class UpdateInformationForm extends React.Component {
 							email : data.user.email,
 						})
 						this.props.getUserInfo()
-						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+						this.setFadingText(AlertMessages.CHANGE_WAS_SUCCESSFUL.text, true)
 					}
 				}.bind(this),
 				error : function(){
@@ -94,14 +113,16 @@ export default class UpdateInformationForm extends React.Component {
 				<form onSubmit = {this.updateSettings.bind(this)} className = "form-horizontal" >
 					<br/>
 					{text_inputs}
-					
-
 					<div className = "form-group row">
 						<button className = "btn btn-default" onClick = {this.updateSettings.bind(this)}>
 							Save
 						</button>
 					</div>
-					
+					<div className = "row">
+						<FadingText show = {this.state.show_fading_text} height_transition = {true}>
+							<span className = {this.state.is_success ? "alert-success-text" : "alert-error-text"}>{this.state.fading_text}</span>
+						</FadingText>
+					</div>
 
 				</form>
 		)

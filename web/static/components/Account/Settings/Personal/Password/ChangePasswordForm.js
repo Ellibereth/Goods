@@ -8,14 +8,33 @@ const form_labels = ['New Password', "Confirm Your New Password", "Confirm Curre
 const form_inputs = ["password", "password_confirm", "old_password"]
 const input_types = ['password', 'password', 'password']
 import {AlertMessages} from '../../../../Misc/AlertMessages'
+import FadingText from '../../../../Misc/FadingText'
+
+
 export default class ChangePasswordForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			password: "",
 			password_confirm : "",
-			old_password : ""
+			old_password : "",
+			fading_text : "",
+			show_fading_text : false,
+			is_success : true
 		}
+	}
+
+	setFadingText(fading_text, is_success) {
+		this.setState({
+			fading_text : fading_text,
+			show_fading_text : true,
+			is_success : is_success
+		})
+		setTimeout(function() {
+			this.setState({
+				show_fading_text : false,
+			})	
+		}.bind(this), 5000)
 	}
 
 	// handle the text input changes
@@ -46,7 +65,7 @@ export default class ChangePasswordForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal(data.error.title, data.error.text , data.error.type)
+						this.setFadingText(data.error.title, false)
 					}
 					else {
 						AppActions.updateCurrentUser(data.user)
@@ -55,8 +74,7 @@ export default class ChangePasswordForm extends React.Component {
 							password : "",
 							old_password : ""
 						})
-
-						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+						this.setFadingText(AlertMessages.CHANGE_WAS_SUCCESSFUL.title, true)
 						this.props.getUserInfo()
 
 					}
@@ -91,6 +109,12 @@ export default class ChangePasswordForm extends React.Component {
 						<button className = "btn btn-default" onClick = {this.updatePassword.bind(this)}>
 							Save
 						</button>
+					</div>
+
+					<div className = "row">
+						<FadingText show = {this.state.show_fading_text} height_transition = {true}>
+							<span className = {this.state.is_success ? "alert-success-text" : "alert-error-text"}>{this.state.fading_text}</span>
+						</FadingText>
 					</div>
 					
 

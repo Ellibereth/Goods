@@ -8,13 +8,29 @@ const form_labels = ['Password', 'Confirm Password']
 const form_inputs = ["password", "password_confirm"]
 const input_types = ['password', 'password']
 import {AlertMessages} from '../../../../Misc/AlertMessages'
+import FadingText from '../../../../Misc/FadingText'
 export default class DeleteAccountForm extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			password: "",
 			password_confirm : "",
+			fading_text : "",
+			show_fading_text : false,
+			is_success : false,
 		}
+	}
+	setFadingText(fading_text, is_success) {
+		this.setState({
+			fading_text : fading_text,
+			show_fading_text : true,
+			is_success : is_success
+		})
+		setTimeout(function() {
+			this.setState({
+				show_fading_text : false,
+			})	
+		}.bind(this), 5000)
 	}
 
 	// handle the text input changes
@@ -27,10 +43,7 @@ export default class DeleteAccountForm extends React.Component {
 	
 	handleDeleteClick(event){
 		event.preventDefault()
-		swal(AlertMessages.ARE_YOU_SURE_DELETE_ACCOUNT,
-		function () {
-			this.deleteAccount.bind(this)()
-		}.bind(this))
+		this.deleteAccount.bind(this)()
 	}
 
 	deleteAccount(){
@@ -45,7 +58,7 @@ export default class DeleteAccountForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
-						swal(data.error.title, data.error.text , data.error.type)
+						this.setFadingText(data.error.title, false)
 					}
 					else {
 						AppActions.removeCurrentUser()
@@ -53,7 +66,7 @@ export default class DeleteAccountForm extends React.Component {
 							window.location = `/`
 						}, 2000)
 
-						swal(AlertMessages.ACCOUNT_DELETE_SUCCESS)
+						this.setFadingText(AlertMessages.ACCOUNT_DELETE_SUCCESS.text, true)
 
 					}
 				}.bind(this),
@@ -95,6 +108,12 @@ export default class DeleteAccountForm extends React.Component {
 							Delete Account
 						</button>
 					</div>
+					<div className = "row">
+						<FadingText show = {this.state.show_fading_text} height_transition = {true}>
+							<span className = {this.state.is_success ? "alert-success-text" : "alert-error-text"}>{this.state.fading_text}</span>
+						</FadingText>
+					</div>
+
 				</form>
 		)
 	}

@@ -10,10 +10,6 @@ export default class CheckoutAddAddressModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
-		// swal(AlertMessages.YOU_WILL_LOSE_SAVED_INFORMATION,
-		// 	function () {
-		// 		this.props.toggleModal()
-		// }.bind(this))
 	}
 
 

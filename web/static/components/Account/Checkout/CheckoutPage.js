@@ -434,6 +434,7 @@ export default class CheckoutPage extends React.Component {
 								</div>
 								<hr className = "small-hr"/>
 								<CartDisplay 
+								setLoading = {this.setLoading.bind(this)}
 								is_loading = {this.state.is_loading}
 								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 								price = {formatPrice(this.state.total_price)}

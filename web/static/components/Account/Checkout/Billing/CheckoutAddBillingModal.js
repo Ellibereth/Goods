@@ -10,10 +10,6 @@ export default class CheckoutAddBillingModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
-		swal(AlertMessages.YOU_WILL_LOSE_SAVED_INFORMATION,
-			function () {
-				this.props.toggleModal()
-		}.bind(this))
 	}
 	componentDidMount(){
 	}

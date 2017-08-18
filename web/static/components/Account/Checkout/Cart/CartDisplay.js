@@ -28,7 +28,7 @@ export default class CartDisplay extends React.Component {
 
 	render() {
 		var item_display = this.props.items.map((item, index) =>
-				<CartItemDisplay refreshCheckoutInformation = {this.props.refreshCheckoutInformation} item = {item} />
+				<CartItemDisplay setLoading = {this.props.setLoading} refreshCheckoutInformation = {this.props.refreshCheckoutInformation} item = {item} />
 			)
 
 		if (!this.state.has_loaded){

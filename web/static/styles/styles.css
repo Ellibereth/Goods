@@ -4,13 +4,18 @@
 	--DarkBeige: #d8c0a8;
 	--LightRed : #ff0000;
 	--DarkRed : #d42729;
-	--DarkBlue : #183048;
+	--DarkBlue :s #183048;
 	--LightBlue: #6090a8;
 }
 
 
 
-
+.alert-success-text {
+	color : var(--DarkBlue);
+}
+.alert-error-text {
+	color : var(--LightRed);
+}
 
 .fading-text-hidden {
 	visibility: hidden;
@@ -33,6 +38,7 @@
     opacity: 1;
 	transition: visibility 2s, opacity 2s linear, max-height 2s linear;
 }
+
 
 
 

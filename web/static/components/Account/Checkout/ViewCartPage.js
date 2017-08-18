@@ -115,6 +115,10 @@ export default class ViewCartPage extends React.Component {
 
 	}
 
+	setLoading(is_loading) {
+		this.setState({is_loading : is_loading})
+	}
+
 
 	render() {
 		var unclickable_class = this.state.items.length == 0 ? " unclickable " : ""
@@ -138,6 +142,7 @@ export default class ViewCartPage extends React.Component {
 							<div className = "row">
 								<div className = "col-md-12 col-lg-12">
 									<CartDisplay 
+										setLoading = {this.setLoading.bind(this)}
 										is_loading = {this.state.is_loading}
 										refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 										price = {this.state.items_price}

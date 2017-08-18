@@ -49,13 +49,10 @@ export default class FacebookConnect extends React.Component {
 			success: function (data){
 				browserHistory.push('/')
 				if (data.success) {
-					// console.log(data.user)
 					AppActions.addCurrentUser(data.user, data.jwt)
 					browserHistory.push('/')
 				} 
-				// else {
-				// 	swal(data.error)
-				// }
+
 			}.bind(this)
 		});
 	}

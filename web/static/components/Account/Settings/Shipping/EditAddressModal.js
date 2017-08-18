@@ -12,10 +12,6 @@ export default class EditAddressModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
-		swal(AlertMessages.YOU_WILL_LOSE_SAVED_INFORMATION,
-			function () {
-				this.props.toggleModal(null)
-		}.bind(this))
 	}
 
 

@@ -121,11 +121,13 @@ def confirmEmail():
 @decorators.check_user_jwt
 def updateSettings(this_user):
 	new_settings = request.json.get(Labels.NewSettings)
-	if not User.isValidEmail(new_settings[Labels.Email]):
-		return JsonUtil.failure(ErrorMessages.invalidEmail(new_settings[Labels.Email]))
 
 	if new_settings.get(Labels.Name) == "":
 		return JsonUtil.failure(ErrorMessages.BlankName)
+	if not new_settings.get(Labels.Email):
+		return JsonUtil.failure(ErrorMessages.BlankEmail)
+	if not User.isValidEmail(new_settings[Labels.Email]):
+		return JsonUtil.failure(ErrorMessages.invalidEmail(new_settings[Labels.Email]))
 	if not isinstance(new_settings.get(Labels.Name), str):
 		return JsonUtil.failure(ErrorMessages.InvalidName)
 	if len(new_settings.get(Labels.Name)) > User.NAME_MAX_LENGTH:

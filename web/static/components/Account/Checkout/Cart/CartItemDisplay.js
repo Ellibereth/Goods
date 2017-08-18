@@ -5,13 +5,26 @@ import AppActions from '../../../../actions/AppActions.js';
 var browserHistory = require('react-router').browserHistory;
 import {formatPrice, formatCurrentPrice, getCurrentPrice} from '../../../Input/Util'
 import {AlertMessages} from '../../../Misc/AlertMessages'
+import FadingText from '../../../Misc/FadingText'
 export default class CartItemDisplay extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			error_text : "",
+			show_error_text : false,
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
+
 	}
+
+	setErrorMessage(error_text, is_error) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text,
+		})
+
+	}
+
 
 	serverUpdateQuantity(new_quantity){
 		var form_data = JSON.stringify({
@@ -24,9 +37,8 @@ export default class CartItemDisplay extends React.Component {
 				url: "/updateCartQuantity",
 				data: form_data,
 				success: function(data) {
+					this.props.setLoading(false)
 					if (data.success){
-
-
 						ga('ec:addProduct', {
 						    'id': this.props.item.product_id.toString(),
 							'name': this.props.item.name,
@@ -46,7 +58,7 @@ export default class CartItemDisplay extends React.Component {
 						AppActions.updateCurrentUser(data.user)
 					}
 					else {
-						swal(data.error.title, data.error.text , data.error.type)
+						this.setErrorMessage(data.error.title)
 					}
 					
 				}.bind(this),
@@ -56,7 +68,6 @@ export default class CartItemDisplay extends React.Component {
 						eventAction: 'updateCartQuantity',
 						eventLabel: AppStore.getCurrentUser().email
 					});
-					swal(AlertMessages.INTERNAL_SERVER_ERROR)
 				},
 				dataType: "json",
 				contentType : "application/json; charset=utf-8"
@@ -71,16 +82,8 @@ export default class CartItemDisplay extends React.Component {
 
 	// removing item is the same as setting quatity to zero
 	removeItem(){
-		swal(AlertMessages.ARE_YOU_SURE_REMOVE_ITEM_FROM_CART,
-		function () {
-			this.serverUpdateQuantity.bind(this)(0)
-		}.bind(this))	
+		this.serverUpdateQuantity.bind(this)(0)
 	}
-
-
-
-
-
 
 	render() {
 		// will be updating this to have a better display in the near future
@@ -117,7 +120,10 @@ export default class CartItemDisplay extends React.Component {
 									{image_display}
 								</div>
 								<div className = "col-sm-8 col-md-8 col-lg-8">
-									<span className = "cart-item-text clickable-text"> {item.name} </span>
+									<div className = "cart-item-text clickable-text"> {item.name} </div> <br/>
+									<FadingText show = {this.state.show_error_text}>
+										<div style = {{"color" : "#ff0000"}}> {this.state.error_text} </div> 
+									</FadingText>
 								</div>
 							</div>
 						</div>

@@ -159,7 +159,7 @@ export const AlertMessages = {
 	},
 	ACCOUNT_DELETE_SUCCESS : {
 	  title: "Thank you!",
-	  text: "Your account has been deleted! You will be redirected to home page shortly...",
+	  text: "Your account has been deleted. You will be redirected to home page shortly...",
 	  type: "success",
 	  confirmButtonText: "Ok!",
 	  closeOnConfirm: true,
