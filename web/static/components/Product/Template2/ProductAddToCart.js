@@ -16,7 +16,10 @@ export default class ProductAddToCart extends React.Component {
 			variant : null,
 			variant_display : this.getVariantDefaultText.bind(this)(),
 			add_to_cart_success: false,
+			error_text : "",
+			show_error_text : false,
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
     }
 
     getVariantById(product, variant_id) {
@@ -29,6 +32,16 @@ export default class ProductAddToCart extends React.Component {
 		}
 	}
 
+
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+		setTimeout(function(){
+			this.setState({show_error_text :false})
+		}.bind(this), 4000)
+	}
 
 
 
@@ -84,7 +97,7 @@ export default class ProductAddToCart extends React.Component {
     	}
 
 		if (this.props.product.has_variants && !this.state.variant) {
-			swal(AlertMessages.MUST_SELECT_VARIANT(this.props.product.variant_type_description))
+			this.setErrorMessage(AlertMessages.MUST_SELECT_VARIANT(this.props.product.variant_type_description).title)
 		}
 
 		else {
@@ -118,12 +131,12 @@ export default class ProductAddToCart extends React.Component {
 					}
 					else {
 						this.setState({quantity : 1})
-						swal(data.error.title, data.error.text , data.error.type)
+						this.setErrorMessage(data.error.title)
 					}
 					this.props.setLoading(false)
 				}.bind(this),
 				error : function(){
-					swal(AlertMessages.INTERNAL_SERVER_ERROR)
+					this.setErrorMessage(AlertMessages.INTERNAL_SERVER_ERROR.title)
 					ga('send', 'event', {
 						eventCategory: 'server-error',
 						eventAction: 'add-to-cart',
@@ -263,9 +276,14 @@ export default class ProductAddToCart extends React.Component {
 
 					{add_to_cart_disabled &&
 					<div style = {{"paddingTop" : "64px"}}>
-						<span style = {{"color" : "red"}}>Sorry, but we're cutting you off at {this.props.product.num_items_limit} of this item</span>
+						<span style = {{"color" : "red"}}>You can't buy more than {this.props.product.num_items_limit} of this item</span>
 					</div>
 					}
+					<FadingText show = {this.state.show_error_text} height_transition = {false}>
+						<div style = {{"paddingTop" : "64px"}}>
+							<span style = {{"color" : "red"}}>{this.state.error_text}</span>
+						</div>	
+					</FadingText>
 					
 
 

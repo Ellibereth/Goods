@@ -235,7 +235,7 @@ export default class LoginBox extends React.Component {
 								<a href = "/recoverAccount" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
 								<a href= "/register" className = "hidden-xs" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet? Register today</a>
 								<a href= "/register" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Register</a>
-								<FadingText show = {this.state.show_login_faded_text}>
+								<FadingText show = {this.state.show_login_faded_text} height_transition = {true}>
 									<span href = "/recoverAccount" className = "hidden-xs login-error-alert-text" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>{this.state.login_faded_text}</span>
 								</FadingText>
 							</div>
@@ -307,7 +307,7 @@ export default class LoginBox extends React.Component {
 
 							<a href = "/login" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Already have an account?</a>
 
-							<FadingText show = {this.state.show_register_faded_text}>
+							<FadingText show = {this.state.show_register_faded_text} height_transition = {true}>
 								<span href = "/recoverAccount" className = {" hidden-xs login-error-alert-text " + success_class} style= {{"textDecoration" : "none", "marginTop" : "10px", display: "block"}}>{this.state.register_faded_text}</span>
 							</FadingText>
 
