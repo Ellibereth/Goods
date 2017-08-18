@@ -91,7 +91,7 @@ export default class LandingPage extends React.Component {
 								A Made in USA ONLY Deals Store
 							</div>
 						</div>
-						<div className = "top-buffer"/>
+						<div style = {{"marginTop": "16px"}}/>
 						<div className = "landing-after-title-text">
 							Exclusive Prices & New Selection Weekly
 						</div>
@@ -99,13 +99,13 @@ export default class LandingPage extends React.Component {
 						<div className = "landing-after-title-text">
 							Great American Vendors and Designers
 						</div>
-						<div className = "top-buffer"/>
+						<div style = {{"marginTop" : "28px"}}/>
 						
 						
 
-				
+					
 						<div className = "row hidden-xs">
-							<div className = "col-sm-10 col-md-10 col-lg-10 col-sm-offset-1 col-md-offset-1 col-lg-offset-1">
+							<div className = "col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 								<div className="input-group landing-subscribe-container">
 									<input tabindex = {1} onKeyPress = {this.handleKeyPress.bind(this)} 
 									value = {this.state.email} onChange = {this.onEmailChange.bind(this)} type="text" 
@@ -129,7 +129,8 @@ export default class LandingPage extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className = "hidden-sm hidden-md hidden-lg top-buffer"/>
+
+						<div style = {{"marginTop" : "16px"}}/>
 						<div className = "row hidden-sm hidden-md hidden-lg">
 							<div className = "col-xs-12">
 								<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
@@ -138,18 +139,22 @@ export default class LandingPage extends React.Component {
 								</button>
 							</div>
 						</div>
-						<div className = "top-buffer"/>
-						<div className = "row">
-							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
-						</div>
+						<div style = {{"marginTop" : "16px"}}/>
+						
 
-						<div className = "top-buffer"/>
+						
 
 						<div className = "row">
 							<div className = "landing-after-input-text">
 								Coming soon, August 2017
 							</div>
 						</div>
+
+						<div className = "small-buffer"/>
+						<div className = "row">
+							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
+						</div>
+
 						</div>
 					</div>
 					</Modal.Body>

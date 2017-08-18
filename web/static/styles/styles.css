@@ -44,14 +44,15 @@ Linda's Color Scheme
 }*/
 
 .landing-desc {
-	color : var(--DarkRed);
+	color : var(--DarkBlue);
 	font-style: italic;
-	font-size: 20px;
+	font-size: 16px !important;
+	margin-top : -32px;
 }
 
 .landing-after-input-text {
 	color : var(--DarkRed);
-	font-size: 20px;
+	font-size: 20px !important;
 	font-weight: bold;
 }
 
@@ -726,7 +727,7 @@ Linda's Color Scheme
 
 
 .landing-container {
-	height: 500px;
+	height: 420px;
 }
 
 .landing-floating-footer {
@@ -773,8 +774,9 @@ Linda's Color Scheme
 }
 
 .landing-after-title-text {
-	font-size: 20px;	
+	font-size: 18px;	
 	font-weight: bold;
+	color : var(--DarkBlue)
 }
 
 .landing-middle-text {
