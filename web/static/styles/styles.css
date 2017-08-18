@@ -1,28 +1,3 @@
-/*
-Linda's Color Scheme
-:root{
-	--Beige: #f0f0d8;
-	--DarkBeige: #d8c0a8;
-	--LightRed : #d84848;
-	--DarkRed : #903030;
-	--DarkBlue : #183048;
-	--LightBlue : #6090a8;
-
-}*/
-
-
-
-/* Flag Color Scheme */
-/*
-:root{
-	--Beige: #f0f0d8;
-	--DarkBeige: #d8c0a8;
-	--LightRed : #ff0000;
-	--DarkRed : #d42729;
-	--DarkBlue : #000654;
-	--LightBlue : #0157ae;
-}*/
-
 /* mix */
 :root{
 	--Beige: #f0f0d8;
@@ -35,14 +10,36 @@ Linda's Color Scheme
 
 
 
-/*h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-weight: bold;
-	text-align: left;
-	padding: 0 0 8px;
-	color: #ccc;
-	line-height: 1em;
-}*/
 
+
+.fading-text-hidden {
+	visibility: hidden;
+    opacity: 0;
+    transition: visibility 2s, opacity 2s linear;  
+	
+}
+
+.fading-text-hidden.height-transition{
+	max-height: 0px;
+	visibility: hidden;
+    opacity: 0;
+	transition: visibility 2s, opacity 2s linear, max-height 2s linear;
+
+}
+
+.fading-text-shown.height-transition{
+	max-height: 40px;
+	visibility: visible;
+    opacity: 1;
+	transition: visibility 2s, opacity 2s linear, max-height 2s linear;
+}
+
+
+
+.checkout-error-text { 
+	color : var(--LightRed);
+	font-weight: bold;
+}
 
 .unclickable {
 	cursor: not-allowed !important;
@@ -61,26 +58,8 @@ Linda's Color Scheme
 .fading-text-shown {
 	visibility: visible;
     opacity: 1;
-    transition: opacity 2s linear;
+    transition: visibility 2s, opacity 2s linear;
 }
-
-.fading-text-hidden {
-	visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s 2s, opacity 2s linear;  
-	
-}
-
-.fading-text-hidden.height-transition{
-	max-height: 0px;
-	transition: max-height 2s linear;
-}
-
-.fading-text-shown.height-transition{
-	max-height: 240px;
-	transition :  max-height 2s linear;
-}
-
 
 
 .add-to-cart-success-text {
@@ -593,7 +572,7 @@ Linda's Color Scheme
 /* Absolute Center Spinner */
 .loading {
   position: fixed;
-  z-index: 999;
+  z-index: 1050;
   height: 2em;
   width: 2em;
   overflow: show;

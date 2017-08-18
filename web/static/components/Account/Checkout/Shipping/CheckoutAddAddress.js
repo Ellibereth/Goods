@@ -2,6 +2,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 import AddressForm from '../../../Input/AddressForm.js'
+import FadingText from '../../../Misc/FadingText'
 
 var browserHistory = require('react-router').browserHistory;
 var Link = require('react-router').Link
@@ -27,9 +28,23 @@ export default class CheckoutAddAddress extends React.Component {
 			address_country : "US",
 			address_line1 : "",
 			address_line2 : "",
-			address_zip : ""
+			address_zip : "",
+			error_text : "",
+			show_error_text : false,
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
 	}
+
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+		setTimeout(function(){
+			this.setState({show_error_text :false})
+		}.bind(this), 4000)
+	}
+
 
 	// handle the text input changes
 	onTextInputChange(field, value){
@@ -45,7 +60,7 @@ export default class CheckoutAddAddress extends React.Component {
 
 	addAddress(){
 		this.props.setLoading(true)
-		this.props.toggleModal()
+		
 		var data = {}
 		for (var i = 0; i < form_inputs.length; i++){
 			var key = form_inputs[i]
@@ -59,10 +74,11 @@ export default class CheckoutAddAddress extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal(data.error.title, data.error.text , data.error.type)
+					this.setErrorMessage(data.error.title)
 				}
 				else {
 					this.props.onAddingNewShippingAddress(this.state.use_same_for_billing)
+					this.props.toggleModal()
 				}
 				this.props.setLoading(false)
 
@@ -95,15 +111,24 @@ export default class CheckoutAddAddress extends React.Component {
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>
 
 					</div>
-						<hr/>
+					<hr/>
 
 					<div className = "row">
-							
 						<button className = "btn btn-default" 
 							onClick = {this.onSubmitPress.bind(this)}>
 							Add Address
 						</button>
 					</div>
+					<div className = "small-buffer"/>
+					<div className = "row">
+						<FadingText height_transition ={true} 
+						show = {this.state.show_error_text}>
+							<div className = "checkout-error-text">
+								{this.state.error_text}
+							</div>
+						</FadingText>
+					</div>
+					<div className = "small-buffer"/>
 				</div>
 			</div>
 		)

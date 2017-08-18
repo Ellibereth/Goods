@@ -5,6 +5,7 @@ import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Input/TextInput.js'
 import CreditCardInput from '../../../Input/CreditCardInput.js'
+import FadingText from '../../../Misc/FadingText'
 import AddressForm from '../../../Input/AddressForm.js'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 const address_inputs = ["address_city", "address_country",
@@ -26,8 +27,21 @@ export default class CheckoutAddBilling extends React.Component {
 			address_line2 : "",
 			address_zip : "",
 			addresss_state: "",
-			use_same_as_shipping : true
+			use_same_as_shipping : true,
+			show_error_text : false, 
+			error_text : ""
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
+	}
+
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+		setTimeout(function(){
+			this.setState({show_error_text :false})
+		}.bind(this), 4000)
 	}
 
 	// handle the text input changes
@@ -50,7 +64,6 @@ export default class CheckoutAddBilling extends React.Component {
 
 	addCreditCard(){
 		this.props.setLoading(true)
-		this.props.toggleModal()
 		var data = {}
 		if (this.state.use_same_as_shipping){
 			if (this.props.selected_address){
@@ -79,13 +92,15 @@ export default class CheckoutAddBilling extends React.Component {
 			url: "/addCreditCard",
 			data: form_data,
 			success: function(data) {
+				this.props.setLoading(false)
 				if (!data.success) {
-					swal(data.error.title, data.error.text , data.error.type)
+					this.setErrorMessage(data.error.title)
 				}
 				else {
 					this.props.onAddingNewBillingMethod()
+					this.props.toggleModal()
 				}
-				this.props.setLoading(false)
+				
 
 			}.bind(this),
 			error : function(){
@@ -142,6 +157,16 @@ export default class CheckoutAddBilling extends React.Component {
 							onClick = {this.onSubmitPress.bind(this)}>
 								Add Billing Method
 							</button>
+					</div>
+					<div className = "small-buffer"/>
+
+					<div className = "row">
+						<FadingText height_transition ={true} 
+							show = {this.state.show_error_text}>
+							<div className = "checkout-error-text">
+								{this.state.error_text}
+							</div>
+						</FadingText>
 					</div>
 						
 				</div>

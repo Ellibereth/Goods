@@ -38,7 +38,8 @@ export default class CheckoutPage extends React.Component {
 			first_load_done : false,
 			button_disabled : false,
 			sales_tax_price: null,
-			cart : {}
+			cart : {},
+			
 
 		}
 
@@ -47,6 +48,7 @@ export default class CheckoutPage extends React.Component {
 		this.canCheckout = this.canCheckout.bind(this)
 		this.setLoading = this.setLoading.bind(this)
 	}
+
 
 	setLoading(is_loading){
 		this.setState({is_loading : is_loading})
