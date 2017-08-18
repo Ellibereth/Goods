@@ -754,6 +754,7 @@ Linda's Color Scheme
 .landing-page-logo {
 	height: 200px;
 	width: auto;
+	margin-left: -24px;
 }
 
 
