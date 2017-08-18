@@ -39,7 +39,6 @@ import SearchPage from './Search/SearchPage'
 import SupportPage from './CustomerService/SupportPage'
 import RecoveryPage from './Account/Recovery/RecoveryPage'
 import RecoveryChangePasswordPage from './Account/Recovery/RecoveryChangePasswordPage'
-import LandingPage from './Landing/LandingPage'
 import RequestProductPage from './CustomerService/RequestProductPage'
 import FaqPage from './CustomerService/FaqPage'
 import AboutUsPage from './CustomerService/AboutUsPage'
@@ -171,7 +170,6 @@ ReactDOM.render(
 			<IndexRoute component={HomePage} />
 			
 
-			<Route path = "landing" component = {LandingPage}/>
 			<Route path = "support" component = {SupportPage}/>
 			<Route path= "privacy" component={PrivacyPolicyPage}/>
 			

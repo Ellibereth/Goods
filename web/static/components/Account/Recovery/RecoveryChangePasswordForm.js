@@ -12,6 +12,7 @@ import {AlertMessages} from '../../Misc/AlertMessages'
 const form_labels = ["Password", "Password Confirm"]
 const form_inputs = ["password", "password_confirm"]
 const input_types = ['password', 'password']
+import FadingText from '../../Misc/FadingText'
 
 export default class RecoveryChangePasswordPage extends React.Component {
 	constructor(props) {
@@ -19,9 +20,21 @@ export default class RecoveryChangePasswordPage extends React.Component {
 		this.state = {
 			password : "",
 			password_confirm : "",
-			is_valid : false
+			is_valid : false,
+			error_text : "",
+			show_error_text : false
 		}
+		this.setErrorMessage  = this.setErrorMessage.bind(this)
 	}
+
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+
+	}
+
 
 	// handle the text input changes
 	onTextChange(event) {
@@ -77,12 +90,13 @@ export default class RecoveryChangePasswordPage extends React.Component {
 				data: form_data,
 				success: function(data) {
 					if (data.success){
-						swal(AlertMessages.NEW_PASSWORD_HAS_BEEN_SET, function(isConfirm){
+						this.setErrorMessage(AlertMessages.NEW_PASSWORD_HAS_BEEN_SET.title)
+						setTimeout(function(){
 							window.location = '/'
-						})
+						}, 2000)
 					}
 					else {
-						swal(data.error.title, data.error.text , data.error.type)
+						this.setErrorMessage(data.error.title)
 					}
 					this.props.setLoading(false)
 				}.bind(this),
@@ -143,6 +157,10 @@ export default class RecoveryChangePasswordPage extends React.Component {
 							<div className="signUpBtnWrap">
 								<input onClick = {this.submitData.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Recover Account"/> 
 							</div>
+
+							<FadingText show = {this.state.show_error_text} height_transition = {true}>
+								<span className = "login-error-alert-text " style= {{"textDecoration" : "none", "marginTop" : "10px", display: "block"}}>{this.state.error_text}</span>
+							</FadingText>
 
 					
 						</div>

@@ -11,6 +11,8 @@ export default class FadingText extends React.Component {
 	}
 
 
+	// add props for color, and speed of transitions
+
 	render() {
 		var show_class_name = this.props.show ? " fading-text-shown " : " fading-text-hidden "
 		var height_transition_class = this.props.height_transition ? " height-transition " : " "

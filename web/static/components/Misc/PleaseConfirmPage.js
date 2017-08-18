@@ -4,13 +4,26 @@ import PageContainer from './PageContainer'
 var browserHistory = require('react-router').browserHistory
 import AppStore from '../../stores/AppStore'
 import {AlertMessages} from '../Misc/AlertMessages'
+import FadingText from '../Misc/FadingText'
 
 export default class PleaseConfirmPage extends React.Component {
 	constructor(props) {
 	super(props);
 	this.state = {
-		// show_modal: false
+			error_text : "",
+			show_error_text : false
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
+	}
+
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+		setTimeout(function(){
+			this.setState({show_error_text :false})
+		}.bind(this), 4000)
 	}
 
 	
@@ -26,11 +39,11 @@ export default class PleaseConfirmPage extends React.Component {
 			success: function(data) {
 				if (data.success){
 					swal(
-						AlertMessages.CONFIRMATION_EMAIL_SENT(AppStore.getCurrentUser().email)
+						this.setErrorMessage((AlertMessages.CONFIRMATION_EMAIL_SENT(AppStore.getCurrentUser().email).title))
 					)
 				}
 				else {
-					swal(data.error.title, data.error.text , data.error.type)
+					this.setErrorMessage(data.error.title)
 				}
 			}.bind(this),
 			error: function(){
@@ -55,6 +68,13 @@ export default class PleaseConfirmPage extends React.Component {
 					<h3>{"If you need confirmation email to be resent click "}
 						<span className = "clickable-text" onClick = {this.resendConfirmation}>here</span>
 					</h3>
+					<br/>
+
+					<FadingText show = {this.state.show_error_text} height_transition = {false}>
+						<span style = {{"fontSize" : "16px", "color" : "#183048"}}>
+							{this.state.error_text}
+						</span>
+					</FadingText>
 				</div>
 			</PageContainer>
 		);
