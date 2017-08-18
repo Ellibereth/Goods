@@ -44,6 +44,10 @@ Linda's Color Scheme
 }*/
 
 
+.loginBlock {
+	transition: height 0.5s ease-out;
+}
+
 .login-error-alert-text {
 	color : var(--DarkRed);
 }
@@ -51,13 +55,16 @@ Linda's Color Scheme
 .fading-text-shown {
 	visibility: visible;
     opacity: 1;
-    transition: opacity 2s linear;
+    transition: opacity 2s linear, max-height 2s linear;
+	
+	max-height: 240px;
 }
 
 .fading-text-hidden {
 	visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 2s, opacity 2s linear;	
+    transition: visibility 0s 2s, opacity 2s linear, max-height 2s linear;  
+	max-height: 0px;
 }
 
 .add-to-cart-success-text {
