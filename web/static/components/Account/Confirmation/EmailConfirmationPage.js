@@ -60,7 +60,7 @@ export default class EmailConfirmationPage extends React.Component {
 							<h3>
 								Welcome to Edgar USA! <br/>
 								Your account has been confirmed <br/>
-								Click <a className = "edgar-link" href ="/">here</a> to start shopping now
+								Click <a style = {{"color" : "#6090a8"}} className = "edgar-link" href ="/">here</a> to start shopping now
 							</h3>
 					
 				</PageContainer>
