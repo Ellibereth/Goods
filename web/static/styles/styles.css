@@ -797,13 +797,15 @@ Linda's Color Scheme
 }
 
 .landing-subscribe-input{
+	height: 34px !important;
 	border-color: #337ab7 !important;
 	border-top-left-radius: 6px !important;
 	border-bottom-left-radius: 6px !important;
 }
 
 .landing-subscribe-button{
-	height: 100% !important;
+	height: 34px !important;
+	/*height: 100% !important;*/
 	border-color: #337ab7 !important;
 	background-color : #337ab7 !important;
 	color: white;
