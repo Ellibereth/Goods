@@ -52,6 +52,11 @@ Linda's Color Scheme
 	color : var(--DarkRed);
 }
 
+.login-error-alert-text.register-success{
+	color: var(--DarkBlue) !important;
+}
+
+
 .fading-text-shown {
 	visibility: visible;
     opacity: 1;

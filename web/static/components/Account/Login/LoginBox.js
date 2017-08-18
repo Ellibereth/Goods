@@ -28,6 +28,7 @@ export default class LoginBox extends React.Component {
 			login_faded_text : "",
 			show_register_faded_text : false,
 			register_faded_text : "",
+			register_success : false
 		}
 	}
 
@@ -136,11 +137,11 @@ export default class LoginBox extends React.Component {
 					else {
 						ga('send', 'pageview', 'register-complete');
 						AppActions.addCurrentUser(data.user, data.jwt)
-						swal(AlertMessages.ACCOUNT_REGISTRATION_SUCCESS,
-							function () {
-								window.location = '/'
-							}.bind(this)
-						)
+						this.setState({register_faded_text : "You're account was created. Welcome to Edgar USA", register_success : true, show_register_faded_text : true})
+						setTimeout(function() {
+							window.location = "/"
+						}.bind(this), 4000)
+
 					}
 					this.setState({disabled : false})
 					this.props.setLoading(false)
@@ -173,7 +174,7 @@ export default class LoginBox extends React.Component {
 	render() {
 		var register_styles = this.props.form_state == REGISTER_STATE ?  {display : "none"} :{"display" :"block"}
 		var login_styles = this.props.form_state == LOGIN_STATE ? {display : "none"} : {"display" :" block"} 
-
+		var success_class = this.state.register_success ? " register-success " : " "
 
 		return (
 			<div>
@@ -307,7 +308,7 @@ export default class LoginBox extends React.Component {
 							<a href = "/login" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Already have an account?</a>
 
 							<FadingText show = {this.state.show_register_faded_text}>
-								<span href = "/recoverAccount" className = "hidden-xs login-error-alert-text" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>{this.state.register_faded_text}</span>
+								<span href = "/recoverAccount" className = {" hidden-xs login-error-alert-text " + success_class} style= {{"textDecoration" : "none", "marginTop" : "10px", display: "block"}}>{this.state.register_faded_text}</span>
 							</FadingText>
 
 						</div>
