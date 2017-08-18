@@ -44,9 +44,10 @@ Linda's Color Scheme
 }*/
 
 
-.loginBlock {
-	transition: height 0.5s ease-out;
+.unclickable {
+	cursor: not-allowed !important;
 }
+
 
 .login-error-alert-text {
 	color : var(--DarkRed);

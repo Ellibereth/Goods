@@ -117,6 +117,7 @@ export default class ViewCartPage extends React.Component {
 
 
 	render() {
+		var unclickable_class = this.state.items.length == 0 ? " unclickable " : ""
 		return (
 			<PageContainer is_loading  = {this.state.is_loading}>
 				<div id = "view-cart-container" 
@@ -159,10 +160,12 @@ export default class ViewCartPage extends React.Component {
 									</button>
 								</div>
 							</div>
-							<div className = "top-buffer"/>i
+							<div className = "top-buffer"/>
 							<div className = "row">
-								<div className = "col-sm-12 col-md-12 col-lg-12">
-									<button className = "btn btn-default checkout-button" disabled = {this.state.items.length == 0} 
+								<div className = {"col-sm-12 col-md-12 col-lg-12 " + unclickable_class}>
+									<button 
+									className = "btn btn-default checkout-button "
+									disabled = {this.state.items.length == 0} 
 									onClick = {this.toCheckoutClick.bind(this)}>
 										Proceed to Checkout 
 									</button>
