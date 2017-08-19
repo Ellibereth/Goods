@@ -137,7 +137,6 @@ class User(db.Model):
 			email_confirmation_id = User.generateEmailConfirmationId()
 			EmailLib.sendEmailConfirmation(email, email_confirmation_id, name)
 		except Exception as e:
-			print(e)
 			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
 		new_user = User(name, email, password, 
 			email_confirmation_id, membership_tier)
@@ -410,6 +409,7 @@ class User(db.Model):
 
 	def setPasswordWithRecovery(self, password):
 		self.password_hash = User.argonHash(password)
+		print(self.password_hash)
 		self.recovery_pin = None
 		self.recovery_pin_expiration = None
 		db.session.commit()
@@ -468,11 +468,12 @@ class User(db.Model):
 			if len(all_cards) == 1:
 				self.default_card = card['id']
 				db.session.commit()
-			return {Labels.Success : True}
+			return {Labels.Success : True, Labels.User : self.toPublicDict()}
 		except Exception as e:
 			return {
 				Labels.Success : False,
-				Labels.Error : ErrorMessages.CardAddError
+				Labels.Error : ErrorMessages.CardAddError,
+				Labels.User : self.toPublicDict()
 			}
 		
 	def getCreditCards(self):
@@ -511,9 +512,13 @@ class User(db.Model):
 			if len(all_addresses) == 1:
 				self.default_address = address['id']
 				db.session.commit()
-			return {Labels.Success : True}
+			return {Labels.Success : True, Labels.User : self.toPublicDict()}
 		except Exception as e:
-			return {Labels.Success : False , Labels.Error :ErrorMessages.AddressAddError}
+			return {
+				Labels.Success : False , 
+				Labels.Error :ErrorMessages.AddressAddError,
+				Labels.User : self.toPublicDict()
+			}
 
 	def getAddresses(self):
 		try:

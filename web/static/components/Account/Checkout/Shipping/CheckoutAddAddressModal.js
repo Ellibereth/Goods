@@ -10,6 +10,7 @@ export default class CheckoutAddAddressModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
+		this.props.toggleModal()
 	}
 
 

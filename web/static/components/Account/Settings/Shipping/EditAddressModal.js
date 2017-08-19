@@ -12,6 +12,7 @@ export default class EditAddressModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
+		this.props.toggleModal(null)
 	}
 
 
@@ -26,13 +27,13 @@ render() {
 					<span className = "vcenter"> Required  </span>
 				</span>
 			</Modal.Title>
-
 		</Modal.Header>
 			<Modal.Body>
 				<EditAddressForm
 				setLoading = {this.props.setLoading}
 				refreshSettings = {this.props.refreshSettings}
-				address = {this.props.address} toggleModal = {this.props.toggleModal}/>
+				address = {this.props.address} 
+				toggleModal = {this.props.toggleModal}/>
 			</Modal.Body>
 		</Modal>
 		);

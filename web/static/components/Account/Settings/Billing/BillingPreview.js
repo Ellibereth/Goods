@@ -6,20 +6,32 @@ import AppStore from '../../../../stores/AppStore.js';
 import CardPreview from './CardPreview'
 import AddCardButton from './AddCardButton'
 import {AlertMessages} from '../../../Misc/AlertMessages'
+import FadingText from '../../../Misc/FadingText'
 
 export default class BillingPreview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			
+			show_fading_text : false,
+			fading_text : ""
 		}
+		this.setFadingText = this.setFadingText.bind(this)
 	}
 
+	setFadingText(fading_text) {
+		console.log(fading_text)
+		this.setState({
+			fading_text : fading_text,
+			show_fading_text : true
+		})
+		setTimeout(function(){
+			this.setState({
+				show_fading_text : false
+			})
+		}.bind(this), 4000)
+	}
 	deleteCardPress(card){
-		swal(AlertMessages.DELETE_CARD_ENDING_IN(card.last4),
-		function () {
-			this.deleteCard.bind(this)(card)
-		}.bind(this))
+		this.deleteCard.bind(this)(card)
 	}
 
 	// shows a preview of the address 
@@ -36,20 +48,20 @@ export default class BillingPreview extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal(data.error.title, data.error.text , data.error.type)
+					this.setFadingText(data.error.title)
 				}
 				else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 						this.props.refreshSettings()
+						this.setFadingText("Card succesfully deleted")
 					}
 					this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'deleteUserCreditCard',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'deleteUserCreditCard',
+					eventLabel: AppStore.getCurrentUser().email
+				});
 			},
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
@@ -65,6 +77,7 @@ export default class BillingPreview extends React.Component {
 			if (card.id == current_user.default_card){
 				card_columns.unshift(
 					<CardPreview
+					setFadingText = {this.setFadingText.bind(this)}
 					setLoading = {this.props.setLoading}
 					 card = {card}
 					 deleteCardPress = {this.deleteCardPress.bind(this)}
@@ -74,6 +87,7 @@ export default class BillingPreview extends React.Component {
 			else {
 				card_columns.push(
 					<CardPreview
+					setFadingText = {this.setFadingText.bind(this)}
 					setLoading = {this.props.setLoading}
 					 card = {card}
 					 deleteCardPress = {this.deleteCardPress.bind(this)}
@@ -124,6 +138,9 @@ export default class BillingPreview extends React.Component {
 				<div className="panel panel-default">
 					<div className = "panel-heading">
 						<div className = "account-page-text"> Payment Methods </div>
+						<FadingText show = {this.state.show_fading_text} height_transition = {true}>
+							<span style = {{"fontSize" : "16px"}} className = " alert-error-text ">{this.state.fading_text}</span>
+						</FadingText>
 					</div>
 					<div className="panel-body">
 						<div className = "container-fluid">

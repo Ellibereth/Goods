@@ -6,6 +6,7 @@ import AppActions from '../../../../actions/AppActions.js';
 import AddressForm from '../../../Input/AddressForm.js'
 
 import {AlertMessages} from '../../../Misc/AlertMessages'
+import FadingText from '../../../Misc/FadingText'
 const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
 					"address_line1", "address_line2", "address_zip"]
 
@@ -20,8 +21,21 @@ export default class EditAddressForm extends React.Component {
 			address_country : "US",
 			address_line1 : "",
 			address_line2 : "",
-			address_zip : ""
+			address_zip : "",
+			error_text : "",
+			show_error_text : false,
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
+	}
+
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+		setTimeout(function(){
+			this.setState({show_error_text :false})
+		}.bind(this), 4000)
 	}
 
 	// handle the text input changes
@@ -46,12 +60,7 @@ export default class EditAddressForm extends React.Component {
 	}
 
 	onSubmitPress(){
-		swal(AlertMessages.IS_ALL_YOUR_INFORMATION_CORRECT,
-		function (isConfirm) {
-			if (isConfirm){
-				this.editAddress.bind(this)()	
-			}
-		}.bind(this))
+		this.editAddress.bind(this)()	
 	}
 
 	editAddress(){
@@ -64,23 +73,21 @@ export default class EditAddressForm extends React.Component {
 		data["jwt"] = localStorage.jwt
 		data['address_id'] = this.props.address.id
 		var form_data = JSON.stringify(data)
-		this.props.toggleModal(null)
+		
 		this.props.setLoading(true)
 		$.ajax({
 			type: "POST",
 			url: "/editUserAddress",
 			data: form_data,
 			success: function(data) {
+				this.props.setLoading(false)
 				if (!data.success) {
-					swal(data.error.title, data.error.text , data.error.type)
+					this.setErrorMessage(data.error.title)
 				}
 				else {
-					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-
-					this.props.setLoading(false)
+					this.props.toggleModal(null)
 					this.props.refreshSettings()
 				}
-
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
@@ -97,26 +104,36 @@ export default class EditAddressForm extends React.Component {
 	render() {
 		return (
 			<div className = "container">
-			<div className = "row">
-				<div className = "col-sm-10 col-md-10 col-lg-10">
-					<AddressForm 
-					onTextInputChange = {this.onTextInputChange.bind(this)}
-					address = {this.props.address}
-					onSubmit = {this.onSubmitPress.bind(this)}
-					 />
-
-					
-					
-				</div>
-				<div className = "col-sm-9 col-md-9 col-lg-9">
-					<div className = "pull-right">
-						<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
-							Edit Address
-						</button>
+				<div className = "row">
+					<div className = "col-sm-10 col-md-10 col-lg-10">
+						<AddressForm 
+						onTextInputChange = {this.onTextInputChange.bind(this)}
+						address = {this.props.address}
+						onSubmit = {this.onSubmitPress.bind(this)}
+						 />
 					</div>
 				</div>
-				
-			</div>
+
+						
+						
+				<div className = "row">
+					<div className = "col-sm-9 col-md-9 col-lg-9">
+							<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
+								Edit Address
+							</button>
+					</div>
+				</div>
+				<div className = "small-buffer"/>
+				<div className = "row">
+					<div className = "col-sm-12 col-md-12 col-lg-12">
+						<FadingText height_transition ={true} 
+							show = {this.state.show_error_text}>
+							<div className = "checkout-error-text">
+								{this.state.error_text}
+							</div>
+						</FadingText>
+					</div>
+				</div>
 			</div>
 		)
 	}

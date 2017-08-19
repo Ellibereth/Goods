@@ -8,6 +8,7 @@ import TextInput from '../../../Input/TextInput.js'
 import CreditCardInput from '../../../Input/CreditCardInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
 import {AlertMessages} from '../../../Misc/AlertMessages'
+import FadingText from '../../../Misc/FadingText'
 
 const form_inputs = ["address_city", "address_country",
 					"address_line1", "address_line2", "address_zip",
@@ -30,8 +31,21 @@ export default class UpdateBillingForm extends React.Component {
 			address_zip : "",
 			addresss_state: "",
 			skip_shipping: true,
-			disabled: false
+			disabled: false,
+			error_text : "",
+			show_error_text : false,
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
+	}
+
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+		setTimeout(function(){
+			this.setState({show_error_text :false})
+		}.bind(this), 4000)
 	}
 
 	// handle the text input changes
@@ -82,37 +96,12 @@ export default class UpdateBillingForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					this.props.setLoading(false)
-					if (!data.success) {
-						swal(data.error.title, data.error.text , data.error.type)
+					if (data.success) {
+						AppActions.updateCurrentUser(data.user)
+						window.location = "/settings"
 					}
 					else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-						var form_data =  JSON.stringify({
-								jwt : localStorage.jwt
-							})
-							$.ajax({
-								type: "POST",
-								url: "/getUserInfo",
-								data: form_data,
-								success: function(data) {
-									if (data.success) {
-										AppActions.updateCurrentUser(data.user)
-										window.location = `/settings`
-									}
-									else {
-										this.setState({
-											disabled : false
-										})
-									}
-									this.props.setLoading(false)
-								}.bind(this),
-								error : function(){
-
-								},
-								dataType: "json",
-								contentType : "application/json; charset=utf-8"
-							});
-						
+						this.setErrorMessage(data.error.title)
 					}
 					this.setState({disabled : false})
 				}.bind(this),
@@ -123,9 +112,6 @@ export default class UpdateBillingForm extends React.Component {
 						eventLabel: AppStore.getCurrentUser().email
 					});
 					this.props.setLoading(false)
-					setTimeout(function() {
-						swal(AlertMessages.INTERNAL_SERVER_ERROR)
-					}, 250)
 					this.setState({disabled : false})
 				}.bind(this),
 				dataType: "json",
@@ -154,9 +140,7 @@ export default class UpdateBillingForm extends React.Component {
 				{ !this.state.skip_shipping && 
 					<AddressForm onSubmit = {this.submitData.bind(this)} header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
 				}
-				<div className = "top-buffer"/>
-				<div className = "top-buffer"/>
-				<div className = "form-group">
+				<div style = {{"marginTop" : "40px"}} className = "form-group">
 					<div className = "row">
 						<div className = "col-md-10 col-lg-10">
 							<button className = "btn btn-default " disabled = {this.state.disabled}
@@ -165,6 +149,13 @@ export default class UpdateBillingForm extends React.Component {
 							</button>
 						</div>
 					</div>
+					<div className = "small-buffer"/>
+					<FadingText height_transition ={true} 
+						show = {this.state.show_error_text}>
+							<div className = "checkout-error-text">
+								{this.state.error_text}
+							</div>
+					</FadingText>
 				</div>
 			</form>
 		)

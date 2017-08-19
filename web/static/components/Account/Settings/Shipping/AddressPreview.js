@@ -20,10 +20,7 @@ export default class AddressPreview extends React.Component {
 
 	onDeletePress(){
 		var address = this.props.address
-		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.deleteAddress.bind(this)()
-		}.bind(this))
+		this.deleteAddress.bind(this)()
 	}
 
 	// shows a preview of the address 
@@ -33,7 +30,6 @@ export default class AddressPreview extends React.Component {
 	}
 
 	setDefaultAddress(){
-		this.props.setLoading(true)
 		var data = {}
 		data["jwt"] = localStorage.jwt
 		data["address_id"] = this.props.address.id
@@ -44,13 +40,12 @@ export default class AddressPreview extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal(data.error.title, data.error.text , data.error.type)
+					this.props.setFadingText(data.error.title)
 				}
 				else {
-						swal(AlertMessages.DEFAULT_ADDRESS_SET_SUCCESS)
+						this.props.setFadingText(AlertMessages.DEFAULT_ADDRESS_SET_SUCCESS.title)
 						this.props.refreshSettings()
 					}
-				this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {

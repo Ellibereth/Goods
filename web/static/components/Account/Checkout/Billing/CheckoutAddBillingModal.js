@@ -10,6 +10,7 @@ export default class CheckoutAddBillingModal extends React.Component {
 		}
 	}
 	onModalClosePress(){
+		this.props.toggleModal()
 	}
 	componentDidMount(){
 	}

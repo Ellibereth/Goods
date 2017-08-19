@@ -16,7 +16,7 @@ export default class SettingsPage extends React.Component {
 			cards : [],
 			addresses : [],
 			orders: [],
-			is_loading : true
+			is_loading : true,
 		}
 		this.refreshSettings = this.refreshSettings.bind(this)
 	}
@@ -87,32 +87,27 @@ export default class SettingsPage extends React.Component {
 	render() {
 		return (
 			<PageContainer is_loading = {this.state.is_loading}>
-				<div id = "settings-container" 
-				className = {this.state.is_loading ? "container faded" : "container"}>
+				<div id = "settings-container">
 					<h1 style = {{"margin-left": "14px"}}> Your Account </h1> 
 					<br/>
 					<UpdateSettingsPreview  />
 					<br/>
-						{
-							!this.state.is_loading && 
-							<div>
-								<ShippingPreview 
-									setLoading = {this.setLoading.bind(this)}
-									is_loading = {this.state.is_loading}
-									refreshSettings = {this.refreshSettings}
-									addresses = {this.state.addresses}/>
-								<br/>
-								<BillingPreview
-									setLoading = {this.setLoading.bind(this)}
-									is_loading  = {this.state.is_loading}
-									refreshSettings = {this.refreshSettings} 
-									cards = {this.state.cards} />
-								<br />
-								<OrdersPreview orders = {this.state.orders} />
-								<br/>
-							</div>
-
-						}
+						<div>
+							<ShippingPreview 
+								setLoading = {this.setLoading.bind(this)}
+								is_loading = {this.state.is_loading}
+								refreshSettings = {this.refreshSettings}
+								addresses = {this.state.addresses}/>
+							<br/>
+							<BillingPreview
+								setLoading = {this.setLoading.bind(this)}
+								is_loading  = {this.state.is_loading}
+								refreshSettings = {this.refreshSettings} 
+								cards = {this.state.cards} />
+							<br />
+							<OrdersPreview orders = {this.state.orders} />
+							<br/>
+						</div>
 				</div>
 			</PageContainer>
 		)

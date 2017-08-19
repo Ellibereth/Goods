@@ -21,9 +21,7 @@ export default class UpdateShippingPage extends React.Component {
 	render() {
 		return (
 			<PageContainer is_loading = {this.state.is_loading}>
-				
 				<div className = "container">
-					{this.state.is_loading && <Spinner/>}	 
 					 <div className = "row">
 					 	<UpdateShippingForm
 					 	setLoading = {this.setLoading.bind(this)} />

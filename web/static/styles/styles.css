@@ -13,6 +13,10 @@
 .alert-success-text {
 	color : var(--DarkBlue);
 }
+
+.alert-notice-text {
+	color : var(--LightBlue);
+}
 .alert-error-text {
 	color : var(--LightRed);
 }
@@ -579,7 +583,7 @@
 /* Absolute Center Spinner */
 .loading {
   position: fixed;
-  z-index: 1050;
+  z-index: 2000;
   height: 2em;
   width: 2em;
   overflow: show;

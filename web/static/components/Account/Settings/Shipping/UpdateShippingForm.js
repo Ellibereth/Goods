@@ -6,6 +6,7 @@ import AppStore from '../../../../stores/AppStore.js';
 import AppActions from '../../../../actions/AppActions.js';
 import TextInput from '../../../Input/TextInput.js'
 import AddressForm from '../../../Input/AddressForm.js'
+import FadingText from '../../../Misc/FadingText'
 const form_labels = ["Name", "Description", "City","State", "Country", "Address Line 1", 
 						"Address Line 2", "Zip Code"]
 const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
@@ -26,9 +27,21 @@ export default class UpdateShippingForm extends React.Component {
 			address_line2 : "",
 			address_zip : "",
 			disabled : false,
+			error_text : "",
+			show_error_text : false,
 		}
+		this.setErrorMessage = this.setErrorMessage.bind(this)
 	}
 
+	setErrorMessage(error_text) {
+		this.setState({
+			show_error_text : true, 
+			error_text : error_text
+		})
+		setTimeout(function(){
+			this.setState({show_error_text :false})
+		}.bind(this), 4000)
+	}
 	// handle the text input changes
 	onTextInputChange(field, value){
 		var obj = {}
@@ -52,38 +65,12 @@ export default class UpdateShippingForm extends React.Component {
 				data: form_data,
 				success: function(data) {
 					this.props.setLoading(false)
-					if (!data.success) {
-						swal(data.error.title, data.error.text , data.error.type)
-					}
+					if (data.success) {
+						AppActions.updateCurrentUser(data.user)
+						window.location = "/settings"
+					}	
 					else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-						var form_data =  JSON.stringify({
-							jwt : localStorage.jwt
-							})
-							$.ajax({
-								type: "POST",
-								url: "/getUserInfo",
-								data: form_data,
-								success: function(data) {
-									this.props.setLoading(false)
-									if (data.success) {
-										AppActions.updateCurrentUser(data.user)
-										window.location = `/settings`
-									}
-									else {
-										this.setState({
-											disabled : false
-										})
-										swal(data.error.title, data.error.text , data.error.type)
-									}
-									this.props.setLoading(false)
-									
-								}.bind(this),
-								error : function(){
-								},
-								dataType: "json",
-								contentType : "application/json; charset=utf-8"
-							});
+						this.setErrorMessage(data.error.title)
 					}
 					this.setState({disabled : false})
 				}.bind(this),
@@ -125,6 +112,13 @@ export default class UpdateShippingForm extends React.Component {
 									</button>
 								</div>
 							</div>
+							<div className = "small-buffer"/>
+							<FadingText height_transition ={true} 
+								show = {this.state.show_error_text}>
+									<div className = "checkout-error-text">
+										{this.state.error_text}
+									</div>
+							</FadingText>
 						</div>
 					</form>
 				</div>

@@ -39,9 +39,10 @@ def checkLogin():
 	if this_user == None:
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
-	elif this_user.isFacebookUser():
-		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
-		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+	# this part for facebook login will need to be changed
+	# elif this_user.isFacebookUser():
+	# 	LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
+	# 	return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 
 	if this_user.checkLogin(input_password):
@@ -268,7 +269,6 @@ def getUserOrders(this_user):
 @account_api.route('/getUserInfo', methods = ['POST'])
 @decorators.check_jwt
 def getUserInfo(this_user):
-
 	if not this_user:
 		return JsonUtil.failure()
 	
@@ -340,6 +340,7 @@ def setRecoveryPin():
 	if user:
 		user.setRecoveryPin()
 		EmailLib.sendRecoveryEmail(user)
+		print(user.recovery_pin)
 		return JsonUtil.success()
 	else:
 		return JsonUtil.failure()
@@ -377,6 +378,7 @@ def recoverySetPassword():
 			else:
 				is_valid_password = User.validatePasswordSubimssion(password)
 				if is_valid_password[Labels.Success]:
+					print(password)
 					user.setPasswordWithRecovery(password)
 					return JsonUtil.success()
 				else:

@@ -56,7 +56,7 @@ class ErrorMessages:
 	BlankState = SwalError("State cannot be blank.").toDict()
 	BlankCountry = SwalError("Country cannot be blank.").toDict()
 	CardNumberError = SwalError("Invalid card number.").toDict()
-	CardExpiryError = SwalError("Invalid expirateion date.").toDict()
+	CardExpiryError = SwalError("Invalid expiration date.").toDict()
 	CardCvcError = SwalError("Card CVC invalid").toDict()
 	CardZipError = SwalError("Card ZIP invalid").toDict()
 

@@ -7,16 +7,32 @@ import AddressPreview from './AddressPreview'
 import EditAddressModal from './EditAddressModal.js'
 import AddAddressButton from './AddAddressButton'
 import {AlertMessages} from '../../../Misc/AlertMessages'
+import FadingText from '../../../Misc/FadingText'
 export default class ShippingPreview extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			modal_show : false,
-			modal_address : null
+			modal_address : null,
+			show_fading_text : false,
+			fading_text : ""
 		}
+		this.setFadingText = this.setFadingText.bind(this)
 	}
 
-	toggleModal(address) {
+	setFadingText(fading_text) {
+		this.setState({
+			fading_text : fading_text,
+			show_fading_text : true
+		})
+		setTimeout(function(){
+			this.setState({
+				show_fading_text : false
+			})
+		}.bind(this), 4000)
+	}
+
+	toggleModal(address) {		
 		this.setState({
 			modal_show : !this.state.modal_show,
 			modal_address : address
@@ -35,11 +51,12 @@ export default class ShippingPreview extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
-					swal(data.error.title, data.error.text , data.error.type)
+					this.setFadingText(data.error.title)
 				}
 				else {
-					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
 					this.props.refreshSettings()
+					this.setFadingText("Address succesfully deleted")
+					
 				}
 				this.props.setLoading(false)
 			}.bind(this),
@@ -65,6 +82,7 @@ export default class ShippingPreview extends React.Component {
 			if (address.id == current_user.default_address)
 				address_columns.unshift(
 					<AddressPreview 
+					setFadingText = {this.setFadingText.bind(this)}
 					setLoading = {this.props.setLoading}
 					address = {address} 
 					toggleModal = {this.toggleModal.bind(this)}
@@ -73,7 +91,9 @@ export default class ShippingPreview extends React.Component {
 				)
 			else {
 				address_columns.push(
-					<AddressPreview address = {address} 
+					<AddressPreview 
+					setFadingText = {this.setFadingText.bind(this)}
+					address = {address} 
 					setLoading = {this.props.setLoading}
 					toggleModal = {this.toggleModal.bind(this)}
 					deleteAddress = {this.deleteAddress.bind(this)}
@@ -114,17 +134,11 @@ export default class ShippingPreview extends React.Component {
 			)
 		}
 
-
-
-		
-
-
-
-
-
 		return (
+			
 				<div className = "container-fluid">
-					<EditAddressModal show = {this.state.modal_show} address = {this.state.modal_address} 
+					<EditAddressModal show = {this.state.modal_show}
+					address = {this.state.modal_address} 
 					refreshSettings = {this.props.refreshSettings}
 					toggleModal = {this.toggleModal.bind(this)}
 					setLoading = {this.props.setLoading}/>
@@ -132,6 +146,9 @@ export default class ShippingPreview extends React.Component {
 					<div className="panel panel-default">
 						<div className = "panel-heading">
 							<div className = "account-page-text"> Shipping Address </div>
+							<FadingText show = {this.state.show_fading_text} height_transition = {true}>
+								<span style = {{"fontSize" : "16px"}} className = " alert-error-text ">{this.state.fading_text}</span>
+							</FadingText>
 						</div>
 						<div className="panel-body">
 							<div className = "container-fluid">
