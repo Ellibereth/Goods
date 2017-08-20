@@ -845,6 +845,52 @@ Linda's Color Scheme
 	opacity : 0.7 !important;
 }
 
+.landing-send-another-button:hover{
+	color: white !important;
+}
+
+.landing-send-another-button:focus{
+	border-color: #337ab7 !important;
+	background-color : #337ab7 !important;
+	color: white !important;
+	opacity : 0.7 !important;
+}
+
+.landing-send-another-button {
+	height: 34px !important;
+	/*height: 100% !important;*/
+	border-color: #337ab7 !important;
+	background-color : #337ab7 !important;
+	color: white;
+		border-color: #337ab7 !important;
+	background-color: #337ab7 !important;
+	color: white;
+	z-index: 2;
+	margin-left: -1px; 
+	display: inline-block !important;
+	padding: 6px 12px !important;
+	margin-bottom: 0 !important;
+	font-size: 14px !important;
+	font-weight: 400 !important;
+	line-height: 1.42857143 !important;
+	text-align: center !important;
+	white-space: nowrap !important;
+	vertical-align: middle !important;
+	-ms-touch-action: manipulation !important;
+	touch-action: manipulation !important;
+	cursor: pointer;
+	-webkit-user-select: none !important;
+	-moz-user-select: none !important;
+	-ms-user-select: none !important;
+	user-select: none !important;
+	background-image: none !important;
+	border: 1px solid transparent !important;
+	border-radius: 6px !important;
+	border-top-left-radius: 6px !important;
+	border-bottom-left-radius: 6px !important;
+	position: relative !important;
+}
+
 .landing-container {
 	font-family: Arial;
 }

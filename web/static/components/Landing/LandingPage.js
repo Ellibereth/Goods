@@ -7,7 +7,8 @@ export default class LandingPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			result_text : ""
+			result_text : "",
+			sent_success : false
 		}
 	}
 
@@ -24,29 +25,26 @@ export default class LandingPage extends React.Component {
 			url: "/signUpForLandingList",
 			data : form_data,
 			success: function(data) {
+				console.log(data)
 				if (data.success) {
-					if (this.state.result_text) {
-						$("#success_text").removeClass("email-success")	
-						$("#success_text").addClass("straight-hidden")	
+					$("#success_text").addClass("email-success")
+					$("#success_text").removeClass("email-success-hidden")
+					$("#success_text").removeClass("straight-hidden")	
 
-						setTimeout(function() {
-							$("#success_text").removeClass("straight-hidden")	
-							$("#success_text").addClass("email-success")
-
-						},1000)
-					}
-					else {
-						$("#success_text").addClass("email-success")
-						$("#success_text").removeClass("email-success-hidden")	
-					}
-					this.setState({email : "", result_text : " Thank you for your interest. We'll let you know when we launch."})
+					this.setState({
+						email : "", 
+						result_text : " Thank you for your interest!",
+						sent_success : true
+					})
 
 				}
 				else {
 					$("#success_text").addClass("email-success")
 					$("#success_text").removeClass("email-success-hidden")
+					$("#success_text").removeClass("straight-hidden")
 					this.setState({result_text : data.error})
 					setTimeout(function(){ 
+						$("#success_text").removeClass("straight-hidden")
 						$("#success_text").addClass("email-success-hidden")
 						$("#success_text").removeClass("email-success")
 					}.bind(this), 5000)
@@ -60,18 +58,18 @@ export default class LandingPage extends React.Component {
 		});
 	}
 
+	startOver() {
+		this.setState({sent_success : false})
+		$("#success_text").removeClass("email-success")	
+		$("#success_text").addClass("straight-hidden")
+
+	}
+
 	handleKeyPress(event) {
 		if  (event.key == 'Enter'){
 			this.onLandingClick.bind(this)()
 		}
 	}
-
-	// for image 1, slightly more spacing between lines, larger, 
-	// 	thinner font, black is fine, more spacing above input box
-	// , 20px border radius for the left input and right corners
-	//  of button, "Auguest", no periods, be consistent with capitalization
-
-
 	
 	render() {
 		
@@ -98,27 +96,8 @@ export default class LandingPage extends React.Component {
 						<div className = "landing-after-title-text">
 							Great American Vendors and Designers
 						</div>
-						<div style = {{"marginTop" : "28px"}}/>
-						
-						
-
 					
-						<div className = "row hidden-xs">
-							<div className = "col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-								<div className="input-group landing-subscribe-container">
-									<input tabindex = {1} onKeyPress = {this.handleKeyPress.bind(this)} 
-									value = {this.state.email} onChange = {this.onEmailChange.bind(this)} type="text" 
-									className="form-control landing-subscribe-input" placeholder="Type your email here" />
-									<div className="input-group-btn">
-										<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
-										type="button" className="landing-subscribe-button btn ">
-											Notify Me!
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-
+						
 						<div className = "row hidden-sm hidden-md hidden-lg">
 							<div className = " col-xs-12">
 								<div className="input-group-lg landing-subscribe-container">
@@ -128,21 +107,60 @@ export default class LandingPage extends React.Component {
 								</div>
 							</div>
 						</div>
-
-						<div style = {{"marginTop" : "16px"}}/>
-						<div className = "row hidden-sm hidden-md hidden-lg">
-							<div className = "col-xs-12">
-								<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
-								type="button" className="landing-subscribe-button btn ">
-									Notify Me!
-								</button>
+						<div>
+							<div className = "row hidden-sm hidden-md hidden-lg">
+								<div className = "col-xs-12">
+									<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
+									type="button" className="landing-subscribe-button btn ">
+										Notify Me!
+									</button>
+								</div>
 							</div>
 						</div>
+
+						
+						{!this.state.sent_success  &&
+							<div className = "row hidden-xs">
+								<div style = {{"marginTop" : "16px"}}/>
+								<div className = "col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+									<div className="input-group landing-subscribe-container">
+										<input tabindex = {1} onKeyPress = {this.handleKeyPress.bind(this)} 
+										value = {this.state.email} onChange = {this.onEmailChange.bind(this)} type="text" 
+										className="form-control landing-subscribe-input" placeholder="Type your email here" />
+										<div className="input-group-btn">
+											<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
+											type="button" className="landing-subscribe-button btn ">
+												Notify Me!
+											</button>
+										</div>
+									</div>
+								</div>
+								<div style = {{"marginBottom" : "4px"}}/>
+							</div>
+						}
+
+						
+
+						{this.state.sent_success &&
+							<div className = "row hidden-xs">
+								<div style = {{"marginTop" : "24px"}}/>
+								<div className = "col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+									<button onClick = {this.startOver.bind(this)}
+									 className = "landing-send-another-button btn"> 
+									 	Click to Subscribe Another Email
+									 </button>	
+								</div>
+							</div>
+						}
+
+						<div className = "row">
+							<div style = {{"marginTop" : "4px"}}/>
+							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
+						</div>
+
+
+						
 						<div style = {{"marginTop" : "16px"}}/>
-						
-
-						
-
 						<div className = "row">
 							<div className = "landing-after-input-text">
 								Coming soon, August 2017
@@ -150,12 +168,8 @@ export default class LandingPage extends React.Component {
 						</div>
 
 						<div className = "small-buffer"/>
-						<div className = "row">
-							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
 						</div>
-
 						</div>
-					</div>
 					</Modal.Body>
 					</Modal>
 				<div className="landing-floating-footer hidden-xs">
