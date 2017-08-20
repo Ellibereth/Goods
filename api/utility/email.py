@@ -297,7 +297,7 @@ class EmailLib:
 		smtpserver.ehlo
 		smtpserver.login(sender, passW)
 		msg = MIMEMultipart()
-		msg['Subject'] = "Thanks For Your Interest"
+		msg['Subject'] = "Thank You For Your Interest"
 		msg['From'] = formataddr((str(Header('Edgar USA', 'utf-8')), 'noreply@edgarusa.com'))
 		msg['To'] =  email
 		msg['BCC'] = ", ".join(ADMIN_RECIPIENTS)
