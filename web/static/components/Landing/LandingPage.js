@@ -33,13 +33,12 @@ export default class LandingPage extends React.Component {
 							$("#success_text").removeClass("straight-hidden")	
 							$("#success_text").addClass("email-success")
 
-						},100)
+						},1000)
 					}
 					else {
 						$("#success_text").addClass("email-success")
 						$("#success_text").removeClass("email-success-hidden")	
 					}
-					
 					this.setState({email : "", result_text : " Thank you for your interest. We'll let you know when we launch."})
 
 				}
