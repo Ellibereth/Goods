@@ -38,9 +38,7 @@ export default class PleaseConfirmPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success){
-					swal(
-						this.setErrorMessage((AlertMessages.CONFIRMATION_EMAIL_SENT(AppStore.getCurrentUser().email).title))
-					)
+					this.setErrorMessage((AlertMessages.CONFIRMATION_EMAIL_SENT(AppStore.getCurrentUser().email).title))
 				}
 				else {
 					this.setErrorMessage(data.error.title)

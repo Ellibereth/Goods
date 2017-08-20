@@ -81,9 +81,6 @@ export default class UpdateShippingForm extends React.Component {
 						eventLabel: AppStore.getCurrentUser().email
 					});
 					this.props.setLoading(false)
-					setTimeout(function() {
-						swal(AlertMessages.INTERNAL_SERVER_ERROR)
-					}, 250)
 					this.setState({disabled : false})
 				}.bind(this),
 				dataType: "json",
