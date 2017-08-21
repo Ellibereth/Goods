@@ -27,7 +27,7 @@ export default class SalesPage extends React.Component {
 			ga('send', 'event', {
 						eventCategory: ' server-error',
 						eventAction: 'getHomePageProducts',
-						eventLabel: AppStore.getCurrentUser().email
+						eventLabel: localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
 					});
 		  },
 		  dataType: "json",

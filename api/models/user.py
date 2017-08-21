@@ -52,6 +52,8 @@ class User(db.Model):
 	membership_tier = db.Column(db.Integer)
 	fb_id = db.Column(db.String)
 
+	ab_group = db.Column(db.Integer)
+
 	is_guest = db.Column(db.Boolean, default = False)
 	NAME_MAX_LENGTH = 20
 	MIN_PASSWORD_LENGTH = 6
@@ -106,7 +108,7 @@ class User(db.Model):
 
 
 	@staticmethod
-	def registerUser(name, email_input, password, password_confirm, guest_user = None, membership_tier = 1):
+	def registerUser(name, email_input, password, password_confirm, guest_user = None, membership_tier = 1, ab_group = 0):
 		if isinstance(email_input, str):
 			email = email_input.lower()
 		else:
@@ -140,6 +142,7 @@ class User(db.Model):
 			return {Labels.Success : False, Labels.Error :ErrorMessages.InvalidEmail}
 		new_user = User(name, email, password, 
 			email_confirmation_id, membership_tier)
+		new_user.ab_group = ab_group
 		db.session.add(new_user)
 		db.session.commit()
 
@@ -274,6 +277,7 @@ class User(db.Model):
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
 		public_dict[Labels.FbId] = self.fb_id
+		public_dict[Labels.AbGroup] = self.ab_group
 		return public_dict
 
 
@@ -294,6 +298,8 @@ class User(db.Model):
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
 		public_dict[Labels.FbId] = self.fb_id
+		public_dict[Labels.AbGroup] = self.ab_group
+
 
 		return public_dict
 
@@ -314,6 +320,7 @@ class User(db.Model):
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
 		public_dict[Labels.FbId] = self.fb_id
+		public_dict[Labels.AbGroup] = self.ab_group
 		return public_dict
 
 	def adjustCartItemWithVariant(self, cart_item):

@@ -65,6 +65,9 @@
 					var account_id = JSON.parse(localStorage.CurrentUser).account_id
 					account_id = account_id ? account_id.toString() : "No Account Id"
 
+					var ab_group = JSON.parse(localStorage.ab_group)
+					ab_group = ab_group ? ab_group : "0"
+
 					ga('create', 'UA-96327145-1', 'auto', {
 						userId: account_id
 					});
@@ -73,6 +76,7 @@
 					if (account_id) {
 						ga('set', 'dimension1', account_id);
 					}
+					ga('set', 'dimension2', ab_group);
 				}
 
 				ga('send', 'pageview');				

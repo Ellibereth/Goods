@@ -20,6 +20,7 @@ export default class HomeProductPreview extends React.Component {
 			'name': product.name,
 			'brand' : product.manufacturer,
 			'list': 'Home',
+			'ab_group':  localStorage.ab_group
 		}
 		ga('ec:addImpression', product_object);
 		
@@ -43,7 +44,7 @@ export default class HomeProductPreview extends React.Component {
 			'name': product.name,
 			'brand' : product.manufacturer,
 			'list': 'Home',
-			'price' : product.price
+			'price' : product.price,
 		});
 		ga('ec:setAction', 'click', {list: 'Home'});
 		ga('send', 'event', 'UX', 'click', 'HomeProduct')

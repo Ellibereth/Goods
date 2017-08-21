@@ -113,16 +113,6 @@ def add_header(response):
 	return response
 
 
-@app.route("/getAbGroup", methods=["POST"])
-def getAbGroup():
-	ip_addr = request.remote_addr
-	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
-	ab_group = sum(nums) % 2
-	
-	# request.remote_addr = 
-	return jsonify({'ip': request.remote_addr, 'ab_group' : ab_group})
-
-
 @app.before_request
 def before_request():
 	g.start = time.time()

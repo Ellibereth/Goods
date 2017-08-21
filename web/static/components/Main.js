@@ -57,28 +57,10 @@ export default class Main extends React.Component {
 	
 	componentDidMount() {
 		var pathname = this.props.location.pathname
-		this.setAbGroup()
 		if (pathname != "/checkout"){
 			this.getUserInfo()
 		}
 	}
-
-	setAbGroup() {
-		var form_data =  JSON.stringify({
-			jwt : localStorage.jwt
-		})
-		$.ajax({
-			type: "POST",
-			url: "/getAbGroup",
-			data : form_data,
-			success : function(data) {
-				console.log(data)
-				// localStorage.ab_group = data.ab_group
-			}
-		})
-	}
-
-
 
 	getUserInfo(){
 
@@ -93,7 +75,14 @@ export default class Main extends React.Component {
 			success: function(data) {
 				if (data.success) {
 					AppActions.updateCurrentUser(data.user)
-
+					if (data.user) {
+						if (data.user.ab_group) {
+							localStorage.ab_group = data.user.ab_group
+						}
+						else {
+							localStorage.ab_group = 0
+						}
+					}
 
 					// if (data.adjusted_items) {
 					// 	var message = ""
@@ -114,6 +103,10 @@ export default class Main extends React.Component {
 					
 				}
 				else {
+					if (data.ab_group){
+						localStorage.ab_group = data.ab_group	
+					}
+					
 					AppActions.removeCurrentUser()
 					// window.location = "/"
 				}

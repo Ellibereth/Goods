@@ -62,7 +62,7 @@ export default class ProductAddToCart extends React.Component {
 				ga('send', 'event', {
 					eventCategory: ' server-error',
 					eventAction: 'getUserInfo',
-					eventLabel: AppStore.getCurrentUser().email
+					eventLabel: localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
 				});
 			},
 			dataType: "json",
@@ -125,7 +125,7 @@ export default class ProductAddToCart extends React.Component {
 							'variant' : this.state.variant ? this.state.variant.variant_type : "none"
 						});
 						ga('ec:setAction', 'add')
-						ga('send', 'event', 'UX', 'click', 'add to cart');
+						ga('send', 'event', 'UX', 'click', localStorage.ab_group +  "-" + 'add to cart');
 						window.location = "/myCart"
 						// this.props.getProductInformation()
 					}
@@ -140,7 +140,7 @@ export default class ProductAddToCart extends React.Component {
 					ga('send', 'event', {
 						eventCategory: 'server-error',
 						eventAction: 'add-to-cart',
-						eventLabel : AppStore.getCurrentUser().email
+						eventLabel : localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
 					});
 					this.props.setLoading(false)
 					this.setState({buy_disabled : false})

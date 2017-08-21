@@ -96,7 +96,10 @@ def registerUserAccount():
 	password_confirm = request.json.get(Labels.PasswordConfirm)
 	guest_jwt = request.json.get(Labels.GuestJwt)
 	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
-	register_user_response = User.registerUser(name, email_input, password, password_confirm, guest_user)
+	ip_addr = request.remote_addr
+	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
+	ab_group = sum(nums) % 2
+	register_user_response = User.registerUser(name, email_input, password, password_confirm, guest_user, ab_group = ab_group)
 	if register_user_response.get(Labels.Success):
 		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.Jwt])
 		return JsonUtil.successWithOutput(register_user_response)
@@ -269,8 +272,11 @@ def getUserOrders(this_user):
 @account_api.route('/getUserInfo', methods = ['POST'])
 @decorators.check_jwt
 def getUserInfo(this_user):
+	ip_addr = request.remote_addr
+	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
+	ab_group = sum(nums) % 2
 	if not this_user:
-		return JsonUtil.failure()
+		return JsonUtil.failure({"ab_group" : ab_group})
 	
 	if hasattr(this_user, 'is_admin'):
 		if this_user.is_admin:
@@ -279,7 +285,7 @@ def getUserInfo(this_user):
 				Labels.User : this_user.toPublicDict(), 
 				"jwt" : admin_jwt})
 		else:
-			return JsonUtil.failure()
+			return JsonUtil.failure({"ab_group" : ab_group})
 
 	else:
 		adjusted_items = this_user.adjustCart()

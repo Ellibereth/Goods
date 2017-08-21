@@ -188,7 +188,8 @@ export default class SiteMap extends React.Component {
 		error : function(){
 			ga('send', 'event', {
 				eventCategory: ' server-error',
-				eventAction: 'getMarketProductInfo'
+				eventAction: 'getMarketProductInfo',
+				eventLabel : localStorage.ab_group +  "-"
 			});
 		},
 		dataType: "json",

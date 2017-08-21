@@ -94,7 +94,7 @@ export default class ProductPage extends React.Component {
 		error : function(){
 			ga('send', 'event', {
 				eventCategory: ' server-error',
-				eventAction: 'getMarketProductInfo'
+				eventAction: 'getMarketProductInfo',
 			});
 		},
 		dataType: "json",
@@ -119,9 +119,10 @@ export default class ProductPage extends React.Component {
 				'id': product.product_id ? product.product_id.toString() : "",
 				'name': product.name,
 				'manufacturer' : product.manufacturer,
-				'price' : product.price ? product.price.toString() : "" , 
+				'price' : product.price ? product.price.toString() : "",
 			});
 		ga('ec:setAction', 'detail');	
+		ga('send', 'pageview');
 	}
 
 

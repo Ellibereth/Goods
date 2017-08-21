@@ -16,6 +16,7 @@ class EmailLabels:
 	Unsubscribed = "unsubscribed"
 
 class UserLabels:
+	AbGroup = "ab_group"
 	FbId = "fb_id"
 	Id = "id"
 	FirstName = "first_name"
