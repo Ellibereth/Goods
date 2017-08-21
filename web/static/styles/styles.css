@@ -43,6 +43,11 @@ Linda's Color Scheme
 	line-height: 1em;
 }*/
 
+.sent-success-text {
+	font-size: 24px;
+	color : #e80000;
+}
+
 .landing-desc {
 	color : var(--DarkRed);
 	font-style: italic;
@@ -63,7 +68,7 @@ Linda's Color Scheme
 .show-another {
 	visibility: visible;
     opacity: 1;
-    transition: opacity 2s linear, max-height 2s;
+    transition: opacity 1s linear, max-height 1s;
     max-height: 40px;
 }
 
@@ -77,7 +82,7 @@ Linda's Color Scheme
 .email-success {
 	visibility: visible;
     opacity: 1;
-    transition: opacity 2s linear, max-height 2s;
+    transition: opacity 1s linear, max-height 1s;
     color : var(--DarkBlue);
     max-height: 40px;
 }
@@ -85,7 +90,7 @@ Linda's Color Scheme
 .email-success-hidden { 
 	visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 2s, opacity 2s linear, max-height 2s;
+    transition: visibility 0s 1s, opacity 1s linear, max-height 1s;
     color : var(--DarkBlue);
     max-height: 0px;
 }

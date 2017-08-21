@@ -69,6 +69,7 @@ export default class LandingPage extends React.Component {
 	}
 	
 	render() {
+
 		var another_button_class = "landing-send-another-button btn " + (this.state.sent_success ? " show-another " : " hidden-another ")
 		return (
 			<div>
@@ -78,7 +79,7 @@ export default class LandingPage extends React.Component {
 						<div className = "landing-card col-sm-12 col-md-12 col-lg-12">
 						<div className = "row">
 							<img className = "landing-page-logo"
-							src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/landing_logo.png"/>
+							src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda5.png"/>
 						</div>
 						<div className = "row">
 							<div className = "landing-desc">
@@ -138,7 +139,11 @@ export default class LandingPage extends React.Component {
 
 						<div className = "row">
 							<div style = {{"marginTop" : "8px"}}/>
-							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
+							<span id = "success_text" className = " email-success-hidden ">
+								<span className = {this.state.sent_success ? " sent-success-text " : ""}>
+									{this.state.result_text}
+								</span>
+							</span>
 							<div style = {{"marginBottom" : "8px"}}/>
 						</div>
 
