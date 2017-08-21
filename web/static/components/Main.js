@@ -85,12 +85,12 @@ export default class Main extends React.Component {
 								message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
 							}
 						})
-						// swal(
-						// 	AlertMessages.ITEMS_IN_CART_HAVE_BEEN_MODIFIED(message),
-						// 	function (isConfirm) {
-						// 		window.location = '/myCart'
-						// 	}.bind(this))
-						// }
+							// swal(
+							// 	AlertMessages.ITEMS_IN_CART_HAVE_BEEN_MODIFIED(message),
+							// 	function (isConfirm) {
+							// 		window.location = '/myCart'
+							// 	}.bind(this))
+						}
 					
 				}
 				else {

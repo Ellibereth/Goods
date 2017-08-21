@@ -214,11 +214,11 @@ export default class ProductTopRow extends React.Component {
 											<ImageZoom
 												image={{
 												  src: main_image_id,
-												  alt: 'Golden Gate Bridge',
 												  className: 'productPgMainImage edgar-img-responsive js-show-fs',
 												}}
 												zoomImage={{
-												  src: main_image_id,
+												  	src: main_image_id,
+													className : "zoomed-image"
 												}}
 											  />
 											
