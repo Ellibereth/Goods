@@ -68,31 +68,31 @@ Linda's Color Scheme
 .show-another {
 	visibility: visible;
     opacity: 1;
-    transition: opacity 1s linear, max-height 1s;
-    max-height: 40px;
+    transition: opacity 1s linear;
+    /*max-height: 40px;*/
 }
 
 .hidden-another {
 	visibility: hidden;
     opacity: 0;
     /*transition: visibility 0s 2s, opacity 2s linear, max-height 2s;*/
-    max-height: 0px;
+    /*max-height: 0px;*/
 }
 
 .email-success {
 	visibility: visible;
     opacity: 1;
-    transition: opacity 1s linear, max-height 1s;
+    transition: opacity 1s linear;
     color : var(--DarkBlue);
-    max-height: 40px;
+    /*max-height: 40px;*/
 }
 
 .email-success-hidden { 
 	visibility: hidden;
     opacity: 0;
-    transition: visibility 0s 1s, opacity 1s linear, max-height 1s;
+    transition: visibility 0s 1s, opacity 1s linear;
     color : var(--DarkBlue);
-    max-height: 0px;
+    /*max-height: 0px;*/
 }
 
 .product-page-countdown {
