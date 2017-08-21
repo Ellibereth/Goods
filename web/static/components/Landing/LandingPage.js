@@ -172,7 +172,7 @@ export default class LandingPage extends React.Component {
 
 						<div className = "row">
 							<div className = "landing-after-input-text">
-								Coming soon, August 2017
+								Coming soon, September 2017
 							</div>
 						</div>
 
