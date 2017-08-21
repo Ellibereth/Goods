@@ -29,7 +29,6 @@ export default class LandingPage extends React.Component {
 				if (data.success) {
 					$("#success_text").addClass("email-success")
 					$("#success_text").removeClass("email-success-hidden")
-					$("#success_text").removeClass("straight-hidden")	
 
 					this.setState({
 						email : "", 
@@ -41,10 +40,8 @@ export default class LandingPage extends React.Component {
 				else {
 					$("#success_text").addClass("email-success")
 					$("#success_text").removeClass("email-success-hidden")
-					$("#success_text").removeClass("straight-hidden")
 					this.setState({result_text : data.error})
 					setTimeout(function(){ 
-						$("#success_text").removeClass("straight-hidden")
 						$("#success_text").addClass("email-success-hidden")
 						$("#success_text").removeClass("email-success")
 					}.bind(this), 5000)
@@ -61,7 +58,7 @@ export default class LandingPage extends React.Component {
 	startOver() {
 		this.setState({sent_success : false})
 		$("#success_text").removeClass("email-success")	
-		$("#success_text").addClass("straight-hidden")
+		$("#success_text").addClass("email-success-hidden")
 
 	}
 
@@ -72,7 +69,7 @@ export default class LandingPage extends React.Component {
 	}
 	
 	render() {
-		
+		var another_button_class = "landing-send-another-button btn " + (this.state.sent_success ? " show-another " : " hidden-another ")
 		return (
 			<div>
 				<Modal show = {true}>
@@ -139,28 +136,35 @@ export default class LandingPage extends React.Component {
 							</div>
 						}
 
-						
+						<div className = "row">
+							<div style = {{"marginTop" : "8px"}}/>
+							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
+							<div style = {{"marginBottom" : "8px"}}/>
+						</div>
 
-						{this.state.sent_success &&
+						<div>
 							<div className = "row hidden-xs">
-								<div style = {{"marginTop" : "24px"}}/>
+								<div style = {{"marginTop" : "4px"}}/>
 								<div className = "col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 									<button onClick = {this.startOver.bind(this)}
-									 className = "landing-send-another-button btn"> 
+									 className = {another_button_class}> 
 									 	Click to Subscribe Another Email
 									 </button>	
 								</div>
 							</div>
-						}
-
-						<div className = "row">
-							<div style = {{"marginTop" : "4px"}}/>
-							<span id = "success_text" className = "email-success-hidden">{this.state.result_text}</span>
 						</div>
+
+						
 
 
 						
-						<div style = {{"marginTop" : "16px"}}/>
+						{this.state.sent_success 
+							? 
+							<div style = {{"marginTop" : "12px"}}/> 	
+							: 
+							 <div style = {{"marginTop" : "0px"}}/>
+						}
+
 						<div className = "row">
 							<div className = "landing-after-input-text">
 								Coming soon, August 2017
