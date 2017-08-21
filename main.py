@@ -1,4 +1,4 @@
-from flask import Flask, g, render_template, request, url_for, redirect, send_from_directory
+from flask import Flask, g, render_template, request, url_for, redirect, send_from_directory, jsonify
 import time
 import datetime
 import os
@@ -112,6 +112,15 @@ def add_header(response):
 	response.headers.add("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
 	return response
 
+
+@app.route("/getAbGroup", methods=["POST"])
+def getAbGroup():
+	ip_addr = request.remote_addr
+	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
+	ab_group = sum(nums) % 2
+	
+	# request.remote_addr = 
+	return jsonify({'ip': request.remote_addr, 'ab_group' : ab_group})
 
 
 @app.before_request

@@ -57,10 +57,28 @@ export default class Main extends React.Component {
 	
 	componentDidMount() {
 		var pathname = this.props.location.pathname
+		this.setAbGroup()
 		if (pathname != "/checkout"){
 			this.getUserInfo()
 		}
 	}
+
+	setAbGroup() {
+		var form_data =  JSON.stringify({
+			jwt : localStorage.jwt
+		})
+		$.ajax({
+			type: "POST",
+			url: "/getAbGroup",
+			data : form_data,
+			success : function(data) {
+				console.log(data)
+				// localStorage.ab_group = data.ab_group
+			}
+		})
+	}
+
+
 
 	getUserInfo(){
 
@@ -75,22 +93,24 @@ export default class Main extends React.Component {
 			success: function(data) {
 				if (data.success) {
 					AppActions.updateCurrentUser(data.user)
-					if (data.adjusted_items) {
-						var message = ""
-						data.adjusted_items.map((item) => {
-							if (!item.num_items){
-								message = message + "Unfortunately " + item.name + " has been removed from your cart \n"
-							}
-							else {
-								message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
-							}
-						})
-							// swal(
-							// 	AlertMessages.ITEMS_IN_CART_HAVE_BEEN_MODIFIED(message),
-							// 	function (isConfirm) {
-							// 		window.location = '/myCart'
-							// 	}.bind(this))
-						}
+
+
+					// if (data.adjusted_items) {
+					// 	var message = ""
+					// 	data.adjusted_items.map((item) => {
+					// 		if (!item.num_items){
+					// 			message = message + "Unfortunately " + item.name + " has been removed from your cart \n"
+					// 		}
+					// 		else {
+					// 			message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
+					// 		}
+					// 	})
+					// 		swal(
+					// 			AlertMessages.ITEMS_IN_CART_HAVE_BEEN_MODIFIED(message),
+					// 			function (isConfirm) {
+					// 				window.location = '/myCart'
+					// 			}.bind(this))
+					// }
 					
 				}
 				else {
