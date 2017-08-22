@@ -23,7 +23,7 @@ export default class LandingPage extends React.Component {
 			eventAction: 'subscribe attempt',
 			eventLabel: localStorage.ab_group
 		});
-		
+
 		var form_data = JSON.stringify({
 			email : this.state.email
 		})
@@ -32,7 +32,6 @@ export default class LandingPage extends React.Component {
 			url: "/signUpForLandingList",
 			data : form_data,
 			success: function(data) {
-				console.log(data)
 				if (data.success) {
 					$("#success_text").addClass("email-success")
 					$("#success_text").removeClass("email-success-hidden")
@@ -89,7 +88,7 @@ export default class LandingPage extends React.Component {
 	}
 	
 	render() {
-		var coming_soon_text = localStorage.ab_group == 0 ? "Coming soon, September 2017" : "Coming Soon!"
+		var add_another_text = localStorage.ab_group == 0 ? "Click to Subscribe with Another Email" : "Click to Subscribe Another Email"
 		var another_button_class = "landing-send-another-button btn " + (this.state.sent_success ? " show-another " : " hidden-another ")
 		return (
 			<div>
@@ -173,7 +172,7 @@ export default class LandingPage extends React.Component {
 								<div className = "col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 									<button onClick = {this.startOver.bind(this)}
 									 className = {another_button_class}> 
-									 	Click to Subscribe Another Email
+									 	{add_another_text}
 									 </button>	
 								</div>
 							</div>
@@ -192,7 +191,7 @@ export default class LandingPage extends React.Component {
 
 						<div className = "row">
 							<div className = "landing-after-input-text">
-								{coming_soon_text}
+								Coming soon, September 2017
 							</div>
 						</div>
 
