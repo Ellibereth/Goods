@@ -17,6 +17,13 @@ export default class LandingPage extends React.Component {
 	}
 	
 	onLandingClick() {
+		ga('send', {
+			hitType: 'event',
+			eventCategory: 'Landing',
+			eventAction: 'subscribe attempt',
+			eventLabel: localStorage.ab_group
+		});
+		
 		var form_data = JSON.stringify({
 			email : this.state.email
 		})
@@ -36,6 +43,13 @@ export default class LandingPage extends React.Component {
 						sent_success : true
 					})
 
+					ga('send', {
+						hitType: 'event',
+						eventCategory: 'Landing',
+						eventAction: 'subscribe success',
+						eventLabel: localStorage.ab_group
+					});
+
 				}
 				else {
 					$("#success_text").addClass("email-success")
@@ -45,6 +59,12 @@ export default class LandingPage extends React.Component {
 						$("#success_text").addClass("email-success-hidden")
 						$("#success_text").removeClass("email-success")
 					}.bind(this), 5000)
+					ga('send', {
+						hitType: 'event',
+						eventCategory: 'Landing',
+						eventAction: 'subscribe failure',
+						eventLabel: localStorage.ab_group + " - " + data.error
+					});
 				}
 
 			}.bind(this),
