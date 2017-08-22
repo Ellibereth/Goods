@@ -114,6 +114,7 @@ export default class LandingPage extends React.Component {
 							Great American Vendors and Designers
 						</div>
 					
+						<div className = "hidden-sm hidden-md hidden-lg top-buffer"/>
 						
 						<div className = "row hidden-sm hidden-md hidden-lg">
 							<div className = " col-xs-12">
@@ -124,14 +125,13 @@ export default class LandingPage extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div>
-							<div className = "row hidden-sm hidden-md hidden-lg">
-								<div className = "col-xs-12">
-									<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
-									type="button" className="landing-subscribe-button btn ">
-										Notify Me!
-									</button>
-								</div>
+						<div className = "hidden-sm hidden-md hidden-lg top-buffer"/>
+						<div className = "row hidden-sm hidden-md hidden-lg">
+							<div className = "col-xs-12">
+								<button tabindex = {2} onClick = {this.onLandingClick.bind(this)}
+								type="button" className="landing-subscribe-button btn ">
+									Notify Me!
+								</button>
 							</div>
 						</div>
 
