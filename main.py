@@ -113,6 +113,8 @@ def add_header(response):
 
 
 
+
+
 @app.before_request
 def before_request():
 	g.start = time.time()
@@ -136,7 +138,11 @@ def send_static(path):
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-	return render_template("index.html")
+	ip_addr = request.remote_addr
+	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
+	NUM_AB_GROUPS = 2
+	ab_group = sum(nums) % NUM_AB_GROUPS
+	return render_template("index.html", ab_group = ab_group)
 
 
 @app.errorhandler(404)

@@ -54,6 +54,7 @@
 
 
 		<script>
+			localStorage.ab_group = {{ab_group}};
 			// google analytics 
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -74,7 +75,7 @@
 						ga('set', 'dimension1', account_id);
 					}
 				}
-
+				ga('set', 'dimension2', localStorage.ab_group);
 				ga('send', 'pageview');				
 		</script>
 

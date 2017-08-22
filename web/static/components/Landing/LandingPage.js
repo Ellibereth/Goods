@@ -69,7 +69,7 @@ export default class LandingPage extends React.Component {
 	}
 	
 	render() {
-
+		var coming_soon_text = localStorage.ab_group == 0 ? "Coming soon, September 2017" : "Coming Soon!"
 		var another_button_class = "landing-send-another-button btn " + (this.state.sent_success ? " show-another " : " hidden-another ")
 		return (
 			<div>
@@ -172,7 +172,7 @@ export default class LandingPage extends React.Component {
 
 						<div className = "row">
 							<div className = "landing-after-input-text">
-								Coming soon, September 2017
+								{coming_soon_text}
 							</div>
 						</div>
 
