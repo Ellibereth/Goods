@@ -4,7 +4,7 @@ import datetime
 import os
 import random
 import requests
-import csv
+import sys
 from flask_sqlalchemy import SQLAlchemy
 from api.models.shared_models import db
 from api.utility.jwt_util import JwtUtil
@@ -12,8 +12,16 @@ from api.utility.json_util import JsonUtil
 from flask_compress import Compress
 from api.utility.email import EmailLib
 
+
 from base64 import b64encode
 from api.security.tracking import HttpRequest
+
+
+ENVIRONMENT_STRING = "ENVIRONMENT"
+DEVELOPMENT_STRING = "DEVELOPMENT"
+STAGING_STRING = "STAGING"
+PRODUCTION_STRING = "PRODUCTION"
+
 
 # initialize app
 template_dir = os.path.abspath('./web/templates')
@@ -28,8 +36,8 @@ os.environ['SECRET_KEY'] = secret_key
 
 DATABASE_URI = os.environ.get('DATABASE_URL')
 
-if os.environ.get('ENVIRONMENT') == None:
-	os.environ['ENVIRONMENT'] = "DEVELOPMENT"
+if os.environ.get(ENVIRONMENT_STRING) == None:
+	os.environ[ENVIRONMENT_STRING] = DEVELOPMENT_STRING
 
 if DATABASE_URI == None:
 	# if testing locally we use the dev DB
@@ -82,14 +90,13 @@ def add_header(response):
 	Add headers to both force latest IE rendering engine or Chrome Frame,
 	and also to cache the rendered page for 10 minutes.
 	"""
+	this_env = os.environ[ENVIRONMENT_STRING]
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-
-
 	path_splits = request.path.split('/')
 	# cache everything int he static/web_scripts folder
 	if len(path_splits) > 2 and path_splits[1] == 'static':
 		# if path_splits[2] == 'web_scripts' or path_splits[2] == "dist":
-		if path_splits[2] == 'web_scripts':
+		if path_splits[2] == 'web_scripts' or this_env == PRODUCTION_STRING:
 			response.headers['Cache-Control'] = 'public,max-age=' + str(CACHE_MAX_AGE)
 			# commented out since max-age should do enough by itself
 			right_now = datetime.datetime.now()
@@ -99,8 +106,6 @@ def add_header(response):
 		# otherwise do not cache
 		else:
 			response.headers['Cache-Control'] = 'public,max-age=0'
-
-
 	else:
 		response.headers['Cache-Control'] = 'public,max-age=0'
 
@@ -136,7 +141,16 @@ def send_static(path):
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
-	return render_template("index.html")
+	this_env = os.environ.get(ENVIRONMENT_STRING)
+	# use this for the production bundle
+	# update this value when the bundle version changes or production
+	if this_env == PRODUCTION_STRING:
+		version =  "v0.0.1"
+		bundle_url = url_for('static', filename='bundles/bundle' + version + '.js')
+	# otherwise use the development one
+	else:
+		bundle_url = url_for('static', filename='bundle.js')
+	return render_template("index.html", bundle_url =  bundle_url)
 
 
 @app.errorhandler(404)
@@ -156,8 +170,17 @@ def internal_server_error(error):
 	return JsonUtil.failure("Internal server error")
 
 if __name__ == '__main__':
-	if os.environ.get('ENVIRONMENT') == "DEVELOPMENT":
+	# this allows us to test production locally, using command line argument 
+	# python3 main.py prod
+	# note this does not test the production database
+	if len(sys.argv) > 1:
+		if sys.argv[1] == "prod":
+			os.environ[ENVIRONMENT_STRING] = PRODUCTION_STRING
+			app.debug = True
+
+	if os.environ.get(ENVIRONMENT_STRING) == DEVELOPMENT_STRING:
 		app.debug = True
+
 	port = int(os.environ.get("PORT", 5000))
 	app.run(host='0.0.0.0', port=port)
 

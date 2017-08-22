@@ -11,6 +11,7 @@ AccountId = "account_id"
 SECRET_KEY = "SECRET_KEY"
 EmailConfirmed = "email_confirmed"
 
+
 class JwtUtil:	
 	# payload is a dictionary to pass as well
 	# although it will usually be empty

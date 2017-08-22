@@ -11,6 +11,7 @@ from passlib.hash import argon2
 
 class AdminUser(db.Model):
 	__tablename__ = ProdTables.AdminUserTable
+	is_admin = True
 	admin_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
 	username = db.Column(db.String, unique = True)
 	password_hash = db.Column(db.String)
@@ -23,6 +24,7 @@ class AdminUser(db.Model):
 		self.username = username
 		self.password_hash = AdminUser.argonHash(pre_hash)
 		self.name = name
+		self.is_admin = True
 		db.Model.__init__(self)
 
 
