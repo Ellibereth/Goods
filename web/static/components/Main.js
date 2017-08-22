@@ -57,7 +57,8 @@ export default class Main extends React.Component {
 	
 	componentDidMount() {
 		var pathname = this.props.location.pathname
-		if (pathname != "/checkout"){
+		var indices = pathname.split('/')
+		if (pathname != "/checkout" && indices[1] != "yevgeniypoker555"){
 			this.getUserInfo()
 		}
 	}
@@ -106,9 +107,7 @@ export default class Main extends React.Component {
 					if (data.ab_group){
 						localStorage.ab_group = data.ab_group	
 					}
-					
 					AppActions.removeCurrentUser()
-					// window.location = "/"
 				}
 
 			}.bind(this),

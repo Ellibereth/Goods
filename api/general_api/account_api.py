@@ -275,19 +275,8 @@ def getUserInfo(this_user):
 	ip_addr = request.remote_addr
 	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
 	ab_group = sum(nums) % 2
-	if not this_user:
-		return JsonUtil.failure({"ab_group" : ab_group})
 	
-	if hasattr(this_user, 'is_admin'):
-		if this_user.is_admin:
-			admin_jwt = JwtUtil.create_jwt(this_user.toPublicDict())
-			return JsonUtil.successWithOutput({
-				Labels.User : this_user.toPublicDict(), 
-				"jwt" : admin_jwt})
-		else:
-			return JsonUtil.failure({"ab_group" : ab_group})
-
-	else:
+	if this_user:
 		adjusted_items = this_user.adjustCart()
 		public_user_dict = this_user.toPublicDict()
 		return JsonUtil.successWithOutput({
@@ -295,6 +284,8 @@ def getUserInfo(this_user):
 				Labels.User : public_user_dict,
 				Labels.AdjustedItems : adjusted_items
 			})
+	else:
+		return JsonUtil.failure({"ab_group" : ab_group})
 
 
 
