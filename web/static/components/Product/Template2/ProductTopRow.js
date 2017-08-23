@@ -256,7 +256,7 @@ export default class ProductTopRow extends React.Component {
 																<link itemprop="url" href="https://edgar.com/product/pink-banana-leaf-pillow-526543/ff7o4r?fref=fb-like"/>
 																	<div>
 																		<span id="byText" className="byText new-heading-3">by</span>
-																		<h2 className="designer-name new-heading-3"><a href= {"/search/" + product.manufacturer} style = {{"paddingLeft" : "4px"}}>{product.manufacturer}</a></h2>
+																		<h2 className="designer-name new-heading-3"><a href= {"/search/" + product.manufacturer_obj.name} style = {{"paddingLeft" : "4px"}}>{product.manufacturer_obj.name}</a></h2>
 																	</div>
 															</div>
 														</div>
