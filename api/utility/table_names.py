@@ -34,7 +34,7 @@ class ProdTables:
 	EmailListTable = "EMAIL_LIST_TABLE"
 	DiscountTable = "DISCOUNT_TABLE"
 	LaunchListEmailTable = "LAUNCH_LIST_EMAIL_TABLE"
-
+	ManufacturerTable = "MANUFACTURER_TABLE"
 
 """ 
 this file has a list of the allowed tags on products 
@@ -70,6 +70,7 @@ class TestTables:
 	EmailSubscriptionTable = TEST_PREFIX + ProdTables.EmailSubscriptionTable
 	DiscountTable = TEST_PREFIX + ProdTables.DiscountTable
 	LaunchListEmailTable = TEST_PREFIX + ProdTables.LaunchListEmailTable
+	ManufacturerTable = TEST_PREFIX +  ProdTables.ManufacturerTable
 	SqlTestTable = "TEST_SQL"
 
 	

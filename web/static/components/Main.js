@@ -14,6 +14,7 @@ import ProductPage from './Product/ProductPage.js'
 
 import AdminLoginPage from './Admin/AdminLoginPage.js'
 import AdminProductPage from './Admin/AdminMarketProducts/ProductEdit/AdminProductPage.js'
+import AdminManufacturerPage from './Admin/AdminManufacturers/ManufacturerEdit/AdminManufacturerPage.js'
 import AdminToolsPage from './Admin/AdminToolsPage.js'
 import AdminEmailListPage from './Admin/EmailList/AdminEmailListPage'
 import PageNotFound from './Misc/PageNotFound.js'
@@ -195,6 +196,8 @@ ReactDOM.render(
 			<Route path = 'yevgeniypoker555/login' component = {AdminLoginPage}/>
 			<Route path = 'yevgeniypoker555' onEnter = {checkAdmin} component = {AdminToolsPage}/>
 			<Route path= "yevgeniypoker555/editProduct/:product_id" onEnter = {checkAdmin} component={AdminProductPage} />
+			<Route path= "yevgeniypoker555/editManufacturer/:manufacturer_id" onEnter = {checkAdmin} component={AdminManufacturerPage} />
+
 			<Route path= "yevgeniypoker555/editEmailList/:email_list_id" onEnter = {checkAdmin} component={AdminEmailListPage} />
 			<Route path= "logout" component={LogoutPage} />
 			<Route path = "register" component = {RegisterPage}/>

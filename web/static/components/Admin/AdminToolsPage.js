@@ -9,7 +9,8 @@ import AdminMarketProducts from './AdminMarketProducts/AdminMarketProducts.js'
 import AdminHome from './AdminHome'
 import PageContainer from '../Misc/PageContainer'
 import AddProductForm from './AdminMarketProducts/ProductAdd/AddProductForm'
-import EmailListPreview from './EmailList/EmailListPreview'
+import AddManufacturerForm from './AdminManufacturers/ManufacturerAdd/AddManufacturerForm'
+import AdminManufacturers from './AdminManufacturers/AdminManufacturers'
 
 import Nav from 'react-bootstrap/lib/Nav'
 import NavItem from 'react-bootstrap/lib/NavItem'
@@ -19,8 +20,8 @@ const REQUEST_INDEX = 0
 const ACTIVE_PRODUCT_INDEX = 1
 const INACTIVE_PRODUCT_INDEX = 2
 const ADD_PRODUCT_INDEX = 3
-const EMAIL_LIST_INDEX = 4
-
+const MANUFACTURER_INDEX = 4
+const ADD_MANUFACTURER_INDEX = 5
 
 export default class AdminToolsPage extends React.Component {
 	constructor(props) {
@@ -29,7 +30,8 @@ export default class AdminToolsPage extends React.Component {
 			current_user : {},
 			selected_tab : ACTIVE_PRODUCT_INDEX,
 			products:  [],
-			email_list_data : []
+			email_list_data : [],
+			manufacturers : []
 		}
 	}
 
@@ -65,6 +67,7 @@ export default class AdminToolsPage extends React.Component {
 	initializeData(){
 		this.initializeProducts.bind(this)()
 		this.initializeEmailList.bind(this)()
+		this.initializeManufacturers.bind(this)()
 	}
 
 	initializeEmailList() {
@@ -84,6 +87,27 @@ export default class AdminToolsPage extends React.Component {
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		});
+	}
+
+	initializeManufacturers() {
+		var form_data = JSON.stringify({
+			"jwt" : localStorage.jwt
+		})
+			$.ajax({
+			  type: "POST",
+			  url: "/getManufacturers",
+			  data : form_data,
+			  success: function(data) {
+				this.setState({
+					manufacturers: data,
+				})
+			  }.bind(this),
+			  error : function(){
+
+			  },
+			  dataType: "json",
+			  contentType : "application/json; charset=utf-8"
+			});
 	}
 
 	initializeProducts() {
@@ -117,8 +141,10 @@ export default class AdminToolsPage extends React.Component {
 						<NavItem eventKey= {REQUEST_INDEX}> Requests </NavItem>
 						<NavItem eventKey= {ACTIVE_PRODUCT_INDEX}> Active Products </NavItem>	
 						<NavItem eventKey= {INACTIVE_PRODUCT_INDEX}> Not Active Products </NavItem>	
+						<NavItem eventKey= {MANUFACTURER_INDEX}> Manufacturers </NavItem>	
 						<NavItem eventKey= {ADD_PRODUCT_INDEX}> Add Product </NavItem>
-						<NavItem eventKey= {EMAIL_LIST_INDEX}> Email Lists </NavItem>	
+						<NavItem eventKey= {ADD_MANUFACTURER_INDEX}> Add Manufacturer </NavItem>	
+						
 					</Nav>
 					<div className = "top-buffer"/>
 					<div className = {this.state.selected_tab != REQUEST_INDEX && "none"} > 
@@ -131,13 +157,20 @@ export default class AdminToolsPage extends React.Component {
 						<AdminMarketProducts products = {this.state.products} active = {false} />
 					</div>
 
+					<div className = {this.state.selected_tab != MANUFACTURER_INDEX && "none"} > 
+						<AdminManufacturers manufacturers = {this.state.manufacturers} />
+					</div>
+
 					<div className = {this.state.selected_tab != ADD_PRODUCT_INDEX && "none"} > 
 						<AddProductForm  />
 					</div>
 
-					<div className = {this.state.selected_tab != EMAIL_LIST_INDEX && "none"} > 
-						<EmailListPreview email_list_data = {this.state.email_list_data} />
+					<div className = {this.state.selected_tab != ADD_MANUFACTURER_INDEX && "none"} > 
+						<AddManufacturerForm  />
 					</div>
+
+
+					
 
 				</div>
 			</PageContainer>	

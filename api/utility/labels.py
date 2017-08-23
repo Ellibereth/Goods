@@ -1,5 +1,13 @@
 # this file will have labels for most of the other classes
 
+class ManufacturerLabels:
+	ProductId = "product_id"
+	ManufacturerId = "manufacturer_id"
+	Name = "name"
+	Description = "description"
+	Notes = "notes"
+	Fee = "fee"
+
 class DiscountLabels:
 	DiscountId = "discount_id"
 
@@ -88,6 +96,7 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	ManufacturerId = "manufacturer_id"
 	IsAvailable = "is_available"
 	RelatedProductTags = "related_product_tags"
 	ProductSearchTags = "product_search_tags"

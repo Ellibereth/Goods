@@ -12,6 +12,7 @@ from api.models.product_search_tag import ProductSearchTag
 from api.models.product_listing_tag import ProductListingTag
 from api.models.related_product_tag import RelatedProductTag
 from api.models.manufacturer_logo import ManufacturerLogo
+from api.models.manufacturer import Manufacturer
 from api.s3.s3_api import S3
 
 
@@ -58,12 +59,16 @@ class MarketProduct(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
+
+
+
 	# add relationships 
 	search_tag = db.relationship("ProductSearchTag", backref = ProdTables.ProductSearchTagTable, lazy='dynamic')
 	listing_tag = db.relationship("ProductListingTag", backref = ProdTables.ProductListingTagTable, lazy='dynamic')
 	related_product_tag = db.relationship("RelatedProductTag", backref = ProdTables.RelatedProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = ProdTables.ImageTable, lazy='dynamic')
 
+	manufacturer_id = db.Column(db.Integer, db.ForeignKey(ProdTables.ManufacturerTable + '.' + Labels.ManufacturerId))
 
 	def __init__(self, name):
 		self.name = name
@@ -308,6 +313,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
+		public_dict[Labels.ManufacturerId] = self.manufacturer_id
 		
 		product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
 		related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()

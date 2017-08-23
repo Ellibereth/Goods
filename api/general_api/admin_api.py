@@ -7,6 +7,7 @@ from api.models.shared_models import db
 from api.models.admin_user import AdminUser
 from api.models.home_image import HomeImage
 from api.models.market_product import MarketProduct
+from api.models.manufacturer import Manufacturer
 from api.security.tracking import AdminAction
 from api.models.market_product import ProductVariant
 from api.models.product_image import ProductImage
@@ -160,6 +161,39 @@ def updateProductInfo(admin_user):
 	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
 	return JsonUtil.success(Labels.Product, this_product.toPublicDict())
 
+
+
+@admin_api.route('/updateManufacturerInfo', methods = ['POST'])
+@decorators.check_admin_jwt
+def updateManufacturerInfo(admin_user):
+	manufacturer_id = request.json.get(Labels.ManufacturerId)
+	manufacturer = request.json.get(Labels.Manufacturer)
+	name = request.json.get(Labels.Name)
+	this_manufacturer = Manufacturer.query.filter_by(manufacturer_id = manufacturer_id).first()
+	if manufacturer == None:
+		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
+		return JsonUtil.failure("There was no input")
+	if this_manufacturer == None:
+		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
+		return JsonUtil.failure("Error retrieving product information")
+
+	for key in manufacturer.keys():
+		try:
+			if key in Manufacturer.INTEGER_INPUTS:
+				value = int(manufacturer.get(key))
+			else:
+				value = manufacturer.get(key)
+			if value != None and key != Labels.ManufacturerId:
+				setattr(this_manufacturer, key, value)
+		except Exception as e:
+			print(e)
+			AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
+			return JsonUtil.failure(key + " input is invalid")
+
+	db.session.commit()
+	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
+	return JsonUtil.success(Labels.Manufacturer, this_manufacturer.toPublicDict())
+
 @admin_api.route('/setMainProductPhoto', methods = ['POST'])
 @decorators.check_admin_jwt
 def setMainProductPhoto(admin_user):	
@@ -229,6 +263,13 @@ def getMarketProducts(admin_user):
 	market_products = MarketProduct.getAllProducts()
 	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
 	return jsonify(market_products)
+
+@admin_api.route('/getManufacturers', methods = ['POST'])
+@decorators.check_admin_jwt
+def getManufacturers(admin_user):
+	manufacturers = Manufacturer.getAllManufacturers()
+	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
+	return jsonify(manufacturers)
 
 
 @admin_api.route('/addProductVariant', methods = ['POST'])
@@ -361,6 +402,24 @@ def addMarketProduct(admin_user):
 			Labels.Product : new_product.toPublicDict()
 		})
 
+@admin_api.route('/addManufacturer', methods = ['POST'])
+@decorators.check_admin_jwt
+def addManufacturer(admin_user):
+	manufacturer = request.json.get(Labels.Manufacturer)
+	if manufacturer == None:
+		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
+		return JsonUtil.failure("Invalid submission")
+	
+	name = manufacturer.get(Labels.Name)
+	new_manufacturer = Manufacturer(name)
+	db.session.add(new_manufacturer)
+	db.session.commit()
+	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
+	return JsonUtil.successWithOutput({
+			Labels.Product : new_manufacturer.toPublicDict()
+		})
+
+
 @admin_api.route('/uploadHomeImage', methods = ['POST'])
 @decorators.check_admin_jwt
 def uploadHomeImage(admin_user):
@@ -410,6 +469,20 @@ def getAllOrders(admin_user):
 	return jsonify([order.toPublicDict() for order in all_orders])
 
 
+@admin_api.route('/getAdminManufacturerInfo', methods = ['POST'])
+@decorators.check_admin_jwt
+def getAdminManufacturerInfo(admin_user):
+	manufacturer_id = request.json.get(Labels.ManufacturerId)
+	this_manufacturer = Manufacturer.query.filter_by(manufacturer_id = manufacturer_id).first()
+	
+	if not this_manufacturer:
+		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
+		return JsonUtil.failure("Error retrieving manufacturer information")
+
+	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
+	return JsonUtil.successWithOutput({
+			Labels.Manufacturer : this_manufacturer.toPublicDict()
+		})
 
 
 

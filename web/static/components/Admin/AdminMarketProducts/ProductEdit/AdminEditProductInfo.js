@@ -59,13 +59,13 @@ export default class AdminEditProductInfo extends React.Component {
 	  	success: function(data) {
 			if (data.success){
 				this.setState({product : data.product})
-				this.props.getProductInformation.bind(this)()
 				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+				this.props.getProductInformation()
 			}
 			else {
 				swal({title: data.error, type: "error"})
 			}
-			this.props.getProductInformation()
+			
 	  	}.bind(this),
 	  	error : function(){
 	  	},
