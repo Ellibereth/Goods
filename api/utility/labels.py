@@ -96,6 +96,7 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	ManufacturerObj = "manufacturer_obj"
 	ManufacturerId = "manufacturer_id"
 	IsAvailable = "is_available"
 	RelatedProductTags = "related_product_tags"

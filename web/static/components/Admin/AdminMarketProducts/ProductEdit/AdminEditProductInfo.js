@@ -7,6 +7,11 @@ const form_fields = ['name', 'manufacturer', 'manufacturer_email', 'price', 'sal
 const form_labels = ['Name', 'Manufacturer', 'Manufacturer Emails (separate with commas)', 'Original Price (make sure this is in cents)', 'Sale Red Text Product (this is HTML)', 'Sale Red Text Home (this is HTML)', "Sale End Date", 'Category', 'Product Template', 'Item Limit', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Search Tags (Separate by commas)', 'Listing Tags (Separate by commas)', 'Related Product Tags (Separate by commas)']
 const input_types = ['text', 'text', 'text', 'text', 'textarea', 'textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea','textarea','textarea']
 
+import Select from 'react-select';
+
+// Be sure to include styles at some point, probably during your bootstrapping
+import 'react-select/dist/react-select.css';
+
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {
 	constructor(props) {
@@ -78,6 +83,7 @@ export default class AdminEditProductInfo extends React.Component {
 	
 	render() {	
 		if (!this.state.product) return <div/>;
+		if (!this.props.manufacturers) return <div/>;
 
 
 		var input_forms = form_fields.map((field, index) => 
@@ -108,6 +114,7 @@ export default class AdminEditProductInfo extends React.Component {
 			)
 			
 		}
+
 
 
 		var live_toggle = (
@@ -145,17 +152,31 @@ export default class AdminEditProductInfo extends React.Component {
 			)
 
 
+		var manufacturer_select = (
+			<div className="form-group row">
+				<label className=" col-sm-2 col-md-2 col-lg-2 col-form-label">
+					Select a Manufacturer
+				</label>
+					<div className = "col-sm-8 col-md-8 col-lg-8">
+					 	<select className="form-control"  
+					 	value = {this.state.product.manufacturer_id ? this.state.product.manufacturer_id : false}
+					 	onChange = {(event) => this.onTextInputChange("manufacturer_id", event.target.value)}>
+					 		{this.props.manufacturers.map((manufacturer, index)=> {
+					 			return <option value = {manufacturer.manufacturer_id}>{manufacturer.name}</option>
+					 		})}
+					 	</select>
+					</div>
+				</div>
 
+			)
 
 		return (
 			<div className = "container" id = "admin_edit_product">
 				<AdminActivateProduct product = {this.state.product}/>
-
 				<hr/>
-
-
 				<div className = "row" id = "text_edit">
 					<form className ="form-horizonal">
+						{manufacturer_select}
 						{input_forms}
 						{live_toggle}
 						{show_logo_toggle}

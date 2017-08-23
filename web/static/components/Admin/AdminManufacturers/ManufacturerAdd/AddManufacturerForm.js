@@ -47,9 +47,7 @@ export default class AddManufacturerForm extends React.Component {
 					}
 					else {
 						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-						setTimeout(function () {
-							window.location = '/yevgeniypoker555/editManufacturer/' + data.manufacturer.manufacturer_id
-						}, 2000)
+						this.setState({name : ""})
 					}
 				}.bind(this),
 				error : function(){

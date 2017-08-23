@@ -278,6 +278,12 @@ class MarketProduct(db.Model):
 			db.session.add(new_tag)
 		db.session.commit()
 
+	def getManufacturerInfo(self):
+		this_manufacturer = Manufacturer.query.filter_by(manufacturer_id = self.manufacturer_id).first()
+		if this_manufacturer:
+			return this_manufacturer.toPublicDict()
+		else:
+			return None
 
 	def toPublicDict(self):
 		public_dict = {}
@@ -314,18 +320,16 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
 		public_dict[Labels.ManufacturerId] = self.manufacturer_id
-		
+		public_dict[Labels.ManufacturerObj] = self.getManufacturerInfo()
 		product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
 		related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
 		product_listing_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.RelatedProductTags] = ",".join([tag.tag for tag in related_product_tags])
 		public_dict[Labels.ProductSearchTags] = ",".join([tag.tag for tag in product_search_tags])
 		public_dict[Labels.ProductListingTags] = ",".join([tag.tag for tag in product_listing_tags])
-
 		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
-
 		public_dict[Labels.IsAvailable] = self.isAvailable()
 		return public_dict
 

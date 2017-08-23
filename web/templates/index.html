@@ -60,22 +60,23 @@
 				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 				})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-				if (!localStorage.CurrentUser == null) {
+
+				if (localStorage.CurrentUser == null) {
 					localStorage.CurrentUser = ""
 				}
-				if (!localStorage.ab_group == null) {
+				if (localStorage.ab_group == null) {
+					console.log("test")
 					localStorage.ab_group = ""
 				}
-				if (!localStorage.jwt == null) {
+				if (localStorage.jwt == null) {
 					localStorage.jwt = ""
 				}
 
 				if (localStorage.CurrentUser){
-
 					var account_id = JSON.parse(localStorage.CurrentUser).account_id
 					account_id = account_id ? account_id.toString() : "No Account Id"
 
-					var ab_group = JSON.parse(localStorage.ab_group)
+					var ab_group = localStorage.ab_group
 					ab_group = ab_group ? ab_group : "0"
 
 					ga('create', 'UA-96327145-1', 'auto', {

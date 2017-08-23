@@ -19,7 +19,8 @@ export default class AdminProductPage extends React.Component {
 			product : {},
 			invalid_product : true,
 			is_loading : true,
-			selected_tab : PREVIEW_VIEW
+			selected_tab : PREVIEW_VIEW,
+			manufacturers : []
 		}
 	}
 
@@ -53,6 +54,27 @@ export default class AdminProductPage extends React.Component {
 		});
 	}
 
+	getManufacturers(){
+		var form_data = JSON.stringify({
+			"jwt" : localStorage.jwt
+		})
+			$.ajax({
+			  type: "POST",
+			  url: "/getManufacturers",
+			  data : form_data,
+			  success: function(data) {
+				this.setState({
+					manufacturers: data,
+				})
+			  }.bind(this),
+			  error : function(){
+
+			  },
+			  dataType: "json",
+			  contentType : "application/json; charset=utf-8"
+			});
+	}
+
 	previewProduct(product){
 		this.setState({product : product})
 	}
@@ -77,7 +99,7 @@ export default class AdminProductPage extends React.Component {
 			dataType: "json",
 			contentType : "application/json; charset=utf-8"
 		});
-		
+		this.getManufacturers.bind(this)()	
 	}
 
 	navivgateTab(index){
@@ -86,6 +108,9 @@ export default class AdminProductPage extends React.Component {
 
 
 	render() {
+		if (jQuery.isEmptyObject(this.state.product)){
+			return <div/>
+		}
 		return (
 			<PageContainer>
 				<div>
@@ -136,7 +161,8 @@ export default class AdminProductPage extends React.Component {
 							<AdminEditProductInfo
 							previewProduct = {this.previewProduct.bind(this)}
 							getProductInformation = {this.getProductInformation.bind(this)}
-							product = {this.state.product}/>
+							product = {this.state.product}
+							manufacturers = {this.state.manufacturers}/>
 						</div>
 
 						<div className = {this.state.selected_tab == VARIANT_VIEW ? "row" : "none"}>

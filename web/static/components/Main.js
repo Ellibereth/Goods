@@ -85,28 +85,13 @@ export default class Main extends React.Component {
 							localStorage.ab_group = 0
 						}
 					}
-
-					// if (data.adjusted_items) {
-					// 	var message = ""
-					// 	data.adjusted_items.map((item) => {
-					// 		if (!item.num_items){
-					// 			message = message + "Unfortunately " + item.name + " has been removed from your cart \n"
-					// 		}
-					// 		else {
-					// 			message = message + " We have only " + item.num_items + " of " + item.name + " left \n"
-					// 		}
-					// 	})
-					// 		swal(
-					// 			AlertMessages.ITEMS_IN_CART_HAVE_BEEN_MODIFIED(message),
-					// 			function (isConfirm) {
-					// 				window.location = '/myCart'
-					// 			}.bind(this))
-					// }
-					
 				}
 				else {
 					if (data.ab_group){
 						localStorage.ab_group = data.ab_group	
+					}
+					else {
+						localStorage.ab_group = 0
 					}
 					AppActions.removeCurrentUser()
 				}
