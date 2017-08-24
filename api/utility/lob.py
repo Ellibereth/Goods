@@ -2,9 +2,12 @@ import lob
 from uszipcode import ZipcodeSearchEngine
 
 LOB_LIVE_KEY = "live_823f35f6e24d9a3386eaf6b0c9e33ddf691"
+
 LOB_TEST_KEY = 'test_db7ce8c5d0f8780b82f9c8e7330b9788193'
 lob.api_key = LOB_TEST_KEY
-lob.api_version = '2017-08-14'
+
+lob.api_version = '2017-06-16'
+# lob.api_version = '2017-08-14'
 AccountId = "account_id"
 DELIVERABILITY = "deliverability"
 ERROR_DELIVERABLE =  ['deliverable_missing_secondary', 'undeliverable', 'no_match']
@@ -47,7 +50,6 @@ class Lob:
 					AccountId : user.account_id
 				}
 			)
-			print(address)
 			return address
 		except Exception as e:
 			raise Exception("Error adding address : " + str(e))
