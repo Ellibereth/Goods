@@ -18,7 +18,7 @@ export default class HomeProductPreview extends React.Component {
 		var product_object = {
 			'id': product.product_id, 
 			'name': product.name,
-			'brand' : product.manufacturer,
+			'brand' : product.manufacturer_obj.name,
 			'list': 'Home',
 			'ab_group':  localStorage.ab_group
 		}
@@ -42,7 +42,7 @@ export default class HomeProductPreview extends React.Component {
 		ga('ec:addProduct', {
 			'id': product.product_id, 
 			'name': product.name,
-			'brand' : product.manufacturer,
+			'brand' : product.manufacturer_obj.name,
 			'list': 'Home',
 			'price' : product.price,
 		});
@@ -105,9 +105,9 @@ export default class HomeProductPreview extends React.Component {
 				<div className = "home-product-preview-details-mobile">		
 					<div onClick = {this.productClicked.bind(this)} className = "home-product-preview-name-mobile"> {this.props.product.name} </div> 
 					<div className = "home-product-preview-manufacturer-mobile">{" by "}
-						 <span onClick = {() => window.location = "/search/" + this.props.product.manufacturer} 
+						 <span onClick = {() => window.location = "/search/" + this.props.product.manufacturer_obj.name} 
 							className = "home-product-preview-manufacturer-name-mobile">
-							{this.props.product.manufacturer}
+							{this.props.product.manufacturer_obj.name}
 						</span>
 					</div> 
 					{price_row}

@@ -108,7 +108,7 @@ export default class MobileAddToCart extends React.Component {
 						ga('ec:addProduct', {
 							'id': this.props.product.product_id.toString(),
 							'name': this.props.product.name,
-							'brand': this.props.product.manufacturer,
+							'brand': this.props.product.manufacturer_obj.name,
 							'price': formatPrice(this.props.product.price),
 							'quantity': this.state.quantity,
 							'variant' : this.state.variant ? this.state.variant.variant_type : "none"

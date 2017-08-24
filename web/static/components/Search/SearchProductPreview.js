@@ -42,7 +42,7 @@ export default class SearchProductPreview extends React.Component {
 							<span className = "home-product-preview-price"> ${formatPrice(this.props.product.price)} </span> <br/>
 							<span className = "home-product-preview-name"> {this.props.product.name} </span> <br/>
 							
-							<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer} </span> <br/>
+							<span className = "home-product-preview-manufacturer"> By {this.props.product.manufacturer_obj.name} </span> <br/>
 					</div>
 				</div>
 			</div>

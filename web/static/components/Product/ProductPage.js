@@ -118,7 +118,7 @@ export default class ProductPage extends React.Component {
 		ga('ec:addProduct', {
 				'id': product.product_id ? product.product_id.toString() : "",
 				'name': product.name,
-				'manufacturer' : product.manufacturer,
+				'manufacturer' : product.manufacturer_obj.name,
 				'price' : product.price ? product.price.toString() : "",
 			});
 		ga('ec:setAction', 'detail');	

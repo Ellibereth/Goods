@@ -67,7 +67,7 @@ export default class UpdateShippingForm extends React.Component {
 					this.props.setLoading(false)
 					if (data.success) {
 						AppActions.updateCurrentUser(data.user)
-						window.location = "/settings"
+						// window.location = "/settings"
 					}	
 					else {
 						this.setErrorMessage(data.error.title)

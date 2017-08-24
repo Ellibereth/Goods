@@ -2,9 +2,9 @@ import lob
 from uszipcode import ZipcodeSearchEngine
 
 LOB_LIVE_KEY = "live_823f35f6e24d9a3386eaf6b0c9e33ddf691"
-LOB_TEST_KEY = 'test_0dc8d51e0acffcb1880e0f19c79b2f5b0cc'
+LOB_TEST_KEY = 'test_db7ce8c5d0f8780b82f9c8e7330b9788193'
 lob.api_key = LOB_TEST_KEY
-lob.api_version = '2017-06-16'
+lob.api_version = '2017-08-14'
 AccountId = "account_id"
 DELIVERABILITY = "deliverability"
 ERROR_DELIVERABLE =  ['deliverable_missing_secondary', 'undeliverable', 'no_match']
@@ -25,28 +25,29 @@ class Lob:
 
 
 		try:
+
 			verification = Lob.verifyAddress(name, address_line1, address_line2, address_city,
 				address_state, address_zip, address_country)
+
 			if verification[DELIVERABILITY] in ERROR_DELIVERABLE:
 				raise Exception("Error, we cannot deliver to this address. \
 				Please check your information and try again.")
 
-			
-
 			address = lob.Address.create(
-			    description= description,
-			    name= name,
-			    company='Lob',
-			    address_line1= address_line1,
-			    address_line2= address_line2,
-			    address_city= address_city,
-			    address_state = address_state,
-			    address_zip = address_zip,
-			    address_country= address_country,
-			    metadata = {
-			    	AccountId : user.account_id
-			    }
-		)
+				description= description,
+				name= name,
+				company='Lob',
+				address_line1= address_line1,
+				address_line2= address_line2,
+				address_city= address_city,
+				address_state = address_state,
+				address_zip = address_zip,
+				address_country= address_country,
+				metadata = {
+					AccountId : user.account_id
+				}
+			)
+			print(address)
 			return address
 		except Exception as e:
 			raise Exception("Error adding address : " + str(e))
@@ -59,11 +60,11 @@ class Lob:
 			raise Exception("Address must be in US!")
 
 		verification = lob.USVerification.create(
-		    primary_line = address_line1,
-		    secondary_line = address_line2,
-		    city= address_city,
-		    state= address_country,
-		    zip_code= address_zip
+			primary_line = address_line1,
+			secondary_line = address_line2,
+			city= address_city,
+			state= address_country,
+			zip_code= address_zip
 		)
 
 		return verification

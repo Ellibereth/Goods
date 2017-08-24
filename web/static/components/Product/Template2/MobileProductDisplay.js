@@ -195,7 +195,7 @@ export default class MobileProductDisplay extends React.Component {
 						<div className = "small-buffer"/>
 						<div className = "row ">
 							<div style = {{"fontSize": "16px"}} className = "col-xs-12 text-center">
-								<a href= {"/search/" + product.manufacturer}>{product.manufacturer}</a>
+								<a href= {"/search/" + product.manufacturer_obj.name}>{product.manufacturer_obj.name}</a>
 							</div>
 						</div>
 						<div className = "small-buffer"/>

@@ -125,7 +125,7 @@ export default class AdminProductPage extends React.Component {
 						<div className = "top-buffer"/>
 
 						<div className = "row">
-							{!this.state.is_loading && <h1> {this.state.product.name + " by " + this.state.product.manufacturer}</h1>}
+							{!this.state.is_loading && <h1> {this.state.product.name + " by " + this.state.product.manufacturer_obj.name}</h1>}
 						</div>
 
 						<div className = "top-buffer"/>
