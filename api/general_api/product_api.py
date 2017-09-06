@@ -17,6 +17,7 @@ product_api = Blueprint('product_api', __name__)
 @product_api.route('/getMarketProductInfo', methods = ['POST'])
 def getMarketProductInfo():
 	product_id = request.json.get(Labels.ProductId)
+	print(product_id)
 	if not product_id:
 		return JsonUtil.failure("Bad Product Id")
 	if not product_id.isdigit():
@@ -65,6 +66,7 @@ def getProductsByListingTag():
 	elif tag == "Home_Page":
 		all_products = MarketProduct.query.filter_by(active = True).all()
 		matching_products = [product for product in all_products if not product.isExpired()]
+
 
 	else:
 		matching_products = MarketProduct.getProductsByListingTag(tag)

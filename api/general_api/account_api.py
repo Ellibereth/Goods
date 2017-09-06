@@ -31,9 +31,10 @@ def checkLogin():
 	else:
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	ip = request.remote_addr
-	if LoginAttempt.blockIpAddress(ip):
-		
-		return JsonUtil.failure(ErrorMessages.IpBlocked)
+
+	if os.environ.get("ENVIRONMENT") == "PRODUCTION":
+		if LoginAttempt.blockIpAddress(ip):		
+			return JsonUtil.failure(ErrorMessages.IpBlocked)
 
 	this_user = User.query.filter_by(email = email).first()
 	if this_user == None:
@@ -304,7 +305,6 @@ def softDeleteAccount(this_user):
 	if this_user.fb_id:
 		this_user.softDeleteAccount()
 	else:
-
 		password = request.json.get(Labels.Password)
 		password_confirm = request.json.get(Labels.PasswordConfirm)
 		if password != password_confirm:

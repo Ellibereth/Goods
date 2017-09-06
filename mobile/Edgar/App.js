@@ -1,25 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Index from './static/components/Index.js'
+import {Provider} from 'react-redux'
+import {createStore, applyMiddleware, combineReduxers, compose} from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import {createLogger} from 'redux-logger'
+import reducer from './app/reducers'
+import Main from './app/Main.js'
 
+const loggerMiddleware = createLogger({predicate : (getState, action) => __DEV__});
+
+function configureStore(initialState){
+	const enhancer = compose(
+		applyMiddleware(
+			thunkMiddleware,
+			// loggerMiddleware
+		)
+	)
+	return createStore(reducer, initialState, enhancer);
+} 
+
+
+const store = configureStore({});
+
+
+
+// this is the app that gets written to registry
 export default class App extends React.Component {
-	render() {
+	render () {
 		return (
-			<View style={styles.container}>
-				<Index />
-				<Text>Open up Edgar.js to start working on your app!</Text>
-				<Text>Changes you make will automatically reload.</Text>
-				<Text>Shake your phone to open the developer menu.</Text>
-			</View>
-		);
+			<Provider store = {store}>
+				<Main />
+			</Provider>
+		)
 	}
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-});

@@ -52,7 +52,6 @@ export default class ProductPage extends React.Component {
 
 		var form_data = JSON.stringify({
 			"product_id" : this.props.params.product_id,
-			"jwt" : localStorage.jwt
 		})
 		$.ajax({
 		  type: "POST",
