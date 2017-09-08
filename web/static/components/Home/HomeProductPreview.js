@@ -118,7 +118,7 @@ export default class HomeProductPreview extends React.Component {
 
 
 	render() {
-
+		console.log(this.props.product.manufacturer_obj)
 		// var date = this.props.product.sale_end_date
 		var item_in_stock = this.itemInStock(this.props.product)
 		var price_row = this.getPriceRow(item_in_stock)

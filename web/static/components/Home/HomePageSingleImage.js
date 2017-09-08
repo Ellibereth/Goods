@@ -1,4 +1,4 @@
-,var React = require('react');
+var React = require('react');
 var ReactDOM = require('react-dom');
 var base_url = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
 

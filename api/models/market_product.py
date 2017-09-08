@@ -320,7 +320,10 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
 		public_dict[Labels.ManufacturerId] = self.manufacturer_id
-		public_dict[Labels.ManufacturerObj] = self.getManufacturerInfo()
+		manufacturer_obj = self.getManufacturerInfo()
+		if not manufacturer_obj:
+			manufacturer_obj = {"name" : self.manufacturer}
+		public_dict[Labels.ManufacturerObj] = manufacturer_obj
 		product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
 		related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
 		product_listing_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
