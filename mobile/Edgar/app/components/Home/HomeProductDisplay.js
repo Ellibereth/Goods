@@ -20,7 +20,7 @@ export default class HomeProductDisplay extends Component {
 	}
 
 	onProductClick() {
-		Actions.product({product_id : this.props.product.product_id})
+		Actions.product({product : this.props.product})
 	}
 
 	render() {
@@ -29,9 +29,9 @@ export default class HomeProductDisplay extends Component {
 				<TouchableHighlight onPress = {this.onProductClick}>
 					<View> 
 						<Text>{this.props.product.name}</Text> 
-						<Image source={{uri: img_src + this.props.product.main_image}}
+						{/* <Image source={{uri: img_src + this.props.product.main_image}}
 						style={{width: 30, height: 30}} 
-						/>
+						/>*/}
 					</View>
 				</TouchableHighlight>
 			</View>

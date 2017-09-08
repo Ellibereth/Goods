@@ -4,7 +4,6 @@ import {Component} from 'react'
 import {View, Button, AsyncStorage} from 'react-native';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import LoginForm from './LoginForm'
-import ScreenContainer from '../../Misc/ScreenContainer'
 
 
 export default class LoginScreen extends Component {

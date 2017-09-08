@@ -5,35 +5,51 @@ import {Alert, Image, TouchableWithoutFeedback, KeyboardAvoidingView, AsyncStora
 import _ from 'lodash'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
-import {handleLoginSubmit} from '../../../api/UserApi'
-import {Actions} from 'react-native-router-flux'
+import {handleRegisterSubmit} from '../../../api/UserApi'
 
-export default class LoginForm extends Component {
+export default class RegisterScreen extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			name : "",
 			email : "",
-			password: ""
+			password: "",
+			password_confirm : "",
 		}
 		
 	}
 
 	
-	async handleLoginSubmit() {
-		let data = await handleLoginSubmit(this.state.email, this.state.password)
-		if (data.success) {
-			this.props.loadUser(data.jwt)	
-			Actions.home()
+	async handleRegisterSubmit() {
+		let data = await handleRegisterSubmit(
+				this.state.name, 
+				this.state.email,
+				this.state.password, 
+				this.state.password_confirm
+			)
+		if (data.success){
+			console.log("success")
+		}
+		else {
+
+			Alert.alert(
+			  data.error.title,
+			  data.error.text,
+			  [
+			    {text: 'OK', onPress: () => console.log('OK Pressed')},
+			  ],
+			  { cancelable: false }
+			)
 		}
 	}
 	
 	
-	handlePasswordChange(password) {
-		this.setState({password: password})
+	handleTextChange(field, value) {
+		var obj = this.state
+		obj[field] = value
+		this.setState(obj)
 	}
-	handleEmailChange(email) {
-		this.setState({email : email})
-	}
+
 
 	render() {
 		return (
@@ -42,9 +58,21 @@ export default class LoginForm extends Component {
 				<View style={{flex : 1, flexDirection : 'column'}}>
 					<View style={{flex : 2}}>
 						<View style={{flex : 1}}/>
+
+						<View style = {{flex : 1}}>
+							<View style={styles.input_wrapper}>
+								<TextInput onChangeText = {this.handleTextChange.bind(this, 'name')}
+									style = {styles.input}
+									placeholder = {"Name"}
+									/>
+							</View>
+						</View>
+
+						<View style={{flex : 0.5}}/>
 						<View style={{flex : 1}}>
 							<View style={styles.input_wrapper}>
-								<TextInput onChangeText = {this.handleEmailChange.bind(this)}
+								<TextInput 
+								onChangeText = {this.handleTextChange.bind(this, 'email')}
 									style = {styles.input}
 									placeholder = {"Email"}
 									/>
@@ -53,23 +81,33 @@ export default class LoginForm extends Component {
 						<View style={{flex : 0.5}}/>
 						<View style = {{flex : 1}}>
 							<View style={styles.input_wrapper}>
-								<TextInput onChangeText = {this.handlePasswordChange.bind(this)}
+								<TextInput onChangeText = {this.handleTextChange.bind(this, 'password')}
 									style = {styles.input}
 									secureTextEntry = {true}
 									placeholder = {"Password"}
 									/>
 							</View>
 						</View>
+						<View style={{flex : 0.5}}/>
+						<View style = {{flex : 1}}>
+							<View style={styles.input_wrapper}>
+								<TextInput onChangeText = {this.handleTextChange.bind(this, 'password_confirm')}
+									style = {styles.input}
+									secureTextEntry = {true}
+									placeholder = {"Password Confirm"}
+									/>
+							</View>
+						</View>
 					</View>
-					<View style = {{height : 16}}/>
+					<View style = {{height : 24}}/>
 					<View style = {{flex : 1, alignItems : 'center'}}>
-						<TouchableOpacity style={{flex : 1}} onPress = {this.handleLoginSubmit.bind(this)}>
+						<TouchableOpacity style={{flex : 1}} onPress = {this.handleRegisterSubmit.bind(this)}>
 							<View style = {styles.button}>
-								<Text style={styles.button_text}>Sign In</Text>
+								<Text style={styles.button_text}>Register</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
-					<View style = {{flex : 3}}/>
+					<View style = {{flex : 1}}/>
 				</View>
 			</View>
 		</TouchableWithoutFeedback>

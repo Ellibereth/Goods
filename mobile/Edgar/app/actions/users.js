@@ -24,7 +24,7 @@ export function loadUserInfo(jwt){
 				}
 				else {
 					AsyncStorage.setItem('jwt', "")
-					dispatch(setUserInfo({}))	
+					dispatch(setUserInfo(""))	
 				}
 				
 			})
@@ -35,12 +35,21 @@ export function loadUserInfo(jwt){
 	}
 }
 
+export function logoutUser(){
+	return (dispatch, getState) => {
+		console.log("user")
+		AsyncStorage.setItem('jwt', "")
+		dispatch(setUserInfo(""))	
+	}
+}
+
 
 
 export function setUserInfo(responseData) {
 	return {
 		type: types.SET_USER_INFO,
 		user : responseData.user,
+		initial_fetch_done : true,
 		jwt : responseData.jwt
 	}
 }

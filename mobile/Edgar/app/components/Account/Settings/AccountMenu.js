@@ -6,11 +6,18 @@ import dismissKeyboard from 'react-native-dismiss-keyboard';
 import SettingsList from 'react-native-settings-list'
 import {Actions} from 'react-native-router-flux'
 
-export default class SettingsScreen extends Component {
+
+
+export default class AccountMenu extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+
 		}
+		this.onLogout = this.onLogout.bind(this);
+	}
+	onLogout() {
+		this.props.logoutUser()
 	}
 
 	
@@ -34,7 +41,7 @@ export default class SettingsScreen extends Component {
 												borderRadius : 6,
 												padding: 6
 											}}
-											onPress = {()=> Actions.login()}>
+											onPress = {()=> Actions.signin()}>
 												<Text
 												style = {{"color" : "white"}}
 												> Sign In </Text>
@@ -45,6 +52,18 @@ export default class SettingsScreen extends Component {
 							<SettingsList.Header headerText='Different Grouping' headerStyle={{color:'white'}}/>
 							<SettingsList.Item title='About Edgar USA' onPress = {()=>Actions.about()} />
 							<SettingsList.Item title='Contact Us' onPress = {()=>Actions.contact()} />
+
+							
+							{this.props.user &&
+								<SettingsList.Header headerText='Different Grouping' headerStyle={{color:'white'}}/>
+							}
+							{this.props.user &&
+								<SettingsList.Item title = "Logout"
+								hasNavArrow = {false}
+								onPress = {this.onLogout}
+	            				titleStyle={{color:'red', textAlign : "center"}}/>
+            				}
+
 						</SettingsList>
 					</View>
 				</View>
