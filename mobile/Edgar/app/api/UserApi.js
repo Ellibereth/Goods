@@ -27,8 +27,7 @@ export async function handleRegisterSubmit(name, email, password, password_confi
 					'Accept': 'application/json',
 					'Content-Type': 'application/json',
 				},
-			body: JSON.stringify(
-				{	
+			body: JSON.stringify({	
 					name : name,
 					email : email,
 					password: password,
@@ -37,4 +36,19 @@ export async function handleRegisterSubmit(name, email, password, password_confi
 		})
 		let data = await resp.json()
 		return data
+}
+
+export async function handleAddAddress(form_data) {
+	var url = "https://edgarusa-testserver.herokuapp.com"
+	var test_url = "http://0.0.0.0:5000"
+	let resp = await fetch(test_url + "/addUserAddress", {
+		method: "POST",
+		headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+		body: JSON.stringify(form_data)
+	})
+	let data = await resp.json()
+	return data
 }

@@ -44,8 +44,8 @@ export async function getOnSaleProducts(){
 	return data
 }
 
-export async function addToCart(jwt, quantity, product_id, variant){
-	let resp = await fetch(test_url + "/getOnSaleProducts", {
+export async function addItemToCart(jwt, product_id, quantity, variant){
+	let resp = await fetch(test_url + "/addItemToCart", {
 			method: "POST",
 			headers: {
 				'Accept': 'application/json',
@@ -54,7 +54,7 @@ export async function addToCart(jwt, quantity, product_id, variant){
 				body : JSON.stringify({
 					"quantity" : quantity,
 					"product_id" : product_id, 
-					"jwt" : localStorage.jwt,
+					"jwt" : jwt,
 					"variant" : variant
 				})
 			})

@@ -4,8 +4,8 @@ const url = "https://www.edgarusa-testserver.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
 import {AsyncStorage} from 'react-native'
 
-export function loadUserInfo(jwt){
-	return (dispatch, getState) => {
+export function loadUser(jwt){
+	return async (dispatch, getState) => {
 		return fetch(test_url + "/getUserInfo", {method: "POST",
 			headers: {
 				'Accept': 'application/json',
@@ -18,13 +18,12 @@ export function loadUserInfo(jwt){
 			.then((response) => response.json())
 			.then((responseData) => {
 				if (responseData.success) {
-
-					AsyncStorage.setItem('jwt', responseData.jwt);
+					AsyncStorage.setItem('jwt', responseData.jwt)
 					dispatch(setUserInfo(responseData))	
 				}
 				else {
 					AsyncStorage.setItem('jwt', "")
-					dispatch(setUserInfo(""))	
+					dispatch(setUserInfo({user : "", jwt: ""}))	
 				}
 				
 			})
@@ -37,7 +36,6 @@ export function loadUserInfo(jwt){
 
 export function logoutUser(){
 	return (dispatch, getState) => {
-		console.log("user")
 		AsyncStorage.setItem('jwt', "")
 		dispatch(setUserInfo(""))	
 	}

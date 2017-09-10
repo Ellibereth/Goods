@@ -208,7 +208,6 @@ def addUserAddress(this_user):
 	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
 
-
 	add_address_response = this_user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
 		address_zip, address_country)
 	if add_address_response.get(Labels.Success):

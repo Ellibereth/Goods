@@ -17,9 +17,7 @@ function mapStateToProps(state) {
 
 
 class HomeScreen extends Component {
-	static navigationOptions = {
-		title : "Home"
-	};
+	
 
 	constructor(props) {
 		super(props)

@@ -28,7 +28,8 @@ export default class AccountMenu extends Component {
 				<View style={{backgroundColor:'white',flex:1}}>
 					<View style={{flex:1, marginTop:20}}>
 						<SettingsList>
-							<SettingsList.Item
+							{!this.props.user &&
+								<SettingsList.Item
 								title='Not Signed In'
 								arrowIcon = {(
 										<View style = {{"padding" : 8}}>
@@ -49,6 +50,7 @@ export default class AccountMenu extends Component {
 										</View>
 									)}
 								/>
+							}
 							<SettingsList.Header headerText='Different Grouping' headerStyle={{color:'white'}}/>
 							<SettingsList.Item title='About Edgar USA' onPress = {()=>Actions.about()} />
 							<SettingsList.Item title='Contact Us' onPress = {()=>Actions.contact()} />

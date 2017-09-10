@@ -7,9 +7,7 @@ const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 import {Actions} from 'react-native-router-flux'
 
 export default class HomeProductDisplay extends Component {
-	static navigationOptions = {
-		title : "Home"
-	};
+	
 
 	constructor(props) {
 		super(props)
@@ -25,13 +23,17 @@ export default class HomeProductDisplay extends Component {
 
 	render() {
 		return (
-			<View>
+			<View style = {{borderWidth : 1}}>
 				<TouchableHighlight onPress = {this.onProductClick}>
 					<View> 
 						<Text>{this.props.product.name}</Text> 
 						{/* <Image source={{uri: img_src + this.props.product.main_image}}
 						style={{width: 30, height: 30}} 
 						/>*/}
+						{this.props.product.has_variants ? 
+							<Text>Has Variants</Text> :
+							<Text>No Variants</Text>
+						}
 					</View>
 				</TouchableHighlight>
 			</View>

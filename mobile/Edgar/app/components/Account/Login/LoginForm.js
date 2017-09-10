@@ -18,12 +18,19 @@ export default class LoginForm extends Component {
 		
 	}
 
+	handleLoginSubmit() {
+		this.asyncHandleLoginSubmit().then(()=> {
+			setTimeout(function() {Actions.home()},1)
+			Actions.account()
+		})
+		.done()
+	}
+
 	
-	async handleLoginSubmit() {
+	async asyncHandleLoginSubmit() {
 		let data = await handleLoginSubmit(this.state.email, this.state.password)
 		if (data.success) {
 			this.props.loadUser(data.jwt)	
-			Actions.home()
 		}
 	}
 	
