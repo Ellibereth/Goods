@@ -52,3 +52,22 @@ export async function handleAddAddress(form_data) {
 	let data = await resp.json()
 	return data
 }
+
+export async function getUserOrders(jwt) {
+	var url = "https://edgarusa-testserver.herokuapp.com"
+	var test_url = "http://0.0.0.0:5000"
+	let resp = await fetch(test_url + "/getUserOrders", {
+		method: "POST",
+		headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+		body: JSON.stringify({
+			jwt : jwt
+		})
+	})
+	let data = await resp.json()
+	return data
+}
+
+

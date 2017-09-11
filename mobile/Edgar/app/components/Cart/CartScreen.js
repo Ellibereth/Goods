@@ -56,7 +56,9 @@ class CartScreen extends Component {
 	render() {
 		if (this.props.user){
 			var cart_items = this.props.user.cart.items.map((item, index) => 
-				<CartItemDisplay item = {item} key = {index}/>
+				<CartItemDisplay item = {item} key = {index}
+				setUserInfo = {this.props.setUserInfo}
+				jwt = {this.props.jwt}/>
 			)	
 		}
 		else {

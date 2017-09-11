@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import { ActionCreators } from    './actions'
 import {bindActionCreators} from 'redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import IconBadge from 'react-native-icon-badge';
+
 
 import HomeScreen from './components/Home/HomeScreen'
 import LoginScreen from './components/Account/Login/LoginScreen'
@@ -19,6 +19,9 @@ import SignInScreen from './components/Account/SignInScreen'
 import RegisterScreen from './components/Account/Login/RegisterScreen'
 import CartScreen from './components/Cart/CartScreen'
 import CheckoutScreen from './components/Cart/CheckoutScreen'
+import CartIcon from './components/Navigation/CartIcon'
+import OrderConfirmedScreen from './components/Cart/OrderConfirmedScreen'
+import OrdersScreen from './components/Account/Orders/OrdersScreen'
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(ActionCreators, dispatch);
@@ -26,10 +29,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
-		user : state.user,
 		initial_fetch_done : state.initial_fetch_done
 	}
-	this.getCartIcon = this.getCartIcon.bind(this);
 }
 
 class Main extends React.Component {
@@ -40,15 +41,12 @@ class Main extends React.Component {
 		this.getProductScene = this.getProductScene.bind(this);
 		this.getCheckoutScene = this.getCheckoutScene.bind(this);
 		this.getCartScene = this.getCartScene.bind(this);
+		this.getOrderConfirmedScene = this.getOrderConfirmedScene.bind(this)
 	}
 
-	loadUser(jwt) {
-		this.props.loadUser(jwt)
-	}
+	
 
 	componentDidMount(){
-
-
 		AsyncStorage.getItem('jwt').then((jwt) => {
 			this.props.loadUser(jwt)
 		})
@@ -59,46 +57,6 @@ class Main extends React.Component {
 			<Icon name = {name}
 			size = {24}
 			/>
-		)
-	}
-
-
-	getCartIcon(){
-		var current_scene = Actions.currentScene
-		if (current_scene == 'cart' || current_scene == 'checkout') {
-			return <View/>
-		}
-
-		var badge_count = this.props.user.cart_size
-		return (
-			 <IconBadge
-				MainElement={
-					<Icon 
-						onPress = {() => Actions.cart()}
-						name = "shopping-cart"
-						size = {24}
-						style = {{paddingRight : 12}}
-					/>
-				}
-				BadgeElement={
-					<Text style={{color:'white', fontSize : 10}}>{badge_count}</Text>
-				}
-				IconBadgeStyle={{
-					position:'absolute',
-					top:-8,
-					right:2,
-					minWidth : 10,
-					width:18,
-					height:18,
-					borderRadius:18,
-					alignItems: 'center',
-					justifyContent: 'center',
-					backgroundColor: '#FF0000',
-					borderColor : 'white',
-					borderWidth : 1
-				}}
-				Hidden={!badge_count}
-			/>	
 		)
 	}
 
@@ -113,7 +71,6 @@ class Main extends React.Component {
 
 	getCartScene(){
 		return (
-				
 					<Scene {...this.props} 
 					hideTabBar = {true} key="cart"
 
@@ -122,18 +79,31 @@ class Main extends React.Component {
 		)
 	}
 
+	getOrderConfirmedScene(){
+		return (
+				<Scene {...this.props}
+				hideTabBar = {true}
+				key = "order_confirmed"
+				component = {OrderConfirmedScreen}
+				title = {"Order Confirmed"}/>
+			)
+	}
+
 	getCheckoutScene(){
 		return (
 				<Scene {...this.props}
 					// remove this later
-					initial = {true}
-					
-					
+					// put for testing checkout
+					// initial = {true}
+
+
 					hideTabBar = {true}
 					key = "checkout" 
 					component = {CheckoutScreen} title = "Checkout"/>
 			)
 	}
+
+
 
 	
 	render() { 
@@ -141,6 +111,7 @@ class Main extends React.Component {
 		var product_scene = this.getProductScene()
 		var cart_scene = this.getCartScene()
 		var checkout_scene = this.getCheckoutScene()
+		var order_confirmed_scene = this.getOrderConfirmedScene()
 
 		if (!this.props.initial_fetch_done) return <View/>
 		return (
@@ -148,7 +119,7 @@ class Main extends React.Component {
 				<Scene key="root" 
 				// navBar = {Navbar} 
 				tabs = {true}
-				renderRightButton = {()=> this.getCartIcon()}
+				renderRightButton = {() => (<CartIcon/>)}
 				>
 
 
@@ -159,24 +130,33 @@ class Main extends React.Component {
 						{product_scene}
 						{cart_scene}
 						{checkout_scene}
+						{order_confirmed_scene}
 					</Scene>
 
 					
 					<Scene title = "Sales" key = "sales"
 					icon = {()=> this.getTabIcon("dollar")}>
 						<Scene {...this.props}    title="Sales" 
-						key="sales" component={SalesScreen} initial = {true}/>
+						key="sales" component={SalesScreen} />
 						{product_scene}
 						{cart_scene}
 						{checkout_scene}
+						{order_confirmed_scene}
 					</Scene>
 
 					<Scene key = "account" title = "Account"
 					icon = {()=> this.getTabIcon("user")}>
+						
 
-						<Scene {...this.props} 
+						<Scene {...this.props} initial = {true}
 						key="account" component={AccountScreen} title="Account"
 						/>
+
+						<Scene {...this.props}
+							hideTabBar = {true}
+							key = "orders" component = {OrdersScreen} title = "Orders"/>
+
+
 						<Scene {...this.props} 
 						key="contact" component={ContactScreen} title="Contact" hideTabBar = {true} />
 						<Scene {...this.props} 

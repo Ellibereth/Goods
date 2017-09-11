@@ -468,7 +468,7 @@ export default class CheckoutPage extends React.Component {
 										<hr className = "small-hr"/>
 
 
-										{cart.items_discount &&
+										{cart.items_discount ?
 											<div>
 												<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
 												label = {"Items:"} price = {formatPrice(cart.original_items_price)}/>
@@ -478,13 +478,17 @@ export default class CheckoutPage extends React.Component {
 												show_minus = {true}
 												price = {formatPrice(cart.items_discount)}/>
 												<hr className = "small-hr"/>
+												<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+												label = {"After Discount:"} price = {formatPrice(this.state.items_price)}/>
 											</div>
+											:
+											<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+												label = {"Items Price:"} price = {formatPrice(this.state.items_price)}/>
 										}
 
 
 
-										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-										label = {"After Discount:"} price = {formatPrice(this.state.items_price)}/>
+										
 
 
 

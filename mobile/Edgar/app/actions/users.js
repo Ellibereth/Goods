@@ -6,31 +6,50 @@ import {AsyncStorage} from 'react-native'
 
 export function loadUser(jwt){
 	return async (dispatch, getState) => {
-		return fetch(test_url + "/getUserInfo", {method: "POST",
+		let response = await fetch(test_url + "/getUserInfo", {method: "POST",
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
 			},
 				body:JSON.stringify({
-					jwt : jwt	
+					jwt : jwt,
+
 				})
 			})
-			.then((response) => response.json())
-			.then((responseData) => {
-				if (responseData.success) {
-					AsyncStorage.setItem('jwt', responseData.jwt)
-					dispatch(setUserInfo(responseData))	
-				}
-				else {
-					AsyncStorage.setItem('jwt', "")
-					dispatch(setUserInfo({user : "", jwt: ""}))	
-				}
-				
+		let data = await response.json()
+		if (data.success) {
+			AsyncStorage.setItem('jwt', data.jwt)
+			dispatch(setUserInfo(data))	
+		}
+		else {
+			AsyncStorage.setItem('jwt', "")
+			dispatch(setUserInfo({user : "", jwt: ""}))	
+		}
+	}
+}
+
+export function loadUserCheckout(jwt, address){
+	return async (dispatch, getState) => {
+		let response = await fetch(test_url + "/refreshCheckoutInfo", {method: "POST",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+				body:JSON.stringify({
+					jwt : jwt,
+					address : address
+
+				})
 			})
-			.catch((error) => {
-				console.log(error)
-			})
-			.done();
+			let data = await response.json()
+		if (data.success) {
+			AsyncStorage.setItem('jwt', data.jwt)
+			dispatch(setUserInfo(data))	
+		}
+		else {
+			AsyncStorage.setItem('jwt', "")
+			dispatch(setUserInfo({user : "", jwt: ""}))	
+		}
 	}
 }
 

@@ -14,12 +14,11 @@ import {TouchableOpacity,
 		TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
-import { ActionCreators } from  '../../actions'
-import {handleAddAddress} from '../../api/UserApi'
+import {handleAddAddress} from '../../../api/UserApi'
 
 import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import CheckoutTextInput from '../Misc/CheckoutTextInput'
+import CheckoutTextInput from '../../Misc/CheckoutTextInput'
 
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -100,27 +99,23 @@ export default class AddAddressModal extends Component {
 		this.state = {
 			// hard coded for easier testing
 			// change to all "" except country when done
-			address_name : "Darek Johnson",
+			address_name : "",
 			description : "",
-			address_state: "PA",
-			address_city : "Philadelhia",
+			address_state: "",
+			address_city : "",
 			address_country : "US",
-			address_line1 : "3900 City Avenue",
-			address_line2 : "M619",
-			address_zip : "19131",
+			address_line1 : "",
+			address_line2 : "",
+			address_zip : "",
 
 		}
 		this.onChangeText = this.onChangeText.bind(this);
-		this.setModalVisible = this.setModalVisible.bind(this)
 	}
 
 	componentDidMount(){	
 		
 	}
 
-	setModalVisible(visible) {
-		this.props.setModal(visible)
-	}
 
 	onChangeText(field, value){
 		var obj = this.state
@@ -142,7 +137,11 @@ export default class AddAddressModal extends Component {
 				}
 		let data = await handleAddAddress(form_data)
 		if (data.success) {
-			this.setModalVisible(false)
+			this.props.setModal(false)
+			this.props.setUserInfo(data)
+			this.props.toggleEditAddress()
+			var addresses = data.user.addresses
+			this.props.selectAddress(addresses.length - 1);
 		} 
 		else {
 			console.log(data.error)
@@ -161,7 +160,7 @@ export default class AddAddressModal extends Component {
 						  animationType="slide"
 						  transparent={false}
 						  visible={this.props.modal_visible}
-						  onRequestClose={() => {alert("Modal has been closed.")}}
+						  // onRequestClose={() => {alert("Modal has been closed.")}}
 						  >
 							<View style={{marginTop: 22}}>
 								
@@ -211,7 +210,7 @@ export default class AddAddressModal extends Component {
 							</View>
 							<View style = {styles.finish_button_container}>
 								<TouchableOpacity style = {styles.cancel_button} 
-									onPress = {() => this.setModalVisible(!this.state.modalVisible)}>
+									onPress = {() => this.props.setModal(false)}>
 									<Text style = {styles.cancel_button_text}>Cancel</Text>
 								</TouchableOpacity>
 								<TouchableOpacity style = {styles.save_button} onPress = {this.addAddress.bind(this)}>
@@ -228,7 +227,7 @@ export default class AddAddressModal extends Component {
 						<TouchableHighlight 
 							style = {styles.show_modal_button}
 							onPress={() => {
-						  this.setModalVisible(true)
+						  this.props.setModal(true)
 						}}>
 						 	<Text style=  {styles.show_modal_button_text}>Add New Address</Text>
 						</TouchableHighlight>

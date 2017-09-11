@@ -3,7 +3,9 @@ import React from 'react';
 import {Component} from 'react'
 import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
 import {Actions} from 'react-native-router-flux'
-
+import Icon from 'react-native-vector-icons/FontAwesome'
+import SimplePicker from 'react-native-simple-picker'
+import {updateCartQuantity} from '../../api/CartApi'
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 export default class CartItemDisplay extends Component {
@@ -14,11 +16,40 @@ export default class CartItemDisplay extends Component {
 		this.state = {
 
 		}
+		this.showQuanityPicker = this.showQuanityPicker.bind(this)
+		this.updateQuantity = this.updateQuantity.bind(this)
+	}
 
+	showQuanityPicker(){
+		this.refs.quantity_picker.show()
 	}
 
 
+	getNumItemsLimit(){
+		var num_items_options = []
+		var limit = this.props.item.num_items_limit ? Math.min(this.props.item.num_items_limit, this.props.item.inventory) : this.props.item.inventory
+		limit = Math.max(limit, this.props.item.num_items)
+		return limit
+	}
+
+	async updateQuantity(quantity){
+		console.log(quantity)
+		let data = await updateCartQuantity(this.props.jwt, this.props.item, quantity)
+		if(data.success){
+			this.props.setUserInfo(data)
+		}
+		else {
+			console.log(data.error)
+		}
+	}
+
 	render() {
+		var item_limit = this.getNumItemsLimit.bind(this)()
+		var quantities = []
+		for (var i = 0; i <= item_limit; i ++){
+			quantities.push(i);
+		}
+
 		return (
 			<View style = {styles.container}>
 				<View style = {styles.title_container}>
@@ -32,9 +63,31 @@ export default class CartItemDisplay extends Component {
 							style = {styles.product_image} />
 					</View>
 					<View style = {styles.details_container}>
-						<View style = {styles.quantity_container}>
-							<Text>Quantity: {this.props.item.num_items}</Text>
-						</View>
+						
+							<View  style = {styles.quantity_container}>
+
+								<TouchableHighlight  onPress={this.showQuanityPicker}
+								 style = {styles.quantity_text_container}>
+									<Text>
+										QTY: {this.props.item.num_items}</Text>
+								</TouchableHighlight>
+								<TouchableHighlight  onPress={this.showQuanityPicker} style = {styles.quantity_caret_container}>
+									<Icon
+									style = {styles.quantity_caret}
+									name = "caret-down"/>
+								</TouchableHighlight>
+							</View>
+
+						<SimplePicker
+									  ref = {'quantity_picker'}
+									  options={quantities}
+									  labels = {quantities.map((quantity)=>quantity.toString())}
+									  initialOptionIndex = {this.props.item.num_items}
+									  onSubmit={(option) => {
+										this.updateQuantity(option)
+									  }}
+									/>
+
 						<View style = {styles.price_container}>
 							<Text>Price: {this.props.item.price}</Text>
 						</View>
@@ -95,7 +148,32 @@ const styles = StyleSheet.create({
 	},
 	quantity_container : {
 		borderBottomWidth : 1,
-		borderColor : 'silver'
+		borderColor : 'silver',
+		flexDirection : 'row',
+		justifyContent : 'flex-start',
+		padding : 8,
+	},
+	quantity_text_container : {
+		backgroundColor : 'white',
+		borderTopLeftRadius : 4,
+		borderBottomLeftRadius : 4,
+		borderWidth : 1, 
+		borderColor : 'black',
+		padding: 6,
+	},
+	quantity_caret_container : { 
+		backgroundColor: 'silver',
+		flexDirection : 'column',
+		justifyContent : 'center',
+		borderTopRightRadius : 4,
+		borderBottomRightRadius : 4,
+		borderWidth : 1, 
+		borderColor : 'black',
+		borderLeftWidth : 0,
+		padding: 6,
+	},
+	quantity_caret : { 
+		color : 'white'
 	},
 	price_container : {
 
@@ -107,6 +185,7 @@ const styles = StyleSheet.create({
 	shipping_container : {
 		flex : 2
 	}
+
 })
 
 

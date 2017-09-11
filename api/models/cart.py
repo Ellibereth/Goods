@@ -102,13 +102,11 @@ class Cart:
 			if self.getCartTotalPrice(address) != self.getOriginalCartTotalPrice(address):
 				public_dict[Labels.DiscountMessage] = MembershipDiscount(self.membership_tier).discount_message
 				public_dict[Labels.OriginalShippingPrice] = self.getOriginalShippingPrice(address)
-
 				public_dict[Labels.ShippingPrice] = self.getCartShippingPrice(address)
 				public_dict[Labels.SalesTaxPrice] = self.getCartSalesTaxPrice(address)
 				public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
 				public_dict[Labels.ShippingDiscount] = public_dict[Labels.OriginalShippingPrice] - public_dict[Labels.ShippingPrice]
 				public_dict[Labels.Discounts] = public_dict[Labels.Discounts] + public_dict[Labels.ShippingDiscount]
-				 
 		return public_dict
 
 	

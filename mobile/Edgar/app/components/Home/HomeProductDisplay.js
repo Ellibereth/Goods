@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, Button, Image, TouchableHighlight} from 'react-native';
+import {View, Text, Button, Image, TouchableHighlight, StyleSheet} from 'react-native';
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 import {Actions} from 'react-native-router-flux'
@@ -23,7 +23,7 @@ export default class HomeProductDisplay extends Component {
 
 	render() {
 		return (
-			<View style = {{borderWidth : 1}}>
+			<View style = {styles.container}>
 				<TouchableHighlight onPress = {this.onProductClick}>
 					<View> 
 						<Text>{this.props.product.name}</Text> 
@@ -44,5 +44,14 @@ export default class HomeProductDisplay extends Component {
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	container : {
+		borderWidth : 1,
+		margin : 6,
+		padding : 6,
+		borderRadius : 4
+	}
+})
 
 

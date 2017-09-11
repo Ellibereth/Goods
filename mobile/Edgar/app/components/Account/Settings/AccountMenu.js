@@ -55,10 +55,15 @@ export default class AccountMenu extends Component {
 							<SettingsList.Item title='About Edgar USA' onPress = {()=>Actions.about()} />
 							<SettingsList.Item title='Contact Us' onPress = {()=>Actions.contact()} />
 
+							{this.props.user &&
+								<SettingsList.Item title='Past Orders' onPress = {()=>Actions.orders()} />
+							}
+
 							
 							{this.props.user &&
 								<SettingsList.Header headerText='Different Grouping' headerStyle={{color:'white'}}/>
 							}
+
 							{this.props.user &&
 								<SettingsList.Item title = "Logout"
 								hasNavArrow = {false}

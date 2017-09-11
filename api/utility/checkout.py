@@ -92,6 +92,11 @@ class Checkout:
 				}
 
 	def updateCartQuantity(this_user, this_product, this_cart_item, new_num_items):
+		try:
+			new_num_items = int(new_num_items)
+		except:
+			return {Labels.Success : False, Labels.Error : ErrorMessages.CartUpdateQuantity}
+			
 		if not this_product:
 			return {Labels.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
 		if this_product.has_variants:

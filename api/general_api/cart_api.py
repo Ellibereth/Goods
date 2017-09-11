@@ -81,7 +81,8 @@ def getCheckoutInformation(this_user):
 def updateCartQuantity(this_user):
 	this_cart_item = request.json.get(Labels.CartItem)
 	product_id = this_cart_item.get(Labels.ProductId)
-	new_num_items = int(request.json.get(Labels.NewNumItems))
+	new_num_items = request.json.get(Labels.NewNumItems)
+
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	update_cart_quantity_response = Checkout.updateCartQuantity(this_user, this_product, this_cart_item, new_num_items)
 	if update_cart_quantity_response.get(Labels.Success):

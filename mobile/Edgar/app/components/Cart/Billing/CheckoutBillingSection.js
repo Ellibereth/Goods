@@ -4,80 +4,78 @@ import {Component} from 'react'
 import {ScrollView,StyleSheet, TouchableHighlight, Text, View, TextInput} from 'react-native';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import {Actions} from 'react-native-router-flux';
-import AddAddressModal from './AddAddressModal'
+import AddBillingModal from './AddBillingModal'
 import Collapsible from 'react-native-collapsible'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import CheckoutAddressDisplay from './CheckoutAddressDisplay'
+import CheckoutBillingDisplay from './CheckoutBillingDisplay'
 
-export default class CheckoutAddressSection extends Component {
+export default class CheckoutBillingSection extends Component {
 	
 	constructor(props) {
 		super(props)
 		this.state = {
-			can_edit_address : false,
-			modal_visible : false,
+			can_edit_billing : false,
 		}
-		this.setModal = this.setModal.bind(this)
 	}
 
-	setModal(visible){
-		this.setState({modal_visible : visible})
-	}
+	
 
-	toggleEditAddress(){
-		this.setState({can_edit_address : !this.state.can_edit_address})
+	toggleEditBilling(){
+		this.setState({can_edit_billing : !this.state.can_edit_billing})
 	}
 
 	componentDidMount(){
-		if (this.props.user.addresses.length == 0){
-			this.setState({modal_visible : true})
+		if (this.props.user.cards.length == 0){
+			this.props.setModal(true)
 		}
 	}
 
 	
 	render() {
 		return (
-				<View style = {styles.address_container}>
+				<View style = {styles.billing_container}>
 					<View style = {styles.title_container}>
 					 	<Text style=  {styles.title_text}>
-					 		Shipping Address
+					 		Billing Information
 					 	</Text>
 					</View>
 					{
-						this.state.can_edit_address ? 
+						this.state.can_edit_billing ? 
 						<View style = {styles.collapsible_container}>
 							<ScrollView>
-								{this.props.user.addresses.map((address, index) =>
-									<CheckoutAddressDisplay 
+								{this.props.user.cards.map((card, index) =>
+									<CheckoutBillingDisplay 
 									index = {index}
 									key = {index}
-									selectAddress = {this.props.selectAddress}
-									address = {address}
-									selected = {this.props.selected_address_index == index}
+									selectCard = {this.props.selectCard}
+									card = {card}
+									selected = {this.props.selected_card_index == index}
 									/>
 									)
 								}
 							</ScrollView>
-							<AddAddressModal 
-							modal_visible = {this.state.modal_visible}
-							setModal = {this.setModal}
+							<AddBillingModal 
+							selectCard = {this.props.selectCard}
+							setUserInfo = {this.props.setUserInfo}
+							modal_visible = {this.props.modal_visible}
+							setModal = {this.props.setModal}
 							jwt = {this.props.jwt} 
-							loadUser = {this.props.loadUser}/>
+							toggleEditBilling = {this.toggleEditBilling.bind(this)}
+							loadUserCheckout = {this.props.loadUserCheckout}/>
 
 						</View>
 						:
 						<View style = {styles.collapsible_container}>
-							<Text> Selected Address Display - No Editing</Text>
-							{this.props.selected_address 
+							<Text> Selected Billing Display - No Editing</Text>
+							{this.props.selected_card 
 								?
 									<View>
-										<Text> {this.props.selected_address.name} </Text>
-										<Text> {this.props.selected_address.address_line1} </Text>
-										{this.props.selected_address.address_line2  ? <Text> {this.props.selected_address.address_line2} </Text> : <View/>}
-										<Text> {this.props.selected_address.address_city}, {this.props.selected_address.address_state} {this.props.selected_address.address_zip} </Text>
+										<Text> {this.props.selected_card.brand} ending in {this.props.selected_card.last4} </Text>
+										<Text> {this.props.selected_card.name} </Text>
+										<Text> Exp: {this.props.selected_card.exp_month} / {this.props.selected_card.exp_year} </Text>
 									</View>
 								:
-									<Text> No Address Selected Yet </Text>
+									<Text> No Billing Method Selected Yet </Text>
 							}
 						</View>
 					}
@@ -85,10 +83,10 @@ export default class CheckoutAddressSection extends Component {
 					<View style = {styles.toggle_container}>
 						<TouchableHighlight 
 							style = {styles.toggle_button}
-							onPress ={this.toggleEditAddress.bind(this)}>
+							onPress ={this.toggleEditBilling.bind(this)}>
 							<Text style = {styles.toggle_text}>
-								{this.state.can_edit_address ? "Save " : "Edit Address "}
-								{this.state.can_edit_address ? 
+								{this.state.can_edit_billing ? "Save " : "Edit Billing "}
+								{this.state.can_edit_billing ? 
 									<Icon name = 'caret-up'/> :
 									<Icon name = 'caret-down'/>
 								}
@@ -107,7 +105,7 @@ export default class CheckoutAddressSection extends Component {
 // height will change later to variable with animated toggling
 // for now fixed to get framework
 const styles = StyleSheet.create({
-	address_container : {
+	billing_container : {
 		flexDirection : 'column',
 		height : 300,
 		borderColor : "silver",
@@ -137,6 +135,7 @@ const styles = StyleSheet.create({
 	},
 	title_text : {
 		fontSize : 20,
+		fontWeight : 'bold',
 	},
 	title_container : {
 		flex : 0.5,
