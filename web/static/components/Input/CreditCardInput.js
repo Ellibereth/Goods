@@ -119,7 +119,6 @@ export default class CreditCardInput extends React.Component {
 					<img className = "card-icon-md "
 						src = {card_icon_base + type} />
 				)
-
 		return (
 
 			<form onSubmit = {this.props.onSubmit} id = "address_form" className="form-horizontal">

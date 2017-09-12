@@ -53,7 +53,7 @@ def checkLogin():
 			guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
 			this_user.transferGuestCart(guest_user)
 		user_jwt = JwtUtil.create_jwt(this_user.toJwtDict())
-		user_info = this_user.toPublicDictFast()
+		user_info = this_user.toPublicDict()
 		output = {Labels.User : user_info,
 			Labels.Jwt : user_jwt}
 		LoginAttempt.addLoginAttempt(email, ip, success = True, is_admin = False)
@@ -182,6 +182,7 @@ def addCreditCard(this_user):
 	exp_year = request.json.get(Labels.ExpYear)
 	number = request.json.get(Labels.Number)
 	cvc = request.json.get(Labels.Cvc)
+
 	add_card_response = this_user.addCreditCard(address_city, address_line1, address_line2, 
 		address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country)
 	
@@ -433,7 +434,7 @@ def handleFacebookUser():
 	if fb_user:
 		fb_user.transferGuestCart(guest_user)
 		user_jwt = JwtUtil.create_jwt(fb_user.toJwtDict())
-		user_info = fb_user.toPublicDictFast()
+		user_info = fb_user.toPublicDict()
 		output = {
 			Labels.User : user_info,
 			Labels.Jwt : user_jwt

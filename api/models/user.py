@@ -259,8 +259,7 @@ class User(db.Model):
 		public_dict[Labels.IsGuest] = self.is_guest
 		return public_dict
 
-
-	def toPublicDictFast(self):
+	def toPublicDict(self):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.Email] = self.email
@@ -268,12 +267,11 @@ class User(db.Model):
 		public_dict[Labels.AccountId] = self.account_id
 		public_dict[Labels.CartSize] = Cart(self).getCartSize()
 		public_dict[Labels.Cart] = Cart(self).toPublicDict()
-		public_dict[Labels.Orders] = self.getUserOrders()
-		public_dict[Labels.Addresses] = []
-		public_dict[Labels.Cards] = []
-		public_dict[Labels.CartMessage] = self.cart_message
+		public_dict[Labels.Addresses] = self.getAddresses()
+		public_dict[Labels.Cards] = self.getCreditCards()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
+		public_dict[Labels.CartMessage] = self.cart_message
 		public_dict[Labels.IsGuest] = self.is_guest
 		public_dict[Labels.MembershipTier] = self.membership_tier
 		public_dict[Labels.FbId] = self.fb_id
@@ -303,25 +301,7 @@ class User(db.Model):
 
 		return public_dict
 
-	def toPublicDict(self):
-		public_dict = {}
-		public_dict[Labels.Name] = self.name
-		public_dict[Labels.Email] = self.email
-		public_dict[Labels.EmailConfirmed] = self.email_confirmed
-		public_dict[Labels.AccountId] = self.account_id
-		public_dict[Labels.CartSize] = Cart(self).getCartSize()
-		public_dict[Labels.Cart] = Cart(self).toPublicDict()
-		public_dict[Labels.Addresses] = self.getAddresses()
-		public_dict[Labels.Cards] = self.getCreditCards()
-		# public_dict[Labels.Orders] = self.getUserOrders()
-		public_dict[Labels.DefaultCard] = self.default_card
-		public_dict[Labels.DefaultAddress] = self.default_address
-		public_dict[Labels.CartMessage] = self.cart_message
-		public_dict[Labels.IsGuest] = self.is_guest
-		public_dict[Labels.MembershipTier] = self.membership_tier
-		public_dict[Labels.FbId] = self.fb_id
-		public_dict[Labels.AbGroup] = self.ab_group
-		return public_dict
+	
 
 	def adjustCartItemWithVariant(self, cart_item):
 		this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
@@ -486,6 +466,7 @@ class User(db.Model):
 	def getCreditCards(self):
 		try:
 			cards = StripeManager.getUserCards(self)
+
 			try:
 				sorted_cards = sorted(cards,  key=lambda k: k['metadata'].get('date_created'))
 				return sorted_cards
@@ -599,7 +580,7 @@ class User(db.Model):
 				db.session.commit()
 				return {
 						Labels.Success : True,
-						Labels.User : self.toPublicDictFast(),
+						Labels.User : self.toPublicDict(),
 					}
 			else:
 				if quantity + cart_item.num_items > this_variant.inventory:
@@ -612,7 +593,7 @@ class User(db.Model):
 					cart_item.updateCartQuantity(cart_item.num_items + quantity)
 					return {
 						Labels.Success : True,
-						Labels.User : self.toPublicDictFast()
+						Labels.User : self.toPublicDict()
 					}
 
 				except:
@@ -642,7 +623,7 @@ class User(db.Model):
 			db.session.commit()
 			return {
 				Labels.Success : True,
-				Labels.User : self.toPublicDictFast()
+				Labels.User : self.toPublicDict()
 			}
 
 		else:
@@ -663,7 +644,7 @@ class User(db.Model):
 
 			return {
 					Labels.Success : True,
-					Labels.User : self.toPublicDictFast()
+					Labels.User : self.toPublicDict()
 				}
 
 

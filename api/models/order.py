@@ -156,7 +156,7 @@ class Order(db.Model):
 		public_dict[Labels.CardBrand] = self.card_brand
 		public_dict[Labels.SalesTaxPrice] = self.sales_tax_price
 		public_dict[Labels.Discounts] = self.discounts
-		# public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
+		public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
 		
 		return public_dict
 		

@@ -94,4 +94,7 @@ class StripeManager:
 		return card
 
 
+	
+
+
 

@@ -57,6 +57,9 @@ export default class OrdersPreview extends React.Component {
 						<div>
 							 {order.card_brand + " ending in " + order.card_last4}  
 						</div>
+						<div>
+							Billed to address with zip {order.card.address_zip}
+						</div>
 					 </div>
 					 
 				</div>

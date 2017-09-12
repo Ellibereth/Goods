@@ -72,13 +72,13 @@ export default class CardPreview extends React.Component {
 	render() {
 		var card = this.props.card
 		var default_button = this.getDefaultButton.bind(this)()
-
 		return (
 			<div className = "col-sm-4 col-md-4 col-lg-4 settings-preview-column grey-solid-border">
 				<span className = "account-page-text block-span"> {card.name} </span>
 				<span className = "account-page-text block-span">{card.brand} </span>
 				<span className = "account-page-text block-span"> Ending in {card.last4}  </span> 
 				<span className = "account-page-text block-span"> Exp. {card.exp_month} / {card.exp_year}  </span>
+				<span className = "account-page-text block-span"> Billed to Address With Zip: {card.address_zip}  </span>
 				<span className = "account-page-text block-span"> <div className = "small-buffer"/> </span>
 				<span className = "block-span"> 
 					{default_button}

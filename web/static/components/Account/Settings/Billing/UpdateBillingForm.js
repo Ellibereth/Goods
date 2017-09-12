@@ -29,13 +29,15 @@ export default class UpdateBillingForm extends React.Component {
 			address_line1 : "",
 			address_line2 : "",
 			address_zip : "",
-			addresss_state: "",
+			address_state: "",
 			skip_shipping: true,
 			disabled: false,
 			error_text : "",
 			show_error_text : false,
+			selected_address_index : null
 		}
 		this.setErrorMessage = this.setErrorMessage.bind(this)
+		this.onAddressChange = this.onAddressChange.bind(this)
 	}
 
 	setErrorMessage(error_text) {
@@ -64,7 +66,7 @@ export default class UpdateBillingForm extends React.Component {
 				address_line1 : "",
 				address_line2 : "",
 				address_zip : "",
-				addresss_state: "",
+				address_state: "",
 				skip_shipping: true,
 			})
 		}
@@ -119,45 +121,180 @@ export default class UpdateBillingForm extends React.Component {
 			});
 		}
 
+	componentDidMount(){
+		var user = AppStore.getCurrentUser()
+		if (user.addresses.length == 0){
+			this.setState({skip_shipping : false})	
+		}
+		else {
+			this.onAddressChange(0)
+		}
+		
+	}
+
+	addressToString(address){
+		// Example Format
+		// Darek Johnson 3900 City Avenue, M619, Philadelphia, PA, 19131 United States
+		return ( 
+			<span>
+				<b> {address.name} </b> <br/>
+				{address.address_line1} <br/>
+				{address.address_line2 && " " + address.address_line2} 
+				{address.address_line2 && <br/>}
+				{address.address_city}, {address.address_state} {address.address_zip} {address.address_country}
+			</span>
+		)
+	}
+
+	onAddressChange(index){
+		var user = AppStore.getCurrentUser()
+		var addr = user.addresses[index]
+		this.setState({
+			selected_address_index : index,
+			address_name : addr.name,
+			address_city : addr.address_city,
+			address_country : "US",
+			address_line1 : addr.address_line1,
+			address_line2 : addr.address_line2,
+			address_zip : addr.address_zip,
+			address_state: addr.address_state,
+
+		})
+	}
+
+
+	getExistingAddressForm(){
+		var user = AppStore.getCurrentUser()
+		var address_selects = user.addresses.map((address,index) => 
+				<div className = "row">
+					<div className = "small-buffer"/>
+					<div className = "col-xs-1 col-sm-1 col-md-1 col-lg-1 text-right vcenter">
+						<input type="radio"
+						checked = {index == this.state.selected_address_index}
+						onClick = {this.onAddressChange.bind(this, index)}
+						value= {index}/>
+					</div>
+					<div className = "col-xs-11 col-sm-11 col-md-11 col-lg-11 vcenter">
+						<span className = "checkout-card-details">  {this.addressToString(address)} </span>
+					</div>
+					{index != user.addresses.length - 1 ? <hr/> : <div className = "small-buffer"/>}
+				</div>
+			)
+		return address_selects
+	}
+
+
 	render() {
+		var select_existing_address_form = this.getExistingAddressForm()
 		return (
-			<form className = "form-horizontal">
-				<CreditCardInput 
-				onSubmit = {this.submitData.bind(this)}
-				header = {"Add a payment method"}
-				onTextInputChange = {this.onTextInputChange.bind(this)} />
-				<div className = "col-md-12 col-lg-12">
-					<div className="checkbox">
-						<label>
-							<input checked={this.state.skip_shipping} id = "skip_address_checkbox" 
-							name = "same_address" onClick = {this.skipBillingAddress.bind(this)} 
-							type="checkbox"/> 
-								Use default shipping address
-						</label>
+			<div>
+				<div className = "panel panel-default">
+					<div className = "panel-heading">
+						<div className = "row">
+							<div className = "col-sm-3 col-md-3 col-lg-3">
+								<span style = {{fontSize: "20px"}}>Enter Payment Information</span>
+							</div>
+							<div className = "col-sm-2 col-md-2 col-lg-2">
+								<span className = "red-text"> * </span>
+								<span className = "vcenter"> <b>Required</b> </span>
+							</div>
+						</div>
+						
+						
+					</div>
+					<div className = "panel-body">
+						<CreditCardInput 
+						header = {false}
+						onSubmit = {this.submitData.bind(this)}
+						onTextInputChange = {this.onTextInputChange.bind(this)} />
 					</div>
 				</div>
+
+				
+				
 				<div className = "small-buffer"/>
-				{ !this.state.skip_shipping && 
-					<AddressForm onSubmit = {this.submitData.bind(this)} header = {false} onTextInputChange  = {this.onTextInputChange.bind(this)} />
-				}
-				<div style = {{"marginTop" : "40px"}} className = "form-group">
-					<div className = "row">
-						<div className = "col-md-10 col-lg-10">
-							<button className = "btn btn-default " disabled = {this.state.disabled}
-							 onClick = {this.submitData.bind(this)}>
-								Submit
-							</button>
+				<div style = {{paddingTop: "30px"}}/>
+
+				{ this.state.skip_shipping ?
+					<div className = "panel panel-default">
+						<div className = "panel-heading">
+							<span style = {{fontSize: "20px"}}>Choose a Billing Address</span>
+						</div>
+						<div className = "panel-body">
+							{select_existing_address_form}
+						</div>
+						<div className = "panel-footer">
+							<div className = "row">
+								<div className = "col-sm-3 col-md-3 col-lg-3">
+									<button className = "btn btn-default"
+									onClick = {this.skipBillingAddress.bind(this)}>
+										Add a New Address
+									</button>
+								</div>
+								<div className = "col-sm-3 col-md-3 col-lg-3">
+									<button className = "btn btn-default" 
+									onClick = {this.submitData.bind(this)}
+									disabled = {this.state.disabled}>
+										Submit with this address
+									</button>
+								</div>
+							</div>
+							<div className = "row">
+								<div className = "col-sm-2 col-md-2 col-lg-2">
+									<FadingText height_transition ={true} 
+										show = {this.state.show_error_text}>
+											<div className = "checkout-error-text">
+												{this.state.error_text}
+											</div>
+									</FadingText>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div className = "small-buffer"/>
-					<FadingText height_transition ={true} 
-						show = {this.state.show_error_text}>
-							<div className = "checkout-error-text">
-								{this.state.error_text}
+
+					:
+					<div className = "panel panel-default">
+						<div className = "panel-heading">
+							<span style = {{fontSize: "20px"}}>Choose a Billing Address</span>
+						</div>
+						<div className = "panel-body">
+							<AddressForm onSubmit = {this.submitData.bind(this)} header = {false} 
+							onTextInputChange  = {this.onTextInputChange.bind(this)} />
+						</div>
+						<div className = "panel-footer">
+							<div className = "row">
+								{AppStore.getCurrentUser().addresses.length > 0 &&
+									<div className = "col-sm-3 col-md-3 col-lg-3">
+										<button onClick = {this.skipBillingAddress.bind(this)}
+											className = "btn btn-default">
+											Use an existing address
+										</button>
+									</div>
+								}
+								<div className = "col-sm-3 col-md-3 col-lg-3">
+									<button className = "btn btn-default"
+									onClick = {this.submitData.bind(this)}
+									disabled = {this.state.disabled}>
+										Submit with this address
+									</button>
+								</div>
 							</div>
-					</FadingText>
-				</div>
-			</form>
+							<div className = "row">
+								<div className = "col-sm-2 col-md-2 col-lg-2">
+									<FadingText height_transition ={true} 
+										show = {this.state.show_error_text}>
+											<div className = "checkout-error-text">
+												{this.state.error_text}
+											</div>
+									</FadingText>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+
+	
+			</div>
 		)
 	}
 }

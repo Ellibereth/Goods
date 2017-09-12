@@ -25,7 +25,6 @@ ADMIN_RECIPIENTS = [
 	'eli@edgarusa.com', 
 	'darek@manaweb.com', 
 	'darek@edgarusa.com', 
-	'darekjohnson28@gmail.com', 
 	'spallstar28@gmail.com', 
 	'eli.chang.iv@gmail.com'
 ]
