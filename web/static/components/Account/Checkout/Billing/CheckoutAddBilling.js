@@ -202,7 +202,11 @@ export default class UpdateBillingForm extends React.Component {
 						
 					</div>
 					<div className = "panel-body">
-						<CreditCardInput 
+						<CreditCardInput
+						name = {this.state.name}
+						number = {this.state.number}
+						expiry = {this.state.expiry}
+						cvc = {this.state.cvc} 
 						header = {false}
 						onSubmit = {this.submitData.bind(this)}
 						onTextInputChange = {this.onTextInputChange.bind(this)} />

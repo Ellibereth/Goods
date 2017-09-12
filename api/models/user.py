@@ -278,7 +278,6 @@ class User(db.Model):
 		public_dict[Labels.AbGroup] = self.ab_group
 		return public_dict
 
-
 	def toPublicDictCheckout(self, address):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
