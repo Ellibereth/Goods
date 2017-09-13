@@ -32,9 +32,6 @@ export default class RecoveryForm extends React.Component {
 			show_error_text : true, 
 			error_text : error_text
 		})
-		setTimeout(function(){
-			this.setState({show_error_text :false})
-		}.bind(this), 4000)
 	}
 
 	componentDidMount(){

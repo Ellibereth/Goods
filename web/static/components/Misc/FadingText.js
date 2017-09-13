@@ -1,8 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-
 export default class FadingText extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,9 +8,7 @@ export default class FadingText extends React.Component {
 		}
 	}
 
-
-	// add props for color, and speed of transitions
-
+	// add props for color, and speed of transition
 	render() {
 		var show_class_name = this.props.show ? " fading-text-shown " : " fading-text-hidden "
 		var height_transition_class = this.props.height_transition ? " height-transition " : " "

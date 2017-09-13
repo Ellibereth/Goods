@@ -30,11 +30,6 @@ export default class ChangePasswordForm extends React.Component {
 			show_fading_text : true,
 			is_success : is_success
 		})
-		setTimeout(function() {
-			this.setState({
-				show_fading_text : false,
-			})	
-		}.bind(this), 5000)
 	}
 
 	// handle the text input changes

@@ -65,8 +65,6 @@ export default class LoginBox extends React.Component {
 				success: function(data) {
 					if (!data.success) {
 						this.setState({login_faded_text : data.error.title, show_login_faded_text : true})
-						setTimeout(function(){this.setState({show_login_faded_text : false})}.bind(this), 4000)
-						
 					}
 					else {
 						ga('send', 'event', {

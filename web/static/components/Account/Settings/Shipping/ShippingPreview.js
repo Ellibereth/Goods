@@ -26,11 +26,6 @@ export default class ShippingPreview extends React.Component {
 			fading_text : fading_text,
 			show_fading_text : true
 		})
-		setTimeout(function(){
-			this.setState({
-				show_fading_text : false
-			})
-		}.bind(this), 4000)
 	}
 
 	toggleModal(address) {		

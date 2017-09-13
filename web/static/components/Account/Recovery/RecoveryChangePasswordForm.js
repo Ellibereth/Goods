@@ -32,7 +32,6 @@ export default class RecoveryChangePasswordPage extends React.Component {
 			show_error_text : true, 
 			error_text : error_text
 		})
-
 	}
 
 
