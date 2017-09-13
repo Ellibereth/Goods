@@ -1,34 +1,25 @@
-
 import React from 'react';
 import {Component} from 'react'
 import {TouchableOpacity,
-		Picker,
 		StyleSheet,
 		View,
 		Text,
-		Button,
 		ScrollView,
-		Image,
-		Alert,
 		Modal,
 		TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
-import {handleAddAddress} from '../../../api/UserApi'
-
+import {handleAddBilling} from '../../../api/UserApi'
 import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutTextInput from '../../Misc/CheckoutTextInput'
-
+import { CreditCardInput, LiteCreditCardInput } from "react-native-credit-card-input";
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-
-
 const field_list = ['address_name', 'address_line1', 'address_line2', 'address_city', 'address_zip']
 const placeholder_list = ['Name', "Address Line 1", "Address Line 2", "City", "Zip"]
 const required_list = [true, true, false, true, true]
 const max_length_list = [null, null, null, null, 5]
-
 const states = {
 	'AL': 'Alabama',
 	'AK': 'Alaska',
@@ -89,33 +80,29 @@ const states = {
 	'WV': 'West Virginia',
 	'WI': 'Wisconsin',
 	'WY': 'Wyoming'
-  }
-
+}
 
 export default class AddBillingModal extends Component {
-
 	constructor(props) {
 		super(props)
 		this.state = {
 			// hard coded for easier testing
 			// change to all "" except country when done
-			address_name : "Darek Johnson",
+			address_name : "",
 			description : "",
-			address_state: "PA",
-			address_city : "Philadelhia",
+			address_state: "",
+			address_city : "",
 			address_country : "US",
-			address_line1 : "3900 City Avenue",
-			address_line2 : "M619",
-			address_zip : "19131",
-
+			address_line1 : "",
+			address_line2 : "",
+			address_zip : "",
+			number : "",
+			cvc : "",
+			expiry : "",
+			name: ""
 		}
 		this.onChangeText = this.onChangeText.bind(this);
 	}
-
-	componentDidMount(){	
-		
-	}
-
 
 	onChangeText(field, value){
 		var obj = this.state
@@ -125,10 +112,22 @@ export default class AddBillingModal extends Component {
 
 	async addBilling() {
 		var form_data = {
-					jwt : this.props.jwt,
-					
-				}
-		let data = await handleAddAddress(form_data)
+				jwt : this.props.jwt,
+				address_name : this.state.address_name,
+				description : this.state.description,
+				address_state: this.state.address_state,
+				address_city : this.state.address_city,
+				address_country : this.state.address_country,
+				address_line1 : this.state.address_line1,
+				address_line2 : this.state.address_line2,
+				address_zip : this.state.address_zip,
+				number : this.state.number,
+				cvc : this.state.cvc,
+				exp_month : this.state.expiry.split('/')[0],
+				exp_year : this.state.expiry.split('/')[1],
+				name: this.state.name
+			}
+		let data = await handleAddBilling(form_data)
 		if (data.success) {
 			this.props.setModal(false)
 			this.props.setUserInfo(data)
@@ -140,9 +139,15 @@ export default class AddBillingModal extends Component {
 			console.log(data.error)
 		}
 	}
-	
 
-	
+	onCreditCardChange(data){
+		var values = data.values
+		this.setState({
+			number : values.number,
+			expiry: values.expiry,
+			cvc : values.cvc
+		})
+	}
 
 	render() {
 		return (
@@ -157,7 +162,25 @@ export default class AddBillingModal extends Component {
 						  >
 							<View style={{marginTop: 22}}>
 								
-								<View > 
+								<View >
+
+									<CheckoutTextInput 
+										field = {'name'}
+										value = {this.state.name}
+										onChangeText = {this.onChangeText}
+										placeholder = {"Cardholder Name"}
+										required = {true}
+										maxLength = {40}
+									/>
+
+									<LiteCreditCardInput 
+									autoFocus
+									validColor={"black"}
+									invalidColor={"red"}
+									placeholderColor={"darkgray"}
+									onChange={this.onCreditCardChange.bind(this)} 
+									/>
+
 									{field_list.map((field, index) =>
 										<CheckoutTextInput 
 											key = {index}
@@ -211,23 +234,14 @@ export default class AddBillingModal extends Component {
 								</TouchableOpacity>
 							</View>
 						</Modal>
-
-
-
-
-
-
 						<TouchableHighlight 
 							style = {styles.show_modal_button}
 							onPress={() => {
 						  this.props.setModal(true)
 						}}>
-						 	<Text style=  {styles.show_modal_button_text}>Add New Payment Method</Text>
+							<Text style=  {styles.show_modal_button_text}>Add New Payment Method</Text>
 						</TouchableHighlight>
-
 				</View>
-			
-
 		)
 	}
 }
@@ -306,19 +320,19 @@ const styles = StyleSheet.create({
 		paddingLeft: 15,
 		paddingRight: 15,
 		borderRadius: 5
-  	},
-  	show_modal_button : {
-  		padding: 8,
-  		borderRadius: 6,
-  		backgroundColor : 'silver',
-  		borderColor : 'silver',
-  		borderWidth : 1,
-  		margin : 8,
-  	},
-  	show_modal_button_text : {
-  		color : 'grey',
-  		textAlign : 'center'
-  	}
+	},
+	show_modal_button : {
+		padding: 8,
+		borderRadius: 6,
+		backgroundColor : 'silver',
+		borderColor : 'silver',
+		borderWidth : 1,
+		margin : 8,
+	},
+	show_modal_button_text : {
+		color : 'grey',
+		textAlign : 'center'
+	}
 	
 })
 

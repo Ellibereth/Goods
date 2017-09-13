@@ -2,14 +2,10 @@
 import React from 'react';
 import {Component} from 'react'
 import {TouchableOpacity,
-		Picker,
 		StyleSheet,
 		View,
 		Text,
-		Button,
 		ScrollView,
-		Image,
-		Alert,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
@@ -37,21 +33,12 @@ function mapStateToProps(state) {
 
 
 class CartScreen extends Component {
-
+	
 	constructor(props) {
 		super(props)
 		this.state = {
-		}
-		
+		}	
 	}
-
-	componentDidMount(){	
-		
-	}
-
-	
-
-	
 
 	render() {
 		if (this.props.user){
@@ -66,7 +53,6 @@ class CartScreen extends Component {
 		}
 		
 		return (
-				
 				<View style = {styles.container}>
 					<View style = {styles.step_indicator_container}>
 						<CheckoutStepIndicator />
@@ -82,12 +68,9 @@ class CartScreen extends Component {
 							<Text style = {styles.checkout_text}>
 								Checkout  <Icon name = "chevron-right" size = {12}/> 
 							</Text>
-							
 						</TouchableOpacity>
 					</View> 
 				</View>
-			
-
 		)
 	}
 }

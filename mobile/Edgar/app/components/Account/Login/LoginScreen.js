@@ -1,8 +1,6 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {View, Button, AsyncStorage} from 'react-native';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
+import {} from 'react-native';
 import LoginForm from './LoginForm'
 
 
@@ -13,15 +11,9 @@ export default class LoginScreen extends Component {
 		}
 	}
 
-	
-
 	render() {
 		return (
-				
 				<LoginForm loadUser = {this.props.loadUser} />
-			
-			
-
 		)
 	}
 }

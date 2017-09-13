@@ -1,11 +1,16 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {Alert, Image, TouchableWithoutFeedback, KeyboardAvoidingView, AsyncStorage, AppRegistry,StyleSheet,Text,View,ListView,TouchableOpacity,TouchableHighlight, TextInput} from 'react-native';
-import _ from 'lodash'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
+import {
+	StyleSheet,
+	Text,
+	View,
+	ListView,
+	TouchableOpacity,
+	TextInput
+} from 'react-native';
+import {dismissKeyboard} from 'react-native-dismiss-keyboard'
 import {handleRegisterSubmit} from '../../../api/UserApi'
+import {Actions} from 'react-native-router-flux'
 
 export default class RegisterScreen extends Component {
 	constructor(props) {
@@ -15,11 +20,16 @@ export default class RegisterScreen extends Component {
 			email : "",
 			password: "",
 			password_confirm : "",
-		}
-		
+		}	
 	}
 
-	
+	registerAccount(){
+		this.handleRegisterSubmit().then(() => {
+			Actions.account({type : ActionConst.RESET})
+			Actions.home({type : ActionConst.REPLACE})
+		})
+	}
+
 	async handleRegisterSubmit() {
 		let data = await handleRegisterSubmit(
 				this.state.name, 
@@ -31,7 +41,6 @@ export default class RegisterScreen extends Component {
 			console.log("success")
 		}
 		else {
-
 			Alert.alert(
 			  data.error.title,
 			  data.error.text,
@@ -101,7 +110,7 @@ export default class RegisterScreen extends Component {
 					</View>
 					<View style = {{height : 24}}/>
 					<View style = {{flex : 1, alignItems : 'center'}}>
-						<TouchableOpacity style={{flex : 1}} onPress = {this.handleRegisterSubmit.bind(this)}>
+						<TouchableOpacity style={{flex : 1}} onPress = {this.registerAccount.bind(this)}>
 							<View style = {styles.button}>
 								<Text style={styles.button_text}>Register</Text>
 							</View>

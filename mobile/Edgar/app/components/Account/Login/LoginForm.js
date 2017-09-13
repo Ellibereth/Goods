@@ -1,12 +1,16 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {Alert, Image, TouchableWithoutFeedback, KeyboardAvoidingView, AsyncStorage, AppRegistry,StyleSheet,Text,View,ListView,TouchableOpacity,TouchableHighlight, TextInput} from 'react-native';
-import _ from 'lodash'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
+import {
+	TouchableWithoutFeedback,
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+	TextInput
+} from 'react-native';
+import {dismissKeyboard} from 'react-native-dismiss-keyboard'
 import {handleLoginSubmit} from '../../../api/UserApi'
-import {Actions} from 'react-native-router-flux'
+import {Actions, ActionConst} from 'react-native-router-flux'
 
 export default class LoginForm extends Component {
 	constructor(props) {
@@ -15,25 +19,21 @@ export default class LoginForm extends Component {
 			email : "",
 			password: ""
 		}
-		
 	}
 
 	handleLoginSubmit() {
 		this.asyncHandleLoginSubmit().then(()=> {
-			setTimeout(function() {Actions.home()},1)
-			Actions.account()
-		})
-		.done()
+			Actions.account({type : ActionConst.RESET})
+			Actions.home({type : ActionConst.REPLACE})
+		}).done()
 	}
 
-	
 	async asyncHandleLoginSubmit() {
 		let data = await handleLoginSubmit(this.state.email, this.state.password)
 		if (data.success) {
 			this.props.loadUser(data.jwt)	
 		}
 	}
-	
 	
 	handlePasswordChange(password) {
 		this.setState({password: password})

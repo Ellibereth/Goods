@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {Component} from 'react'
 import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
@@ -9,13 +8,10 @@ import {updateCartQuantity} from '../../api/CartApi'
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 export default class CartItemDisplay extends Component {
-	
 
 	constructor(props) {
 		super(props)
-		this.state = {
-
-		}
+		this.state = {}
 		this.showQuanityPicker = this.showQuanityPicker.bind(this)
 		this.updateQuantity = this.updateQuantity.bind(this)
 	}
@@ -23,7 +19,6 @@ export default class CartItemDisplay extends Component {
 	showQuanityPicker(){
 		this.refs.quantity_picker.show()
 	}
-
 
 	getNumItemsLimit(){
 		var num_items_options = []
@@ -33,7 +28,6 @@ export default class CartItemDisplay extends Component {
 	}
 
 	async updateQuantity(quantity){
-		console.log(quantity)
 		let data = await updateCartQuantity(this.props.jwt, this.props.item, quantity)
 		if(data.success){
 			this.props.setUserInfo(data)
@@ -98,12 +92,7 @@ export default class CartItemDisplay extends Component {
 						Shipping information goes here
 					</Text>
 				</View>
-
 			</View>
-			
-			
-			
-
 		)
 	}
 }

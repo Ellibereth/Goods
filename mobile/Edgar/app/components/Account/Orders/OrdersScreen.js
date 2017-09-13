@@ -1,13 +1,9 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {TouchableOpacity,
+import {
 		StyleSheet,
 		View,
-		Text,
 		ScrollView,
-		Image,
-		TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
@@ -57,7 +53,6 @@ class OrdersScreen extends Component {
 	render() {
 		return (
 				<View style = {styles.container}>
-					
 					<ScrollView>
 						{this.state.orders.map((order,index) => 
 							<OrderDisplay order = {order} key = {index}/>

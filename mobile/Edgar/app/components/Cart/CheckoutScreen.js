@@ -2,15 +2,10 @@
 import React from 'react';
 import {Component} from 'react'
 import {TouchableOpacity,
-		Picker,
 		StyleSheet,
 		View,
 		Text,
-		Button,
 		ScrollView,
-		Image,
-		Alert,
-		Modal,
 		TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
@@ -39,7 +34,6 @@ function mapStateToProps(state) {
 	}
 }
 
-
 class CheckoutScreen extends Component {
 
 	constructor(props) {
@@ -54,7 +48,6 @@ class CheckoutScreen extends Component {
 			shipping_price : null,
 			sales_tax_price : null,
 		}
-
 		this.selectAddress = this.selectAddress.bind(this)
 		this.selectCard = this.selectCard.bind(this)
 	}
@@ -86,9 +79,6 @@ class CheckoutScreen extends Component {
 			}
 		}
 	}
-
-
-
 	setAddressModalVisible(visible) {
 		this.setState({addressModalVisible: visible});
 	}
@@ -98,7 +88,6 @@ class CheckoutScreen extends Component {
 	}
 
 	async checkout() {
-		
 		if (this.state.selected_card == null) {
 			console.log("select a card first")
 			return
@@ -117,7 +106,6 @@ class CheckoutScreen extends Component {
 		else {
 			console.log(data.error)
 		}
-
 	}
 
 	selectAddress(index){
@@ -128,7 +116,6 @@ class CheckoutScreen extends Component {
 			selected_address : this.props.user.addresses[index], 
 			selected_address_index : index
 		})
-		
 	}
 
 	selectCard(index){

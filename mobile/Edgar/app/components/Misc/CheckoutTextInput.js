@@ -1,8 +1,7 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, TouchableHighlight, Text, View, Button, TextInput} from 'react-native';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
+import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 
 export default class CheckoutTextInput extends Component {

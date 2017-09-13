@@ -1,24 +1,13 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {TouchableOpacity,
-		Picker,
-		StyleSheet,
-		View,
-		Text,
-		Button,
-		ScrollView,
-		Image,
-		Alert,
-		Modal,
-		TouchableHighlight
+import {
+	View,
+	Text,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
-
 import Icon from 'react-native-vector-icons/FontAwesome'
 import IconBadge from 'react-native-icon-badge'
-
 
 function mapStateToProps(state) {
 	return {
@@ -32,28 +21,25 @@ class CartIcon extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			
-
 		}
 	}
 
-	componentDidMount(){	
-		
+	navigateToCart(){
+		Actions.cart()
 	}
 
 	render() {
 		var current_scene = Actions.currentScene
-		if (current_scene == 'cart' || current_scene == 'checkout') {
+		if (current_scene == 'cart' || current_scene == 'checkout' || current_scene == 'order_confirmed') {
 			return <View/>
 		}
 
-		// var badge_count = 0
 		var badge_count = this.props.user.cart_size
 		return (
 			 <IconBadge
 				MainElement={
 					<Icon 
-						onPress = {() => Actions.cart()}
+						onPress = {this.navigateToCart}
 						name = "shopping-cart"
 						size = {24}
 						style = {{paddingRight : 12}}
@@ -82,10 +68,6 @@ class CartIcon extends Component {
 				
 	}
 }
-
-const styles = StyleSheet.create({
-		
-})
 
 
 export default connect(mapStateToProps)(CartIcon);

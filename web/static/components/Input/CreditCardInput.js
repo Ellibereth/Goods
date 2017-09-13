@@ -51,7 +51,6 @@ export default class CreditCardInput extends React.Component {
 				var value = this.checkCvcError(old_value, new_key)
 				break;
 		}
-		// console.log(name, value)
 		this.props.onTextInputChange(name, value)
 	}
 
@@ -178,7 +177,6 @@ export default class CreditCardInput extends React.Component {
 
 	checkCvcError(old_value, new_key){
 		var value = old_value 
-		console.log(new_key === BACKSPACE_KEY)
 		if (new_key == " ") {
 			var value = old_value
 		}

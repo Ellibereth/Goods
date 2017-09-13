@@ -1,13 +1,8 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, TouchableOpacity, Text, View, Button, TextInput} from 'react-native';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
+import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import {Actions} from 'react-native-router-flux';
-
 import Icon from 'react-native-vector-icons/FontAwesome'
-
-
 export default class CheckoutBillingDisplay extends Component {
 	
 	constructor(props) {
@@ -17,9 +12,6 @@ export default class CheckoutBillingDisplay extends Component {
 		}
 	}
 
-	
-
-	
 	render() {
 		var card = this.props.card
 		return (
@@ -39,9 +31,6 @@ export default class CheckoutBillingDisplay extends Component {
 					</TouchableOpacity>
 				</View>
 			</View>
-			
-			
-
 		)
 	}
 }
@@ -66,6 +55,4 @@ const styles = StyleSheet.create({
 	}
 
 })
-
-
 

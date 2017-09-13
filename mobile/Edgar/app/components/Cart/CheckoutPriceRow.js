@@ -1,10 +1,7 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, TouchableHighlight, Text, View, Button, TextInput} from 'react-native';
-
+import {StyleSheet, Text, View} from 'react-native';
 export default class CheckoutPriceRow extends Component {
-
 	constructor(props) {
 		super(props)
 		this.state = {	
@@ -12,9 +9,6 @@ export default class CheckoutPriceRow extends Component {
 		}
 	}
 
-	
-
-	
 	render() {
 		var styles = StyleSheet.create({
 			container : {
@@ -34,13 +28,11 @@ export default class CheckoutPriceRow extends Component {
 			}
 		});
 		
-			
 		return (
 			<View style = {styles.container}>
 				<Text style = {styles.label_text}>{this.props.label}</Text>
 				<Text style = {styles.price_text}>{this.props.price}</Text>
 			</View>
-		
 		);
   	}
 

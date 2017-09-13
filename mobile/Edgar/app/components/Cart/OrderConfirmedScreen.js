@@ -1,9 +1,9 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {TouchableHighlight, Text, View, Button, StyleSheet} from 'react-native';
+import {TouchableHighlight, Text, View, StyleSheet} from 'react-native';
 import {Actions, ActionConst} from 'react-native-router-flux'
-
+import CheckoutStepIndicator from './CheckoutStepIndicator'
 
 export default class OrderConfirmedScreen extends Component {
 	constructor(props) {
@@ -17,11 +17,13 @@ export default class OrderConfirmedScreen extends Component {
 		Actions.orders();
 	}
 	
-
 	render() {
 		return (
 			
 				<View style = {styles.container}>
+					<View style = {styles.step_indicator_container}>
+						<CheckoutStepIndicator />
+					</View>
 					<Text style = {styles.non_link_text}>
 						Thank you for ordering with Edgar USA
 					</Text>
@@ -39,22 +41,6 @@ export default class OrderConfirmedScreen extends Component {
 						</Text>
 
 					</TouchableHighlight>
-
-					{/* 
-					<Text style = {styles.non_link_text}>Click 
-						<Text onPress = {() => Actions.home({type : 'reset'})}
-						 style = {styles.link_text}> here
-						</Text> 
-						{' to return to the home page'}
-					</Text>
-
-					<Text style = {styles.non_link_text}>Click 
-						<Text onPress = {this.navigateToOrders}
-						 style = {styles.link_text}> here 
-						</Text>
-						{' to view order details'}
-					</Text> */}
-
 				</View>
 			
 			
@@ -62,7 +48,6 @@ export default class OrderConfirmedScreen extends Component {
 		)
 	}
 }
-
 
 const styles = StyleSheet.create({
 	container : {
@@ -79,7 +64,3 @@ const styles = StyleSheet.create({
 		
 	}
 })
-
-
-
-

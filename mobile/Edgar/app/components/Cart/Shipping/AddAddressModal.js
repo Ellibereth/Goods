@@ -1,34 +1,23 @@
-
 import React from 'react';
 import {Component} from 'react'
 import {TouchableOpacity,
-		Picker,
 		StyleSheet,
 		View,
 		Text,
-		Button,
 		ScrollView,
-		Image,
-		Alert,
 		Modal,
 		TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {handleAddAddress} from '../../../api/UserApi'
-
 import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutTextInput from '../../Misc/CheckoutTextInput'
-
-
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-
-
 const field_list = ['address_name', 'address_line1', 'address_line2', 'address_city', 'address_zip']
 const placeholder_list = ['Name', "Address Line 1", "Address Line 2", "City", "Zip"]
 const required_list = [true, true, false, true, true]
 const max_length_list = [null, null, null, null, 5]
-
 const states = {
 	'AL': 'Alabama',
 	'AK': 'Alaska',
@@ -148,89 +137,85 @@ export default class AddAddressModal extends Component {
 		}
 	}
 	
-
-	
-
 	render() {
 		return (
 			
 				<View style = {styles.container}>
-					
-						<Modal
-						  animationType="slide"
-						  transparent={false}
-						  visible={this.props.modal_visible}
-						  // onRequestClose={() => {alert("Modal has been closed.")}}
-						  >
-							<View style={{marginTop: 22}}>
-								
-								<View > 
-									{field_list.map((field, index) =>
-										<CheckoutTextInput 
-											key = {index}
-											field = {field_list[index]}
-											value = {this.state[field_list[index]]}
-											onChangeText = {this.onChangeText}
-											placeholder = {placeholder_list[index]}
-											required = {required_list[index]}
-											maxLength = {max_length_list[index]}
-										/>
-									)}
-
-										<View style = {styles.state_display}>
-											<View style={styles.state_text_container}>
-												<Text 
-													style = {styles.state_display_text}
-													onPress={() => {
-														this.refs.state_picker.show()}}>
-													{this.state.address_state ? states[this.state.address_state] : "Select State"}
-												</Text>
-											</View>
-											<View style = {styles.picker_icon_container}>
-												<Icon onPress={() => {
-														this.refs.state_picker.show()}}
-												style = {styles.picker_icon}
-												size = {16}
-												name = "caret-down"/>
-											</View>
-										</View>
-
-									<SimplePicker
-									  ref = {'state_picker'}
-									  options={Object.keys(states)}
-									  labels = {Object.values(states)}
-									  onSubmit={(option) => {
-										this.setState({
-											address_state : option,
-										});
-									  }}
+					<Modal
+					  animationType="slide"
+					  transparent={false}
+					  visible={this.props.modal_visible}
+					  // onRequestClose={() => {alert("Modal has been closed.")}}
+					  >
+						<View style={{marginTop: 22}}>
+							
+							<View > 
+								{field_list.map((field, index) =>
+									<CheckoutTextInput 
+										key = {index}
+										field = {field_list[index]}
+										value = {this.state[field_list[index]]}
+										onChangeText = {this.onChangeText}
+										placeholder = {placeholder_list[index]}
+										required = {required_list[index]}
+										maxLength = {max_length_list[index]}
 									/>
+								)}
 
-								</View>
+									<View style = {styles.state_display}>
+										<View style={styles.state_text_container}>
+											<Text 
+												style = {styles.state_display_text}
+												onPress={() => {
+													this.refs.state_picker.show()}}>
+												{this.state.address_state ? states[this.state.address_state] : "Select State"}
+											</Text>
+										</View>
+										<View style = {styles.picker_icon_container}>
+											<Icon onPress={() => {
+													this.refs.state_picker.show()}}
+											style = {styles.picker_icon}
+											size = {16}
+											name = "caret-down"/>
+										</View>
+									</View>
+
+								<SimplePicker
+								  ref = {'state_picker'}
+								  options={Object.keys(states)}
+								  labels = {Object.values(states)}
+								  onSubmit={(option) => {
+									this.setState({
+										address_state : option,
+									});
+								  }}
+								/>
+
 							</View>
-							<View style = {styles.finish_button_container}>
-								<TouchableOpacity style = {styles.cancel_button} 
-									onPress = {() => this.props.setModal(false)}>
-									<Text style = {styles.cancel_button_text}>Cancel</Text>
-								</TouchableOpacity>
-								<TouchableOpacity style = {styles.save_button} onPress = {this.addAddress.bind(this)}>
-									<Text style = {styles.save_button_text}>Save</Text>
-								</TouchableOpacity>
-							</View>
-						</Modal>
+						</View>
+						<View style = {styles.finish_button_container}>
+							<TouchableOpacity style = {styles.cancel_button} 
+								onPress = {() => this.props.setModal(false)}>
+								<Text style = {styles.cancel_button_text}>Cancel</Text>
+							</TouchableOpacity>
+							<TouchableOpacity style = {styles.save_button} onPress = {this.addAddress.bind(this)}>
+								<Text style = {styles.save_button_text}>Save</Text>
+							</TouchableOpacity>
+						</View>
+					</Modal>
 
 
 
 
 
 
-						<TouchableHighlight 
-							style = {styles.show_modal_button}
-							onPress={() => {
-						  this.props.setModal(true)
-						}}>
-						 	<Text style=  {styles.show_modal_button_text}>Add New Address</Text>
-						</TouchableHighlight>
+					<TouchableHighlight 
+						style = {styles.show_modal_button}
+						onPress={() => {
+					  this.props.setModal(true)
+					}}>
+					 	<Text style=  {styles.show_modal_button_text}>Add New Address</Text>
+					</TouchableHighlight>
 
 				</View>
 			

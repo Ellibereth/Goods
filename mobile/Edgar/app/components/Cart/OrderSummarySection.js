@@ -1,10 +1,8 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, TouchableHighlight, Text, View, Button, TextInput} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {formatPrice} from '../../util/Format.js'
 import CheckoutPriceRow from './CheckoutPriceRow'
-
 export default class OrderSummarySection extends Component {
 
 	constructor(props) {
@@ -14,9 +12,6 @@ export default class OrderSummarySection extends Component {
 		}
 	}
 
-	
-
-	
 	render() {
 		var cart = this.props.user.cart
 		return (
@@ -26,7 +21,6 @@ export default class OrderSummarySection extends Component {
 						Order Summary
 					</Text>
 				</View>	
-
 				{cart.items_discount ? 
 					<View>
 						<CheckoutPriceRow label = {"Items"} price = {'$' + formatPrice(cart.original_items_price)}/>
@@ -60,7 +54,6 @@ export default class OrderSummarySection extends Component {
 		
 		);
   	}
-
 }
 
 
@@ -73,12 +66,7 @@ const styles = StyleSheet.create({
 		margin : 8,
 		padding: 8,
 		marginBottom : 20,
-		paddingBottom : 0,
-
-
-
-		// backgroundColor : 'lightgrey'
-		
+		paddingBottom : 0,		
 	},
 	title_text : {
 		fontSize : 20,

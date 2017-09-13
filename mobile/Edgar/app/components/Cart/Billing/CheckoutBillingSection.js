@@ -1,24 +1,19 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {ScrollView,StyleSheet, TouchableHighlight, Text, View, TextInput} from 'react-native';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
+import {ScrollView,StyleSheet, TouchableHighlight, Text, View} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import AddBillingModal from './AddBillingModal'
-import Collapsible from 'react-native-collapsible'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutBillingDisplay from './CheckoutBillingDisplay'
 
 export default class CheckoutBillingSection extends Component {
-	
 	constructor(props) {
 		super(props)
 		this.state = {
 			can_edit_billing : false,
 		}
 	}
-
-	
 
 	toggleEditBilling(){
 		this.setState({can_edit_billing : !this.state.can_edit_billing})
@@ -30,7 +25,6 @@ export default class CheckoutBillingSection extends Component {
 		}
 	}
 
-	
 	render() {
 		return (
 				<View style = {styles.billing_container}>
@@ -95,9 +89,6 @@ export default class CheckoutBillingSection extends Component {
 					</View>
 					
 				</View>
-			
-			
-
 		)
 	}
 }
@@ -145,10 +136,6 @@ const styles = StyleSheet.create({
 		paddingLeft: 0,
 		padding : 6,
 		marginRight: 0,
-
 	}
-
 })
-
-
 

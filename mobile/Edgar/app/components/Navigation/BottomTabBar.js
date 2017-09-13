@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Platform, Keyboard, AppState, AppRegistry,StyleSheet,Text,View,ListView,TouchableOpacity,TouchableHighlight, TextInput,
-		TouchableWithoutFeedback, Alert, Image, Animated} from 'react-native';
+import { } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import BottomNavigation, { Tab } from 'react-native-material-bottom-navigation'

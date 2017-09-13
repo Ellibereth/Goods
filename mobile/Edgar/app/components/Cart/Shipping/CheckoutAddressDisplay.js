@@ -1,15 +1,9 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, TouchableOpacity, Text, View, Button, TextInput} from 'react-native';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
-import {Actions} from 'react-native-router-flux';
-
+import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
-
 export default class CheckoutAddressDisplay extends Component {
-	
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -17,9 +11,6 @@ export default class CheckoutAddressDisplay extends Component {
 		}
 	}
 
-	
-
-	
 	render() {
 		return (
 			<View style = {styles.container}>
@@ -39,13 +30,9 @@ export default class CheckoutAddressDisplay extends Component {
 					</TouchableOpacity>
 				</View>
 			</View>
-			
-			
-
 		)
 	}
 }
-
 
 const styles = StyleSheet.create({
 	container : {
@@ -64,8 +51,4 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems : 'center'
 	}
-
 })
-
-
-

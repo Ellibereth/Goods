@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, Button, ScrollView } from 'react-native';
+import {View, Text, ScrollView } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {getProductsByListing} from '../../api/ProductApi'

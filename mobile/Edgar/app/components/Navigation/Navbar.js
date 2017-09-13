@@ -20,16 +20,9 @@ export default class Navbar extends React.Component {
 		};
 	}
 	
-
-	
 	componentDidMount() {
 
 	}
-
-	
-
-
-	
 
 	render() {
 		const logo_src = 'https://s3-us-west-2.amazonaws.com/edgarusahomepage/linda5.png'

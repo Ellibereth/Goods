@@ -1,19 +1,14 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, Button, Image, TouchableHighlight, StyleSheet} from 'react-native';
-
+import {View, Text, Image, TouchableHighlight, StyleSheet} from 'react-native';
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 import {Actions} from 'react-native-router-flux'
 
 export default class HomeProductDisplay extends Component {
-	
-
 	constructor(props) {
 		super(props)
-		this.state = {
-
-		}
+		this.state = {}
 		this.onProductClick = this.onProductClick.bind(this);
 	}
 

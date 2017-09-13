@@ -1,12 +1,8 @@
-
 import React from 'react';
 import {Component} from 'react'
 import {TouchableHighlight, Text, View, Button, AsyncStorage} from 'react-native';
-import dismissKeyboard from 'react-native-dismiss-keyboard';
 import SettingsList from 'react-native-settings-list'
 import {Actions} from 'react-native-router-flux'
-
-
 
 export default class AccountMenu extends Component {
 	constructor(props) {
@@ -19,8 +15,6 @@ export default class AccountMenu extends Component {
 	onLogout() {
 		this.props.logoutUser()
 	}
-
-	
 
 	render() {
 		return (
@@ -70,7 +64,6 @@ export default class AccountMenu extends Component {
 								onPress = {this.onLogout}
 	            				titleStyle={{color:'red', textAlign : "center"}}/>
             				}
-
 						</SettingsList>
 					</View>
 				</View>

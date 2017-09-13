@@ -5,7 +5,6 @@ import {ScrollView,StyleSheet, TouchableHighlight, Text, View, TextInput} from '
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import {Actions} from 'react-native-router-flux';
 import AddAddressModal from './AddAddressModal'
-import Collapsible from 'react-native-collapsible'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutAddressDisplay from './CheckoutAddressDisplay'
 
@@ -18,8 +17,6 @@ export default class CheckoutAddressSection extends Component {
 		}
 	}
 
-	
-
 	toggleEditAddress(){
 		this.setState({can_edit_address : !this.state.can_edit_address})
 	}
@@ -30,7 +27,6 @@ export default class CheckoutAddressSection extends Component {
 		}
 	}
 
-	
 	render() {
 		return (
 				<View style = {styles.address_container}>
@@ -94,11 +90,7 @@ export default class CheckoutAddressSection extends Component {
 							</Text>
 						</TouchableHighlight>
 					</View>
-					
 				</View>
-			
-			
-
 		)
 	}
 }

@@ -1,22 +1,13 @@
-
 import React from 'react';
 import {Component} from 'react'
-import {TouchableOpacity,
+import {
 		StyleSheet,
 		View,
 		Text,
-		ScrollView,
-		Image,
-		TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 
-import Icon from 'react-native-vector-icons/FontAwesome'
-
-
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-
-
 
 export default class OrdersScreen extends Component {
 
@@ -26,8 +17,6 @@ export default class OrdersScreen extends Component {
 		}
 	}
 
-	
-	
 	render() {
 		
 		return (
@@ -43,7 +32,6 @@ export default class OrdersScreen extends Component {
 
 const styles = StyleSheet.create({
 	container : {
-		
 		padding : 8,
 		borderWidth : 1,
 		borderColor : 'grey',
