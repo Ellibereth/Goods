@@ -8,39 +8,14 @@
 	--LightBlue: #6090a8;
 }
 
-.alert-success-text {
-	color : var(--DarkBlue);
+.close-modal-button {
+	font-size : 22px;
+	float: right;
 }
 
-.alert-notice-text {
-	color : var(--LightBlue);
+.close-modal-button:hover {
+	cursor: pointer;
 }
-.alert-error-text {
-	color : var(--LightRed);
-}
-
-.fading-text-hidden {
-	visibility: hidden;
-    opacity: 0;
-    transition: visibility 2s, opacity 2s linear;  
-	
-}
-
-.fading-text-hidden.height-transition{
-	max-height: 0px;
-	visibility: hidden;
-    opacity: 0;
-	transition: visibility 2s, opacity 2s linear, max-height 2s linear;
-
-}
-
-.fading-text-shown.height-transition{
-	max-height: 40px;
-	visibility: visible;
-    opacity: 1;
-	transition: visibility 2s, opacity 2s linear, max-height 2s linear;
-}
-
 
 
 
@@ -62,13 +37,6 @@
 	color: var(--DarkBlue) !important;
 }
 
-
-
-.fading-text-shown {
-	visibility: visible;
-    opacity: 1;
-    transition: visibility 2s, opacity 2s linear;
-}
 
 
 .add-to-cart-success-text {

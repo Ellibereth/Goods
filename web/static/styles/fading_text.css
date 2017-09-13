@@ -1,0 +1,42 @@
+.alert-success-text {
+	color : var(--DarkBlue);
+}
+
+.alert-notice-text {
+	color : var(--LightBlue);
+}
+.alert-error-text {
+	color : var(--LightRed);
+}
+
+.fading-text-hidden {
+	visibility: hidden;
+    opacity: 0;
+    transition: visibility 2s, opacity 2s linear;  
+	
+}
+
+.fading-text-hidden.height-transition{
+	max-height: 0px;
+	visibility: hidden;
+    opacity: 0;
+	transition: visibility 2s, opacity 2s linear, max-height 2s linear;
+
+}
+
+.fading-text-shown.height-transition{
+	max-height: 40px;
+	visibility: visible;
+    opacity: 1;
+	transition: visibility 2s, opacity 2s linear, max-height 2s linear;
+}
+
+
+.fading-text-shown {
+	visibility: visible;
+    opacity: 1;
+    transition: visibility 2s, opacity 2s linear;
+}
+
+
+

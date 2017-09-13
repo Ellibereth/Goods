@@ -239,7 +239,7 @@ export default class UpdateBillingForm extends React.Component {
 									<button className = "btn btn-default" 
 									onClick = {this.submitData.bind(this)}
 									disabled = {this.state.disabled}>
-										Submit with this address
+										Submit With This Address
 									</button>
 								</div>
 							</div>
@@ -271,7 +271,7 @@ export default class UpdateBillingForm extends React.Component {
 									<div className = "col-sm-3 col-md-3 col-lg-3">
 										<button onClick = {this.skipBillingAddress.bind(this)}
 											className = "btn btn-default">
-											Use an existing address
+											Use an Existing Address
 										</button>
 									</div>
 								}
@@ -279,7 +279,7 @@ export default class UpdateBillingForm extends React.Component {
 									<button className = "btn btn-default"
 									onClick = {this.submitData.bind(this)}
 									disabled = {this.state.disabled}>
-										Submit with this address
+										Submit With This Address
 									</button>
 								</div>
 							</div>

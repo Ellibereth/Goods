@@ -4,6 +4,7 @@ var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
 import AppStore from '../../../../stores/AppStore.js';
 import {AlertMessages} from '../../../Misc/AlertMessages'
+import {toTitleCase} from '../../../Input/Util'
 
 export default class AddressPreview extends React.Component {
 	constructor(props) {
@@ -86,11 +87,11 @@ export default class AddressPreview extends React.Component {
 
 		return (
 			<div className = "col-sm-4 col-md-4 col-lg-4 settings-preview-column grey-solid-border">
-				<span className = "account-page-text block-span"> {address.name} </span>
-				<span className = "account-page-text block-span">{address.address_line1}  </span>
-				{address.address_line2 && <span className = "block-span"> {address.address_line2}  </span> }
+				<span className = "account-page-text block-span"> {toTitleCase(address.name)} </span>
+				<span className = "account-page-text block-span">{toTitleCase(address.address_line1)}  </span>
+				{address.address_line2 && <span className = "block-span"> {toTitleCase(address.address_line2)}  </span> }
 				<span className = "account-page-text block-span"> 
-					{address.address_city}, {address.address_state} {address.address_zip}
+					{toTitleCase(address.address_city) + ', ' + address.address_state + " " + address.address_zip}
 				</span>
 				<span className = "account-page-text block-span">
 					<div className = "small-buffer"/>

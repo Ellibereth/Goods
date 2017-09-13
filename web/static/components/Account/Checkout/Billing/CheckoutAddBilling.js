@@ -193,9 +193,18 @@ export default class UpdateBillingForm extends React.Component {
 							<div className = "col-sm-6 col-md-6 col-lg-6">
 								<span style = {{fontSize: "20px"}}>Enter Payment Information</span>
 							</div>
-							<div className = "col-sm-6 col-md-6 col-lg-6">
-								<span className = "red-text"> * </span>
-								<span className = "vcenter"> <b>Required</b> </span>
+							<div className = "col-sm-5 col-md-5 col-lg-5">
+								<span  style = {{fontSize : "16px"}} 
+								className = "red-text"> * </span>
+								<span style = {{fontSize : "16px"}} 
+								className = "vcenter">
+									<b>Required</b>
+								</span>
+							</div>
+							<div className = "col-sm-1 col-md-1 col-lg-1">
+								<span
+								
+								 className = "glyphicon glyphicon-remove close-modal-button" onClick = {this.props.toggleModal}/>
 							</div>
 						</div>
 						
@@ -238,7 +247,7 @@ export default class UpdateBillingForm extends React.Component {
 									<button className = "btn btn-default" 
 									onClick = {this.submitData.bind(this)}
 									disabled = {this.state.disabled}>
-										Submit with this address
+										Submit With This Address
 									</button>
 								</div>
 							</div>
@@ -270,7 +279,7 @@ export default class UpdateBillingForm extends React.Component {
 									<div className = "col-sm-3 col-md-3 col-lg-3">
 										<button onClick = {this.skipBillingAddress.bind(this)}
 											className = "btn btn-default">
-											Use an existing address
+											Use an Existing Address
 										</button>
 									</div>
 								}
@@ -278,7 +287,7 @@ export default class UpdateBillingForm extends React.Component {
 									<button className = "btn btn-default"
 									onClick = {this.submitData.bind(this)}
 									disabled = {this.state.disabled}>
-										Submit with this address
+										Submit With This Address
 									</button>
 								</div>
 							</div>

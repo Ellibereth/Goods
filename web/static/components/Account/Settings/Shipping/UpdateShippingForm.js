@@ -96,7 +96,7 @@ export default class UpdateShippingForm extends React.Component {
 		return (
 				<div>
 					<form  className = "form-horizontal">
-						<AddressForm header = {"Add an address"}
+						<AddressForm header = {"Add an Address"}
 						has_description = {true}
 						onSubmit = {this.submitData.bind(this)}
 						onTextInputChange = {this.onTextInputChange.bind(this)}/>

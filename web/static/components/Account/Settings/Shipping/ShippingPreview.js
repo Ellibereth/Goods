@@ -8,6 +8,7 @@ import EditAddressModal from './EditAddressModal.js'
 import AddAddressButton from './AddAddressButton'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 import FadingText from '../../../Misc/FadingText'
+
 export default class ShippingPreview extends React.Component {
 	constructor(props) {
 		super(props);

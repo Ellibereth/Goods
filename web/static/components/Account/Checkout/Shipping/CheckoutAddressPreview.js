@@ -2,9 +2,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 import AppStore from '../../../../stores/AppStore.js';
 
-var browserHistory = require('react-router').browserHistory;
-var Link = require('react-router').Link
+import {toTitleCase} from '../../../Input/Util'
 
+var browserHistory = require('react-router').browserHistory;
 
 // requires props
 // openEditable
@@ -30,9 +30,9 @@ export default class CheckoutAddressPreview extends React.Component {
 		else {
 			var address_display = (
 				<div className = "col-xs-6 col-md-6 col-lg-6 col-sm-6">
-					<span className = "span-block"> {address.name} </span>
-					<span className = "span-block"> {address.address_line1} {address.address_line2} </span> 
-					<span className = "span-block"> {address.address_city}, {address.address_state} {address.address_zip} </span>
+					<span className = "span-block"> {toTitleCase(address.name)} </span>
+					<span className = "span-block"> {toTitleCase(address.address_line1)} {address.address_line2} </span> 
+					<span className = "span-block"> {toTitleCase(address.address_city)}, {address.address_state} {address.address_zip} </span>
 				</div>
 			)
 		}
