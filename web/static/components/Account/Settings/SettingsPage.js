@@ -28,7 +28,7 @@ export default class SettingsPage extends React.Component {
 			})
 		$.ajax({
 			type: "POST",
-			url: "/getUserInfo",
+			url: "/refreshCheckoutInfo",
 			data: form_data,
 			success: function(data) {
 				if (data.success) {

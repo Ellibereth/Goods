@@ -2,8 +2,13 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 var browserHistory = require('react-router').browserHistory;
+import ReactDOMServer from 'react-dom/server';
+
 import AppStore from '../../../../stores/AppStore.js';
 import {AlertMessages} from '../../../Misc/AlertMessages'
+import {toTitleCase} from '../../../Input/Util'
+import Popover from 'react-bootstrap/lib/Popover'
+import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
 
 export default class CardPreview extends React.Component {
 	constructor(props) {
@@ -11,6 +16,10 @@ export default class CardPreview extends React.Component {
 		this.state = {
 			
 		}
+	}
+
+	componentDidMount(){
+		
 	}
 
 	deleteCardPress(){
@@ -68,24 +77,54 @@ export default class CardPreview extends React.Component {
 	}
 
 
+	getPopoverContent(card){
+		return (
+			<Popover id="popover-trigger-click" title="Billing Address">
+				<span className = "account-page-text block-span"> {toTitleCase(card.metadata.address_name)}  </span>
+				<span className = "account-page-text block-span"> {toTitleCase(card.address_line1)}  </span>
+				<span className = "account-page-text block-span"> {toTitleCase(card.address_line2)}  </span>
+				<span className = "account-page-text block-span"> {toTitleCase(card.address_city)}, {card.address_state}</span>
+				<span className = "account-page-text block-span"> {card.address_zip}</span>
+			</Popover>
+		)
+
+
+	}
 
 	render() {
 		var card = this.props.card
 		var default_button = this.getDefaultButton.bind(this)()
+		var billing_address_popover_content = this.getPopoverContent(card)
 		return (
 			<div className = "col-sm-4 col-md-4 col-lg-4 settings-preview-column grey-solid-border">
-				<span className = "account-page-text block-span"> {card.name} </span>
-				<span className = "account-page-text block-span">{card.brand} </span>
-				<span className = "account-page-text block-span"> Ending in {card.last4}  </span> 
-				<span className = "account-page-text block-span"> Exp. {card.exp_month} / {card.exp_year}  </span>
-				<span className = "account-page-text block-span"> Billed to Address With Zip: {card.address_zip}  </span>
-				<span className = "account-page-text block-span"> <div className = "small-buffer"/> </span>
-				<span className = "block-span"> 
-					{default_button}
-					<button style = {{"margin-left" : "8px"}} className = "btn btn-default btn-sm" onClick = {this.deleteCardPress.bind(this)}>
-						Delete 
-					</button>
-				</span>
+				<div className = "row ">
+					<div className = "col-sm-6">
+						<span className = "account-page-text block-span"> {card.name} </span>
+						<span className = "account-page-text block-span"><b>{card.brand}</b> ending in {card.last4}  </span> 
+						<span className = "account-page-text block-span"> Exp. {card.exp_month} / {card.exp_year}  </span>
+						<span className = "account-page-text block-span"> <div className = "small-buffer"/> </span>
+					</div>
+					<div className = "col-sm-6">
+						<OverlayTrigger rootClose ={true} trigger = "click" placement = "top" 
+						overlay = {billing_address_popover_content}>
+							<span style = {{fontSize : "14px"}}
+							className = "edgar-link"> 
+								Show Billing Address 
+							</span>
+						</OverlayTrigger>
+						
+					</div>
+				</div>
+				<div className = "row">
+					<div className = "col-xs-12">
+						<span className = "block-span"> 
+							{default_button}
+							<button style = {{"margin-left" : "8px"}} className = "btn btn-default btn-sm" onClick = {this.deleteCardPress.bind(this)}>
+								Delete 
+							</button>
+						</span>
+					</div>
+				</div>
 			</div>
 
 		)

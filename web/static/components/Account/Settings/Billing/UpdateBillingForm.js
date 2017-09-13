@@ -11,7 +11,7 @@ import {AlertMessages} from '../../../Misc/AlertMessages'
 import FadingText from '../../../Misc/FadingText'
 
 const form_inputs = ["address_city", "address_country",
-					"address_line1", "address_line2", "address_zip",
+					"address_line1", "address_line2", "address_zip", 'address_state',
 					"address_name", "name", "number", "cvc"]
 
 
@@ -88,6 +88,7 @@ export default class UpdateBillingForm extends React.Component {
 			data['exp_month'] = this.state['expiry'].split('/')[0]
 			data['exp_year'] = this.state['expiry'].split('/')[1]
 			data["jwt"] = localStorage.jwt
+			
 			var form_data = JSON.stringify(data)
 			$.ajax({
 				type: "POST",

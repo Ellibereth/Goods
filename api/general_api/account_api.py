@@ -172,6 +172,7 @@ def changePassword(this_user):
 @decorators.check_user_jwt
 def addCreditCard(this_user):
 	name = request.json.get(Labels.Name)
+	address_name = request.json.get(Labels.AddressName)
 	address_city = request.json.get(Labels.AddressCity)
 	address_country = request.json.get(Labels.AddressCountry)
 	address_line1 = request.json.get(Labels.AddressLine1)
@@ -183,7 +184,7 @@ def addCreditCard(this_user):
 	number = request.json.get(Labels.Number)
 	cvc = request.json.get(Labels.Cvc)
 
-	add_card_response = this_user.addCreditCard(address_city, address_line1, address_line2, 
+	add_card_response = this_user.addCreditCard(address_name, address_city, address_line1, address_line2, 
 		address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country)
 	
 	if add_card_response.get(Labels.Success):

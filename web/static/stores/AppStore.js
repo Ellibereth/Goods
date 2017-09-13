@@ -8,13 +8,20 @@ var _currentUser = (localStorage.CurrentUser) ? JSON.parse(localStorage.CurrentU
 var _ip = ""
 
 
-function _loadUserNoJwt(data){
-	_currentUser = data;
+function _loadUserNoJwt(user){
+
+	for (var key in user){
+		if (user.hasOwnProperty(key)){
+			if (_currentUser[key] != user[key]) {
+				_currentUser[key] = user[key]
+			}
+		}
+	}
   	localStorage.CurrentUser = JSON.stringify(_currentUser);
 }
 
-function _loadCurrentUser(data, jwt) {
-  	_currentUser = data;
+function _loadCurrentUser(user, jwt) {
+  	_currentUser = user;
   	localStorage.CurrentUser = JSON.stringify(_currentUser);
   	localStorage.jwt = jwt;
 }	

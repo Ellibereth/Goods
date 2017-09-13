@@ -11,7 +11,8 @@ import {AlertMessages} from '../../../Misc/AlertMessages'
 import FadingText from '../../../Misc/FadingText'
 
 const form_inputs = ["address_city", "address_country",
-					"address_line1", "address_line2", "address_zip",
+					"address_line1", "address_line2", "address_zip", 
+					'address_state',
 					"address_name", "name", "number", "cvc"]
 
 

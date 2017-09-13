@@ -267,8 +267,10 @@ class User(db.Model):
 		public_dict[Labels.AccountId] = self.account_id
 		public_dict[Labels.CartSize] = Cart(self).getCartSize()
 		public_dict[Labels.Cart] = Cart(self).toPublicDict()
-		public_dict[Labels.Addresses] = self.getAddresses()
-		public_dict[Labels.Cards] = self.getCreditCards()
+		public_dict[Labels.Addresses] = []
+		public_dict[Labels.Cards] = []
+		# public_dict[Labels.Addresses] = self.getAddresses()
+		# public_dict[Labels.Cards] = self.getCreditCards()
 		public_dict[Labels.DefaultCard] = self.default_card
 		public_dict[Labels.DefaultAddress] = self.default_address
 		public_dict[Labels.CartMessage] = self.cart_message
@@ -278,7 +280,7 @@ class User(db.Model):
 		public_dict[Labels.AbGroup] = self.ab_group
 		return public_dict
 
-	def toPublicDictCheckout(self, address):
+	def toPublicDictCheckout(self, address = None):
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.Email] = self.email
@@ -296,8 +298,6 @@ class User(db.Model):
 		public_dict[Labels.MembershipTier] = self.membership_tier
 		public_dict[Labels.FbId] = self.fb_id
 		public_dict[Labels.AbGroup] = self.ab_group
-
-
 		return public_dict
 
 	
@@ -423,7 +423,7 @@ class User(db.Model):
 		return {Labels.User : self.toPublicDict()}
 
 	# adds a credit card with billing and shipping information to stripe 
-	def addCreditCard(self, address_city, address_line1, address_line2, address_zip,
+	def addCreditCard(self, address_name, address_city, address_line1, address_line2, address_zip,
 			exp_month, exp_year, number, cvc, name, address_state, address_country = "US"):
 		
 		if exp_year == None or exp_month == None:
@@ -448,7 +448,7 @@ class User(db.Model):
 
 
 		try:
-			card = StripeManager.addCardForCustomer(self, address_city, address_line1, address_line2, 
+			card = StripeManager.addCardForCustomer(self, address_name, address_city, address_line1, address_line2, 
 				address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country = "US")
 			all_cards = self.getCreditCards()
 			if len(all_cards) == 1:

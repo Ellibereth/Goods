@@ -51,7 +51,7 @@ class StripeManager:
 		return customer[Id]
 
 	# adds a new credit card for a customer
-	def addCardForCustomer(user, address_city, address_line1, address_line2, address_zip,
+	def addCardForCustomer(user, address_name, address_city, address_line1, address_line2, address_zip,
 		exp_month, exp_year, number, cvc, name, address_state, address_country = "US"):
 		customer = stripe.Customer.retrieve(user.stripe_customer_id)
 		new_card = {}
@@ -67,7 +67,10 @@ class StripeManager:
 		new_card['name'] = name
 		new_card["address_country"] = address_country
 		new_card["address_state"] = address_state
-		new_card['metadata'] = {"date_created" : time.time()}
+		new_card['metadata'] = {
+			"date_created" : time.time(),
+			"address_name" : address_name
+		}
 		card = customer.sources.create(card = new_card)
 		return card
 
