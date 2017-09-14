@@ -1,7 +1,7 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../stores/AppStore.js';
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+import AppStore from '../../../stores/AppStore.js'
+var browserHistory = require('react-router').browserHistory
 import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import AccountInput from '../../Input/AccountInput'
@@ -9,19 +9,19 @@ import Button from 'react-bootstrap/lib/Button'
 import AppActions from '../../../actions/AppActions'
 
 import {AlertMessages} from '../../Misc/AlertMessages'
-const form_labels = ["Password", "Password Confirm"]
-const form_inputs = ["password", "password_confirm"]
+const form_labels = ['Password', 'Password Confirm']
+const form_inputs = ['password', 'password_confirm']
 const input_types = ['password', 'password']
 import FadingText from '../../Misc/FadingText'
 
 export default class RecoveryChangePasswordPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			password : "",
-			password_confirm : "",
+			password : '',
+			password_confirm : '',
 			is_valid : false,
-			error_text : "",
+			error_text : '',
 			show_error_text : false
 		}
 		this.setErrorMessage  = this.setErrorMessage.bind(this)
@@ -52,8 +52,8 @@ export default class RecoveryChangePasswordPage extends React.Component {
 			recovery_pin : this.props.recovery_pin
 		})
 		$.ajax({
-			type: "POST",
-			url: "/checkRecoveryInformation",
+			type: 'POST',
+			url: '/checkRecoveryInformation',
 			data: form_data,
 			success: function(data) {
 				if (data.success){
@@ -65,13 +65,13 @@ export default class RecoveryChangePasswordPage extends React.Component {
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'checkRecoveryInformation'
-					});
+					eventCategory: ' server-error',
+					eventAction: 'checkRecoveryInformation'
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	submitData(event){
@@ -84,8 +84,8 @@ export default class RecoveryChangePasswordPage extends React.Component {
 		})
 		if (!this.state.disabled) {
 			$.ajax({
-				type: "POST",
-				url: "/recoverySetPassword",
+				type: 'POST',
+				url: '/recoverySetPassword',
 				data: form_data,
 				success: function(data) {
 					if (data.success){
@@ -104,16 +104,16 @@ export default class RecoveryChangePasswordPage extends React.Component {
 						eventCategory: ' server-error',
 						eventAction: 'recoverySetPassword',
 						eventLabel: AppStore.getCurrentUser().email
-					});
+					})
 				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+				dataType: 'json',
+				contentType : 'application/json; charset=utf-8'
+			})
 		}
 	}
 
 	onKeyPress(e){
-		if (e.key == "Enter"){
+		if (e.key == 'Enter'){
 			this.submitData.bind(this)(e)
 		}
 	}
@@ -125,48 +125,48 @@ export default class RecoveryChangePasswordPage extends React.Component {
 				<div className="inviteBlock newLoginProcess edgar-col-sm-30" id="resInviteForm">
 					<div className='loginFormNew floatLeft'>
 
-					<form onSubmit = {this.submitData.bind(this)} onKeyPress = {this.onKeyPress.bind(this)} 
-					className="newInviteWrap" id="uSignup">
-						<div id="invSignUpWrap" style= {{"display": "block"}}>
-							<h2 className="mainIndexTitle reqAccess">Reset Password</h2>
-							<div className="edgar-row" id="errBar" style= {{"*position" : "relative", "display":"none"}}>
-								<div className=" err-from-login edgar-col-xs-60" style = {{"padding": "10px 0"}}>
-									<div className="errorMessage errorMessageNew loginErr" style={{"padding":"0 6px",width: "100%"}}>
+						<form onSubmit = {this.submitData.bind(this)} onKeyPress = {this.onKeyPress.bind(this)} 
+							className="newInviteWrap" id="uSignup">
+							<div id="invSignUpWrap" style= {{'display': 'block'}}>
+								<h2 className="mainIndexTitle reqAccess">Reset Password</h2>
+								<div className="edgar-row" id="errBar" style= {{'*position' : 'relative', 'display':'none'}}>
+									<div className=" err-from-login edgar-col-xs-60" style = {{'padding': '10px 0'}}>
+										<div className="errorMessage errorMessageNew loginErr" style={{'padding':'0 6px',width: '100%'}}>
+										</div>
 									</div>
 								</div>
-							</div>
 
-							<label for="user[un_or_email]">PASSWORD (AT LEAST 6)</label>
-							<input 
-							style = {{"marginBottom" : "12px"}}
-							onChange = {this.onTextChange.bind(this)}
-							className="inputBoxNew borderR3 NewLPUserName"
-							name="password" 
-							placeholder="Password" tabindex="1" type="password" value= {this.state.password}/>
+								<label for="user[un_or_email]">PASSWORD (AT LEAST 6)</label>
+								<input 
+									style = {{'marginBottom' : '12px'}}
+									onChange = {this.onTextChange.bind(this)}
+									className="inputBoxNew borderR3 NewLPUserName"
+									name="password" 
+									placeholder="Password" tabindex="1" type="password" value= {this.state.password}/>
 
-							<label for="user[un_or_email]">CONFIRM PASSWORD</label>
-							<input 
-							style = {{"marginBottom" : "12px"}}
-							onChange = {this.onTextChange.bind(this)}
-							className="inputBoxNew borderR3 NewLPUserName"
-							name="password_confirm" 
-							placeholder="Password Confirm" tabindex="1" type="password" value= {this.state.password_confirm}/>
+								<label for="user[un_or_email]">CONFIRM PASSWORD</label>
+								<input 
+									style = {{'marginBottom' : '12px'}}
+									onChange = {this.onTextChange.bind(this)}
+									className="inputBoxNew borderR3 NewLPUserName"
+									name="password_confirm" 
+									placeholder="Password Confirm" tabindex="1" type="password" value= {this.state.password_confirm}/>
 
 
-							<div className="signUpBtnWrap">
-								<input onClick = {this.submitData.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Recover Account"/> 
-							</div>
+								<div className="signUpBtnWrap">
+									<input onClick = {this.submitData.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Recover Account"/> 
+								</div>
 
-							<FadingText show = {this.state.show_error_text} height_transition = {true}>
-								<span className = "login-error-alert-text " style= {{"textDecoration" : "none", "marginTop" : "10px", display: "block"}}>{this.state.error_text}</span>
-							</FadingText>
+								<FadingText show = {this.state.show_error_text} height_transition = {true}>
+									<span className = "login-error-alert-text " style= {{'textDecoration' : 'none', 'marginTop' : '10px', display: 'block'}}>{this.state.error_text}</span>
+								</FadingText>
 
 					
-						</div>
-					</form>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
-		</div>
 		)
 	}
 }

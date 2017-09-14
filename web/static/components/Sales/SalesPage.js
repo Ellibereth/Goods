@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 
 import PageContainer from '../Misc/PageContainer'
@@ -8,7 +8,7 @@ import HomeProductPreview from '../Home/HomeProductPreview'
 
 export default class SalesPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			products : []
 		}
@@ -16,22 +16,22 @@ export default class SalesPage extends React.Component {
 
 	fetchProductInformation(){
 		$.ajax({
-		  type: "POST",
-		  url: "/getOnSaleProducts",
+		  type: 'POST',
+		  url: '/getOnSaleProducts',
 		  success: function(data) {
-			if (data.success){
-				this.setState({products : data.products})
-			}
+				if (data.success){
+					this.setState({products : data.products})
+				}
 		  }.bind(this),
 		  error : function(){
-			ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'getHomePageProducts',
-						eventLabel: localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
-					});
+				ga('send', 'event', {
+					eventCategory: ' server-error',
+					eventAction: 'getHomePageProducts',
+					eventLabel: localStorage.ab_group +  '-' + AppStore.getCurrentUser().email
+				})
 		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
+		  dataType: 'json',
+		  contentType : 'application/json; charset=utf-8'
 		})
 	}
 
@@ -41,36 +41,36 @@ export default class SalesPage extends React.Component {
 
 	render() {
 		var products = this.state.products.map((product, index) =>
-				<HomeProductPreview product = {product}/>
-			)
+			<HomeProductPreview product = {product}/>
+		)
 
 
 
 		return (
-				<PageContainer>
-					<div>
-						<div className = "container">
-							<div className="row show-grid">
-								<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
-									<h1>
+			<PageContainer>
+				<div>
+					<div className = "container">
+						<div className="row show-grid">
+							<div className = "col-xs-12 col-md-12 col-sm-12 col-lg-12">
+								<h1>
 										These products are on sale!
-									</h1>
-								</div>
+								</h1>
 							</div>
 						</div>
-						<div className = "home-large-buffer"/>
+					</div>
+					<div className = "home-large-buffer"/>
 
 							
-						<div className = "container-fluid home-product-preview-container">
-							<div className = "container">
-								<div className = "row product-preview-row">
-									{products}
-								</div>
+					<div className = "container-fluid home-product-preview-container">
+						<div className = "container">
+							<div className = "row product-preview-row">
+								{products}
 							</div>
 						</div>
-								
 					</div>
-				</PageContainer>
-		);
+								
+				</div>
+			</PageContainer>
+		)
 	}
 }

@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import HomeProductPreview from './HomeProductPreview'
 import HomePageSingleImage from './HomePageSingleImage'
 
@@ -7,7 +7,7 @@ import HomePageSingleImage from './HomePageSingleImage'
 
 export default class HomePageMainContainer extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
 	}
@@ -36,8 +36,8 @@ export default class HomePageMainContainer extends React.Component {
 	render() {
 		var ordered_products = this.orderProducts(this.props.products)
 		var products = ordered_products.map((product, index) =>
-				<HomeProductPreview product = {product}/>
-			)
+			<HomeProductPreview product = {product}/>
+		)
 
 		return (
 			<div className = "hidden-xs">
@@ -47,7 +47,7 @@ export default class HomePageMainContainer extends React.Component {
 				<div className = "small-buffer"/>
 				<div className = "dark-grey-horizontal-line"/>
 				<div className = "small-buffer"/>
-				<div style = {{"marginBottom" : "-10px"}} className ="container-fluid">
+				<div style = {{'marginBottom' : '-10px'}} className ="container-fluid">
 					<div className = "row home-product-group-header-row">
 						<span className = "home-product-group-header">
 							Featured
@@ -59,6 +59,6 @@ export default class HomePageMainContainer extends React.Component {
 					</div>
 				</div>
 			</div>
-			);
+		)
 	}
 }

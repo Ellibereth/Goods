@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppStore from '../../../stores/AppStore'
 import AppActions from '../../../actions/AppActions'
 import LoginBoxLeft from './LoginBoxLeft'
@@ -14,20 +14,20 @@ const REGISTER_STATE = 1
 
 export default class LoginBox extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			is_loading : false,
-			password : "",
-			login_email : "",
-			register_email : "",
-			name : "",
-			register_password : "",
+			password : '',
+			login_email : '',
+			register_email : '',
+			name : '',
+			register_password : '',
 			disabled : false,
-			register_password_confirm: "",
+			register_password_confirm: '',
 			show_login_faded_text : false,
-			login_faded_text : "",
+			login_faded_text : '',
 			show_register_faded_text : false,
-			register_faded_text : "",
+			register_faded_text : '',
 			register_success : false
 		}
 	}
@@ -59,8 +59,8 @@ export default class LoginBox extends React.Component {
 
 			var form_data = JSON.stringify(data)
 			$.ajax({
-				type: "POST",
-				url: "/checkLogin",
+				type: 'POST',
+				url: '/checkLogin',
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
@@ -68,10 +68,10 @@ export default class LoginBox extends React.Component {
 					}
 					else {
 						ga('send', 'event', {
-								eventCategory: 'Account',
-								eventAction: 'Login',
-								eventLabel: data.user.email
-						});
+							eventCategory: 'Account',
+							eventAction: 'Login',
+							eventLabel: data.user.email
+						})
 
 						AppActions.addCurrentUser(data.user, data.jwt)
 						var target = getParameterByName('target')
@@ -89,9 +89,9 @@ export default class LoginBox extends React.Component {
 					this.props.setLoading(false)
 					this.setState({disabled : false})
 				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+				dataType: 'json',
+				contentType : 'application/json; charset=utf-8'
+			})
 		}
 
 	}
@@ -124,8 +124,8 @@ export default class LoginBox extends React.Component {
 
 			var form_data = JSON.stringify(data)
 			$.ajax({
-				type: "POST",
-				url: "/registerUserAccount",
+				type: 'POST',
+				url: '/registerUserAccount',
 				data: form_data,
 				success: function(data) {
 					if (!data.success) {
@@ -133,11 +133,11 @@ export default class LoginBox extends React.Component {
 						setTimeout(function() {this.setState({show_register_faded_text : false})}.bind(this), 4000)
 					}
 					else {
-						ga('send', 'pageview', 'register-complete');
+						ga('send', 'pageview', 'register-complete')
 						AppActions.addCurrentUser(data.user, data.jwt)
-						this.setState({register_faded_text : "You're account was created. Welcome to Edgar USA", register_success : true, show_register_faded_text : true})
+						this.setState({register_faded_text : 'You\'re account was created. Welcome to Edgar USA', register_success : true, show_register_faded_text : true})
 						setTimeout(function() {
-							window.location = "/"
+							window.location = '/'
 						}.bind(this), 4000)
 
 					}
@@ -148,14 +148,14 @@ export default class LoginBox extends React.Component {
 					ga('send', 'event', {
 						eventCategory: ' server-error',
 						eventAction: 'registerUserAccount'
-					});
+					})
 					this.props.setLoading(false)
 					// this.props.setLoading(false)
 					this.setState({disabled : false})
 				}.bind(this),
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+				dataType: 'json',
+				contentType : 'application/json; charset=utf-8'
+			})
 		}
 	
 	}
@@ -170,9 +170,9 @@ export default class LoginBox extends React.Component {
 
 
 	render() {
-		var register_styles = this.props.form_state == REGISTER_STATE ?  {display : "none"} :{"display" :"block"}
-		var login_styles = this.props.form_state == LOGIN_STATE ? {display : "none"} : {"display" :" block"} 
-		var success_class = this.state.register_success ? " register-success " : " "
+		var register_styles = this.props.form_state == REGISTER_STATE ?  {display : 'none'} :{'display' :'block'}
+		var login_styles = this.props.form_state == LOGIN_STATE ? {display : 'none'} : {'display' :' block'} 
+		var success_class = this.state.register_success ? ' register-success ' : ' '
 
 		return (
 			<div>
@@ -181,10 +181,10 @@ export default class LoginBox extends React.Component {
 						<div style = {login_styles} className="loginFormNew floatLeft" id="loginWrap" >
 							<div id="LoginScreen">
 								<form onSubmit = {this.loginUser.bind(this)} onKeyPress = {this.onLoginKeyPress.bind(this)}>
-									<h2 className="mainIndexTitle" style={{"color":"#333"}}>Member Sign In</h2>
-									<div className="edgar-row" id="errBar" style= {{"*position" : "relative"}}>
-										<div className=" err-from-login edgar-col-xs-60" style={{"padding": "10px 0"}}>
-											<div className="errorMessage errorMessageNew loginErr" style={{"padding":"0 6px","width": "100%"}}>
+									<h2 className="mainIndexTitle" style={{'color':'#333'}}>Member Sign In</h2>
+									<div className="edgar-row" id="errBar" style= {{'*position' : 'relative'}}>
+										<div className=" err-from-login edgar-col-xs-60" style={{'padding': '10px 0'}}>
+											<div className="errorMessage errorMessageNew loginErr" style={{'padding':'0 6px','width': '100%'}}>
 											</div>
 										</div>
 									</div>
@@ -192,36 +192,36 @@ export default class LoginBox extends React.Component {
 										EMAIL
 									</label>
 									<input 
-									onChange = {this.onTextChange.bind(this)}
-									className="inputBoxNew borderR3 NewLPUserName" id="userId" 
-									name="login_email" placeholder="Email address" type="text" value= {this.state.login_email}/>
+										onChange = {this.onTextChange.bind(this)}
+										className="inputBoxNew borderR3 NewLPUserName" id="userId" 
+										name="login_email" placeholder="Email address" type="text" value= {this.state.login_email}/>
 									  
 
-									<label for="user[password]" style= {{"marginTop" : "8px"}}>PASSWORD <em className="requestMemHelp hide fontIt font11 fontFamG color999 fontLtr" style={{"fontSize": "10px","fontWeight": "normal"}}>(5 character or more)</em></label> 
+									<label for="user[password]" style= {{'marginTop' : '8px'}}>PASSWORD <em className="requestMemHelp hide fontIt font11 fontFamG color999 fontLtr" style={{'fontSize': '10px','fontWeight': 'normal'}}>(5 character or more)</em></label> 
 									<input 
-									onChange = {this.onTextChange.bind(this)}
-									className="inputBoxNew borderR3 NewLPPwd"
-									id="password" name="login_password" type="password"
-									value = {this.state.login_password}/> 
+										onChange = {this.onTextChange.bind(this)}
+										className="inputBoxNew borderR3 NewLPPwd"
+										id="password" name="login_password" type="password"
+										value = {this.state.login_password}/> 
 
 							
 
 
-									<div id="loginAndFbButtons" style= {{"position": "relative", "marginTop": "20px"}}>
+									<div id="loginAndFbButtons" style= {{'position': 'relative', 'marginTop': '20px'}}>
 										<input className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit"  type="submit" value="Login"/> 
 
-										<div style= {{" clear": "both"}}>
+										<div style= {{' clear': 'both'}}>
 										</div>
-										<span id="login_user_loader" style={{"bottom":"17px",position:"absolute",left:"99px","*bottom": "21px","*left": "140px"}}></span>
+										<span id="login_user_loader" style={{'bottom':'17px',position:'absolute',left:'99px','*bottom': '21px','*left': '140px'}}></span>
 										<span className = "hidden-xs">
-											<div style = {{"float" : "right"}}>
+											<div style = {{'float' : 'right'}}>
 												{/* <FacebookConnect  
 												setLoading = {this.props.setLoading}
 												button_text = "LOGIN WITH FACEBOOK"/> */}
 											</div>
 										</span>
 										<span className = "hidden-sm hidden-md hidden-lg">
-											<div style=  {{"paddingTop" : "48px"}}>
+											<div style=  {{'paddingTop' : '48px'}}>
 												{/* <FacebookConnect setLoading = {this.props.setLoading}
 												 button_text = "LOGIN WITH FACEBOOK"/> */}
 											</div>
@@ -229,91 +229,91 @@ export default class LoginBox extends React.Component {
 									</div>
 								</form>
 								
-								<a href = "/recoverAccount" className = "hidden-xs" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "70px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
-								<a href = "/recoverAccount" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>Forgot your password?</a>
-								<a href= "/register" className = "hidden-xs" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Don't have an account yet? Register today</a>
-								<a href= "/register" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{"textDecoration" : "none", "lineHeight" : "32px", display: "block"}}>Register</a>
+								<a href = "/recoverAccount" className = "hidden-xs" id="forgotPW" style= {{'textDecoration' : 'none', 'marginTop' : '70px', 'lineHeight' : '32px', display: 'block'}}>Forgot your password?</a>
+								<a href = "/recoverAccount" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{'textDecoration' : 'none', 'marginTop' : '10px', 'lineHeight' : '32px', display: 'block'}}>Forgot your password?</a>
+								<a href= "/register" className = "hidden-xs" id="forgotPW" style= {{'textDecoration' : 'none', 'lineHeight' : '32px', display: 'block'}}>Don't have an account yet? Register today</a>
+								<a href= "/register" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{'textDecoration' : 'none', 'lineHeight' : '32px', display: 'block'}}>Register</a>
 								<FadingText show = {this.state.show_login_faded_text} height_transition = {true}>
-									<span href = "/recoverAccount" className = "hidden-xs login-error-alert-text" style= {{"textDecoration" : "none", "marginTop" : "10px", "lineHeight" : "32px", display: "block"}}>{this.state.login_faded_text}</span>
+									<span href = "/recoverAccount" className = "hidden-xs login-error-alert-text" style= {{'textDecoration' : 'none', 'marginTop' : '10px', 'lineHeight' : '32px', display: 'block'}}>{this.state.login_faded_text}</span>
 								</FadingText>
 							</div>
 						</div>
 
 
-					<form onSubmit = {this.registerUser.bind(this)} onKeyPress = {this.onRegisterKeyPress.bind(this)}
+						<form onSubmit = {this.registerUser.bind(this)} onKeyPress = {this.onRegisterKeyPress.bind(this)}
 					 style = {register_styles} className="newInviteWrap" id="uSignup">
-						<div id="invSignUpWrap" style= {{"display": "block"}}>
-							<h2 className="mainIndexTitle reqAccess">Join Today!</h2>
+							<div id="invSignUpWrap" style= {{'display': 'block'}}>
+								<h2 className="mainIndexTitle reqAccess">Join Today!</h2>
 
 
-							<div className="edgar-row" id="errBar" style= {{"*position" : "relative", "display":"none"}}>
-								<div className=" err-from-login edgar-col-xs-60" style = {{"padding": "10px 0"}}>
-									<div className="errorMessage errorMessageNew loginErr" style={{"padding":"0 6px",width: "100%"}}>
+								<div className="edgar-row" id="errBar" style= {{'*position' : 'relative', 'display':'none'}}>
+									<div className=" err-from-login edgar-col-xs-60" style = {{'padding': '10px 0'}}>
+										<div className="errorMessage errorMessageNew loginErr" style={{'padding':'0 6px',width: '100%'}}>
+										</div>
 									</div>
 								</div>
-							</div>
 
-							<label for="user[un_or_email]">NAME</label>
-							<input 
-							style = {{"marginBottom" : "12px"}}
-							onChange = {this.onTextChange.bind(this)}
-							className="inputBoxNew borderR3 NewLPUserName"
-							id="user_email" name="name" 
-							placeholder="" tabindex="1" type="text" value= {this.state.name}/>
+								<label for="user[un_or_email]">NAME</label>
+								<input 
+									style = {{'marginBottom' : '12px'}}
+									onChange = {this.onTextChange.bind(this)}
+									className="inputBoxNew borderR3 NewLPUserName"
+									id="user_email" name="name" 
+									placeholder="" tabindex="1" type="text" value= {this.state.name}/>
 
 							 <label for="user[un_or_email]">EMAIL</label>
-							<input 
-							style = {{"marginBottom" : "12px"}}
-							onChange = {this.onTextChange.bind(this)}
-							className="inputBoxNew borderR3 NewLPUserName"
+								<input 
+									style = {{'marginBottom' : '12px'}}
+									onChange = {this.onTextChange.bind(this)}
+									className="inputBoxNew borderR3 NewLPUserName"
 							 id="user_email" name="register_email" 
 							 placeholder="" tabindex="2" type="text" value={this.state.register_email}/>
 
 							 <label for="user[un_or_email]">PASSWORD (AT LEAST 6 CHARACTERS)</label>
-							<input 
-							style = {{"marginBottom" : "12px"}}
-							onChange = {this.onTextChange.bind(this)}
-							className="inputBoxNew borderR3 NewLPUserName"
+								<input 
+									style = {{'marginBottom' : '12px'}}
+									onChange = {this.onTextChange.bind(this)}
+									className="inputBoxNew borderR3 NewLPUserName"
 							 id="user_email" name="register_password" 
 							 placeholder="" tabindex="3" type="password" value= {this.state.register_password}/> 
 
 							 <label for="user[un_or_email]">CONFIRM PASSWORD</label>
-							<input 
-							style = {{"marginBottom" : "12px"}}
-							onChange = {this.onTextChange.bind(this)}
-							className="inputBoxNew borderR3 NewLPUserName"
+								<input 
+									style = {{'marginBottom' : '12px'}}
+									onChange = {this.onTextChange.bind(this)}
+									className="inputBoxNew borderR3 NewLPUserName"
 							 id="user_email" name="register_password_confirm" 
 							 placeholder="" tabindex="4" type="password" value= {this.state.register_password_confirm}/>
 
-							<div className="signUpBtnWrap">
-								<input onClick = {this.registerUser.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
-								<span className = "hidden-xs">
-									<div style = {{"float" : "right"}}>
+								<div className="signUpBtnWrap">
+									<input onClick = {this.registerUser.bind(this)} className="edgarSubmitBtn edgarGradNew borderR3 noShadow" id="reqSubmit" type="submit" value="Sign Up"/> 
+									<span className = "hidden-xs">
+										<div style = {{'float' : 'right'}}>
 										 {/* <FacebookConnect 
 										 setLoading = {this.props.setLoading}
 										  button_text = "LOGIN WITH FACEBOOK"/> */}
-									</div>
-								</span>
-								<span className = "hidden-sm hidden-md hidden-lg">
-									<div style=  {{"paddingTop" : "12px"}}>
-										{/* <FacebookConnect  
+										</div>
+									</span>
+									<span className = "hidden-sm hidden-md hidden-lg">
+										<div style=  {{'paddingTop' : '12px'}}>
+											{/* <FacebookConnect  
 										setLoading = {this.props.setLoading}
 										button_text = "LOGIN WITH FACEBOOK"/>  */}
-									</div>
-								</span>
+										</div>
+									</span>
+								</div>
+
+								<a href = "/login" id="forgotPW" style= {{'textDecoration' : 'none', 'marginTop' : '6px', 'lineHeight' : '32px', display: 'block'}}>Already have an account?</a>
+
+								<FadingText show = {this.state.show_register_faded_text} height_transition = {true}>
+									<span href = "/recoverAccount" className = {' hidden-xs login-error-alert-text ' + success_class} style= {{'textDecoration' : 'none', 'marginTop' : '10px', display: 'block'}}>{this.state.register_faded_text}</span>
+								</FadingText>
+
 							</div>
-
-							<a href = "/login" id="forgotPW" style= {{"textDecoration" : "none", "marginTop" : "6px", "lineHeight" : "32px", display: "block"}}>Already have an account?</a>
-
-							<FadingText show = {this.state.show_register_faded_text} height_transition = {true}>
-								<span href = "/recoverAccount" className = {" hidden-xs login-error-alert-text " + success_class} style= {{"textDecoration" : "none", "marginTop" : "10px", display: "block"}}>{this.state.register_faded_text}</span>
-							</FadingText>
-
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
 			</div>
-		</div>
 			
 		)
 	}

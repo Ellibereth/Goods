@@ -1,14 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
-var browserHistory = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory
 import Button from 'react-bootstrap/lib/Button'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AdminEditProductPhotos extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
 	}
@@ -21,21 +21,21 @@ export default class AdminEditProductPhotos extends React.Component {
 
 	onSetMainPhoto(image_id, index) {
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.setMainPhoto.bind(this)(image_id, index)
-		}.bind(this))
+			function () {
+				this.setMainPhoto.bind(this)(image_id, index)
+			}.bind(this))
 	}
 
 	setMainPhoto(image_id, index){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"image_id" : image_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'image_id' : image_id,
+			'jwt' : localStorage.jwt
 		})
 
 		$.ajax({
-			type: "POST",
-			url: "/setMainProductPhoto",
+			type: 'POST',
+			url: '/setMainProductPhoto',
 			data: form_data,
 			success: function(data) {
 				var obj = this.props.product
@@ -47,42 +47,42 @@ export default class AdminEditProductPhotos extends React.Component {
 			}.bind(this),
 			error : function(){
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-			});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
 	onDeletePhoto(image_id, index) {
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.deletePhoto.bind(this)(image_id, index)
-		}.bind(this))
+			function () {
+				this.deletePhoto.bind(this)(image_id, index)
+			}.bind(this))
 	}
 
 	deletePhoto(image_id, index){
 		// ajax to delete photo 
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"image_id" : image_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'image_id' : image_id,
+			'jwt' : localStorage.jwt
 		})
 
 		$.ajax({
-			type: "POST",
-			url: "/deleteProductPhoto",
+			type: 'POST',
+			url: '/deleteProductPhoto',
 			data: form_data,
 			success: function(data) {
 				var obj = this.props.product
-				obj.images.splice(index, 1);
+				obj.images.splice(index, 1)
 				this.props.getProductInformation(obj)
 			}.bind(this),
 			error : function(){
-				console.log("error")
+				console.log('error')
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-			});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	getProductInformation(){
@@ -95,30 +95,30 @@ export default class AdminEditProductPhotos extends React.Component {
 		// select as main
 		// delete button
 		var product = this.props.product
-		if (product == null || product.product_id == null) return <div/>;
+		if (product == null || product.product_id == null) return <div/>
 		if (product.images.length == 0) return <h4> No images are listed for this product </h4>
 		// something better needs to be done about bad pages, but I'll figure something out soon
-		var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+		var src_base = 'https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/'
 
 		var images = product.images.map((image, index) => {
-				var label = (image.image_id == product.main_image) ? "Main Image" : "Not Main"
-				return (	
-					<div className="item col-lg-3 col-md-3 col-sm-3">
-						<div className = "row">
-							<h3> {label} </h3>
-						</div>
-						<div className = "row">
-							<img src= {src_base + image.image_id} id = {index} className = "admin-product-image"/>
-						</div>
-						<div className = "row">
-							<Button onClick = {this.onDeletePhoto.bind(this, image.image_id, index)}> Delete Photo </Button>
-						</div>
-						<div className = "row">
-							<Button onClick = {this.onSetMainPhoto.bind(this, image.image_id, index)}> Set as Main Photo </Button>
-						</div>
+			var label = (image.image_id == product.main_image) ? 'Main Image' : 'Not Main'
+			return (	
+				<div className="item col-lg-3 col-md-3 col-sm-3">
+					<div className = "row">
+						<h3> {label} </h3>
 					</div>
-				)
-			})
+					<div className = "row">
+						<img src= {src_base + image.image_id} id = {index} className = "admin-product-image"/>
+					</div>
+					<div className = "row">
+						<Button onClick = {this.onDeletePhoto.bind(this, image.image_id, index)}> Delete Photo </Button>
+					</div>
+					<div className = "row">
+						<Button onClick = {this.onSetMainPhoto.bind(this, image.image_id, index)}> Set as Main Photo </Button>
+					</div>
+				</div>
+			)
+		})
 		
 
 
@@ -130,5 +130,5 @@ export default class AdminEditProductPhotos extends React.Component {
 				</div>
 			</div>
 		)
-}
+	}
 }

@@ -1,17 +1,17 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../stores/AppStore.js';
-import AppActions from '../../../actions/AppActions.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+import AppStore from '../../../stores/AppStore.js'
+import AppActions from '../../../actions/AppActions.js'
 import PageContainer from '../../Misc/PageContainer'
 import UpdateSettingsPreview from './Personal/UpdateSettingsPreview.js'
 import BillingPreview from './Billing/BillingPreview.js'
 import ShippingPreview from './Shipping/ShippingPreview'
 import OrdersPreview from './Orders/OrdersPreview'
-var browserHistory = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory
 
 export default class SettingsPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			cards : [],
 			addresses : [],
@@ -24,11 +24,11 @@ export default class SettingsPage extends React.Component {
 	refreshSettings(){
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
-				"jwt" : localStorage.jwt
-			})
+			'jwt' : localStorage.jwt
+		})
 		$.ajax({
-			type: "POST",
-			url: "/refreshCheckoutInfo",
+			type: 'POST',
+			url: '/refreshCheckoutInfo',
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
@@ -47,14 +47,14 @@ export default class SettingsPage extends React.Component {
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'getUserInfo',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'getUserInfo',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	componentDidMount(){
@@ -88,26 +88,26 @@ export default class SettingsPage extends React.Component {
 		return (
 			<PageContainer is_loading = {this.state.is_loading}>
 				<div id = "settings-container">
-					<h1 style = {{"margin-left": "14px"}}> Your Account </h1> 
+					<h1 style = {{'margin-left': '14px'}}> Your Account </h1> 
 					<br/>
 					<UpdateSettingsPreview  />
 					<br/>
-						<div>
-							<ShippingPreview 
-								setLoading = {this.setLoading.bind(this)}
-								is_loading = {this.state.is_loading}
-								refreshSettings = {this.refreshSettings}
-								addresses = {this.state.addresses}/>
-							<br/>
-							<BillingPreview
-								setLoading = {this.setLoading.bind(this)}
-								is_loading  = {this.state.is_loading}
-								refreshSettings = {this.refreshSettings} 
-								cards = {this.state.cards} />
-							<br />
-							<OrdersPreview orders = {this.state.orders} />
-							<br/>
-						</div>
+					<div>
+						<ShippingPreview 
+							setLoading = {this.setLoading.bind(this)}
+							is_loading = {this.state.is_loading}
+							refreshSettings = {this.refreshSettings}
+							addresses = {this.state.addresses}/>
+						<br/>
+						<BillingPreview
+							setLoading = {this.setLoading.bind(this)}
+							is_loading  = {this.state.is_loading}
+							refreshSettings = {this.refreshSettings} 
+							cards = {this.state.cards} />
+						<br />
+						<OrdersPreview orders = {this.state.orders} />
+						<br/>
+					</div>
 				</div>
 			</PageContainer>
 		)

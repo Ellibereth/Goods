@@ -1,11 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import PageContainer from '../../Misc/PageContainer.js'
 
 
 export default class AdminProductPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			email_list : {},
 			subscribed_users : []
@@ -14,31 +14,31 @@ export default class AdminProductPage extends React.Component {
 
 	getEmailListInformation(){
 		var form_data = JSON.stringify({
-			"email_list_id" : this.props.params.email_list_id,
-			"jwt" : localStorage.jwt
+			'email_list_id' : this.props.params.email_list_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		  type: "POST",
-		  url: "/getEmailListInfo",
+		  type: 'POST',
+		  url: '/getEmailListInfo',
 		  data: form_data,
 		  success: function(data) {
-			if (!data.success){
-				this.setState({invalid_product : true})
-			}
-			else {
-				this.setState({
-					email_list : data.email_list,
-					subscribed_users : data.email_list.subscribed_users
-				})
-			}
+				if (!data.success){
+					this.setState({invalid_product : true})
+				}
+				else {
+					this.setState({
+						email_list : data.email_list,
+						subscribed_users : data.email_list.subscribed_users
+					})
+				}
 			
 		  }.bind(this),
 		  error : function(){
 
 		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
-		});
+		  dataType: 'json',
+		  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	unsubscribeUser(unsubscribe_id) {
@@ -46,27 +46,27 @@ export default class AdminProductPage extends React.Component {
 			unsubscribe_id : unsubscribe_id
 		})
 		$.ajax({
-		  type: "POST",
-		  url: "/unsubscribeUserFromEmailList",
+		  type: 'POST',
+		  url: '/unsubscribeUserFromEmailList',
 		  data: form_data,
 		  success: function(data) {
-			if (!data.success){
-				this.setState({invalid_product : true})
-			}
-			else {
-				this.setState({
-					email_list : data.email_list,
-					subscribed_users : data.email_list.subscribed_users
-				})
-			}
+				if (!data.success){
+					this.setState({invalid_product : true})
+				}
+				else {
+					this.setState({
+						email_list : data.email_list,
+						subscribed_users : data.email_list.subscribed_users
+					})
+				}
 			
 		  }.bind(this),
 		  error : function(){
 
 		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
-		});
+		  dataType: 'json',
+		  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	componentDidMount() {
@@ -76,16 +76,16 @@ export default class AdminProductPage extends React.Component {
 	render() {
 		var email_list = this.state.email_list
 		var user_list_display = this.state.subscribed_users.map((subscriber, index) => 
-				<tr>
-					<td> {subscriber.email} </td>
-					<td> 
-						<div className = "clickable-text" 
-							onClick = {this.unsubscribeUser.bind(this, subscriber.unsubscribe_id)}>
+			<tr>
+				<td> {subscriber.email} </td>
+				<td> 
+					<div className = "clickable-text" 
+						onClick = {this.unsubscribeUser.bind(this, subscriber.unsubscribe_id)}>
 								Unsubscribe
-						</div>
-					</td>
-				</tr>
-			)
+					</div>
+				</td>
+			</tr>
+		)
 		return (
 			<PageContainer>
 				<div>
@@ -109,6 +109,6 @@ export default class AdminProductPage extends React.Component {
 
 				</div>
 			</PageContainer>
-		);
+		)
 	}
 }

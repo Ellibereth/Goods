@@ -155,13 +155,39 @@ cd web && sh bundledev
 ```
 
 
+### Static Analysis Tools
+For Python we use PyLint and React JS we use EsLint 
 
+## PyLint 
+Intall by initialize a config file by running 
+```
+pip install pylint
+eslint --init
+```
+
+Run the following from the command line to analyze python files
+```
+pylint [FILENAME] --rcfile=[CONFIG_FILENAME] > [OUTPUT_FILENAME]
+```
+
+## EsLint 
+Install by 
+```
+npm install --save eslint 
+```
+
+
+Run the following from the command line in /web to analyze react.js files
+```
+eslint [DIRECTORY / FILENAME]  > [OUTPUT_FILENAME]
+```
+one can add --fix to automatically make the changes from the config file. Currently it is named .eslintrc.js and is located in the web folder 
 
 
 
 
 ## Contributors
-Any questions can be sent to darek@manaweb.com
+Any questions can be sent to darek@edgarusa.com
 
 ## License
 Edgar USA Inc.

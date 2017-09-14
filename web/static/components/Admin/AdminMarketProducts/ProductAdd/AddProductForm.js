@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 const form_inputs = ['name']
-const form_labels = ["Product Name"]
+const form_labels = ['Product Name']
 const input_types = ['text']
 import TextInput from '../../../Input/TextInput.js'
 import TagsInput from 'react-tagsinput'
@@ -11,9 +11,9 @@ import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AddProductForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			name: "",
+			name: '',
 		}
 	}
 
@@ -27,36 +27,36 @@ export default class AddProductForm extends React.Component {
 
 
 	submitData(){
-			var data = {}
-			var market_product = {}
-			for (var i = 0; i < form_inputs.length; i++){
-				market_product[form_inputs[i]] = this.state[form_inputs[i]]
-			}
+		var data = {}
+		var market_product = {}
+		for (var i = 0; i < form_inputs.length; i++){
+			market_product[form_inputs[i]] = this.state[form_inputs[i]]
+		}
 
-			var form_data = JSON.stringify({
-				market_product : market_product,
-				jwt  : localStorage.jwt
-			})
-			$.ajax({
-				type: "POST",
-				url: "/addMarketProduct",
-				data: form_data,
-				success: function(data) {
-					if (!data.success) {
-						swal(data.error.title, data.error.text , data.error.type)
-					}
-					else {
-						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-						setTimeout(function () {
-							window.location = '/yevgeniypoker555/editProduct/' + data.product.product_id
-						}, 2000)
-					}
-				}.bind(this),
-				error : function(){
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+		var form_data = JSON.stringify({
+			market_product : market_product,
+			jwt  : localStorage.jwt
+		})
+		$.ajax({
+			type: 'POST',
+			url: '/addMarketProduct',
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					swal(data.error.title, data.error.text , data.error.type)
+				}
+				else {
+					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+					setTimeout(function () {
+						window.location = '/yevgeniypoker555/editProduct/' + data.product.product_id
+					}, 2000)
+				}
+			}.bind(this),
+			error : function(){
+			},
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}	
 
 	render() {
@@ -80,11 +80,11 @@ export default class AddProductForm extends React.Component {
 
 				<div className = "form-group">
 
-				<div className = "col-sm-10">
-					<button type = "button" className = "btn btn-default" onClick = {this.submitData.bind(this)}>
+					<div className = "col-sm-10">
+						<button type = "button" className = "btn btn-default" onClick = {this.submitData.bind(this)}>
 					Submit!
-					</button>
-				</div>
+						</button>
+					</div>
 				</div>
 			</form>
 		)

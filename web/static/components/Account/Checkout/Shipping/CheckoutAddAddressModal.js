@@ -1,18 +1,16 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
 import CheckoutAddAddress from './CheckoutAddAddress.js'
 import Modal from 'react-bootstrap/lib/Modal'
-import {AlertMessages} from '../../../Misc/AlertMessages'
+
 export default class CheckoutAddAddressModal extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = { 
 		}
 	}
 	onModalClosePress(){
 		this.props.toggleModal()
 	}
-
 
 	render() {
 		
@@ -29,13 +27,13 @@ export default class CheckoutAddAddressModal extends React.Component {
 
 				</Modal.Header>
 				<Modal.Body>
-						<CheckoutAddAddress
-							setLoading = {this.props.setLoading}
-							refreshCheckoutInformation = {this.props.refreshCheckoutInformation}
-							toggleModal = {this.props.toggleModal}
-							onAddingNewShippingAddress = {this.props.onAddingNewShippingAddress}/>
+					<CheckoutAddAddress
+						setLoading = {this.props.setLoading}
+						refreshCheckoutInformation = {this.props.refreshCheckoutInformation}
+						toggleModal = {this.props.toggleModal}
+						onAddingNewShippingAddress = {this.props.onAddingNewShippingAddress}/>
 				</Modal.Body>
 			</Modal>
-		);
+		)
 	}	
 }

@@ -1,12 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import PageContainer from '../Misc/PageContainer'
-// import SearchProductPreview from './SearchProductPreview'
+var React = require('react')
+
 import HomeProductPreview from '../Home/HomeProductPreview'
 
 export default class SearchPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			products : [],
 			num_results:  0,
@@ -26,9 +24,9 @@ export default class SearchPage extends React.Component {
 			'search_input' : search_input
 		})
 		$.ajax({
-			type: "POST",
+			type: 'POST',
 			data: form_data,
-			url: "/searchProducts",
+			url: '/searchProducts',
 			success: function(data) {
 				if (data.success) {
 					this.setState({
@@ -38,8 +36,8 @@ export default class SearchPage extends React.Component {
 					})
 				}
 			}.bind(this),
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
 		})
 	}
 
@@ -52,26 +50,26 @@ export default class SearchPage extends React.Component {
 		
 
 		return (
-				<PageContainer>
-					<div id = "search-container" className = "container-fluid">
-						<div className = "container">
-							{this.state.is_loading 
-								? 
-									<div></div>
-								:
-								<div>
-									<div className = "row search-result-amount-text">
-										Showing {this.state.num_results} {this.state.num_results == 1 ? "result" : "results"} for <b> {this.props.params.search_input}</b>
-									</div>
-									<div className = "row">
-										{products_display}
-									</div>
+			<PageContainer>
+				<div id = "search-container" className = "container-fluid">
+					<div className = "container">
+						{this.state.is_loading 
+							? 
+							<div></div>
+							:
+							<div>
+								<div className = "row search-result-amount-text">
+										Showing {this.state.num_results} {this.state.num_results == 1 ? 'result' : 'results'} for <b> {this.props.params.search_input}</b>
 								</div>
-							}
+								<div className = "row">
+									{products_display}
+								</div>
+							</div>
+						}
 							
-						</div>
 					</div>
-				</PageContainer>
-		);
+				</div>
+			</PageContainer>
+		)
 	}
 }

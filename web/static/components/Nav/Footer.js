@@ -1,11 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 const footer_links = ['Smile', 'Guarantee', 'About', 'Edgar', 'Cards', 'Mobile', 'Apps']
 // , 'Careers', 'Blog', 'FAQs', 'Contact Us', 'Return Policy', 'Shipping', 'Terms', 'Privacy']
 export default class HomeFooter extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
 	}
@@ -43,7 +43,7 @@ export default class HomeFooter extends React.Component {
 							
 
 							<div className="departments section">
-							{/* <div className="departments section"> */}
+								{/* <div className="departments section"> */}
 								<ul>
 									<li> <a href="/about">About Us</a> </li>
 									<li> <a href="/faq">FAQ</a> </li>
@@ -88,7 +88,7 @@ export default class HomeFooter extends React.Component {
 							</div>
 
 							<div className="top-designers section">
-								<span className="section-title" style= {{"text-transform" : "none"}}>Opening Special!</span>
+								<span className="section-title" style= {{'text-transform' : 'none'}}>Opening Special!</span>
 								<span className="updtdLatstArriTxt">
 									Get 10% off for your first month!*
 								</span> 
@@ -103,6 +103,6 @@ export default class HomeFooter extends React.Component {
 					</div>
 				</footer>
 			</div>
-		);
+		)
 	}
 }

@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import PageContainer from '../Misc/PageContainer'
 // import SearchProductPreview from './SearchProductPreview'
 import HomeProductPreview from '../Home/HomeProductPreview'
 
 export default class ProductListingPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			products : [],
 			is_loading : true
@@ -22,9 +22,9 @@ export default class ProductListingPage extends React.Component {
 			tag : tag
 		})
 		$.ajax({
-			type: "POST",
+			type: 'POST',
 			data: form_data,
-			url: "/getProductsByListingTag",
+			url: '/getProductsByListingTag',
 			success: function(data) {
 				if (data.success) {
 					this.setState({
@@ -33,8 +33,8 @@ export default class ProductListingPage extends React.Component {
 					})
 				}
 			}.bind(this),
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
 		})
 	}
 
@@ -46,35 +46,35 @@ export default class ProductListingPage extends React.Component {
 		)
 
 		if (this.props.params.tag) {
-			var display_title = this.props.params.tag.split("_").join(" ")
+			var display_title = this.props.params.tag.split('_').join(' ')
 		}
 		else {
-			var display_title = ""
+			var display_title = ''
 		}
 		
 		
 
 		return (
-				<PageContainer>
-					<div id = "search-container" className = "container-fluid">
-							{
-								this.state.is_loading
-								?
-									<div> </div>
-								:
-								<div>
-									<div className = "row search-result-amount-text">
-										{display_title}
-									</div> 
-									<div className = "small-buffer"/>
-									<div className = "row">
-										{products_display}
-									</div>
+			<PageContainer>
+				<div id = "search-container" className = "container-fluid">
+					{
+						this.state.is_loading
+							?
+							<div> </div>
+							:
+							<div>
+								<div className = "row search-result-amount-text">
+									{display_title}
+								</div> 
+								<div className = "small-buffer"/>
+								<div className = "row">
+									{products_display}
 								</div>
-							}
+							</div>
+					}
 							
-					</div>
-				</PageContainer>
-		);
+				</div>
+			</PageContainer>
+		)
 	}
 }

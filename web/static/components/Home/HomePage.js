@@ -1,16 +1,16 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 import HomePageMainContainer from './HomePageMainContainer.js'
 import PageContainer from '../Misc/PageContainer'
 import HomePageContainerMobile from './HomePageContainerMobile'
 
 
-const HOME_TAG = "Home_Page"
+const HOME_TAG = 'Home_Page'
 
 export default class HomePage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			products : [],
 		}
@@ -21,9 +21,9 @@ export default class HomePage extends React.Component {
 			tag : tag
 		})
 		$.ajax({
-			type: "POST",
+			type: 'POST',
 			data: form_data,
-			url: "/getProductsByListingTag",
+			url: '/getProductsByListingTag',
 			success: function(data) {
 				if (data.success) {
 					this.setState({
@@ -32,8 +32,8 @@ export default class HomePage extends React.Component {
 					})
 				}
 			}.bind(this),
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
 		})
 	}
 
@@ -44,10 +44,10 @@ export default class HomePage extends React.Component {
 
 	render() {
 		return (
-				<PageContainer no_add_buffer = {true}>
-					<HomePageContainerMobile products = {this.state.products}/>
-					<HomePageMainContainer products = {this.state.products} />
-				</PageContainer>
-		);
+			<PageContainer no_add_buffer = {true}>
+				<HomePageContainerMobile products = {this.state.products}/>
+				<HomePageMainContainer products = {this.state.products} />
+			</PageContainer>
+		)
 	}
 }

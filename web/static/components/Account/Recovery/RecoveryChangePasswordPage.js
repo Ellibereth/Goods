@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppStore from '../../../stores/AppStore'
 import PageContainer from '../../Misc/PageContainer'
 import RecoveryChangePasswordForm from './RecoveryChangePasswordForm'
 
 export default class RecoveryChangePasswordPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			is_loading : false,
 		}
@@ -33,8 +33,8 @@ export default class RecoveryChangePasswordPage extends React.Component {
 										<div className="newLoginProcess edgar-row">
 											
 											<RecoveryChangePasswordForm 
-											recovery_pin = {this.props.params.recovery_pin}
-											setLoading = {this.setLoading.bind(this)}
+												recovery_pin = {this.props.params.recovery_pin}
+												setLoading = {this.setLoading.bind(this)}
 											/>
 
 

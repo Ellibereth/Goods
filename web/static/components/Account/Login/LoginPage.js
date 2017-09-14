@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppStore from '../../../stores/AppStore'
 import PageContainer from '../../Misc/PageContainer'
 import LoginBox from './LoginBox'
@@ -8,11 +8,11 @@ import LoginBox from './LoginBox'
 
 const LOGIN_STATE = 0
 const REGISTER_STATE = 1
-const BACKGROUND_IMAGE = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/usalarge.gif"
+const BACKGROUND_IMAGE = 'https://s3-us-west-2.amazonaws.com/edgarusahomepage/usalarge.gif'
 
 export default class LoginPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			is_loading : false,
 			form_state : REGISTER_STATE
@@ -50,9 +50,9 @@ export default class LoginPage extends React.Component {
 										<div className="newLoginProcess edgar-row">
 											
 											<LoginBox 
-											setFormState = {this.setFormState.bind(this)}
-											form_state = {this.state.form_state}
-											setLoading = {this.setLoading.bind(this)} />
+												setFormState = {this.setFormState.bind(this)}
+												form_state = {this.state.form_state}
+												setLoading = {this.setLoading.bind(this)} />
 
 
 											<div className="clear">

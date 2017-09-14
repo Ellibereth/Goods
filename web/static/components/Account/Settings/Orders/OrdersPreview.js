@@ -1,14 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Link = require('react-router').Link;
-var browserHistory = require('react-router').browserHistory;
-import AppStore from '../../../../stores/AppStore.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+var Link = require('react-router').Link
+var browserHistory = require('react-router').browserHistory
+import AppStore from '../../../../stores/AppStore.js'
 import OrdersPreviewDisplay from './OrdersPreviewDisplay'
 
 // takes orders as prop
 export default class OrdersPreview extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			
 		}
@@ -55,9 +55,9 @@ export default class OrdersPreview extends React.Component {
 
 						{
 							num_orders > 0 ?
-							<span className = "account-page-text block-span"> <a href = "/myOrders"> View more </a> </span>
-							:
-							<span className = "account-page-text block-span"> Start shopping at our store by clicking <a href = "/"> here </a> </span>
+								<span className = "account-page-text block-span"> <a href = "/myOrders"> View more </a> </span>
+								:
+								<span className = "account-page-text block-span"> Start shopping at our store by clicking <a href = "/"> here </a> </span>
 						}
 					</div>
 				</div>

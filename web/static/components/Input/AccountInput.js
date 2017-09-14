@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppStore from '../../stores/AppStore'
 
 
 export default class AccountInput extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
 	}
@@ -33,14 +33,14 @@ export default class AccountInput extends React.Component {
 						value = {this.props.value} 
 						placeholder = {this.props.label}
 						data-content = {this.props.popover_text}
-						data-toggle = {this.props.popover_text && "popover"}
-						data-trigger = {this.props.popover_text && "focus"}
+						data-toggle = {this.props.popover_text && 'popover'}
+						data-trigger = {this.props.popover_text && 'focus'}
 						data-animation = {true}
 						data-template = {this.props.popover_text &&
 							popover_template}
 						onBlur = {this.props.onBlur}
 						onFocus = {this.props.onFocus}
-						/>
+					/>
 				</div>
 			</div>
 		)
@@ -50,4 +50,4 @@ export default class AccountInput extends React.Component {
 AccountInput.defaultProps = { 
 	onBlur : function(){},
 	onFocus : function(){}
-};
+}

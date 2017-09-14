@@ -1,15 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
 
 import PageContainer from '../../Misc/PageContainer.js'
-var browserHistory = require('react-router').browserHistory;
 import AppActions from '../../../actions/AppActions'
-var Link = require('react-router').Link
 import AppStore from '../../../stores/AppStore'
 
 export default class EmailConfirmationPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			email_confirmation_id : this.props.params.email_confirmation_id,
 			valid_user : false
@@ -18,7 +15,7 @@ export default class EmailConfirmationPage extends React.Component {
 	
 	componentDidMount(){	
 		var form_data = JSON.stringify({
-			"email_confirmation_id" : this.props.params.email_confirmation_id
+			'email_confirmation_id' : this.props.params.email_confirmation_id
 		})
 
 		if (AppStore.getCurrentUser().email_confirmed){
@@ -27,8 +24,8 @@ export default class EmailConfirmationPage extends React.Component {
 
 		else {
 			$.ajax({
-				type: "POST",
-				url: "/confirmEmail",
+				type: 'POST',
+				url: '/confirmEmail',
 				data: form_data,
 				success: function(data) {
 					if (data.success){
@@ -40,15 +37,15 @@ export default class EmailConfirmationPage extends React.Component {
 					// redirect if something is wrong 
 					else {
 						// redirect to '/'
-						window.location = `/miscPage`
+						window.location = '/miscPage'
 						this.setState({valid_user : false})
 					}
 				}.bind(this),
 				error: function(){
 				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+				dataType: 'json',
+				contentType : 'application/json; charset=utf-8'
+			})
 		}
 
 	}
@@ -56,14 +53,14 @@ export default class EmailConfirmationPage extends React.Component {
 	render() {
 
 		return (
-				<PageContainer>
-							<h3>
+			<PageContainer>
+				<h3>
 								Welcome to Edgar USA! <br/>
 								Your account has been confirmed <br/>
-								Click <a style = {{"color" : "#6090a8"}} className = "edgar-link" href ="/">here</a> to start shopping now
-							</h3>
+								Click <a style = {{'color' : '#6090a8'}} className = "edgar-link" href ="/">here</a> to start shopping now
+				</h3>
 					
-				</PageContainer>
-		);
+			</PageContainer>
+		)
 	}
 }

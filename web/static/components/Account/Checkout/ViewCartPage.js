@@ -1,23 +1,19 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../stores/AppStore.js';
+var React = require('react')
+import AppStore from '../../../stores/AppStore.js'
 import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
-import {formatPrice, formatCurrentPrice} from '../../Input/Util'
-import {AlertMessages} from '../../Misc/AlertMessages'
-var browserHistory = require('react-router').browserHistory;
-var Link = require('react-router').Link
+import {formatPrice} from '../../Input/Util'
 
 export default class ViewCartPage extends React.Component {
 	constructor(props){
-		super(props);
+		super(props)
 		this.state = {
 			items : [],
 			items_price : null,
 			cards : [],
 			addresses : [],
 			is_loading: true,
-			cart_message : ""
+			cart_message : ''
 		}
 	}
 
@@ -26,7 +22,7 @@ export default class ViewCartPage extends React.Component {
 		// if a guest, then let them check in 
 		if (user.is_guest) {
 			// move this to alert messages after
-			window.location = "/login?target=myCart"
+			window.location = '/login?target=myCart'
 		}
 
 		// if not a guest can move to checkout
@@ -39,11 +35,11 @@ export default class ViewCartPage extends React.Component {
 	refreshCheckoutInformation(){
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
-				"jwt" : localStorage.jwt
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-			type: "POST",
-			url: "/getUserInfo",
+			type: 'POST',
+			url: '/getUserInfo',
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
@@ -60,38 +56,38 @@ export default class ViewCartPage extends React.Component {
 					// }
 				}
 				this.setState({is_loading : false})
-				$('#view-cart-container').removeClass("faded");
+				$('#view-cart-container').removeClass('faded')
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'getUserInfo',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'getUserInfo',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	readCartMessage(){
 		var form_data = JSON.stringify({
-				"jwt" : localStorage.jwt
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-			type: "POST",
-			url: "/readCartMessage",
+			type: 'POST',
+			url: '/readCartMessage',
 			data: form_data,
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'readCartMessage',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'readCartMessage',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 
 	}
 
@@ -99,7 +95,7 @@ export default class ViewCartPage extends React.Component {
 
 	componentDidMount(){
 		var user = AppStore.getCurrentUser()
-		if (user == "") {
+		if (user == '') {
 			this.refreshCheckoutInformation.bind(this)()		
 		}
 		else {
@@ -121,11 +117,11 @@ export default class ViewCartPage extends React.Component {
 
 
 	render() {
-		var unclickable_class = this.state.items.length == 0 ? " unclickable " : ""
+		var unclickable_class = this.state.items.length == 0 ? ' unclickable ' : ''
 		return (
 			<PageContainer is_loading  = {this.state.is_loading}>
 				<div id = "view-cart-container" 
-				className = {this.state.is_loading ? "container faded" : "container"}
+					className = {this.state.is_loading ? 'container faded' : 'container'}
 				>
 
 
@@ -147,7 +143,7 @@ export default class ViewCartPage extends React.Component {
 										refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 										price = {this.state.items_price}
 										items = {this.state.items}
-										/>
+									/>
 								</div>
 							</div>
 							<div className = "row">
@@ -160,18 +156,18 @@ export default class ViewCartPage extends React.Component {
 							<div className = "row">
 								<div className = "col-sm-12 col-md-12 col-lg-12">
 									<button className = "btn btn-default checkout-button" 
-									onClick = {() => window.location = "/"}>
+										onClick = {() => window.location = '/'}>
 										Continue Shopping
 									</button>
 								</div>
 							</div>
 							<div className = "top-buffer"/>
 							<div className = "row">
-								<div className = {"col-sm-12 col-md-12 col-lg-12 " + unclickable_class}>
+								<div className = {'col-sm-12 col-md-12 col-lg-12 ' + unclickable_class}>
 									<button 
-									className = "btn btn-default checkout-button "
-									disabled = {this.state.items.length == 0} 
-									onClick = {this.toCheckoutClick.bind(this)}>
+										className = "btn btn-default checkout-button "
+										disabled = {this.state.items.length == 0} 
+										onClick = {this.toCheckoutClick.bind(this)}>
 										Proceed to Checkout 
 									</button>
 								</div>

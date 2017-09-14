@@ -1,14 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var Link = require('react-router').Link;
-var IndexRoute = require('react-router').IndexRoute;
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var Router = require('react-router').Router
+var Route = require('react-router').Route
+var Link = require('react-router').Link
+var IndexRoute = require('react-router').IndexRoute
+var browserHistory = require('react-router').browserHistory
 import {AlertMessages} from './Misc/AlertMessages'
 
-import AppStore from '../stores/AppStore.js';
-import AppActions from '../actions/AppActions.js';
+import AppStore from '../stores/AppStore.js'
+import AppActions from '../actions/AppActions.js'
 import HomePage from './Home/HomePage.js'
 import ProductPage from './Product/ProductPage.js'
 
@@ -59,7 +59,7 @@ export default class Main extends React.Component {
 	componentDidMount() {
 		var pathname = this.props.location.pathname
 		var indices = pathname.split('/')
-		if (pathname != "/checkout" && indices[1] != "yevgeniypoker555"){
+		if (pathname != '/checkout' && indices[1] != 'yevgeniypoker555'){
 			this.getUserInfo()
 		}
 	}
@@ -71,8 +71,8 @@ export default class Main extends React.Component {
 		})
 
 		$.ajax({
-			type: "POST",
-			url: "/getUserInfo",
+			type: 'POST',
+			url: '/getUserInfo',
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
@@ -102,11 +102,11 @@ export default class Main extends React.Component {
 					eventCategory: ' server-error',
 					eventAction: 'getUserInfo',
 					eventLabel: AppStore.getCurrentUser().email
-				});
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	render() {
@@ -114,13 +114,13 @@ export default class Main extends React.Component {
 			<div>
 				{this.props.children}
 			</div>
-		);
+		)
 	}
 }
 
 const checkUser = (nextState, replace) => {
-	var target = nextState.location.pathname.replace("/", "")
-	var thisUser = AppStore.getCurrentUser();
+	var target = nextState.location.pathname.replace('/', '')
+	var thisUser = AppStore.getCurrentUser()
 	if (!thisUser) {
 		replace({pathname: '/login', query: { target: target}})
 	} 
@@ -133,31 +133,31 @@ const checkUser = (nextState, replace) => {
 }
 
 const checkUserAllowGuest = (nextState, replace) => {
-	var target = nextState.location.pathname.replace("/", "")
-	var thisUser = AppStore.getCurrentUser();
+	var target = nextState.location.pathname.replace('/', '')
+	var thisUser = AppStore.getCurrentUser()
 	if (!thisUser) {
 		replace({pathname: '/login', query: { target: target}})
 	} 
 } 
 
 const checkConfirmedUser = (nextState, replace) => {
-	var target = nextState.location.pathname.replace("/", "")
-	var thisUser = AppStore.getCurrentUser();
+	var target = nextState.location.pathname.replace('/', '')
+	var thisUser = AppStore.getCurrentUser()
 	if (!thisUser) {
 		replace({pathname: '/login', query: { target: target}})
 	}
 	else if (!thisUser.email_confirmed) {
-		replace(`/pleaseConfirm`);
+		replace('/pleaseConfirm')
 	}
 }
 
 const checkAdmin = (nextState, replace) => {
-	var thisUser = AppStore.getCurrentUser();
+	var thisUser = AppStore.getCurrentUser()
 	if (!thisUser) {
-		replace(`/`)
+		replace('/')
 	}
 	if (!thisUser.is_admin) {
-		replace(`/`);
+		replace('/')
 	}
 }
 
@@ -216,5 +216,5 @@ ReactDOM.render(
 			
 		</Route>
 	</Router>, 
-document.getElementById('app'));
+	document.getElementById('app'))
 

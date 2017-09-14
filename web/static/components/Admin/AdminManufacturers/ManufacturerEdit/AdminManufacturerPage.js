@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import AdminEditManufacturerInfo from './AdminEditManufacturerInfo'
 import PageContainer from '../../../Misc/PageContainer.js'
 
@@ -8,7 +8,7 @@ import PageContainer from '../../../Misc/PageContainer.js'
 
 export default class AdminManufacturerPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			manufacturer : {},
 			invalid_manufacturer : true,
@@ -18,32 +18,32 @@ export default class AdminManufacturerPage extends React.Component {
 
 	getManufacturerInformation(){
 		var form_data = JSON.stringify({
-			"manufacturer_id" : this.props.params.manufacturer_id,
-			"jwt" : localStorage.jwt
+			'manufacturer_id' : this.props.params.manufacturer_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		  type: "POST",
-		  url: "/getAdminManufacturerInfo",
+		  type: 'POST',
+		  url: '/getAdminManufacturerInfo',
 		  data: form_data,
 		  success: function(data) {
-			if (!data.success){
-				this.setState({invalid_manufacturer : true})
-			}
-			else {
-				this.setState({
-					invalid_manufacturer : false,
-					manufacturer: data.manufacturer,
-					is_loading : false
-				})
-			}
+				if (!data.success){
+					this.setState({invalid_manufacturer : true})
+				}
+				else {
+					this.setState({
+						invalid_manufacturer : false,
+						manufacturer: data.manufacturer,
+						is_loading : false
+					})
+				}
 			
 		  }.bind(this),
 		  error : function(){
 
 		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
-		});
+		  dataType: 'json',
+		  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	previewManufacturer(manufacturer){
@@ -51,10 +51,10 @@ export default class AdminManufacturerPage extends React.Component {
 	}
 
 	componentDidMount(){
-		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		var form_data = JSON.stringify({'jwt' : localStorage.jwt})
 		$.ajax({
-			type: "POST",
-			url: "/checkAdminJwt",
+			type: 'POST',
+			url: '/checkAdminJwt',
 			data: form_data,
 			success: function(data) {
 				if (!data.success){
@@ -67,9 +67,9 @@ export default class AdminManufacturerPage extends React.Component {
 			error : function(){
 				replace('/')
 		  	},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 		
 	}
 
@@ -80,7 +80,7 @@ export default class AdminManufacturerPage extends React.Component {
 					<div className = "container">
 						<div className = "row">
 							<button onClick = {() => window.location = '/yevgeniypoker555'}
-							type = "button" className = "btn btn-default">
+								type = "button" className = "btn btn-default">
 								Return to Admin Home
 							</button>
 						</div>
@@ -88,7 +88,7 @@ export default class AdminManufacturerPage extends React.Component {
 						<div className = "top-buffer"/>
 
 						<div className = "row">
-							{!this.state.is_loading && <h1> {this.state.manufacturer.name + " by " + this.state.manufacturer.manufacturer}</h1>}
+							{!this.state.is_loading && <h1> {this.state.manufacturer.name + ' by ' + this.state.manufacturer.manufacturer}</h1>}
 						</div>
 
 						<div className = "top-buffer"/>
@@ -98,13 +98,13 @@ export default class AdminManufacturerPage extends React.Component {
 
 						<div className = "row">
 							<AdminEditManufacturerInfo
-							getManufacturerInformation = {this.getManufacturerInformation.bind(this)}
-							manufacturer = {this.state.manufacturer}/>
+								getManufacturerInformation = {this.getManufacturerInformation.bind(this)}
+								manufacturer = {this.state.manufacturer}/>
 						</div>
 
 					</div>
 				</div>
 			</PageContainer>
-		);
+		)
 	}
 }

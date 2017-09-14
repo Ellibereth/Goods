@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
-var browserHistory = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory
 import {formatPrice} from '../Input/Util'
 
 
 export default class HomeProductPreview extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 
 		}
@@ -22,7 +22,7 @@ export default class HomeProductPreview extends React.Component {
 			'list': 'Home',
 			'ab_group':  localStorage.ab_group
 		}
-		ga('ec:addImpression', product_object);
+		ga('ec:addImpression', product_object)
 		
 	}
 
@@ -45,10 +45,10 @@ export default class HomeProductPreview extends React.Component {
 			'brand' : product.manufacturer_obj.name,
 			'list': 'Home',
 			'price' : product.price,
-		});
-		ga('ec:setAction', 'click', {list: 'Home'});
+		})
+		ga('ec:setAction', 'click', {list: 'Home'})
 		ga('send', 'event', 'UX', 'click', 'HomeProduct')
-		window.location = '/eg/' + product.product_id;
+		window.location = '/eg/' + product.product_id
 		return true
 	}
 
@@ -59,7 +59,7 @@ export default class HomeProductPreview extends React.Component {
 				<div>
 					<span className = "home-product-preview-current-price" >${formatPrice(this.props.product.price)}</span>
 					<span className = "home-product-preview-price"
-					dangerouslySetInnerHTML = {{__html : product.sale_text_home}}
+						dangerouslySetInnerHTML = {{__html : product.sale_text_home}}
 					></span> 
 				</div>
 			)
@@ -71,8 +71,8 @@ export default class HomeProductPreview extends React.Component {
 					<div>
 						<span className = "home-product-preview-current-price"> Sold Out  </span>
 						<span 
-						style = {{"fontWeight": "normal"}}
-						className = "home-product-preview-current-price"> <s>${formatPrice(this.props.product.price)} </s></span>
+							style = {{'fontWeight': 'normal'}}
+							className = "home-product-preview-current-price"> <s>${formatPrice(this.props.product.price)} </s></span>
 					</div> 
 				)	
 			}
@@ -95,17 +95,17 @@ export default class HomeProductPreview extends React.Component {
 		return (
 			<div className = "col-xs-12 text-center">
 				<div className = "small-buffer"/>
-				<a href = {"/eg/" + this.props.product.product_id}>
-				<img 
-				src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
+				<a href = {'/eg/' + this.props.product.product_id}>
+					<img 
+						src = {'https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/' 
 				+ this.props.product.main_image}
-				className = "home-product-image-mobile"/>
+						className = "home-product-image-mobile"/>
 				</a>
 				<div className = "small-buffer"/>
 				<div className = "home-product-preview-details-mobile">		
 					<div onClick = {this.productClicked.bind(this)} className = "home-product-preview-name-mobile"> {this.props.product.name} </div> 
-					<div className = "home-product-preview-manufacturer-mobile">{" by "}
-						 <span onClick = {() => window.location = "/search/" + this.props.product.manufacturer_obj.name} 
+					<div className = "home-product-preview-manufacturer-mobile">{' by '}
+						 <span onClick = {() => window.location = '/search/' + this.props.product.manufacturer_obj.name} 
 							className = "home-product-preview-manufacturer-name-mobile">
 							{this.props.product.manufacturer_obj.name}
 						</span>
@@ -114,6 +114,6 @@ export default class HomeProductPreview extends React.Component {
 				</div>
 				<div className = "small-buffer"/>
 			</div>
-		);
+		)
 	}
 }

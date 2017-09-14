@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+import AppStore from '../../../../stores/AppStore.js'
 import UpdateShippingForm from './UpdateShippingForm'
 import PageContainer from '../../../Misc/PageContainer'
-var browserHistory = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory
 
 export default class UpdateShippingPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			is_loading : false
 		}

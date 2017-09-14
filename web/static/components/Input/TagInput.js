@@ -1,15 +1,15 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 import TagsInput from 'react-tagsinput'
 
 export default class TextInput extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 	}
 
 	handleChange(event) {
-		var value = $("#tag_input").tagsinput('items')['itemsArray']
+		var value = $('#tag_input').tagsinput('items')['itemsArray']
 		this.props.onTagInputChange(this.props.field, value)
 	}
 
@@ -23,6 +23,6 @@ export default class TextInput extends React.Component {
 					<TagsInput value={this.state.tags} onChange={this.handleChange.bind(this)}/>
 				</div>
 			</div>
-		);
+		)
 	}
 }

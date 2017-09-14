@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import AppStore from '../../stores/AppStore'
 
 
 export default class NavbarSearch extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			search_text : "",
+			search_text : '',
 		}
 		this.search = this.search.bind(this)
 	}
@@ -22,7 +22,7 @@ export default class NavbarSearch extends React.Component {
 	}
 
 	onKeyPress(event) {
-		if (event.key == "Enter"){
+		if (event.key == 'Enter'){
 			this.search(event)
 		}
 	}
@@ -31,12 +31,12 @@ export default class NavbarSearch extends React.Component {
 
 	render() {
 		return (
-				<input type="text" className="form-control" 
+			<input type="text" className="form-control" 
 				placeholder="Search"
 				aria-describedby="basic-addon1"
 				onChange = {this.onSearchChange.bind(this)}
 				onKeyPress = {this.onKeyPress.bind(this)}
-				/>		
-		);
+			/>		
+		)
 	}
 }

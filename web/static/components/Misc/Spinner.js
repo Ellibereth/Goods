@@ -1,10 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 
 export default class Spinner extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
 	}

@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppActions from '../../actions/AppActions'
 import AddHomeImage from './AddHomeImage'
 import HomeImageDisplay from './HomeImageDisplay'
@@ -10,7 +10,7 @@ import {AlertMessages} from '../Misc/AlertMessages'
 
 export default class AdminLoginPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			home_images: []	
 		}
@@ -23,13 +23,13 @@ export default class AdminLoginPage extends React.Component {
 
 	getHomeImages (){
 		var data = {
-			"jwt" : localStorage.jwt
+			'jwt' : localStorage.jwt
 		}
 		
 		var form_data = JSON.stringify(data)
 		$.ajax({
-			type: "POST",
-			url: "/getHomeImages",
+			type: 'POST',
+			url: '/getHomeImages',
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
@@ -41,16 +41,16 @@ export default class AdminLoginPage extends React.Component {
 			}.bind(this),
 			error : function(){
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	render() {
 		var home_images = this.state.home_images
 		var home_images_display = home_images.map((home_image, index) => 
-				<HomeImageDisplay home_image = {home_image}/>
-			)
+			<HomeImageDisplay home_image = {home_image}/>
+		)
 
 		return (
 			<div> 
@@ -63,6 +63,6 @@ export default class AdminLoginPage extends React.Component {
 				{home_images_display}
 
 			</div>
-		);
+		)
 	}
 }

@@ -1,14 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Link = require('react-router').Link;
-var browserHistory = require('react-router').browserHistory;
-import AppStore from '../../../../stores/AppStore.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+var Link = require('react-router').Link
+var browserHistory = require('react-router').browserHistory
+import AppStore from '../../../../stores/AppStore.js'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 import {toTitleCase} from '../../../Input/Util'
 
 export default class AddressPreview extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			
 		}
@@ -32,32 +32,32 @@ export default class AddressPreview extends React.Component {
 
 	setDefaultAddress(){
 		var data = {}
-		data["jwt"] = localStorage.jwt
-		data["address_id"] = this.props.address.id
+		data['jwt'] = localStorage.jwt
+		data['address_id'] = this.props.address.id
 		var form_data = JSON.stringify(data)
 		$.ajax({
-			type: "POST",
-			url: "/setDefaultAddress",
+			type: 'POST',
+			url: '/setDefaultAddress',
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
 					this.props.setFadingText(data.error.title)
 				}
 				else {
-						this.props.setFadingText(AlertMessages.DEFAULT_ADDRESS_SET_SUCCESS.title)
-						this.props.refreshSettings()
-					}
+					this.props.setFadingText(AlertMessages.DEFAULT_ADDRESS_SET_SUCCESS.title)
+					this.props.refreshSettings()
+				}
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'setDefaultAddress',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'setDefaultAddress',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	getDefaultButton(){
@@ -91,17 +91,17 @@ export default class AddressPreview extends React.Component {
 				<span className = "account-page-text block-span">{toTitleCase(address.address_line1)}  </span>
 				{address.address_line2 && <span className = "block-span"> {toTitleCase(address.address_line2)}  </span> }
 				<span className = "account-page-text block-span"> 
-					{toTitleCase(address.address_city) + ', ' + address.address_state + " " + address.address_zip}
+					{toTitleCase(address.address_city) + ', ' + address.address_state + ' ' + address.address_zip}
 				</span>
 				<span className = "account-page-text block-span">
 					<div className = "small-buffer"/>
 				</span>
 				<span className = "block-span">
 					{default_button}
-					<button style = {{"margin-left":"8px"}}className = "btn btn-default btn-sm" onClick = {this.editAddress.bind(this)}>
+					<button style = {{'margin-left':'8px'}}className = "btn btn-default btn-sm" onClick = {this.editAddress.bind(this)}>
 						Edit
 					</button>
-					<button style = {{"margin-left":"8px"}} className = "btn btn-default btn-sm " onClick = {this.onDeletePress.bind(this)}>
+					<button style = {{'margin-left':'8px'}} className = "btn btn-default btn-sm " onClick = {this.onDeletePress.bind(this)}>
 						Delete
 					</button>
 					

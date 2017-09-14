@@ -1,25 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
-
+var React = require('react')
 import {toTitleCase} from '../../../Input/Util'
-
-var browserHistory = require('react-router').browserHistory;
-
-// requires props
-// openEditable
-// address
-const ADDRESS_INDEX = 0
-const BILLING_INDEX = 1
-const CART_INDEX = 2
 
 export default class CheckoutAddressPreview extends React.Component {
 	constructor(props){
-		super(props);
+		super(props)
 		this.state = {
 		}
 	}
-
 
 	render() {
 
@@ -37,20 +24,20 @@ export default class CheckoutAddressPreview extends React.Component {
 			)
 		}
 		return (
-				<div>
-					<div className = "row">
-						<div className = "col-xs-6 col-md-4 col-lg-4 col-sm-4">
-							<span className = "checkout-section-title">	<b> 1. Shipping </b> </span>
-						</div>
-							{address_display}
-						<div className = "col-xs-6 col-md-2 col-sm-2 col-lg-2 text-right">
-							<div className = "clickable-text" onClick = {() => this.props.openEditable(ADDRESS_INDEX)}>
-								Change
-							</div>
-						</div>
-						<div className = "top-buffer"/>
+			<div>
+				<div className = "row">
+					<div className = "col-xs-6 col-md-4 col-lg-4 col-sm-4">
+						<span className = "checkout-section-title">	<b> 1. Shipping </b> </span>
 					</div>
+					{address_display}
+					<div className = "col-xs-6 col-md-2 col-sm-2 col-lg-2 text-right">
+						<div className = "clickable-text" onClick = {() => this.props.openEditable(this.props.ADDRESS_INDEX)}>
+								Change
+						</div>
+					</div>
+					<div className = "top-buffer"/>
 				</div>
+			</div>
 		)
 	}
 }

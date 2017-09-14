@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 const request_variables = ['request_id', 'name', 'email', 'description', 'price_range', 'confirmed', 'completed', 'date_created', 'date_completed']
 const headers = ['Delete', 'Request Id', 'Name', 'Email', 'Description', 'Price Range', 'Confirmed', 'Completed', 'Date Created', 'Date Completed']
@@ -7,20 +7,20 @@ import {AlertMessages} from '../../Misc/AlertMessages'
 
 export default class AdminProductRequests extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			product_requests : []
 		}
 	}
 
 	componentDidMount(){	
-			var product_requests = []
-			var form_data = JSON.stringify({
-				"jwt" : localStorage.jwt
-			})
-			$.ajax({
-			  type: "POST",
-			  url: "/getProductRequests",
+		var product_requests = []
+		var form_data = JSON.stringify({
+			'jwt' : localStorage.jwt
+		})
+		$.ajax({
+			  type: 'POST',
+			  url: '/getProductRequests',
 			  data : form_data,
 			  success: function(data) {
 				this.setState({product_requests: data})
@@ -28,84 +28,84 @@ export default class AdminProductRequests extends React.Component {
 			  error : function(){
 
 			  },
-			  dataType: "json",
-			  contentType : "application/json; charset=utf-8"
-			});
+			  dataType: 'json',
+			  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
 
 	// index isn't used right now, but might be used later
 	onDeleteClick(r_id, index){
-		swal(AlertMessages.ARE_YOU_SURE_YOU_WANT_TO_DELETE(""),
+		swal(AlertMessages.ARE_YOU_SURE_YOU_WANT_TO_DELETE(''),
 			function () {
 				var temp = this.state.product_requests
 				temp.splice(index, 1)
 				this.setState({product_requests : temp})
 				this.softDeleteRequest.bind(this)(r_id)
 			}.bind(this))
-		}
+	}
 
 	softDeleteRequest(r_id){
-			var form_data = JSON.stringify({"request_id": r_id})
-			$.ajax({
-				type: "POST",
-				url: "/softDeleteProductRequestByRequestId",
-				data: form_data,
-				success: function(data) {
-					if (!data.success) {
-						swal(AlertMessages.DELETE_FAILURE)
-					}
-					else {
-						swal(AlertMessages.DELETE_SUCCESS)
-					}
+		var form_data = JSON.stringify({'request_id': r_id})
+		$.ajax({
+			type: 'POST',
+			url: '/softDeleteProductRequestByRequestId',
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					swal(AlertMessages.DELETE_FAILURE)
+				}
+				else {
+					swal(AlertMessages.DELETE_SUCCESS)
+				}
 
-				}.bind(this),
-				error : function(){
-					console.log("error")
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
-		}
+			}.bind(this),
+			error : function(){
+				console.log('error')
+			},
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
+	}
 
 	toggleClass(id){
-		$("#" + id).toggleClass("admin-table-cell-short")
+		$('#' + id).toggleClass('admin-table-cell-short')
 	}
 
 	render() {
 		var product_requests = this.state.product_requests
 		var table_headers = headers.map((header) => 
-				<th> {header} </th>
-			)
+			<th> {header} </th>
+		)
 		var table_entries = product_requests.map((request, index) => 
-				{	
-					var row = request_variables.map((attr) => {
-						var this_entry = request[attr]
-						if (this_entry == null) {
-							this_entry = ""
-						}
-						console.log(attr, this_entry)
-						var id = request['submission_id'] + "_" + attr
-						return	(<td className = "admin-table-cell-short" id = {id} s_id = {request['submission_id']}
-							attr = {attr} index = {index}
-							onClick = {this.toggleClass.bind(this, id)}> {this_entry.toString()} </td> 
-						)
-					})
-					row.unshift(
-							<td className = "admin-table-cell-short" id = {request['submission_id'] + "_delete"} s_id = {request['submission_id']}
-							attr = "delete" index = {index}> 
-								<button type = "button" className = "btn btn-default" onClick = {() => this.onDeleteClick.bind(this)(request['request_id'], index)}>
-									Delete!
-								</button>
-							 </td> 
-						)
-					return (
-						<tr>
-							{row}
-						</tr>
-					)
+		{	
+			var row = request_variables.map((attr) => {
+				var this_entry = request[attr]
+				if (this_entry == null) {
+					this_entry = ''
+				}
+				console.log(attr, this_entry)
+				var id = request['submission_id'] + '_' + attr
+				return	(<td className = "admin-table-cell-short" id = {id} s_id = {request['submission_id']}
+					attr = {attr} index = {index}
+					onClick = {this.toggleClass.bind(this, id)}> {this_entry.toString()} </td> 
+				)
 			})
+			row.unshift(
+				<td className = "admin-table-cell-short" id = {request['submission_id'] + '_delete'} s_id = {request['submission_id']}
+					attr = "delete" index = {index}> 
+					<button type = "button" className = "btn btn-default" onClick = {() => this.onDeleteClick.bind(this)(request['request_id'], index)}>
+									Delete!
+					</button>
+							 </td> 
+			)
+			return (
+				<tr>
+					{row}
+				</tr>
+			)
+		})
 		return (
 			<div className = "container">
 				<div className="col-md-12">
@@ -121,7 +121,7 @@ export default class AdminProductRequests extends React.Component {
 					</table>
 				</div>
 			</div>
-		);
+		)
 	}
 }
 

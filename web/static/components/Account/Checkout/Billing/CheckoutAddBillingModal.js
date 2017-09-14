@@ -1,11 +1,9 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
 import CheckoutAddBilling from './CheckoutAddBilling.js'
 import Modal from 'react-bootstrap/lib/Modal'
-import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class CheckoutAddBillingModal extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = { 
 		}
 	}
@@ -39,6 +37,6 @@ export default class CheckoutAddBillingModal extends React.Component {
 						onAddingNewBillingMethod = {this.props.onAddingNewBillingMethod}/>
 				</Modal.Body>
 			</Modal>
-		);
+		)
 	}	
 }

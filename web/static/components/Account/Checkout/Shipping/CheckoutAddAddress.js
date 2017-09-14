@@ -1,35 +1,25 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
+var React = require('react')
+import AppStore from '../../../../stores/AppStore.js'
 import AddressForm from '../../../Input/AddressForm.js'
 import FadingText from '../../../Misc/FadingText'
 
-var browserHistory = require('react-router').browserHistory;
-var Link = require('react-router').Link
-const ADDRESS_INDEX = 0
-const BILLING_INDEX = 1
-const CART_INDEX = 2
-
-const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
-					"address_line1", "address_line2", "address_zip"]
-import {AlertMessages} from '../../../Misc/AlertMessages'
-// requires as props
-//	refreshCheckoutInformation
+const form_inputs = ['address_name', 'description', 'address_city', 'address_state', 'address_country',
+	'address_line1', 'address_line2', 'address_zip']
 
 export default class CheckoutAddAddress extends React.Component {
 	constructor(props){
-		super(props);
+		super(props)
 		this.state = {
 			use_same_for_billing : 1,
-			address_name : "",
-			description : "",
-			address_state: "",
-			address_city : "",
-			address_country : "US",
-			address_line1 : "",
-			address_line2 : "",
-			address_zip : "",
-			error_text : "",
+			address_name : '',
+			description : '',
+			address_state: '',
+			address_city : '',
+			address_country : 'US',
+			address_line1 : '',
+			address_line2 : '',
+			address_zip : '',
+			error_text : '',
 			show_error_text : false,
 		}
 		this.setErrorMessage = this.setErrorMessage.bind(this)
@@ -63,11 +53,11 @@ export default class CheckoutAddAddress extends React.Component {
 			var key = form_inputs[i]
 			data[key] = this.state[key]
 		}
-		data["jwt"] = localStorage.jwt
+		data['jwt'] = localStorage.jwt
 		var form_data = JSON.stringify(data)
 		$.ajax({
-			type: "POST",
-			url: "/addUserAddress",
+			type: 'POST',
+			url: '/addUserAddress',
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
@@ -82,14 +72,14 @@ export default class CheckoutAddAddress extends React.Component {
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'addUserAddress',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'addUserAddress',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
@@ -104,8 +94,8 @@ export default class CheckoutAddAddress extends React.Component {
 					<div className = "row">
 					
 						<AddressForm onSubmit = {this.onSubmitPress.bind(this)}
-						has_description = {true}
-						onTextInputChange = {this.onTextInputChange.bind(this)}/>
+							has_description = {true}
+							onTextInputChange = {this.onTextInputChange.bind(this)}/>
 
 					</div>
 					<hr/>
@@ -119,7 +109,7 @@ export default class CheckoutAddAddress extends React.Component {
 					<div className = "small-buffer"/>
 					<div className = "row">
 						<FadingText height_transition ={true} 
-						show = {this.state.show_error_text}>
+							show = {this.state.show_error_text}>
 							<div className = "checkout-error-text">
 								{this.state.error_text}
 							</div>

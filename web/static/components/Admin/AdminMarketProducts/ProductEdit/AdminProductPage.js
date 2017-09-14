@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import ProductTemplate2 from '../../../Product/Template2/ProductTemplate2'
 import AdminEditProductInfo from './AdminEditProductInfo'
 import PageContainer from '../../../Misc/PageContainer.js'
@@ -14,7 +14,7 @@ const VARIANT_VIEW = 3
 
 export default class AdminProductPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			product : {},
 			invalid_product : true,
@@ -26,41 +26,41 @@ export default class AdminProductPage extends React.Component {
 
 	getProductInformation(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.params.product_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.params.product_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		  type: "POST",
-		  url: "/getAdminMarketProductInfo",
+		  type: 'POST',
+		  url: '/getAdminMarketProductInfo',
 		  data: form_data,
 		  success: function(data) {
-			if (!data.success){
-				this.setState({invalid_product : true})
-			}
-			else {
-				this.setState({
-					invalid_product : false,
-					product: data.product,
-					is_loading : false
-				})
-			}
+				if (!data.success){
+					this.setState({invalid_product : true})
+				}
+				else {
+					this.setState({
+						invalid_product : false,
+						product: data.product,
+						is_loading : false
+					})
+				}
 			
 		  }.bind(this),
 		  error : function(){
 
 		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
-		});
+		  dataType: 'json',
+		  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	getManufacturers(){
 		var form_data = JSON.stringify({
-			"jwt" : localStorage.jwt
+			'jwt' : localStorage.jwt
 		})
-			$.ajax({
-			  type: "POST",
-			  url: "/getManufacturers",
+		$.ajax({
+			  type: 'POST',
+			  url: '/getManufacturers',
 			  data : form_data,
 			  success: function(data) {
 				this.setState({
@@ -70,9 +70,9 @@ export default class AdminProductPage extends React.Component {
 			  error : function(){
 
 			  },
-			  dataType: "json",
-			  contentType : "application/json; charset=utf-8"
-			});
+			  dataType: 'json',
+			  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	previewProduct(product){
@@ -80,10 +80,10 @@ export default class AdminProductPage extends React.Component {
 	}
 
 	componentDidMount(){
-		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		var form_data = JSON.stringify({'jwt' : localStorage.jwt})
 		$.ajax({
-			type: "POST",
-			url: "/checkAdminJwt",
+			type: 'POST',
+			url: '/checkAdminJwt',
 			data: form_data,
 			success: function(data) {
 				if (!data.success){
@@ -96,9 +96,9 @@ export default class AdminProductPage extends React.Component {
 			error : function(){
 				replace('/')
 		  	},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 		this.getManufacturers.bind(this)()	
 	}
 
@@ -117,7 +117,7 @@ export default class AdminProductPage extends React.Component {
 					<div className = "container">
 						<div className = "row">
 							<button onClick = {() => window.location = '/yevgeniypoker555'}
-							type = "button" className = "btn btn-default">
+								type = "button" className = "btn btn-default">
 								Return to Admin Home
 							</button>
 						</div>
@@ -125,25 +125,25 @@ export default class AdminProductPage extends React.Component {
 						<div className = "top-buffer"/>
 
 						<div className = "row">
-							{!this.state.is_loading && <h1> {this.state.product.name + " by " + this.state.product.manufacturer_obj.name}</h1>}
+							{!this.state.is_loading && <h1> {this.state.product.name + ' by ' + this.state.product.manufacturer_obj.name}</h1>}
 						</div>
 
 						<div className = "top-buffer"/>
 						<div className = "row">
 							<ul className="nav nav-pills">
 								<li onClick = {this.navivgateTab.bind(this, PREVIEW_VIEW)}
-									className = {this.state.selected_tab == PREVIEW_VIEW && "active"}><a href = "#preview">Preview </a>
+									className = {this.state.selected_tab == PREVIEW_VIEW && 'active'}><a href = "#preview">Preview </a>
 								</li>
 								<li onClick = {this.navivgateTab.bind(this, INFO_VIEW)}
-								className = {this.state.selected_tab == INFO_VIEW && "active"}>
+									className = {this.state.selected_tab == INFO_VIEW && 'active'}>
 									<a href="#info"> Edit Info</a>
 								</li>
 								<li onClick = {this.navivgateTab.bind(this, IMAGES_VIEW)}
-								className = {this.state.selected_tab == IMAGES_VIEW && "active"}>
+									className = {this.state.selected_tab == IMAGES_VIEW && 'active'}>
 									<a href="#info"> Images </a>
 								</li>
 								<li onClick = {this.navivgateTab.bind(this, VARIANT_VIEW)}
-								className = {this.state.selected_tab == VARIANT_VIEW && "active"}>
+									className = {this.state.selected_tab == VARIANT_VIEW && 'active'}>
 									<a href="#info">  Variants </a>
 								</li>
 							</ul>
@@ -153,34 +153,34 @@ export default class AdminProductPage extends React.Component {
 
 						<hr/>
 
-						<div className = {this.state.selected_tab == PREVIEW_VIEW ? "row" : "none" }>
+						<div className = {this.state.selected_tab == PREVIEW_VIEW ? 'row' : 'none' }>
 							<ProductTemplate2 admin_view = {true} product = {this.state.product}/>
 						</div>
 
-						<div className = {this.state.selected_tab == INFO_VIEW ? "row" : "none"}>
+						<div className = {this.state.selected_tab == INFO_VIEW ? 'row' : 'none'}>
 							<AdminEditProductInfo
-							previewProduct = {this.previewProduct.bind(this)}
-							getProductInformation = {this.getProductInformation.bind(this)}
-							product = {this.state.product}
-							manufacturers = {this.state.manufacturers}/>
+								previewProduct = {this.previewProduct.bind(this)}
+								getProductInformation = {this.getProductInformation.bind(this)}
+								product = {this.state.product}
+								manufacturers = {this.state.manufacturers}/>
 						</div>
 
-						<div className = {this.state.selected_tab == VARIANT_VIEW ? "row" : "none"}>
+						<div className = {this.state.selected_tab == VARIANT_VIEW ? 'row' : 'none'}>
 							<AdminEditVariants 
-							getProductInformation = {this.getProductInformation.bind(this)}
-							product = {this.state.product}/>
+								getProductInformation = {this.getProductInformation.bind(this)}
+								product = {this.state.product}/>
 						</div>
 
-						<div className = {this.state.selected_tab == IMAGES_VIEW ? "row" : "none"}>
+						<div className = {this.state.selected_tab == IMAGES_VIEW ? 'row' : 'none'}>
 							<AdminEditImages 
-							getProductInformation = {this.getProductInformation.bind(this)}
-							product = {this.state.product}/>
+								getProductInformation = {this.getProductInformation.bind(this)}
+								product = {this.state.product}/>
 						</div>
 
 
 					</div>
 				</div>
 			</PageContainer>
-		);
+		)
 	}
 }

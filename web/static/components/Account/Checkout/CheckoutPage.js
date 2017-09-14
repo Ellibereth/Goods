@@ -1,7 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../stores/AppStore.js';
-import AppActions from '../../../actions/AppActions.js';
+var React = require('react')
+import AppStore from '../../../stores/AppStore.js'
+import AppActions from '../../../actions/AppActions.js'
 import PageContainer from '../../Misc/PageContainer'
 import CartDisplay from './Cart/CartDisplay'
 import CheckoutCardSelect from './Billing/CheckoutCardSelect.js'
@@ -11,9 +10,6 @@ import CheckoutPriceRow from './CheckoutPriceRow'
 import {formatPrice, formatCurrentPrice} from '../../Input/Util'
 import {AlertMessages} from '../../Misc/AlertMessages'
 
-var browserHistory = require('react-router').browserHistory;
-var Link = require('react-router').Link
-
 const ADDRESS_INDEX = 0
 const BILLING_INDEX = 1
 const CART_INDEX = 2
@@ -21,7 +17,7 @@ const CART_INDEX = 2
 
 export default class CheckoutPage extends React.Component {
 	constructor(props){
-		super(props);
+		super(props)
 		this.state = {
 			items : [],
 			total_price : null,
@@ -133,42 +129,42 @@ export default class CheckoutPage extends React.Component {
 	refreshCheckoutInformation(){
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
-				"jwt" : localStorage.jwt,
-				"address" : this.getSelectedAddress()
-			})
-			$.ajax({
-				type: "POST",
-				url: "/refreshCheckoutInfo",
-				data: form_data,
-				success: function(data) {
-					if (data.success) {
-						this.setState({
-							cart : data.user.cart,
-							items: data.user.cart.items, 
-							total_price : data.user.cart.total_price,
-							shipping_price : data.user.cart.shipping_price,
-							items_price : data.user.cart.items_price,
-							cards : data.user.cards,
-							addresses : data.user.addresses, 
-							is_loading : false,
-							sales_tax_price : data.user.cart.sales_tax_price,
-						})
-						AppActions.updateCurrentUser(data.user)
-					}
-					if (!this.state.first_load_done) {
-						this.initializeInformation.bind(this)()
-					}
-				}.bind(this),
-				error : function(){
-					ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'refreshCheckoutInfo',
-						eventLabel: AppStore.getCurrentUser().email
-					});
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+			'jwt' : localStorage.jwt,
+			'address' : this.getSelectedAddress()
+		})
+		$.ajax({
+			type: 'POST',
+			url: '/refreshCheckoutInfo',
+			data: form_data,
+			success: function(data) {
+				if (data.success) {
+					this.setState({
+						cart : data.user.cart,
+						items: data.user.cart.items, 
+						total_price : data.user.cart.total_price,
+						shipping_price : data.user.cart.shipping_price,
+						items_price : data.user.cart.items_price,
+						cards : data.user.cards,
+						addresses : data.user.addresses, 
+						is_loading : false,
+						sales_tax_price : data.user.cart.sales_tax_price,
+					})
+					AppActions.updateCurrentUser(data.user)
+				}
+				if (!this.state.first_load_done) {
+					this.initializeInformation.bind(this)()
+				}
+			}.bind(this),
+			error : function(){
+				ga('send', 'event', {
+					eventCategory: ' server-error',
+					eventAction: 'refreshCheckoutInfo',
+					eventLabel: AppStore.getCurrentUser().email
+				})
+			},
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	componentDidMount(){
@@ -185,8 +181,8 @@ export default class CheckoutPage extends React.Component {
 				items_price : user.cart.items_price,
 				items : user.cart.items,
 				is_loading: false
-				},
-				this.initializeInformation.bind(this)
+			},
+			this.initializeInformation.bind(this)
 			)
 			
 		}
@@ -198,14 +194,14 @@ export default class CheckoutPage extends React.Component {
 				'id': item.product_id.toString(),
 				'name': item.name,
 				'brand': item.manufacturer_obj.name,
-				'variant' : item.variant_type ? item.variant_type : "none",
+				'variant' : item.variant_type ? item.variant_type : 'none',
 				'price': formatCurrentPrice(item),
 				'quantity': item.num_items
-			});
+			})
 		})
 
 		ga('ec:setAction','checkout')
-		ga('send', 'pageview');
+		ga('send', 'pageview')
 	}
 
 	initializeInformation(){
@@ -260,28 +256,28 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	onCheckoutClick(can_checkout){
-		if (!can_checkout) return;
+		if (!can_checkout) return
 		var selected_card = this.getSelectedCard.bind(this)()
 		var selected_address = this.getSelectedAddress.bind(this)()
-		var text = "Are you ready to checkout with card ending in " + selected_card.last4    + 
-				"\n to address " + selected_address.address_line1 + "?"
+		var text = 'Are you ready to checkout with card ending in ' + selected_card.last4    + 
+				'\n to address ' + selected_address.address_line1 + '?'
 		swal(AlertMessages.CHECKOUT_CONFIRM(text),
-		function () {
-			this.checkout.bind(this)()
-		}.bind(this))
+			function () {
+				this.checkout.bind(this)()
+			}.bind(this))
 	}
 
 	checkout(){
 		this.setState({button_disabled : true})
 		this.setState({is_loading : true})
 		var form_data = JSON.stringify({
-				jwt : localStorage.jwt,
-				card_id : this.getSelectedCard.bind(this)().id,
-				address_id : this.getSelectedAddress.bind(this)().id 
-			})
+			jwt : localStorage.jwt,
+			card_id : this.getSelectedCard.bind(this)().id,
+			address_id : this.getSelectedAddress.bind(this)().id 
+		})
 		$.ajax({
-			type: "POST",
-			url: "/checkoutCart",
+			type: 'POST',
+			url: '/checkoutCart',
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
@@ -290,8 +286,8 @@ export default class CheckoutPage extends React.Component {
 				}
 				else {
 					if (data.message) {
-						swal("Thank you!", data.message
-						, "warning")
+						swal('Thank you!', data.message
+							, 'warning')
 					}
 					else {
 						swal(AlertMessages.CHECKOUT_SUCCESSFUL)
@@ -300,11 +296,11 @@ export default class CheckoutPage extends React.Component {
 							ga('ec:addProduct', {
 								'id': item.product_id.toString(),
 								'name': item.name,
-								'variant' : item.variant_type ? item.variant_type : "none",
+								'variant' : item.variant_type ? item.variant_type : 'none',
 								'brand': item.manufacturer_obj.name,
 								'price': formatCurrentPrice(item),
 								'quantity': item.num_items
-							});
+							})
 						})
 
 						var order = data.order
@@ -315,11 +311,11 @@ export default class CheckoutPage extends React.Component {
 							'revenue': formatPrice(order.total_price),
 							'tax': formatPrice(order.sales_tax_price),
 							'shipping': formatPrice(order.order_shipping),
-						});
-						ga('send', 'event', 'UX', 'click', 'checkout complete');
+						})
+						ga('send', 'event', 'UX', 'click', 'checkout complete')
 					}
 					setTimeout(function() {
-						window.location = `/checkoutConfirmed`
+						window.location = '/checkoutConfirmed'
 					}, 2000)
 					AppActions.updateCurrentUser(data.user)
 				}
@@ -329,18 +325,18 @@ export default class CheckoutPage extends React.Component {
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'checkoutCart',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'checkoutCart',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 				swal(AlertMessages.CONTACT_CUSTOMER_SERVICE)
 				this.setState({is_loading : false})
 				this.setLoading(false)
 				this.setState({button_disabled : false})
 			}.bind(this),
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}	
 
 	addressToString(address){
@@ -350,7 +346,7 @@ export default class CheckoutPage extends React.Component {
 			<span>
 				<b> {address.name} </b> <br/>
 				{address.address_line1} <br/>
-				{address.address_line2 && " " + address.address_line2} <br/>
+				{address.address_line2 && ' ' + address.address_line2} <br/>
 				{address.address_city}, {address.address_state} {address.address_zip} {address.address_country}
 			</span>
 		)
@@ -377,137 +373,146 @@ export default class CheckoutPage extends React.Component {
 	render() {
 
 		var can_checkout = this.canCheckout()
-		var checkout_button_class = can_checkout ? " checkout-button btn btn-default " :"checkout-button block-checkout btn btn-default "
+		var checkout_button_class = can_checkout ? ' checkout-button btn btn-default ' :'checkout-button block-checkout btn btn-default '
 		var cart = this.state.cart
 		if (!cart) return <div/>
 		return (
 			<PageContainer is_loading = {this.state.is_loading}>
-					<div id = "checkout-container" 
-					className = {this.state.is_loading ? "container faded" : "container"}
-					>	
+				<div id = "checkout-container" 
+					className = {this.state.is_loading ? 'container faded' : 'container'}
+				>	
 						
-						<CheckoutAddBillingModal 
+					<CheckoutAddBillingModal
+						ADDRESS_INDEX = {ADDRESS_INDEX}
+						BILLING_INDEX = {BILLING_INDEX}
+						CART_INDEX = {CART_INDEX} 
+						setLoading = {this.setLoading.bind(this)}
+						selected_address = {this.getSelectedAddress()}
+						show = {this.state.billing_modal_open}
+						toggleModal = {this.toggleBillingModal.bind(this)}
+						onAddingNewBillingMethod = {this.onAddingNewBillingMethod.bind(this)}
+					/>
+
+					<div className = "col-xs-12 col-sm-9 col-md-9 col-lg-9 ">
+						<CheckoutAddressSelect 
+							ADDRESS_INDEX = {ADDRESS_INDEX}
+							BILLING_INDEX = {BILLING_INDEX}
+							CART_INDEX = {CART_INDEX}
+							selected_address_index = {this.state.selected_address_index}
+							toggleModal = {this.toggleAddressModal.bind(this)}
+							address_modal_open = {this.state.address_modal_open}
+							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+							setAddress = {this.setAddress.bind(this)}
+							addresses = {this.state.addresses}
+							addressToString = {this.addressToString} 
+							can_edit = {this.state.can_edit[ADDRESS_INDEX]}
+							openEditable = {this.openEditable.bind(this)}
+							closeEditable = {() => this.closeEditable.bind(this)(ADDRESS_INDEX)}
+							address = {this.getSelectedAddress.bind(this)()}
+							onAddingNewShippingAddress = {this.onAddingNewShippingAddress.bind(this)}
 							setLoading = {this.setLoading.bind(this)}
-							selected_address = {this.getSelectedAddress()}
-							show = {this.state.billing_modal_open}
-							toggleModal = {this.toggleBillingModal.bind(this)}
-							onAddingNewBillingMethod = {this.onAddingNewBillingMethod.bind(this)}
 						/>
 
-						<div className = "col-xs-12 col-sm-9 col-md-9 col-lg-9 ">
-							<CheckoutAddressSelect 
-								selected_address_index = {this.state.selected_address_index}
-								toggleModal = {this.toggleAddressModal.bind(this)}
-								address_modal_open = {this.state.address_modal_open}
-								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-								setAddress = {this.setAddress.bind(this)}
-								addresses = {this.state.addresses}
-								addressToString = {this.addressToString} 
-								can_edit = {this.state.can_edit[ADDRESS_INDEX]}
-								openEditable = {this.openEditable.bind(this)}
-								closeEditable = {() => this.closeEditable.bind(this)(ADDRESS_INDEX)}
-								address = {this.getSelectedAddress.bind(this)()}
-								onAddingNewShippingAddress = {this.onAddingNewShippingAddress.bind(this)}
-								setLoading = {this.setLoading.bind(this)}
-								/>
+						<hr className = "small-hr"/>
 
-							<hr className = "small-hr"/>
-
-							<CheckoutCardSelect 
-								selected_card_index = {this.state.selected_card_index}
-								selected_address = {this.getSelectedAddress()}
-								toggleModal = {this.toggleBillingModal.bind(this)}
-								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
-								setCard = {this.setCard.bind(this)} 
-								cards = {this.state.cards} 
-								card = {this.getSelectedCard.bind(this)()}
-								can_edit = {this.state.can_edit[BILLING_INDEX]}
-								openEditable = {this.openEditable.bind(this)}
-								closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
-							/>
-							<hr className = "small-hr"/>
-							<div className = "well" >
-								<div className = "row">
-									<div className = "col-md-5 col-lg-5 col-sm-5 col-xs-5 checkout-item-label-editable vcenter">
-										<span className = "checkout-section-title"> <b> 3. Items </b> </span>
-									</div>
+						<CheckoutCardSelect 
+							ADDRESS_INDEX = {ADDRESS_INDEX}
+							BILLING_INDEX = {BILLING_INDEX}
+							CART_INDEX = {CART_INDEX}
+							selected_card_index = {this.state.selected_card_index}
+							selected_address = {this.getSelectedAddress()}
+							toggleModal = {this.toggleBillingModal.bind(this)}
+							refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
+							setCard = {this.setCard.bind(this)} 
+							cards = {this.state.cards} 
+							card = {this.getSelectedCard.bind(this)()}
+							can_edit = {this.state.can_edit[BILLING_INDEX]}
+							openEditable = {this.openEditable.bind(this)}
+							closeEditable = {() => this.closeEditable.bind(this)(BILLING_INDEX)}
+						/>
+						<hr className = "small-hr"/>
+						<div className = "well" >
+							<div className = "row">
+								<div className = "col-md-5 col-lg-5 col-sm-5 col-xs-5 checkout-item-label-editable vcenter">
+									<span className = "checkout-section-title"> <b> 3. Items </b> </span>
 								</div>
-								<hr className = "small-hr"/>
-								<CartDisplay 
+							</div>
+							<hr className = "small-hr"/>
+							<CartDisplay 
 								setLoading = {this.setLoading.bind(this)}
 								is_loading = {this.state.is_loading}
 								refreshCheckoutInformation = {this.refreshCheckoutInformation.bind(this)}
 								price = {formatPrice(this.state.total_price)}
 								items = {this.state.items}
-								/>
-							</div>
+							/>
 						</div>
+					</div>
 
-						<div className = "col-xs-12 col-sm-3 col-md-3 col-lg-3">
-							<div className="panel panel-default">
-								<div className="panel-body">
-										<div className = "row text-center">
-											<div className = "col-sm-12 col-md-12 col-lg-12 col-xs-12 vcenter text-center">
-												<button className = {checkout_button_class} disabled = {!can_checkout} 
-												onClick = {this.onCheckoutClick.bind(this, can_checkout)}>
+					<div className = "col-xs-12 col-sm-3 col-md-3 col-lg-3">
+						<div className="panel panel-default">
+							<div className="panel-body">
+								<div className = "row text-center">
+									<div className = "col-sm-12 col-md-12 col-lg-12 col-xs-12 vcenter text-center">
+										<button className = {checkout_button_class} disabled = {!can_checkout} 
+											onClick = {this.onCheckoutClick.bind(this, can_checkout)}>
 													Place your order!
-												</button>
-												<div className = "top-buffer"/>
-												<div className = "checkout-notice-of-terms-text">
+										</button>
+										<div className = "top-buffer"/>
+										<div className = "checkout-notice-of-terms-text">
 													By placing your order, you agree to our 
-													<a href = "terms">
-														{" terms of service "}
-													</a>
+											<a href = "terms">
+												{' terms of service '}
+											</a>
 													and 
-													<a href = "privacy">
-														{" privacy policy"}
-													</a>
-												</div>
-											</div>
+											<a href = "privacy">
+												{' privacy policy'}
+											</a>
 										</div>
+									</div>
+								</div>
+								<hr className = "small-hr"/>
+
+
+								{cart.items_discount ?
+									<div>
+										<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
+											label = {'Items:'} price = {formatPrice(cart.original_items_price)}/>
+
+										<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
+											label = {'10% Discount:'}
+											show_minus = {true}
+											price = {formatPrice(cart.items_discount)}/>
 										<hr className = "small-hr"/>
-
-
-										{cart.items_discount ?
-											<div>
-												<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
-												label = {"Items:"} price = {formatPrice(cart.original_items_price)}/>
-
-												<CheckoutPriceRow is_final_row = {false} has_underline = {false} line_through = {true}
-												label = {"10% Discount:"}
-												show_minus = {true}
-												price = {formatPrice(cart.items_discount)}/>
-												<hr className = "small-hr"/>
-												<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-												label = {"After Discount:"} price = {formatPrice(this.state.items_price)}/>
-											</div>
-											:
-											<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-												label = {"Items Price:"} price = {formatPrice(this.state.items_price)}/>
-										}
-
-
-
-										
-
-
-
-										{this.state.shipping_price ? 
 										<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-										label = {"Shipping:"} price = {formatPrice(this.state.shipping_price)}/>
-										: <div/>
-										}	
+											label = {'After Discount:'} price = {formatPrice(this.state.items_price)}/>
+									</div>
+									:
+									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+										label = {'Items Price:'} price = {formatPrice(this.state.items_price)}/>
+								}
 
 
-										{this.state.sales_tax_price ?
-											<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
-											label = {"Sales Tax:"} price = {formatPrice(this.state.sales_tax_price)}/>
-											: <div/>
-										}
 
-										<hr className = "small-hr"/>
 										
-										{/* cart.discount_message && 
+
+
+
+								{this.state.shipping_price ? 
+									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+										label = {'Shipping:'} price = {formatPrice(this.state.shipping_price)}/>
+									: <div/>
+								}	
+
+
+								{this.state.sales_tax_price ?
+									<CheckoutPriceRow is_final_row = {false} has_underline = {false} 
+										label = {'Sales Tax:'} price = {formatPrice(this.state.sales_tax_price)}/>
+									: <div/>
+								}
+
+								<hr className = "small-hr"/>
+										
+								{/* cart.discount_message && 
 											<div className = "row">
 												<div style = {{textAlign : "center"}}
 												className = "col-sm-12 col-lg-12 col-md-12">
@@ -516,25 +521,25 @@ export default class CheckoutPage extends React.Component {
 											</div>
 										*/}
 
-										<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
-										label = {"Total:"} price = {formatPrice(this.state.total_price)}/>
+								<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
+									label = {'Total:'} price = {formatPrice(this.state.total_price)}/>
 										
 
 
-								</div>
+							</div>
 
-								<div className="panel-footer">
-									<div className = "row">
-										<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
-											<div className = "clickable-text checkout-footer-text">
+							<div className="panel-footer">
+								<div className = "row">
+									<div className = "col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<div className = "clickable-text checkout-footer-text">
 												How are shipping costs calculated?
-											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 			</PageContainer>
 		)
 	}

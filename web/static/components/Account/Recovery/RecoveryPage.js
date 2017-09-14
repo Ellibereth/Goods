@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppStore from '../../../stores/AppStore'
 import PageContainer from '../../Misc/PageContainer'
 import RecoveryForm from './RecoveryForm'
 
 export default class RecoveryPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			is_loading : false,
 		}
@@ -33,7 +33,7 @@ export default class RecoveryPage extends React.Component {
 										<div className="newLoginProcess edgar-row">
 											
 											<RecoveryForm
-											setLoading = {this.setLoading.bind(this)} />
+												setLoading = {this.setLoading.bind(this)} />
 
 											<div className="clear">
 											</div>

@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 var browserHistory = require('react-router').browserHistory
 
 import TextInput from '../../../Input/TextInput.js'
@@ -9,7 +9,7 @@ import UploadManufacturerLogo from '../ProductAdd/UploadManufacturerLogo'
 
 export default class AdminEditImages extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 
 		}

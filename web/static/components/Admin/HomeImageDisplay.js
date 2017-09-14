@@ -1,18 +1,18 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 
 import AdminTextInput from '../Input/AdminTextInput'
 import Button from 'react-bootstrap/lib/Button'
 
-const base_url = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
+const base_url = 'https://s3-us-west-2.amazonaws.com/edgarusahomepage/'
 import {AlertMessages} from '../Misc/AlertMessages'
 
 export default class HomeImageDisplay extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			image_text : "",
+			image_text : '',
 			live : false
 
 		}
@@ -37,20 +37,20 @@ export default class HomeImageDisplay extends React.Component {
 				if(isConfirm){
 					this.updateHomeImage.bind(this)()
 				}
-		}.bind(this))
+			}.bind(this))
 	}
 
 	updateHomeImage() {
 		var data = {
-			"jwt" : localStorage.jwt,
-			"image_id" : this.props.home_image.image_id,
-			"image_text" : this.state.image_text,
-			"live" : this.state.live
+			'jwt' : localStorage.jwt,
+			'image_id' : this.props.home_image.image_id,
+			'image_text' : this.state.image_text,
+			'live' : this.state.live
 		}
 		var form_data = JSON.stringify(data)
 		$.ajax({
-			type: "POST",
-			url: "/updateHomeImage",
+			type: 'POST',
+			url: '/updateHomeImage',
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
@@ -62,13 +62,13 @@ export default class HomeImageDisplay extends React.Component {
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'updateHomeImage',
-					});
+					eventCategory: ' server-error',
+					eventAction: 'updateHomeImage',
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	// 1. Show the image
@@ -82,15 +82,15 @@ export default class HomeImageDisplay extends React.Component {
 				<div className = "top-buffer"/>
 				
 				<img src = {base_url + this.props.home_image.image_id}
-					style = {{"width" : "100px", "height" : "100px"}}/>
+					style = {{'width' : '100px', 'height' : '100px'}}/>
 
 				<hr/>
 
 				<AdminTextInput onTextInputChange = {this.onInputChange.bind(this)}
-				field = {"image_text"}
-				value = {this.state.image_text} 
-				label = {"Image Text"}
-				input_type = "textarea"
+					field = {'image_text'}
+					value = {this.state.image_text} 
+					label = {'Image Text'}
+					input_type = "textarea"
 				/>
 
 				<hr/>
@@ -102,7 +102,7 @@ export default class HomeImageDisplay extends React.Component {
 					<div className = "col-md-6 col-lg-6">
 					 	<select className="form-control" id="sel1" 
 					 	value = {this.state.live ? this.state.live : false}
-					 	onChange = {(event) => this.onInputChange("live", event.target.value)}>
+					 	onChange = {(event) => this.onInputChange('live', event.target.value)}>
 					 		<option value = {true}> Live </option>
     						<option value = {false}> Not Live </option>
 					 	</select>

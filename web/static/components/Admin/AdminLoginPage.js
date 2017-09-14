@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppActions from '../../actions/AppActions'
 import TextInput from '../Input/TextInput.js'
 import PageContainer from '../Misc/PageContainer'
@@ -8,12 +8,12 @@ import PageContainer from '../Misc/PageContainer'
 import {AlertMessages} from '../Misc/AlertMessages'
 export default class AdminLoginPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			username : "",
-			password : "",
+			username : '',
+			password : '',
 		}
-}
+	}
 
 	// this has to be moved to the server side, will do when I'm back from dinner 3/11
 	onLoginSubmit() {
@@ -33,9 +33,9 @@ export default class AdminLoginPage extends React.Component {
 			'password' : this.state.password 
 		})
 		$.ajax({
-			type: "POST",
+			type: 'POST',
 			data: form_data,
-			url: "/checkAdminLogin",
+			url: '/checkAdminLogin',
 			success: function(data) {
 				if (data.success) {
 					AppActions.addCurrentUser(data.user, data.jwt)
@@ -45,16 +45,16 @@ export default class AdminLoginPage extends React.Component {
 					swal(AlertMessages.NICE_TRY_MAN)
 				}
 			}.bind(this),
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
 		})
 	}
 
 	componentDidMount() {
-		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		var form_data = JSON.stringify({'jwt' : localStorage.jwt})
 		$.ajax({
-			type: "POST",
-			url: "/checkAdminJwt",
+			type: 'POST',
+			url: '/checkAdminJwt',
 			data: form_data,
 			success: function(data) {
 				if (data.success){
@@ -64,9 +64,9 @@ export default class AdminLoginPage extends React.Component {
 			error : function(){
 				replace('/')
 		  	},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	render() {
@@ -77,12 +77,12 @@ export default class AdminLoginPage extends React.Component {
 					<TextInput label = "Username" onTextInputChange = {this.onTextInputChange.bind(this)}
 						 value = {this.state.username} field = "username" input_type = "text"/>
 					<TextInput label = "Password" onTextInputChange = {this.onTextInputChange.bind(this)}
-					value = {this.state.password} field = "password" input_type = "password"/>
+						value = {this.state.password} field = "password" input_type = "password"/>
 					<div>
 						<button onClick = {this.onLoginSubmit.bind(this)}> Admin Login </button>
 					</div>
 				</div>
 			</PageContainer>
-		);
+		)
 	}
 }

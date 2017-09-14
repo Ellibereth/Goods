@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+import AppStore from '../../../../stores/AppStore.js'
 import PageContainer from '../../../Misc/PageContainer.js'
 import OrdersPreviewDisplay from './OrdersPreviewDisplay'
-var browserHistory = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory
 
 export default class OrderHistoryPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			orders : [],
 			is_loading : true
@@ -16,37 +16,37 @@ export default class OrderHistoryPage extends React.Component {
 
 	componentDidMount(){
 		var request_data = JSON.stringify({
-			"jwt" : localStorage.jwt,
-			"user" : AppStore.getCurrentUser()
+			'jwt' : localStorage.jwt,
+			'user' : AppStore.getCurrentUser()
 		})
 		$.ajax({
-			type: "POST",
-			url: "/getUserOrders",
+			type: 'POST',
+			url: '/getUserOrders',
 			data : request_data,
 			success: function(data) {
-			this.setState({orders: data.orders, is_loading : false})
+				this.setState({orders: data.orders, is_loading : false})
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'getUserOrders',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'getUserOrders',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
 	getOrderDisplay(orders){
 		var output = orders.map((order, index) =>
-					<OrdersPreviewDisplay 
-						order_id = {order.order_id}
-						order = {order}
-						index = {index}
-						/>
-			)
+			<OrdersPreviewDisplay 
+				order_id = {order.order_id}
+				order = {order}
+				index = {index}
+			/>
+		)
 
 		return output
 	}

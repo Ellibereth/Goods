@@ -1,28 +1,28 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
-import AppStore from '../../../../stores/AppStore.js';
-import AppActions from '../../../../actions/AppActions.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
+import AppStore from '../../../../stores/AppStore.js'
+import AppActions from '../../../../actions/AppActions.js'
 import AddressForm from '../../../Input/AddressForm.js'
 
 import {AlertMessages} from '../../../Misc/AlertMessages'
 import FadingText from '../../../Misc/FadingText'
-const form_inputs = ["address_name", "description", "address_city", "address_state", "address_country",
-					"address_line1", "address_line2", "address_zip"]
+const form_inputs = ['address_name', 'description', 'address_city', 'address_state', 'address_country',
+	'address_line1', 'address_line2', 'address_zip']
 
 export default class EditAddressForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			address_name : "",
-			description : "",
-			address_state: "",
-			address_city : "",
-			address_country : "US",
-			address_line1 : "",
-			address_line2 : "",
-			address_zip : "",
-			error_text : "",
+			address_name : '',
+			description : '',
+			address_state: '',
+			address_city : '',
+			address_country : 'US',
+			address_line1 : '',
+			address_line2 : '',
+			address_zip : '',
+			error_text : '',
 			show_error_text : false,
 		}
 		this.setErrorMessage = this.setErrorMessage.bind(this)
@@ -67,14 +67,14 @@ export default class EditAddressForm extends React.Component {
 			var key = form_inputs[i]
 			data[key] = this.state[key]
 		}
-		data["jwt"] = localStorage.jwt
+		data['jwt'] = localStorage.jwt
 		data['address_id'] = this.props.address.id
 		var form_data = JSON.stringify(data)
 		
 		this.props.setLoading(true)
 		$.ajax({
-			type: "POST",
-			url: "/editUserAddress",
+			type: 'POST',
+			url: '/editUserAddress',
 			data: form_data,
 			success: function(data) {
 				this.props.setLoading(false)
@@ -88,14 +88,14 @@ export default class EditAddressForm extends React.Component {
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'editUserAddress',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'editUserAddress',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	render() {
@@ -104,9 +104,9 @@ export default class EditAddressForm extends React.Component {
 				<div className = "row">
 					<div className = "col-sm-10 col-md-10 col-lg-10">
 						<AddressForm 
-						onTextInputChange = {this.onTextInputChange.bind(this)}
-						address = {this.props.address}
-						onSubmit = {this.onSubmitPress.bind(this)}
+							onTextInputChange = {this.onTextInputChange.bind(this)}
+							address = {this.props.address}
+							onSubmit = {this.onSubmitPress.bind(this)}
 						 />
 					</div>
 				</div>
@@ -115,9 +115,9 @@ export default class EditAddressForm extends React.Component {
 						
 				<div className = "row">
 					<div className = "col-sm-9 col-md-9 col-lg-9">
-							<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
+						<button type = "button" className = "btn btn-default" onClick = {this.onSubmitPress.bind(this)}>
 								Edit Address
-							</button>
+						</button>
 					</div>
 				</div>
 				<div className = "small-buffer"/>

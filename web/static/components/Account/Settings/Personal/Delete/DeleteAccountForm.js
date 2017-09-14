@@ -1,21 +1,21 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
-import AppActions from '../../../../../actions/AppActions.js';
-import AppStore from '../../../../../stores/AppStore.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
+import AppActions from '../../../../../actions/AppActions.js'
+import AppStore from '../../../../../stores/AppStore.js'
 import SettingsInput from '../../../../Input/SettingsInput.js'
 const form_labels = ['Password', 'Confirm Password']
-const form_inputs = ["password", "password_confirm"]
+const form_inputs = ['password', 'password_confirm']
 const input_types = ['password', 'password']
 import {AlertMessages} from '../../../../Misc/AlertMessages'
 import FadingText from '../../../../Misc/FadingText'
 export default class DeleteAccountForm extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			password: "",
-			password_confirm : "",
-			fading_text : "",
+			password: '',
+			password_confirm : '',
+			fading_text : '',
 			show_fading_text : false,
 			is_success : false,
 		}
@@ -43,38 +43,38 @@ export default class DeleteAccountForm extends React.Component {
 
 	deleteAccount(){
 		var form_data = JSON.stringify({
-				"password" : this.state.password,
-				"password_confirm" : this.state.password_confirm,
-				"jwt" : localStorage.jwt
-			})
-			$.ajax({
-				type: "POST",
-				url: "/softDeleteAccount",
-				data: form_data,
-				success: function(data) {
-					if (!data.success) {
-						this.setFadingText(data.error.title, false)
-					}
-					else {
-						AppActions.removeCurrentUser()
-						setTimeout(function() {
-							window.location = `/`
-						}, 2000)
+			'password' : this.state.password,
+			'password_confirm' : this.state.password_confirm,
+			'jwt' : localStorage.jwt
+		})
+		$.ajax({
+			type: 'POST',
+			url: '/softDeleteAccount',
+			data: form_data,
+			success: function(data) {
+				if (!data.success) {
+					this.setFadingText(data.error.title, false)
+				}
+				else {
+					AppActions.removeCurrentUser()
+					setTimeout(function() {
+						window.location = '/'
+					}, 2000)
 
-						this.setFadingText(AlertMessages.ACCOUNT_DELETE_SUCCESS.text, true)
+					this.setFadingText(AlertMessages.ACCOUNT_DELETE_SUCCESS.text, true)
 
-					}
-				}.bind(this),
-				error : function(){
-					ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'softDeleteAccount',
-						eventLabel: AppStore.getCurrentUser().email
-					});
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+				}
+			}.bind(this),
+			error : function(){
+				ga('send', 'event', {
+					eventCategory: ' server-error',
+					eventAction: 'softDeleteAccount',
+					eventLabel: AppStore.getCurrentUser().email
+				})
+			},
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	
@@ -93,23 +93,23 @@ export default class DeleteAccountForm extends React.Component {
 		}
 
 		return (
-				<form onSubmit = {this.handleDeleteClick.bind(this)} className = "form-horizontal">
+			<form onSubmit = {this.handleDeleteClick.bind(this)} className = "form-horizontal">
 					
-					{text_inputs}
+				{text_inputs}
 					
-					<div className = "form-group row">
-						<button className = "btn btn-default delete-account-button" 
+				<div className = "form-group row">
+					<button className = "btn btn-default delete-account-button" 
 						onClick = {this.handleDeleteClick.bind(this)}>
 							Delete Account
-						</button>
-					</div>
-					<div className = "row">
-						<FadingText show = {this.state.show_fading_text} height_transition = {true}>
-							<span className = {this.state.is_success ? "alert-success-text" : "alert-error-text"}>{this.state.fading_text}</span>
-						</FadingText>
-					</div>
+					</button>
+				</div>
+				<div className = "row">
+					<FadingText show = {this.state.show_fading_text} height_transition = {true}>
+						<span className = {this.state.is_success ? 'alert-success-text' : 'alert-error-text'}>{this.state.fading_text}</span>
+					</FadingText>
+				</div>
 
-				</form>
+			</form>
 		)
 	}
 }

@@ -1,13 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
+var React = require('react')
+import AppStore from '../../../../stores/AppStore.js'
 import CartItemDisplay from './CartItemDisplay'
-var browserHistory = require('react-router').browserHistory;
-var Link = require('react-router').Link
 
 export default class CartDisplay extends React.Component {
 	constructor(props){
-		super(props);
+		super(props)
 		this.state = {
 			// this is only for the first loading
 			has_loaded : false
@@ -28,8 +25,10 @@ export default class CartDisplay extends React.Component {
 
 	render() {
 		var item_display = this.props.items.map((item, index) =>
-				<CartItemDisplay setLoading = {this.props.setLoading} refreshCheckoutInformation = {this.props.refreshCheckoutInformation} item = {item} />
-			)
+			<CartItemDisplay setLoading = {this.props.setLoading}
+				refreshCheckoutInformation = {this.props.refreshCheckoutInformation} 
+				item = {item} index = {index} />
+		)
 
 		if (!this.state.has_loaded){
 			return <div/>
@@ -50,7 +49,7 @@ export default class CartDisplay extends React.Component {
 						<h4> There are no items in your cart! </h4>
 						<h4> Check out some items  <a href = "/"> here </a> </h4>
 					</div>
-				:
+					:
 					<div>
 
 						<div className = "row">
@@ -73,7 +72,7 @@ export default class CartDisplay extends React.Component {
 							</div>
 						</div>	
 
-							{item_display}
+						{item_display}
 						<hr/>
 					</div>
 				}

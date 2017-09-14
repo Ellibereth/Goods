@@ -1,10 +1,10 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Link = require('react-router').Link;
-var browserHistory = require('react-router').browserHistory;
-import ReactDOMServer from 'react-dom/server';
+var React = require('react')
+var ReactDOM = require('react-dom')
+var Link = require('react-router').Link
+var browserHistory = require('react-router').browserHistory
+import ReactDOMServer from 'react-dom/server'
 
-import AppStore from '../../../../stores/AppStore.js';
+import AppStore from '../../../../stores/AppStore.js'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 import {toTitleCase} from '../../../Input/Util'
 import Popover from 'react-bootstrap/lib/Popover'
@@ -12,7 +12,7 @@ import OverlayTrigger from 'react-bootstrap/lib/OverlayTrigger'
 
 export default class CardPreview extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			
 		}
@@ -29,12 +29,12 @@ export default class CardPreview extends React.Component {
 	setDefaultCard(){
 		this.props.setLoading(true)
 		var data = {}
-		data["jwt"] = localStorage.jwt
-		data["card_id"] = this.props.card.id
+		data['jwt'] = localStorage.jwt
+		data['card_id'] = this.props.card.id
 		var form_data = JSON.stringify(data)
 		$.ajax({
-			type: "POST",
-			url: "/setDefaultCard",
+			type: 'POST',
+			url: '/setDefaultCard',
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
@@ -48,14 +48,14 @@ export default class CardPreview extends React.Component {
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'setDefaultCard',
-						eventLabel: AppStore.getCurrentUser().email
-					});
+					eventCategory: ' server-error',
+					eventAction: 'setDefaultCard',
+					eventLabel: AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	getDefaultButton(){
@@ -106,9 +106,9 @@ export default class CardPreview extends React.Component {
 					</div>
 					<div className = "col-sm-6">
 						<OverlayTrigger rootClose ={true} trigger = "click" placement = "top" 
-						overlay = {billing_address_popover_content}>
-							<span style = {{fontSize : "14px"}}
-							className = "edgar-link"> 
+							overlay = {billing_address_popover_content}>
+							<span style = {{fontSize : '14px'}}
+								className = "edgar-link"> 
 								Show Billing Address 
 							</span>
 						</OverlayTrigger>
@@ -119,7 +119,7 @@ export default class CardPreview extends React.Component {
 					<div className = "col-xs-12">
 						<span className = "block-span"> 
 							{default_button}
-							<button style = {{"margin-left" : "8px"}} className = "btn btn-default btn-sm" onClick = {this.deleteCardPress.bind(this)}>
+							<button style = {{'margin-left' : '8px'}} className = "btn btn-default btn-sm" onClick = {this.deleteCardPress.bind(this)}>
 								Delete 
 							</button>
 						</span>

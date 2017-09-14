@@ -1,8 +1,8 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
-import AppStore from '../../../../stores/AppStore.js';
-import AppActions from '../../../../actions/AppActions.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
+import AppStore from '../../../../stores/AppStore.js'
+import AppActions from '../../../../actions/AppActions.js'
 import UpdateInformationForm from './Information/UpdateInformationForm'
 import DeleteAccountForm from './Delete/DeleteAccountForm'
 import ChangePasswordForm from './Password/ChangePasswordForm'
@@ -18,7 +18,7 @@ const DISPLAYS = ['Edit Information', 'Change Password', 'Delete Account']
 const FB_DISPLAYS = ['Edit Information', 'Delete Account']
 export default class AccountCard extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			editable_index: INFORMATION_INDEX
 		}
@@ -36,8 +36,8 @@ export default class AccountCard extends React.Component {
 			jwt : localStorage.jwt
 		})
 		$.ajax({
-			type: "POST",
-			url: "/getUserInfo",
+			type: 'POST',
+			url: '/getUserInfo',
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
@@ -52,11 +52,11 @@ export default class AccountCard extends React.Component {
 					eventCategory: ' server-error',
 					eventAction: 'getUserInfo',
 					eventLabel: AppStore.getCurrentUser().email
-				});
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
@@ -67,7 +67,7 @@ export default class AccountCard extends React.Component {
 				<div className = "panel-body">
 					<div className = "container">
 						<ChangePasswordForm 
-						getUserInfo = {this.getUserInfo.bind(this)}/>
+							getUserInfo = {this.getUserInfo.bind(this)}/>
 					</div>
 				</div>
 			)
@@ -86,7 +86,7 @@ export default class AccountCard extends React.Component {
 				<div className ="panel-body">
 					<div className = "container">
 						<UpdateInformationForm 
-						getUserInfo = {this.getUserInfo.bind(this)}/>
+							getUserInfo = {this.getUserInfo.bind(this)}/>
 					</div>
 				</div>
 			)
@@ -109,22 +109,22 @@ export default class AccountCard extends React.Component {
 			var indices = INDEX
 		}
 		return (
-				<div className = "container-fluid">
-					<div className = "panel panel-default">
-						<div className = "panel-heading">
-							<ul className="nav nav-pills">
+			<div className = "container-fluid">
+				<div className = "panel panel-default">
+					<div className = "panel-heading">
+						<ul className="nav nav-pills">
 
-								{pills.map((display, index) => 
-									<li className= {this.state.editable_index == index && "active"}
+							{pills.map((display, index) => 
+								<li className= {this.state.editable_index == index && 'active'}
 									onClick = {this.setEditableIndex.bind(this, indices[index])}> 
-										<a href="#">{display}</a> 
-									</li>
-								)}
-							</ul>
-						</div>
-						{panel_body}
+									<a href="#">{display}</a> 
+								</li>
+							)}
+						</ul>
 					</div>
+					{panel_body}
 				</div>
+			</div>
 
 
 				

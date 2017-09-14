@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 var browserHistory = require('react-router').browserHistory
 
 import TextInput from '../../../Input/TextInput.js'
@@ -9,44 +9,44 @@ import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AdminEditVariants extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
 	}
 
 	warningAlertToggleVariants(callback){
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			callback()
-		}.bind(this))
+			function () {
+				callback()
+			}.bind(this))
 	}
 
 
 	toggleProductHasVariants(has_variants){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"has_variants" : has_variants,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'has_variants' : has_variants,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		type: "POST",
-	  	url: "/toggleProductHasVariants",
+			type: 'POST',
+	  	url: '/toggleProductHasVariants',
 	  	data: form_data,
 	  	success: function(data) {
-			if (data.success){
-				setTimeout(function() {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)}, 100)
-			}
-			else {
-				setTimeout(function() {swal(data.error.title, data.error.text , data.error.type)}, 100)
-			}
-			this.props.getProductInformation()
+				if (data.success){
+					setTimeout(function() {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)}, 100)
+				}
+				else {
+					setTimeout(function() {swal(data.error.title, data.error.text , data.error.type)}, 100)
+				}
+				this.props.getProductInformation()
 			
 	  	}.bind(this),
 	  	error : function(){
 	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});
+	  		dataType: 'json',
+	  		contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
@@ -65,13 +65,13 @@ export default class AdminEditVariants extends React.Component {
 
 		else {
 			var variant_toggle = (
-			<div>
-				<h3> Click to make this a product with variants. Note this will deactivate the product.</h3>
-				<button  type = "button" className = "btn btn-default" 
-					onClick = {this.warningAlertToggleVariants.bind(this, this.toggleProductHasVariants.bind(this, true))}>
+				<div>
+					<h3> Click to make this a product with variants. Note this will deactivate the product.</h3>
+					<button  type = "button" className = "btn btn-default" 
+						onClick = {this.warningAlertToggleVariants.bind(this, this.toggleProductHasVariants.bind(this, true))}>
 					Allow Variants
-				</button>
-			</div>
+					</button>
+				</div>
 			)
 		}
 		return variant_toggle
@@ -88,7 +88,7 @@ export default class AdminEditVariants extends React.Component {
 					product = {this.props.product}
 					variant = {variant} index = {index}
 					getProductInformation = {this.props.getProductInformation}
-					/>
+				/>
 			)
 			if (inventory_display === 0){
 				var inventory_display = <div> This product supports variants but has none right now. </div>
@@ -110,8 +110,8 @@ export default class AdminEditVariants extends React.Component {
 				<div className = "top-buffer"/>
 				{this.props.product.has_variants &&
 					<AddVariantForm 
-				product = {this.props.product}
-				getProductInformation ={this.props.getProductInformation} /> }
+						product = {this.props.product}
+						getProductInformation ={this.props.getProductInformation} /> }
 				<br/>
 				<hr/>
 

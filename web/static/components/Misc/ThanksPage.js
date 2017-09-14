@@ -1,18 +1,18 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import PageContainer from './PageContainer'
 
 export default class ThanksPage extends React.Component {
-    constructor(props) {
-		super(props);
+	constructor(props) {
+		super(props)
 		this.state = {
 		}
-    }
+	}
 
 
 
 
-    render() {    	
+	render() {    	
 		return (
 			<PageContainer>
 				<div className = "container">
@@ -21,6 +21,6 @@ export default class ThanksPage extends React.Component {
 					</h1>
 				</div>
 			</PageContainer>
-		);
-    }
+		)
+	}
 }

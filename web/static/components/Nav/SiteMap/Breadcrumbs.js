@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 var Link = require('react-router').Link
 
@@ -8,7 +8,7 @@ import AppStore from '../../stores/AppStore'
 
 export default class Breadcrumbs extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		
 		}
@@ -31,7 +31,7 @@ export default class Breadcrumbs extends React.Component {
 			else {
 				links.push(
 					<li> 
-						<a href = {"/" + routes[i]}> {labels[i]} </a>
+						<a href = {'/' + routes[i]}> {labels[i]} </a>
 					</li>
 				)
 			}

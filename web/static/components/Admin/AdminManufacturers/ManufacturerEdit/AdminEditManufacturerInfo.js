@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 var browserHistory = require('react-router').browserHistory
 import AdminTextInput from '../../../Input/AdminTextInput.js'
 const form_fields = ['name', 'description', 'notes', 'fee']
@@ -9,7 +9,7 @@ const input_types = ['text', 'textarea', 'textarea', 'text']
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditManufacturerInfo extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			manufacturer : {}
 		}
@@ -17,9 +17,9 @@ export default class AdminEditManufacturerInfo extends React.Component {
 
 	warningAlertToggleVariants(callback){
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			callback()
-		}.bind(this))
+			function () {
+				callback()
+			}.bind(this))
 	}
 
 	// handle the text input changes
@@ -41,49 +41,49 @@ export default class AdminEditManufacturerInfo extends React.Component {
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
 			function () {
 				this.submitTextData.bind(this)()
-		}.bind(this))
+			}.bind(this))
 	}
 
 	
 	submitTextData(){
 		var form_data = JSON.stringify({
-			"manufacturer_id" : this.state.manufacturer.manufacturer_id,
-			"manufacturer" : this.state.manufacturer,
-			"jwt" : localStorage.jwt
+			'manufacturer_id' : this.state.manufacturer.manufacturer_id,
+			'manufacturer' : this.state.manufacturer,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		type: "POST",
-	  	url: "/updateManufacturerInfo",
+			type: 'POST',
+	  	url: '/updateManufacturerInfo',
 	  	data: form_data,
 	  	success: function(data) {
-			if (data.success){
-				this.setState({manufacturer : data.manufacturer})
-				swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-				this.props.getManufacturerInformation()
-			}
-			else {
-				swal({title: data.error, type: "error"})
-			}
+				if (data.success){
+					this.setState({manufacturer : data.manufacturer})
+					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+					this.props.getManufacturerInformation()
+				}
+				else {
+					swal({title: data.error, type: 'error'})
+				}
 			
 	  	}.bind(this),
 	  	error : function(){
 	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});
+	  		dataType: 'json',
+	  		contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	
 	
 	render() {	
-		if (!this.state.manufacturer) return <div/>;
+		if (!this.state.manufacturer) return <div/>
 
 
 		var input_forms = form_fields.map((field, index) => 
-				<AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
+			<AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 				value = {this.state.manufacturer[field]} field = {field} label = {form_labels[index]}
 				input_type = {input_types[index]}/>
-			)
+		)
 
 		return (
 			<div className = "container" id = "admin_edit_product">
@@ -94,7 +94,7 @@ export default class AdminEditManufacturerInfo extends React.Component {
 
 							<div className = "col-md-4 col-lg-4">
 								<button  type = "button" className = "btn btn-default" 
-								onClick = {this.onTextSubmitPress.bind(this)}>
+									onClick = {this.onTextSubmitPress.bind(this)}>
 									Submit
 								</button>
 							</div>

@@ -1,25 +1,25 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
-import AppActions from '../../../../actions/AppActions.js';
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+import AppStore from '../../../../stores/AppStore.js'
+import AppActions from '../../../../actions/AppActions.js'
 import {formatPrice, formatCurrentPrice, getCurrentPrice} from '../../../Input/Util'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 import FadingText from '../../../Misc/FadingText'
+
+const src_base = 'https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/'
 export default class CartItemDisplay extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			error_text : "",
+			error_text : '',
 			show_error_text : false,
 		}
 		this.setErrorMessage = this.setErrorMessage.bind(this)
 
 	}
 
-	setErrorMessage(error_text, is_error) {
+	setErrorMessage(error_text) {
 		this.setState({
-			show_error_text : true, 
+			show_error_text : true,
 			error_text : error_text,
 		})
 
@@ -28,50 +28,50 @@ export default class CartItemDisplay extends React.Component {
 
 	serverUpdateQuantity(new_quantity){
 		var form_data = JSON.stringify({
-				"jwt" : localStorage.jwt,
-				"new_num_items" : new_quantity,
-				"cart_item" : this.props.item
-			})
-			$.ajax({
-				type: "POST",
-				url: "/updateCartQuantity",
-				data: form_data,
-				success: function(data) {
-					this.props.setLoading(false)
-					if (data.success){
-						ga('ec:addProduct', {
-						    'id': this.props.item.product_id.toString(),
-							'name': this.props.item.name,
-							'brand': this.props.item.manufacturer_obj.name,
-							'price': formatCurrentPrice(this.props.item),
-							'quantity': Math.abs(this.props.item.num_items - new_quantity),
-							'variant' : this.props.item ? this.props.item.variant_type : "none"
-						});
-						if (this.props.item.num_items - new_quantity > 0) {
-							ga('ec:setAction', 'remove');
-						}
-						else {
-							ga('ec:setAction', 'add');
-						}
-						ga('send', 'event', 'UX', 'click', 'update cart');
-						
-						AppActions.updateCurrentUser(data.user)
+			'jwt' : localStorage.jwt,
+			'new_num_items' : new_quantity,
+			'cart_item' : this.props.item
+		})
+		$.ajax({
+			type: 'POST',
+			url: '/updateCartQuantity',
+			data: form_data,
+			success: function(data) {
+				this.props.setLoading(false)
+				if (data.success){
+					ga('ec:addProduct', {
+						'id': this.props.item.product_id.toString(),
+						'name': this.props.item.name,
+						'brand': this.props.item.manufacturer_obj.name,
+						'price': formatCurrentPrice(this.props.item),
+						'quantity': Math.abs(this.props.item.num_items - new_quantity),
+						'variant' : this.props.item ? this.props.item.variant_type : 'none'
+					})
+					if (this.props.item.num_items - new_quantity > 0) {
+						ga('ec:setAction', 'remove')
 					}
 					else {
-						this.setErrorMessage(data.error.title)
+						ga('ec:setAction', 'add')
 					}
+					ga('send', 'event', 'UX', 'click', 'update cart')
+						
+					AppActions.updateCurrentUser(data.user)
+				}
+				else {
+					this.setErrorMessage(data.error.title)
+				}
 					
-				}.bind(this),
-				error : function(){
-					ga('send', 'event', {
-						eventCategory: ' server-error',
-						eventAction: 'updateCartQuantity',
-						eventLabel: AppStore.getCurrentUser().email
-					});
-				},
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});
+			}.bind(this),
+			error : function(){
+				ga('send', 'event', {
+					eventCategory: ' server-error',
+					eventAction: 'updateCartQuantity',
+					eventLabel: AppStore.getCurrentUser().email
+				})
+			},
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 		this.props.refreshCheckoutInformation()
 	}
 
@@ -94,7 +94,7 @@ export default class CartItemDisplay extends React.Component {
 		}
 
 		else {
-			var src_base = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+			
 			var image_display = <img className = "cart-image-display" src = {src_base + item.main_image} />
 		}
 
@@ -110,51 +110,51 @@ export default class CartItemDisplay extends React.Component {
 			}
 		}	
 		return (
-				<div className = "row cart-checkout-preview"> 
-					<hr/>
-					<div className = "top-buffer"/>
-						<div onClick = {() => window.location = `/eg/` + this.props.item.product_id}
-						className = "col-xs-4 col-sm-4 col-md-4 col-lg-4">
-							<div className = "row">
-								<div className = "col-sm-4 col-md-4 col-lg-4">
-									{image_display}
-								</div>
-								<div className = "col-sm-8 col-md-8 col-lg-8">
-									<div className = "cart-item-text clickable-text"> {item.name} </div> <br/>
-									<FadingText show = {this.state.show_error_text}>
-										<div style = {{"color" : "#ff0000"}}> {this.state.error_text} </div> 
-									</FadingText>
-								</div>
-							</div>
+			<div className = "row cart-checkout-preview">
+				<hr/>
+				<div className = "top-buffer"/>
+				<div onClick = {() => window.location = '/eg/' + this.props.item.product_id}
+					className = "col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<div className = "row">
+						<div className = "col-sm-4 col-md-4 col-lg-4">
+							{image_display}
 						</div>
+						<div className = "col-sm-8 col-md-8 col-lg-8">
+							<div className = "cart-item-text clickable-text"> {item.name} </div> <br/>
+							<FadingText show = {this.state.show_error_text}>
+								<div style = {{'color' : '#ff0000'}}> {this.state.error_text} </div>
+							</FadingText>
+						</div>
+					</div>
+				</div>
 
-						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${formatCurrentPrice(item)} </span>
-						</div>
+				<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
+					<span className = "cart-item-text"> ${formatCurrentPrice(item)} </span>
+				</div>
 
-						<div className = "hidden-xs col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
-							  <select onChange = {this.handleQuantityChange.bind(this)} 
-							  className="checkout-quantity-select "
-							  >
-							    {num_items_options}
-							  </select>
-						</div>
-						<div className = "col-xs-2 hidden-sm hidden-lg hidden-md vcenter hcenter ">
-							  <select onChange = {this.handleQuantityChange.bind(this)} 
-							  className="checkout-quantity-select"
-							  >
-							    {num_items_options}
-							  </select>
-						</div>
+				<div className = "hidden-xs col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
+					<select onChange = {this.handleQuantityChange.bind(this)}
+						className="checkout-quantity-select "
+					>
+						{num_items_options}
+					</select>
+				</div>
+				<div className = "col-xs-2 hidden-sm hidden-lg hidden-md vcenter hcenter ">
+					<select onChange = {this.handleQuantityChange.bind(this)}
+						className="checkout-quantity-select"
+					>
+						{num_items_options}
+					</select>
+				</div>
 
-						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
-							<span className = "cart-item-text"> ${formatPrice((getCurrentPrice(item) *  item.num_items).toFixed(2))}  </span>
-						</div>
-						<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
-							 <span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />
-						</div>
+				<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 cart-item-price-text vcenter hcenter">
+					<span className = "cart-item-text"> ${formatPrice((getCurrentPrice(item) *  item.num_items).toFixed(2))}  </span>
+				</div>
+				<div className = "col-xs-2 col-sm-2 col-md-2 col-lg-2 vcenter hcenter">
+					<span onClick = {this.removeItem.bind(this)} className="glyphicon glyphicon-remove cart-remove-item-icon" />
+				</div>
 						
-					<div className = "top-buffer"/>
+				<div className = "top-buffer"/>
 			</div>	
 		)
 	}

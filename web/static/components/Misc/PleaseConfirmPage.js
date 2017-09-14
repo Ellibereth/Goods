@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import PageContainer from './PageContainer'
 var browserHistory = require('react-router').browserHistory
 import AppStore from '../../stores/AppStore'
@@ -8,9 +8,9 @@ import FadingText from '../Misc/FadingText'
 
 export default class PleaseConfirmPage extends React.Component {
 	constructor(props) {
-	super(props);
-	this.state = {
-			error_text : "",
+		super(props)
+		this.state = {
+			error_text : '',
 			show_error_text : false
 		}
 		this.setErrorMessage = this.setErrorMessage.bind(this)
@@ -25,11 +25,11 @@ export default class PleaseConfirmPage extends React.Component {
 
 	resendConfirmation(){
 		var form_data = JSON.stringify({
-			"jwt" : localStorage.jwt
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-			type: "POST",
-			url: "/resendConfirmationEmail",
+			type: 'POST',
+			url: '/resendConfirmationEmail',
 			data: form_data,
 			success: function(data) {
 				if (data.success){
@@ -41,9 +41,9 @@ export default class PleaseConfirmPage extends React.Component {
 			}.bind(this),
 			error: function(){
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	componentDidMount(){
@@ -54,22 +54,22 @@ export default class PleaseConfirmPage extends React.Component {
 
 
 	render() {
-	return (
+		return (
 			<PageContainer>
 				<div className = "container">
 					<h3>Please confirm your email to continue</h3>
-					<h3>{"If you need confirmation email to be resent click "}
+					<h3>{'If you need confirmation email to be resent click '}
 						<span className = "clickable-text" onClick = {this.resendConfirmation}>here</span>
 					</h3>
 					<br/>
 
 					<FadingText show = {this.state.show_error_text} height_transition = {false}>
-						<span style = {{"fontSize" : "16px", "color" : "#183048"}}>
+						<span style = {{'fontSize' : '16px', 'color' : '#183048'}}>
 							{this.state.error_text}
 						</span>
 					</FadingText>
 				</div>
 			</PageContainer>
-		);
+		)
 	}
 }

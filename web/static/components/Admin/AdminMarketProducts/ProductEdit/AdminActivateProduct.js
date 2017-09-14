@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import {AlertMessages} from '../../../Misc/AlertMessages'
 
 
@@ -7,7 +7,7 @@ import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AdminActivateProduct extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 
 		}
@@ -15,12 +15,12 @@ export default class AdminActivateProduct extends React.Component {
 
 	activateProduct(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		  type: "POST",
-		  url: "/activateProduct",
+		  type: 'POST',
+		  url: '/activateProduct',
 		  data: form_data,
 		  success: function(data) {
 
@@ -29,20 +29,20 @@ export default class AdminActivateProduct extends React.Component {
 		  }.bind(this),
 		  error : function(){
 		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
-		});
+		  dataType: 'json',
+		  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
 	deactivateProduct(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		  type: "POST",
-		  url: "/deactivateProduct",
+		  type: 'POST',
+		  url: '/deactivateProduct',
 		  data: form_data,
 		  success: function(data) {
 
@@ -51,23 +51,23 @@ export default class AdminActivateProduct extends React.Component {
 		  }.bind(this),
 		  error : function(){
 		  },
-		  dataType: "json",
-		  contentType : "application/json; charset=utf-8"
-		});
+		  dataType: 'json',
+		  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	onDeactivatePress(){
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.deactivateProduct.bind(this)()
-		}.bind(this))
+			function () {
+				this.deactivateProduct.bind(this)()
+			}.bind(this))
 	}
 
 	onActivatePress(){
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			this.activateProduct.bind(this)()
-		}.bind(this))
+			function () {
+				this.activateProduct.bind(this)()
+			}.bind(this))
 	}
 
 	componentDidMount(){
@@ -77,13 +77,13 @@ export default class AdminActivateProduct extends React.Component {
 	getActiveText(product){
 		var url = '/eg/' + product.product_id
 		if (!product){
-			return "";
+			return ''
 		}
 		else if (product.active){
-			return <h2> {"This product is active at url "} <a href=  {url}> {url} </a> </h2>
+			return <h2> {'This product is active at url '} <a href=  {url}> {url} </a> </h2>
 		}
 		else {
-			return <h2> {"This product is inactive but would have url "} <a href=  {url}> {url} </a> </h2>
+			return <h2> {'This product is inactive but would have url '} <a href=  {url}> {url} </a> </h2>
 		}
 	}
 
@@ -99,6 +99,6 @@ export default class AdminActivateProduct extends React.Component {
 					<button type = "button" className = "btn btn-default" onClick = {this.onActivatePress.bind(this)}> Activate </button>
 				</div>
 			</div>
-		);
+		)
 	}
 }

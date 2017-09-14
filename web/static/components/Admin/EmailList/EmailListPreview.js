@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var browserHistory = require('react-router').browserHistory;
+var React = require('react')
+var ReactDOM = require('react-dom')
+var browserHistory = require('react-router').browserHistory
 import AppActions from '../../../actions/AppActions'
 import Button from 'react-bootstrap/lib/Button'
 
@@ -11,9 +11,9 @@ const table_row_title = ['Email List Name', 'Number of Users']
 
 export default class EmailListPreview extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
-			new_email_list_name : ""
+			new_email_list_name : ''
 		}
 	}
 
@@ -27,8 +27,8 @@ export default class EmailListPreview extends React.Component {
 			jwt : localStorage.jwt
 		})
 		$.ajax({
-			type: "POST",
-			url: "/addNewEmailList",
+			type: 'POST',
+			url: '/addNewEmailList',
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
@@ -36,14 +36,14 @@ export default class EmailListPreview extends React.Component {
 				}
 				else {
 					setTimeout(function() {swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)},500)
-					this.setState({new_email_list_name : ""})
+					this.setState({new_email_list_name : ''})
 				}
 			}.bind(this),
 			error : function(){
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
@@ -56,7 +56,7 @@ export default class EmailListPreview extends React.Component {
 		this.props.email_list_data.map((email_list,index) => {
 			email_list_display.push(
 				<tr>
-					<td> <a href = {"yevgeniypoker555/editEmailList/" + email_list.email_list_id}> {email_list.email_list_name} </a></td>
+					<td> <a href = {'yevgeniypoker555/editEmailList/' + email_list.email_list_id}> {email_list.email_list_name} </a></td>
 					<td>{email_list.num_subscribers}</td>
 				</tr>
 			)
@@ -85,6 +85,6 @@ export default class EmailListPreview extends React.Component {
 					</tbody>
 				</table>
 			</div>
-		);
+		)
 	}
 }

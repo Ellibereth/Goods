@@ -1,25 +1,17 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
-
-var browserHistory = require('react-router').browserHistory;
-var Link = require('react-router').Link
-
-const ADDRESS_INDEX = 0
-const BILLING_INDEX = 1
-const CART_INDEX = 2
-
+var React = require('react')
+import AppStore from '../../../../stores/AppStore.js'
 import CheckoutCardPreview from './CheckoutCardPreview'
+
 export default class CheckoutCardSelect extends React.Component {
 	constructor(props){
-		super(props);
+		super(props)
 		this.state = {
 			selected_card : -1
 		}
 	}
 
 	setCard(){
-		this.props.openEditable(CART_INDEX)	
+		this.props.openEditable(this.props.CART_INDEX)	
 	}
 
 	onCardChange(index){
@@ -36,8 +28,8 @@ export default class CheckoutCardSelect extends React.Component {
 				<div className = "top-buffer"/>
 				<div className = "col-md-1 col-xs-1 col-sm-1 col-lg-1 text-right vcenter">
 					<input onClick = {this.onCardChange.bind(this, index)} 
-					checked = {index == this.props.selected_card_index}
-					type="radio" value= {index} name = "card"/>
+						checked = {index == this.props.selected_card_index}
+						type="radio" value= {index} name = "card"/>
 				</div>
 				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4 vcenter">
 					<span className = "checkout-card-details"> <b> {card.brand} </b> ending in {card.last4}  </span>
@@ -59,15 +51,15 @@ export default class CheckoutCardSelect extends React.Component {
 		var cards = this.props.cards
 		var card_display = []
 		cards.map((card, index) => 
-			{
-				var card_item = this.getCardInput(card, index)
-				if (card.id == AppStore.getCurrentUser().default_card){
-					card_display.unshift(card_item)
-				}
-				else {
-					card_display.push(card_item)
-				}
+		{
+			var card_item = this.getCardInput(card, index)
+			if (card.id == AppStore.getCurrentUser().default_card){
+				card_display.unshift(card_item)
 			}
+			else {
+				card_display.push(card_item)
+			}
+		}
 		)
 
 		if (cards.length == 0){
@@ -79,14 +71,11 @@ export default class CheckoutCardSelect extends React.Component {
 					
 				</div>
 				<div className = "col-md-4 col-xs-4 col-sm-4 col-lg-4  vcenter">
-					 
 					You have no cards at this time!
 				</div>
 				<div className = "top-buffer"/>
 			</div>
 		}
-
-		var card = this.props.card
 
 		return (
 			<div className = "well">
@@ -132,7 +121,7 @@ export default class CheckoutCardSelect extends React.Component {
 						}
 						
 					</div>
-				:
+					:
 					<CheckoutCardPreview 
 						openEditable = {this.props.openEditable}
 						card = {this.props.card}

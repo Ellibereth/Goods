@@ -1,16 +1,16 @@
-var React = require('react');
-var Link = require('react-router').Link;
-import AppActions from '../../../actions/AppActions';
-import { browserHistory } from 'react-router';
-import AppStore from '../../../stores/AppStore';
-import FacebookLogin from 'react-facebook-login';
+var React = require('react')
+var Link = require('react-router').Link
+import AppActions from '../../../actions/AppActions'
+import { browserHistory } from 'react-router'
+import AppStore from '../../../stores/AppStore'
+import FacebookLogin from 'react-facebook-login'
 
 export default class FacebookConnect extends React.Component {
-		constructor() {
-		super();
+	constructor() {
+		super()
 		this.state = {
 			app_id : null,
-		};
+		}
 	}
 
 	componentDidMount() {
@@ -19,7 +19,7 @@ export default class FacebookConnect extends React.Component {
 
 	getFbAppId(){
 		$.ajax({
-			type: "POST",
+			type: 'POST',
 			url : '/getFbAppId',
 			// data : JSON.stringify(obj, null, '\t'),
 			contentType : 'application/json;charset=UTF-8',
@@ -28,11 +28,11 @@ export default class FacebookConnect extends React.Component {
 					this.setState({app_id : data.app_id})
 				} 
 			}.bind(this)
-		});
+		})
 	}
 	
 	handleFacebookLoginClick() {
-		this.setState({status : "clicked"})
+		this.setState({status : 'clicked'})
 	}
 		
 	// handle the faceobok login
@@ -40,9 +40,9 @@ export default class FacebookConnect extends React.Component {
 		var obj = {
 			fb_response 		: response,
 			jwt  				: localStorage.jwt
-		};
+		}
 		$.ajax({
-			type: "POST",
+			type: 'POST',
 			url : '/handleFacebookUser',
 			data : JSON.stringify(obj, null, '\t'),
 			contentType : 'application/json;charset=UTF-8',
@@ -54,28 +54,28 @@ export default class FacebookConnect extends React.Component {
 				} 
 
 			}.bind(this)
-		});
+		})
 	}
 	
 	render() {	
 		
 		return (	
 			<span>
-			{this.state.app_id ? 
-				<FacebookLogin
-					appId= {this.state.app_id}
-					autoLoad={false}
-					fields="first_name,email, last_name, name"
-					onClick={this.handleFacebookLoginClick.bind(this)}
-					callback={this.responseFacebook.bind(this)}
-					icon="fa-facebook fb-icon"
-					cssClass = "fb-connect-button"
-					textButton = {this.props.button_text}
-					isMobile = {true}
+				{this.state.app_id ? 
+					<FacebookLogin
+						appId= {this.state.app_id}
+						autoLoad={false}
+						fields="first_name,email, last_name, name"
+						onClick={this.handleFacebookLoginClick.bind(this)}
+						callback={this.responseFacebook.bind(this)}
+						icon="fa-facebook fb-icon"
+						cssClass = "fb-connect-button"
+						textButton = {this.props.button_text}
+						isMobile = {true}
 					 />
 					:
 					<div/>
-			}
+				}
 			</span>
 		)
 	}

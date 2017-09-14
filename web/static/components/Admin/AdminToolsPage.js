@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 import AppActions from '../../actions/AppActions.js'
 import AppStore from '../../stores/AppStore.js'
@@ -25,7 +25,7 @@ const ADD_MANUFACTURER_INDEX = 5
 
 export default class AdminToolsPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			current_user : {},
 			selected_tab : ACTIVE_PRODUCT_INDEX,
@@ -43,10 +43,10 @@ export default class AdminToolsPage extends React.Component {
 	
 
 	componentDidMount() {	
-		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		var form_data = JSON.stringify({'jwt' : localStorage.jwt})
 		$.ajax({
-			type: "POST",
-			url: "/checkAdminJwt",
+			type: 'POST',
+			url: '/checkAdminJwt',
 			data: form_data,
 			success: function(data) {
 				if (!data.success){
@@ -57,11 +57,11 @@ export default class AdminToolsPage extends React.Component {
 				}
 			}.bind(this),
 			error : function(){
-					window.location = '/'
-				},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+				window.location = '/'
+			},
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	initializeData(){
@@ -71,10 +71,10 @@ export default class AdminToolsPage extends React.Component {
 	}
 
 	initializeEmailList() {
-		var form_data = JSON.stringify({"jwt" : localStorage.jwt})
+		var form_data = JSON.stringify({'jwt' : localStorage.jwt})
 		$.ajax({
-			type: "POST",
-			url: "/getAllEmailListData",
+			type: 'POST',
+			url: '/getAllEmailListData',
 			data: form_data,
 			success: function(data) {
 				this.setState({
@@ -83,19 +83,19 @@ export default class AdminToolsPage extends React.Component {
 			}.bind(this),
 			error : function(){
 
-				},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			},
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	initializeManufacturers() {
 		var form_data = JSON.stringify({
-			"jwt" : localStorage.jwt
+			'jwt' : localStorage.jwt
 		})
-			$.ajax({
-			  type: "POST",
-			  url: "/getManufacturers",
+		$.ajax({
+			  type: 'POST',
+			  url: '/getManufacturers',
 			  data : form_data,
 			  success: function(data) {
 				this.setState({
@@ -105,18 +105,18 @@ export default class AdminToolsPage extends React.Component {
 			  error : function(){
 
 			  },
-			  dataType: "json",
-			  contentType : "application/json; charset=utf-8"
-			});
+			  dataType: 'json',
+			  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 	initializeProducts() {
 		var form_data = JSON.stringify({
-			"jwt" : localStorage.jwt
+			'jwt' : localStorage.jwt
 		})
-			$.ajax({
-			  type: "POST",
-			  url: "/getMarketProducts",
+		$.ajax({
+			  type: 'POST',
+			  url: '/getMarketProducts',
 			  data : form_data,
 			  success: function(data) {
 				this.setState({
@@ -127,9 +127,9 @@ export default class AdminToolsPage extends React.Component {
 			  error : function(){
 
 			  },
-			  dataType: "json",
-			  contentType : "application/json; charset=utf-8"
-			});
+			  dataType: 'json',
+			  contentType : 'application/json; charset=utf-8'
+		})
 	}
 
 
@@ -147,25 +147,25 @@ export default class AdminToolsPage extends React.Component {
 						
 					</Nav>
 					<div className = "top-buffer"/>
-					<div className = {this.state.selected_tab != REQUEST_INDEX && "none"} > 
+					<div className = {this.state.selected_tab != REQUEST_INDEX && 'none'} > 
 						<AdminProductRequests />
 					</div>
-					<div className = {this.state.selected_tab != ACTIVE_PRODUCT_INDEX && "none"} > 
+					<div className = {this.state.selected_tab != ACTIVE_PRODUCT_INDEX && 'none'} > 
 						<AdminMarketProducts products = {this.state.products} active = {true}/>
 					</div>
-					<div className = {this.state.selected_tab != INACTIVE_PRODUCT_INDEX && "none"} > 
+					<div className = {this.state.selected_tab != INACTIVE_PRODUCT_INDEX && 'none'} > 
 						<AdminMarketProducts products = {this.state.products} active = {false} />
 					</div>
 
-					<div className = {this.state.selected_tab != MANUFACTURER_INDEX && "none"} > 
+					<div className = {this.state.selected_tab != MANUFACTURER_INDEX && 'none'} > 
 						<AdminManufacturers manufacturers = {this.state.manufacturers} />
 					</div>
 
-					<div className = {this.state.selected_tab != ADD_PRODUCT_INDEX && "none"} > 
+					<div className = {this.state.selected_tab != ADD_PRODUCT_INDEX && 'none'} > 
 						<AddProductForm  />
 					</div>
 
-					<div className = {this.state.selected_tab != ADD_MANUFACTURER_INDEX && "none"} > 
+					<div className = {this.state.selected_tab != ADD_MANUFACTURER_INDEX && 'none'} > 
 						<AddManufacturerForm  />
 					</div>
 
@@ -174,6 +174,6 @@ export default class AdminToolsPage extends React.Component {
 
 				</div>
 			</PageContainer>	
-		);
+		)
 	}
 }

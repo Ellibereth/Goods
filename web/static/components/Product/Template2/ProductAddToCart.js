@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import AppStore from '../../../stores/AppStore'
 import AppActions from '../../../actions/AppActions'
 import {AlertMessages} from '../../Misc/AlertMessages'
@@ -7,8 +7,8 @@ import {formatPrice} from '../../Input/Util'
 import FadingText from '../../Misc/FadingText'
 
 export default class ProductAddToCart extends React.Component {
-    constructor(props) {
-		super(props);
+	constructor(props) {
+		super(props)
 		this.state = {
 			quantity: 1,
 			variant : null,
@@ -16,17 +16,17 @@ export default class ProductAddToCart extends React.Component {
 			variant : null,
 			variant_display : this.getVariantDefaultText.bind(this)(),
 			add_to_cart_success: false,
-			error_text : "",
+			error_text : '',
 			show_error_text : false,
 		}
 		this.setErrorMessage = this.setErrorMessage.bind(this)
-    }
+	}
 
-    getVariantById(product, variant_id) {
+	getVariantById(product, variant_id) {
 		if (product.has_variants) {
 			for (var i = 0; i < product.variants.length; i++){
 				if (product.variants[i].variant_id == variant_id){
-					return product.variants[i];
+					return product.variants[i]
 				}
 			}
 		}
@@ -45,10 +45,10 @@ export default class ProductAddToCart extends React.Component {
 
 	// edit this to allow user to checkout as guest
 	onNonUserClick(){
-		console.log("creating guest user")
+		console.log('creating guest user')
 		$.ajax({
-			type: "POST",
-			url: "/createGuestUser",
+			type: 'POST',
+			url: '/createGuestUser',
 			success: function(data) {
 				if (data.success){
 					AppActions.addCurrentUser(data.user, data.jwt)
@@ -60,38 +60,38 @@ export default class ProductAddToCart extends React.Component {
 				ga('send', 'event', {
 					eventCategory: ' server-error',
 					eventAction: 'getUserInfo',
-					eventLabel: localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
-				});
+					eventLabel: localStorage.ab_group +  '-' + AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
-    onQuantityChange(event){
+	onQuantityChange(event){
     	var new_quantity = event.target.value
     	this.setState({quantity : new_quantity})
-    }
+	}
 
-    onVariantChange(event) {
+	onVariantChange(event) {
     	var variant = this.getVariantById(this.props.product, event.target.value)
     	this.setState({
 			variant : variant,
 			// variant_display : variant.variant_type
 		}, this.props.checkItemInStock(this.props.product, variant))
-    }
+	}
 
-    getVariantDefaultText(){
+	getVariantDefaultText(){
 		var VARIANT_TEXT  = this.props.product.variant_type_description ?  
-			("Select a " + this.props.product.variant_type_description + "...") :
-			"Select a Type..."
+			('Select a ' + this.props.product.variant_type_description + '...') :
+			'Select a Type...'
 		return VARIANT_TEXT
 	}
 
 
-    addToCart(){
+	addToCart(){
     	if (!this.props.item_in_stock) {
-    		return;
+    		return
     	}
 
 		if (this.props.product.has_variants && !this.state.variant) {
@@ -102,13 +102,13 @@ export default class ProductAddToCart extends React.Component {
 			this.props.setLoading(true)
 			this.setState({buy_disabled : true})
 			$.ajax({
-				type: "POST",
-				url: "/addItemToCart",
+				type: 'POST',
+				url: '/addItemToCart',
 				data: JSON.stringify({
-					"quantity" : this.state.quantity,
-					"product_id" : this.props.product.product_id, 
-					"jwt" : localStorage.jwt,
-					"variant" : this.state.variant
+					'quantity' : this.state.quantity,
+					'product_id' : this.props.product.product_id, 
+					'jwt' : localStorage.jwt,
+					'variant' : this.state.variant
 				}),
 				success: function(data) {
 					if (data.success){
@@ -120,11 +120,11 @@ export default class ProductAddToCart extends React.Component {
 							'brand': this.props.product.manufacturer_obj.name,
 							'price': formatPrice(this.props.product.price),
 							'quantity': this.state.quantity,
-							'variant' : this.state.variant ? this.state.variant.variant_type : "none"
-						});
+							'variant' : this.state.variant ? this.state.variant.variant_type : 'none'
+						})
 						ga('ec:setAction', 'add')
-						ga('send', 'event', 'UX', 'click', localStorage.ab_group +  "-" + 'add to cart');
-						window.location = "/myCart"
+						ga('send', 'event', 'UX', 'click', localStorage.ab_group +  '-' + 'add to cart')
+						window.location = '/myCart'
 						// this.props.getProductInformation()
 					}
 					else {
@@ -138,14 +138,14 @@ export default class ProductAddToCart extends React.Component {
 					ga('send', 'event', {
 						eventCategory: 'server-error',
 						eventAction: 'add-to-cart',
-						eventLabel : localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
-					});
+						eventLabel : localStorage.ab_group +  '-' + AppStore.getCurrentUser().email
+					})
 					this.props.setLoading(false)
 					this.setState({buy_disabled : false})
 				}.bind(this),
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});	
+				dataType: 'json',
+				contentType : 'application/json; charset=utf-8'
+			})	
 		}
 	}
 
@@ -185,10 +185,10 @@ export default class ProductAddToCart extends React.Component {
 		return (
 			<div className="quantitySelBlock ">
 				<select  onChange = {this.onVariantChange.bind(this)}
-				tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" className="quantityPgSizeDD def_select quantityDPP" >
+					tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" className="quantityPgSizeDD def_select quantityDPP" >
 					{product.variants.map((variant,index) => 
-							<option name = "name" value= {variant.variant_id}>{variant.variant_type}</option>
-						)}
+						<option name = "name" value= {variant.variant_id}>{variant.variant_type}</option>
+					)}
 				</select>
 			</div>
 		)
@@ -196,7 +196,7 @@ export default class ProductAddToCart extends React.Component {
 
 	addToCartDisabled(product) {
 		var user = AppStore.getCurrentUser()
-		if (!user || !user.cart || !user.cart.items) return false;
+		if (!user || !user.cart || !user.cart.items) return false
 		var cart = user.cart
 		var items = user.cart.items
 		if (product.has_variants){
@@ -229,7 +229,7 @@ export default class ProductAddToCart extends React.Component {
 	}
 
 
-    render() {    	
+	render() {    	
     	var variant_select = this.getVariantSelect.bind(this)(this.props.product)
     	var quantity_options = []
     	for (var i = 1; i <= this.props.product.num_items_limit; i++){
@@ -237,25 +237,25 @@ export default class ProductAddToCart extends React.Component {
     	}
 
     	var add_to_cart_disabled = this.addToCartDisabled.bind(this)(this.props.product)
-    	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? " quantity-select-disabled " : ""
+    	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? ' quantity-select-disabled ' : ''
 
     	
 		return (
-				<li className="colorsWithAddToCart reg-prod-pg">
-					{variant_select}
-					<div className="quantitySelBlock hidden-xs">
-						<select 
+			<li className="colorsWithAddToCart reg-prod-pg">
+				{variant_select}
+				<div className="quantitySelBlock hidden-xs">
+					<select 
 						value = {this.state.quantity}
 						disabled = {add_to_cart_disabled || !this.props.item_in_stock}
 						onChange = {this.onQuantityChange.bind(this)}
 						tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" 
-						className={"quantityPgSizeDD def_select quantityDPP " + disabled_class}>
-							{quantity_options}
-						</select>
-					</div>
+						className={'quantityPgSizeDD def_select quantityDPP ' + disabled_class}>
+						{quantity_options}
+					</select>
+				</div>
 
-					<div className="prodPgAddcartButton clear">
-						{this.props.item_in_stock && !add_to_cart_disabled ?
+				<div className="prodPgAddcartButton clear">
+					{this.props.item_in_stock && !add_to_cart_disabled ?
 						<a tabindex="3" onClick = {this.addToCartClick.bind(this)}
 						 className="btn btn-default-red prodPgAddcartAchrButton edgarSubmitBtn addToCart round5 noShadow edgarGrad noPadding ">
 							<div className="add-to-bag-btn-ct">
@@ -273,22 +273,22 @@ export default class ProductAddToCart extends React.Component {
 					}
 
 					{add_to_cart_disabled &&
-					<div style = {{"paddingTop" : "64px"}}>
-						<span style = {{"color" : "red"}}>You can't buy more than {this.props.product.num_items_limit} of this item</span>
+					<div style = {{'paddingTop' : '64px'}}>
+						<span style = {{'color' : 'red'}}>You can't buy more than {this.props.product.num_items_limit} of this item</span>
 					</div>
 					}
 					<FadingText show = {this.state.show_error_text} height_transition = {false}>
-						<div style = {{"paddingTop" : "64px"}}>
-							<span style = {{"color" : "red"}}>{this.state.error_text}</span>
+						<div style = {{'paddingTop' : '64px'}}>
+							<span style = {{'color' : 'red'}}>{this.state.error_text}</span>
 						</div>	
 					</FadingText>
 					
 
 
-						<div className="clear"/>
-					</div>
 					<div className="clear"/>
-				</li>
-		);
-    }
+				</div>
+				<div className="clear"/>
+			</li>
+		)
+	}
 }

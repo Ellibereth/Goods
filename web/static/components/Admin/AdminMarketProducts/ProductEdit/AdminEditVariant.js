@@ -1,5 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
 const form_fields = ['variant_type', 'inventory']
 const form_labels = ['Variant Type', 'Inventory']
@@ -11,7 +11,7 @@ import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AdminEditVariant extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			variant : {}
 		}
@@ -30,117 +30,117 @@ export default class AdminEditVariant extends React.Component {
 
 	warningAlert(callback) {
 		swal(AlertMessages.LIVE_CHANGES_WILL_BE_MADE,
-		function () {
-			callback()
-		}.bind(this))
+			function () {
+				callback()
+			}.bind(this))
 	}
 
 	activateVariant(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"variant_id" : this.props.variant.variant_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'variant_id' : this.props.variant.variant_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		type: "POST",
-	  	url: "/activateVariant",
+			type: 'POST',
+	  	url: '/activateVariant',
 	  	data: form_data,
 	  	success: function(data) {
-			if (data.success){
-				location.reload()
-			}
-			else {
-				swal(data.error.title, data.error.text , data.error.type)
-			}
+				if (data.success){
+					location.reload()
+				}
+				else {
+					swal(data.error.title, data.error.text , data.error.type)
+				}
 	  	}.bind(this),
 	  	error : function(){
 
 	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});	
+	  		dataType: 'json',
+	  		contentType : 'application/json; charset=utf-8'
+		})	
 	}
 
 	deactivateVariant(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"variant_id" : this.props.variant.variant_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'variant_id' : this.props.variant.variant_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		type: "POST",
-	  	url: "/deactivateVariant",
+			type: 'POST',
+	  	url: '/deactivateVariant',
 	  	data: form_data,
 	  	success: function(data) {
-			if (data.success){
-				location.reload()
-			}
-			else {
-				swal(data.error.title, data.error.text , data.error.type)
-			}
+				if (data.success){
+					location.reload()
+				}
+				else {
+					swal(data.error.title, data.error.text , data.error.type)
+				}
 	  	}.bind(this),
 	  	error : function(){
 
 	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});	
+	  		dataType: 'json',
+	  		contentType : 'application/json; charset=utf-8'
+		})	
 	}
 
 	deleteVariant(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"variant_id" : this.props.variant.variant_id,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'variant_id' : this.props.variant.variant_id,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		type: "POST",
-	  	url: "/deleteVariant",
+			type: 'POST',
+	  	url: '/deleteVariant',
 	  	data: form_data,
 	  	success: function(data) {
-			if (data.success){
-				location.reload()
-			}
-			else {
-				swal(data.error.title, data.error.text , data.error.type)
-			}
+				if (data.success){
+					location.reload()
+				}
+				else {
+					swal(data.error.title, data.error.text , data.error.type)
+				}
 	  	}.bind(this),
 	  	error : function(){
 
 	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});	
+	  		dataType: 'json',
+	  		contentType : 'application/json; charset=utf-8'
+		})	
 	}
 
 	updateVariant(){
 		var form_data = JSON.stringify({
-			"product_id" : this.props.product.product_id,
-			"variant" : this.state.variant,
-			"jwt" : localStorage.jwt
+			'product_id' : this.props.product.product_id,
+			'variant' : this.state.variant,
+			'jwt' : localStorage.jwt
 		})
 		$.ajax({
-		type: "POST",
-	  	url: "/updateVariant",
+			type: 'POST',
+	  	url: '/updateVariant',
 	  	data: form_data,
 	  	success: function(data) {
-			if (data.success){
-				this.props.getProductInformation()
-				setTimeout(function () {
-					swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
-				}, 500) 
+				if (data.success){
+					this.props.getProductInformation()
+					setTimeout(function () {
+						swal(AlertMessages.CHANGE_WAS_SUCCESSFUL)
+					}, 500) 
 
-			}
-			else {
-				swal(data.error.title, data.error.text , data.error.type)
-			}
+				}
+				else {
+					swal(data.error.title, data.error.text , data.error.type)
+				}
 	  	}.bind(this),
 	  	error : function(){
 
 	  	},
-	  		dataType: "json",
-	  		contentType : "application/json; charset=utf-8"
-		});	
+	  		dataType: 'json',
+	  		contentType : 'application/json; charset=utf-8'
+		})	
 	}
 
 	render() {
@@ -162,7 +162,7 @@ export default class AdminEditVariant extends React.Component {
 						{text_inputs}
 					</div>
 					<div className = "panel-footer">
-							{ variant.active ?
+						{ variant.active ?
 							 <button className = "btn-sm btn btn-default"
 							 onClick = {this.warningAlert.bind(this, this.deactivateVariant.bind(this))}>
 								 Dectivate  
@@ -172,23 +172,23 @@ export default class AdminEditVariant extends React.Component {
 							 onClick = {this.warningAlert.bind(this, this.activateVariant.bind(this))}>
 							 	Activate  
 							 </button>
-							}
+						}
 
 							
-							<button style = {{"margin-left" : "12px"}} 
+						<button style = {{'margin-left' : '12px'}} 
 							className = "btn-sm btn btn-default"
 								 onClick = {this.warningAlert.bind(this, this.updateVariant.bind(this))}>
 								 Update
-							</button>
+						</button>
 
-							<button style = {{"margin-left" : "12px"}} 
+						<button style = {{'margin-left' : '12px'}} 
 							className = "btn-sm btn btn-default"
 								 onClick = {this.warningAlert.bind(this, this.deleteVariant.bind(this))}>
 								 Hard Delete
-							</button>
+						</button>
 					</div>
 				</div>
 			</div>
-		);
+		)
 	}
 }

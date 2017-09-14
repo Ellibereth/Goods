@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-import AppStore from '../../../../stores/AppStore.js';
+var React = require('react')
+var ReactDOM = require('react-dom')
+import AppStore from '../../../../stores/AppStore.js'
 import UpdateBillingForm from './UpdateBillingForm'
 import PageContainer from '../../../Misc/PageContainer'
-var browserHistory = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory
 
 export default class UpdateBillingPage extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			is_loading : false	
 		}
@@ -24,7 +24,7 @@ export default class UpdateBillingPage extends React.Component {
 				<div className = "container">
 					 <div className = "row">
 						<UpdateBillingForm
-						setLoading = {this.setLoading.bind(this)}/>
+							setLoading = {this.setLoading.bind(this)}/>
 					</div>
 				</div>
 			</PageContainer>

@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 import AppStore from '../../../stores/AppStore'
 import AppActions from '../../../actions/AppActions'
 import {AlertMessages} from '../../Misc/AlertMessages'
 import {formatPrice} from '../../Input/Util'
 
 export default class MobileAddToCart extends React.Component {
-    constructor(props) {
-		super(props);
+	constructor(props) {
+		super(props)
 		this.state = {
 			quantity: 1,
 			variant : null,
@@ -15,13 +15,13 @@ export default class MobileAddToCart extends React.Component {
 			variant : null,
 			variant_display : this.getVariantDefaultText.bind(this)()
 		}
-    }
+	}
 
-    getVariantById(product, variant_id) {
+	getVariantById(product, variant_id) {
 		if (product.has_variants) {
 			for (var i = 0; i < product.variants.length; i++){
 				if (product.variants[i].variant_id == variant_id){
-					return product.variants[i];
+					return product.variants[i]
 				}
 			}
 		}
@@ -33,8 +33,8 @@ export default class MobileAddToCart extends React.Component {
 	// edit this to allow user to checkout as guest
 	onNonUserClick(){
 		$.ajax({
-			type: "POST",
-			url: "/createGuestUser",
+			type: 'POST',
+			url: '/createGuestUser',
 			success: function(data) {
 				if (data.success){
 					AppActions.addCurrentUser(data.user, data.jwt)
@@ -46,38 +46,38 @@ export default class MobileAddToCart extends React.Component {
 				ga('send', 'event', {
 					eventCategory: ' server-error',
 					eventAction: 'getUserInfo',
-					eventLabel: localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
-				});
+					eventLabel: localStorage.ab_group +  '-' + AppStore.getCurrentUser().email
+				})
 			},
-			dataType: "json",
-			contentType : "application/json; charset=utf-8"
-		});
+			dataType: 'json',
+			contentType : 'application/json; charset=utf-8'
+		})
 	}
 
-    onQuantityChange(event){
+	onQuantityChange(event){
     	var new_quantity = event.target.value
     	this.setState({quantity : new_quantity})
-    }
+	}
 
-    onVariantChange(event) {
+	onVariantChange(event) {
     	var variant = this.getVariantById(this.props.product, event.target.value)
     	this.setState({
 			variant : variant,
 			// variant_display : variant.variant_type
 		}, this.props.checkItemInStock(this.props.product, variant))
-    }
+	}
 
-    getVariantDefaultText(){
+	getVariantDefaultText(){
 		var VARIANT_TEXT  = this.props.product.variant_type_description ?  
-			("Select a " + this.props.product.variant_type_description + "...") :
-			"Select a Type..."
+			('Select a ' + this.props.product.variant_type_description + '...') :
+			'Select a Type...'
 		return VARIANT_TEXT
 	}
 
 
-    addToCart(){
+	addToCart(){
     	if (!this.props.item_in_stock) {
-    		return;
+    		return
     	}
 
 		if (this.props.product.has_variants && !this.state.variant) {
@@ -88,22 +88,22 @@ export default class MobileAddToCart extends React.Component {
 			this.props.setLoading(true)
 			this.setState({buy_disabled : true})
 			$.ajax({
-				type: "POST",
-				url: "/addItemToCart",
+				type: 'POST',
+				url: '/addItemToCart',
 				data: JSON.stringify({
-					"quantity" : this.state.quantity,
-					"product_id" : this.props.product.product_id, 
-					"jwt" : localStorage.jwt,
-					"variant" : this.state.variant
+					'quantity' : this.state.quantity,
+					'product_id' : this.props.product.product_id, 
+					'jwt' : localStorage.jwt,
+					'variant' : this.state.variant
 				}),
 				success: function(data) {
 					if (data.success){
 						swal(AlertMessages.ITEM_ADDED_TO_CART,
-						function(isConfirm){
-							if (isConfirm){
-								window.location =  '/myCart'
-							}
-						});
+							function(isConfirm){
+								if (isConfirm){
+									window.location =  '/myCart'
+								}
+							})
 						AppActions.updateCurrentUser(data.user)
 						ga('ec:addProduct', {
 							'id': this.props.product.product_id.toString(),
@@ -111,10 +111,10 @@ export default class MobileAddToCart extends React.Component {
 							'brand': this.props.product.manufacturer_obj.name,
 							'price': formatPrice(this.props.product.price),
 							'quantity': this.state.quantity,
-							'variant' : this.state.variant ? this.state.variant.variant_type : "none"
-						});
+							'variant' : this.state.variant ? this.state.variant.variant_type : 'none'
+						})
 						ga('ec:setAction', 'add')
-						ga('send', 'event', 'UX', 'click', localStorage.ab_group +  "-" + 'add to cart');
+						ga('send', 'event', 'UX', 'click', localStorage.ab_group +  '-' + 'add to cart')
 						this.props.getProductInformation()
 					}
 					else {
@@ -128,14 +128,14 @@ export default class MobileAddToCart extends React.Component {
 					ga('send', 'event', {
 						eventCategory: 'server-error',
 						eventAction: 'add-to-cart',
-						eventLabel : localStorage.ab_group +  "-" + AppStore.getCurrentUser().email
-					});
+						eventLabel : localStorage.ab_group +  '-' + AppStore.getCurrentUser().email
+					})
 					// this.props.setLoading(false)
 					this.setState({buy_disabled : false})
 				}.bind(this),
-				dataType: "json",
-				contentType : "application/json; charset=utf-8"
-			});	
+				dataType: 'json',
+				contentType : 'application/json; charset=utf-8'
+			})	
 		}
 	}
 
@@ -173,9 +173,9 @@ export default class MobileAddToCart extends React.Component {
 
 		return (
 			<select  onChange = {this.onVariantChange.bind(this)}
-			tabindex="-1" data-placeholder="Qty">
+				tabindex="-1" data-placeholder="Qty">
 				{product.variants.map((variant,index) => 
-						<option name = "name" value= {variant.variant_id}>{variant.variant_type}</option>
+					<option name = "name" value= {variant.variant_id}>{variant.variant_type}</option>
 				)}
 			</select>
 		)
@@ -183,7 +183,7 @@ export default class MobileAddToCart extends React.Component {
 
 	addToCartDisabled(product) {
 		var user = AppStore.getCurrentUser()
-		if (!user || !user.cart || !user.cart.items) return false;
+		if (!user || !user.cart || !user.cart.items) return false
 		var cart = user.cart
 		var items = user.cart.items
 		if (product.has_variants){
@@ -216,7 +216,7 @@ export default class MobileAddToCart extends React.Component {
 	}
 
 
-    render() {    	
+	render() {    	
     	var variant_select = this.getVariantSelect.bind(this)(this.props.product)
     	var quantity_options = []
     	for (var i = 1; i <= this.props.product.num_items_limit; i++){
@@ -224,55 +224,55 @@ export default class MobileAddToCart extends React.Component {
     	}
 
     	var add_to_cart_disabled = this.addToCartDisabled.bind(this)(this.props.product)
-    	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? " quantity-select-disabled " : ""
+    	var disabled_class = add_to_cart_disabled || !this.props.item_in_stock ? ' quantity-select-disabled ' : ''
 		return (
-				<div>
-					<div className = "row">
-						<div className = "col-xs-4 col-xs-offset-4 text-center">
-							{variant_select}
-						</div>
+			<div>
+				<div className = "row">
+					<div className = "col-xs-4 col-xs-offset-4 text-center">
+						{variant_select}
 					</div>
-					<div className = "small-buffer"/>
-					<div className = "row">
-						<div className = "col-xs-4 col-xs-offset-4 text-center">
-							<select 
+				</div>
+				<div className = "small-buffer"/>
+				<div className = "row">
+					<div className = "col-xs-4 col-xs-offset-4 text-center">
+						<select 
 							value = {this.state.quantity}
 							disabled = {add_to_cart_disabled || !this.props.item_in_stock}
 							onChange = {this.onQuantityChange.bind(this)}
 							tabindex="-1" data-placeholder="Qty" 
 							className= {disabled_class}>
-								{quantity_options}
-							</select>
-						</div>
+							{quantity_options}
+						</select>
 					</div>
-					<div className = "small-buffer"/>
-					<div className = "row">
-						<div className = "col-xs-12 text-center">
-							{
-								this.props.item_in_stock && !add_to_cart_disabled ?
+				</div>
+				<div className = "small-buffer"/>
+				<div className = "row">
+					<div className = "col-xs-12 text-center">
+						{
+							this.props.item_in_stock && !add_to_cart_disabled ?
 								<a tabindex="3" onClick = {this.addToCartClick.bind(this)}
-								 className="btn btn-default-red" style = {{"borderRadius" : "4px"}}>
-										<span>Add to Cart</span>
+								 className="btn btn-default-red" style = {{'borderRadius' : '4px'}}>
+									<span>Add to Cart</span>
 								</a>
 								:
 								<a tabindex="3" className="soldOut btn btn-default-red"
-								style = {{"borderRadius" : "4px"}}>
+									style = {{'borderRadius' : '4px'}}>
 									<span>Add to Cart</span>
 								</a>
-							}
-						</div>
-					</div>
-					<div className = "small-buffer"/>
-					<div className = "row">
-						<div className = "col-xs-12 text-center">
-							{add_to_cart_disabled &&
-							<div style = {{"paddingTop" : "64px"}}>
-								<span style = {{"color" : "red"}}>Sorry, but we're cutting you off at {this.props.product.num_items_limit} of this item</span>
-							</div>
-							}
-						</div>
+						}
 					</div>
 				</div>
-		);
-    }
+				<div className = "small-buffer"/>
+				<div className = "row">
+					<div className = "col-xs-12 text-center">
+						{add_to_cart_disabled &&
+							<div style = {{'paddingTop' : '64px'}}>
+								<span style = {{'color' : 'red'}}>Sorry, but we're cutting you off at {this.props.product.num_items_limit} of this item</span>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		)
+	}
 }

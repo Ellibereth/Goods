@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+var React = require('react')
+var ReactDOM = require('react-dom')
 
-var browserHistory = require('react-router').browserHistory;
+var browserHistory = require('react-router').browserHistory
 import {formatPrice} from '../Input/Util'
 
 export default class HomeProductPreview extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			countdown_time : null,
 		}
@@ -21,7 +21,7 @@ export default class HomeProductPreview extends React.Component {
 			'brand' : product.manufacturer_obj.name,
 			'list': 'Home',
 		}
-		ga('ec:addImpression', product_object);
+		ga('ec:addImpression', product_object)
 		
 	}
 
@@ -30,26 +30,26 @@ export default class HomeProductPreview extends React.Component {
 			if (this.props.product.sale_end_date){
 
 				// Get todays date and time
-				var now = new Date();
+				var now = new Date()
 
 				// Find the distance between now an the count down date
 				var string = this.props.product.sale_end_date
 				var sale_end_date = new Date(string)
-			  	var distance = sale_end_date - now;
+			  	var distance = sale_end_date - now
 			  	// Time calculations for days, hours, minutes and seconds
-			  	var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			  	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			  	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-			  	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			  	var days = Math.floor(distance / (1000 * 60 * 60 * 24))
+			  	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+			  	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+			  	var seconds = Math.floor((distance % (1000 * 60)) / 1000)
 			  	if (days == 0){
 			  		// Display the result in the element with id="demo"
-				  	var countdown_time = hours + "h "
-				  		+ minutes + "m " + seconds + "s ";
+				  	var countdown_time = hours + 'h '
+				  		+ minutes + 'm ' + seconds + 's '
 				  	this.setState({countdown_time : countdown_time})
 					// If the count down is finished, write some text 
 					if (distance < 0) {
-				    	clearInterval(this.countdown_interval);
-				    	this.setState({countdown_time : "EXPIRED"})
+				    	clearInterval(this.countdown_interval)
+				    	this.setState({countdown_time : 'EXPIRED'})
 				  	}
 			  	}
 			  	
@@ -76,10 +76,10 @@ export default class HomeProductPreview extends React.Component {
 			'brand' : product.manufacturer_obj.name,
 			'list': 'Home',
 			'price' : product.price
-		});
-		ga('ec:setAction', 'click', {list: 'Home'});
+		})
+		ga('ec:setAction', 'click', {list: 'Home'})
 		ga('send', 'event', 'UX', 'click', 'HomeProduct')
-		window.location = '/eg/' + product.product_id;
+		window.location = '/eg/' + product.product_id
 		return true
 	}
 
@@ -90,7 +90,7 @@ export default class HomeProductPreview extends React.Component {
 				<div>
 					<span className = "home-product-preview-current-price" >${formatPrice(this.props.product.price)}</span>
 					<span className = "home-product-preview-price"
-					dangerouslySetInnerHTML = {{__html : product.sale_text_home}}
+						dangerouslySetInnerHTML = {{__html : product.sale_text_home}}
 					></span> 
 				</div>
 			)
@@ -102,8 +102,8 @@ export default class HomeProductPreview extends React.Component {
 					<div>
 						<span className = "home-product-preview-current-price"> Sold Out  </span>
 						<span 
-						style = {{"fontWeight": "normal"}}
-						className = "home-product-preview-current-price"> <s>${formatPrice(this.props.product.price)} </s></span>
+							style = {{'fontWeight': 'normal'}}
+							className = "home-product-preview-current-price"> <s>${formatPrice(this.props.product.price)} </s></span>
 					</div> 
 				)	
 			}
@@ -125,21 +125,21 @@ export default class HomeProductPreview extends React.Component {
 		return (
 			<div className = "home-product-preview">
 
-				<a className = "no-underline" onClick = {this.productClicked.bind(this)} href = {'/eg/' + this.props.product.product_id} style = {{"width" : "100%", "height" : "100%"}} href = {"/eg/" + this.props.product.product_id}>
-						{
-							this.props.product.images.length == 0 ? 
+				<a className = "no-underline" onClick = {this.productClicked.bind(this)} href = {'/eg/' + this.props.product.product_id} style = {{'width' : '100%', 'height' : '100%'}} href = {'/eg/' + this.props.product.product_id}>
+					{
+						this.props.product.images.length == 0 ? 
 							<div> No Image For This Product </div>
-								:
-								<img 
-								src = {"https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/" 
+							:
+							<img 
+								src = {'https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/' 
 								+ this.props.product.main_image}
 								className = "img-responsive home-product-preview-image"/>
-						}
+					}
 				</a>
 				<div className = "home-product-preview-details">		
 					<div onClick = {this.productClicked.bind(this)} className = "home-product-preview-name"> {this.props.product.name} </div> 
-					<div className = "home-product-preview-manufacturer">{" by "}
-						 <span onClick = {() => window.location = "/search/" + this.props.product.manufacturer_obj.name} 
+					<div className = "home-product-preview-manufacturer">{' by '}
+						 <span onClick = {() => window.location = '/search/' + this.props.product.manufacturer_obj.name} 
 							className = "home-product-preview-manufacturer-name">
 							{this.props.product.manufacturer_obj.name}
 						</span>
@@ -147,12 +147,12 @@ export default class HomeProductPreview extends React.Component {
 					{price_row}
 					{this.state.countdown_time && 
 						<div
-						className = "home-product-preview-manufacturer-name">
-						{this.state.countdown_time}
+							className = "home-product-preview-manufacturer-name">
+							{this.state.countdown_time}
 						</div>
 					}
 				</div>
 			</div>
-		);
+		)
 	}
 }
