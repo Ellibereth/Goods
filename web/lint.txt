@@ -1,0 +1,38 @@
+
+/Users/Darek/Desktop/Goods/web/static/components/Search/SearchProductPreview.js
+   1:13  error  'require' is not defined                             no-undef
+   1:21  error  Strings must use doublequote                         quotes
+   1:29  error  Extra semicolon                                      semi
+   2:5   error  'ReactDOM' is assigned a value but never used        no-unused-vars
+   2:16  error  'require' is not defined                             no-undef
+   2:24  error  Strings must use doublequote                         quotes
+   2:36  error  Extra semicolon                                      semi
+   3:5   error  'browserHistory' is assigned a value but never used  no-unused-vars
+   3:22  error  'require' is not defined                             no-undef
+   3:30  error  Strings must use doublequote                         quotes
+   3:60  error  Extra semicolon                                      semi
+   4:27  error  Strings must use doublequote                         quotes
+   8:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+   9:15  error  Extra semicolon                                      semi
+  14:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+  16:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+  17:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+  17:23  error  Strings must use doublequote                         quotes
+  18:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+  20:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+  21:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+  21:9   error  'date' is assigned a value but never used            no-unused-vars
+  22:2   error  Mixed spaces and tabs                                no-mixed-spaces-and-tabs
+  26:1   error  Expected indentation of 5 tabs but found 4           indent
+  27:1   error  Expected indentation of 5 tabs but found 4           indent
+  28:1   error  Expected indentation of 5 tabs but found 4           indent
+  34:1   error  Expected indentation of 7 tabs but found 8           indent
+  35:1   error  Expected indentation of 7 tabs but found 8           indent
+  42:1   error  Expected indentation of 6 tabs but found 7           indent
+  43:1   error  Expected indentation of 6 tabs but found 7           indent
+  45:1   error  Expected indentation of 6 tabs but found 7           indent
+  49:4   error  Extra semicolon                                      semi
+
+✖ 32 problems (32 errors, 0 warnings)
+  18 errors, 0 warnings potentially fixable with the `--fix` option.
+

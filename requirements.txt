@@ -38,6 +38,7 @@ openpyxl==2.4.4
 parsel==1.1.0
 passlib==1.7.0
 pbr==1.10.0
+pylint==1.7.2
 PyJWT==1.4.2
 psycopg2==2.6.2
 pyasn1==0.2.3
