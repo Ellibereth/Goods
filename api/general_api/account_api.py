@@ -1,25 +1,22 @@
-from flask import Blueprint, jsonify, request
-import time
-import datetime
 import os
+import datetime
+from validate_email import validate_email
+
+from flask import Blueprint, request
 from api.models.user import User
-from api.utility.table_names import ProdTables
 from api.utility.email import EmailLib
 from api.models.shared_models import db
-from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.json_util import JsonUtil
 from api.utility.jwt_util import JwtUtil
-from api.models.cart import Cart
 from api.security.tracking import LoginAttempt
 from api.utility.error import ErrorMessages
 from api.general_api import decorators
-from validate_email import validate_email
 from api.models.launch_list_email import LaunchListEmail
 
 account_api = Blueprint('account_api', __name__)
 
-# checks the login information from a user 
+# checks the login information from a user
 @account_api.route('/checkLogin', methods = ['POST'])
 def checkLogin():
 	email_input = request.json.get(Labels.Email)
@@ -33,39 +30,33 @@ def checkLogin():
 	ip = request.remote_addr
 
 	if os.environ.get("ENVIRONMENT") == "PRODUCTION":
-		if LoginAttempt.blockIpAddress(ip):		
+		if LoginAttempt.blockIpAddress(ip):
 			return JsonUtil.failure(ErrorMessages.IpBlocked)
 
 	this_user = User.query.filter_by(email = email).first()
-	if this_user == None:
+	if this_user is None:
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 	# this part for facebook login will need to be changed
 	# elif this_user.isFacebookUser():
 	# 	LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 	# 	return JsonUtil.failure(ErrorMessages.InvalidCredentials)
-
-
 	if this_user.checkLogin(input_password):
-
 		guest_jwt = request.json.get(Labels.GuestJwt)
 		if guest_jwt:
 			guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
 			this_user.transferGuestCart(guest_user)
 		user_jwt = JwtUtil.create_jwt(this_user.toJwtDict())
 		user_info = this_user.toPublicDict()
-		output = {Labels.User : user_info,
-			Labels.Jwt : user_jwt}
+		output = {Labels.User : user_info, Labels.Jwt : user_jwt}
 		LoginAttempt.addLoginAttempt(email, ip, success = True, is_admin = False)
 		return JsonUtil.successWithOutput(output)
 	else:
 		LoginAttempt.addLoginAttempt(email, ip, success = False, is_admin = False)
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
-
-
 # checks the login information from a user
-# once they are logged in, mostly used for making changes to settings  
+# once they are logged in, mostly used for making changes to settings
 @account_api.route('/createGuestUser', methods = ['POST'])
 def createGuestUser():
 	create_guest_user = User.createGuestUser()
@@ -73,7 +64,7 @@ def createGuestUser():
 	return JsonUtil.successWithOutput(create_guest_user)
 
 # checks the login information from a user
-# once they are logged in, mostly used for making changes to settings  
+# once they are logged in, mostly used for making changes to settings
 @account_api.route('/checkPassword', methods = ['POST'])
 @decorators.check_user_jwt
 def checkPassword(this_user):
@@ -84,8 +75,7 @@ def checkPassword(this_user):
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
 		}
 		return JsonUtil.successWithOutput(output)
-	else:
-		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+	return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 
 # registers a user
@@ -100,26 +90,25 @@ def registerUserAccount():
 	ip_addr = request.remote_addr
 	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
 	ab_group = sum(nums) % 2
-	register_user_response = User.registerUser(name, email_input, password, password_confirm, guest_user, ab_group = ab_group)
+	register_user_response = User.registerUser(name, email_input, password,
+									password_confirm, guest_user, ab_group = ab_group)
 	if register_user_response.get(Labels.Success):
 		register_user_response[Labels.Jwt] = JwtUtil.create_jwt(register_user_response[Labels.Jwt])
 		return JsonUtil.successWithOutput(register_user_response)
-	else:
-		return JsonUtil.failureWithOutput(register_user_response)
-	
+	return JsonUtil.failureWithOutput(register_user_response)
+
 # confirms the user email if that route is visited
 @account_api.route('/confirmEmail', methods = ['POST'])
 def confirmEmail():
 	email_confirmation_id = request.json.get(Labels.EmailConfirmationId)
 	this_user = User.query.filter_by(email_confirmation_id = email_confirmation_id).first()
-	if this_user == None:
+	if this_user is None:
 		return JsonUtil.failure()
-	else:
-		this_user.confirmEmail()
-		return JsonUtil.successWithOutput({
-			Labels.User : this_user.toPublicDict(),
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
-		})
+	this_user.confirmEmail()
+	return JsonUtil.successWithOutput({
+		Labels.User : this_user.toPublicDict(),
+		Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+	})
 
 # updates the user's settings
 @account_api.route('/updateSettings', methods = ['POST'])
@@ -146,7 +135,7 @@ def updateSettings(this_user):
 			return JsonUtil.failure(ErrorMessages.inUseEmail(new_settings[Labels.Email]))
 	if new_settings[Labels.Name] == "":
 		return JsonUtil.failure(ErrorMessages.BlankName)
-	# if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):	
+	# if not all(x.isalpha() or x.isspace() for x in new_settings[Labels.Name]):
 	# 	return JsonUtil.failure(ErrorMessages.InvalidName)
 	response = this_user.updateSettings(new_settings)
 	return JsonUtil.successWithOutput(response)
@@ -160,12 +149,13 @@ def changePassword(this_user):
 	if new_password == new_password_confirm:
 		valid_password = this_user.changePassword(old_password, new_password)
 		if valid_password:
-			output = {Labels.User : this_user.toPublicDict(), Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())}
+			output = {
+				Labels.User : this_user.toPublicDict(),
+				Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict())
+			}
 			return JsonUtil.successWithOutput(output)
-		else:
-			return JsonUtil.failure(ErrorMessages.InvalidCredentials)
-	else:
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
+	return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 
 @account_api.route('/addCreditCard', methods = ['POST'])
@@ -184,13 +174,13 @@ def addCreditCard(this_user):
 	number = request.json.get(Labels.Number)
 	cvc = request.json.get(Labels.Cvc)
 
-	add_card_response = this_user.addCreditCard(address_name, address_city, address_line1, address_line2, 
-		address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country)
-	
+	add_card_response = this_user.addCreditCard(address_name, address_city, address_line1,
+		address_line2, address_zip, exp_month, exp_year,
+		number, cvc, name, address_state, address_country)
+
 	if add_card_response.get(Labels.Success):
 		return JsonUtil.successWithOutput(add_card_response)
-	else:
-		return JsonUtil.failureWithOutput(add_card_response)
+	return JsonUtil.failureWithOutput(add_card_response)
 
 @account_api.route("/getUserCards", methods = ['POST'])
 @decorators.check_user_jwt
@@ -210,12 +200,12 @@ def addUserAddress(this_user):
 	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
 
-	add_address_response = this_user.addAddress(description, name, address_line1, address_line2, address_city, address_state,
+	add_address_response = this_user.addAddress(description, name,
+		address_line1, address_line2, address_city, address_state,
 		address_zip, address_country)
 	if add_address_response.get(Labels.Success):
 		return JsonUtil.successWithOutput(add_address_response)
-	else:
-		return JsonUtil.failureWithOutput(add_address_response)
+	return JsonUtil.failureWithOutput(add_address_response)
 
 
 @account_api.route("/getUserAddress", methods = ['POST'])
@@ -237,23 +227,24 @@ def editUserAddress(this_user):
 	address_zip = request.json.get(Labels.AddressZip)
 	address_state = request.json.get(Labels.AddressState)
 	try:
-		this_user.editAddress(address_id, description, name, address_line1, address_line2, address_city, address_state,
+		this_user.editAddress(address_id, description, name, address_line1,
+			address_line2, address_city, address_state,
 			address_zip, address_country)
 		return JsonUtil.success()
 
-	except Exception as e:
+	except:
 		return JsonUtil.failure(ErrorMessages.AddressEditError)
 
 @account_api.route('/deleteUserAddress', methods = ['POST'])
 @decorators.check_user_jwt
 def deleteUserAddress(this_user):
-	address_id = request.json.get(Labels.AddressId)	
+	address_id = request.json.get(Labels.AddressId)
 	try:
 		this_user.deleteAddress(address_id)
 		return JsonUtil.success()
 	except:
 		return JsonUtil.failure(ErrorMessages.AddressDeleteError)
-	
+
 @account_api.route('/deleteUserCreditCard', methods = ['POST'])
 @decorators.check_user_jwt
 def deleteUserCreditCard(this_user):
@@ -278,13 +269,13 @@ def getUserInfo(this_user):
 	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
 	ab_group = sum(nums) % 2
 	if hasattr(this_user, 'is_admin'):
-		if this_user.is_admin:		
-			admin_jwt = JwtUtil.create_jwt(this_user.toPublicDict())		
-			return JsonUtil.successWithOutput({		
-				Labels.User : this_user.toPublicDict(), 		
-				"jwt" : admin_jwt})		
-		else:		
-			return JsonUtil.failure({"ab_group" : ab_group})		
+		if this_user.is_admin:
+			admin_jwt = JwtUtil.create_jwt(this_user.toPublicDict())
+			return JsonUtil.successWithOutput({
+				Labels.User : this_user.toPublicDict(),
+				"jwt" : admin_jwt})
+		else:
+			return JsonUtil.failure({"ab_group" : ab_group})
 
 	else:
 		if this_user:
@@ -295,8 +286,8 @@ def getUserInfo(this_user):
 					Labels.User : public_user_dict,
 					Labels.AdjustedItems : adjusted_items
 				})
-		else:
-			return JsonUtil.failure({"ab_group" : ab_group})
+
+		return JsonUtil.failure({"ab_group" : ab_group})
 
 
 
@@ -341,7 +332,7 @@ def setDefaultCard(this_user):
 @account_api.route('/setRecoveryPin', methods = ['POST'])
 def setRecoveryPin():
 	email = request.json.get(Labels.Email)
-	if email == None or email == "":
+	if email is None or email == "":
 		return JsonUtil.failure(ErrorMessages.BlankEmail)
 	user = User.query.filter_by(email = email).first()
 	if user:
@@ -406,16 +397,15 @@ def readCartMessage(this_user):
 # get the correct FB app id
 @account_api.route('/getFbAppId', methods = ['POST'])
 def getFbAppId():
-
-	ENVIRONMENT = os.environ.get('ENVIRONMENT')
+	environment = os.environ.get('ENVIRONMENT')
 	app_id = ""
 	if request.remote_addr == "127.0.0.1":
 		app_id = "301430330267358"
-	elif ENVIRONMENT == "DEVELOPMENT":
+	elif environment == "DEVELOPMENT":
 		app_id = "255033931670343"
-	elif ENVIRONMENT == "STAGING":
+	elif environment == "STAGING":
 		app_id = "333196410460893"
-	elif ENVIRONMENT == "PRODUCTION":
+	elif environment == "PRODUCTION":
 		app_id = "120813588560588"
 	return JsonUtil.successWithOutput({"app_id" : app_id})
 
@@ -426,7 +416,7 @@ def handleFacebookUser():
 	guest_jwt = request.json.get(Labels.Jwt)
 	guest_user = JwtUtil.getUserInfoFromJwt(guest_jwt)
 	fb_id = fb_response.get(Labels.Id)
-	if fb_id == None:
+	if fb_id is None:
 		return JsonUtil.failure()
 
 	fb_user = User.query.filter_by(fb_id = fb_response.get(Labels.Id)).first()
@@ -463,7 +453,6 @@ def signUpForLandingList():
 
 	try:
 		EmailLib.sendLaunchListEmail(email)
-	except Exception as e:
-		return JsonUtil.failure("Error sending email, please try again")		
-
+	except:
+		return JsonUtil.failure("Error sending email, please try again")
 	return JsonUtil.success()

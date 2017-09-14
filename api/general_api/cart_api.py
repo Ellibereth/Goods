@@ -1,25 +1,11 @@
-from flask import Blueprint, jsonify, request
-import time
-import base64
+from flask import Blueprint, request
 
-from api.utility.stripe_api import StripeManager
-
-from api.models.shared_models import db
-from api.models.user import User
-from api.models.cart import CartItem
 from api.models.cart import Cart
 from api.models.market_product import MarketProduct
-from api.models.market_product import ProductVariant
 from api.utility.json_util import JsonUtil
 from api.utility.labels import CartLabels as Labels
 from api.utility.jwt_util import JwtUtil
-from api.utility.email import EmailLib
-from api.models.order import Order
-from api.models.order import OrderItem
-from api.utility.lob import Lob
-from api.utility.labels import ErrorLabels
-from api.utility.error import ErrorMessages
-from api.general_api import decorators 
+from api.general_api import decorators
 from api.utility.checkout import Checkout
 
 cart_api = Blueprint('cart_api', __name__)
@@ -42,7 +28,7 @@ def addItemToCart(this_user):
 		return JsonUtil.successWithOutput(add_to_cart_response)
 	else:
 		return JsonUtil.failureWithOutput(add_to_cart_response)
-	
+
 
 # checkout cart
 @cart_api.route('/checkoutCart', methods = ['POST'])
@@ -60,19 +46,18 @@ def checkoutCart(this_user):
 @decorators.check_user_jwt
 def getUserCart(this_user):
 	this_cart = Cart(this_user)
-	total_price = this_cart.total_price
 	return JsonUtil.success(Labels.Cart, this_cart.toPublicDict())
 
 
 @cart_api.route('/getCheckoutInformation', methods = ['POST'])
 @decorators.check_user_jwt
 def getCheckoutInformation(this_user):
-	
+
 	this_cart = Cart(this_user)
 	addresses = this_user.getAddresses()
 	cards = this_user.getCreditCards()
-	
-	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards, 
+
+	return JsonUtil.successWithOutput({Labels.Addresses : addresses, Labels.Cards : cards,
 		Labels.Cart : this_cart.toPublicDict()})
 
 
@@ -84,7 +69,8 @@ def updateCartQuantity(this_user):
 	new_num_items = request.json.get(Labels.NewNumItems)
 
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	update_cart_quantity_response = Checkout.updateCartQuantity(this_user, this_product, this_cart_item, new_num_items)
+	update_cart_quantity_response = Checkout.updateCartQuantity(this_user, this_product,
+		this_cart_item, new_num_items)
 	if update_cart_quantity_response.get(Labels.Success):
 		return JsonUtil.successWithOutput(update_cart_quantity_response)
 	else:
@@ -95,14 +81,8 @@ def updateCartQuantity(this_user):
 
 def refreshCheckoutInfo(this_user):
 	address = request.json.get(Labels.Address)
-	time_0 = time.time()
 	public_user_dict = this_user.toPublicDictCheckout(address)
 	return JsonUtil.successWithOutput({
 			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
 			Labels.User : public_user_dict
 		})
-
-
-
-
-

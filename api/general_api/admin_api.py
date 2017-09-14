@@ -1,3 +1,4 @@
+import base64
 from flask import Blueprint, jsonify, request
 from api.utility.json_util import JsonUtil
 from api.utility.jwt_util import JwtUtil
@@ -14,36 +15,29 @@ from api.models.product_image import ProductImage
 from api.general_api import decorators
 from api.utility.error import ErrorMessages
 from api.models.order import Order
-from api.models.launch_list_email import LaunchListEmail
-
-
-import base64
-from api.s3.s3_api import S3
 
 admin_api = Blueprint('admin_api', __name__)
-admin_login_username = "heathcliffe"
-admin_login_password = "powerplay"
 
 # this route needs to be udpdated for when we have admin accounts
 @admin_api.route('/checkAdminLogin', methods =['POST'])
-def checkAdminLogin():	
-	ip = request.remote_addr
+def checkAdminLogin():
+	ip_address = request.remote_addr
 	username = request.json.get(Labels.Username)
 	password = request.json.get(Labels.Password)
-	if LoginAttempt.blockIpAddress(ip):
-		LoginAttempt.addLoginAttempt(username, ip, success = False, is_admin = True)
+	if LoginAttempt.blockIpAddress(ip_address):
+		LoginAttempt.addLoginAttempt(username, ip_address, success = False, is_admin = True)
 		return JsonUtil.failure(ErrorMessages.IpBlocked)
 
 	if AdminUser.checkLogin(username, password):
 		admin_user = AdminUser.query.filter_by(username = username).first()
 		admin_jwt = JwtUtil.create_jwt(admin_user.toPublicDict())
-		LoginAttempt.addLoginAttempt(username, ip 
+		LoginAttempt.addLoginAttempt(username, ip_address
 			, success = True, is_admin = True)
 		return JsonUtil.successWithOutput({
-			Labels.User : admin_user.toPublicDict(), 
+			Labels.User : admin_user.toPublicDict(),
 			"jwt" : admin_jwt})
 	else:
-		LoginAttempt.addLoginAttempt(username, ip, success = False, is_admin = True)
+		LoginAttempt.addLoginAttempt(username, ip_address, success = False, is_admin = True)
 		return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 
 
@@ -58,13 +52,13 @@ def checkAdminJwt(admin_user):
 def uploadMarketProductImage(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	image_data = request.json.get(Labels.ImageData)
-	if image_data == None:
+	if image_data is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("No image has been uploaded!")
 	image_bytes = image_data.encode('utf-8')
 	image_decoded = base64.decodestring(image_bytes)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Product doesn't exist")
 	this_product.addProductImage(image_decoded)
@@ -76,13 +70,13 @@ def uploadMarketProductImage(admin_user):
 def uploadManufacturerLogo(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	image_data = request.json.get(Labels.ImageData)
-	if image_data == None:
+	if image_data is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("No image has been uploaded!")
 	image_bytes = image_data.encode('utf-8')
 	image_decoded = base64.decodestring(image_bytes)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Product doesn't exist")
 	this_product.addManufacturerLogo(image_decoded)
@@ -96,12 +90,12 @@ def deleteProductPhoto(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	image_id = request.json.get(Labels.ImageId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
 
 	this_image = ProductImage.query.filter_by(image_id = image_id).first()
-	if this_image == None:
+	if this_image is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving image")
 	this_image.soft_deleted = True
@@ -113,20 +107,14 @@ def deleteProductPhoto(admin_user):
 @admin_api.route('/updateProductInfo', methods = ['POST'])
 @decorators.check_admin_jwt
 def updateProductInfo(admin_user):
-	
 	product_id = request.json.get(Labels.ProductId)
 	product = request.json.get(Labels.Product)
-	sale_end_date = product.get('sale_end_date')
-	print(sale_end_date)
-	
-	name = request.json.get(Labels.Name)
-	tags = request.json.get(Labels.Tags)
 
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if product == None:
+	if product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("There was no input")
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
 
@@ -142,7 +130,6 @@ def updateProductInfo(admin_user):
 
 			if key == Labels.ProductListingTags:
 				tag_list = value.split(',')
-				print(tag_list)
 				this_product.updateProductListingTags(tag_list)
 			if key == Labels.ProductSearchTags:
 				tag_list = value.split(',')
@@ -168,12 +155,11 @@ def updateProductInfo(admin_user):
 def updateManufacturerInfo(admin_user):
 	manufacturer_id = request.json.get(Labels.ManufacturerId)
 	manufacturer = request.json.get(Labels.Manufacturer)
-	name = request.json.get(Labels.Name)
 	this_manufacturer = Manufacturer.query.filter_by(manufacturer_id = manufacturer_id).first()
-	if manufacturer == None:
+	if manufacturer is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("There was no input")
-	if this_manufacturer == None:
+	if this_manufacturer is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
 
@@ -185,8 +171,7 @@ def updateManufacturerInfo(admin_user):
 				value = manufacturer.get(key)
 			if value != None and key != Labels.ManufacturerId:
 				setattr(this_manufacturer, key, value)
-		except Exception as e:
-			print(e)
+		except:
 			AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 			return JsonUtil.failure(key + " input is invalid")
 
@@ -196,16 +181,16 @@ def updateManufacturerInfo(admin_user):
 
 @admin_api.route('/setMainProductPhoto', methods = ['POST'])
 @decorators.check_admin_jwt
-def setMainProductPhoto(admin_user):	
+def setMainProductPhoto(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	image_id = request.json.get(Labels.ImageId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
 
 	this_image = ProductImage.query.filter_by(image_id = image_id).first()
-	if this_image == None:
+	if this_image is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving image")
 
@@ -248,7 +233,7 @@ def deactivateProduct(admin_user):
 def getAdminMarketProductInfo(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	market_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if market_product == None:
+	if market_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving product information")
 	else:
@@ -277,10 +262,9 @@ def getManufacturers(admin_user):
 def addProductVariant(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
-	
 	variant_type = request.json.get(Labels.VariantType)
 	inventory = request.json.get(Labels.Inventory)
 	price = request.json.get(Labels.Price)
@@ -296,7 +280,7 @@ def addProductVariant(admin_user):
 def deleteVariant(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
 
@@ -316,11 +300,11 @@ def deleteVariant(admin_user):
 def updateVariant(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
 
-	variant  = request.json.get(Labels.Variant)	
+	variant  = request.json.get(Labels.Variant)
 	if not variant:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid variant")
@@ -340,7 +324,7 @@ def updateVariant(admin_user):
 def activateVariant(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
 
@@ -355,7 +339,7 @@ def activateVariant(admin_user):
 def deactivateVariant(admin_user):
 	product_id = request.json.get(Labels.ProductId)
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product == None:
+	if this_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
 
@@ -372,11 +356,11 @@ def toggleProductHasVariants(admin_user):
 	has_variants = request.json.get(Labels.HasVariants)
 	if not product_id:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
-		return JsonUtil.falure("No product ID")
+		return JsonUtil.failure("No product ID")
 	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
 	if not this_product:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
-		return JsonUtil.falure("Product doesn't exist")
+		return JsonUtil.failure("Product doesn't exist")
 
 	this_product.has_variants = has_variants
 	this_product.active = False
@@ -389,10 +373,9 @@ def toggleProductHasVariants(admin_user):
 @decorators.check_admin_jwt
 def addMarketProduct(admin_user):
 	market_product = request.json.get(Labels.MarketProduct)
-	if market_product == None:
+	if market_product is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
-	
 	name = market_product.get(Labels.Name)
 	new_product = MarketProduct(name)
 	db.session.add(new_product)
@@ -406,10 +389,10 @@ def addMarketProduct(admin_user):
 @decorators.check_admin_jwt
 def addManufacturer(admin_user):
 	manufacturer = request.json.get(Labels.Manufacturer)
-	if manufacturer == None:
+	if manufacturer is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Invalid submission")
-	
+
 	name = manufacturer.get(Labels.Name)
 	new_manufacturer = Manufacturer(name)
 	db.session.add(new_manufacturer)
@@ -424,7 +407,7 @@ def addManufacturer(admin_user):
 @decorators.check_admin_jwt
 def uploadHomeImage(admin_user):
 	image_data = request.json.get(Labels.ImageData)
-	if image_data == None:
+	if image_data is None:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("No image has been uploaded!")
 	image_bytes = image_data.encode('utf-8')
@@ -474,7 +457,6 @@ def getAllOrders(admin_user):
 def getAdminManufacturerInfo(admin_user):
 	manufacturer_id = request.json.get(Labels.ManufacturerId)
 	this_manufacturer = Manufacturer.query.filter_by(manufacturer_id = manufacturer_id).first()
-	
 	if not this_manufacturer:
 		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 		return JsonUtil.failure("Error retrieving manufacturer information")
@@ -483,6 +465,3 @@ def getAdminManufacturerInfo(admin_user):
 	return JsonUtil.successWithOutput({
 			Labels.Manufacturer : this_manufacturer.toPublicDict()
 		})
-
-
-

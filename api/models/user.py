@@ -1,11 +1,10 @@
-from api.utility.table_names import ProdTables
-from api.utility.table_names import TestTables
-from passlib.hash import argon2
-from api.models.shared_models import db
-import time
 import datetime
-import random
-import string
+import re
+from validate_email import validate_email
+
+from passlib.hash import argon2
+from api.utility.table_names import ProdTables
+from api.models.shared_models import db
 from api.utility.stripe_api import StripeManager
 from api.utility.labels import UserLabels as Labels
 from api.utility.id_util import IdUtil
@@ -15,16 +14,9 @@ from api.models.order import Order
 from api.models.cart import Cart, CartItem
 from api.models.market_product import MarketProduct
 from api.models.market_product import ProductVariant
-from api.utility.jwt_util import JwtUtil
-import re
 from api.utility.error import ErrorMessages
-import os
-import sys
 from api.utility.email import EmailLib
-from validate_email import validate_email
-
 from api.utility.membership_tiers import MembershipTiers
-
 
 FB_USER_NO_HASH = "FB_USER_NO_HASH"
 
@@ -51,9 +43,7 @@ class User(db.Model):
 	search_tag = db.relationship("CartItem", backref = ProdTables.ShoppingCartTable, lazy='dynamic', cascade = "save-update")
 	membership_tier = db.Column(db.Integer)
 	fb_id = db.Column(db.String)
-
 	ab_group = db.Column(db.Integer)
-
 	is_guest = db.Column(db.Boolean, default = False)
 	NAME_MAX_LENGTH = 20
 	MIN_PASSWORD_LENGTH = 6
@@ -645,8 +635,6 @@ class User(db.Model):
 					Labels.Success : True,
 					Labels.User : self.toPublicDict()
 				}
-
-
 
 	def addItemToCart(self, product_id, quantity, variant_id = None):
 		if variant_id:
