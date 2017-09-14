@@ -9,7 +9,7 @@ import {
 	TextInput
 } from 'react-native';
 import {dismissKeyboard} from 'react-native-dismiss-keyboard'
-import {handleRegisterSubmit} from '../../../api/UserApi'
+import {handleRegisterSubmit} from '../../../api/UserService'
 import {Actions} from 'react-native-router-flux'
 
 export default class RegisterScreen extends Component {

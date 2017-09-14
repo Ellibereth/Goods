@@ -4,7 +4,7 @@ import {Component} from 'react'
 import {View, Text, ScrollView } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
-import {getOnSaleProducts} from '../../api/ProductApi'
+import {getOnSaleProducts} from '../../api/ProductService'
 import HomeProductDisplay from '../Home/HomeProductDisplay'
 
 function mapStateToProps(state) {

@@ -9,7 +9,7 @@ import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import { ActionCreators } from  '../../../actions'
 import {bindActionCreators} from 'redux'
-import {getUserOrders} from '../../../api/UserApi'
+import {getUserOrders} from '../../../api/UserService'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import OrderDisplay from './OrderDisplay'

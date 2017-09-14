@@ -11,8 +11,6 @@ import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import { ActionCreators } from  '../../actions'
 import {bindActionCreators} from 'redux'
-import {} from '../../api/ProductApi'
-
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CartItemDisplay from './CartItemDisplay'
 import CheckoutStepIndicator from './CheckoutStepIndicator'

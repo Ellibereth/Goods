@@ -3,20 +3,11 @@ import * as types from './types'
 const url = "https://www.edgarusa-testserver.herokuapp.com"
 const test_url = "http://0.0.0.0:5000"
 import {AsyncStorage} from 'react-native'
+import {getUserInfo, refreshCheckoutInfo} from '../api/UserService'
 
 export function loadUser(jwt){
 	return async (dispatch, getState) => {
-		let response = await fetch(test_url + "/getUserInfo", {method: "POST",
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-				body:JSON.stringify({
-					jwt : jwt,
-
-				})
-			})
-		let data = await response.json()
+		let data = await getUserInfo(jwt)
 		if (data.success) {
 			AsyncStorage.setItem('jwt', data.jwt)
 			dispatch(setUserInfo(data))	
@@ -30,18 +21,8 @@ export function loadUser(jwt){
 
 export function loadUserCheckout(jwt, address){
 	return async (dispatch, getState) => {
-		let response = await fetch(test_url + "/refreshCheckoutInfo", {method: "POST",
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json',
-			},
-				body:JSON.stringify({
-					jwt : jwt,
-					address : address
-
-				})
-			})
-			let data = await response.json()
+		
+		let data = await refreshCheckoutInfo(jwt, address)
 		if (data.success) {
 			AsyncStorage.setItem('jwt', data.jwt)
 			dispatch(setUserInfo(data))	
@@ -62,11 +43,11 @@ export function logoutUser(){
 
 
 
-export function setUserInfo(responseData) {
+export function setUserInfo(data) {
 	return {
 		type: types.SET_USER_INFO,
-		user : responseData.user,
+		user : data.user,
 		initial_fetch_done : true,
-		jwt : responseData.jwt
+		jwt : data.jwt
 	}
 }

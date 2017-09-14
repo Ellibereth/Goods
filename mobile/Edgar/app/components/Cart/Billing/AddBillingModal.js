@@ -9,7 +9,7 @@ import {TouchableOpacity,
 		TouchableHighlight
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
-import {handleAddBilling} from '../../../api/UserApi'
+import {handleAddBilling} from '../../../api/UserService'
 import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutTextInput from '../../Misc/CheckoutTextInput'

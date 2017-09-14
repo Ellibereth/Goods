@@ -12,7 +12,7 @@ import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import { ActionCreators } from  '../../actions'
 import {bindActionCreators} from 'redux'
-import {handleCheckoutCart} from '../../api/CartApi'
+import {handleCheckoutCart} from '../../api/CartService'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CartItemDisplay from './CartItemDisplay'

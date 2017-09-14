@@ -14,7 +14,7 @@ import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import { ActionCreators } from  '../../actions'
 import {bindActionCreators} from 'redux'
-import {getProductInfo, addItemToCart} from '../../api/CartApi'
+import {getProductInfo, addItemToCart} from '../../api/CartService'
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 

@@ -9,7 +9,7 @@ import {
 	TextInput
 } from 'react-native';
 import {dismissKeyboard} from 'react-native-dismiss-keyboard'
-import {handleLoginSubmit} from '../../../api/UserApi'
+import {handleLoginSubmit} from '../../../api/UserService'
 import {Actions, ActionConst} from 'react-native-router-flux'
 
 export default class LoginForm extends Component {

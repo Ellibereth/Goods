@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SimplePicker from 'react-native-simple-picker'
-import {updateCartQuantity} from '../../api/CartApi'
+import {updateCartQuantity} from '../../api/CartService'
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 export default class CartItemDisplay extends Component {
