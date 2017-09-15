@@ -7,10 +7,6 @@ const form_fields = ['name', 'manufacturer_email', 'price', 'sale_text_product',
 const form_labels = ['Name', 'Manufacturer Emails (separate with commas)', 'Original Price (make sure this is in cents)', 'Sale Red Text Product (this is HTML)', 'Sale Red Text Home (this is HTML)', 'Sale End Date', 'Category', 'Product Template', 'Item Limit', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Search Tags (Separate by commas)', 'Listing Tags (Separate by commas)', 'Related Product Tags (Separate by commas)']
 const input_types = ['text', 'text', 'text', 'text', 'textarea', 'textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea','textarea','textarea']
 
-import Select from 'react-select'
-
-// Be sure to include styles at some point, probably during your bootstrapping
-import 'react-select/dist/react-select.css'
 
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AdminEditProductInfo extends React.Component {

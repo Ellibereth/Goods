@@ -2,7 +2,7 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var browserHistory = require('react-router').browserHistory
 import AppActions from '../../../actions/AppActions'
-import Button from 'react-bootstrap/lib/Button'
+import Button from 'react-bootstrap'
 
 import {AlertMessages} from '../../Misc/AlertMessages'
 

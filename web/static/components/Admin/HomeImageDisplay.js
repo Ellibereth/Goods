@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom')
 
 
 import AdminTextInput from '../Input/AdminTextInput'
-import Button from 'react-bootstrap/lib/Button'
+import Button from 'react-bootstrap'
 
 const base_url = 'https://s3-us-west-2.amazonaws.com/edgarusahomepage/'
 import {AlertMessages} from '../Misc/AlertMessages'
