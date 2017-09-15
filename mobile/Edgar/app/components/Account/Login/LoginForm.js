@@ -23,15 +23,17 @@ export default class LoginForm extends Component {
 
 	handleLoginSubmit() {
 		this.asyncHandleLoginSubmit().then(()=> {
-			Actions.account({type : ActionConst.RESET})
-			Actions.home({type : ActionConst.REPLACE})
+			Actions.home({type : ActionConst.RESET})
 		}).done()
 	}
 
 	async asyncHandleLoginSubmit() {
 		let data = await handleLoginSubmit(this.state.email, this.state.password)
 		if (data.success) {
-			this.props.loadUser(data.jwt)	
+			this.props.setUserInfo(data)	
+		}
+		else {
+			console.log("login error", data.error)
 		}
 	}
 	

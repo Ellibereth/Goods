@@ -27,7 +27,8 @@ class LoginScreen extends Component {
 
 	render() {
 		return (
-				<LoginForm loadUser = {this.props.loadUser} />
+				<LoginForm 
+				setUserInfo = {this.props.setUserInfo} />
 		)
 	}
 }
