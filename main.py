@@ -64,9 +64,7 @@ if os.environ.get(ENVIRONMENT_STRING) is None:
 
 if DATABASE_URI is None:
 	# if testing locally we use the dev DB
-	LOCAL_URL = "postgres://qcyekddfbkmsly:\
-				bb555734313b859808b602403e8eb13a061601df0c709826b2f25b94fb1c170d\
-				@ec2-23-21-85-76.compute-1.amazonaws.com:5432/d7namsk8b63mqs"
+	LOCAL_URL = "postgres://qcyekddfbkmsly:bb555734313b859808b602403e8eb13a061601df0c709826b2f25b94fb1c170d@ec2-23-21-85-76.compute-1.amazonaws.com:5432/d7namsk8b63mqs"
 	app.config['SQLALCHEMY_DATABASE_URI'] = LOCAL_URL
 
 else:
@@ -142,7 +140,7 @@ def before_request():
 def send_static(path):
 	return send_from_directory('static', path)
 
-@app.route('/')
+@app.route('/',defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
 	this_env = os.environ.get(ENVIRONMENT_STRING)

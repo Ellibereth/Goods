@@ -135,7 +135,7 @@ class Main extends React.Component {
 							<Scene {...this.props} 
 							key="login" component={LoginScreen} title="Login"    hideTabBar = {true} />
 							
-							<Scene {...this.props} 
+							<Scene {...this.props} loadUser = {this.props.loadUser}
 							key="register" component={RegisterScreen} title="Register"    hideTabBar = {true} />
 							
 						</Scene>

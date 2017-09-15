@@ -6,13 +6,28 @@ import {
 	View,
 	ListView,
 	TouchableOpacity,
-	TextInput
+	TextInput,
+	TouchableWithoutFeedback
 } from 'react-native';
 import {dismissKeyboard} from 'react-native-dismiss-keyboard'
 import {handleRegisterSubmit} from '../../../api/UserService'
 import {Actions} from 'react-native-router-flux'
+import { ActionCreators } from  '../../../actions'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-export default class RegisterScreen extends Component {
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators(ActionCreators, dispatch);
+}
+
+function mapStateToProps(state) {
+	return {
+		user : state.user,
+		jwt : state.jwt
+	}
+}
+
+class RegisterScreen extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -38,7 +53,7 @@ export default class RegisterScreen extends Component {
 				this.state.password_confirm
 			)
 		if (data.success){
-			console.log("success")
+			this.props.setUserInfo(data)
 		}
 		else {
 			Alert.alert(
@@ -146,3 +161,5 @@ const styles = StyleSheet.create({
 	input_wrapper : {flex : 1, borderColor : 'silver', borderWidth : 1, borderRadius : 6},
 	input : {flex : 1, width : 240, fontSize : 14, justifyContent : 'flex-start', padding: 6},
 });
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen);
