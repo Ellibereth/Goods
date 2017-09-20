@@ -1,14 +1,17 @@
+"""
+: Module containing the Maufacturer class 
+"""
 
 from api.utility.table_names import ProdTables
 from api.models.shared_models import db
-import time
-import random
-import string
 from api.utility.labels import ManufacturerLabels as Labels
-from api.utility.id_util import IdUtil
 
 
 class Manufacturer(db.Model):
+	"""
+	: This class represents our manufacturers
+	: Implemented with SQL Alchemy db.Model
+	"""
 	__tablename__ = ProdTables.ManufacturerTable
 	INTEGER_INPUTS = [Labels.Fee]
 	manufacturer_id = db.Column(db.Integer, primary_key=True, autoincrement = True)
@@ -26,11 +29,16 @@ class Manufacturer(db.Model):
 
 	@staticmethod
 	def getAllManufacturers():
+		"""
+		: Returns a list of all manufacturers as public dictionaries
+		"""
 		manufacturers = Manufacturer.query.filter_by().all()
 		return [manufacturer.toPublicDict() for manufacturer in manufacturers]
 
-
 	def toPublicDict(self):
+		"""
+		: Returns a public dictionary of this manufacturer
+		"""
 		public_dict = {}
 		public_dict[Labels.ManufacturerId] = self.manufacturer_id
 		public_dict[Labels.Name] = self.name
@@ -38,5 +46,3 @@ class Manufacturer(db.Model):
 		public_dict[Labels.Notes] = self.notes
 		public_dict[Labels.Fee] = self.fee
 		return public_dict
-
-

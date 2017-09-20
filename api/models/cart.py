@@ -1,17 +1,22 @@
+"""
+: Module containing Edgar USA user shopping cart 
+: and cart item classes
+"""
+
 from api.utility.table_names import ProdTables
-from api.utility.table_names import TestTables
-from passlib.hash import argon2
-from api.models.shared_models import db
-import time
-import datetime
+from api.utility.membership_tiers import MembershipDiscount
 from api.utility.labels import CartLabels as Labels
 from api.pricing.pricing import Pricing
+from api.models.shared_models import db
 from api.models.market_product import MarketProduct
-from api.models.discount_code import DiscountCode
-from api.utility.membership_tiers import MembershipDiscount
-# this class should be a user's shopping cart
-# as a list of CartItems
+
+SALES_TAX_RATE = 0.05
+
 class Cart:
+	"""
+	: User cart class. Implemented primarily as a list of CartItem objects
+	: Also contains other user information needed for checkout
+	"""
 	def __init__(self, user, discount_code = None):
 		self.account_id = user.account_id
 		#  put the cart items in date modified reverse order
@@ -21,57 +26,88 @@ class Cart:
 			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
 			if this_product.isAvailable():
 				self.items.append(cart_item)
-
 		self.membership_tier = user.membership_tier
 		self.items_price = self.getCartItemsPrice()
 		self.discount_code = discount_code
-		
 
 	def getCartItemsPrice(self):
+		"""
+		: Calculates this cart's items price after discounts
+		"""
 		return Pricing.getCartItemsPrice(self)
 
 	def getCartShippingPrice(self, address):
+		"""
+		: Calculates this cart's shipping price after discounts
+		"""
 		return Pricing.getCartShippingPrice(self, address)
 
 	def getOriginalCartItemsPrice(self):
+		"""
+		: Calculates this cart's price of items before discounts are applied
+		"""
 		return Pricing.getOriginalCartItemsPrice(self)
 
 	def getOriginalShippingPrice(self, address):
+		"""
+		: Calculates this cart's shipping price before discounts are applied
+		"""
 		return Pricing.getOriginalCartShippingPrice(self, address)
 
 	def getOriginalCartTotalPrice(self, address):
+		"""
+		: Calculates this cart's total price before discounts are applied
+		"""
 		return int(self.getOriginalShippingPrice(address) \
 			+ self.getCartSalesTaxPrice(address) + self.getOriginalCartItemsPrice())
 
 	def getSalesTaxRate(self, address):
-		SALES_TAX_RATE = 0.05
+		"""
+		: Calculates this carts sales tax rate based on the address
+		"""
 		if address[Labels.AddressState] == "CA" or address[Labels.AddressState] == "TX":
 			return SALES_TAX_RATE
 		else:
 			return 0
 
 	def getCartSalesTaxPrice(self, address):
-		if address == None:
+		"""
+		: Calculates this carts sales tax price as a product of the tax rate
+		"""
+		if address is None:
 			return 0
 		return int(self.getSalesTaxRate(address) * self.getCartItemsPrice())
 
 	def getCartTotalPrice(self, address):
+		"""
+		: Returns the carts total price after discounts are applied
+		"""
 		return int(self.getCartShippingPrice(address) \
 			+ self.getCartSalesTaxPrice(address) + self.items_price)
 
 	def clearCart(self):
+		"""
+		: Empties the user's cart by deleting each CartItem object
+		: from the database 
+		"""
 		for cart_item in self.items:
 			cart_item.deleteItem()
 		self.items = list()
-		self.price = 0
 
 	def getCartSize(self):
+		"""
+		: Returns the sum of items in the cart
+		"""
 		total = 0
 		for item in self.items:
 			total = total + item.num_items
 		return total
 
 	def toPublicDict(self, address = None):
+		"""
+		: Returns a public dictinary of the Cart object
+		: Calculates in a discount if necessary
+		"""
 		public_dict = {}
 		product_list = list()
 		for cart_item in self.items:
@@ -90,14 +126,12 @@ class Cart:
 		product_list.sort(key=lambda x: x.get(Labels.DateModified))
 		product_list.reverse()
 		public_dict[Labels.Items] = product_list
-		
 		public_dict[Labels.ItemsPrice] = self.getCartItemsPrice()
 		public_dict[Labels.MembershipTier] = self.membership_tier
 		public_dict[Labels.OriginalItemsPrice] = self.getOriginalCartItemsPrice()
 		public_dict[Labels.ItemsDiscount] = public_dict[Labels.OriginalItemsPrice] - public_dict[Labels.ItemsPrice]
 		# here a discount is applied
 		public_dict[Labels.Discounts] = public_dict[Labels.ItemsDiscount]
-
 		if address:
 			if self.getCartTotalPrice(address) != self.getOriginalCartTotalPrice(address):
 				public_dict[Labels.DiscountMessage] = MembershipDiscount(self.membership_tier).discount_message
@@ -108,9 +142,13 @@ class Cart:
 				public_dict[Labels.ShippingDiscount] = public_dict[Labels.OriginalShippingPrice] - public_dict[Labels.ShippingPrice]
 				public_dict[Labels.Discounts] = public_dict[Labels.Discounts] + public_dict[Labels.ShippingDiscount]
 		return public_dict
-
 	
 class CartItem(db.Model):
+	"""
+	: this model represents items in a user's shopping cart
+	: implemented as a SQLAlchemy model
+	: Each CartItem is linked to a single User object via account_id
+	"""
 	__tablename__ = ProdTables.ShoppingCartTable
 	cart_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
@@ -132,12 +170,17 @@ class CartItem(db.Model):
 		self.num_items_limit = MarketProduct.query.filter_by(product_id = product_id).first().num_items_limit
 		db.Model.__init__(self)		
 
-
-	# called with a try statement
+	
 	def updateCartQuantity(self, new_num_items):
+		"""
+		: Updates the quantity of this cart item
+		: raises exception if the argument new_num_items 
+		: is larger than the limit for this product
+		: called with a try statement
+		"""
 		# confirm num_items is an integer
-		assert(new_num_items >= 0)
-		assert(new_num_items % 1 == 0)
+		assert new_num_items >= 0
+		assert new_num_items % 1 == 0
 		if new_num_items == 0:
 			self.deleteItem()
 		elif new_num_items > self.num_items_limit:
@@ -147,10 +190,16 @@ class CartItem(db.Model):
 		db.session.commit()
 
 	def deleteItem(self):
+		"""
+		: Deletes this item from the user's cart
+		"""
 		CartItem.query.filter_by(cart_id = self.cart_id).delete()
 		db.session.commit()
 
 	def toPublicDict(self):
+		"""
+		: Returns a public dictionary of this CartItem object
+		"""
 		public_dict = {}
 		public_dict[Labels.CartId] = self.cart_id
 		public_dict[Labels.NumItems] = self.num_items
@@ -160,7 +209,3 @@ class CartItem(db.Model):
 		public_dict[Labels.VariantId] = self.variant_id
 		public_dict[Labels.DateModified] = self.date_modified
 		return public_dict
-
-
-
-

@@ -1,22 +1,25 @@
-from api.utility.table_names import ProdTables
-from api.utility.table_names import TestTables
-from api.models.shared_models import db
-import time
+"""
+: module containing the MarketProduct class 
+"""
 import random
-import string
-import json
 import datetime
+from api.s3.s3_api import S3
+from api.utility.table_names import ProdTables
 from api.utility.labels import MarketProductLabels as Labels
+from api.models.shared_models import db
 from api.models.product_image import ProductImage
 from api.models.product_search_tag import ProductSearchTag
 from api.models.product_listing_tag import ProductListingTag
 from api.models.related_product_tag import RelatedProductTag
 from api.models.manufacturer_logo import ManufacturerLogo
 from api.models.manufacturer import Manufacturer
-from api.s3.s3_api import S3
 
 
 class MarketProduct(db.Model):
+	"""
+	: Edgar USA product class
+	: implemented with SQL Alchemy 
+	"""
 	__tablename__ = ProdTables.MarketProductTable
 	INTEGER_INPUTS = [Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.ProductTemplate]
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
@@ -59,25 +62,25 @@ class MarketProduct(db.Model):
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
 										   onupdate=db.func.current_timestamp())
 
-
-
-
 	# add relationships 
 	search_tag = db.relationship("ProductSearchTag", backref = ProdTables.ProductSearchTagTable, lazy='dynamic')
 	listing_tag = db.relationship("ProductListingTag", backref = ProdTables.ProductListingTagTable, lazy='dynamic')
 	related_product_tag = db.relationship("RelatedProductTag", backref = ProdTables.RelatedProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = ProdTables.ImageTable, lazy='dynamic')
-
 	manufacturer_id = db.Column(db.Integer, db.ForeignKey(ProdTables.ManufacturerTable + '.' + Labels.ManufacturerId))
-
 	def __init__(self, name):
 		self.name = name
 		db.Model.__init__(self)
 
-	# a product is unavaialble if it has no inventory 
-	# products with variants must have all variants out of stock to be unavailable
-	# or the sale end date has passed
+	
+
 	def isAvailable(self):
+		"""
+		: returns false if this product has no inventory or
+		: products with variants must have all variants out of stock to be unavailable
+		: or the sale end date has passed. 
+		: otherwise returns true
+		"""
 		if self.has_variants:	
 			product_variants = self.getProductVariants()
 			variants_in_stock = False
@@ -94,8 +97,12 @@ class MarketProduct(db.Model):
 
 
 	def isExpired(self):
+		"""
+		: Returns true if the product is no longer on sale
+		: false if it is still on sale
+		"""
 		present = datetime.datetime.now()
-		if self.sale_end_date == None:
+		if self.sale_end_date is None:
 			return False
 		if present > self.sale_end_date:
 			return True
@@ -103,6 +110,10 @@ class MarketProduct(db.Model):
 
 		
 	def getProductImages(self):
+		"""
+		: Returns this products image information
+		: as a public dictionaries
+		"""
 		images = ProductImage.query.filter_by(product_id = self.product_id).all()
 		image_list = list()
 		for image in images:
@@ -113,27 +124,45 @@ class MarketProduct(db.Model):
 
 	@staticmethod
 	def getAllProducts():
+		"""
+		: returns all products as list of public dictionaries
+		"""
 		products = MarketProduct.query.filter().order_by(MarketProduct.date_created).all()
 		return [product.toPublicDict() for product in products]
 
 	@staticmethod
 	def getActiveProducts():
-		åctive_products = MarketProduct.query.filter_by(active = True).all()
+		"""
+		: returns a list of all active products as a list of public dictionaries
+		"""
+		active_products = MarketProduct.query.filter_by(active = True).all()
 		return [product.toPublicDict() for product in active_products]
 
 	def addProductImage(self, image_decoded, set_as_main_image = False):
+		"""
+		: adds the product image to S3 database for this product
+		: image_decoded is base64.decodestring() object
+		"""
+
 		# record the image_id in the database
 		image_record = ProductImage(self.product_id)
-		# sets this image to main image if does not exist
-		if len(self.getProductImages()) == 0:
+		# sets this image to main image if does not exist 
+		# of we choose it to
+		if self.getProductImages():
 			self.main_image = image_record.image_id
+		elif set_as_main_image:
+			self.main_image = image_record.image_id
+
 		# upload the image to S3
 		S3.uploadProductImage(image_record.image_id, image_decoded)
 		db.session.add(image_record)
 		db.session.commit()
 
 	def addManufacturerLogo(self, image_decoded):
-		# record the image_id in the database
+		"""
+		: adds the manufacturer logo to the S3 database
+		: image_decoded is base64.decodestring() object
+		"""
 		manufacturer_logo = ManufacturerLogo(self.product_id)
 		self.manufacturer_logo_id = manufacturer_logo.logo_id
 		db.session.add(manufacturer_logo)
@@ -143,41 +172,66 @@ class MarketProduct(db.Model):
 		S3.uploadManufacturerLogo(manufacturer_logo.logo_id, image_decoded)
 
 	def activateProduct(self):
+		"""
+		: sets this product to being active
+		"""
 		self.active = True
 		db.session.commit()
 
 	def deactivateProduct(self):
+		"""
+		: Sets this product to being inactive
+		"""
 		self.active = False
 		db.session.commit()
 
-	def addProductVariant(self, variant_type, price, inventory = 0):
+	def addProductVariant(self, variant_type, price = 0, inventory = 0):
+		"""
+		: Adds a new variant for this product
+		: stores in the database
+		"""
 		new_variant = ProductVariant(self.product_id, variant_type, price, inventory)
 		db.session.add(new_variant)
 		db.session.commit()
 
 	
 	def addProductVariants(self, variant_types):
-		# we can either check if it is a product that has variants
-		# or we can automatically make it one through this process
-		assert(self.has_variants)
-		assert(variant_types)
+		"""
+		: Adds a list of variants to this product
+		"""
+
+		# we check if it is a product that has variants
+		assert self.has_variants
+		assert variant_types
 		for variant_type in variant_types:
 			self.addProductVariant(variant_type)
 
 	def getProductVariants(self):
+		"""
+		: Returns a list of all product variants of this product
+		"""
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		return variants
 
 	def getProductVariant(self, variant_id):
+		"""
+		: Returns the product variant by variant_id
+		"""
 		variant = ProductVariant.query.filter_by(product_id = self.product_id, variant_id = variant_id).first()
 		return variant
 
 	@staticmethod
 	def getProductById(product_id):
+		"""
+		: Returns the market product by product_id
+		"""
 		return MarketProduct.query.filter_by(product_id = product_id).first()
 
 	@staticmethod
 	def getProductsByListingTag(tag):
+		"""
+		: Returns all products matching this listing tag
+		"""
 		tag_matches = ProductListingTag.query.filter_by(tag = tag).all()
 		product_matches = []
 		for match in tag_matches:
@@ -188,6 +242,9 @@ class MarketProduct(db.Model):
 
 	@staticmethod
 	def getProductsBySearchTag(tag):
+		"""
+		: Returns all products matching this search tag
+		"""
 		tag_matches = ProductSearchTag.query.filter_by(tag = tag).all()
 		product_matches = []
 		for match in tag_matches:
@@ -198,6 +255,9 @@ class MarketProduct(db.Model):
 
 	@staticmethod
 	def getProductsByRelatedProductsTag(tag):
+		"""
+		: Returns all products matching this related products tag
+		"""
 		tag_matches = RelatedProductTag.query.filter_by(tag = tag).all()
 		product_matches = []
 		for match in tag_matches:
@@ -207,10 +267,14 @@ class MarketProduct(db.Model):
 		return product_matches
 
 	def getRelatedProductsByTag(self):
+		"""
+		: Returns all products that have the same
+		: related products tags as this one
+		"""
 		this_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
-		if len(this_product_tags) == 0:
+		if this_product_tags:
 			return []
-			
+
 		merged_list = list()
 		for tag in this_product_tags:
 			product_matches = MarketProduct.getProductsByRelatedProductsTag(tag.tag)
@@ -230,20 +294,11 @@ class MarketProduct(db.Model):
 		return all_matches[0:5]
 
 
-	# tags input taken as a list of tags
 	def updateProductSearchTags(self, tags):
-		old_tags = ProductTag.query.filter_by(product_id = self.product_id).all()
-		for old_tag in old_tags:
-			db.session.delete(old_tag)
-		db.session.commit()
-
-		for tag in tags:
-			new_tag = ProductTag(self.product_id, tag)
-			db.session.add(new_tag)
-		db.session.commit()
-
-	# tags input taken as a list of tags
-	def updateProductSearchTags(self, tags):
+		"""
+		: updates this products search tags
+		: tags is a list of strings
+		"""
 		old_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
 		for old_tag in old_tags:
 			db.session.delete(old_tag)
@@ -254,8 +309,11 @@ class MarketProduct(db.Model):
 			db.session.add(new_tag)
 		db.session.commit()
 
-	# tags input taken as a list of tags
 	def updateProductListingTags(self, tags):
+		"""
+		: updates this products listing tags
+		: tags is a list of strings
+		"""
 		old_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
 		for old_tag in old_tags:
 			db.session.delete(old_tag)
@@ -266,8 +324,11 @@ class MarketProduct(db.Model):
 			db.session.add(new_tag)
 		db.session.commit()
 
-	# tags input taken as a list of tags
 	def updateRelatedProductTags(self, tags):
+		"""
+		: updates this products related product tags
+		: tags is a list of strings
+		"""
 		old_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
 		for old_tag in old_tags:
 			db.session.delete(old_tag)
@@ -279,6 +340,11 @@ class MarketProduct(db.Model):
 		db.session.commit()
 
 	def getManufacturerInfo(self):
+		"""
+		: returns this products manufactuers info as a public dict
+		"""
+		if self.manufacturer_id is not None:
+			return None
 		this_manufacturer = Manufacturer.query.filter_by(manufacturer_id = self.manufacturer_id).first()
 		if this_manufacturer:
 			return this_manufacturer.toPublicDict()
@@ -286,6 +352,9 @@ class MarketProduct(db.Model):
 			return None
 
 	def toPublicDict(self):
+		"""
+		: Returns this market product as a public dictionary
+		"""
 		public_dict = {}
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.Price] = self.price
@@ -298,7 +367,6 @@ class MarketProduct(db.Model):
 		else:
 			public_dict[Labels.SaleEndDate] = None
 		public_dict[Labels.DateCreated] = self.date_created
-		
 		public_dict[Labels.ProductId] = self.product_id
 		images = self.getProductImages()
 		public_dict[Labels.Images] = images
@@ -337,6 +405,12 @@ class MarketProduct(db.Model):
 		return public_dict
 
 class ProductVariant(db.Model):
+	"""
+	: Product Variant Class
+	: If a product has more than one type of itself use this to distinguish
+	: References original product through product_id reference
+	: Flask SQL Alchemy implementation
+	"""
 	__tablename__ = ProdTables.ProductVariantTable
 	variant_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
@@ -357,6 +431,9 @@ class ProductVariant(db.Model):
 		db.Model.__init__(self)
 		
 	def updateVariant(self, variant):
+		"""
+		: Updates this variant with new information
+		"""
 		
 		new_inventory = variant.get(Labels.Inventory)
 		if new_inventory:
@@ -371,22 +448,34 @@ class ProductVariant(db.Model):
 		db.session.commit()
 
 	def delete(self):
-		 db.session.delete(self)
-		 db.session.commit()
+		"""
+		: Deletes this variant
+		"""
+		db.session.delete(self)
+		db.session.commit()
 
 	@staticmethod
 	def activateVariant(variant_id):
+		"""
+		: Deactivates variant by variant_id
+		"""
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
 		this_variant.active = True
 		db.session.commit()
 
 	@staticmethod
 	def deactivateVariant(variant_id):
+		"""
+		: Deactivates variant by variant_id
+		"""
 		this_variant = ProductVariant.query.filter_by(variant_id = variant_id).first()
 		this_variant.active = False
 		db.session.commit()
 
 	def toPublicDict(self):
+		"""
+		: Returns this variant as a public dictionary
+		"""
 		public_dict = {}
 		public_dict[Labels.Inventory] = self.inventory
 		public_dict[Labels.VariantType] = self.variant_type
@@ -395,9 +484,3 @@ class ProductVariant(db.Model):
 		public_dict[Labels.Active] = self.active
 		public_dict[Labels.Price] = self.price
 		return public_dict
-
-
-
-
-
-

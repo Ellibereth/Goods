@@ -5,7 +5,7 @@ var browserHistory = require('react-router').browserHistory
 import TextInput from '../../Input/TextInput'
 import PageContainer from '../../Misc/PageContainer'
 import AccountInput from '../../Input/AccountInput'
-import Button from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import AppActions from '../../../actions/AppActions'
 
 import {AlertMessages} from '../../Misc/AlertMessages'

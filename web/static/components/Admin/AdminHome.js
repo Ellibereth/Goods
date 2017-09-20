@@ -4,7 +4,7 @@ var browserHistory = require('react-router').browserHistory
 import AppActions from '../../actions/AppActions'
 import AddHomeImage from './AddHomeImage'
 import HomeImageDisplay from './HomeImageDisplay'
-import Button from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 
 import {AlertMessages} from '../Misc/AlertMessages'
 

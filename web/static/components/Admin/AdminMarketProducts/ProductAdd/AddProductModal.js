@@ -1,7 +1,7 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 import AddProductForm from './AddProductForm'
-import Button from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 export default class AddProductModal extends React.Component {
 	constructor(props) {

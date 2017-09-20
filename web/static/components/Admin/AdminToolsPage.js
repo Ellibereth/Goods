@@ -12,7 +12,7 @@ import AddProductForm from './AdminMarketProducts/ProductAdd/AddProductForm'
 import AddManufacturerForm from './AdminManufacturers/ManufacturerAdd/AddManufacturerForm'
 import AdminManufacturers from './AdminManufacturers/AdminManufacturers'
 
-import Nav, NavItem, Button from 'react-bootstrap'
+import {Nav, NavItem, Button}  from 'react-bootstrap'
 
 const REQUEST_INDEX = 0
 const ACTIVE_PRODUCT_INDEX = 1

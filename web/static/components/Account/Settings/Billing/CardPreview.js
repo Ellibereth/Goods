@@ -7,7 +7,8 @@ import ReactDOMServer from 'react-dom/server'
 import AppStore from '../../../../stores/AppStore.js'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 import {toTitleCase} from '../../../Input/Util'
-import Popover, OverlayTrigger from 'react-bootstrap'
+import {Popover} from 'react-bootstrap'
+import {OverlayTrigger} from 'react-bootstrap'
 
 export default class CardPreview extends React.Component {
 	constructor(props) {

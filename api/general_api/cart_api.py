@@ -78,11 +78,10 @@ def updateCartQuantity(this_user):
 
 @cart_api.route('/refreshCheckoutInfo', methods = ['POST'])
 @decorators.check_user_jwt
-
 def refreshCheckoutInfo(this_user):
 	address = request.json.get(Labels.Address)
 	public_user_dict = this_user.toPublicDictCheckout(address)
 	return JsonUtil.successWithOutput({
-			Labels.Jwt : JwtUtil.create_jwt(this_user.toJwtDict()),
+			Labels.Jwt : this_user.getJwt(),
 			Labels.User : public_user_dict
 		})

@@ -1,8 +1,7 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 import EditAddressForm from './EditAddressForm.js'
-import Modal from 'react-bootstrap'
-
+import {Modal} from 'react-bootstrap'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class EditAddressModal extends React.Component {

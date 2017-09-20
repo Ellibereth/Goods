@@ -60,7 +60,6 @@ export default class DeleteAccountForm extends React.Component {
 					setTimeout(function() {
 						window.location = '/'
 					}, 2000)
-
 					this.setFadingText(AlertMessages.ACCOUNT_DELETE_SUCCESS.text, true)
 
 				}

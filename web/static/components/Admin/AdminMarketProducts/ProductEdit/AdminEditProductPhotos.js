@@ -3,7 +3,7 @@ var ReactDOM = require('react-dom')
 
 import AdminProductImageDisplay from './AdminProductImageDisplay.js'
 var browserHistory = require('react-router').browserHistory
-import Button from 'react-bootstrap'
+import {Button} from 'react-bootstrap'
 import {AlertMessages} from '../../../Misc/AlertMessages'
 
 export default class AdminEditProductPhotos extends React.Component {

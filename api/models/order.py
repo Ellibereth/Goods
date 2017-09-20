@@ -1,18 +1,20 @@
-from api.utility.table_names import ProdTables
-from api.utility.table_names import TestTables
-from passlib.hash import argon2
-from api.models.shared_models import db
-import time
-import random
-import string
-from api.utility.labels import PaymentLabels as Labels
-from api.utility.id_util import IdUtil
+"""
+: This module contains the Order class
+"""
+
 from api.models.market_product import MarketProduct
 from api.models.market_product import ProductVariant
-from api.utility.lob import Lob
+from api.models.shared_models import db
+from api.utility.table_names import ProdTables
+from api.utility.labels import PaymentLabels as Labels
+from api.utility.id_util import IdUtil
 from api.utility.stripe_api import StripeManager
 
 class Order(db.Model):
+	"""
+	: This class stores user's past orders
+	: Implemented with SQL Alchemy model
+	"""
 	__tablename__ = ProdTables.OrderTable
 	order_id = db.Column(db.String, primary_key = True)
 	items_price = db.Column(db.Integer)
@@ -42,7 +44,7 @@ class Order(db.Model):
 	account_id = db.Column(db.Integer, db.ForeignKey(ProdTables.UserInfoTable + '.' + Labels.AccountId))
 
 	def __init__(self, user, cart, address):
-		self.order_id = self.generateOrderId()
+		self.order_id = self._generateOrderId()
 		self.items_price = cart.getCartItemsPrice()
 		self.order_shipping = cart.getCartShippingPrice(address)
 		self.account_id = user.account_id
@@ -61,10 +63,12 @@ class Order(db.Model):
 		self.discounts = cart.toPublicDict().get(Labels.Discounts)
 		db.Model.__init__(self)
 
-
-
 	@staticmethod
 	def getOrderById(order_id):
+		"""
+		: returns the order that matches the order_id
+		: returns None if there are no matches
+		"""
 		this_order = Order.query.filter_by(order_id = order_id).first()
 		if this_order:
 			return this_order
@@ -72,7 +76,10 @@ class Order(db.Model):
 			return None
 
 	def addItems(self, this_user, this_cart, address):
-		# record this transaction for each product (enabling easier refunds), but group by quantity 
+		"""
+		: record this transaction for each product 
+		: (enabling easier refunds), but group by quantity 
+		"""
 		for cart_item in this_cart.items:
 			# update the inventory
 			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
@@ -108,14 +115,16 @@ class Order(db.Model):
 					
 				else:
 					this_product.inventory = new_inventory
-
-			order_shipping = this_cart.getCartShippingPrice(address)
+			self.order_shipping = this_cart.getCartShippingPrice(address)
 			new_order_item = OrderItem(self.order_id, this_user, this_product, cart_item.num_items, cart_item.variant_id, cart_item.variant_type)
 			db.session.add(new_order_item)
 		return None
 
 	@staticmethod
-	def generateOrderId():
+	def _generateOrderId():
+		"""
+		: generates an order id that isn't taken yet
+		"""
 		new_order_id = IdUtil.id_generator()
 		missing = Order.query.filter_by(order_id = new_order_id).first()
 		while missing:
@@ -124,6 +133,9 @@ class Order(db.Model):
 		return new_order_id
 
 	def updateCharge(self, charge):
+		"""
+		: updates this order with the new stripe charge
+		"""
 		self.stripe_charge_id = charge[Labels.Id]
 		self.card_last4 = charge[Labels.Source][Labels.Last4]
 		self.card_brand = charge[Labels.Source][Labels.Brand]
@@ -131,10 +143,11 @@ class Order(db.Model):
 
 
 	def toPublicDict(self):
+		"""
+		: returns a public dictionary of the order object
+		"""
 		public_dict = {}
 		public_dict[Labels.OrderId] = self.order_id
-
-
 		order_items = OrderItem.query.filter(OrderItem.order_id == self.order_id, OrderItem.num_items > 0).all()
 		public_dict[Labels.Items] = [item.toPublicDict() for item in order_items]
 		public_dict[Labels.ItemsPrice] = self.items_price
@@ -157,11 +170,14 @@ class Order(db.Model):
 		public_dict[Labels.SalesTaxPrice] = self.sales_tax_price
 		public_dict[Labels.Discounts] = self.discounts
 		public_dict[Labels.Card] = StripeManager.getCardFromChargeId(self.stripe_charge_id)
-		
 		return public_dict
 		
-## user object class
 class OrderItem(db.Model):
+	"""
+	: This SQL Alchemy model keeps track of items ordered
+	: by customers on EdgarUSA. 
+	: It refences the order it is part of via the order_id
+	""" 
 	__tablename__ = ProdTables.OrderItemTable
 	primary_key = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	
@@ -178,15 +194,15 @@ class OrderItem(db.Model):
 	# order_id = db.Column(db.String)
 	order_id = db.Column(db.String, db.ForeignKey(ProdTables.OrderTable + "." + Labels.OrderId))
 
-	# name,email, password all come from user inputs
-	# email_confirmation_id, stripe_customer_id will be generated with try statements 
 	def __init__(self, order_id, user, product,
 			num_items = 1, variant_id = None, variant_type = None):
+		"""
+		: name,email, password all come from user inputs
+		: email_confirmation_id, stripe_customer_id will be generated with try statements 
+		"""
 		self.order_id = order_id
 		self.price = product.price
-
 		self.num_items = num_items
-		
 		if variant_type:
 			self.name = product.name + " - " + variant_type
 		else:
@@ -200,8 +216,10 @@ class OrderItem(db.Model):
 			self.date_created = this_order.date_created
 		db.Model.__init__(self)
 	
-
 	def toPublicDict(self):
+		"""
+		: returns the public dictionary of order item object
+		"""
 		public_dict = {}
 		public_dict[Labels.OrderId] = self.order_id
 		public_dict[Labels.NumItems] = self.num_items
@@ -212,8 +230,5 @@ class OrderItem(db.Model):
 		public_dict[Labels.VariantId] = self.variant_id
 		public_dict[Labels.Name] = self.name
 		public_dict[Labels.MainImage] = self.main_image	
-		
 		return public_dict
-
-
 	

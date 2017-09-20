@@ -1,3 +1,8 @@
+"""
+This module runs the flask app for Edgar USA
+
+"""
+
 import time
 import datetime
 import os
@@ -79,14 +84,16 @@ CACHE_EXPIRE_DAYS = 2
 
 @app.before_first_request
 def create_database():
-	# db.drop_all()
+	"""
+	: we create the database before the first request
+	"""
 	db.create_all()
 
 @app.after_request
 def add_header(response):
 	"""
-	Add headers to both force latest IE rendering engine or Chrome Frame,
-	and also to cache the rendered page for 10 minutes.
+	: Add headers to both force latest IE rendering engine or Chrome Frame,
+	: and also to cache the rendered page for 10 minutes.
 	"""
 	this_env = os.environ[ENVIRONMENT_STRING]
 	response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
@@ -121,6 +128,9 @@ def add_header(response):
 
 @app.before_request
 def before_request():
+	"""
+	: We use this to time requests 
+	"""
 	g.start = time.time()
 
 # @app.teardown_request
@@ -138,11 +148,18 @@ def before_request():
 
 @app.route('/static/<path:path>', methods = ['GET'])
 def send_static(path):
+	"""
+	: This route allows static files to be sent to server
+	"""
 	return send_from_directory('static', path)
 
 @app.route('/',defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
+	"""
+	: This route prevents all non-static files from being called by the server 
+	: apart from index.html
+	"""
 	this_env = os.environ.get(ENVIRONMENT_STRING)
 	# use this for the production bundle
 	# update this value when the bundle version changes or production
@@ -157,17 +174,26 @@ def catch_all(path):
 
 @app.errorhandler(404)
 def page_not_found(error):
+	"""
+	: in the event of a 404 page error, we return index.html
+	"""
 	EmailLib.reportServerError("404", error, request)
 	return render_template("index.html")
 
 
 @app.errorhandler(405)
 def method_not_allowed(error):
+	"""
+	: in the event of a 405 method error, we return an internal server error
+	"""
 	EmailLib.reportServerError("405", error, request)
 	return JsonUtil.failure("Method not allowed")
 
 @app.errorhandler(500)
 def internal_server_error(error):
+	"""
+	: in the event of a 500 internal server error, we return an internal server error
+	"""
 	EmailLib.reportServerError("500", error, request)
 	return JsonUtil.failure("Internal server error")
 
