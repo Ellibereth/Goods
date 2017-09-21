@@ -16,6 +16,8 @@ import { ActionCreators } from  '../../actions'
 import {bindActionCreators} from 'redux'
 import {getProductInfo, addItemToCart} from '../../api/CartService'
 
+
+import Icon from 'react-native-vector-icons/FontAwesome'
 import Swiper from 'react-native-swiper'
 import SimplePicker from 'react-native-simple-picker'
 
@@ -94,58 +96,60 @@ class ProductScreen extends Component {
 
 		return (
 			
-				<View>
-					<ScrollView>
+				<View style = {styles.screen_container}>
 
-						<Swiper 
-						style={styles.image_slider_wrapper}>
-							{images}
-						</Swiper>
-						
-						
+					<View style = {styles.scroll_container}> 
+						<ScrollView>
+							<Swiper 
+							style={styles.image_slider_wrapper}>
+								{images}
+							</Swiper>
+							
+							
 
-						<View style = {{height : 10}}/>					
-						<View>
-							<Text> Product Screen </Text>
-							<Text> {this.props.product.name} </Text>
-							<Text> {this.props.product.manufacturer} </Text>
-						</View>
+							<View style = {{height : 10}}/>					
+							<View>
+								<Text> Product Screen </Text>
+								<Text> {this.props.product.name} </Text>
+								<Text> {this.props.product.manufacturer} </Text>
+							</View>
 
-						
-						<View>
+
+							{this.props.product.has_variants && 
+								<View>
+									<View>
+										<TouchableOpacity onPress = {()=>this.refs.variant_picker.show()}>
+											<Text> 
+												Choose Variant: {this.state.variant ? this.state.variant.variant_type : "No Variant Selected"}
+											</Text>
+										</TouchableOpacity>
+									</View>
+
+									<SimplePicker
+										ref = {'variant_picker'}
+										options={this.props.product.variants.map((variant, index) =>
+											index
+										)}
+										labels = {this.props.product.variants.map((variant) => variant.variant_type)}
+										initialOptionIndex = {0}
+										onSubmit={(index) => {
+											this.updateVariant(index)			
+										}}
+									/>
+								</View>
+							}
+
+						</ScrollView>
+					</View>
+
+					<View style = {styles.add_to_cart_container}>
 							<TouchableOpacity 
 							style = {styles.add_to_cart_button}
 							onPress = {this.addItemToCart}>
+								<Icon style = {styles.cart_icon} name = {"shopping-cart"}/> 
 								<Text style = {styles.add_to_cart_text}>Add to Cart</Text>
 							</TouchableOpacity>
 						</View>
-
-						{this.props.product.has_variants && 
-							<View>
-								<View>
-									<TouchableOpacity onPress = {()=>this.refs.variant_picker.show()}>
-										<Text> 
-											{this.state.variant ? this.state.variant.variant_type : "No Variant Selected"}
-										</Text>
-									</TouchableOpacity>
-								</View>
-
-								<SimplePicker
-									ref = {'variant_picker'}
-									options={this.props.product.variants.map((variant, index) =>
-										index
-									)}
-									labels = {this.props.product.variants.map((variant) => variant.variant_type)}
-									initialOptionIndex = {0}
-									onSubmit={(index) => {
-										this.updateVariant(index)			
-									}}
-								/>
-							</View>
-						}
-
-						
-					</ScrollView>
 				</View>
 			
 
@@ -154,6 +158,17 @@ class ProductScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+	screen_container : {
+		flex : 1,
+		flexDirection : "column",
+		justifyContent : "center",
+	},
+	scroll_container : {
+		flex: 9,
+	},
+
+
+
 	image_slider_wrapper : {
 		height: 150,
 	},
@@ -162,15 +177,32 @@ const styles = StyleSheet.create({
 		height: 150,
 		// width : 150,
 	},
+	add_to_cart_container : {
+		flex: 1,
+		flexDirection : "row",
+		alignItems : "stretch",
+		justifyContent : "center",
+	},
 	add_to_cart_button : {
-		backgroundColor : 'red',
-		borderRadius : 6,
-		padding: 8,
+		flex : 1,
+		backgroundColor : 'orange',
+		flexDirection : "row",
+		justifyContent : "center",
+		alignItems : "center"
 
 	},
+
+	cart_icon : {
+		color : 'white',
+		textAlign : 'center',
+		fontSize : 20,
+	},
+
 	add_to_cart_text : {
 		color: 'white',
-		textAlign : "center"
+		textAlign : "center",
+		fontSize : 20,
+		marginLeft : 6
 	}
 
 })
