@@ -16,6 +16,9 @@ import { ActionCreators } from  '../../actions'
 import {bindActionCreators} from 'redux'
 import {getProductInfo, addItemToCart} from '../../api/CartService'
 
+import Swiper from 'react-native-swiper'
+import SimplePicker from 'react-native-simple-picker'
+
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 function mapDispatchToProps(dispatch) {
@@ -36,10 +39,10 @@ class ProductScreen extends Component {
 		super(props)
 		this.state = {
 			quantity : 1,
-			variant_id : 0,
 			variant : null,
 		}
-		this.addItemToCart = this.addItemToCart.bind(this);	
+		this.addItemToCart = this.addItemToCart.bind(this)	
+		this.updateVariant = this.updateVariant.bind(this)
 	}
 
 	componentDidMount(){	
@@ -67,24 +70,39 @@ class ProductScreen extends Component {
 			  data.error.title,
 			  data.error.text,
 			  [
-			    {text: 'OK', onPress: () => console.log('OK Pressed')},
+				{text: 'OK', onPress: () => console.log('OK Pressed')},
 			  ],
 			  { cancelable: false }
 			)
 		}
 	}
 
+	updateVariant(index){
+		this.setState({
+			variant : this.props.product.variants[index]
+		})
+	}
+
 	
 
 	render() {
+		var images = this.props.product.images.map((image, index) => {
+				var url = img_src  + image.image_id
+				return <Image key = {index}
+				source = {{uri : url}} style = {styles.product_image}/>
+			})
+
 		return (
 			
 				<View>
 					<ScrollView>
 
-						<Image source={{uri: img_src + this.props.product.main_image}}
-						style = {styles.product_image}
-						/>
+						<Swiper 
+						style={styles.image_slider_wrapper}>
+							{images}
+						</Swiper>
+						
+						
 
 						<View style = {{height : 10}}/>					
 						<View>
@@ -102,22 +120,31 @@ class ProductScreen extends Component {
 							</TouchableOpacity>
 						</View>
 
-						
+						{this.props.product.has_variants && 
+							<View>
+								<View>
+									<TouchableOpacity onPress = {()=>this.refs.variant_picker.show()}>
+										<Text> 
+											{this.state.variant ? this.state.variant.variant_type : "No Variant Selected"}
+										</Text>
+									</TouchableOpacity>
+								</View>
 
-						{this.props.product.has_variants &&
-							<View style = {{paddingTop : 10}}>
-								<Picker
-								  selectedValue={this.state.variant_id}
-								  onValueChange={(itemValue, itemIndex) => this.setState({variant_id : itemIndex, variant : this.props.product.variants[itemIndex]})}>
-								  {this.props.product.variants.map((variant,index) => 
-								  		<Picker.Item 
-								  		key = {index}
-								  		label={variant.variant_type} 
-								  		value= {index} />		
-								  	)}
-								</Picker>
+								<SimplePicker
+									ref = {'variant_picker'}
+									options={this.props.product.variants.map((variant, index) =>
+										index
+									)}
+									labels = {this.props.product.variants.map((variant) => variant.variant_type)}
+									initialOptionIndex = {0}
+									onSubmit={(index) => {
+										this.updateVariant(index)			
+									}}
+								/>
 							</View>
 						}
+
+						
 					</ScrollView>
 				</View>
 			
@@ -127,10 +154,13 @@ class ProductScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+	image_slider_wrapper : {
+		height: 150,
+	},
+
 	product_image : {
-		height: 100,
-		width : 100,
-		borderRadius : 6
+		height: 150,
+		// width : 150,
 	},
 	add_to_cart_button : {
 		backgroundColor : 'red',

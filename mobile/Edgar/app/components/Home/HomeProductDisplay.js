@@ -1,9 +1,12 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, Image, TouchableHighlight, StyleSheet} from 'react-native';
-const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+import {View, Text, Image, TouchableHighlight, StyleSheet} from 'react-native'
+
 import {Actions} from 'react-native-router-flux'
+import ImageSlider from 'react-native-image-slider'
+const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
+
 
 export default class HomeProductDisplay extends Component {
 	constructor(props) {
@@ -17,12 +20,15 @@ export default class HomeProductDisplay extends Component {
 	}
 
 	render() {
+		
+
 		return (
 			<View style = {styles.container}>
 				<TouchableHighlight onPress = {this.onProductClick}>
 					<View> 
 						<Text>{this.props.product.name}</Text> 
-						{/* <Image source={{uri: img_src + this.props.product.main_image}}
+						{this.props.image}
+						{/* <Image source={{uri : }}
 						style={{width: 30, height: 30}} 
 						/>*/}
 						{this.props.product.has_variants ? 

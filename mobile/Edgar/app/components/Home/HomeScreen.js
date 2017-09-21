@@ -8,6 +8,7 @@ import {getProductsByListing} from '../../api/ProductService'
 import HomeProductDisplay from './HomeProductDisplay'
 
 const HOME_TAG = "Home_Page"
+const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 function mapStateToProps(state) {
 	return {
@@ -43,6 +44,7 @@ class HomeScreen extends Component {
 
 
 	render() {
+		
 		var products = this.state.home_products.map((product, index) => 
 				<HomeProductDisplay key = {index} product = {product}/>
 			)
