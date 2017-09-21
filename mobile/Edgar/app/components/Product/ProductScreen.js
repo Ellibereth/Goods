@@ -16,10 +16,12 @@ import { ActionCreators } from  '../../actions'
 import {bindActionCreators} from 'redux'
 import {getProductInfo, addItemToCart} from '../../api/CartService'
 
+import {formatPrice, toTitleCase} from '../../util/Format'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Swiper from 'react-native-swiper'
 import SimplePicker from 'react-native-simple-picker'
+import RelatedProducts from './RelatedProducts'
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -93,7 +95,6 @@ class ProductScreen extends Component {
 				return <Image key = {index}
 				source = {{uri : url}} style = {styles.product_image}/>
 			})
-
 		return (
 			
 				<View style = {styles.screen_container}>
@@ -104,26 +105,43 @@ class ProductScreen extends Component {
 							style={styles.image_slider_wrapper}>
 								{images}
 							</Swiper>
-							
-							
 
-							<View style = {{height : 10}}/>					
-							<View>
-								<Text> Product Screen </Text>
-								<Text> {this.props.product.name} </Text>
-								<Text> {this.props.product.manufacturer} </Text>
+							<View style = {styles.title}>
+								<Text style = {styles.name_text}> {this.props.product.name} </Text>
+								<Text style = {styles.manufacturer_text}>by <Text style = {{textDecorationLine : "underline"}}>{this.props.product.manufacturer_obj.name} </Text></Text>
+								<Text style = {styles.price_text}> ${formatPrice(this.props.product.price)} </Text>
+							</View>
+
+							<View style = {styles.description_container}>
+								<Text style = {styles.description_title}>
+									DESCRIPTION
+								</Text>
+								<Text style = {styles.description_text}> 
+									{this.props.product.description}
+								</Text>
 							</View>
 
 
 							{this.props.product.has_variants && 
-								<View>
-									<View>
-										<TouchableOpacity onPress = {()=>this.refs.variant_picker.show()}>
-											<Text> 
-												Choose Variant: {this.state.variant ? this.state.variant.variant_type : "No Variant Selected"}
+								<View style = {variant_styles.container}>
+									<View style = {{flex : 1}}/>
+									<View style = {variant_styles.content_container}>
+										<TouchableOpacity style = {variant_styles.picker_container}
+											onPress = {()=>this.refs.variant_picker.show()}>
+											<Text style = {variant_styles.picker_title}>
+												Select {toTitleCase(this.props.product.variant_type_description)}:
 											</Text>
+											<Text style = {variant_styles.picker_text}>
+												{this.state.variant ? this.state.variant.variant_type : "No Variant Selected"}
+											</Text>
+											<View style ={variant_styles.caret_container}>
+												<Icon name = {"caret-down"} 
+												style = {variant_styles.caret}/>
+											</View>
 										</TouchableOpacity>
 									</View>
+
+									<View style = {{flex : 1}}/>
 
 									<SimplePicker
 										ref = {'variant_picker'}
@@ -139,6 +157,8 @@ class ProductScreen extends Component {
 								</View>
 							}
 
+							<RelatedProducts product = {this.props.product}/>
+							<View style = {{paddingBottom : 24}}/>
 						</ScrollView>
 					</View>
 
@@ -157,6 +177,42 @@ class ProductScreen extends Component {
 	}
 }
 
+const variant_styles = StyleSheet.create({
+	container : {
+		flexDirection : 'row',
+	},
+	picker_container : {
+		flex : 1,
+		flexDirection : "row",
+		alignItems : 'flex-start',
+		justifyContent : 'center',
+		borderWidth : 1,
+		borderRadius : 6,
+		// margin : 4,
+		padding : 8,
+	},
+	content_container : { 
+		flex: 3,
+	},
+	picker_title : {
+		flex: 4,
+	},
+	picker_text :{
+		flex: 2,
+	},
+	caret_container: {
+		flex : 1,
+		flexDirection : 'column',
+		justifyContent : 'center',
+		alignItems : 'center'
+	},
+	caret : {
+		flex : 1,
+		fontSize : 16,
+		flexDirection : 'row',
+	},
+})
+
 const styles = StyleSheet.create({
 	screen_container : {
 		flex : 1,
@@ -166,17 +222,62 @@ const styles = StyleSheet.create({
 	scroll_container : {
 		flex: 9,
 	},
-
-
-
 	image_slider_wrapper : {
-		height: 150,
+		height: 100,
+		// height: 300,
 	},
 
 	product_image : {
-		height: 150,
+		height : 100
+		// height: 300,
 		// width : 150,
 	},
+
+	title: {
+		// flex : 1,
+		flexDirection : 'column',
+		justifyContent : 'center',
+		marginBottom : 12
+	},
+
+	name_text: {
+		textAlign : 'center',
+		color : 'grey',
+		// margin: 4,
+		marginTop : 12
+	},
+	manufacturer_text:  {
+		textAlign : 'center',
+		color : 'grey',
+		opacity : 0.8,
+		marginTop: 4,
+		marginBottom : 8,
+	},
+	price_text : {
+		textAlign : 'center',
+		color : 'red',
+	},
+
+	description_container : {
+		marginLeft : 20,
+		marginRight : 20,
+		borderTopWidth : 1,
+		borderColor : 'silver',
+		marginTop : 6,
+		marginBottom: 6
+
+	},
+	description_title : {
+		margin : 12,
+		fontSize : 24,
+		textAlign : 'center'
+	},
+	description_text : {
+		textAlign : 'center',
+		fontSize : 16,
+		color : 'grey'
+	},
+	
 	add_to_cart_container : {
 		flex: 1,
 		flexDirection : "row",
@@ -185,7 +286,7 @@ const styles = StyleSheet.create({
 	},
 	add_to_cart_button : {
 		flex : 1,
-		backgroundColor : 'orange',
+		backgroundColor : 'red',
 		flexDirection : "row",
 		justifyContent : "center",
 		alignItems : "center"

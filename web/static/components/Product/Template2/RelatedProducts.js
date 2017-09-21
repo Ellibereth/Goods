@@ -12,47 +12,12 @@ export default class RelatedProducts extends React.Component {
 		}
 	}
 
-	getRelatedProducts(product_id){
-		var form_data = JSON.stringify({
-			product_id : product_id
-		})
-		$.ajax({
-			type: 'POST',
-			data: form_data,
-			url: '/getRelatedProductsByTag',
-			success: function(data) {
-				if (data.success) {
-					this.setState({
-						products: data.products,
-						is_loading : false
-					})
-				}
-			}.bind(this),
-			dataType: 'json',
-			contentType : 'application/json; charset=utf-8'
-		})
-	}
-
-
-
-	componentDidMount(){
-		this.getRelatedProducts(this.props.product.product_id)
-	}
-
-	// componentWillReceiveProps(nextProps){
-	// 	this.getRelatedProducts(nextProps.product.product_id)	
-	// }
-
-
-
-	
-
-
 	render() {
-		if (this.state.is_loading) {
+		console.log(this.props.product.related_products)
+		if (!this.props.product) {
 			return <div/>
 		}
-		var products = this.state.products.map((product, index) =>
+		var products = this.props.product.related_products.map((product, index) =>
 			<div><HomeProductPreview product = {product}/></div>
 		)
 		var slidesToShow = Math.min(5, products.length)

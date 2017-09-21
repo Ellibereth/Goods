@@ -37,6 +37,10 @@ class HomeScreen extends Component {
 		let data = await getProductsByListing(HOME_TAG)
 		if (data.success) {
 			this.setState({home_products : data.products})
+
+			// this makes testing life slightly easier
+			// removing after done styling product page
+			Actions.product({product : data.products[data.products.length - 1]})
 		}
 	}
 

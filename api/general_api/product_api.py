@@ -75,18 +75,7 @@ def getProductsByListingTag():
 			Labels.Products :  [product.toPublicDict() for product in matching_products]
 		})
 
-@product_api.route('/getRelatedProductsByTag', methods = ['POST'])
-def getRelatedProductsByTag():
-	product_id = request.json.get(Labels.ProductId)
-	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if not this_product:
-		return JsonUtil.failure()
 
-	matching_products = this_product.getRelatedProductsByTag()
-
-	return JsonUtil.successWithOutput({
-			Labels.Products :  [product.toPublicDict() for product in matching_products]
-		})
 
 
 

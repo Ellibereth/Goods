@@ -3,6 +3,7 @@
 """
 import random
 import datetime
+import traceback
 from api.s3.s3_api import S3
 from api.utility.table_names import ProdTables
 from api.utility.labels import MarketProductLabels as Labels
@@ -272,11 +273,12 @@ class MarketProduct(db.Model):
 		: related products tags as this one
 		"""
 		this_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
-		if this_product_tags:
+		if not this_product_tags:
 			return []
 
 		merged_list = list()
 		for tag in this_product_tags:
+			product_matches = []
 			product_matches = MarketProduct.getProductsByRelatedProductsTag(tag.tag)
 			merged_list = merged_list + product_matches 
 		hit_product_ids = list()
@@ -351,7 +353,7 @@ class MarketProduct(db.Model):
 		else:
 			return None
 
-	def toPublicDict(self):
+	def toPublicDict(self, get_related_products = True):
 		"""
 		: Returns this market product as a public dictionary
 		"""
@@ -402,6 +404,9 @@ class MarketProduct(db.Model):
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
 		public_dict[Labels.IsAvailable] = self.isAvailable()
+		if get_related_products:
+			related_products = self.getRelatedProductsByTag()
+			public_dict[Labels.RelatedProducts] = [product.toPublicDict(get_related_products = False) for product in related_products]
 		return public_dict
 
 class ProductVariant(db.Model):
