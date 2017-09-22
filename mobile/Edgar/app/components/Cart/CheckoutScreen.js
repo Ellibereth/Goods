@@ -133,6 +133,8 @@ class CheckoutScreen extends Component {
 						<CheckoutStepIndicator />
 					</View>
 
+					<View style = {{marginTop : 16}}/>
+					
 					<View style = {styles.scroll_container}>
 						<ScrollView>
 							<CheckoutAddressSection

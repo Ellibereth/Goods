@@ -74,7 +74,7 @@ class Main extends React.Component {
 						component={CartScreen} title = "Cart"/>
 						<Scene {...this.props}
 							// remove this later, was put for testing checkout
-							// initial = {true}
+							initial = {true}
 							hideTabBar = {true} 
 							key = "checkout" 
 							component = {CheckoutScreen} title = "Checkout"/>
@@ -99,7 +99,8 @@ class Main extends React.Component {
 					</Scene>	
 
 					<Scene title = "Home" key = "home" 
-					initial = {true}
+					// this should be true if we're going LIVE
+					// initial = {true}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
 
 						<Scene title = "Home" key = "home" 
@@ -133,7 +134,7 @@ class Main extends React.Component {
 								/>
 							</Scene>*/}
 
-							<Scene {...this.props} initial = {true} hideTabBar = {true}
+							<Scene {...this.props} initial = {true}
 								key="account" component={AccountScreen} title="Account"
 								/>
 							<Scene {...this.props} 

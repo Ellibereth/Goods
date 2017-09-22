@@ -14,6 +14,7 @@ import {bindActionCreators} from 'redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CartItemDisplay from './CartItemDisplay'
 import CheckoutStepIndicator from './CheckoutStepIndicator'
+import OrderSummarySection from './OrderSummarySection'
 
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -56,15 +57,20 @@ class CartScreen extends Component {
 						<CheckoutStepIndicator />
 					</View>
 
+					<View style = {{marginTop : 16}}/>
+
 					<View style = {styles.scroll_container}>
 						<ScrollView>
 							{cart_items}
+							<OrderSummarySection 
+							user = {this.props.user}
+							/>
 						</ScrollView>
 					</View>
 					<View style= {styles.checkout_container}>
 						<TouchableOpacity onPress = {()=>Actions.checkout()} style = {styles.checkout_button}>
 							<Text style = {styles.checkout_text}>
-								Checkout  <Icon name = "chevron-right" size = {12}/> 
+								Checkout  <Icon name = "chevron-right" size = {16}/> 
 							</Text>
 						</TouchableOpacity>
 					</View> 
@@ -76,7 +82,8 @@ class CartScreen extends Component {
 const styles = StyleSheet.create({
 	container : {
 		flexDirection : 'column',
-		flex : 1
+		flex : 1,
+		backgroundColor : "white"
 	},
 	scroll_container : {
 		flex: 8,
@@ -86,16 +93,20 @@ const styles = StyleSheet.create({
 		padding: 4,
 		borderTopWidth: 1,
 		borderColor : 'silver',
-
+		backgroundColor : '#f0f0f0'
 	},
 	checkout_button : {
+		flex: 1, 
 		backgroundColor : 'red',
 		borderRadius : 6,
-		padding: 12
+		padding: 12,
+		flexDirection : 'column',
+		justifyContent : 'center',
 	},
 	checkout_text : {
 		textAlign : "center",
-		color : 'white'
+		color : 'white',
+		fontSize : 16
 	},
 	step_indicator_container : {
 		flex : 1

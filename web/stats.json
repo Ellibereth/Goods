@@ -2,8 +2,8 @@
   "errors": [],
   "warnings": [],
   "version": "2.6.1",
-  "hash": "a2e38972c8017842e1eb",
-  "time": 4181,
+  "hash": "56c483c727ad867affb0",
+  "time": 4522,
   "publicPath": "",
   "assetsByChunkName": {
     "main": "bundle.js"
@@ -11,7 +11,7 @@
   "assets": [
     {
       "name": "bundle.js",
-      "size": 1926994,
+      "size": 1926950,
       "chunks": [
         0
       ],
@@ -40,14 +40,14 @@
       "initial": true,
       "entry": true,
       "extraAsync": false,
-      "size": 840015,
+      "size": 839999,
       "names": [
         "main"
       ],
       "files": [
         "bundle.js"
       ],
-      "hash": "3a05552195dd77ca27b1",
+      "hash": "e23e343d857e85226143",
       "parents": [],
       "modules": [
         {
@@ -2365,7 +2365,7 @@
               "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "30:21-44"
+              "loc": "29:11-34"
             },
             {
               "moduleId": 22,
@@ -2374,7 +2374,7 @@
               "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "29:11-34"
+              "loc": "30:21-44"
             },
             {
               "moduleId": 23,
@@ -2689,7 +2689,7 @@
               "moduleName": "./static/components/Account/Settings/Billing/CardPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "33:11-34"
+              "loc": "34:21-44"
             },
             {
               "moduleId": 92,
@@ -2698,16 +2698,7 @@
               "moduleName": "./static/components/Account/Settings/Billing/CardPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "34:21-44"
-            },
-            {
-              "moduleId": 93,
-              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Billing/UpdateBillingForm.js",
-              "module": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
-              "moduleName": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
-              "type": "cjs require",
-              "userRequest": "react-router",
-              "loc": "46:11-34"
+              "loc": "33:11-34"
             },
             {
               "moduleId": 93,
@@ -2719,13 +2710,13 @@
               "loc": "45:21-44"
             },
             {
-              "moduleId": 94,
-              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Orders/OrderItemDisplay.js",
-              "module": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
-              "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
+              "moduleId": 93,
+              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Billing/UpdateBillingForm.js",
+              "module": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
+              "moduleName": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "25:11-34"
+              "loc": "46:11-34"
             },
             {
               "moduleId": 94,
@@ -2735,6 +2726,15 @@
               "type": "cjs require",
               "userRequest": "react-router",
               "loc": "26:21-44"
+            },
+            {
+              "moduleId": 94,
+              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Orders/OrderItemDisplay.js",
+              "module": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
+              "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
+              "type": "cjs require",
+              "userRequest": "react-router",
+              "loc": "25:11-34"
             },
             {
               "moduleId": 95,
@@ -2797,7 +2797,7 @@
               "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "23:11-34"
+              "loc": "24:21-44"
             },
             {
               "moduleId": 100,
@@ -2806,16 +2806,7 @@
               "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "24:21-44"
-            },
-            {
-              "moduleId": 101,
-              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
-              "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-              "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-              "type": "cjs require",
-              "userRequest": "react-router",
-              "loc": "18:21-44"
+              "loc": "23:11-34"
             },
             {
               "moduleId": 101,
@@ -2825,6 +2816,15 @@
               "type": "cjs require",
               "userRequest": "react-router",
               "loc": "17:11-34"
+            },
+            {
+              "moduleId": 101,
+              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
+              "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+              "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+              "type": "cjs require",
+              "userRequest": "react-router",
+              "loc": "18:21-44"
             },
             {
               "moduleId": 102,
@@ -2860,7 +2860,7 @@
               "moduleName": "./static/components/Account/Settings/Shipping/ShippingPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "41:11-34"
+              "loc": "42:21-44"
             },
             {
               "moduleId": 105,
@@ -2869,7 +2869,7 @@
               "moduleName": "./static/components/Account/Settings/Shipping/ShippingPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "42:21-44"
+              "loc": "41:11-34"
             },
             {
               "moduleId": 106,
@@ -6164,9 +6164,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/RegisterPage.js",
-          "issuerId": 42,
-          "issuerName": "./static/components/Account/Login/RegisterPage.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/LoginPage.js",
+          "issuerId": 41,
+          "issuerName": "./static/components/Account/Login/LoginPage.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -6394,9 +6394,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryForm.js",
-          "issuerId": 89,
-          "issuerName": "./static/components/Account/Recovery/RecoveryForm.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryChangePasswordForm.js",
+          "issuerId": 88,
+          "issuerName": "./static/components/Account/Recovery/RecoveryChangePasswordForm.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -6578,9 +6578,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/stores/AppStore.js",
-          "issuerId": 3,
-          "issuerName": "./static/stores/AppStore.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/actions/AppActions.js",
+          "issuerId": 7,
+          "issuerName": "./static/actions/AppActions.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -6624,9 +6624,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/stores/AppStore.js",
-          "issuerId": 3,
-          "issuerName": "./static/stores/AppStore.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/actions/AppActions.js",
+          "issuerId": 7,
+          "issuerName": "./static/actions/AppActions.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -9693,7 +9693,7 @@
           "name": "./static/components/Admin/AdminMarketProducts/AdminMarketProducts.js",
           "index": 80,
           "index2": 82,
-          "size": 4377,
+          "size": 4414,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -9722,7 +9722,7 @@
           "usedExports": true,
           "providedExports": null,
           "depth": 2,
-          "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _AddProductModal = require('./ProductAdd/AddProductModal.js');\n\nvar _AddProductModal2 = _interopRequireDefault(_AddProductModal);\n\nvar _AdminProductPreviewRow = require('./AdminProductPreviewRow');\n\nvar _AdminProductPreviewRow2 = _interopRequireDefault(_AdminProductPreviewRow);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar Link = require('react-router').Link;\n\nvar headers = ['Go To This Product', 'Image', 'Name', 'Inventory', 'Search Tags', 'Listing Tags', 'Related Product Tags', 'URL', 'Is Available', 'Is Active', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date'];\nvar product_variables = ['name', 'inventory', 'product_search_tags', 'product_listing_tags', 'related_product_tags', 'product_id', 'is_available', 'active', 'manufacturer', 'price', 'num_images', 'date_created', 'sale_end_date'];\n\nvar AdminMarketProducts = function (_React$Component) {\n\t_inherits(AdminMarketProducts, _React$Component);\n\n\tfunction AdminMarketProducts(props) {\n\t\t_classCallCheck(this, AdminMarketProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (AdminMarketProducts.__proto__ || Object.getPrototypeOf(AdminMarketProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tshow_modal: false\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(AdminMarketProducts, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {}\n\t}, {\n\t\tkey: 'filterProducts',\n\t\tvalue: function filterProducts(products, active) {\n\t\t\tvar filtered_products = [];\n\t\t\tproducts.map(function (product, index) {\n\t\t\t\tif (product.active == active) {\n\t\t\t\t\tfiltered_products.push(product);\n\t\t\t\t}\n\t\t\t});\n\t\t\treturn filtered_products;\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\n\t\t\tvar products = this.filterProducts(this.props.products, this.props.active);\n\n\t\t\tvar table_headers = headers.map(function (header) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'th',\n\t\t\t\t\tnull,\n\t\t\t\t\t' ',\n\t\t\t\t\theader,\n\t\t\t\t\t' '\n\t\t\t\t);\n\t\t\t});\n\n\t\t\tvar table_entries = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_AdminProductPreviewRow2.default, {\n\t\t\t\t\tproduct_variables: product_variables,\n\t\t\t\t\tproduct: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'container' },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'col-md-12' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'table',\n\t\t\t\t\t\t{ className: 'table table-bordered' },\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'thead',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'tr',\n\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\ttable_headers\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'tbody',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\ttable_entries\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn AdminMarketProducts;\n}(React.Component);\n\nexports.default = AdminMarketProducts;"
+          "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _AddProductModal = require('./ProductAdd/AddProductModal.js');\n\nvar _AddProductModal2 = _interopRequireDefault(_AddProductModal);\n\nvar _AdminProductPreviewRow = require('./AdminProductPreviewRow');\n\nvar _AdminProductPreviewRow2 = _interopRequireDefault(_AdminProductPreviewRow);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar Link = require('react-router').Link;\n\nvar headers = ['Go To This Product', 'Image', 'Name', 'Mobile Description', 'Inventory', 'Search Tags', 'Listing Tags', 'Related Product Tags', 'URL', 'Is Available', 'Is Active', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date'];\nvar product_variables = ['name', 'inventory', 'description', 'product_search_tags', 'product_listing_tags', 'related_product_tags', 'product_id', 'is_available', 'active', 'manufacturer', 'price', 'num_images', 'date_created', 'sale_end_date'];\n\nvar AdminMarketProducts = function (_React$Component) {\n\t_inherits(AdminMarketProducts, _React$Component);\n\n\tfunction AdminMarketProducts(props) {\n\t\t_classCallCheck(this, AdminMarketProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (AdminMarketProducts.__proto__ || Object.getPrototypeOf(AdminMarketProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tshow_modal: false\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(AdminMarketProducts, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {}\n\t}, {\n\t\tkey: 'filterProducts',\n\t\tvalue: function filterProducts(products, active) {\n\t\t\tvar filtered_products = [];\n\t\t\tproducts.map(function (product, index) {\n\t\t\t\tif (product.active == active) {\n\t\t\t\t\tfiltered_products.push(product);\n\t\t\t\t}\n\t\t\t});\n\t\t\treturn filtered_products;\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\n\t\t\tvar products = this.filterProducts(this.props.products, this.props.active);\n\n\t\t\tvar table_headers = headers.map(function (header) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'th',\n\t\t\t\t\tnull,\n\t\t\t\t\t' ',\n\t\t\t\t\theader,\n\t\t\t\t\t' '\n\t\t\t\t);\n\t\t\t});\n\n\t\t\tvar table_entries = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_AdminProductPreviewRow2.default, {\n\t\t\t\t\tproduct_variables: product_variables,\n\t\t\t\t\tproduct: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'container' },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'col-md-12' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'table',\n\t\t\t\t\t\t{ className: 'table table-bordered' },\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'thead',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'tr',\n\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\ttable_headers\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'tbody',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\ttable_entries\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn AdminMarketProducts;\n}(React.Component);\n\nexports.default = AdminMarketProducts;"
         },
         {
           "id": 114,
@@ -10756,7 +10756,7 @@
           "name": "./static/components/Product/Template2/RelatedProducts.js",
           "index": 39,
           "index2": 57,
-          "size": 3778,
+          "size": 3725,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -10785,7 +10785,7 @@
           "usedExports": true,
           "providedExports": null,
           "depth": 3,
-          "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _reactSlick = require('react-slick');\n\nvar _reactSlick2 = _interopRequireDefault(_reactSlick);\n\nvar _HomeProductPreview = require('../../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar RelatedProducts = function (_React$Component) {\n\t_inherits(RelatedProducts, _React$Component);\n\n\tfunction RelatedProducts(props) {\n\t\t_classCallCheck(this, RelatedProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (RelatedProducts.__proto__ || Object.getPrototypeOf(RelatedProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(RelatedProducts, [{\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tconsole.log(this.props.product.related_products);\n\t\t\tif (!this.props.product) {\n\t\t\t\treturn React.createElement('div', null);\n\t\t\t}\n\t\t\tvar products = this.props.product.related_products.map(function (product, index) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\tnull,\n\t\t\t\t\tReact.createElement(_HomeProductPreview2.default, { product: product })\n\t\t\t\t);\n\t\t\t});\n\t\t\tvar slidesToShow = Math.min(5, products.length);\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'col-sm-12 col-md-12 col-lg-12' },\n\t\t\t\tReact.createElement('div', { className: 'top-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row home-product-group-header-row' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'span',\n\t\t\t\t\t\t{ className: 'home-product-group-header' },\n\t\t\t\t\t\t'You might also like'\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement('div', { className: 'small-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\tproducts.length > 5 ? React.createElement(\n\t\t\t\t\t\t_reactSlick2.default,\n\t\t\t\t\t\t{ arrows: true, infinite: true,\n\t\t\t\t\t\t\tspeed: 500, slidesToShow: slidesToShow,\n\t\t\t\t\t\t\tslidesToScroll: 1,\n\t\t\t\t\t\t\tclassName: 'react-slick-slides'\n\t\t\t\t\t\t},\n\t\t\t\t\t\tproducts\n\t\t\t\t\t) : React.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\tnull,\n\t\t\t\t\t\tproducts\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn RelatedProducts;\n}(React.Component);\n\nexports.default = RelatedProducts;"
+          "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _reactSlick = require('react-slick');\n\nvar _reactSlick2 = _interopRequireDefault(_reactSlick);\n\nvar _HomeProductPreview = require('../../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar RelatedProducts = function (_React$Component) {\n\t_inherits(RelatedProducts, _React$Component);\n\n\tfunction RelatedProducts(props) {\n\t\t_classCallCheck(this, RelatedProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (RelatedProducts.__proto__ || Object.getPrototypeOf(RelatedProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(RelatedProducts, [{\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tif (!this.props.product) {\n\t\t\t\treturn React.createElement('div', null);\n\t\t\t}\n\t\t\tvar products = this.props.product.related_products.map(function (product, index) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\tnull,\n\t\t\t\t\tReact.createElement(_HomeProductPreview2.default, { product: product })\n\t\t\t\t);\n\t\t\t});\n\t\t\tvar slidesToShow = Math.min(5, products.length);\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'col-sm-12 col-md-12 col-lg-12' },\n\t\t\t\tReact.createElement('div', { className: 'top-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row home-product-group-header-row' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'span',\n\t\t\t\t\t\t{ className: 'home-product-group-header' },\n\t\t\t\t\t\t'You might also like'\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement('div', { className: 'small-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\tproducts.length > 5 ? React.createElement(\n\t\t\t\t\t\t_reactSlick2.default,\n\t\t\t\t\t\t{ arrows: true, infinite: true,\n\t\t\t\t\t\t\tspeed: 500, slidesToShow: slidesToShow,\n\t\t\t\t\t\t\tslidesToScroll: 1,\n\t\t\t\t\t\t\tclassName: 'react-slick-slides'\n\t\t\t\t\t\t},\n\t\t\t\t\t\tproducts\n\t\t\t\t\t) : React.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\tnull,\n\t\t\t\t\t\tproducts\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn RelatedProducts;\n}(React.Component);\n\nexports.default = RelatedProducts;"
         },
         {
           "id": 143,
@@ -14543,7 +14543,7 @@
           "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "30:21-44"
+          "loc": "29:11-34"
         },
         {
           "moduleId": 22,
@@ -14552,7 +14552,7 @@
           "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "29:11-34"
+          "loc": "30:21-44"
         },
         {
           "moduleId": 23,
@@ -14867,7 +14867,7 @@
           "moduleName": "./static/components/Account/Settings/Billing/CardPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "33:11-34"
+          "loc": "34:21-44"
         },
         {
           "moduleId": 92,
@@ -14876,16 +14876,7 @@
           "moduleName": "./static/components/Account/Settings/Billing/CardPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "34:21-44"
-        },
-        {
-          "moduleId": 93,
-          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Billing/UpdateBillingForm.js",
-          "module": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
-          "moduleName": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
-          "type": "cjs require",
-          "userRequest": "react-router",
-          "loc": "46:11-34"
+          "loc": "33:11-34"
         },
         {
           "moduleId": 93,
@@ -14897,13 +14888,13 @@
           "loc": "45:21-44"
         },
         {
-          "moduleId": 94,
-          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Orders/OrderItemDisplay.js",
-          "module": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
-          "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
+          "moduleId": 93,
+          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Billing/UpdateBillingForm.js",
+          "module": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
+          "moduleName": "./static/components/Account/Settings/Billing/UpdateBillingForm.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "25:11-34"
+          "loc": "46:11-34"
         },
         {
           "moduleId": 94,
@@ -14913,6 +14904,15 @@
           "type": "cjs require",
           "userRequest": "react-router",
           "loc": "26:21-44"
+        },
+        {
+          "moduleId": 94,
+          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Orders/OrderItemDisplay.js",
+          "module": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
+          "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
+          "type": "cjs require",
+          "userRequest": "react-router",
+          "loc": "25:11-34"
         },
         {
           "moduleId": 95,
@@ -14975,7 +14975,7 @@
           "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "23:11-34"
+          "loc": "24:21-44"
         },
         {
           "moduleId": 100,
@@ -14984,16 +14984,7 @@
           "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "24:21-44"
-        },
-        {
-          "moduleId": 101,
-          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
-          "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-          "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-          "type": "cjs require",
-          "userRequest": "react-router",
-          "loc": "18:21-44"
+          "loc": "23:11-34"
         },
         {
           "moduleId": 101,
@@ -15003,6 +14994,15 @@
           "type": "cjs require",
           "userRequest": "react-router",
           "loc": "17:11-34"
+        },
+        {
+          "moduleId": 101,
+          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
+          "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+          "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+          "type": "cjs require",
+          "userRequest": "react-router",
+          "loc": "18:21-44"
         },
         {
           "moduleId": 102,
@@ -15038,7 +15038,7 @@
           "moduleName": "./static/components/Account/Settings/Shipping/ShippingPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "41:11-34"
+          "loc": "42:21-44"
         },
         {
           "moduleId": 105,
@@ -15047,7 +15047,7 @@
           "moduleName": "./static/components/Account/Settings/Shipping/ShippingPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "42:21-44"
+          "loc": "41:11-34"
         },
         {
           "moduleId": 106,
@@ -18342,9 +18342,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/RegisterPage.js",
-      "issuerId": 42,
-      "issuerName": "./static/components/Account/Login/RegisterPage.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/LoginPage.js",
+      "issuerId": 41,
+      "issuerName": "./static/components/Account/Login/LoginPage.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -18572,9 +18572,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryForm.js",
-      "issuerId": 89,
-      "issuerName": "./static/components/Account/Recovery/RecoveryForm.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryChangePasswordForm.js",
+      "issuerId": 88,
+      "issuerName": "./static/components/Account/Recovery/RecoveryChangePasswordForm.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -18756,9 +18756,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/stores/AppStore.js",
-      "issuerId": 3,
-      "issuerName": "./static/stores/AppStore.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/actions/AppActions.js",
+      "issuerId": 7,
+      "issuerName": "./static/actions/AppActions.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -18802,9 +18802,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/stores/AppStore.js",
-      "issuerId": 3,
-      "issuerName": "./static/stores/AppStore.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/actions/AppActions.js",
+      "issuerId": 7,
+      "issuerName": "./static/actions/AppActions.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -21871,7 +21871,7 @@
       "name": "./static/components/Admin/AdminMarketProducts/AdminMarketProducts.js",
       "index": 80,
       "index2": 82,
-      "size": 4377,
+      "size": 4414,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -21900,7 +21900,7 @@
       "usedExports": true,
       "providedExports": null,
       "depth": 2,
-      "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _AddProductModal = require('./ProductAdd/AddProductModal.js');\n\nvar _AddProductModal2 = _interopRequireDefault(_AddProductModal);\n\nvar _AdminProductPreviewRow = require('./AdminProductPreviewRow');\n\nvar _AdminProductPreviewRow2 = _interopRequireDefault(_AdminProductPreviewRow);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar Link = require('react-router').Link;\n\nvar headers = ['Go To This Product', 'Image', 'Name', 'Inventory', 'Search Tags', 'Listing Tags', 'Related Product Tags', 'URL', 'Is Available', 'Is Active', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date'];\nvar product_variables = ['name', 'inventory', 'product_search_tags', 'product_listing_tags', 'related_product_tags', 'product_id', 'is_available', 'active', 'manufacturer', 'price', 'num_images', 'date_created', 'sale_end_date'];\n\nvar AdminMarketProducts = function (_React$Component) {\n\t_inherits(AdminMarketProducts, _React$Component);\n\n\tfunction AdminMarketProducts(props) {\n\t\t_classCallCheck(this, AdminMarketProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (AdminMarketProducts.__proto__ || Object.getPrototypeOf(AdminMarketProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tshow_modal: false\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(AdminMarketProducts, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {}\n\t}, {\n\t\tkey: 'filterProducts',\n\t\tvalue: function filterProducts(products, active) {\n\t\t\tvar filtered_products = [];\n\t\t\tproducts.map(function (product, index) {\n\t\t\t\tif (product.active == active) {\n\t\t\t\t\tfiltered_products.push(product);\n\t\t\t\t}\n\t\t\t});\n\t\t\treturn filtered_products;\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\n\t\t\tvar products = this.filterProducts(this.props.products, this.props.active);\n\n\t\t\tvar table_headers = headers.map(function (header) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'th',\n\t\t\t\t\tnull,\n\t\t\t\t\t' ',\n\t\t\t\t\theader,\n\t\t\t\t\t' '\n\t\t\t\t);\n\t\t\t});\n\n\t\t\tvar table_entries = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_AdminProductPreviewRow2.default, {\n\t\t\t\t\tproduct_variables: product_variables,\n\t\t\t\t\tproduct: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'container' },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'col-md-12' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'table',\n\t\t\t\t\t\t{ className: 'table table-bordered' },\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'thead',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'tr',\n\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\ttable_headers\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'tbody',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\ttable_entries\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn AdminMarketProducts;\n}(React.Component);\n\nexports.default = AdminMarketProducts;"
+      "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _AddProductModal = require('./ProductAdd/AddProductModal.js');\n\nvar _AddProductModal2 = _interopRequireDefault(_AddProductModal);\n\nvar _AdminProductPreviewRow = require('./AdminProductPreviewRow');\n\nvar _AdminProductPreviewRow2 = _interopRequireDefault(_AdminProductPreviewRow);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar Link = require('react-router').Link;\n\nvar headers = ['Go To This Product', 'Image', 'Name', 'Mobile Description', 'Inventory', 'Search Tags', 'Listing Tags', 'Related Product Tags', 'URL', 'Is Available', 'Is Active', 'Manufacturer', 'Price', '# of Images', 'Date Added', 'Sale End Date'];\nvar product_variables = ['name', 'inventory', 'description', 'product_search_tags', 'product_listing_tags', 'related_product_tags', 'product_id', 'is_available', 'active', 'manufacturer', 'price', 'num_images', 'date_created', 'sale_end_date'];\n\nvar AdminMarketProducts = function (_React$Component) {\n\t_inherits(AdminMarketProducts, _React$Component);\n\n\tfunction AdminMarketProducts(props) {\n\t\t_classCallCheck(this, AdminMarketProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (AdminMarketProducts.__proto__ || Object.getPrototypeOf(AdminMarketProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tshow_modal: false\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(AdminMarketProducts, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {}\n\t}, {\n\t\tkey: 'filterProducts',\n\t\tvalue: function filterProducts(products, active) {\n\t\t\tvar filtered_products = [];\n\t\t\tproducts.map(function (product, index) {\n\t\t\t\tif (product.active == active) {\n\t\t\t\t\tfiltered_products.push(product);\n\t\t\t\t}\n\t\t\t});\n\t\t\treturn filtered_products;\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\n\t\t\tvar products = this.filterProducts(this.props.products, this.props.active);\n\n\t\t\tvar table_headers = headers.map(function (header) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'th',\n\t\t\t\t\tnull,\n\t\t\t\t\t' ',\n\t\t\t\t\theader,\n\t\t\t\t\t' '\n\t\t\t\t);\n\t\t\t});\n\n\t\t\tvar table_entries = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_AdminProductPreviewRow2.default, {\n\t\t\t\t\tproduct_variables: product_variables,\n\t\t\t\t\tproduct: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'container' },\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'col-md-12' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'table',\n\t\t\t\t\t\t{ className: 'table table-bordered' },\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'thead',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'tr',\n\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\ttable_headers\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t),\n\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t'tbody',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\ttable_entries\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn AdminMarketProducts;\n}(React.Component);\n\nexports.default = AdminMarketProducts;"
     },
     {
       "id": 114,
@@ -22934,7 +22934,7 @@
       "name": "./static/components/Product/Template2/RelatedProducts.js",
       "index": 39,
       "index2": 57,
-      "size": 3778,
+      "size": 3725,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -22963,7 +22963,7 @@
       "usedExports": true,
       "providedExports": null,
       "depth": 3,
-      "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _reactSlick = require('react-slick');\n\nvar _reactSlick2 = _interopRequireDefault(_reactSlick);\n\nvar _HomeProductPreview = require('../../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar RelatedProducts = function (_React$Component) {\n\t_inherits(RelatedProducts, _React$Component);\n\n\tfunction RelatedProducts(props) {\n\t\t_classCallCheck(this, RelatedProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (RelatedProducts.__proto__ || Object.getPrototypeOf(RelatedProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(RelatedProducts, [{\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tconsole.log(this.props.product.related_products);\n\t\t\tif (!this.props.product) {\n\t\t\t\treturn React.createElement('div', null);\n\t\t\t}\n\t\t\tvar products = this.props.product.related_products.map(function (product, index) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\tnull,\n\t\t\t\t\tReact.createElement(_HomeProductPreview2.default, { product: product })\n\t\t\t\t);\n\t\t\t});\n\t\t\tvar slidesToShow = Math.min(5, products.length);\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'col-sm-12 col-md-12 col-lg-12' },\n\t\t\t\tReact.createElement('div', { className: 'top-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row home-product-group-header-row' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'span',\n\t\t\t\t\t\t{ className: 'home-product-group-header' },\n\t\t\t\t\t\t'You might also like'\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement('div', { className: 'small-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\tproducts.length > 5 ? React.createElement(\n\t\t\t\t\t\t_reactSlick2.default,\n\t\t\t\t\t\t{ arrows: true, infinite: true,\n\t\t\t\t\t\t\tspeed: 500, slidesToShow: slidesToShow,\n\t\t\t\t\t\t\tslidesToScroll: 1,\n\t\t\t\t\t\t\tclassName: 'react-slick-slides'\n\t\t\t\t\t\t},\n\t\t\t\t\t\tproducts\n\t\t\t\t\t) : React.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\tnull,\n\t\t\t\t\t\tproducts\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn RelatedProducts;\n}(React.Component);\n\nexports.default = RelatedProducts;"
+      "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _reactSlick = require('react-slick');\n\nvar _reactSlick2 = _interopRequireDefault(_reactSlick);\n\nvar _HomeProductPreview = require('../../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\nvar ReactDOM = require('react-dom');\n\nvar RelatedProducts = function (_React$Component) {\n\t_inherits(RelatedProducts, _React$Component);\n\n\tfunction RelatedProducts(props) {\n\t\t_classCallCheck(this, RelatedProducts);\n\n\t\tvar _this = _possibleConstructorReturn(this, (RelatedProducts.__proto__ || Object.getPrototypeOf(RelatedProducts)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(RelatedProducts, [{\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tif (!this.props.product) {\n\t\t\t\treturn React.createElement('div', null);\n\t\t\t}\n\t\t\tvar products = this.props.product.related_products.map(function (product, index) {\n\t\t\t\treturn React.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\tnull,\n\t\t\t\t\tReact.createElement(_HomeProductPreview2.default, { product: product })\n\t\t\t\t);\n\t\t\t});\n\t\t\tvar slidesToShow = Math.min(5, products.length);\n\n\t\t\treturn React.createElement(\n\t\t\t\t'div',\n\t\t\t\t{ className: 'col-sm-12 col-md-12 col-lg-12' },\n\t\t\t\tReact.createElement('div', { className: 'top-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row home-product-group-header-row' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'span',\n\t\t\t\t\t\t{ className: 'home-product-group-header' },\n\t\t\t\t\t\t'You might also like'\n\t\t\t\t\t)\n\t\t\t\t),\n\t\t\t\tReact.createElement('div', { className: 'small-buffer' }),\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\tproducts.length > 5 ? React.createElement(\n\t\t\t\t\t\t_reactSlick2.default,\n\t\t\t\t\t\t{ arrows: true, infinite: true,\n\t\t\t\t\t\t\tspeed: 500, slidesToShow: slidesToShow,\n\t\t\t\t\t\t\tslidesToScroll: 1,\n\t\t\t\t\t\t\tclassName: 'react-slick-slides'\n\t\t\t\t\t\t},\n\t\t\t\t\t\tproducts\n\t\t\t\t\t) : React.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\tnull,\n\t\t\t\t\t\tproducts\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn RelatedProducts;\n}(React.Component);\n\nexports.default = RelatedProducts;"
     },
     {
       "id": 143,

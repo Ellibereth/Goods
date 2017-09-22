@@ -35,10 +35,10 @@ export default class OrderSummarySection extends Component {
 					</View>
 				}
 
-				{cart.shipping_price ? 
+				{cart.shipping_price != null  ? 
 					<CheckoutPriceRow label = {"Shipping"} price = {'$' + formatPrice(cart.shipping_price)}/>
 					: 
-					<CheckoutPriceRow label = {"Shipping"} price = {"Free!"}/>
+					<CheckoutPriceRow label = {"Shipping"} price = {"Requires Address"}/>
 				}
 
 				{cart.sales_tax_price ?
@@ -46,10 +46,18 @@ export default class OrderSummarySection extends Component {
 					:
 					<View/>
 				}
-				<CheckoutPriceRow
+				{cart.total_price ?
+					<CheckoutPriceRow
 					bold_text = {true}
 				 	label = {"Total"} 
 				 	price = {'$' + formatPrice(cart.total_price)}/>
+				 	:
+				 	<CheckoutPriceRow
+					bold_text = {true}
+				 	label = {"Total"} 
+				 	price = {"Address Needed"}/>
+				 }
+
 			</View>
 		
 		);
@@ -60,7 +68,7 @@ export default class OrderSummarySection extends Component {
 const styles = StyleSheet.create({
 	container : {
 		flexDirection : 'column',
-		// height : 300,
+		backgroundColor : '#ededed',
 		borderColor : "silver",
 		borderWidth : 1,
 		margin : 8,

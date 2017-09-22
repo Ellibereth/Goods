@@ -39,7 +39,6 @@ class HomeScreen extends Component {
 		// if (data.success) {
 		// 	this.setState({home_products : data.products})
 		// }
-		Actions.account()
 	}
 
 	
