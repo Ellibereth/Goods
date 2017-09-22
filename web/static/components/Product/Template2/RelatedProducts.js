@@ -13,7 +13,6 @@ export default class RelatedProducts extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.product.related_products)
 		if (!this.props.product) {
 			return <div/>
 		}

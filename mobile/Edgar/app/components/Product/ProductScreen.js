@@ -92,7 +92,7 @@ class ProductScreen extends Component {
 	render() {
 		var images = this.props.product.images.map((image, index) => {
 				var url = img_src  + image.image_id
-				return <Image key = {index}
+				return <Image key = {index} resizeMode= {"stretch"}
 				source = {{uri : url}} style = {styles.product_image}/>
 			})
 		return (
@@ -223,13 +223,14 @@ const styles = StyleSheet.create({
 		flex: 9,
 	},
 	image_slider_wrapper : {
-		height: 100,
-		// height: 300,
+		height: 300,
 	},
 
 	product_image : {
-		height : 100
-		// height: 300,
+		flex: 1,
+		alignSelf: 'stretch',
+		// width: undefined,
+		// height: undefined
 		// width : 150,
 	},
 

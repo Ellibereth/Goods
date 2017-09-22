@@ -1,11 +1,12 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, ScrollView } from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {getProductsByListing} from '../../api/ProductService'
 import HomeProductDisplay from './HomeProductDisplay'
+import Swiper from 'react-native-swiper'
 
 const HOME_TAG = "Home_Page"
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -38,9 +39,6 @@ class HomeScreen extends Component {
 		if (data.success) {
 			this.setState({home_products : data.products})
 
-			// this makes testing life slightly easier
-			// removing after done styling product page
-			Actions.product({product : data.products[data.products.length - 1]})
 		}
 	}
 
@@ -56,16 +54,24 @@ class HomeScreen extends Component {
 		return (
 			
 				<View style = {{"flex" : 1}}>
-					<Text> Home Products </Text>
-					<ScrollView>
-						{products}
-					</ScrollView>
+					<View style = {styles.scroll_wrapper}>
+						<ScrollView  horizontal = {true}
+						showsHorizontalScrollIndicator = {false}>
+							{products}
+						</ScrollView>
+					</View>
 				</View>
 			
 
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	scroll_wrapper : {
+		height : 225
+	}
+})
 
 
 export default connect(mapStateToProps)(HomeScreen);
