@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react'
-import {TouchableHighlight, Text, View, Button, AsyncStorage} from 'react-native';
+import {TouchableHighlight, Text, View, Button, AsyncStorage, StyleSheet} from 'react-native';
 import SettingsList from 'react-native-settings-list'
 import {Actions} from 'react-native-router-flux'
 
@@ -19,11 +19,14 @@ export default class AccountMenu extends Component {
 	render() {
 		return (
 			
-				<View style={{backgroundColor:'white',flex:1}}>
+				<View style={{backgroundColor:'#EFEFF4',flex:1}}>
 					<View style={{flex:1, marginTop:20}}>
-						<SettingsList>
+						<SettingsList
+						borderColor='silver'
+						>
 							{!this.props.user &&
 								<SettingsList.Item
+								style = {styles.list_item}
 								title='Not Signed In'
 								arrowIcon = {(
 										<View style = {{"padding" : 8}}>
@@ -34,7 +37,7 @@ export default class AccountMenu extends Component {
 												justifyContent : "center",
 												backgroundColor : "black",
 												borderRadius : 6,
-												padding: 6
+												padding: 6,
 											}}
 											onPress = {()=> Actions.signin()}>
 												<Text
@@ -45,7 +48,17 @@ export default class AccountMenu extends Component {
 									)}
 								/>
 							}
-							<SettingsList.Header headerText='Different Grouping' headerStyle={{color:'white'}}/>
+							
+
+							{this.props.user && 
+								<SettingsList.Header headerStyle={{color:'grey'}}/>
+							}
+
+							{this.props.user && 
+								<SettingsList.Item title='Account Settings' onPress = {()=>Actions.settings()} />
+							}
+
+							<SettingsList.Header headerStyle={{color:'grey'}}/>
 							<SettingsList.Item title='About Edgar USA' onPress = {()=>Actions.about()} />
 							<SettingsList.Item title='Contact Us' onPress = {()=>Actions.contact()} />
 
@@ -55,7 +68,7 @@ export default class AccountMenu extends Component {
 
 							
 							{this.props.user &&
-								<SettingsList.Header headerText='Different Grouping' headerStyle={{color:'white'}}/>
+								<SettingsList.Header headerText='' headerStyle={{color:'grey'}}/>
 							}
 
 							{this.props.user &&
@@ -73,6 +86,11 @@ export default class AccountMenu extends Component {
 }
 
 
+const styles = StyleSheet.create({
+	list_item : {
+			borderColor : '#c8c7cc'
+		}
+})
 
 
 

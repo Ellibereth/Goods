@@ -44,6 +44,9 @@ export function logoutUser(){
 
 
 export function setUserInfo(data) {
+	if (data.jwt){
+		AsyncStorage.setItem('jwt', data.jwt).done()	
+	}
 	return {
 		type: types.SET_USER_INFO,
 		user : data.user,

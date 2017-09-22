@@ -1,5 +1,18 @@
 {
   "expo": {
-    "sdkVersion": "20.0.0"
-  }
+  	"name": "Edgar USA",
+    "icon": "./favico.ico",
+    "version": "0.0.1",
+    "slug": "exp://z9-v7d.darek.edgar.exp.direct:80",
+    "sdkVersion": "20.0.0",
+    "privacy" : "unlisted"
+  },
+  "ios": {
+  	// com.companyname.appname
+      "bundleIdentifier": "com.edgarusa.edgarusa"
+    },
+    "android": {
+    	// com.companyname.appname
+      "package": "com.edgarusa.edgarusa"
+    }
 }

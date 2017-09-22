@@ -9,40 +9,51 @@ import {
 	TextInput
 } from 'react-native';
 import {dismissKeyboard} from 'react-native-dismiss-keyboard'
-import {handleLoginSubmit} from '../../../api/UserService'
+import {updateSettings} from '../../../../api/UserService'
 import {Actions, ActionConst} from 'react-native-router-flux'
 
-export default class LoginForm extends Component {
+export default class UpdatePersonalForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			email : "",
-			password: ""
+			name: ""
 		}
 	}
 
-	handleLoginSubmit() {
-		this.asyncHandleLoginSubmit().then((response)=> {
+	componentDidMount(){
+		this.setState({
+			email : this.props.user.email,
+			name : this.props.user.name
+		})
+	}
+
+	handleUpdateSettingsPress() {
+		this.asyncUpdateSettings().then((response)=> {
 			if (response){
-				Actions.home({type : ActionConst.RESET})	
+				Actions.pop()	
 			}
 		}).done()
 	}
 
-	async asyncHandleLoginSubmit() {
-		let data = await handleLoginSubmit(this.state.email, this.state.password)
+	async asyncUpdateSettings() {
+		var new_settings = {
+			email : this.state.email,
+			name : this.state.name
+		}
+		let data = await updatePersonalSettings(this.props.jwt, new_settings)
 		if (data.success) {
 			this.props.setUserInfo(data)
 			return true	
 		}
 		else {
-			console.log("login error", data.error)
+			console.log("update settings error", data.error)
 			return false
 		}
 	}
 	
-	handlePasswordChange(password) {
-		this.setState({password: password})
+	handleNameChange(name) {
+		this.setState({name: name})
 	}
 	handleEmailChange(email) {
 		this.setState({email : email})
@@ -56,35 +67,41 @@ export default class LoginForm extends Component {
 			<View style={styles.container}>
 				<View style={{flex : 1, flexDirection : 'column'}}>
 					<View style={{flex : 2}}>
-						<View style={{flex : 1}}/>
-						<View style={{flex : 1}}>
+						<View style = {{flex : 1}}/>
+						<View style={{flex : 2}}>
+							<Text style  = {styles.input_label}>
+								NAME
+							</Text>
 							<View style={styles.input_wrapper}>
-								<TextInput onChangeText = {this.handleEmailChange.bind(this)}
+								<TextInput onChangeText = {this.handleNameChange.bind(this)}
 									style = {styles.input}
-									placeholder = {"Email"}
+									placeholder = {"Name"}
+									value = {this.state.name}
 									/>
 							</View>
 						</View>
 						<View style={{flex : 0.5}}/>
-						<View style = {{flex : 1}}>
+						<View style = {{flex : 2}}>
+							<Text style  = {styles.input_label}>
+								EMAIL
+							</Text>
 							<View style={styles.input_wrapper}>
-								<TextInput onChangeText = {this.handlePasswordChange.bind(this)}
+								<TextInput onChangeText = {this.handleEmailChange.bind(this)}
 									style = {styles.input}
-									secureTextEntry = {true}
-									placeholder = {"Password"}
+									value = {this.state.email}
 									/>
 							</View>
 						</View>
 					</View>
 					<View style = {{height : 16}}/>
 					<View style = {{flex : 1, alignItems : 'center'}}>
-						<TouchableOpacity style={{flex : 1}} onPress = {this.handleLoginSubmit.bind(this)}>
+						<TouchableOpacity style={{flex : 1}} onPress = {this.handleUpdateSettingsPress.bind(this)}>
 							<View style = {styles.button}>
-								<Text style={styles.button_text}>Sign In</Text>
+								<Text style={styles.button_text}>Update Settings</Text>
 							</View>
 						</TouchableOpacity>
 					</View>
-					<View style = {{flex : 3}}/>
+					<View style = {{flex : 2}}/>
 				</View>
 			</View>
 		</TouchableWithoutFeedback>
@@ -102,7 +119,7 @@ const styles = StyleSheet.create({
 	button : {
 		backgroundColor : "black",
 		padding : 12,
-		borderRadius : 8,
+		borderRadius : 4,
 		width : 250
 	},
 	button_text : {
@@ -111,6 +128,12 @@ const styles = StyleSheet.create({
 	},
 	forgot_password : {fontSize : 12, color : 'lightseagreen'},
 	label : {flex : 0, fontSize : 12, fontWeight : 'bold', color : '#696969'},
-	input_wrapper : {flex : 1, borderColor : 'silver', borderWidth : 1, borderRadius : 6},
+	input_wrapper : {flex : 1, borderColor : 'silver', borderWidth : 1, borderRadius : 4},
 	input : {flex : 1, width : 240, fontSize : 14, justifyContent : 'flex-start', padding: 6},
+	input_label : {
+		fontSize: 14,
+		marginBottom : 4, 
+		marginLeft : 0
+
+	}
 });

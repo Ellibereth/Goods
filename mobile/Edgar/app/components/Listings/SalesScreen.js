@@ -5,7 +5,7 @@ import {View, Text, ScrollView } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {getOnSaleProducts} from '../../api/ProductService'
-import HomeProductDisplay from '../Home/HomeProductDisplay'
+import HomeProduct from '../Home/HomeProduct'
 
 function mapStateToProps(state) {
 	return {
@@ -41,16 +41,18 @@ class SalesScreen extends Component {
 
 
 		var products = this.state.sale_products.map((product, index) => 
-				<HomeProductDisplay key = {index} product = {product}/>
+				<HomeProduct key = {index} product = {product}/>
 			)
 
 		return (
 			
 				<View style = {{"flex" : 1}}>
-					<Text> Sale Products </Text>
-					<ScrollView>
+					<View style = {{height: 225}}>
+					<ScrollView  horizontal = {true}
+					showsHorizontalScrollIndicator = {false}>
 						{products}
 					</ScrollView>
+					</View>
 				</View>
 			
 

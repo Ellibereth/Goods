@@ -7,6 +7,8 @@ const REFRESH_CHECKOUT_INFO_ROUTE = '/refreshCheckoutInfo'
 const GET_USER_ORDERS_ROUTE = '/getUserOrders'
 const ADD_USER_ADDRESS_ROUTE = '/addUserAddress'
 const ADD_USER_CREDIT_CARD_ROUTE = '/addCreditCard'
+const UPDATE_SETTINGS_ROUTE = '/updateSettings'
+const UPDATE_PASSWORD_ROUTE = '/changePassword'
 
 export async function handleLoginSubmit(email, password) {
 		var form_data =  {
@@ -57,7 +59,17 @@ export async function refreshCheckoutInfo(jwt, address) {
 	return data
 }
 
+export async function updateSettings(jwt, new_settings) {
+	var form_data = {jwt : jwt, new_settings : new_settings}
+	let data = await executeRequest(UPDATE_SETTINGS_ROUTE, form_data)
+	return data
+}
 
+export async function updatePassword(jwt, old_password, password, password_confirm){
+	var form_data = {jwt : jwt, old_password : old_password, password : password, password_confirm : password_confirm}
+	let data = await executeRequest(UPDATE_PASSWORD_ROUTE, form_data)
+	return data
+}
 
 
 

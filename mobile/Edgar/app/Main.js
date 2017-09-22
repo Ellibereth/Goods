@@ -22,6 +22,9 @@ import CartIcon from './components/Navigation/CartIcon'
 import BackIcon from './components/Navigation/BackIcon'
 import OrderConfirmedScreen from './components/Cart/OrderConfirmedScreen'
 import OrdersScreen from './components/Account/Orders/OrdersScreen'
+import SettingsScreen from './components/Account/Settings/SettingsScreen'
+import UpdatePersonalScreen from './components/Account/Settings/Edit/UpdatePersonalScreen'
+import UpdatePasswordScreen from './components/Account/Settings/Edit/UpdatePasswordScreen'
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(ActionCreators, dispatch);
@@ -43,6 +46,7 @@ class Main extends React.Component {
 
 	componentDidMount(){
 		AsyncStorage.getItem('jwt').then((jwt) => {
+
 			this.props.loadUser(jwt)
 		})
 	}
@@ -94,11 +98,12 @@ class Main extends React.Component {
 						hideTabBar = {true}/>	
 					</Scene>	
 
-					<Scene title = "Home" key = "home" initial = {true}
+					<Scene title = "Home" key = "home" 
+					initial = {true}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
 
 						<Scene title = "Home" key = "home" 
-						initial = {true} icon = {()=> this.getTabIcon("home")} 
+						icon = {()=> this.getTabIcon("home")} 
 						component = {HomeScreen}/>
 						
 
@@ -110,13 +115,36 @@ class Main extends React.Component {
 							
 						</Scene>
 
-						<Scene key = "account" title = "Account"
-						icon = {()=> this.getTabIcon("user")}>
+						<Scene key = "account"
+						title = "Account" 
+						icon = {()=> this.getTabIcon("user")} >
 							
+							{/* <Scene {...this.props} initial = {true}
+							key="account"  title="Account" 
+							>
+								<Scene {...this.props} initial = {true} 
+								key="account" component={AccountScreen} title="Account"
+								/>
+								<Scene {...this.props} 
+								key="update_password" component={UpdatePasswordScreen} title="Password"
+								/>
+								<Scene {...this.props} 
+								key="update_email" component={UpdateEmailScreen} title="Update Email"
+								/>
+							</Scene>*/}
 
-							<Scene {...this.props} initial = {true}
-							key="account" component={AccountScreen} title="Account"
+							<Scene {...this.props} initial = {true} hideTabBar = {true}
+								key="account" component={AccountScreen} title="Account"
+								/>
+							<Scene {...this.props} 
+							hideTabBar = {true}
+							key="update_password" component={UpdatePasswordScreen} title="Password"
 							/>
+							<Scene {...this.props} 
+							hideTabBar = {true}
+							key="update_personal" component={UpdatePersonalScreen} title="Update Personal"
+							/>
+
 
 							<Scene {...this.props}
 								hideTabBar = {true}
@@ -137,6 +165,9 @@ class Main extends React.Component {
 							
 							<Scene {...this.props} loadUser = {this.props.loadUser}
 							key="register" component={RegisterScreen} title="Register"    hideTabBar = {true} />
+
+							<Scene {...this.props} loadUser = {this.props.loadUser}
+							key="settings" component={SettingsScreen} title="Settings"    hideTabBar = {true} />
 							
 						</Scene>
 					</Scene>

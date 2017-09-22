@@ -9,7 +9,7 @@ import {formatPrice} from '../../util/Format'
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
 
-export default class HomeProductDisplay extends Component {
+export default class HomeProduct extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {}

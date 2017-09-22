@@ -439,6 +439,10 @@ class User(db.Model):
 		: returns True if old password matches
 		: returns False if not
 		"""
+
+		if old_password is None or new_password is None: 
+			return False
+
 		if self.checkLogin(old_password):
 			self.password_hash = Argon.argonHash(new_password)
 			db.session.commit()

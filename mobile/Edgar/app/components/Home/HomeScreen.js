@@ -5,7 +5,7 @@ import {View, Text, ScrollView, StyleSheet} from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {getProductsByListing} from '../../api/ProductService'
-import HomeProductDisplay from './HomeProductDisplay'
+import HomeProducts from './HomeProducts'
 import Swiper from 'react-native-swiper'
 
 const HOME_TAG = "Home_Page"
@@ -35,11 +35,11 @@ class HomeScreen extends Component {
 	}
 
 	async loadHomeProducts() {
-		let data = await getProductsByListing(HOME_TAG)
-		if (data.success) {
-			this.setState({home_products : data.products})
-
-		}
+		// let data = await getProductsByListing(HOME_TAG)
+		// if (data.success) {
+		// 	this.setState({home_products : data.products})
+		// }
+		Actions.account()
 	}
 
 	
@@ -47,18 +47,13 @@ class HomeScreen extends Component {
 
 	render() {
 		
-		var products = this.state.home_products.map((product, index) => 
-				<HomeProductDisplay key = {index} product = {product}/>
-			)
+		
 
 		return (
 			
 				<View style = {{"flex" : 1}}>
 					<View style = {styles.scroll_wrapper}>
-						<ScrollView  horizontal = {true}
-						showsHorizontalScrollIndicator = {false}>
-							{products}
-						</ScrollView>
+						<HomeProducts home_products = {this.state.home_products}/>
 					</View>
 				</View>
 			
