@@ -33,53 +33,52 @@ export default class CheckoutStepIndicator extends Component {
 		var current_step = this.getCurrentStep()
 		return (
 			<View style={styles.stepIndicator}>
-			  <StepIndicator 
-			  stepCount = {3}
-			  customStyles={secondIndicatorStyles} 
-			  currentPosition={current_step} 
-			  labels={["Cart","Checkout","Order Placed"]} />
+				<StepIndicator 
+				stepCount = {3}
+				customStyles={secondIndicatorStyles} 
+				currentPosition={current_step} 
+				labels={["Cart","Checkout","Order Placed"]} />
 			</View>
 		
 	);
-  }
+	}
 
 }
 
 
 
 const secondIndicatorStyles = {
-  stepIndicatorSize: 25,
-  currentStepIndicatorSize:30,
-  separatorStrokeWidth: 2,
-  currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: 'red',
-  stepStrokeWidth: 3,
-  stepStrokeFinishedColor: 'red',
-  stepStrokeUnFinishedColor: '#aaaaaa',
-  separatorFinishedColor: 'red',
-  separatorUnFinishedColor: '#aaaaaa',
-  stepIndicatorFinishedColor: 'red',
-  stepIndicatorUnFinishedColor: '#ffffff',
-  stepIndicatorCurrentColor: '#ffffff',
-  stepIndicatorLabelFontSize: 13,
-  currentStepIndicatorLabelFontSize: 13,
-  stepIndicatorLabelCurrentColor: 'red',
-  stepIndicatorLabelFinishedColor: '#ffffff',
-  stepIndicatorLabelUnFinishedColor: '#aaaaaa',
-  labelColor: '#999999',
-  labelSize: 13,
-  currentStepLabelColor: 'red'
+	stepIndicatorSize: 25,
+	currentStepIndicatorSize:30,
+	separatorStrokeWidth: 2,
+	currentStepStrokeWidth: 3,
+	stepStrokeCurrentColor: 'red',
+	stepStrokeWidth: 3,
+	stepStrokeFinishedColor: 'red',
+	stepStrokeUnFinishedColor: '#aaaaaa',
+	separatorFinishedColor: 'red',
+	separatorUnFinishedColor: '#aaaaaa',
+	stepIndicatorFinishedColor: 'red',
+	stepIndicatorUnFinishedColor: '#ffffff',
+	stepIndicatorCurrentColor: '#ffffff',
+	stepIndicatorLabelFontSize: 13,
+	currentStepIndicatorLabelFontSize: 13,
+	stepIndicatorLabelCurrentColor: 'red',
+	stepIndicatorLabelFinishedColor: '#ffffff',
+	stepIndicatorLabelUnFinishedColor: '#aaaaaa',
+	labelColor: '#999999',
+	labelSize: 13,
+	currentStepLabelColor: 'red'
 }
 
 
 
 
 const styles = StyleSheet.create({
-  
-  stepIndicator: {
-	marginVertical: 4,
-	margin : 8
-  },
+	stepIndicator: {
+		marginBottom : 8,
+		marginTop : 16
+	},
 });
 			
 

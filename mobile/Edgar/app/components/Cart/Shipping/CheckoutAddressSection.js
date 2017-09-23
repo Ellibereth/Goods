@@ -7,6 +7,7 @@ import {Actions} from 'react-native-router-flux';
 import AddAddressModal from './AddAddressModal'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutAddressDisplay from './CheckoutAddressDisplay'
+import * as Animatable from 'react-native-animatable';
 
 export default class CheckoutAddressSection extends Component {
 	
@@ -18,26 +19,35 @@ export default class CheckoutAddressSection extends Component {
 	}
 
 	toggleEditAddress(){
+		if (this.state.can_edit_address) {
+
+		}
+		else {
+
+		}
 		this.setState({can_edit_address : !this.state.can_edit_address})
+
 	}
 
 	componentDidMount(){
-		if (this.props.user.addresses.length == 0){
-			this.props.setModal(true)
-		}
+		
 	}
 
 	render() {
+
 		return (
 				<View style = {styles.address_container}>
-					<View style = {styles.title_container}>
+					<View style = {[{flex : 1},styles.title_container]}>
 					 	<Text style=  {styles.title_text}>
 					 		Shipping Address
 					 	</Text>
 					</View>
-					{
-						this.state.can_edit_address ? 
-						<View style = {styles.collapsible_container}>
+
+					<Animatable.View 
+					style = {{flex : 4}}>
+						{this.state.can_edit_address ?
+						<View 
+						  style = {[{flex : 1} ,styles.collapsible_container]}>
 							<ScrollView>
 								{this.props.user.addresses.map((address, index) =>
 									<CheckoutAddressDisplay 
@@ -50,18 +60,22 @@ export default class CheckoutAddressSection extends Component {
 									)
 								}
 							</ScrollView>
+							{ this.state.can_edit_address &&
 							<AddAddressModal 
 							selectAddress = {this.props.selectAddress}
 							setUserInfo = {this.props.setUserInfo}
 							modal_visible = {this.props.modal_visible}
 							setModal = {this.props.setModal}
 							jwt = {this.props.jwt} 
+							user = {this.props.user}
 							toggleEditAddress = {this.toggleEditAddress.bind(this)}
 							loadUserCheckout = {this.props.loadUserCheckout}/>
+							}
 
 						</View>
 						:
-						<View style = {styles.collapsible_container}>
+						<View 
+						style = {[{flex : 1}, styles.collapsible_container]}>
 							<Text> Selected Address Display - No Editing</Text>
 							{this.props.selected_address 
 								?
@@ -76,10 +90,11 @@ export default class CheckoutAddressSection extends Component {
 							}
 						</View>
 					}
+					</Animatable.View>
 					
-					<View style = {styles.toggle_container}>
+					<View style = {[{flex : 1},styles.toggle_container]}>
 						<TouchableHighlight 
-							style = {styles.toggle_button}
+							style = {[{flex : 1},styles.toggle_button]}
 							onPress ={this.toggleEditAddress.bind(this)}>
 							<Text style = {styles.toggle_text}>
 								{this.state.can_edit_address ? "Save " : "Edit Address "}
@@ -100,7 +115,7 @@ export default class CheckoutAddressSection extends Component {
 const styles = StyleSheet.create({
 	address_container : {
 		flexDirection : 'column',
-		height : 300,
+		minHeight : 160,
 		borderColor : "silver",
 		borderWidth : 1,
 		margin : 8,
@@ -109,16 +124,14 @@ const styles = StyleSheet.create({
 		
 	},
 	collapsible_container : {
-		flex : 4,
+		
 	},
 	
 	toggle_container : {
-		flex : 1,
 		flexDirection : 'column'
 	},
 	toggle_button : {
 		backgroundColor : 'silver',
-		flex : 1,
 		flexDirection : 'column',
 		justifyContent : 'center'
 	},
@@ -131,14 +144,12 @@ const styles = StyleSheet.create({
 		fontWeight : 'bold',
 	},
 	title_container : {
-		flex : 0.5,
 		borderBottomWidth : 1,
 		borderBottomColor : 'silver',
 		marginLeft: 6,
 		paddingLeft: 0,
 		padding : 6,
 		marginRight: 0,
-
 	}
 
 })

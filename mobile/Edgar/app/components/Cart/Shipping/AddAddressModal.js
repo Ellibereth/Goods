@@ -113,6 +113,7 @@ export default class AddAddressModal extends Component {
 	}
 
 	async addAddress() {
+		var new_index = (this.props.user.addresses.length - 1 || 0)
 		var form_data = {
 					jwt : this.props.jwt,
 					address_name : this.state.address_name,
@@ -126,11 +127,10 @@ export default class AddAddressModal extends Component {
 				}
 		let data = await handleAddAddress(form_data)
 		if (data.success) {
-			this.props.setModal(false)
-			this.props.setUserInfo(data)
+			await this.props.loadUserCheckout(this.props.jwt)
 			this.props.toggleEditAddress()
-			var addresses = data.user.addresses
-			this.props.selectAddress(addresses.length - 1);
+			this.props.selectAddress(new_index);
+			this.props.setModal(false)	
 		} 
 		else {
 			console.log(data.error)
@@ -148,7 +148,21 @@ export default class AddAddressModal extends Component {
 					  // onRequestClose={() => {alert("Modal has been closed.")}}
 					  >
 						<View style={{marginTop: 22}}>
-							
+							<View style=  {styles.title_container}>
+								<View style = {{flex : 1}}/>
+								<View style = {{flex : 4}}>
+								<Text style = {styles.title}> 
+									Add Shipping Address
+								</Text>
+								</View>
+								<View style = {{flex : 1, flexDirection : "row", 
+								justifyContent : 'flex-end', alignItems : 'center'}}>
+									<Icon name = {"close"}
+									size = {16}
+									onPress = {() => this.props.setModal(false)}
+									/>
+								</View>
+							</View>
 							<View > 
 								{field_list.map((field, index) =>
 									<CheckoutTextInput 
@@ -203,12 +217,6 @@ export default class AddAddressModal extends Component {
 							</TouchableOpacity>
 						</View>
 					</Modal>
-
-
-
-
-
-
 					<TouchableHighlight 
 						style = {styles.show_modal_button}
 						onPress={() => {
@@ -310,6 +318,15 @@ const styles = StyleSheet.create({
   	show_modal_button_text : {
   		color : 'grey',
   		textAlign : 'center'
+  	},
+  	title :{
+  		textAlign : 'center',
+  		fontSize : 16,
+
+  	}, 
+  	title_container : {
+  		flexDirection : 'row',
+  		margin : 6
   	}
 	
 })

@@ -14,6 +14,7 @@ export default class OrderSummarySection extends Component {
 
 	render() {
 		var cart = this.props.user.cart
+		if (!cart) return <View/>
 		return (
 			<View style = {styles.container}>
 				<View style = {styles.title_container}>

@@ -111,6 +111,7 @@ export default class AddBillingModal extends Component {
 	}
 
 	async addBilling() {
+		var new_index = (this.props.user.cards.length - 1 || 0)
 		var form_data = {
 				jwt : this.props.jwt,
 				address_name : this.state.address_name,
@@ -129,11 +130,10 @@ export default class AddBillingModal extends Component {
 			}
 		let data = await handleAddBilling(form_data)
 		if (data.success) {
-			this.props.setModal(false)
-			this.props.setUserInfo(data)
-			this.props.toggleEditBilling()
-			var cards = data.user.cards
-			this.props.selectCard(cards.length - 1);
+			await this.props.loadUserCheckout(this.props.jwt)
+			this.props.toggleEditAddress()
+			this.props.selectCard(new_index);
+			this.props.setModal(false)	
 		} 
 		else {
 			console.log(data.error)
@@ -161,7 +161,21 @@ export default class AddBillingModal extends Component {
 						  // onRequestClose={() => {alert("Modal has been closed.")}}
 						  >
 							<View style={{marginTop: 22}}>
-								
+								<View style=  {styles.title_container}>
+								<View style = {{flex : 1}}/>
+								<View style = {{flex : 4}}>
+								<Text style = {styles.title}> 
+									Add Payment Method
+								</Text>
+								</View>
+								<View style = {{flex : 1, flexDirection : "row", 
+								justifyContent : 'flex-end', alignItems : 'center'}}>
+									<Icon name = {"close"}
+									size = {16}
+									onPress = {() => this.props.setModal(false)}
+									/>
+								</View>
+							</View>
 								<View >
 
 									<CheckoutTextInput 
@@ -332,7 +346,16 @@ const styles = StyleSheet.create({
 	show_modal_button_text : {
 		color : 'grey',
 		textAlign : 'center'
-	}
+	},
+	title :{
+  		textAlign : 'center',
+  		fontSize : 16,
+
+  	}, 
+  	title_container : {
+  		flexDirection : 'row',
+  		margin : 6
+  	}
 	
 })
 

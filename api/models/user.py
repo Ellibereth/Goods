@@ -523,7 +523,7 @@ class User(db.Model):
 			if len(all_cards) == 1:
 				self.default_card = card['id']
 				db.session.commit()
-			return {Labels.Success : True, Labels.User : self.toPublicDict()}
+			return {Labels.Success : True, Labels.User : self.toPublicDict(), Labels.Jwt : self.getJwt()}
 		except:
 			return {
 				Labels.Success : False,
@@ -575,12 +575,13 @@ class User(db.Model):
 			if len(all_addresses) == 1:
 				self.default_address = address['id']
 				db.session.commit()
-			return {Labels.Success : True, Labels.User : self.toPublicDict()}
+			return {Labels.Success : True, Labels.User : self.toPublicDict(), Labels.Jwt : self.getJwt()}
 		except:
 			return {
 				Labels.Success : False , 
 				Labels.Error :ErrorMessages.AddressAddError,
-				Labels.User : self.toPublicDict()
+				Labels.User : self.toPublicDict(),
+				Labels.Jwt : self.getJwt(),
 			}
 
 	def getAddresses(self):

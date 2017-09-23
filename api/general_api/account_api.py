@@ -241,6 +241,7 @@ def addUserAddress(this_user):
 	add_address_response = this_user.addAddress(description, name,
 		address_line1, address_line2, address_city, address_state,
 		address_zip, address_country)
+
 	if add_address_response.get(Labels.Success):
 		return JsonUtil.successWithOutput(add_address_response)
 	return JsonUtil.failureWithOutput(add_address_response)

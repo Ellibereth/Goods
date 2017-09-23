@@ -39,6 +39,7 @@ class CartScreen extends Component {
 		}	
 	}
 
+
 	render() {
 		if (this.props.user){
 			var cart_items = this.props.user.cart.items.map((item, index) => 
@@ -52,23 +53,18 @@ class CartScreen extends Component {
 		}
 		
 		return (
-				<View style = {styles.container}>
-					<View style = {styles.step_indicator_container}>
-						<CheckoutStepIndicator />
-					</View>
-
-					<View style = {{marginTop : 16}}/>
-
-					<View style = {styles.scroll_container}>
+				<View style = {[{flex : 1},styles.container]}>
+					<View style = {[{flex : 8},styles.scroll_container]}>
 						<ScrollView>
+							<CheckoutStepIndicator />
 							{cart_items}
 							<OrderSummarySection 
 							user = {this.props.user}
 							/>
 						</ScrollView>
 					</View>
-					<View style= {styles.checkout_container}>
-						<TouchableOpacity onPress = {()=>Actions.checkout()} style = {styles.checkout_button}>
+					<View style= {[{flex :1},styles.checkout_container]}>
+						<TouchableOpacity onPress = {()=>Actions.checkout()} style = {[{flex : 1},styles.checkout_button]}>
 							<Text style = {styles.checkout_text}>
 								Checkout  <Icon name = "chevron-right" size = {16}/> 
 							</Text>
@@ -82,21 +78,17 @@ class CartScreen extends Component {
 const styles = StyleSheet.create({
 	container : {
 		flexDirection : 'column',
-		flex : 1,
 		backgroundColor : "white"
 	},
 	scroll_container : {
-		flex: 8,
 	},
 	checkout_container : {
-		flex : 1,
 		padding: 4,
 		borderTopWidth: 1,
 		borderColor : 'silver',
 		backgroundColor : '#f0f0f0'
 	},
 	checkout_button : {
-		flex: 1, 
 		backgroundColor : 'red',
 		borderRadius : 6,
 		padding: 12,
@@ -108,9 +100,6 @@ const styles = StyleSheet.create({
 		color : 'white',
 		fontSize : 16
 	},
-	step_indicator_container : {
-		flex : 1
-	}
 	
 })
 

@@ -35,10 +35,10 @@ class HomeScreen extends Component {
 	}
 
 	async loadHomeProducts() {
-		// let data = await getProductsByListing(HOME_TAG)
-		// if (data.success) {
-		// 	this.setState({home_products : data.products})
-		// }
+		let data = await getProductsByListing(HOME_TAG)
+		if (data.success) {
+			this.setState({home_products : data.products})
+		}
 	}
 
 	
@@ -46,8 +46,6 @@ class HomeScreen extends Component {
 
 	render() {
 		
-		
-
 		return (
 			
 				<View style = {{"flex" : 1}}>

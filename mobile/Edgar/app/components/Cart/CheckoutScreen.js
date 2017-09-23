@@ -53,31 +53,34 @@ class CheckoutScreen extends Component {
 	}
 
 	componentDidMount(){
-		var user = this.props.user
-		var addresses = user.addresses
-		var cards = user.cards
-		var addresss_set = false
-		if (addresses.length > 0){
-			for (var i = 0; i < addresses.length; i++){
-				if (addresses[i].id == user.default_address){
-					addresss_set = true
-					this.selectAddress(i)
+		this.props.loadUserCheckout(this.props.jwt).then(()=>{
+			var user = this.props.user
+			var addresses = user.addresses
+			var cards = user.cards
+			var addresss_set = false
+			if (addresses.length > 0){
+				for (var i = 0; i < addresses.length; i++){
+					if (addresses[i].id == user.default_address){
+						addresss_set = true
+						this.selectAddress(i)
+					}	
 				}	
-			}	
-			if (!addresss_set){
-				this.selectAddress(0)
+				if (!addresss_set){
+					this.selectAddress(0)
+				}
 			}
-		}
-		if (cards.length > 0){
-			for (var i = 0; i < cards.length; i++){
-				if (cards[i].id == user.default_card){
-					this.selectCard(i)
+			if (cards.length > 0){
+				for (var i = 0; i < cards.length; i++){
+					if (cards[i].id == user.default_card){
+						this.selectCard(i)
+					}	
 				}	
-			}	
-			if (this.state.selected_card_index == null){
-				this.selectCard(0)
+				if (this.state.selected_card_index == null){
+					this.selectCard(0)
+				}
 			}
-		}
+		})
+		
 	}
 	setAddressModalVisible(visible) {
 		this.setState({addressModalVisible: visible});
@@ -109,7 +112,8 @@ class CheckoutScreen extends Component {
 	}
 
 	selectAddress(index){
-		if (index != this.state.selected_index){
+		console.log(index, this.state.selected_address_index, this.props.user.addresses[index])
+		if (index != this.state.selected_address_index){
 			this.props.loadUserCheckout(this.props.jwt, this.props.user.addresses[index])
 		}
 		this.setState({
@@ -126,17 +130,13 @@ class CheckoutScreen extends Component {
 	}
 	
 	render() {
+		console.log(this.props.user.addresses.length)
 		return (
-				<View style = {styles.container}>
-					
-					<View style = {styles.step_indicator_container}>
-						<CheckoutStepIndicator />
-					</View>
-
-					<View style = {{marginTop : 16}}/>
-					
-					<View style = {styles.scroll_container}>
+				<View style = {[{flex : 1}, styles.container]}>
+					<View style = {[{flex : 9}, styles.scroll_container]}>
 						<ScrollView>
+							<CheckoutStepIndicator />
+
 							<CheckoutAddressSection
 							selectAddress = {this.selectAddress}
 							selected_address = {this.state.selected_address}
@@ -162,7 +162,7 @@ class CheckoutScreen extends Component {
 							/>  
 							
 							<OrderSummarySection 
-							user = {this.props.user}
+								user = {this.props.user}
 							/>
 
 						</ScrollView>
@@ -183,11 +183,10 @@ class CheckoutScreen extends Component {
 const styles = StyleSheet.create({
 	container : {
 		flexDirection : 'column',
-		flex : 1,
-		// backgroundColor : 'white'
+		backgroundColor : 'white'
 	},
+
 	scroll_container : {
-		flex: 8,
 	},
 	checkout_container : {
 		padding: 4,
@@ -204,9 +203,6 @@ const styles = StyleSheet.create({
 		textAlign : "center",
 		color : 'grey'
 	},
-	step_indicator_container : {
-		flex : 1
-	}
 	
 })
 

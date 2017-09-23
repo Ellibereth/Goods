@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, AsyncStorage } from 'react-native';
-import {Actions, Scene, Router} from 'react-native-router-flux';
+import {Actions, ActionConst, Scene, Router} from 'react-native-router-flux';
 import {connect} from 'react-redux'
 import { ActionCreators } from    './actions'
 import {bindActionCreators} from 'redux'
@@ -46,7 +46,6 @@ class Main extends React.Component {
 
 	componentDidMount(){
 		AsyncStorage.getItem('jwt').then((jwt) => {
-
 			this.props.loadUser(jwt)
 		})
 	}
@@ -66,15 +65,17 @@ class Main extends React.Component {
 				<Scene key="root"  
 				hideNavBar = {true}
 				>
-					<Scene title = "Cart" key = "cart"
+					<Scene title = "Cart" 
+					/* toggle these for testing */
+					key = "cart"
+					// key = "checkout"
 					renderLeftButton = {() => (<BackIcon/>)}>
 
-						<Scene {...this.props} initial = {true}
+						<Scene {...this.props} 
+						initial = {true}
 						hideTabBar = {true} key="cart"
 						component={CartScreen} title = "Cart"/>
 						<Scene {...this.props}
-							// remove this later, was put for testing checkout
-							initial = {true}
 							hideTabBar = {true} 
 							key = "checkout" 
 							component = {CheckoutScreen} title = "Checkout"/>
@@ -100,7 +101,7 @@ class Main extends React.Component {
 
 					<Scene title = "Home" key = "home" 
 					// this should be true if we're going LIVE
-					// initial = {true}
+					initial = {true}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
 
 						<Scene title = "Home" key = "home" 
@@ -119,20 +120,6 @@ class Main extends React.Component {
 						<Scene key = "account"
 						title = "Account" 
 						icon = {()=> this.getTabIcon("user")} >
-							
-							{/* <Scene {...this.props} initial = {true}
-							key="account"  title="Account" 
-							>
-								<Scene {...this.props} initial = {true} 
-								key="account" component={AccountScreen} title="Account"
-								/>
-								<Scene {...this.props} 
-								key="update_password" component={UpdatePasswordScreen} title="Password"
-								/>
-								<Scene {...this.props} 
-								key="update_email" component={UpdateEmailScreen} title="Update Email"
-								/>
-							</Scene>*/}
 
 							<Scene {...this.props} initial = {true}
 								key="account" component={AccountScreen} title="Account"

@@ -5,7 +5,7 @@ const test_url = "http://0.0.0.0:5000"
 import {AsyncStorage} from 'react-native'
 import {getUserInfo, refreshCheckoutInfo} from '../api/UserService'
 
-export function loadUser(jwt){
+export function loadUser(jwt, address){
 	return async (dispatch, getState) => {
 		let data = await getUserInfo(jwt)
 		if (data.success) {
@@ -21,7 +21,6 @@ export function loadUser(jwt){
 
 export function loadUserCheckout(jwt, address){
 	return async (dispatch, getState) => {
-		
 		let data = await refreshCheckoutInfo(jwt, address)
 		if (data.success) {
 			AsyncStorage.setItem('jwt', data.jwt)

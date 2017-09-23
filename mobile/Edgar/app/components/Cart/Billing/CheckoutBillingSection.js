@@ -6,6 +6,7 @@ import {Actions} from 'react-native-router-flux';
 import AddBillingModal from './AddBillingModal'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutBillingDisplay from './CheckoutBillingDisplay'
+import * as Animatable from 'react-native-animatable';
 
 export default class CheckoutBillingSection extends Component {
 	constructor(props) {
@@ -20,22 +21,23 @@ export default class CheckoutBillingSection extends Component {
 	}
 
 	componentDidMount(){
-		if (this.props.user.cards.length == 0){
-			this.props.setModal(true)
-		}
 	}
 
 	render() {
 		return (
 				<View style = {styles.billing_container}>
-					<View style = {styles.title_container}>
+					<View style = {[{flex : 1},styles.title_container]}>
 					 	<Text style=  {styles.title_text}>
 					 		Billing Information
 					 	</Text>
 					</View>
+
+
+					<Animatable.View 
+					style = {{flex : 4}}>
 					{
 						this.state.can_edit_billing ? 
-						<View style = {styles.collapsible_container}>
+						<View style = {[{flex : 1} ,styles.collapsible_container]}>
 							<ScrollView>
 								{this.props.user.cards.map((card, index) =>
 									<CheckoutBillingDisplay 
@@ -48,6 +50,8 @@ export default class CheckoutBillingSection extends Component {
 									)
 								}
 							</ScrollView>
+							{ this.state.can_edit_billing &&
+
 							<AddBillingModal 
 							selectCard = {this.props.selectCard}
 							setUserInfo = {this.props.setUserInfo}
@@ -56,10 +60,12 @@ export default class CheckoutBillingSection extends Component {
 							jwt = {this.props.jwt} 
 							toggleEditBilling = {this.toggleEditBilling.bind(this)}
 							loadUserCheckout = {this.props.loadUserCheckout}/>
+							}
 
 						</View>
 						:
-						<View style = {styles.collapsible_container}>
+						<View 
+						style = {[{flex : 1}, styles.collapsible_container]}>
 							<Text> Selected Billing Display - No Editing</Text>
 							{this.props.selected_card 
 								?
@@ -73,10 +79,11 @@ export default class CheckoutBillingSection extends Component {
 							}
 						</View>
 					}
+					</Animatable.View>
 					
-					<View style = {styles.toggle_container}>
+					<View style = {[{flex : 1},styles.toggle_container]}>
 						<TouchableHighlight 
-							style = {styles.toggle_button}
+							style = {[{flex : 1},styles.toggle_button]}
 							onPress ={this.toggleEditBilling.bind(this)}>
 							<Text style = {styles.toggle_text}>
 								{this.state.can_edit_billing ? "Save " : "Edit Billing "}
@@ -98,7 +105,7 @@ export default class CheckoutBillingSection extends Component {
 const styles = StyleSheet.create({
 	billing_container : {
 		flexDirection : 'column',
-		height : 300,
+		minHeight : 160,
 		borderColor : "silver",
 		borderWidth : 1,
 		margin : 8,
@@ -107,16 +114,14 @@ const styles = StyleSheet.create({
 		
 	},
 	collapsible_container : {
-		flex : 4,
+		
 	},
 	
 	toggle_container : {
-		flex : 1,
 		flexDirection : 'column'
 	},
 	toggle_button : {
 		backgroundColor : 'silver',
-		flex : 1,
 		flexDirection : 'column',
 		justifyContent : 'center'
 	},
@@ -129,7 +134,6 @@ const styles = StyleSheet.create({
 		fontWeight : 'bold',
 	},
 	title_container : {
-		flex : 0.5,
 		borderBottomWidth : 1,
 		borderBottomColor : 'silver',
 		marginLeft: 6,
@@ -137,5 +141,6 @@ const styles = StyleSheet.create({
 		padding : 6,
 		marginRight: 0,
 	}
+
 })
 
