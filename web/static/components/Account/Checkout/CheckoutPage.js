@@ -25,8 +25,8 @@ export default class CheckoutPage extends React.Component {
 			items_price : null,
 			cards : [],
 			addresses : [],
-			selected_card_index : -1,
-			selected_address_index : -1,
+			selected_card_index : null,
+			selected_address_index : null,
 			can_edit : [false, false, false],
 			address_modal_open : false,
 			billing_modal_open: false,
@@ -115,6 +115,7 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	openEditable(index){
+		console.log(index)
 		var can_edit = [false, false, false]
 		can_edit[index] = true
 		this.setState({can_edit : can_edit})
@@ -127,7 +128,7 @@ export default class CheckoutPage extends React.Component {
 	}
 
 	refreshCheckoutInformation(){
-		this.setState({is_loading : true})
+		this.setLoading(true)
 		var form_data = JSON.stringify({
 			'jwt' : localStorage.jwt,
 			'address' : this.getSelectedAddress()
@@ -209,20 +210,28 @@ export default class CheckoutPage extends React.Component {
 		if (this.state.cards.length > 0){
 			for (var i = 0; i < this.state.cards.length; i++){
 				if (this.state.cards[i].id == user.default_card){
-					this.setState({selected_card_index : i})
+					// this.setState({selected_card_index : i})
 					this.setCard.bind(this)(i)
 				}	
 			}
-			
 		} 
+
 		if (this.state.addresses.length > 0){
 			for (var i = 0; i < this.state.addresses.length; i++){
 				if (this.state.addresses[i].id == user.default_address){
-					this.setState({selected_address_index : i})
+					// this.setState({selected_address_index : i})
 					this.setAddress.bind(this)(i)
 				}	
 			}	
 		} 
+
+		if (this.state.selected_address_index == null) {
+			this.setAddress.bind(this)(0)
+		}
+
+		if (this.state.selected_card_index == null) {
+			this.setCard.bind(this)(0)
+		}
 
 		if (this.state.addresses.length == 0){
 			this.openEditable.bind(this)(ADDRESS_INDEX)
@@ -319,9 +328,8 @@ export default class CheckoutPage extends React.Component {
 					}, 2000)
 					AppActions.updateCurrentUser(data.user)
 				}
-				this.setLoading(false)
 				this.setState({button_disabled : false})
-				this.setState({is_loading : false})
+				this.setLoading(false)
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
@@ -330,7 +338,6 @@ export default class CheckoutPage extends React.Component {
 					eventLabel: AppStore.getCurrentUser().email
 				})
 				swal(AlertMessages.CONTACT_CUSTOMER_SERVICE)
-				this.setState({is_loading : false})
 				this.setLoading(false)
 				this.setState({button_disabled : false})
 			}.bind(this),

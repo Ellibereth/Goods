@@ -31,7 +31,7 @@ export default class CheckoutCardPreview extends React.Component {
 					{card_display}
 					<div className = "col-xs-4 col-md-2 col-sm-2 col-lg-2 text-right">
 						<div className = "clickable-text" onClick = {() => this.props.openEditable(this.props.BILLING_INDEX)}>
-									Change
+							Change
 						</div>
 					</div>
 					<div className = "top-buffer"/>

@@ -2,8 +2,8 @@
   "errors": [],
   "warnings": [],
   "version": "2.6.1",
-  "hash": "56c483c727ad867affb0",
-  "time": 4522,
+  "hash": "f110fb732bb96dad06a4",
+  "time": 3699,
   "publicPath": "",
   "assetsByChunkName": {
     "main": "bundle.js"
@@ -11,7 +11,7 @@
   "assets": [
     {
       "name": "bundle.js",
-      "size": 1926950,
+      "size": 1927196,
       "chunks": [
         0
       ],
@@ -40,14 +40,14 @@
       "initial": true,
       "entry": true,
       "extraAsync": false,
-      "size": 839999,
+      "size": 840138,
       "names": [
         "main"
       ],
       "files": [
         "bundle.js"
       ],
-      "hash": "e23e343d857e85226143",
+      "hash": "3401e3304b767d74ff50",
       "parents": [],
       "modules": [
         {
@@ -610,7 +610,7 @@
               "moduleName": "./static/components/Search/SearchPage.js",
               "type": "cjs require",
               "userRequest": "react",
-              "loc": "21:12-28"
+              "loc": "25:12-28"
             },
             {
               "moduleId": 76,
@@ -2365,7 +2365,7 @@
               "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "29:11-34"
+              "loc": "30:21-44"
             },
             {
               "moduleId": 22,
@@ -2374,7 +2374,7 @@
               "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "30:21-44"
+              "loc": "29:11-34"
             },
             {
               "moduleId": 23,
@@ -2725,7 +2725,7 @@
               "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "26:21-44"
+              "loc": "25:11-34"
             },
             {
               "moduleId": 94,
@@ -2734,7 +2734,7 @@
               "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "25:11-34"
+              "loc": "26:21-44"
             },
             {
               "moduleId": 95,
@@ -2797,7 +2797,7 @@
               "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "24:21-44"
+              "loc": "23:11-34"
             },
             {
               "moduleId": 100,
@@ -2806,16 +2806,7 @@
               "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "23:11-34"
-            },
-            {
-              "moduleId": 101,
-              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
-              "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-              "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-              "type": "cjs require",
-              "userRequest": "react-router",
-              "loc": "17:11-34"
+              "loc": "24:21-44"
             },
             {
               "moduleId": 101,
@@ -2825,6 +2816,15 @@
               "type": "cjs require",
               "userRequest": "react-router",
               "loc": "18:21-44"
+            },
+            {
+              "moduleId": 101,
+              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
+              "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+              "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+              "type": "cjs require",
+              "userRequest": "react-router",
+              "loc": "17:11-34"
             },
             {
               "moduleId": 102,
@@ -3004,7 +3004,7 @@
               "moduleName": "./static/components/Main.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "190:12-35"
+              "loc": "193:21-44"
             },
             {
               "moduleId": 130,
@@ -3013,7 +3013,7 @@
               "moduleName": "./static/components/Main.js",
               "type": "cjs require",
               "userRequest": "react-router",
-              "loc": "193:21-44"
+              "loc": "190:12-35"
             },
             {
               "moduleId": 130,
@@ -4424,6 +4424,15 @@
               "loc": "9:21-53"
             },
             {
+              "moduleId": 75,
+              "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Search/SearchPage.js",
+              "module": "./static/components/Search/SearchPage.js",
+              "moduleName": "./static/components/Search/SearchPage.js",
+              "type": "cjs require",
+              "userRequest": "../Misc/PageContainer",
+              "loc": "13:21-53"
+            },
+            {
               "moduleId": 88,
               "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryChangePasswordForm.js",
               "module": "./static/components/Account/Recovery/RecoveryChangePasswordForm.js",
@@ -5671,9 +5680,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Sales/SalesPage.js",
-          "issuerId": 74,
-          "issuerName": "./static/components/Sales/SalesPage.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Search/SearchPage.js",
+          "issuerId": 75,
+          "issuerName": "./static/components/Search/SearchPage.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -6164,9 +6173,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/LoginPage.js",
-          "issuerId": 41,
-          "issuerName": "./static/components/Account/Login/LoginPage.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/RegisterPage.js",
+          "issuerId": 42,
+          "issuerName": "./static/components/Account/Login/RegisterPage.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -6394,9 +6403,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryChangePasswordForm.js",
-          "issuerId": 88,
-          "issuerName": "./static/components/Account/Recovery/RecoveryChangePasswordForm.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryForm.js",
+          "issuerId": 89,
+          "issuerName": "./static/components/Account/Recovery/RecoveryForm.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -6808,9 +6817,9 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Admin/AdminMarketProducts/ProductAdd/AddProductForm.js",
-          "issuerId": 23,
-          "issuerName": "./static/components/Admin/AdminMarketProducts/ProductAdd/AddProductForm.js",
+          "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Admin/AdminManufacturers/ManufacturerAdd/AddManufacturerForm.js",
+          "issuerId": 111,
+          "issuerName": "./static/components/Admin/AdminManufacturers/ManufacturerAdd/AddManufacturerForm.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -8287,7 +8296,7 @@
           "name": "./static/components/Search/SearchPage.js",
           "index": 163,
           "index2": 162,
-          "size": 4350,
+          "size": 4489,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -8316,7 +8325,7 @@
           "usedExports": true,
           "providedExports": null,
           "depth": 1,
-          "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _HomeProductPreview = require('../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\n\nvar SearchPage = function (_React$Component) {\n\t_inherits(SearchPage, _React$Component);\n\n\tfunction SearchPage(props) {\n\t\t_classCallCheck(this, SearchPage);\n\n\t\tvar _this = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tnum_results: 0,\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(SearchPage, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {\n\t\t\tthis.loadProducts.bind(this)(this.props.params.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'componentWilReceiveProps',\n\t\tvalue: function componentWilReceiveProps(nextProps) {\n\t\t\tthis.loadProducts.bind(this)(nextProps.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'loadProducts',\n\t\tvalue: function loadProducts(search_input) {\n\t\t\tvar form_data = JSON.stringify({\n\t\t\t\t'search_input': search_input\n\t\t\t});\n\t\t\t$.ajax({\n\t\t\t\ttype: 'POST',\n\t\t\t\tdata: form_data,\n\t\t\t\turl: '/searchProducts',\n\t\t\t\tsuccess: function (data) {\n\t\t\t\t\tif (data.success) {\n\t\t\t\t\t\tthis.setState({\n\t\t\t\t\t\t\tproducts: data.products,\n\t\t\t\t\t\t\tnum_results: data.products.length,\n\t\t\t\t\t\t\tis_loading: false\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t}.bind(this),\n\t\t\t\tdataType: 'json',\n\t\t\t\tcontentType: 'application/json; charset=utf-8'\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tvar products = this.state.products;\n\t\t\tif (!products) return React.createElement(PageContainer, { component: React.createElement('div', null) });\n\t\t\tvar products_display = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_HomeProductPreview2.default, { product: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\tPageContainer,\n\t\t\t\tnull,\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ id: 'search-container', className: 'container-fluid' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ className: 'container' },\n\t\t\t\t\t\tthis.state.is_loading ? React.createElement('div', null) : React.createElement(\n\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row search-result-amount-text' },\n\t\t\t\t\t\t\t\t'Showing ',\n\t\t\t\t\t\t\t\tthis.state.num_results,\n\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\tthis.state.num_results == 1 ? 'result' : 'results',\n\t\t\t\t\t\t\t\t' for ',\n\t\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t\t'b',\n\t\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\t\tthis.props.params.search_input\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t),\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\t\t\t\tproducts_display\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn SearchPage;\n}(React.Component);\n\nexports.default = SearchPage;"
+          "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _HomeProductPreview = require('../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nvar _PageContainer = require('../Misc/PageContainer');\n\nvar _PageContainer2 = _interopRequireDefault(_PageContainer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\n\nvar SearchPage = function (_React$Component) {\n\t_inherits(SearchPage, _React$Component);\n\n\tfunction SearchPage(props) {\n\t\t_classCallCheck(this, SearchPage);\n\n\t\tvar _this = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tnum_results: 0,\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(SearchPage, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {\n\t\t\tthis.loadProducts.bind(this)(this.props.params.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'componentWilReceiveProps',\n\t\tvalue: function componentWilReceiveProps(nextProps) {\n\t\t\tthis.loadProducts.bind(this)(nextProps.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'loadProducts',\n\t\tvalue: function loadProducts(search_input) {\n\t\t\tvar form_data = JSON.stringify({\n\t\t\t\t'search_input': search_input\n\t\t\t});\n\t\t\t$.ajax({\n\t\t\t\ttype: 'POST',\n\t\t\t\tdata: form_data,\n\t\t\t\turl: '/searchProducts',\n\t\t\t\tsuccess: function (data) {\n\t\t\t\t\tif (data.success) {\n\t\t\t\t\t\tthis.setState({\n\t\t\t\t\t\t\tproducts: data.products,\n\t\t\t\t\t\t\tnum_results: data.products.length,\n\t\t\t\t\t\t\tis_loading: false\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t}.bind(this),\n\t\t\t\tdataType: 'json',\n\t\t\t\tcontentType: 'application/json; charset=utf-8'\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tvar products = this.state.products;\n\t\t\tif (!products) return React.createElement(_PageContainer2.default, { component: React.createElement('div', null) });\n\t\t\tvar products_display = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_HomeProductPreview2.default, { product: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\t_PageContainer2.default,\n\t\t\t\tnull,\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ id: 'search-container', className: 'container-fluid' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ className: 'container' },\n\t\t\t\t\t\tthis.state.is_loading ? React.createElement('div', null) : React.createElement(\n\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row search-result-amount-text' },\n\t\t\t\t\t\t\t\t'Showing ',\n\t\t\t\t\t\t\t\tthis.state.num_results,\n\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\tthis.state.num_results == 1 ? 'result' : 'results',\n\t\t\t\t\t\t\t\t' for ',\n\t\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t\t'b',\n\t\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\t\tthis.props.params.search_input\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t),\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\t\t\t\tproducts_display\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn SearchPage;\n}(React.Component);\n\nexports.default = SearchPage;"
         },
         {
           "id": 76,
@@ -12788,7 +12797,7 @@
           "moduleName": "./static/components/Search/SearchPage.js",
           "type": "cjs require",
           "userRequest": "react",
-          "loc": "21:12-28"
+          "loc": "25:12-28"
         },
         {
           "moduleId": 76,
@@ -14543,7 +14552,7 @@
           "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "29:11-34"
+          "loc": "30:21-44"
         },
         {
           "moduleId": 22,
@@ -14552,7 +14561,7 @@
           "moduleName": "./static/components/Account/Settings/Orders/OrdersPreviewDisplay.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "30:21-44"
+          "loc": "29:11-34"
         },
         {
           "moduleId": 23,
@@ -14903,7 +14912,7 @@
           "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "26:21-44"
+          "loc": "25:11-34"
         },
         {
           "moduleId": 94,
@@ -14912,7 +14921,7 @@
           "moduleName": "./static/components/Account/Settings/Orders/OrderItemDisplay.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "25:11-34"
+          "loc": "26:21-44"
         },
         {
           "moduleId": 95,
@@ -14975,7 +14984,7 @@
           "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "24:21-44"
+          "loc": "23:11-34"
         },
         {
           "moduleId": 100,
@@ -14984,16 +14993,7 @@
           "moduleName": "./static/components/Account/Settings/Personal/UpdateSettingsPreview.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "23:11-34"
-        },
-        {
-          "moduleId": 101,
-          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
-          "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-          "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
-          "type": "cjs require",
-          "userRequest": "react-router",
-          "loc": "17:11-34"
+          "loc": "24:21-44"
         },
         {
           "moduleId": 101,
@@ -15003,6 +15003,15 @@
           "type": "cjs require",
           "userRequest": "react-router",
           "loc": "18:21-44"
+        },
+        {
+          "moduleId": 101,
+          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Settings/Shipping/AddAddressButton.js",
+          "module": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+          "moduleName": "./static/components/Account/Settings/Shipping/AddAddressButton.js",
+          "type": "cjs require",
+          "userRequest": "react-router",
+          "loc": "17:11-34"
         },
         {
           "moduleId": 102,
@@ -15182,7 +15191,7 @@
           "moduleName": "./static/components/Main.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "190:12-35"
+          "loc": "193:21-44"
         },
         {
           "moduleId": 130,
@@ -15191,7 +15200,7 @@
           "moduleName": "./static/components/Main.js",
           "type": "cjs require",
           "userRequest": "react-router",
-          "loc": "193:21-44"
+          "loc": "190:12-35"
         },
         {
           "moduleId": 130,
@@ -16602,6 +16611,15 @@
           "loc": "9:21-53"
         },
         {
+          "moduleId": 75,
+          "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Search/SearchPage.js",
+          "module": "./static/components/Search/SearchPage.js",
+          "moduleName": "./static/components/Search/SearchPage.js",
+          "type": "cjs require",
+          "userRequest": "../Misc/PageContainer",
+          "loc": "13:21-53"
+        },
+        {
           "moduleId": 88,
           "moduleIdentifier": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryChangePasswordForm.js",
           "module": "./static/components/Account/Recovery/RecoveryChangePasswordForm.js",
@@ -17849,9 +17867,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Sales/SalesPage.js",
-      "issuerId": 74,
-      "issuerName": "./static/components/Sales/SalesPage.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Search/SearchPage.js",
+      "issuerId": 75,
+      "issuerName": "./static/components/Search/SearchPage.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -18342,9 +18360,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/LoginPage.js",
-      "issuerId": 41,
-      "issuerName": "./static/components/Account/Login/LoginPage.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Login/RegisterPage.js",
+      "issuerId": 42,
+      "issuerName": "./static/components/Account/Login/RegisterPage.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -18572,9 +18590,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryChangePasswordForm.js",
-      "issuerId": 88,
-      "issuerName": "./static/components/Account/Recovery/RecoveryChangePasswordForm.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Account/Recovery/RecoveryForm.js",
+      "issuerId": 89,
+      "issuerName": "./static/components/Account/Recovery/RecoveryForm.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -18986,9 +19004,9 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Admin/AdminMarketProducts/ProductAdd/AddProductForm.js",
-      "issuerId": 23,
-      "issuerName": "./static/components/Admin/AdminMarketProducts/ProductAdd/AddProductForm.js",
+      "issuer": "/Users/Darek/Desktop/Goods/web/node_modules/babel-loader/lib/index.js??ref--1!/Users/Darek/Desktop/Goods/web/static/components/Admin/AdminManufacturers/ManufacturerAdd/AddManufacturerForm.js",
+      "issuerId": 111,
+      "issuerName": "./static/components/Admin/AdminManufacturers/ManufacturerAdd/AddManufacturerForm.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -20465,7 +20483,7 @@
       "name": "./static/components/Search/SearchPage.js",
       "index": 163,
       "index2": 162,
-      "size": 4350,
+      "size": 4489,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -20494,7 +20512,7 @@
       "usedExports": true,
       "providedExports": null,
       "depth": 1,
-      "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _HomeProductPreview = require('../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\n\nvar SearchPage = function (_React$Component) {\n\t_inherits(SearchPage, _React$Component);\n\n\tfunction SearchPage(props) {\n\t\t_classCallCheck(this, SearchPage);\n\n\t\tvar _this = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tnum_results: 0,\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(SearchPage, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {\n\t\t\tthis.loadProducts.bind(this)(this.props.params.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'componentWilReceiveProps',\n\t\tvalue: function componentWilReceiveProps(nextProps) {\n\t\t\tthis.loadProducts.bind(this)(nextProps.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'loadProducts',\n\t\tvalue: function loadProducts(search_input) {\n\t\t\tvar form_data = JSON.stringify({\n\t\t\t\t'search_input': search_input\n\t\t\t});\n\t\t\t$.ajax({\n\t\t\t\ttype: 'POST',\n\t\t\t\tdata: form_data,\n\t\t\t\turl: '/searchProducts',\n\t\t\t\tsuccess: function (data) {\n\t\t\t\t\tif (data.success) {\n\t\t\t\t\t\tthis.setState({\n\t\t\t\t\t\t\tproducts: data.products,\n\t\t\t\t\t\t\tnum_results: data.products.length,\n\t\t\t\t\t\t\tis_loading: false\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t}.bind(this),\n\t\t\t\tdataType: 'json',\n\t\t\t\tcontentType: 'application/json; charset=utf-8'\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tvar products = this.state.products;\n\t\t\tif (!products) return React.createElement(PageContainer, { component: React.createElement('div', null) });\n\t\t\tvar products_display = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_HomeProductPreview2.default, { product: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\tPageContainer,\n\t\t\t\tnull,\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ id: 'search-container', className: 'container-fluid' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ className: 'container' },\n\t\t\t\t\t\tthis.state.is_loading ? React.createElement('div', null) : React.createElement(\n\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row search-result-amount-text' },\n\t\t\t\t\t\t\t\t'Showing ',\n\t\t\t\t\t\t\t\tthis.state.num_results,\n\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\tthis.state.num_results == 1 ? 'result' : 'results',\n\t\t\t\t\t\t\t\t' for ',\n\t\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t\t'b',\n\t\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\t\tthis.props.params.search_input\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t),\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\t\t\t\tproducts_display\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn SearchPage;\n}(React.Component);\n\nexports.default = SearchPage;"
+      "source": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _HomeProductPreview = require('../Home/HomeProductPreview');\n\nvar _HomeProductPreview2 = _interopRequireDefault(_HomeProductPreview);\n\nvar _PageContainer = require('../Misc/PageContainer');\n\nvar _PageContainer2 = _interopRequireDefault(_PageContainer);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar React = require('react');\n\nvar SearchPage = function (_React$Component) {\n\t_inherits(SearchPage, _React$Component);\n\n\tfunction SearchPage(props) {\n\t\t_classCallCheck(this, SearchPage);\n\n\t\tvar _this = _possibleConstructorReturn(this, (SearchPage.__proto__ || Object.getPrototypeOf(SearchPage)).call(this, props));\n\n\t\t_this.state = {\n\t\t\tproducts: [],\n\t\t\tnum_results: 0,\n\t\t\tis_loading: true\n\t\t};\n\t\treturn _this;\n\t}\n\n\t_createClass(SearchPage, [{\n\t\tkey: 'componentDidMount',\n\t\tvalue: function componentDidMount() {\n\t\t\tthis.loadProducts.bind(this)(this.props.params.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'componentWilReceiveProps',\n\t\tvalue: function componentWilReceiveProps(nextProps) {\n\t\t\tthis.loadProducts.bind(this)(nextProps.search_input);\n\t\t}\n\t}, {\n\t\tkey: 'loadProducts',\n\t\tvalue: function loadProducts(search_input) {\n\t\t\tvar form_data = JSON.stringify({\n\t\t\t\t'search_input': search_input\n\t\t\t});\n\t\t\t$.ajax({\n\t\t\t\ttype: 'POST',\n\t\t\t\tdata: form_data,\n\t\t\t\turl: '/searchProducts',\n\t\t\t\tsuccess: function (data) {\n\t\t\t\t\tif (data.success) {\n\t\t\t\t\t\tthis.setState({\n\t\t\t\t\t\t\tproducts: data.products,\n\t\t\t\t\t\t\tnum_results: data.products.length,\n\t\t\t\t\t\t\tis_loading: false\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t}.bind(this),\n\t\t\t\tdataType: 'json',\n\t\t\t\tcontentType: 'application/json; charset=utf-8'\n\t\t\t});\n\t\t}\n\t}, {\n\t\tkey: 'render',\n\t\tvalue: function render() {\n\t\t\tvar products = this.state.products;\n\t\t\tif (!products) return React.createElement(_PageContainer2.default, { component: React.createElement('div', null) });\n\t\t\tvar products_display = products.map(function (product, index) {\n\t\t\t\treturn React.createElement(_HomeProductPreview2.default, { product: product, index: index });\n\t\t\t});\n\n\t\t\treturn React.createElement(\n\t\t\t\t_PageContainer2.default,\n\t\t\t\tnull,\n\t\t\t\tReact.createElement(\n\t\t\t\t\t'div',\n\t\t\t\t\t{ id: 'search-container', className: 'container-fluid' },\n\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t'div',\n\t\t\t\t\t\t{ className: 'container' },\n\t\t\t\t\t\tthis.state.is_loading ? React.createElement('div', null) : React.createElement(\n\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row search-result-amount-text' },\n\t\t\t\t\t\t\t\t'Showing ',\n\t\t\t\t\t\t\t\tthis.state.num_results,\n\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\tthis.state.num_results == 1 ? 'result' : 'results',\n\t\t\t\t\t\t\t\t' for ',\n\t\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t\t'b',\n\t\t\t\t\t\t\t\t\tnull,\n\t\t\t\t\t\t\t\t\t' ',\n\t\t\t\t\t\t\t\t\tthis.props.params.search_input\n\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t),\n\t\t\t\t\t\t\tReact.createElement(\n\t\t\t\t\t\t\t\t'div',\n\t\t\t\t\t\t\t\t{ className: 'row' },\n\t\t\t\t\t\t\t\tproducts_display\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t);\n\t\t}\n\t}]);\n\n\treturn SearchPage;\n}(React.Component);\n\nexports.default = SearchPage;"
     },
     {
       "id": 76,

@@ -1,6 +1,7 @@
 var React = require('react')
 
 import HomeProductPreview from '../Home/HomeProductPreview'
+import PageContainer from '../Misc/PageContainer'
 
 export default class SearchPage extends React.Component {
 	constructor(props) {

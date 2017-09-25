@@ -36,8 +36,6 @@ export default class PageContainer extends React.Component {
 		var user = AppStore.getCurrentUser()
 		var top_text = user ? 'Opening special! Get 10% off for your first month!*' : 'Register now and get 10% off!*'
 
-		var screen_w
-
 		return (
 			<div>
 				{this.props.is_loading && <Spinner />}

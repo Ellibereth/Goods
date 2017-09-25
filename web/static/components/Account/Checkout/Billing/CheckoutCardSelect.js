@@ -123,6 +123,7 @@ export default class CheckoutCardSelect extends React.Component {
 					</div>
 					:
 					<CheckoutCardPreview 
+						BILLING_INDEX = {this.props.BILLING_INDEX}
 						openEditable = {this.props.openEditable}
 						card = {this.props.card}
 					/>

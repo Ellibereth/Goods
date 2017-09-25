@@ -37,7 +37,7 @@ export default class CartItemDisplay extends React.Component {
 			url: '/updateCartQuantity',
 			data: form_data,
 			success: function(data) {
-				this.props.setLoading(false)
+				
 				if (data.success){
 					ga('ec:addProduct', {
 						'id': this.props.item.product_id.toString(),
@@ -60,7 +60,8 @@ export default class CartItemDisplay extends React.Component {
 				else {
 					this.setErrorMessage(data.error.title)
 				}
-					
+				this.props.setLoading(false)
+
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {

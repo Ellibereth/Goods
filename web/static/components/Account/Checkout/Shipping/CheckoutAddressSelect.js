@@ -113,6 +113,7 @@ export default class CheckoutAddressSelect extends React.Component {
 					</div>
 					:
 					<CheckoutAddressPreview 
+						ADDRESS_INDEX = {this.props.ADDRESS_INDEX}
 						openEditable = {this.props.openEditable}
 						address = {this.props.address}
 					/>
