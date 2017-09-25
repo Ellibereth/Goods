@@ -10,7 +10,6 @@ export default class CheckoutAddAddress extends React.Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			use_same_for_billing : 1,
 			address_name : '',
 			description : '',
 			address_state: '',
@@ -61,13 +60,14 @@ export default class CheckoutAddAddress extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (!data.success) {
+					this.props.setLoading(false)
 					this.setErrorMessage(data.error.title)
 				}
 				else {
-					this.props.onAddingNewShippingAddress(this.state.use_same_for_billing)
+					this.props.onAddingNewShippingAddress()
 					this.props.toggleModal()
 				}
-				this.props.setLoading(false)
+				
 
 			}.bind(this),
 			error : function(){
@@ -84,7 +84,6 @@ export default class CheckoutAddAddress extends React.Component {
 
 
 	componentWillMount(){
-		this.props.refreshCheckoutInformation()
 	}
 
 	render() {

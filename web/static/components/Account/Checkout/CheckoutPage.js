@@ -43,6 +43,7 @@ export default class CheckoutPage extends React.Component {
 		this.getSelectedAddress = this.getSelectedAddress.bind(this)
 		this.canCheckout = this.canCheckout.bind(this)
 		this.setLoading = this.setLoading.bind(this)
+		this.refreshCheckoutInformation = this.refreshCheckoutInformation.bind(this)
 	}
 
 
@@ -60,6 +61,7 @@ export default class CheckoutPage extends React.Component {
 
 
 	getSelectedAddress(){
+
 		if (this.state.selected_address_index == -1){
 			return null
 		}
@@ -87,35 +89,20 @@ export default class CheckoutPage extends React.Component {
 
 	// handle the addition of new shipping address
 	// (in any case adds address to server)
-	// in all cases the new address card must be selected 
-	// case 0: using same address for shipping and billing with new CC 
-	//		 open new payment method modal without the address 
-	// case 1: not using same address but with existing CC
-	onAddingNewShippingAddress(value){
-		if (value == 0){
-			this.refreshCheckoutInformation.bind(this)()
-			this.closeEditable.bind(this)(ADDRESS_INDEX)
-			this.setState({address_modal_open : false})
-			this.setState({billing_modal_open : true})
-			
-		}
-		else if (value == 1){
-			this.refreshCheckoutInformation.bind(this)()
-			this.openEditable.bind(this)(BILLING_INDEX)
-		}
-		// we just increment one since the next card added will be at the end (I think)
-		this.setState({selected_address_index : this.state.addresses.length})
+	// in all cases the new address / card must be selected 
+	onAddingNewShippingAddress(){
+		this.refreshCheckoutInformation()
+		this.openEditable.bind(this)(BILLING_INDEX)
+		
+		
 	}
 	
 	onAddingNewBillingMethod(){
-		var length = this.state.cards.length
-		this.refreshCheckoutInformation.bind(this)()
-		this.setState({selected_card_index : length})
+		this.refreshCheckoutInformation()
 		this.openEditable.bind(this)(CART_INDEX)
 	}
 
 	openEditable(index){
-		console.log(index)
 		var can_edit = [false, false, false]
 		can_edit[index] = true
 		this.setState({can_edit : can_edit})
@@ -139,6 +126,21 @@ export default class CheckoutPage extends React.Component {
 			data: form_data,
 			success: function(data) {
 				if (data.success) {
+					if (data.user.cards.length > this.state.cards.length){
+						this.setState({seleted_card_index: data.user.cards.length - 1,
+								cards: data.user.cards,
+							},
+							this.refreshCheckoutInformation
+						)
+					}
+					if (data.user.addresses.length > this.state.addresses.length){
+						this.setState({
+							selected_address_index: data.user.addresses.length - 1,
+							addresses : data.user.addresses,
+								},
+							this.refreshCheckoutInformation
+						)	
+					}
 					this.setState({
 						cart : data.user.cart,
 						items: data.user.cart.items, 
@@ -228,11 +230,11 @@ export default class CheckoutPage extends React.Component {
 			}	
 		} 
 
-		if (this.state.selected_address_index == null) {
+		if (this.state.selected_address_index == null && this.state.addresses.length > 0) {
 			this.setAddress.bind(this)(0)
 		}
 
-		if (this.state.selected_card_index == null) {
+		if (this.state.selected_card_index == null && this.state.cards.length > 0) {
 			this.setCard.bind(this)(0)
 		}
 
@@ -244,11 +246,7 @@ export default class CheckoutPage extends React.Component {
 		}
 
 		this.sendToGoogleAnalytics.bind(this)()
-		
-
 		this.setState({first_load_done : true})
-
-
 	}
 
 	setCard(card_index){
