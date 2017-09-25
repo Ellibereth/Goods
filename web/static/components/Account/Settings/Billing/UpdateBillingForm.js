@@ -162,7 +162,7 @@ export default class UpdateBillingForm extends React.Component {
 
 
 	getExistingAddressForm(){
-		var user = AppStore.getCurrentUser()
+		var user = this.props.user
 		var address_selects = user.addresses.map((address,index) => 
 			<div className = "row">
 				<div className = "small-buffer"/>
@@ -255,6 +255,7 @@ export default class UpdateBillingForm extends React.Component {
 					</div>
 
 					:
+
 					<div className = "panel panel-default">
 						<div className = "panel-heading">
 							<span style = {{fontSize: '20px'}}>Choose a Billing Address</span>
@@ -265,7 +266,7 @@ export default class UpdateBillingForm extends React.Component {
 						</div>
 						<div className = "panel-footer">
 							<div className = "row">
-								{AppStore.getCurrentUser().addresses.length > 0 &&
+								{this.props.user.addresses.length > 0 &&
 									<div className = "col-sm-3 col-md-3 col-lg-3">
 										<button onClick = {this.skipBillingAddress.bind(this)}
 											className = "btn btn-default">

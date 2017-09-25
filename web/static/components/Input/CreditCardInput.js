@@ -18,6 +18,23 @@ function isAlphaNumeric(str) {
 	return true
 }
 
+function removeNonNumeric(str){
+	return str.replace(/\D/g,'');
+}
+
+// joins the CC number with dashes
+function addDashToCardNumber(str, n) {
+    var ret = [];
+    var i;
+    var len;
+
+    for(i = 0, len = str.length; i < len; i += n) {
+       ret.push(str.substr(i, n))
+    }
+    return ret.join("-")
+};
+
+
 export default class CreditCardInput extends React.Component {
 	constructor(props) {
 		super(props)
@@ -36,42 +53,25 @@ export default class CreditCardInput extends React.Component {
 
 	
 
-	checkError(name, old_value, new_key) {
+	checkError(name, value) {
 		switch (name) {
 		case 'name':
-			var value = this.checkNameError(old_value, new_key)
+			var new_value = this.checkNameError(value)
 			break
 		case 'number':
-			var value = this.checkNumberError(old_value, new_key)
+			var new_value = this.checkNumberError(value)
 			break
 		case 'expiry':
-			var value = this.checkExpiryError(old_value, new_key)
+			var new_value = this.checkExpiryError(value)
 			break
 		case 'cvc':
-			var value = this.checkCvcError(old_value, new_key)
+			var new_value = this.checkCvcError(value)
 			break
 		}
-		this.props.onTextInputChange(name, value)
+		this.props.onTextInputChange(name, new_value)
 	}
 
-	checkNameError(old_value, new_key){
-		if (new_key === BACKSPACE_KEY){
-			if (old_value.length > 0){
-				var value = old_value.substring(0, old_value.length - 1)	
-			}
-			else {
-				var value = old_value
-			}
-		}
-		else {
-			if (new_key.length > 1){
-				var value = old_value
-			}
-			else {
-				var value = old_value  + new_key
-			}
-		}
-
+	checkNameError(value){
 		if (value.length == 0){
 			this.setState({
 				name_error : 'Name can\'t be blank'
@@ -85,121 +85,40 @@ export default class CreditCardInput extends React.Component {
 	}
 
 
-	checkNumberError(old_value, new_key){
-		if (new_key == ' ') {
-			var value = old_value
-		}
-		else if (new_key === BACKSPACE_KEY){
-			if (old_value.length > 0){
-				if (old_value.length == 5 || old_value.length == 10 || old_value.length == 15){
-					var value = old_value.substring(0, old_value.length - 2)
-				}
-				else {
-					var value = old_value.substring(0, old_value.length - 1)	
-				}
-			}
-			else {
-				var value = old_value
-			}
-		}
-		else {
-			if (old_value.length >= 19){
-				var value = old_value
-			}
-			else if (isNaN(new_key)){
-				var value = old_value
-			}
-			else {
-				if (old_value.length == 4 || old_value.length == 9 || old_value.length == 14){
-					var value = old_value + ' ' + new_key
-				}
-				else {
-					var value = old_value  + new_key
-				}
-			}
-		} 
+	checkNumberError(value){
+		var stripped_value = removeNonNumeric(value)
 
-		if (value.length != 19){
+		var new_value = addDashToCardNumber(stripped_value, 4)
+		
+		if (new_value.length != 19){
 			this.setState({
 				number_error : 'Card number must be 16 digits'
 			})
 		} else {
 			this.setState({number_error : false})
 		}
-		return value
+		return new_value
 	}
 
-	checkExpiryError(old_value, new_key){
-		var value = old_value 
-		if (new_key == ' ') {
-			var value = old_value
-		}
-		else if (new_key === BACKSPACE_KEY){
-			if (old_value.length > 0){
-				if (old_value.length == 6) {
-					var value = old_value.substring(0, old_value.length - 4)
-				}
-				else {
-					var value = old_value.substring(0, old_value.length - 1)	
-				}
-			}
-			else {
-				var value = old_value
-			}
-		}
-		else {
-			if (old_value.length >= 7){
-				var value = old_value
-			}
-			else if (isNaN(new_key)) {
-				var value = old_value
-			}
-			else {
-				if (old_value.length == 2){
-					var value = old_value + ' / ' + new_key
-				}
-				else {
-					var value = old_value  + new_key
-				}
-			}
+	checkExpiryError(value){
+
+		var new_value = removeNonNumeric(value)
+		if (new_value.length >= 3) {
+			new_value = new_value.substring(0,2) + "/" + new_value.substring(2,4)
 		}
 
 
-		if (value.length != 7){
+		if (new_value.length != 5){
 			this.setState({
-				expiry_error : 'Expiration must be MM / YY format'
+				expiry_error : 'Expiration must be MM/YY format'
 			})
 		} else {
 			this.setState({expiry_error : false})
 		}
-		return value
+		return new_value
 	}
 
-	checkCvcError(old_value, new_key){
-		var value = old_value 
-		if (new_key == ' ') {
-			var value = old_value
-		}
-		
-		else if (new_key == BACKSPACE_KEY){
-			if (old_value.length > 0){
-				var value = old_value.substring(0, old_value.length - 1)	
-			}
-			else {
-				var value = old_value
-			}
-		}
-		else {
-			if (old_value.length >= 3){
-				var value = old_value
-			}
-			else if (isNaN(new_key)){
-				var value = old_value
-			}
-			else {
-				var value = old_value + new_key
-			}
-		}
+	checkCvcError(value){
 
 		if (value.length != 3){
 			this.setState({
@@ -223,7 +142,7 @@ export default class CreditCardInput extends React.Component {
 			}
 		}
 		else {
-			this.checkError(e.target.name, e.target.value, e.key)
+			this.checkError(e.target.name, e.target.value)
 		}
 	}
 
@@ -266,11 +185,12 @@ export default class CreditCardInput extends React.Component {
 					<div className= {this.state.name_error ? 'form-group required' : 'form-group required has-success'}>
 				  <label className="col-md-2 control-label text-left" for="State">Name on Card</label>  
 				  <div className="col-md-6">
+
 				  <input 
 				  value = {this.props.name}
-				  onKeyDown = {this.onKeyPress.bind(this)}
+				  onChange  = {(event) => this.checkError(event.target.name, event.target.value)}
 				  tabindex= {1} id = "card_name_input" 
-				  	className= {this.state.name_error ? 'form-control input-md' : 'form-control form-control-success input-md'} 
+					className= {this.state.name_error ? 'form-control input-md' : 'form-control form-control-success input-md'} 
 					  field = "name" placeholder="Full name" type="text" name="name" />
 				  </div>
 					</div>
@@ -283,7 +203,7 @@ export default class CreditCardInput extends React.Component {
 				  <div className="col-md-6">
 				  <input 
 				  value = {this.props.number}
-				  onKeyDown = {this.onKeyPress.bind(this)}
+				  onChange  = {(event) => this.checkError(event.target.name, event.target.value)}
 				  tabindex= {2} id = "card_input" 
 				  className= {this.state.number_error ? 'form-control input-md' : 'form-control form-control-success input-md'} 
 				   maxLength = "19"
@@ -296,10 +216,10 @@ export default class CreditCardInput extends React.Component {
 					<div className = {this.state.expiry_error ? 'form-group required' : 'form-group required has-success'} >
 				  <label className="col-md-2 control-label text-left" for="State">Expiration</label>  
 				  <div className="col-md-2">
-				  <input onKeyDown = {this.onKeyPress.bind(this)}
+				  <input onChange  = {(event) => this.checkError(event.target.name, event.target.value)}
 				  id = "expiry_input" tabindex= {3} 
 				  className= {this.state.expiry_error ? 'form-control input-md' : 'form-control form-control-success input-md'} 
-				  maxLength = "7"
+				  maxLength = "5"
 				  value = {this.props.expiry}
 					 field = "expiry" placeholder="MM/YY" type="text" name="expiry" />
 				  </div>
@@ -310,12 +230,12 @@ export default class CreditCardInput extends React.Component {
 					<div className = {this.state.cvc_error ? 'form-group required' : 'form-group required has-success'}>
 				  <label className="col-md-2 control-label text-left" for="State">CVC</label>  
 				  <div className="col-md-2">
-				  	<input
-				  	value = {this.props.cvc}
-				  	onKeyDown = {this.onKeyPress.bind(this)}
-				  	tabindex= {4} 
-				  	className = {this.state.cvc_error ? 'form-control input-md' : 'form-control form-control-success input-md '}
-				  	maxLength = "3"
+					<input
+					value = {this.props.cvc}
+					onChange  = {(event) => this.checkError(event.target.name, event.target.value)}
+					tabindex= {4} 
+					className = {this.state.cvc_error ? 'form-control input-md' : 'form-control form-control-success input-md '}
+					maxLength = "3"
 					
 					 field = "cvc" placeholder="CVC" type="text" name="cvc" />
 							{/*
@@ -325,9 +245,6 @@ export default class CreditCardInput extends React.Component {
 				  </div>
 					</div>
 				</div>
-
-
-			
 			</form>
 			
 

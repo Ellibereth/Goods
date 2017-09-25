@@ -503,7 +503,7 @@ class User(db.Model):
 
 		exp_year = exp_year.replace(' ', '')
 		exp_month = exp_month.replace(' ', '')
-		number = number.replace(' ', '')
+		number = re.sub("[^0-9]", "", number)
 		if number == "" or len(number) != 16:
 			return {Labels.Success : False,Labels.Error : ErrorMessages.CardNumberError}
 		if name == "":
