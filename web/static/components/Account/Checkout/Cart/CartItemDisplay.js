@@ -27,6 +27,7 @@ export default class CartItemDisplay extends React.Component {
 
 
 	serverUpdateQuantity(new_quantity){
+		this.props.setLoading(true)
 		var form_data = JSON.stringify({
 			'jwt' : localStorage.jwt,
 			'new_num_items' : new_quantity,
@@ -56,11 +57,13 @@ export default class CartItemDisplay extends React.Component {
 					ga('send', 'event', 'UX', 'click', 'update cart')
 						
 					AppActions.updateCurrentUser(data.user)
+					this.props.refreshCheckoutInformation()
 				}
 				else {
+					this.props.setLoading(false)
 					this.setErrorMessage(data.error.title)
 				}
-				this.props.setLoading(false)
+				
 
 			}.bind(this),
 			error : function(){
@@ -73,7 +76,7 @@ export default class CartItemDisplay extends React.Component {
 			dataType: 'json',
 			contentType : 'application/json; charset=utf-8'
 		})
-		this.props.refreshCheckoutInformation()
+		
 	}
 
 	handleQuantityChange(event){

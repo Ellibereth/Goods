@@ -152,6 +152,9 @@ export default class CheckoutPage extends React.Component {
 					})
 					AppActions.updateCurrentUser(data.user)
 				}
+				else {
+					this.setLoading(false)
+				}
 				if (!this.state.first_load_done) {
 					this.initializeInformation.bind(this)()
 				}
