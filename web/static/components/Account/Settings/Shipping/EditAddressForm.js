@@ -52,7 +52,7 @@ export default class EditAddressForm extends React.Component {
 			address_city : address.address_city,
 			address_line1 : address.address_line1,
 			address_line2 : address.address_line2,
-			address_zip : address.address_zip
+			address_zip : address.address_zip.substring(0,5)
 		})
 	}
 
@@ -77,11 +77,13 @@ export default class EditAddressForm extends React.Component {
 			url: '/editUserAddress',
 			data: form_data,
 			success: function(data) {
-				this.props.setLoading(false)
+				
 				if (!data.success) {
 					this.setErrorMessage(data.error.title)
+					this.props.setLoading(false)
 				}
 				else {
+					this.props.setFadingText("Address successfully edited")
 					this.props.toggleModal(null)
 					this.props.refreshSettings()
 				}
@@ -99,13 +101,17 @@ export default class EditAddressForm extends React.Component {
 	}
 
 	render() {
+
+		var init_address = this.props.address
+		if (!init_address) return <div/>
+		init_address.address_zip = init_address.address_zip.substring(0,5)
 		return (
 			<div className = "container">
 				<div className = "row">
 					<div className = "col-sm-10 col-md-10 col-lg-10">
 						<AddressForm 
 							onTextInputChange = {this.onTextInputChange.bind(this)}
-							address = {this.props.address}
+							address = {init_address}
 							onSubmit = {this.onSubmitPress.bind(this)}
 						 />
 					</div>

@@ -49,7 +49,6 @@ export default class BillingPreview extends React.Component {
 					this.props.refreshSettings()
 					this.setFadingText('Card succesfully deleted')
 				}
-				this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
@@ -98,6 +97,10 @@ export default class BillingPreview extends React.Component {
 		card_columns.unshift(
 			<AddCardButton />
 		)
+
+		if (this.props.is_loading){
+			card_columns = []
+		}
 
 		
 

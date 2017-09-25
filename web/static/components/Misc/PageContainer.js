@@ -55,7 +55,6 @@ export default class PageContainer extends React.Component {
 						<div className = "page-wrapper">
 							<Navbar />
 							<div className = "content-wrapper"> 
-								{!this.props.no_add_buffer && <div className = "content-buffer"/>}
 								{this.props.children}
 							</div>
 						</div>

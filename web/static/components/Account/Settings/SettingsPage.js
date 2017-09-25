@@ -22,7 +22,11 @@ export default class SettingsPage extends React.Component {
 	}
 
 	refreshSettings(){
-		this.setState({is_loading : true})
+		this.setState({
+			is_loading : true,
+			cards : [],
+			addresses : [],
+		})
 		var form_data = JSON.stringify({
 			'jwt' : localStorage.jwt
 		})
@@ -33,17 +37,13 @@ export default class SettingsPage extends React.Component {
 			success: function(data) {
 				if (data.success) {
 					AppActions.updateCurrentUser(data.user)
-					this.setState({
-						cards : data.user.cards,
-						addresses : data.user.addresses,
-						orders : data.user.orders ,
-						cart: data.user.cart
-					})
 					this.refreshDisplay.bind(this)()
+					
 				}
 				else {
+					this.setState({is_loading : false})
 				}
-				this.setState({is_loading : false})
+				
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
@@ -75,7 +75,8 @@ export default class SettingsPage extends React.Component {
 			cards : current_user.cards,
 			orders: current_user.orders,
 			addresses: current_user.addresses,
-			cart : current_user.cart
+			cart : current_user.cart,
+			is_loading : false,
 		})
 	}
 

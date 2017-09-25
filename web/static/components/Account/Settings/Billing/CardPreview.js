@@ -39,12 +39,13 @@ export default class CardPreview extends React.Component {
 			success: function(data) {
 				if (!data.success) {
 					this.props.setFadingText(data.error.title)
+					this.props.setLoading(false)
 				}
 				else {
 					this.props.setFadingText(AlertMessages.DEFAULT_CARD_SET_SUCCESS.title)
 					this.props.refreshSettings()
 				}
-				this.props.setLoading(false)
+				
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {

@@ -52,9 +52,7 @@ export default class ShippingPreview extends React.Component {
 				else {
 					this.props.refreshSettings()
 					this.setFadingText('Address succesfully deleted')
-					
 				}
-				this.props.setLoading(false)
 			}.bind(this),
 			error : function(){
 				ga('send', 'event', {
@@ -134,6 +132,7 @@ export default class ShippingPreview extends React.Component {
 			
 			<div className = "container-fluid">
 				<EditAddressModal show = {this.state.modal_show}
+					setFadingText = {this.setFadingText.bind(this)}
 					address = {this.state.modal_address} 
 					refreshSettings = {this.props.refreshSettings}
 					toggleModal = {this.toggleModal.bind(this)}

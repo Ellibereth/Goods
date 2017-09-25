@@ -29,6 +29,7 @@ export default class EditAddressModal extends React.Component {
 				</Modal.Header>
 				<Modal.Body>
 					<EditAddressForm
+						setFadingText = {this.props.setFadingText}
 						setLoading = {this.props.setLoading}
 						refreshSettings = {this.props.refreshSettings}
 						address = {this.props.address} 
