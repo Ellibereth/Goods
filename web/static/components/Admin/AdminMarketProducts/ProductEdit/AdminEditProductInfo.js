@@ -3,9 +3,12 @@ var ReactDOM = require('react-dom')
 var browserHistory = require('react-router').browserHistory
 import AdminActivateProduct from './AdminActivateProduct'
 import AdminTextInput from '../../../Input/AdminTextInput.js'
-const form_fields = ['name', 'manufacturer_email', 'price', 'sale_text_product', 'sale_text_home', 'sale_end_date', 'category', 'product_template', 'num_items_limit', 'manufacturer_fee', 'quadrant1', 'quadrant2', 'quadrant3', 'quadrant4', 'product_search_tags', 'product_listing_tags', 'related_product_tags']
-const form_labels = ['Name', 'Manufacturer Emails (separate with commas)', 'Original Price (make sure this is in cents)', 'Sale Red Text Product (this is HTML)', 'Sale Red Text Home (this is HTML)', 'Sale End Date', 'Category', 'Product Template', 'Item Limit', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Search Tags (Separate by commas)', 'Listing Tags (Separate by commas)', 'Related Product Tags (Separate by commas)']
-const input_types = ['text', 'text', 'text', 'text', 'textarea', 'textarea', 'datetime-local', 'text', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea','textarea','textarea']
+const form_fields = ['name', 'price', 'sale_text_product', 'sale_text_home', 'sale_end_date', 'category', 'product_template', 'num_items_limit', 'quadrant1', 'quadrant2', 'quadrant3', 'quadrant4', 'product_search_tags', 'product_listing_tags', 'related_product_tags']
+const form_labels = ['Name', 'Original Price (make sure this is in cents)', 'Sale Red Text Product (this is HTML)', 'Sale Red Text Home (this is HTML)', 'Sale End Date', 'Category', 'Product Template', 'Item Limit', 'Quadrant 1', 'Quadrant 2', 'Quadrant 3', 'Quadrant 4', 'Search Tags (Separate by commas)', 'Listing Tags (Separate by commas)', 'Related Product Tags (Separate by commas)']
+const input_types = ['text', 'text', 'textarea', 'textarea', 'datetime-local', 'text', 'text', 'text', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea', 'textarea','textarea','textarea']
+
+const manufacturer_fields = ['email', 'fee']
+const manufacturer_labels = ['Manufacturer Emails', 'Manufacturer Fee..this value is stored in ten thousands, so 500 => 5%']
 
 
 import {AlertMessages} from '../../../Misc/AlertMessages'
@@ -130,23 +133,6 @@ export default class AdminEditProductInfo extends React.Component {
 
 		)
 
-		var show_logo_toggle = (
-			<div className="form-group row">
-				<label className="col-md-2 col-lg-2 col-form-label">
-					Would you like to display the manufactuer logo?
-				</label>
-				<div className = "col-md-6 col-lg-6">
-					 	<select className="form-control" id="sel1" 
-					 	value = {this.state.product.show_manufacturer_logo ? this.state.product.show_manufacturer_logo : false}
-					 	onChange = {(event) => this.onTextInputChange('show_manufacturer_logo', event.target.value)}>
-					 		{this.state.product.manufacturer_logo_id && <option value = {true}> Show logo </option>}
-    						<option value = {false}> Do not show logo </option>
-					 	</select>
-				</div>
-			</div>
-
-		)
-
 
 		var manufacturer_select = (
 			<div className="form-group row">
@@ -166,6 +152,24 @@ export default class AdminEditProductInfo extends React.Component {
 
 		)
 
+		if (this.state.product.manufacturer) {
+			var manufacturer_info = manufacturer_fields.map((field, index) => 
+				<div className="form-group row">
+					<label className=" col-sm-2 col-md-2 col-lg-2 col-form-label">
+						{manufacturer_labels[index]}
+					</label>
+					<div className = "col-sm-8 col-md-8 col-lg-8">
+						 	<span style = {{opacity : '0.7'}} className="form-control form-control-static">
+						 		{this.state.product.manufacturer[manufacturer_fields[index]]}
+						 	</span>
+					</div>
+				</div>
+			)
+		}
+		else {
+			var manufacturer_info = []
+		}
+
 		return (
 			<div className = "container" id = "admin_edit_product">
 				<AdminActivateProduct product = {this.state.product}/>
@@ -173,9 +177,9 @@ export default class AdminEditProductInfo extends React.Component {
 				<div className = "row" id = "text_edit">
 					<form className ="form-horizonal">
 						{manufacturer_select}
+						{manufacturer_info}
 						{input_forms}
 						{live_toggle}
-						{show_logo_toggle}
 						<div className = "form-group">
 
 							<div className = "col-md-4 col-lg-4">

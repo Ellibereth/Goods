@@ -96,8 +96,9 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	Fee = "fee"
+	Email = "email"
 	RelatedProducts = "related_products"
-	ManufacturerObj = "manufacturer_obj"
 	ManufacturerId = "manufacturer_id"
 	IsAvailable = "is_available"
 	RelatedProductTags = "related_product_tags"
@@ -254,6 +255,9 @@ class PaymentLabels:
 
 
 class CartLabels:
+	Fee = "fee"
+	Email = "email"
+	Manufacturer = "manufacturer"
 	DateCreated = "date_created"
 	DateModified = "date_modified"
 	ShippingDiscount = "shipping_discount"

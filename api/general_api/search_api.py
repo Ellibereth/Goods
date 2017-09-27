@@ -24,8 +24,8 @@ def searchProducts():
 	description_filter = [product for product in all_products if product.description]
 	description_filter = [product for product in description_filter if search_input.lower() in product.description.lower()]
 
-	manufacturer_filter = [product for product in all_products if product.manufacturer]
-	manufacturer_filter = [product for product in manufacturer_filter if search_input.lower() in product.manufacturer.lower()]
+	manufacturer_filter = [product for product in all_products if product.getManufacturerName()]
+	manufacturer_filter = [product for product in manufacturer_filter if search_input.lower() in product.getManufacturerName().lower()]
 
 	tag_filter = MarketProduct.getProductsBySearchTag(search_input)
 

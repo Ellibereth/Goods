@@ -12,10 +12,14 @@ from api.models.product_image import ProductImage
 from api.models.product_search_tag import ProductSearchTag
 from api.models.product_listing_tag import ProductListingTag
 from api.models.related_product_tag import RelatedProductTag
-from api.models.manufacturer_logo import ManufacturerLogo
 from api.models.manufacturer import Manufacturer
 
 
+DEFAULT_MANUFACTURER = {
+	Labels.Name : "MANUFACTURER NOT SET",
+	Labels.Email : "spallstar28@gmail.com",
+	Labels.Fee : 0,
+}
 class MarketProduct(db.Model):
 	"""
 	: Edgar USA product class
@@ -32,8 +36,6 @@ class MarketProduct(db.Model):
 	main_image = db.Column(db.String)
 	inventory = db.Column(db.Integer, default = 0)
 	active = db.Column(db.Boolean, default = False)
-	manufacturer = db.Column(db.String, default = "Sample Manufacturer")
-	manufacturer_email = db.Column(db.String, default = "spallstar28@gmail.com")
 	num_items_limit = db.Column(db.Integer, default = 50)
 	has_variants = db.Column(db.Boolean, default = False)
 	variant_type_description = db.Column(db.String, default = "type")
@@ -48,15 +50,10 @@ class MarketProduct(db.Model):
 	quadrant3 = db.Column(db.String)
 	quadrant4 = db.Column(db.String)
 
-	show_manufacturer_logo = db.Column(db.Boolean, default = False)
-	manufacturer_logo_id = db.Column(db.String)
+	
 
 	sale_text_product = db.Column(db.String)
 	sale_text_home = db.Column(db.String)
-
-	# this value is stored in ten thousands
-	# so 500 => 5%
-	manufacturer_fee = db.Column(db.Integer)
 
 	sale_end_date = db.Column(db.DateTime)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
@@ -69,11 +66,10 @@ class MarketProduct(db.Model):
 	related_product_tag = db.relationship("RelatedProductTag", backref = ProdTables.RelatedProductTagTable, lazy='dynamic')
 	image_id = db.relationship("ProductImage", backref = ProdTables.ImageTable, lazy='dynamic')
 	manufacturer_id = db.Column(db.Integer, db.ForeignKey(ProdTables.ManufacturerTable + '.' + Labels.ManufacturerId))
+
 	def __init__(self, name):
 		self.name = name
 		db.Model.__init__(self)
-
-	
 
 	def isAvailable(self):
 		"""
@@ -159,18 +155,7 @@ class MarketProduct(db.Model):
 		db.session.add(image_record)
 		db.session.commit()
 
-	def addManufacturerLogo(self, image_decoded):
-		"""
-		: adds the manufacturer logo to the S3 database
-		: image_decoded is base64.decodestring() object
-		"""
-		manufacturer_logo = ManufacturerLogo(self.product_id)
-		self.manufacturer_logo_id = manufacturer_logo.logo_id
-		db.session.add(manufacturer_logo)
-		db.session.commit()
-
-		# upload the image to S3
-		S3.uploadManufacturerLogo(manufacturer_logo.logo_id, image_decoded)
+	
 
 	def activateProduct(self):
 		"""
@@ -345,13 +330,16 @@ class MarketProduct(db.Model):
 		"""
 		: returns this products manufactuers info as a public dict
 		"""
-		if self.manufacturer_id is not None:
-			return None
+		if self.manufacturer_id is None:
+			return DEFAULT_MANUFACTURER
 		this_manufacturer = Manufacturer.query.filter_by(manufacturer_id = self.manufacturer_id).first()
 		if this_manufacturer:
 			return this_manufacturer.toPublicDict()
 		else:
-			return None
+			return DEFAULT_MANUFACTURER
+
+	def getManufacturerName(self):
+		return self.getManufacturerInfo()[Labels.Name]
 
 	def toPublicDict(self, get_related_products = True):
 		"""
@@ -362,12 +350,14 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Price] = self.price
 		public_dict[Labels.Category] = self.category
 		public_dict[Labels.Description] = self.description
-		public_dict[Labels.Manufacturer] = self.manufacturer
+		public_dict[Labels.Manufacturer] = self.getManufacturerInfo() 
+
 		public_dict[Labels.Inventory] = self.inventory
 		if self.sale_end_date:
 			public_dict[Labels.SaleEndDate] = self.sale_end_date.strftime("%Y-%m-%dT%H:%M")
 		else:
 			public_dict[Labels.SaleEndDate] = None
+
 		public_dict[Labels.DateCreated] = self.date_created
 		public_dict[Labels.ProductId] = self.product_id
 		images = self.getProductImages()
@@ -379,21 +369,12 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Active] = self.active
 		public_dict[Labels.HasVariants] = self.has_variants
 		public_dict[Labels.Live] = self.live
-		public_dict[Labels.ManufacturerLogoId] = self.manufacturer_logo_id
-		public_dict[Labels.ShowManufacturerLogo] = self.show_manufacturer_logo
 		public_dict[Labels.SaleTextProduct] = self.sale_text_product
 		public_dict[Labels.SaleTextHome] = self.sale_text_home
-		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
-		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee or 5
 		public_dict[Labels.Quadrant1] = self.quadrant1
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
-		public_dict[Labels.ManufacturerId] = self.manufacturer_id
-		manufacturer_obj = self.getManufacturerInfo()
-		if not manufacturer_obj:
-			manufacturer_obj = {"name" : self.manufacturer}
-		public_dict[Labels.ManufacturerObj] = manufacturer_obj
 		product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
 		related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
 		product_listing_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()

@@ -6,6 +6,9 @@ import AppStore from '../../../../stores/AppStore.js'
 import {formatPrice} from '../../../Input/Util.js'
 var dateFormat = require('dateformat')
 import OrderItemDisplay from './OrderItemDisplay'
+import {toTitleCase} from '../../../Input/Util'
+import {Popover} from 'react-bootstrap'
+import {OverlayTrigger} from 'react-bootstrap'
 
 // takes orders as prop
 export default class OrdersPreview extends React.Component {
@@ -15,6 +18,19 @@ export default class OrdersPreview extends React.Component {
 			
 		}
 	}
+
+	getPopoverContent(card){
+		return (
+			<Popover id="popover-trigger-click" title="Billing Address">
+				<span className = "account-page-text block-span"> {toTitleCase(card.metadata.address_name)}  </span>
+				<span className = "account-page-text block-span"> {toTitleCase(card.address_line1)}  </span>
+				<span className = "account-page-text block-span"> {toTitleCase(card.address_line2)}  </span>
+				<span className = "account-page-text block-span"> {toTitleCase(card.address_city)}, {card.address_state}</span>
+				<span className = "account-page-text block-span"> {card.address_zip}</span>
+			</Popover>
+		)
+	}
+
 
 	render() {
 
@@ -28,6 +44,7 @@ export default class OrdersPreview extends React.Component {
 		var formatted_date = dateFormat(local_date, 'dddd, mmmm dS, yyyy, h:MM TT')
 		var address = order.address
 		var sales_tax_display = order.sales_tax_price ? <div className = "order-history-panel-header"> {'Sales Tax: $' + formatPrice(order.sales_tax_price)} </div> : <span/>
+		var billing_address_popover_content = this.getPopoverContent(order.card)
 		return (
 			<div className="panel panel-default">
 				<div className = "panel-heading darker-heading">
@@ -55,10 +72,17 @@ export default class OrdersPreview extends React.Component {
 					<div className = "col-sm-4 col-md-4 col-lg-4">
 						<div> <b> Billed to </b> </div>
 						<div>
+
 							 {order.card_brand + ' ending in ' + order.card_last4}  
 						</div>
 						<div>
-							Billed to address with zip {order.card.address_zip}
+							<OverlayTrigger rootClose ={true} trigger = "click" placement = "top" 
+								overlay = {billing_address_popover_content}>
+								<span style = {{fontSize : '14px'}}
+									className = "edgar-link"> 
+									Show Billing Address 
+								</span>
+							</OverlayTrigger>
 						</div>
 					 </div>
 					 

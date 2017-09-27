@@ -199,7 +199,7 @@ export default class CheckoutPage extends React.Component {
 			ga('ec:addProduct', {
 				'id': item.product_id.toString(),
 				'name': item.name,
-				'brand': item.manufacturer_obj.name,
+				'brand': item.manufacturer.name,
 				'variant' : item.variant_type ? item.variant_type : 'none',
 				'price': formatCurrentPrice(item),
 				'quantity': item.num_items
@@ -307,7 +307,7 @@ export default class CheckoutPage extends React.Component {
 								'id': item.product_id.toString(),
 								'name': item.name,
 								'variant' : item.variant_type ? item.variant_type : 'none',
-								'brand': item.manufacturer_obj.name,
+								'brand': item.manufacturer.name,
 								'price': formatCurrentPrice(item),
 								'quantity': item.num_items
 							})

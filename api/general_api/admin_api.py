@@ -65,23 +65,6 @@ def uploadMarketProductImage(admin_user):
 	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
 	return JsonUtil.success()
 
-@admin_api.route('/uploadManufacturerLogo', methods = ['POST'])
-@decorators.check_admin_jwt
-def uploadManufacturerLogo(admin_user):
-	product_id = request.json.get(Labels.ProductId)
-	image_data = request.json.get(Labels.ImageData)
-	if image_data is None:
-		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
-		return JsonUtil.failure("No image has been uploaded!")
-	image_bytes = image_data.encode('utf-8')
-	image_decoded = base64.decodestring(image_bytes)
-	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
-	if this_product is None:
-		AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
-		return JsonUtil.failure("Product doesn't exist")
-	this_product.addManufacturerLogo(image_decoded)
-	AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = True)
-	return JsonUtil.success()
 
 
 @admin_api.route('/deleteProductPhoto', methods = ['POST'])

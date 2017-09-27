@@ -174,7 +174,7 @@ class EmailLib:
 	def sendVendorsOrders(user, cart, address, order):
 		email_to_vendors_dict = {}
 		for cart_item in cart.toPublicDict()[ITEMS]:
-			manufacturer_email = cart_item.get(Labels.ManufacturerEmail)
+			manufacturer_email = cart_item.get(Labels.Manufacturer).get(Labels.Email)
 			if email_to_vendors_dict.get(manufacturer_email):
 				new_list = email_to_vendors_dict[manufacturer_email]
 				new_list.append(cart_item)

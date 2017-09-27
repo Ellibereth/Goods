@@ -43,7 +43,7 @@ export default class CartItemDisplay extends React.Component {
 					ga('ec:addProduct', {
 						'id': this.props.item.product_id.toString(),
 						'name': this.props.item.name,
-						'brand': this.props.item.manufacturer_obj.name,
+						'brand': this.props.item.manufacturer.name,
 						'price': formatCurrentPrice(this.props.item),
 						'quantity': Math.abs(this.props.item.num_items - new_quantity),
 						'variant' : this.props.item ? this.props.item.variant_type : 'none'

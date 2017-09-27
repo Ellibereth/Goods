@@ -64,6 +64,9 @@ export default class AdminProductPreviewRow extends React.Component {
 			}
 			
 		}
+		else if (attr == "manufacturer"){
+			return product[attr].name
+		}
 
 		else {
 			return product[attr]

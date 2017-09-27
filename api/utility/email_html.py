@@ -196,7 +196,7 @@ class EmailHtml:
 		return EmailHtml.formatPrice(vendor_fee)
 		
 	def calculateVendorFee(item, user = None):
-		marginal_fee = EmailHtml.getCurrentPrice(item, user) * item[Labels.ManufacturerFee] / 10000
+		marginal_fee = EmailHtml.getCurrentPrice(item, user) * item[Labels.Manufacturer][Labels.Fee] / 10000
 		return int(marginal_fee * item[Labels.NumItems])
 
 
