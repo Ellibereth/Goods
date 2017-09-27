@@ -53,6 +53,14 @@ class WebTests(unittest.TestCase):
 			 'input[value="Sign Up"]')
 		search_submit.click()
 
+		try:
+			
+			self.assertTrue(self.driver.find_element_by_css_selector(
+					'.register-success'
+				).text == 'You\'re account was created. Welcome to Edgar USA')
+		except Exception as e:
+			print(e)
+
 		self.assertTrue(self.driver.find_element_by_css_selector(
 		'.userNameText').text == FIRST_NAME)
 
