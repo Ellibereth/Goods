@@ -130,7 +130,7 @@ export default class LoginBox extends React.Component {
 				success: function(data) {
 					if (!data.success) {
 						this.setState({register_faded_text : data.error.title, show_register_faded_text : true})
-						setTimeout(function() {this.setState({show_register_faded_text : false})}.bind(this), 4000)
+						
 					}
 					else {
 						ga('send', 'pageview', 'register-complete')
@@ -138,7 +138,7 @@ export default class LoginBox extends React.Component {
 						this.setState({register_faded_text : 'You\'re account was created. Welcome to Edgar USA', register_success : true, show_register_faded_text : true})
 						setTimeout(function() {
 							window.location = '/'
-						}.bind(this), 4000)
+						}.bind(this), 2000)
 
 					}
 					this.setState({disabled : false})
@@ -201,7 +201,7 @@ export default class LoginBox extends React.Component {
 									<input 
 										onChange = {this.onTextChange.bind(this)}
 										className="inputBoxNew borderR3 NewLPPwd"
-										id="password" name="login_password" type="password"
+										id="login_password" name="login_password" type="password"
 										value = {this.state.login_password}/> 
 
 							
@@ -234,7 +234,7 @@ export default class LoginBox extends React.Component {
 								<a href= "/register" className = "hidden-xs" id="forgotPW" style= {{'textDecoration' : 'none', 'lineHeight' : '32px', display: 'block'}}>Don't have an account yet? Register today</a>
 								<a href= "/register" className = "hidden-sm hidden-md hidden-lg" id="forgotPW" style= {{'textDecoration' : 'none', 'lineHeight' : '32px', display: 'block'}}>Register</a>
 								<FadingText show = {this.state.show_login_faded_text} height_transition = {true}>
-									<span href = "/recoverAccount" className = "hidden-xs login-error-alert-text" style= {{'textDecoration' : 'none', 'marginTop' : '10px', 'lineHeight' : '32px', display: 'block'}}>{this.state.login_faded_text}</span>
+									<span id = "login_fading_text_alert" className = "hidden-xs login-error-alert-text" style= {{'textDecoration' : 'none', 'marginTop' : '10px', 'lineHeight' : '32px', display: 'block'}}>{this.state.login_faded_text}</span>
 								</FadingText>
 							</div>
 						</div>
@@ -258,7 +258,7 @@ export default class LoginBox extends React.Component {
 									style = {{'marginBottom' : '12px'}}
 									onChange = {this.onTextChange.bind(this)}
 									className="inputBoxNew borderR3 NewLPUserName"
-									id="user_email" name="name" 
+									id="user_name" name="name" 
 									placeholder="" tabindex="1" type="text" value= {this.state.name}/>
 
 							 <label for="user[un_or_email]">EMAIL</label>
@@ -274,7 +274,7 @@ export default class LoginBox extends React.Component {
 									style = {{'marginBottom' : '12px'}}
 									onChange = {this.onTextChange.bind(this)}
 									className="inputBoxNew borderR3 NewLPUserName"
-							 id="user_email" name="register_password" 
+							 id="user_password" name="register_password" 
 							 placeholder="" tabindex="3" type="password" value= {this.state.register_password}/> 
 
 							 <label for="user[un_or_email]">CONFIRM PASSWORD</label>
@@ -282,7 +282,7 @@ export default class LoginBox extends React.Component {
 									style = {{'marginBottom' : '12px'}}
 									onChange = {this.onTextChange.bind(this)}
 									className="inputBoxNew borderR3 NewLPUserName"
-							 id="user_email" name="register_password_confirm" 
+							 id="user_password_confirm" name="register_password_confirm" 
 							 placeholder="" tabindex="4" type="password" value= {this.state.register_password_confirm}/>
 
 								<div className="signUpBtnWrap">
@@ -306,7 +306,7 @@ export default class LoginBox extends React.Component {
 								<a href = "/login" id="forgotPW" style= {{'textDecoration' : 'none', 'marginTop' : '6px', 'lineHeight' : '32px', display: 'block'}}>Already have an account?</a>
 
 								<FadingText show = {this.state.show_register_faded_text} height_transition = {true}>
-									<span href = "/recoverAccount" className = {' hidden-xs login-error-alert-text ' + success_class} style= {{'textDecoration' : 'none', 'marginTop' : '10px', display: 'block'}}>{this.state.register_faded_text}</span>
+									<span id = "register_fading_text_alert" className = {' hidden-xs login-error-alert-text ' + success_class} style= {{'textDecoration' : 'none', 'marginTop' : '10px', display: 'block'}}>{this.state.register_faded_text}</span>
 								</FadingText>
 
 							</div>

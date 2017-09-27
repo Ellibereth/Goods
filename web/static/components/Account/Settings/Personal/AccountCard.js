@@ -117,7 +117,7 @@ export default class AccountCard extends React.Component {
 							{pills.map((display, index) => 
 								<li className= {this.state.editable_index == index && 'active'}
 									onClick = {this.setEditableIndex.bind(this, indices[index])}> 
-									<a href="#">{display}</a> 
+									<a href="#" id = {display + "_tab"}>{display}</a> 
 								</li>
 							)}
 						</ul>

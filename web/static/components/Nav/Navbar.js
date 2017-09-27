@@ -79,7 +79,7 @@ export default class Navbar extends React.Component {
 														}
 													</a>
 												</li>
-												<li><a href="/register" id = "home-login-text">Register</a></li>
+												<li><a href="/register" id = "home-register-text">Register</a></li>
 												<li><a href="/login" id = "home-login-text">Login</a></li>
 											</ul>
 									}
