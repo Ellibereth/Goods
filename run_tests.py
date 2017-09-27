@@ -1,18 +1,23 @@
+
+import os
+import time
+import unittest
+import random
+from ddt import ddt, data
+
+from base64 import b64encode
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-import unittest
 from flask_testing import TestCase
-from api.models.shared_models import db
 
+from api.utility.checkout import Checkout
+
+from api.models.shared_models import db
 from api.models.user import User
 from api.models.market_product import MarketProduct, ProductVariant
 from api.models.cart import Cart, CartItem
 from api.models.order import Order, OrderItem
-import os
-from base64 import b64encode
-import random
-from api.utility.checkout import Checkout
-from ddt import ddt, data
+
 
 
 BLANK_INPUT = ""
@@ -124,7 +129,6 @@ class TestModels(TestCase):
 	def create_app(self):
 		secret_key = b64encode(b'L=\xbf=_\xa5P \xc5+\x9b3\xa4\xfdZ\x8fN\xc6\xd5\xb7/\x0f\xbe\x1b')
 		secret_key = secret_key.decode('utf-8')
-		
 		os.environ['SECRET_KEY'] = secret_key
 		app = Flask(__name__)
 		SQLALCHEMY_DATABASE_URI = "postgres://mzpdbglmqjwnqi:21d887dec2607ffb8cc89393d5862fb1e45589f504272ee095b6c844d5418e1e@ec2-23-21-220-48.compute-1.amazonaws.com:5432/dbit29q9v2i38u"
@@ -137,8 +141,11 @@ class TestModels(TestCase):
 
 	def setUp(self):
 		db.create_all()
+		self.start_time = time.time()
 
 	def tearDown(self):
+		t = time.time() - self.start_time
+		print("%s: %.3f" % (self.id(), t))
 		db.session.remove()
 		db.drop_all()
 
@@ -334,9 +341,10 @@ class TestModels(TestCase):
 
 if __name__ == "__main__":
 
-	# suite = unittest.TestSuite()
-	# suite.addTest(TestModels("test_checkout_user_cart"))
-	# runner = unittest.TextTestRunner()
-	# runner.run(suite)
+	suite = unittest.TestSuite()
+	suite.addTest(TestModels("test_checkout_user_cart"))
+	# suite.addTest(TestModels("test_add_user_success"))
+	runner = unittest.TextTestRunner(verbosity = 0)
+	runner.run(suite)
 
-	unittest.main(warnings = 'ignore')
+	# unittest.main(warnings = 'ignore')

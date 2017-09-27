@@ -53,7 +53,8 @@ class Checkout:
 			error_result = this_order.addItems(this_user, this_cart, address)
 			if error_result:
 				db.session.rollback()
-				error_result[Labels.CartItem].updateCartQuantity(error_result[Labels.Inventory])
+				if error_result.get(Labels.CartItem):
+					error_result[Labels.CartItem].updateCartQuantity(error_result[Labels.Inventory])
 				db.session.commit()
 				return {Labels.Success:False,Labels.Error : error_result.get(Labels.Error)}
 			return {Labels.Success : True, Labels.Order : this_order}

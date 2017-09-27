@@ -6,14 +6,21 @@ from selenium import webdriver
 TEST_SERVER_URL = "https://edgarusa-testserver.herokuapp.com"
 LOCAL_URL = "http://0.0.0.0:5000"
 
+FIRST_NAME = "TEST"
 
+LAST_NAME = "USER"
+FULL_NAME = FIRST_NAME + " " + LAST_NAME
+PASSWORD = "brobro"
+# I really hope no one has this email....
+EMAIL = "edgartest@gmail.com"
+PAGE_TITLE = "Edgar USA"
 
 class WebTests(unittest.TestCase):
 
 	@classmethod
 	def setUpClass(cls):
 		cls.driver = webdriver.Chrome("/Users/Darek/Desktop/Goods/tests/web_tests/chromedriver")
-
+		cls.driver.implicitly_wait(10)
 
 		# cls.driver = webdriver.Firefox("/Users/Darek/Desktop/Goods/tests/web_tests/geckodriver")
 
@@ -22,44 +29,35 @@ class WebTests(unittest.TestCase):
 		self.driver.get(LOCAL_URL)
 		self.assertEqual(
 			self.driver.title,
-			'Edgar USA'
+			PAGE_TITLE
 		)
 
 	# @unittest.skip("for now")
-	def test_register(self):
+	def test_register_and_delete(self):
 		self.driver.get(LOCAL_URL + "/register")
 
 		name_input = self.driver.find_element_by_css_selector(
 		   'input[id="user_name"]')
-		name_input.send_keys('Test User')
+		name_input.send_keys(FULL_NAME)
 		email_input = self.driver.find_element_by_css_selector(
 		   '#user_email')
-		email_input.send_keys('edgartest@gmail.com')
+		email_input.send_keys(EMAIL)
 		password_input = self.driver.find_element_by_css_selector(
 		   '#user_password')
-		password_input.send_keys('brobro')
+		password_input.send_keys(PASSWORD)
 		password_confirm_input = self.driver.find_element_by_css_selector(
 		   '#user_password_confirm')
-		password_confirm_input.send_keys('brobro')
+		password_confirm_input.send_keys(PASSWORD)
 
 		search_submit = self.driver.find_element_by_css_selector(
 			 'input[value="Sign Up"]')
 		search_submit.click()
-		
-		# time.sleep(1)
-		# self.assertEqual(self.driver.find_element_by_css_selector(
-		# 	'#register_fading_text_alert').text, 
-		# 	'You\'re account was created. Welcome to Edgar USA'
-		# )
 
-		# time.sleep(5)
-		# self.assertTrue(self.driver.find_element_by_css_selector(
-		# 	'.userNameText[value="Test"]'))
+		self.assertTrue(self.driver.find_element_by_css_selector(
+		'.userNameText').text == FIRST_NAME)
 
-
-		
 		self.driver.get(LOCAL_URL + "/settings")
-		time.sleep(3)
+		time.sleep(5)
 		edit_button = self.driver.find_element_by_css_selector (
 			'button[id="edit-address-button"')
 		edit_button.click()
@@ -72,35 +70,24 @@ class WebTests(unittest.TestCase):
 		password_input = self.driver.find_element_by_css_selector (
 				'input[name="password"]'
 			)
-		password_input.send_keys("brobro")
+		password_input.send_keys(PASSWORD)
 		password_confirm_input = self.driver.find_element_by_css_selector (
 				'input[name="password_confirm"]'
 			)
-		password_confirm_input.send_keys("brobro")
+		password_confirm_input.send_keys(PASSWORD)
 		delete_button = self.driver.find_element_by_css_selector(
 			'.btn.btn-default.delete-account-button'
 		)
 		delete_button.click()
 
-		time.sleep(4)
+		time.sleep(5)
 		self.assertTrue(
 			self.driver.find_element_by_css_selector('a[id="home-login-text"]')
 		)
 
-
-
-	# def test_delete_account(self):
-		
-
-
-
-
-
-
 	@classmethod
 	def tearDownClass(cls):
 		cls.driver.quit()
-
 
 if __name__ == '__main__':
 	suite = unittest.TestLoader().loadTestsFromTestCase(WebTests)
