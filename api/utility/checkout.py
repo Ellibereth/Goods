@@ -26,6 +26,7 @@ class Checkout:
 		if int(address.metadata.get(Labels.AccountId)) != this_user.account_id:
 			return {Labels.Success : False, Labels.Error : ErrorMessages.CartCheckoutGeneralError}
 		this_cart = Cart(this_user)
+
 		date_created = db.func.current_timestamp()
 		record_order_response = Checkout.checkoutRecordOrder(this_user, this_cart, address)
 		if record_order_response.get(Labels.Success) == False:

@@ -644,8 +644,6 @@ class User(db.Model):
 		sorted_orders = sorted(orders,  key=lambda k: k.get('date_created'))
 		sorted_orders.reverse()
 		return sorted_orders[:limit]
-
-
 	
 	def softDeleteAccount(self):
 		"""

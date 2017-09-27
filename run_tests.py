@@ -8,7 +8,6 @@ from api.models.user import User
 from api.models.market_product import MarketProduct, ProductVariant
 from api.models.cart import Cart, CartItem
 from api.models.order import Order, OrderItem
-from api.models.product_tag import ProductTag
 import os
 from base64 import b64encode
 import random
@@ -26,8 +25,6 @@ INVALID_EMAILS = ["spallstar28", "bro@bro.bro"]
 BAD_PASSWORDS = ["bro", "!@#$$!&(#)", "\"\'\'\'\'\'\'\'\'\'"]
 LONG_NAME = "bobobobobobobobobobobobobobobobobobobobobobobobobobobb"
 TEXT_INPUT = "ASDF"
-
-
 
 NAME = "SAMPLE Name"
 EMAIL = "spallstar28@gmail.com"
@@ -175,8 +172,9 @@ class TestModels(TestCase):
 		return new_user.addItemToCart(new_product.product_id, quantity, variant_id = None)
 
 	def add_item_with_variant_to_cart(self, new_user, quantity):
-		new_product = self.add_product_without_variants()
-		return new_user.addItemToCart(new_product.product_id, quantity, variant_id = None)
+		new_product = self.add_product_with_variants()
+		sample_variant_id = new_product.toPublicDict()[Labels.Variants][0][Labels.VariantId]
+		return new_user.addItemToCart(new_product.product_id, quantity, variant_id = sample_variant_id)
 
 	def add_user_address(self, new_user):
 		new_address_response =  new_user.addAddress(DESCRIPTION, ADDRESS_NAME, ADDRESS_LINE1, ADDRESS_LINE2, ADDRESS_CITY, ADDRESS_STATE,
@@ -184,7 +182,7 @@ class TestModels(TestCase):
 		return new_address_response
 
 	def add_user_card(self, new_user):
-		new_card_response = new_user.addCreditCard(ADDRESS_CITY, ADDRESS_LINE1, ADDRESS_LINE2, 
+		new_card_response = new_user.addCreditCard(ADDRESS_NAME, ADDRESS_CITY, ADDRESS_LINE1, ADDRESS_LINE2, 
 		ADDRESS_ZIP, CARD_EXP_MONTH, CARD_EXP_YEAR, CARD_NUMBER,
 		 CARD_CVC, CARD_NAME, ADDRESS_STATE, ADDRESS_COUNTRY)
 		return new_card_response
@@ -212,8 +210,6 @@ class TestModels(TestCase):
 		self.assertTrue(new_user.email == EMAIL)
 		self.assertTrue(new_user.checkLogin(PASSWORD))
 
-
-	
 	def test_add_product(self):
 		new_product = self.add_product_with_variants()
 		self.assertTrue(new_product in db.session)
@@ -236,7 +232,7 @@ class TestModels(TestCase):
 	def test_add_user_card_success(self):
 		new_user = self.add_user()
 		self.add_user_card(new_user)
-		public_dict = new_user.toPublicDict()
+		public_dict = new_user.toPublicDictCheckout()
 		self.assertTrue(len(public_dict[Labels.Cards]) == 1)
 		self.assertTrue(public_dict[Labels.Cards][0][Labels.Last4] == CARD_NUMBER[-4:])
 
@@ -251,9 +247,9 @@ class TestModels(TestCase):
 	def test_add_user_address_success(self):
 		new_user = self.add_user()
 		self.add_user_address(new_user)
-		public_dict = new_user.toPublicDict()
+		public_dict = new_user.toPublicDictCheckout()
 		self.assertTrue(len(public_dict[Labels.Addresses]) == 1)
-		self.assertTrue(public_dict[Labels.Addresses][0][Labels.AddressLine1] == ADDRESS_LINE1)
+		self.assertTrue(public_dict[Labels.Addresses][0][Labels.AddressLine1].upper() == ADDRESS_LINE1.upper())
 
 	
 	def test_add_to_cart(self):
@@ -272,7 +268,7 @@ class TestModels(TestCase):
 	
 	def test_email_confirm(self):
 		new_user = self.add_user()
-		new_user.confirmEmail()
+		new_user.confirmEmail(new_user.email_confirmation_id)
 		self.assertTrue(new_user.email_confirmed)
 
 	def checkout_user_cart(self, new_user, card_id, address_id):
@@ -298,11 +294,16 @@ class TestModels(TestCase):
 			product.inventory = 0
 			db.session.commit()
 
-		public_dict = new_user.toPublicDict()
+		product_variants = ProductVariant.query.filter_by().all()
+		for variant in product_variants:
+			variant.inventory = 0
+			db.session.commit()
+
+		public_dict = new_user.toPublicDictCheckout()
 		card_id = public_dict[Labels.Cards][0][Labels.Id]
 		address_id = public_dict[Labels.Addresses][0][Labels.Id]
 		checkout_cart_response = self.checkout_user_cart(new_user, card_id, address_id)
-
+		# should become false since items are out of stock
 		self.assertFalse(checkout_cart_response[Labels.Success])
 		products = MarketProduct.query.filter_by().all()
 		for product in products:
@@ -310,9 +311,7 @@ class TestModels(TestCase):
 			db.session.commit()
 
 		checkout_cart_response = self.checkout_user_cart(new_user, card_id, address_id)
-		self.assertFalse(checkout_cart_response[Labels.Success])		
-
-
+		self.assertFalse(checkout_cart_response[Labels.Success])
 		products = MarketProduct.query.filter_by().all()
 		for product in products:
 			product.inventory = INVENTORY
@@ -329,7 +328,15 @@ class TestModels(TestCase):
 				self.assertEqual(item[Labels.Name], NAME)
 
 			self.assertEqual(item[Labels.NumItems], TEST_INVENTORY)			
-			self.assertEqual(item[Labels.TotalPrice], round(float(PRICE * TEST_INVENTORY),2))
+			self.assertEqual(item[Labels.TotalPrice], round(float(PRICE * TEST_INVENTORY),0))
+
+
 
 if __name__ == "__main__":
+
+	# suite = unittest.TestSuite()
+	# suite.addTest(TestModels("test_checkout_user_cart"))
+	# runner = unittest.TextTestRunner()
+	# runner.run(suite)
+
 	unittest.main(warnings = 'ignore')

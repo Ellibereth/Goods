@@ -384,7 +384,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.SaleTextProduct] = self.sale_text_product
 		public_dict[Labels.SaleTextHome] = self.sale_text_home
 		public_dict[Labels.ManufacturerEmail] = self.manufacturer_email
-		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee
+		public_dict[Labels.ManufacturerFee] = self.manufacturer_fee or 5
 		public_dict[Labels.Quadrant1] = self.quadrant1
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3

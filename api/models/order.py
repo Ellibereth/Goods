@@ -80,6 +80,11 @@ class Order(db.Model):
 		: record this transaction for each product 
 		: (enabling easier refunds), but group by quantity 
 		"""
+		if not this_cart or not this_cart.items:
+			return {
+					Labels.Error : "You've just tried to check out with an empty cart. Buy something!"
+				}
+
 		for cart_item in this_cart.items:
 			# update the inventory
 			this_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
@@ -105,6 +110,7 @@ class Order(db.Model):
 			else:
 				new_inventory = this_product.inventory - cart_item.num_items
 				if new_inventory < 0:
+
 					error_message = str(this_product.name) + " is out of stock. You can only purchase " + str(this_product.inventory) \
 						+ ". Please adjust your quantity and try again"
 					return {

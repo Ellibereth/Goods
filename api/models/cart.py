@@ -141,6 +141,11 @@ class Cart:
 				public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
 				public_dict[Labels.ShippingDiscount] = public_dict[Labels.OriginalShippingPrice] - public_dict[Labels.ShippingPrice]
 				public_dict[Labels.Discounts] = public_dict[Labels.Discounts] + public_dict[Labels.ShippingDiscount]
+			else:
+				public_dict[Labels.TotalPrice] = self.getCartTotalPrice(address)
+				public_dict[Labels.ShippingPrice] = self.getCartShippingPrice(address)
+				public_dict[Labels.SalesTaxPrice] = self.getCartSalesTaxPrice(address)
+
 		return public_dict
 	
 class CartItem(db.Model):
@@ -155,7 +160,7 @@ class CartItem(db.Model):
 	product_id = db.Column(db.Integer, db.ForeignKey(ProdTables.MarketProductTable + '.' + Labels.ProductId))
 	num_items = db.Column(db.Integer)
 	num_items_limit = db.Column(db.Integer)
-	variant_id = db.Column(db.String)
+	variant_id = db.Column(db.Integer)
 	variant_type = db.Column(db.String)
 	date_created  = db.Column(db.DateTime,  default=db.func.current_timestamp())
 	date_modified = db.Column(db.DateTime,  default=db.func.current_timestamp(),
