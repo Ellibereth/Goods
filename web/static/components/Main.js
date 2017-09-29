@@ -200,6 +200,7 @@ ReactDOM.render(
 			<Route path = "shipping" onEnter = {checkUser} component = {UpdateShippingPage}/>
 			<Route path = "checkoutConfirmed" onEnter = {checkConfirmedUser} component = {CheckoutConfirmedPage}/>
 			<Route path = "search/:search_input" component = {SearchPage}/>
+			<Route path = "search" component = {SearchPage}/>
 			
 			<Route path = "recoverAccount" component = {RecoveryPage}/>
 			<Route path = "recovery/:recovery_pin" component = {RecoveryChangePasswordPage}/>

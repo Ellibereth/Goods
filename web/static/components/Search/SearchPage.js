@@ -56,12 +56,21 @@ export default class SearchPage extends React.Component {
 					<div className = "container">
 						{this.state.is_loading 
 							? 
-							<div></div>
-							:
 							<div>
-								<div className = "row search-result-amount-text">
-										Showing {this.state.num_results} {this.state.num_results == 1 ? 'result' : 'results'} for <b> {this.props.params.search_input}</b>
-								</div>
+								
+							</div>
+							:
+
+							<div>
+								{!this.props.params.search_input? 
+									<div id = "try_again" className = "row search-result-amount-text">
+										You submitted an empty search. Try again!
+									</div>
+									:
+									<div id = {this.state.num_results > 0 ? "some_results" : "no_results"} className = "row search-result-amount-text">
+											Showing {this.state.num_results} {this.state.num_results == 1 ? 'result' : 'results'} for <b> {this.props.params.search_input}</b>
+									</div>
+								}
 								<div className = "row">
 									{products_display}
 								</div>

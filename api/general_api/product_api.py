@@ -72,7 +72,7 @@ def getProductsByListingTag():
 		matching_products = MarketProduct.getProductsByListingTag(tag)
 	
 	return JsonUtil.successWithOutput({
-			Labels.Products :  [product.toPublicDict() for product in matching_products]
+			Labels.Products :  [product.toPublicDict(get_related_products = False) for product in matching_products]
 		})
 
 

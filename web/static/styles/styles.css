@@ -8,6 +8,10 @@
 	--LightBlue: #6090a8;
 }
 
+.search-button:hover{
+	cursor: pointer;
+}
+
 .close-modal-button {
 	font-size : 22px;
 	float: right;

@@ -2,6 +2,7 @@
 : module containing the MarketProduct class 
 """
 import random
+import time
 import datetime
 import traceback
 from api.s3.s3_api import S3
@@ -125,7 +126,7 @@ class MarketProduct(db.Model):
 		: returns all products as list of public dictionaries
 		"""
 		products = MarketProduct.query.filter().order_by(MarketProduct.date_created).all()
-		return [product.toPublicDict() for product in products]
+		return [product.toPublicDict(get_related_products = False) for product in products]
 
 	@staticmethod
 	def getActiveProducts():

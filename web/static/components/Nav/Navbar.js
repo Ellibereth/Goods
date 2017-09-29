@@ -15,6 +15,7 @@ export default class Navbar extends React.Component {
 		}
 	}
 
+
 	componentDidMount(){
 		setInterval(function(){ 
 			var current_cart_size = AppStore.getCurrentUser().cart_size
@@ -41,10 +42,9 @@ export default class Navbar extends React.Component {
 								</a>
 							</div>
 							<div className = "vcenter col-xs-offset-2 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 col-xs-4 col-sm-6 col-md-6 col-lg-6">
-								<div className="input-group input-group-lg">
-									<span className="input-group-addon" id="basic-addon1"><span className = "glyphicon glyphicon-search" /></span>
-									<NavbarSearch />
-								</div>
+								
+									<NavbarSearch 
+									/>
 							</div>
 							<div id = "top-right-navigation" className = "col-xs-4 col-sm-4 col-md-4 col-lg-4g  home-right-nav pull-right">
 								<div id="home-top-navigation-wrapper" className = "float-right">

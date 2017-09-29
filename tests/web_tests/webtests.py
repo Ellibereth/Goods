@@ -4,6 +4,7 @@ from selenium import webdriver
 from ddt import ddt, data
 import itertools
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
  
 TEST_SERVER_URL = "https://edgarusa-testserver.herokuapp.com"
@@ -17,7 +18,15 @@ PASSWORD = "brobro"
 # I really hope no one has this email....
 EMAIL = "edgartest@gmail.com"
 PAGE_TITLE = "Edgar USA"
+BAD_PASSWORD = "bro"
 
+
+FULL_INVENTORY_PRODUCT = 1
+SOLD_OUT_PRODUCT = 3
+VARIANT_PRODUCT = 21
+NO_MATCH_SEARCH_STRING = "qwertyuiopasdfghjklzcxvbnm"
+EMPTY_SEARCH_STRING = ""
+MATCH_SEARCH_STRING = "product"
 
 
 @ddt
@@ -111,10 +120,9 @@ class WebTests(unittest.TestCase):
 		: 1. Product.Inventory > 5, add 1 item. Result -> Cart Page
 		: Probably going to refactor these 3 into different test cases
 		"""
-		product_id = 1
 		self.driver.get(LOCAL_URL)
 		product_link = self.driver.find_element_by_css_selector(
-			'img[alt="' + str(product_id) + '"]'
+			'img[alt="' + str(FULL_INVENTORY_PRODUCT) + '"]'
 		)
 		product_link.click()
 		qty_dropdown = self.driver.find_element_by_css_selector(
@@ -150,10 +158,9 @@ class WebTests(unittest.TestCase):
 		"""
 		: this method tests adding to cart
 		"""
-		product_id = 21
 		self.driver.get(LOCAL_URL)
 		product_link = self.driver.find_element_by_css_selector(
-			'img[alt="' + str(product_id) + '"]'
+			'img[alt="' + str(VARIANT_PRODUCT) + '"]'
 		)
 		product_link.click()
 		variant_dropdown = self.driver.find_element_by_css_selector(
@@ -248,10 +255,96 @@ class WebTests(unittest.TestCase):
 		'.userNameText').text == FIRST_NAME)
 		self.delete_user()
 
+	@unittest.skip("passed")
+	def test_add_to_cart_sold_out(self):
+		"""
+		: by the html element being disabled 
+		: (click doesn't take you to cart page)
+		: makes sure the link has the sold out tag
+		: Product Id 3 should not 
+		"""
+		product_id = 3
+		self.driver.get(LOCAL_URL + '/eg/' + str(SOLD_OUT_PRODUCT))
+		sold_out_link = self.driver.find_element_by_css_selector(
+				'a.soldOut'
+			)
+		self.assertTrue(sold_out_link)
+		sold_out_link.click()
+		sold_out_link = self.driver.find_element_by_css_selector(
+				'a.soldOut'
+			)
+		self.assertTrue(sold_out_link)
+
+	@unittest.skip("passed")
+	def test_bad_login(self):
+		"""
+		: #home-login-text is still there
+		: after bad login
+		"""
+		self.driver.get(LOCAL_URL + "/login")
+		email_input = self.driver.find_element_by_css_selector(
+			'input[name="login_email"]',
+		)
+		email_input.send_keys(EMAIL)
+		password_input = self.driver.find_element_by_css_selector(
+			'input[name="login_password"]',
+		)
+		password_input.send_keys(BAD_PASSWORD)
+		login_buton = self.driver.find_element_by_css_selector(
+				"#reqSubmit"
+			)
+		login_buton.click()
+		time.sleep(2)
+		
+		login_alert =  self.driver.find_element_by_css_selector( 
+			'#login_fading_text_alert'
+		)
+		self.assertTrue(login_alert)
+		login_link = self.driver.find_element_by_css_selector('a[id="home-login-text"]')
+		self.assertTrue(login_link)
+
+	@unittest.skip("passed")
+	def test_search(self):
+		"""
+		: gives bogus string "adfjdsfakdfa" and ensures hits are 0
+		: gives a known string, "product" and ensures hits are > 0
+		""" 
+		self.driver.get(LOCAL_URL)
+		search_bar = self.driver.find_element_by_css_selector(
+			'#edgar_search_bar'
+		)
+		search_bar.send_keys(MATCH_SEARCH_STRING)
+		search_button = self.driver.find_element_by_css_selector(
+			'span[name="search_button"]'
+		)
+		search_button.click()
+		results_header = self.driver.find_element_by_css_selector(
+			"#some_results"
+		)
+		self.assertTrue(results_header)
+
+		search_bar = self.driver.find_element_by_css_selector(
+			'#edgar_search_bar'
+		)
+		search_bar.send_keys(NO_MATCH_SEARCH_STRING)
+		search_bar.send_keys(Keys.RETURN)
+		results_header = self.driver.find_element_by_css_selector(
+			"#no_results"
+		)
+		self.assertTrue(results_header)
+
+		search_bar = self.driver.find_element_by_css_selector(
+			'#edgar_search_bar'
+		)
+		search_bar.send_keys(EMPTY_SEARCH_STRING)
+		search_bar.send_keys(Keys.RETURN)
+		results_header = self.driver.find_element_by_css_selector(
+			"#no_results"
+		)
+		self.assertTrue(results_header)
+		
 
 
-	# def test_login(self):
-	# 	self.register_user()
 
 
 if __name__ == '__main__':
