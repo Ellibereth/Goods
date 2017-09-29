@@ -144,7 +144,8 @@ export default class AdminEditProductInfo extends React.Component {
 					 	value = {this.state.product.manufacturer_id ? this.state.product.manufacturer_id : false}
 					 	onChange = {(event) => this.onTextInputChange('manufacturer_id', event.target.value)}>
 					 		{this.props.manufacturers.map((manufacturer, index)=> {
-					 			return <option value = {manufacturer.manufacturer_id}>{manufacturer.name}</option>
+					 			return <option
+					 			 value = {manufacturer.manufacturer_id}>{manufacturer.name}</option>
 					 		})}
 					 	</select>
 				</div>

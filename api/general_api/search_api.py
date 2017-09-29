@@ -23,9 +23,10 @@ def searchProducts():
 	search_input = search_input.lower()
 
 	name_filter = MarketProduct.query.filter(MarketProduct.name.ilike("%" + search_input + "%")).all()
+	manufacturer_filter = MarketProduct.query.filter(MarketProduct.manufacturer.ilike("%" + search_input + "%")).all()
 	tag_filter = MarketProduct.getProductsBySearchTag(search_input)
 
-	merged_list = name_filter  + tag_filter
+	merged_list = name_filter  + tag_filter + manufacturer_filter
 	hit_product_ids = list()
 	all_matches = list()
 	for product in merged_list:

@@ -30,8 +30,12 @@ export default class NavbarSearch extends React.Component {
 
 	componentDidMount(){
 		const url = window.location.href
-		var search_text = url.split("/").pop()
-		this.setState({search_text : search_text})
+		var splits = url.split("/")
+		var last_arg = splits.pop()
+		var second_last_arg = splits.pop()
+		if (second_last_arg == "search") {
+			this.setState({search_text : last_arg.split('%20').join(" ")})	
+		}	
 	}
 
 	render() {

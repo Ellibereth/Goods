@@ -27,7 +27,7 @@ class MarketProduct(db.Model):
 	: implemented with SQL Alchemy 
 	"""
 	__tablename__ = ProdTables.MarketProductTable
-	INTEGER_INPUTS = [Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.ProductTemplate]
+	INTEGER_INPUTS = [Labels.ManufacturerId, Labels.Price, Labels.Inventory, Labels.NumItemsLimit, Labels.ProductTemplate]
 	product_id = db.Column(db.Integer, primary_key = True, autoincrement = True)
 	name = db.Column(db.String, default = "Sample Name")
 	price = db.Column(db.Integer, default = 0)
@@ -42,6 +42,7 @@ class MarketProduct(db.Model):
 	variant_type_description = db.Column(db.String, default = "type")
 	live = db.Column(db.Boolean, default = False)
 	product_template = db.Column(db.Integer, default = 2)
+	manufacturer = db.Column(db.String)
 
 	second_tab_name = db.Column(db.String)
 	second_tab_text = db.Column(db.String)
@@ -352,6 +353,7 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Category] = self.category
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.Manufacturer] = self.getManufacturerInfo() 
+		public_dict[Labels.ManufacturerId] = self.manufacturer_id 
 
 		public_dict[Labels.Inventory] = self.inventory
 		if self.sale_end_date:

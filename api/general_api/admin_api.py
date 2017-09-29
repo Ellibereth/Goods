@@ -114,16 +114,26 @@ def updateProductInfo(admin_user):
 			if key == Labels.ProductListingTags:
 				tag_list = value.split(',')
 				this_product.updateProductListingTags(tag_list)
-			if key == Labels.ProductSearchTags:
+
+			elif key == Labels.ProductSearchTags:
 				tag_list = value.split(',')
 				this_product.updateProductSearchTags(tag_list)
-			if key == Labels.RelatedProductTags:
+
+			elif key == Labels.RelatedProductTags:
 				tag_list = value.split(',')
 				this_product.updateRelatedProductTags(tag_list)
 
 			elif value != None:
-				setattr(this_product, key, value)
-		except:
+				if key != Labels.Manufacturer:
+					setattr(this_product, key, value)
+					if key == Labels.ManufacturerId:
+						this_product.manufacturer = Manufacturer.query.filter_by(manufacturer_id = value).first().name
+
+		except Exception as e:
+
+			print("\n")
+			print(e)
+			print(key,  product.get(key))
 			AdminAction.addAdminAction(admin_user, request.path, request.remote_addr, success = False)
 			return JsonUtil.failure(key + " input is invalid")
 

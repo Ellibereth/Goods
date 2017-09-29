@@ -79,13 +79,7 @@ export default class SuggestProductPage extends React.Component {
 		})
 	}
 
-
-
-
 	render() {
-
-		
-
 		return (
 			<PageContainer>
 				<div className = "container">
