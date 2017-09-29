@@ -94,7 +94,7 @@ export default class AdminEditProductInfo extends React.Component {
 
 		// allow us to edit invetory here for single products
 		if (!this.state.product.has_variants) {
-			input_forms.push(
+			input_forms.unshift(
 				<AdminTextInput onTextInputChange = {this.onTextInputChange.bind(this)}
 					value = {this.state.product.inventory} field = "inventory"
 					label = "Inventory"

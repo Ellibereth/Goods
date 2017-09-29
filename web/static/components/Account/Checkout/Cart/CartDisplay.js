@@ -40,14 +40,14 @@ export default class CartDisplay extends React.Component {
 		return (
 			<div id = "cart_display">
 				{item_display.length == 0 ? 
-					<div>
+					<div id = "empty_cart_display">
 						{(!user || user.is_guest) && 
 							<h4> 
 								If you already have an account, <a href = "/login/?target=myCart">Sign In</a> to see your Cart. 
 							</h4>
 						}
-						<h4> There are no items in your cart! </h4>
-						<h4> Check out some items  <a href = "/"> here </a> </h4>
+						<h4>There are no items in your cart!</h4>
+						<h4>Check out some items<a href = "/"> here </a> </h4>
 					</div>
 					:
 					<div>

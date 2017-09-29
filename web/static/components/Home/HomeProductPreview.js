@@ -131,6 +131,7 @@ export default class HomeProductPreview extends React.Component {
 							<div> No Image For This Product </div>
 							:
 							<img 
+								alt = {this.props.product.product_id}
 								src = {'https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/' 
 								+ this.props.product.main_image}
 								className = "img-responsive home-product-preview-image"/>

@@ -73,7 +73,7 @@ export default class Navbar extends React.Component {
 														<i style = {{'fontSize' : '21px'}} className = "fa fa-shopping-cart" aria-hidden = {true}/>
 														{/* <span className = "glyphicon glyphicon-shopping-cart"/> */}
 														{this.state.cart_badge > 0 &&
-														<span className="noOfProdInCartIcon crtLstNotification " style= {{'display': 'block', 'left' : '215px'}}> 
+														<span id = "cart_badge_number" className="noOfProdInCartIcon crtLstNotification" style= {{'display': 'block', 'left' : '215px'}}> 
 															{this.state.cart_badge}
 														</span>
 														}

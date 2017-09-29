@@ -185,9 +185,11 @@ export default class ProductAddToCart extends React.Component {
 		return (
 			<div className="quantitySelBlock ">
 				<select  onChange = {this.onVariantChange.bind(this)}
-					tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" className="quantityPgSizeDD def_select quantityDPP" >
+					tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="variant_dropdown" className="quantityPgSizeDD def_select quantityDPP" >
 					{product.variants.map((variant,index) => 
-						<option name = "name" value= {variant.variant_id}>{variant.variant_type}</option>
+						<option 
+						 name = {index} 
+						 value= {variant.variant_id}>{variant.variant_type}</option>
 					)}
 				</select>
 			</div>
@@ -202,10 +204,12 @@ export default class ProductAddToCart extends React.Component {
 		if (product.has_variants){
 			for (var i = 0; i < items.length; i++) {
 				var item = items[i]
-				if (item.product_id == product.product_id){
-					if (item.variant_id == this.state.variant.variant_id) {
-						if (item.num_items >= this.state.variant.inventory) {
-							return true
+				if (item.product_id == product.product_id) {
+					if (this.state.variant) {
+						if (item.variant_id == this.state.variant.variant_id) {
+							if (item.num_items >= this.state.variant.inventory) {
+								return true
+							}
 						}
 					}
 				}
@@ -245,10 +249,11 @@ export default class ProductAddToCart extends React.Component {
 				{variant_select}
 				<div className="quantitySelBlock hidden-xs">
 					<select 
+						name = "quantity_dropdown"
 						value = {this.state.quantity}
 						disabled = {add_to_cart_disabled || !this.props.item_in_stock}
 						onChange = {this.onQuantityChange.bind(this)}
-						tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" name="qtyDropDownOnProductPg" 
+						tabindex="-1" id="qtyDropDownOnProductPg" data-placeholder="Qty" 
 						className={'quantityPgSizeDD def_select quantityDPP ' + disabled_class}>
 						{quantity_options}
 					</select>

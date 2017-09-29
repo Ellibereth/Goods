@@ -190,10 +190,12 @@ export default class MobileAddToCart extends React.Component {
 			for (var i = 0; i < items.length; i++) {
 				var item = items[i]
 				if (item.product_id == product.product_id){
-					if (item.variant_id == this.state.variant.variant_id) {
-						if (item.num_items >= this.state.variant.inventory) {
-							return true
-						}
+					if (this.state.variant) {
+						if (item.variant_id == this.state.variant.variant_id) {
+							if (item.num_items >= this.state.variant.inventory) {
+								return true
+							}
+						}	
 					}
 				}
 			}

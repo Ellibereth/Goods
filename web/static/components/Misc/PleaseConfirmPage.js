@@ -57,7 +57,7 @@ export default class PleaseConfirmPage extends React.Component {
 		return (
 			<PageContainer>
 				<div className = "container">
-					<h3>Please confirm your email to continue</h3>
+					<h3 id = "please_confirm_text">Please confirm your email to continue</h3>
 					<h3>{'If you need confirmation email to be resent click '}
 						<span className = "clickable-text" onClick = {this.resendConfirmation}>here</span>
 					</h3>
