@@ -19,6 +19,9 @@ export default class ContactUsPage extends React.Component {
 			<PageContainer>
 				<div className = "container">
 					<h1> Contact Us Page </h1>
+					<div>
+						Send us an email at support@edgarusa.com
+					</div>
 				</div>
 			</PageContainer>
 		)
