@@ -2,13 +2,10 @@
 """
 : This module contains the user class.
 """
-
-
 import datetime
 import re
 from validate_email import validate_email
-
-
+from uszipcode import ZipcodeSearchEngine
 from api.models.order import Order
 from api.models.cart import Cart, CartItem
 from api.models.market_product import MarketProduct
@@ -515,7 +512,6 @@ class User(db.Model):
 		if exp_year == "" or len(exp_year) != 2:
 			return {Labels.Success : False,Labels.Error : ErrorMessages.CardExpiryError}
 
-
 		try:
 			card = StripeManager.addCardForCustomer(self, address_name, address_city, address_line1, address_line2, 
 				address_zip, exp_month, exp_year, number, cvc, name, address_state, address_country = address_country)
@@ -525,9 +521,10 @@ class User(db.Model):
 				db.session.commit()
 			return {Labels.Success : True, Labels.User : self.toPublicDict(), Labels.Jwt : self.getJwt()}
 		except Exception as e:
+			error = ErrorMessages.customMessage(str(e).split(":")[1]) or ErrorMessages.CardAddError
 			return {
 				Labels.Success : False,
-				Labels.Error : ErrorMessages.CardAddError,
+				Labels.Error : error,
 				Labels.User : self.toPublicDict()
 			}
 		
@@ -566,6 +563,15 @@ class User(db.Model):
 			return {Labels.Success : False , Labels.Error :ErrorMessages.BlankState}
 		if description is None:
 			description = ""
+		# we don't do international right now
+		if address_country != "US":
+			return {Labels.Success: False, Labels.Error : ErrorMessages.OnlyShipToUSA}
+
+		search = ZipcodeSearchEngine()
+		zipcode = search.by_zipcode(address_zip)
+		if zipcode['State'] != address_state:
+			return {Labels.Success: False, Labels.Error : ErrorMessages.StateZipMismatch}
+
 		try:
 			address = Lob.addUserAddress(self, description = description, name = name, address_line1 = address_line1
 				, address_line2 = address_line2, address_city = address_city,
@@ -576,7 +582,7 @@ class User(db.Model):
 				self.default_address = address['id']
 				db.session.commit()
 			return {Labels.Success : True, Labels.User : self.toPublicDict(), Labels.Jwt : self.getJwt()}
-		except:
+		except Exception as e:
 			return {
 				Labels.Success : False , 
 				Labels.Error :ErrorMessages.AddressAddError,

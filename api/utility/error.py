@@ -59,10 +59,15 @@ class ErrorMessages:
 	CardExpiryError = SwalError("Invalid expiration date.").toDict()
 	CardCvcError = SwalError("Card CVC invalid").toDict()
 	CardZipError = SwalError("Card ZIP invalid").toDict()
+	StateZipMismatch = SwalError("State does not match zip code").toDict()
+	OnlyShipToUSA = SwalError("Address must be in US").toDict()
 
 	BlankCategory = SwalError("You must select a topic").toDict()
 	BlankMessage = SwalError("Message cannot be blank").toDict()
 
+
+	def customMessage(message):
+		return SwalError(message).toDict()
 
 	EmailListNameTaken = SwalError("Email List Name Taken").toDict()
 	def invalidEmail(email):

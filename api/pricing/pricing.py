@@ -3,8 +3,7 @@
 from api.models.market_product import MarketProduct
 from api.utility.membership_tiers import MembershipDiscount
 
-# FLAT_SHIPPING_PRICE = 500
-FLAT_SHIPPING_PRICE = 50
+FLAT_SHIPPING_PRICE = 500
 
 class Pricing:
 	@staticmethod

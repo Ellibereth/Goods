@@ -1,6 +1,5 @@
 import os
 import lob
-from uszipcode import ZipcodeSearchEngine
 
 LOB_LIVE_KEY = "live_823f35f6e24d9a3386eaf6b0c9e33ddf691"
 
@@ -25,16 +24,6 @@ class Lob:
 	@staticmethod
 	def addUserAddress(user, description = "", name = "", address_line1 = "", address_line2 = "", address_city = ""
 		,address_state = "", address_zip = "", address_country = "US"):
-		# we don't do international right now
-		if address_country != "US":
-			raise Exception("Address must be in US")
-
-		search = ZipcodeSearchEngine()
-		zipcode = search.by_zipcode(address_zip)
-		if zipcode[State] != address_state:
-			raise Exception("ZIP Code and State do not match")
-
-
 		try:
 
 			verification = Lob.verifyAddress(name, address_line1, address_line2, address_city,
