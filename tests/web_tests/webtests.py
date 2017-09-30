@@ -9,6 +9,8 @@ from selenium.webdriver.common.keys import Keys
  
 TEST_SERVER_URL = "https://edgarusa-testserver.herokuapp.com"
 LOCAL_URL = "http://0.0.0.0:5000"
+DEV_SERVER_URL = "https://edgarusa-devgeniy.herokuapp.com"
+URL = DEV_SERVER_URL
 
 FIRST_NAME = "TEST"
 
@@ -42,14 +44,14 @@ class WebTests(unittest.TestCase):
 
 	@unittest.skip("This is an example")
 	def test_title(self):
-		self.driver.get(LOCAL_URL)
+		self.driver.get(URL)
 		self.assertEqual(
 			self.driver.title,
 			PAGE_TITLE
 		)
 
 	def register_user(self):
-		self.driver.get(LOCAL_URL + "/register")
+		self.driver.get(URL + "/register")
 		name_input = self.driver.find_element_by_css_selector(
 		   'input[id="user_name"]')
 		name_input.send_keys(FULL_NAME)
@@ -68,7 +70,7 @@ class WebTests(unittest.TestCase):
 
 	# a user should be logged in first 
 	def delete_user(self):
-		self.driver.get(LOCAL_URL + "/settings")
+		self.driver.get(URL + "/settings")
 		time.sleep(5)
 		edit_button = self.driver.find_element_by_css_selector (
 			'button[id="edit-address-button"')
@@ -120,7 +122,7 @@ class WebTests(unittest.TestCase):
 		: 1. Product.Inventory > 5, add 1 item. Result -> Cart Page
 		: Probably going to refactor these 3 into different test cases
 		"""
-		self.driver.get(LOCAL_URL)
+		self.driver.get(URL)
 		product_link = self.driver.find_element_by_css_selector(
 			'img[alt="' + str(FULL_INVENTORY_PRODUCT) + '"]'
 		)
@@ -158,7 +160,7 @@ class WebTests(unittest.TestCase):
 		"""
 		: this method tests adding to cart
 		"""
-		self.driver.get(LOCAL_URL)
+		self.driver.get(URL)
 		product_link = self.driver.find_element_by_css_selector(
 			'img[alt="' + str(VARIANT_PRODUCT) + '"]'
 		)
@@ -198,7 +200,7 @@ class WebTests(unittest.TestCase):
 		: This method tests if user's must
 		: login to access certain parts of the site
 		"""
-		self.driver.get(LOCAL_URL + route)
+		self.driver.get(URL + route)
 		please_confirm_text = self.driver.find_element_by_css_selector(
 				'#LoginScreen'
 			)
@@ -212,7 +214,7 @@ class WebTests(unittest.TestCase):
 		: confirm to access certain parts of the site
 		"""
 		self.register_user()
-		self.driver.get(LOCAL_URL + route)
+		self.driver.get(URL + route)
 		time.sleep(2)
 		please_confirm_text = self.driver.find_element_by_css_selector(
 				'#please_confirm_text'
@@ -264,7 +266,7 @@ class WebTests(unittest.TestCase):
 		: Product Id 3 should not 
 		"""
 		product_id = 3
-		self.driver.get(LOCAL_URL + '/eg/' + str(SOLD_OUT_PRODUCT))
+		self.driver.get(URL + '/eg/' + str(SOLD_OUT_PRODUCT))
 		sold_out_link = self.driver.find_element_by_css_selector(
 				'a.soldOut'
 			)
@@ -281,7 +283,7 @@ class WebTests(unittest.TestCase):
 		: #home-login-text is still there
 		: after bad login
 		"""
-		self.driver.get(LOCAL_URL + "/login")
+		self.driver.get(URL + "/login")
 		email_input = self.driver.find_element_by_css_selector(
 			'input[name="login_email"]',
 		)
@@ -309,7 +311,7 @@ class WebTests(unittest.TestCase):
 		: gives bogus string "adfjdsfakdfa" and ensures hits are 0
 		: gives a known string, "product" and ensures hits are > 0
 		""" 
-		self.driver.get(LOCAL_URL)
+		self.driver.get(URL)
 		search_bar = self.driver.find_element_by_css_selector(
 			'#edgar_search_bar'
 		)
