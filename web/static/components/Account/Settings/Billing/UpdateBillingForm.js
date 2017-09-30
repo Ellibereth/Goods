@@ -120,7 +120,7 @@ export default class UpdateBillingForm extends React.Component {
 	}
 
 	componentDidMount(){
-		var user = AppStore.getCurrentUser()
+		var user = this.props.user
 		if (user.addresses.length == 0){
 			this.setState({skip_shipping : false})	
 		}
@@ -145,7 +145,7 @@ export default class UpdateBillingForm extends React.Component {
 	}
 
 	onAddressChange(index){
-		var user = AppStore.getCurrentUser()
+		var user = this.props.user
 		var addr = user.addresses[index]
 		this.setState({
 			selected_address_index : index,

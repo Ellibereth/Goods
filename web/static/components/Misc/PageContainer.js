@@ -52,15 +52,18 @@ export default class PageContainer extends React.Component {
 								</div>
 							</div>
 						</div>
-						<div className = "page-wrapper">
-							<Navbar />
-							<div className = "content-wrapper"> 
-								{this.props.children}
+						<div className = "container-fluid">
+							<div className = "page-wrapper">
+								<Navbar />
+								<div className = "content-wrapper"> 
+									{this.props.children}
+								</div>
 							</div>
+
+							<div className = "top-buffer"/>
+							<Footer />
+							<div className = "top-buffer"/>
 						</div>
-						<div className = "top-buffer"/>
-						<Footer />
-						<div className = "top-buffer"/>
 					</div>
 					: 
 					<div style = {{'width' : '100%'}} className = "hidden-sm hidden-md hidden-lg">
