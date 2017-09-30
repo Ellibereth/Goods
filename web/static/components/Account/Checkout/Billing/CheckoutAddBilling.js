@@ -90,6 +90,7 @@ export default class UpdateBillingForm extends React.Component {
 			url: '/addCreditCard',
 			data: form_data,
 			success: function(data) {
+				this.setState({disabled : false})
 				this.props.setLoading(false)
 				if (!data.success) {
 					this.setErrorMessage(data.error.title)
@@ -245,7 +246,7 @@ export default class UpdateBillingForm extends React.Component {
 								</div>
 							</div>
 							<div className = "row">
-								<div className = "col-sm-2 col-md-2 col-lg-2">
+								<div className = "col-sm-12 col-md-12 col-lg-12">
 									<FadingText height_transition ={true} 
 										show = {this.state.show_error_text}>
 										<div className = "checkout-error-text">
@@ -285,7 +286,7 @@ export default class UpdateBillingForm extends React.Component {
 								</div>
 							</div>
 							<div className = "row">
-								<div className = "col-sm-2 col-md-2 col-lg-2">
+								<div className = "col-sm-12 col-md-12 col-lg-12">
 									<FadingText height_transition ={true} 
 										show = {this.state.show_error_text}>
 										<div className = "checkout-error-text">

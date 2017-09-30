@@ -93,8 +93,6 @@ export default class CheckoutPage extends React.Component {
 	onAddingNewShippingAddress(){
 		this.refreshCheckoutInformation()
 		this.openEditable.bind(this)(BILLING_INDEX)
-		
-		
 	}
 	
 	onAddingNewBillingMethod(){
@@ -127,7 +125,8 @@ export default class CheckoutPage extends React.Component {
 			success: function(data) {
 				if (data.success) {
 					if (data.user.cards.length > this.state.cards.length){
-						this.setState({seleted_card_index: data.user.cards.length - 1,
+						this.setState({
+								selected_card_index: data.user.cards.length - 1,
 								cards: data.user.cards,
 							},
 							this.refreshCheckoutInformation
@@ -379,7 +378,6 @@ export default class CheckoutPage extends React.Component {
 
 
 	render() {
-
 		var can_checkout = this.canCheckout()
 		var checkout_button_class = can_checkout ? ' checkout-button btn btn-default ' :'checkout-button block-checkout btn btn-default '
 		var cart = this.state.cart
@@ -530,7 +528,7 @@ export default class CheckoutPage extends React.Component {
 										*/}
 
 								<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
-									label = {'Total:'} price = {formatPrice(this.state.total_price)}/>
+									label = {'Total:'} price = {formatPrice(this.state.total_price) || "__"}/>
 										
 
 

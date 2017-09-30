@@ -17,7 +17,6 @@ product_api = Blueprint('product_api', __name__)
 @product_api.route('/getMarketProductInfo', methods = ['POST'])
 def getMarketProductInfo():
 	product_id = request.json.get(Labels.ProductId)
-	print(product_id)
 	if not product_id:
 		return JsonUtil.failure("Bad Product Id")
 	if not product_id.isdigit():
@@ -59,13 +58,20 @@ def getProductsByListingTag():
 		tomorrow = present + datetime.timedelta(days = 1)
 		matching_products = []
 		for product in all_products:
-			if product.sale_end_date:
-				if product.sale_end_date < tomorrow and product.sale_end_date > present:
+			if product.has_variants:
+				should_add = False
+				for variant in product.getProductVariants():
+					if variant.inventory < 10:
+						should_add = True
+				if should_add:
+					matching_products.append(product)
+			else:
+				if product.inventory < 10:
 					matching_products.append(product)
 
 	elif tag == "Home_Page":
 		all_products = MarketProduct.query.filter_by(active = True).all()
-		matching_products = [product for product in all_products if not product.isExpired()]
+		matching_products = [product for product in all_products]
 
 
 	else:

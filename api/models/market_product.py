@@ -92,21 +92,7 @@ class MarketProduct(db.Model):
 			if self.inventory == 0:
 				return False
 
-		return not self.isExpired()
-
-
-	def isExpired(self):
-		"""
-		: Returns true if the product is no longer on sale
-		: false if it is still on sale
-		"""
-		present = datetime.datetime.now()
-		if self.sale_end_date is None:
-			return False
-		if present > self.sale_end_date:
-			return True
-		return False
-
+		return True
 		
 	def getProductImages(self):
 		"""

@@ -1,11 +1,17 @@
 import stripe
 import time
+import os
 # Set your secret key: remember to change this to your live secret key in production
 # See your keys here: https://dashboard.stripe.com/account/apikeys
 test_key = "sk_test_B0VTmo1cTi1WfnlKEQjgVsjm"
 prod_key = "sk_live_PW2L6feEEEciyHt2AR16V93u"
 
-stripe.api_key = test_key
+
+if os.environ.get("ENVIRONMENT") == "PRODUCTION":
+	stripe.api_key = prod_key 	
+else:
+	stripe.api_key = test_key
+
 
 
 StripeCustomerId = "stripe_customer_id"

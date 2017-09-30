@@ -524,7 +524,7 @@ class User(db.Model):
 				self.default_card = card['id']
 				db.session.commit()
 			return {Labels.Success : True, Labels.User : self.toPublicDict(), Labels.Jwt : self.getJwt()}
-		except:
+		except Exception as e:
 			return {
 				Labels.Success : False,
 				Labels.Error : ErrorMessages.CardAddError,

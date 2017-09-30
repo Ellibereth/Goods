@@ -88,10 +88,8 @@ export default class HomeProductPreview extends React.Component {
 
 	render() {
 
-		// var date = this.props.product.sale_end_date
 		var item_in_stock = this.itemInStock(this.props.product)
 		var price_row = this.getPriceRow(item_in_stock)
-		// if (this.state.invalid_product) return <div id = {this.props.product.product_id}/>
 		return (
 			<div className = "col-xs-12 text-center">
 				<div className = "small-buffer"/>

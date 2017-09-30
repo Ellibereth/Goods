@@ -215,6 +215,8 @@ class TestModels(TestCase):
 		self.assertTrue(new_user in db.session)
 		self.assertTrue(new_user.name == NAME)
 		self.assertTrue(new_user.email == EMAIL)
+		for bad_password in BAD_PASSWORDS:
+			self.assertFalse(new_user.checkLogin(bad_password))
 		self.assertTrue(new_user.checkLogin(PASSWORD))
 
 	def test_add_product(self):
@@ -342,7 +344,6 @@ class TestModels(TestCase):
 if __name__ == "__main__":
 
 	suite = unittest.TestSuite()
-	suite.addTest(TestModels("test_checkout_user_cart"))
 	# suite.addTest(TestModels("test_add_user_success"))
 	runner = unittest.TextTestRunner(verbosity = 0)
 	runner.run(suite)
