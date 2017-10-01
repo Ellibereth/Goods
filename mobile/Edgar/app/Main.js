@@ -60,6 +60,7 @@ class Main extends React.Component {
 
 
 		if (!this.props.initial_fetch_done) return <View/>
+			
 		return (
 			<Router>
 				<Scene key="root"  

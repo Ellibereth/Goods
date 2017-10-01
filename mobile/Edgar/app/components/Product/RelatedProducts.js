@@ -21,9 +21,11 @@ export default class RelatedProducts extends Component {
 					</Text> 
 				</View>
 
-				{this.props.product.related_products.map((product, index) => 
-					<RelatedProductDisplay product = {product} key = {index}/>
-				)}
+				{this.props.product.related_products &&
+						this.props.product.related_products.map((product, index) => 
+						<RelatedProductDisplay product = {product} key = {index}/>
+					)
+				} 
 			</View>
 		
 		);

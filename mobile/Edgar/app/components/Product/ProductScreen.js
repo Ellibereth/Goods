@@ -108,7 +108,7 @@ class ProductScreen extends Component {
 
 							<View style = {styles.title}>
 								<Text style = {styles.name_text}> {this.props.product.name} </Text>
-								<Text style = {styles.manufacturer_text}>by <Text style = {{textDecorationLine : "underline"}}>{this.props.product.manufacturer_obj.name} </Text></Text>
+								<Text style = {styles.manufacturer_text}>by <Text style = {{textDecorationLine : "underline"}}>{this.props.product.manufacturer.name} </Text></Text>
 								<Text style = {styles.price_text}> ${formatPrice(this.props.product.price)} </Text>
 							</View>
 

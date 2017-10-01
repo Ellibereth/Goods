@@ -113,7 +113,7 @@ class Cart:
 		for cart_item in self.items:
 			if cart_item.num_items > 0:
 				db_product = MarketProduct.query.filter_by(product_id = cart_item.product_id).first()
-				product = db_product.toPublicDict()
+				product = db_product.toPublicDict(get_related_products = False)
 				product[Labels.NumItems] = cart_item.num_items
 				product[Labels.VariantType] = cart_item.variant_type
 				product[Labels.VariantId] = cart_item.variant_id

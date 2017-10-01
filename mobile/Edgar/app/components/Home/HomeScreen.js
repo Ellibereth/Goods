@@ -1,12 +1,13 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
+import {View, Text, ScrollView, StyleSheet} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {getProductsByListing} from '../../api/ProductService'
 import HomeProducts from './HomeProducts'
-import Swiper from 'react-native-swiper'
+import LoadingSpinner from '../Misc/LoadingSpinner'
+
 
 const HOME_TAG = "Home_Page"
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -35,7 +36,7 @@ class HomeScreen extends Component {
 	}
 
 	async loadHomeProducts() {
-		let data = await getProductsByListing(HOME_TAG)
+		let data = await getProductsByListing(HOME_TAG, true)
 		if (data.success) {
 			this.setState({home_products : data.products})
 		}
@@ -45,10 +46,10 @@ class HomeScreen extends Component {
 
 
 	render() {
-		
 		return (
 			
 				<View style = {{"flex" : 1}}>
+					<LoadingSpinner visible = {this.state.home_products.length == 0}/>
 					<View style = {styles.scroll_wrapper}>
 						<HomeProducts home_products = {this.state.home_products}/>
 					</View>

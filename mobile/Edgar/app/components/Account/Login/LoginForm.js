@@ -10,19 +10,22 @@ import {
 } from 'react-native';
 import {dismissKeyboard} from 'react-native-dismiss-keyboard'
 import {handleLoginSubmit} from '../../../api/UserService'
-import {Actions, ActionConst} from 'react-native-router-flux'
+import LoadingSpinner from '../../Misc/LoadingSpinner'
 
 export default class LoginForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			email : "",
-			password: ""
+			password: "",
+			is_loading : false,
 		}
 	}
 
 	handleLoginSubmit() {
+		this.setState({is_loading : true})
 		this.asyncHandleLoginSubmit().then((response)=> {
+			this.setState({is_loading : false})
 			if (response){
 				Actions.home({type : ActionConst.RESET})	
 			}
@@ -54,6 +57,7 @@ export default class LoginForm extends Component {
 		// onPress={() => dismissKeyboard()}
 		>
 			<View style={styles.container}>
+				<LoadingSpinner visible = {this.state.is_loading}/>
 				<View style={{flex : 1, flexDirection : 'column'}}>
 					<View style={{flex : 2}}>
 						<View style={{flex : 1}}/>

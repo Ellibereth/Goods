@@ -48,6 +48,8 @@ def getOnSaleProducts():
 
 @product_api.route('/getProductsByListingTag', methods = ['POST'])
 def getProductsByListingTag():
+	get_related_products = request.json.get(Labels.GetRelatedProducts) or False
+
 	tag = request.json.get(Labels.Tag)
 	if tag == "All_Products":
 		all_products = MarketProduct.query.filter_by(active = True).all()
@@ -78,7 +80,7 @@ def getProductsByListingTag():
 		matching_products = MarketProduct.getProductsByListingTag(tag)
 	
 	return JsonUtil.successWithOutput({
-			Labels.Products :  [product.toPublicDict(get_related_products = False) for product in matching_products]
+			Labels.Products :  [product.toPublicDict(get_related_products = get_related_products) for product in matching_products]
 		})
 
 

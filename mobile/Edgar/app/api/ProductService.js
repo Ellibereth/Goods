@@ -12,9 +12,10 @@ export async function getProductInfo(product_id) {
 		return data
 }
 
-export async function getProductsByListing(tag){
+export async function getProductsByListing(tag, get_related_products){
 	var form_data = {
-				tag: tag	
+				tag: tag,
+				get_related_products : get_related_products
 			}
 	let data = await executeRequest(GET_PRODUCTS_BY_LISTING_ROUTE, form_data)
 	return data

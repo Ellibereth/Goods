@@ -36,7 +36,7 @@ export default class HomeProduct extends Component {
 								{this.props.product.name}
 							</Text> 
 							<Text style = {styles.manufacuturer} numberOfLines = {1}>
-								by {this.props.product.manufacturer_obj.name}
+								by {this.props.product.manufacturer.name}
 							</Text>
 							<Text style = {styles.price}>
 								${formatPrice(this.props.product.price)}
