@@ -1,8 +1,8 @@
 ## Description
-Code base for Edgar USA. 
+Code base for Edgar USA - best online store for American made goods.
 
-## Dependencies 
-Server Side - Python 3.5.2 <br/>
+## Built On 
+Server Side - Python 3.6.2 <br/>
 Client Side - NPM/Node (for ReactJS), ReactJS <br/> 
 Database Management - Flask SQL Alchemy <br/>
 Python Package Management - https://pip.pypa.io/en/stable/installing/ <br/>
@@ -21,7 +21,21 @@ Stores addresses with Lob. https://lob.com/ <br/>
 All user requests are authenticated with JWT https://jwt.io/ <br/>
 Uses SSL for HTTPS connection <br/>
 
-## Installation
+## Setup
+### Virtual Enviroment
+When testing locally, use the virutal environment with the following shell command from the root directory. 
+
+```
+source virtualenv/edgarvenv/bin/activate
+```
+
+The virtual environment will include all the necessary python dependencies. If not one can install them from requirements.txt as follows
+
+```
+pip install -r requirements.txt
+```
+
+#### Node and React
 Install Node <br/>
 https://nodejs.org/en/download/ <br/>
 Run the following in linux  
@@ -31,7 +45,7 @@ Run the following in linux
 sh setup
 ```
 
-This will install reactjs, install react dependencies, and python dependencies
+This will install reactjs and npm node modules.
 
 ## Testing Locally
 Run the following commands in linux 
@@ -57,12 +71,18 @@ Once this is done, then comment out the line in index.html.
 <script src= {{url_for('static', filename='dist/dll/dll.vendor.js') }}></script>
 ```
 
-Then compress and obfuscate bundle.js.
+Compress and obfuscate bundle.js.
 ```
 https://jscompress.com/
 https://javascriptobfuscator.com/
 ```
 
+Then copy the bundle.js file in web/static folder and rename it to the appropriate version in the web/static/bundles folder. Lastly change the following line in main.py to match the new bundle version
+
+```
+version = "v0.0.1"
+bundle_url = url_for('static', filename='bundles/bundle' + version + '.js')
+```
 
 ## Environments
 This project uses Heroku's pipeline to manage environments. We have the following. Note that the Heroku CLI Name is just the name I use to refer to it in the Heroku terminal. I'd advise you do the same for consistency.
@@ -158,7 +178,7 @@ cd web && sh bundledev
 ### Static Analysis Tools
 For Python we use PyLint and React JS we use EsLint 
 
-## PyLint 
+### PyLint 
 Intall by initialize a config file by running 
 ```
 pip install pylint
@@ -170,7 +190,7 @@ Run the following from the command line to analyze python files
 pylint [FILENAME] --rcfile=[CONFIG_FILENAME] > [OUTPUT_FILENAME]
 ```
 
-## EsLint 
+### EsLint 
 Install by 
 ```
 npm install --save eslint 
@@ -183,7 +203,15 @@ eslint [DIRECTORY / FILENAME]  > [OUTPUT_FILENAME]
 ```
 one can add --fix to automatically make the changes from the config file. Currently it is named .eslintrc.js and is located in the web folder 
 
+## Tests 
+We have a 2 types of tests. Backend unit tests located at ./run_tests.py and Selenium web driver tests at ./tests/web_tests/webtests.py. One can run these with 
 
+```
+# Backend unit tests
+python3 run_tests.py
+# Selenium web driver tests
+cd tests/webtests && python3 web_tests.py
+```
 
 
 ## Contributors

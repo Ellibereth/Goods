@@ -1,4 +1,3 @@
-pip install -r requirements.txt
 cd web
 sh reactsetup
 cd ..
