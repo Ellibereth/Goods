@@ -1,7 +1,9 @@
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {formatPrice} from '../../util/Format.js'
+import {Actions} from 'react-native-router-flux'
+
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 export default class RelatedProductDisplay extends Component {
 
@@ -12,23 +14,27 @@ export default class RelatedProductDisplay extends Component {
 		}
 	}
 
+	navigateToProduct(){
+		Actions.product({product : this.props.product})
+	}
+
 	render() {
 		return (
-			<View style = {styles.container}>
-				<View style = {styles.image_container}>
-					<Image style = {styles.image}
-					source = {{uri : img_src + this.props.product.main_image}}/>
-				</View>
-				<View style = {styles.description_container}>
-					<Text style = {styles.name_text}>
-						{this.props.product.name}
-					</Text>
-					<Text style = {styles.price_text}>
-						{formatPrice(this.props.product.price)}
-					</Text>
+			<TouchableOpacity style = {styles.container} onPress = {this.navigateToProduct.bind(this)}>
+					<View style = {styles.image_container}>
+						<Image style = {styles.image}
+						source = {{uri : img_src + this.props.product.main_image}}/>
+					</View>
+					<View style = {styles.description_container}>
+						<Text style = {styles.name_text}>
+							{this.props.product.name}
+						</Text>
+						<Text style = {styles.price_text}>
+							{formatPrice(this.props.product.price)}
+						</Text>
 
-				</View>	
-			</View>
+					</View>	
+			</TouchableOpacity>
 		
 		);
   	}

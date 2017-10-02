@@ -2,15 +2,28 @@ import React from 'react';
 import {Component} from 'react'
 import {StyleSheet, Text, View} from 'react-native';
 import {formatPrice} from '../../util/Format.js'
+import {getRelatedProducts} from '../../api/ProductService'
 import RelatedProductDisplay from './RelatedProductDisplay'
+
+
 export default class RelatedProducts extends Component {
 
 	constructor(props) {
 		super(props)
 		this.state = {	
-
+			related_products : []
 		}
 	}
+
+	async componentDidMount(){
+		let data = await getRelatedProducts(this.props.product.product_id)
+		if (data.success) {
+			if (data.related_products){
+				this.setState({related_products : data.related_products})	
+			}
+		}
+	}
+
 
 	render() {
 		return (
@@ -21,9 +34,9 @@ export default class RelatedProducts extends Component {
 					</Text> 
 				</View>
 
-				{this.props.product.related_products &&
-						this.props.product.related_products.map((product, index) => 
-						<RelatedProductDisplay product = {product} key = {index}/>
+				{this.state.related_products &&
+						this.state.related_products.map((product, index) => 
+							<RelatedProductDisplay product = {product} key = {index}/>
 					)
 				} 
 			</View>

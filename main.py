@@ -22,7 +22,6 @@ from api.utility.email import EmailLib
 from api.utility.json_util import JsonUtil
 # from api.security.tracking import HttpRequest
 from api.general_api.email_api import email_api
-from api.general_api.public_api import public_api
 from api.general_api.search_api import search_api
 from api.general_api.product_api import product_api
 from api.general_api.customer_service_api import customer_service_api
@@ -44,7 +43,6 @@ TEMPLATE_DIR = os.path.abspath('./web/templates')
 STATIC_DIR = os.path.abspath('./web/static')
 app = Flask(__name__, template_folder=TEMPLATE_DIR, static_folder = STATIC_DIR)
 app.register_blueprint(email_api)
-app.register_blueprint(public_api)
 app.register_blueprint(search_api)
 app.register_blueprint(product_api)
 app.register_blueprint(customer_service_api)
@@ -204,7 +202,7 @@ if __name__ == '__main__':
 	if len(sys.argv) > 1:
 		if sys.argv[1] == "prod":
 			os.environ[ENVIRONMENT_STRING] = PRODUCTION_STRING
-			app.debug = True
+			app.debug = False
 
 	if os.environ.get(ENVIRONMENT_STRING) == DEVELOPMENT_STRING:
 		app.debug = True

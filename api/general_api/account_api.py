@@ -345,7 +345,6 @@ def getUserInfo(this_user):
 					Labels.User : public_user_dict,
 					Labels.AdjustedItems : adjusted_items
 				})
-
 		return JsonUtil.failure({"ab_group" : ab_group})
 
 @account_api.route('/softDeleteAccount', methods = ['POST'])

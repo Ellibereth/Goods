@@ -227,20 +227,7 @@ class MarketProduct(db.Model):
 				product_matches.append(matching_product)
 		return product_matches
 
-	@staticmethod
-	def getProductsByRelatedProductsTag(tag):
-		"""
-		: Returns all products matching this related products tag
-		"""
-		tag_matches = RelatedProductTag.query.filter_by(tag = tag).all()
-		product_matches = []
-		for match in tag_matches:
-			matching_product = MarketProduct.query.filter_by(active = True, product_id = match.product_id).first()
-			if matching_product:
-				product_matches.append(matching_product)
-		return product_matches
-
-	def getRelatedProductsByTag(self):
+	def getRelatedProductsByTag(self, limit = 5):
 		"""
 		: Returns all products that have the same
 		: related products tags as this one
@@ -249,24 +236,19 @@ class MarketProduct(db.Model):
 		if not this_product_tags:
 			return []
 
-		merged_list = list()
-		for tag in this_product_tags:
-			product_matches = []
-			product_matches = MarketProduct.getProductsByRelatedProductsTag(tag.tag)
-			merged_list = merged_list + product_matches 
-		hit_product_ids = list()
-		all_matches = list()
-		# remove duplicates from the merged list
-		for product in merged_list:
-			if product.product_id != self.product_id:
-				if product.product_id not in hit_product_ids:
-					all_matches.append(product)
-					hit_product_ids.append(product.product_id)
+		this_product_tag_list = [tag.tag for tag in this_product_tags]
 
-		random.shuffle(all_matches)
+		matching_tags = RelatedProductTag.query.filter(RelatedProductTag.tag.in_(this_product_tag_list)).all()
+		product_id_matches = set()
+		for tag in matching_tags:
+			product_id_matches.add(tag.product_id)
+
+		matching_products = MarketProduct.query.filter(MarketProduct.product_id.in_(product_id_matches)).all()
+
+		random.shuffle(matching_products)
 		# this 0:5 is hard coded as a limit for now, will discuss limits 
 		# and filters moving forward
-		return all_matches[0:5]
+		return matching_products[0:limit]
 
 
 	def updateProductSearchTags(self, tags):
@@ -364,20 +346,22 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
-		product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
-		related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
-		product_listing_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
-		public_dict[Labels.RelatedProductTags] = ",".join([tag.tag for tag in related_product_tags])
-		public_dict[Labels.ProductSearchTags] = ",".join([tag.tag for tag in product_search_tags])
-		public_dict[Labels.ProductListingTags] = ",".join([tag.tag for tag in product_listing_tags])
+		
 		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
 		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
 		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
 		public_dict[Labels.IsAvailable] = self.isAvailable()
 		if get_related_products:
+			product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
+			related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
+			product_listing_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
+			public_dict[Labels.RelatedProductTags] = ",".join([tag.tag for tag in related_product_tags])
+			public_dict[Labels.ProductSearchTags] = ",".join([tag.tag for tag in product_search_tags])
+			public_dict[Labels.ProductListingTags] = ",".join([tag.tag for tag in product_listing_tags])
 			related_products = self.getRelatedProductsByTag()
 			public_dict[Labels.RelatedProducts] = [product.toPublicDict(get_related_products = False) for product in related_products]
 		return public_dict
+
 
 class ProductVariant(db.Model):
 	"""

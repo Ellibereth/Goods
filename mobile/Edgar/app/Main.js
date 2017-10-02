@@ -47,6 +47,9 @@ class Main extends React.Component {
 	componentDidMount(){
 		AsyncStorage.getItem('jwt').then((jwt) => {
 			this.props.loadUser(jwt)
+			.catch(function(error) {
+  				console.error(error.stack);
+			})
 		})
 	}
 

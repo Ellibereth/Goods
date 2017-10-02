@@ -36,7 +36,7 @@ class HomeScreen extends Component {
 	}
 
 	async loadHomeProducts() {
-		let data = await getProductsByListing(HOME_TAG, true)
+		let data = await getProductsByListing(HOME_TAG, false)
 		if (data.success) {
 			this.setState({home_products : data.products})
 		}

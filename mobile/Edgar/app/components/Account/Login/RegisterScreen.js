@@ -77,7 +77,9 @@ class RegisterScreen extends Component {
 
 	render() {
 		return (
-		<TouchableWithoutFeedback onPress={() => dismissKeyboard()}>
+		<TouchableWithoutFeedback 
+		// onPress={() => dismissKeyboard()}
+		>
 			<View style={styles.container}>
 				<View style={{flex : 1, flexDirection : 'column'}}>
 					<View style={{flex : 2}}>

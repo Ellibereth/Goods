@@ -3,6 +3,7 @@ import {executeRequest} from './EdgarApiCaller'
 const GET_PRODUCT_INFO_ROUTE = '/getMarketProductInfo'
 const GET_PRODUCTS_BY_LISTING_ROUTE = '/getProductsByListingTag'
 const GET_ON_SALE_PRODUCTS = '/getOnSaleProducts'
+const GET_RELATED_PRODUCTS = '/getRelatedProducts'
 
 export async function getProductInfo(product_id) {
 		var form_data = {
@@ -27,6 +28,10 @@ export async function getOnSaleProducts(){
 	return data
 }
 
-
+export async function getRelatedProducts(product_id) {
+	var form_data = {product_id : product_id}
+	let data = await executeRequest(GET_RELATED_PRODUCTS, form_data)
+	return data
+}
 
 

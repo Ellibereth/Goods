@@ -1,3 +1,5 @@
+import time 
+
 from flask import Blueprint, jsonify, request
 from api.utility.json_util import JsonUtil
 from api.utility.jwt_util import JwtUtil
@@ -5,7 +7,6 @@ from api.utility.labels import MarketProductLabels as Labels
 from api.models.shared_models import db
 from api.models.user import User
 from api.models.admin_user import AdminUser
-
 from api.security.tracking import AdminAction
 from functools import wraps
 from api.utility.error import ErrorMessages
@@ -30,6 +31,7 @@ def check_admin_jwt(func):
 def check_user_jwt(func):
 	@wraps(func)
 	def wrapper():
+
 		jwt = request.json.get(Labels.Jwt)
 		this_user = JwtUtil.getUserInfoFromJwt(jwt)
 		if this_user == None:
@@ -42,9 +44,9 @@ def check_jwt(func):
 	def wrapper():
 		jwt = request.json.get(Labels.Jwt)
 		this_user = JwtUtil.getUserInfoFromJwt(jwt)
+		time_1  = time.time()
 		if this_user == None:
 			admin_user = JwtUtil.decodeAdminJwt(jwt)
-			
 			if admin_user == None:
 				return JsonUtil.failure(ErrorMessages.InvalidCredentials)
 			elif admin_user.get(USERNAME):

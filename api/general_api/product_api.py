@@ -1,3 +1,4 @@
+import time
 import datetime
 from flask import Blueprint, jsonify, request
 from api.utility.labels import MarketProductLabels as Labels
@@ -84,6 +85,20 @@ def getProductsByListingTag():
 		})
 
 
+@product_api.route('/getRelatedProducts', methods = ['POST'])
+def getRelatedProducts():
+	product_id = request.json.get(Labels.ProductId)
+	this_product = MarketProduct.query.filter_by(product_id = product_id).first()
+	if this_product is None:
+		return JsonUtil.failure({
+			Labels.Error :  "Invalid Product"
+		})
+	
+	related_products = this_product.getRelatedProductsByTag()
+	public_list = [product.toPublicDict(get_related_products = False) for product in related_products]
+	return JsonUtil.successWithOutput({
+			Labels.RelatedProducts : public_list
+		})
 
 
 
