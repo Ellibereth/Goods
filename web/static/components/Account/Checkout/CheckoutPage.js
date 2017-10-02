@@ -527,7 +527,7 @@ export default class CheckoutPage extends React.Component {
 											</div>
 										*/}
 
-								<CheckoutPriceRow is_final_row = {true} has_underline = {false} 
+								<CheckoutPriceRow is_final_row = {true} has_underline = {false} no_dollar_sign = {true}
 									label = {'Total:'} price = {formatPrice(this.state.total_price) || "__"}/>
 										
 

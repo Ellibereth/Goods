@@ -502,7 +502,11 @@ select, input, textarea, button {
     display: inline;
     /* float: left; */
     /* padding-right: 25px; */
-    padding-left: 30px;
+    padding-left: 20px;
+}
+
+#edgar-footer .socialLinks li a i {
+	width : 30px;
 }
 
 .special-notice-text {

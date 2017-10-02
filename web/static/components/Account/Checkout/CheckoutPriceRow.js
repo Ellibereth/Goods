@@ -13,7 +13,8 @@ export default class CheckoutPriceRow extends React.Component {
 		var label_class = is_final_row ? 'checkout-price-label-text checkout-price-last-row' : 'checkout-price-label-text'
 		var amount_class = is_final_row ? 'checkout-price-amount-text checkout-price-last-row' : 'checkout-price-amount-text'
 		// var show_minus_class = this.props.show_minus ? {color: '#d42729'} : {}
-		var price = this.props.price ? '$' + this.props.price : ''
+		var dollar_sign = this.props.no_dollar_sign ? "" : "$"
+		var price = this.props.price ? dollar_sign + this.props.price : ''
 		return (
 			<div className = "row">
 			

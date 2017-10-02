@@ -84,6 +84,8 @@ export default class HomeFooter extends React.Component {
 								<ul className="socialLinks">
 									<li><a href="#"><i className="footer-social-links fa fa-facebook fa-2x" aria-hidden="true"/></a></li>
 									<li><a href="#"><i className="footer-social-links fa fa-twitter fa-2x" aria-hidden="true"/></a></li>
+									<li><a href="#"><i className="footer-social-links fa fa-pinterest fa-2x" aria-hidden="true"/></a></li>
+									<li><a href="#"><i className="footer-social-links fa fa-instagram fa-2x" aria-hidden="true"/></a></li>
 								</ul>
 							</div>
 

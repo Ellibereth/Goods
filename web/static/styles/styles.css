@@ -852,7 +852,6 @@
 	}
 
 	.quantity-button {
-
 		width: 20vmin;
 		font-size: 3vmin !important;
 		height: 16vmin;
@@ -910,7 +909,7 @@
 	width: 95%;
 	background-color: var(--DarkBlue);
 	color: white;
-	font-size: 3vmin !important;
+	font-size: 1vw !important;
 }
 
 .checkout-button.block-checkout {
@@ -934,7 +933,7 @@
 }
 
 .checkout-price-last-row{
-	font-size: 5vmin;
+	font-size: 2vw;
 	color : var(--DarkRed);
 }
 
