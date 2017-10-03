@@ -41,10 +41,10 @@ class SearchIcon extends Component {
 					style = {{paddingLeft : 12}}
 				/>
 				
-					<SearchModal 
-					visible = {this.state.search_modal_visible}
-					setSearchModal = {this.setSearchModal.bind(this)}
-					/>
+				<SearchModal 
+				visible = {this.state.search_modal_visible}
+				setSearchModal = {this.setSearchModal.bind(this)}
+				/>
 			</View>
 		)
 				

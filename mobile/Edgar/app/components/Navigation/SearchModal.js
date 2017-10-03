@@ -5,10 +5,15 @@ import {
 	Text,
 	Modal,
 	StyleSheet,
-	TextInput
+	TextInput,
+	ScrollView,
+	TouchableHighlight,
+	Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions} from 'react-native-router-flux'
+
+const CATEGORIES = ["Fashion", "Fun", "Furniture", "Gifts"]
 
 export default class SearchModal extends Component {
 
@@ -36,7 +41,8 @@ export default class SearchModal extends Component {
 		
 		return (
 				<Modal
-					animationType="slide"
+					presentationStyle = "pageSheet"
+					animationType="fade"
 					transparent={false}
 					visible={this.props.visible}
 						// onRequestClose={() => {alert("Modal has been closed.")}}
@@ -46,13 +52,14 @@ export default class SearchModal extends Component {
 							<View style = {[title_styles.search_input_container,
 								{flex : 4}]}>
 								<Icon style = {title_styles.search_icon} 
-								size  = {18}
+								size  = {16}
 								name = "search"/>
 								<TextInput	
 									onSubmitEditing = {this.onSearchSubmit}
 									style = {title_styles.search_input_text}
 									value = {this.state.search_text}
 									onChangeText={this.onTextChange}
+									placeholderTextColor = "grey"
 									placeholder='Type Here...' />
 							</View>
 							<View style = {{flex : 1, flexDirection : "row", 
@@ -64,8 +71,29 @@ export default class SearchModal extends Component {
 									Cancel
 								</Text>
 							</View>
+						</View>
+						<ScrollView>
+							<View style = {recommended_styles.container}>
+								<View style = {recommended_styles.title}>
+									<Text style = {recommended_styles.title_text}>RECOMMENDED</Text>
+								</View>
+								{CATEGORIES.map((category, index) =>
+									<TouchableHighlight 
+									onPress = {() => Alert.alert(
+										'Congrats!',
+									 	 'Clicking this will take you to the ' + category + ' listing page' ,
+									  [
+									    {text: 'OK', onPress: () => console.log('OK Pressed')},
+									  ])}
+									key = {index} style = {recommended_styles.category}>
+										<Text style = {recommended_styles.category_text}>
+											{category}
+										</Text>
+									</TouchableHighlight>
+								)}
+								
 							</View>
-						<View/>
+						</ScrollView>
 					</View>
 				</Modal>
 		)
@@ -78,6 +106,29 @@ const styles = StyleSheet.create({
 	modal_container : {
 		flexDirection : "column",
 	},
+
+})
+
+const recommended_styles = StyleSheet.create({
+	container: {
+
+	},
+	title : {
+		backgroundColor : 'black',
+		padding: 12,
+	},
+	title_text : {
+		color : "white"
+	},
+	category : {
+		backgroundColor : '#3e3f42',
+		padding: 12,
+		borderTopColor : 'silver',
+		borderTopWidth : 1,
+	},
+	category_text: {
+		color : 'white'
+	}	
 })
 
 const title_styles = StyleSheet.create({
@@ -102,11 +153,14 @@ const title_styles = StyleSheet.create({
 
 	},
 	search_input_text : {
-		color : 'white'
+		color : 'white',
+		flex : 9,
+		fontSize : 14
 	},
 	search_icon : {
 		color : 'white',
 		padding: 6,
+		flex : 1,
 	}
 
 })
