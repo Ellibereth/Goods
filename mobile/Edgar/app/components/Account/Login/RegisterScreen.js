@@ -7,14 +7,14 @@ import {
 	ListView,
 	TouchableOpacity,
 	TextInput,
-	TouchableWithoutFeedback
+	Alert
 } from 'react-native';
-import {dismissKeyboard} from 'react-native-dismiss-keyboard'
 import {handleRegisterSubmit} from '../../../api/UserService'
-import {Actions} from 'react-native-router-flux'
+import {Actions, ActionConst} from 'react-native-router-flux'
 import { ActionCreators } from  '../../../actions'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
+import LoadingSpinner from '../../Misc/LoadingSpinner'
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(ActionCreators, dispatch);
@@ -35,36 +35,56 @@ class RegisterScreen extends Component {
 			email : "",
 			password: "",
 			password_confirm : "",
+			is_loading:  false,
 		}	
 	}
 
 	registerAccount(){
-		this.handleRegisterSubmit().then(() => {
-			Actions.account({type : ActionConst.RESET})
-			Actions.home({type : ActionConst.REPLACE})
-		})
+		this.setState({is_loading : true})
+		this.handleRegisterSubmit()
 	}
 
 	async handleRegisterSubmit() {
+
 		let data = await handleRegisterSubmit(
 				this.state.name, 
 				this.state.email,
 				this.state.password, 
 				this.state.password_confirm
 			)
+
+		this.setState({is_loading : false})
 		if (data.success){
-			this.props.setUserInfo(data)
+			Alert.alert(
+				'Welcome!',
+			  	'You have been sent a confirmation email. Confirm before you make a purchase.',
+				[
+					{text: 'OK', onPress: () => {
+							this.props.setUserInfo(data)
+							Actions.home({type : ActionConst.RESET})
+						}
+					},
+				]
+			)
+			
+
 		}
 		else {
 			Alert.alert(
 			  data.error.title,
 			  data.error.text,
 			  [
-			    {text: 'OK', onPress: () => console.log('OK Pressed')},
+			    {text: 'OK', onPress: () => {
+				    	console.log('OK Pressed')
+			    	}
+			    },
 			  ],
 			  { cancelable: false }
 			)
 		}
+
+
+
 	}
 	
 	
@@ -77,10 +97,11 @@ class RegisterScreen extends Component {
 
 	render() {
 		return (
-		<TouchableWithoutFeedback 
-		// onPress={() => dismissKeyboard()}
-		>
 			<View style={styles.container}>
+				{this.state.is_loading &&
+					<LoadingSpinner visible = {this.state.is_loading}/>
+				}
+				
 				<View style={{flex : 1, flexDirection : 'column'}}>
 					<View style={{flex : 2}}>
 						<View style={{flex : 1}}/>
@@ -136,7 +157,6 @@ class RegisterScreen extends Component {
 					<View style = {{flex : 1}}/>
 				</View>
 			</View>
-		</TouchableWithoutFeedback>
 		)
 	}
 }
@@ -151,7 +171,7 @@ const styles = StyleSheet.create({
 	button : {
 		backgroundColor : "black",
 		padding : 12,
-		borderRadius : 8,
+		borderRadius : 4,
 		width : 250
 	},
 	button_text : {
@@ -160,7 +180,7 @@ const styles = StyleSheet.create({
 	},
 	forgot_password : {fontSize : 12, color : 'lightseagreen'},
 	label : {flex : 0, fontSize : 12, fontWeight : 'bold', color : '#696969'},
-	input_wrapper : {flex : 1, borderColor : 'silver', borderWidth : 1, borderRadius : 6},
+	input_wrapper : {flex : 1, borderColor : 'silver', borderWidth : 1, borderRadius : 4},
 	input : {flex : 1, width : 240, fontSize : 14, justifyContent : 'flex-start', padding: 6},
 });
 

@@ -1,8 +1,13 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, StyleSheet} from 'react-native'
-import Spinner from 'react-native-loading-spinner-overlay';
+import {
+	View, 
+	Text, 
+	StyleSheet,
+	ActivityIndicator,
+	Dimensions
+} from 'react-native'
 
 export default class LoadingSpinner extends Component {
 	
@@ -15,10 +20,10 @@ export default class LoadingSpinner extends Component {
 
 	render() {
 		return (
-			
-				<View style = {styles.loading}>
-					<Spinner visible={this.props.visible} />
-				</View>
+			<View style = {styles.loading}>
+				<ActivityIndicator animating={this.props.visible}
+				size ="large" />
+			</View>
 			
 
 		)
@@ -34,7 +39,7 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		alignItems: 'center',
 		justifyContent: 'center'
-	}
+	},
 })
 
 

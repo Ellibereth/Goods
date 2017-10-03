@@ -26,7 +26,7 @@ export async function handleRegisterSubmit(name, email, password, password_confi
 					password: password,
 					password_confirm : password_confirm
 				}
-		let data = await executeRequest(handleRegisterSubmit, form_data)
+		let data = await executeRequest(REGISTER_USER_ROUTE, form_data)
 		return data
 }
 

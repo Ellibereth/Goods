@@ -1,17 +1,17 @@
 import React from 'react';
 import {Component} from 'react'
 import {
-	TouchableWithoutFeedback,
 	StyleSheet,
 	Text,
 	View,
 	TouchableOpacity,
-	TextInput
+	TextInput,
+	Alert
 } from 'react-native';
 import {dismissKeyboard} from 'react-native-dismiss-keyboard'
 import {handleLoginSubmit} from '../../../api/UserService'
 import LoadingSpinner from '../../Misc/LoadingSpinner'
-import Actions from 'react-native-router-flux'
+import {Actions} from 'react-native-router-flux'
 
 export default class LoginForm extends Component {
 	constructor(props) {
@@ -28,7 +28,7 @@ export default class LoginForm extends Component {
 		this.asyncHandleLoginSubmit().then((response)=> {
 			this.setState({is_loading : false})
 			if (response){
-				Actions.home({type : ActionConst.RESET})	
+				Actions.home({type : ActionConst.RESET})
 			}
 		}).done()
 	}
@@ -54,9 +54,6 @@ export default class LoginForm extends Component {
 
 	render() {
 		return (
-		<TouchableWithoutFeedback 
-		// onPress={() => dismissKeyboard()}
-		>
 			<View style={styles.container}>
 				<LoadingSpinner visible = {this.state.is_loading}/>
 				<View style={{flex : 1, flexDirection : 'column'}}>
@@ -92,7 +89,6 @@ export default class LoginForm extends Component {
 					<View style = {{flex : 3}}/>
 				</View>
 			</View>
-		</TouchableWithoutFeedback>
 		)
 	}
 }
