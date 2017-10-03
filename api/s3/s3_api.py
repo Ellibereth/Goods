@@ -2,6 +2,7 @@ import boto3
 import urllib.request
 import os
 import datetime
+from PIL import Image
 
 # Let's use Amazon S3
 
@@ -21,6 +22,7 @@ s3 = boto3.resource('s3',
 		)
 base_url = "https://s3-us-west-2.amazonaws.com"
 
+IMAGE_SIZES = [1, 2, 5, 10,25,50, 100]
 
 class S3:
 
@@ -42,19 +44,30 @@ class S3:
 	def uploadPhoto(bucket_name, image_key, image_data):
 		if image_data == None:
 			return
+
+		# save to the transfer folder
 		transfer_dir = './api/s3/transfer/'
 		with open(transfer_dir + image_key, "wb") as f:
 			f.write(image_data)
-			
-		image_file = open(transfer_dir + image_key, 'rb')
-		s3.Bucket(bucket_name).put_object(
-			Key= image_key, 
-			Body=image_file,
-			CacheControl='public, max-age=' + str(CACHE_MAX_AGE),
-			ACL  = 'public-read',
-			ContentType = 'image/jpeg'
-		)
-		os.remove(transfer_dir + image_key)
+		
+		image_file = Image.open(transfer_dir + image_key)
+		for size in IMAGE_SIZES:
+			this_image_dir = transfer_dir + image_key + "_" + str(size)
+			image_file.save(this_image_dir, 'jpeg', quality=size)
+			this_file = open(this_image_dir, 'rb')
+			if size != 100:
+				this_key = image_key + "_" + str(size)
+			else:
+				this_key = image_key
+			s3.Bucket(bucket_name).put_object(
+				Key= this_key, 
+				Body=this_file,
+				CacheControl='public, max-age=' + str(CACHE_MAX_AGE),
+				ACL  = 'public-read',
+				ContentType = 'image/jpeg'
+			)
+			# remove from the transfer folder
+			os.remove(this_image_dir)
 
 	# gets the photo of the image by ID
 	@staticmethod

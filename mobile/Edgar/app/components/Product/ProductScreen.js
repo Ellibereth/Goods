@@ -102,6 +102,7 @@ class ProductScreen extends Component {
 					<View style = {styles.scroll_container}> 
 						<ScrollView>
 							<Swiper 
+							loop = {false}
 							style={styles.image_slider_wrapper}>
 								{images}
 							</Swiper>
@@ -218,6 +219,7 @@ const styles = StyleSheet.create({
 		flex : 1,
 		flexDirection : "column",
 		justifyContent : "center",
+		backgroundColor : 'white'
 	},
 	scroll_container : {
 		flex: 9,
