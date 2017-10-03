@@ -22,8 +22,8 @@ def searchProducts():
 	# future when our search criteria is more formalized
 	search_input = search_input.lower()
 
-	name_filter = MarketProduct.query.filter(MarketProduct.name.ilike("%" + search_input + "%")).all()
-	manufacturer_filter = MarketProduct.query.filter(MarketProduct.manufacturer.ilike("%" + search_input + "%")).all()
+	name_filter = MarketProduct.query.filter(MarketProduct.name.ilike("%" + search_input + "%"), MarketProduct.active).all()
+	manufacturer_filter = MarketProduct.query.filter(MarketProduct.manufacturer.ilike("%" + search_input + "%"), MarketProduct.active).all()
 	tag_filter = MarketProduct.getProductsBySearchTag(search_input)
 
 	merged_list = name_filter  + tag_filter + manufacturer_filter
@@ -33,7 +33,7 @@ def searchProducts():
 		if product.product_id not in hit_product_ids:
 			all_matches.append(product.toPublicDict(get_related_products = False))
 			hit_product_ids.append(product.product_id)
-			
+	
 	return JsonUtil.successWithOutput({
 			Labels.Products : all_matches
 		})

@@ -29,10 +29,7 @@ class CartIcon extends Component {
 	}
 
 	render() {
-		var current_scene = Actions.currentScene
-		if (current_scene == 'cart' || current_scene == 'checkout' || current_scene == 'order_confirmed') {
-			return <View/>
-		}
+		
 
 		var badge_count = this.props.user.cart_size
 		return (

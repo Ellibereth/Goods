@@ -3,16 +3,20 @@
   	"name": "Edgar USA",
     "icon": "./favico.ico",
     "version": "0.0.1",
-    "slug": "exp://z9-v7d.darek.edgar.exp.direct:80",
+    "slug" : "edgarusa",
     "sdkVersion": "20.0.0",
-    "privacy" : "unlisted"
+    "privacy" : "unlisted",
+    "notification" : "icon",
+    "orientation" : "portrait"
   },
+  "loading": {
+      "icon": "./favico.ico",
+      "hideExponentText": false
+    },
   "ios": {
-  	// com.companyname.appname
       "bundleIdentifier": "com.edgarusa.edgarusa"
     },
     "android": {
-    	// com.companyname.appname
       "package": "com.edgarusa.edgarusa"
     }
 }

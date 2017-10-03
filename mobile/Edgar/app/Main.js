@@ -20,11 +20,14 @@ import CartScreen from './components/Cart/CartScreen'
 import CheckoutScreen from './components/Cart/CheckoutScreen'
 import CartIcon from './components/Navigation/CartIcon'
 import BackIcon from './components/Navigation/BackIcon'
+import SearchIcon from './components/Navigation/SearchIcon'
+import LeftNavButton from './components/Navigation/LeftNavButton'
 import OrderConfirmedScreen from './components/Cart/OrderConfirmedScreen'
 import OrdersScreen from './components/Account/Orders/OrdersScreen'
 import SettingsScreen from './components/Account/Settings/SettingsScreen'
 import UpdatePersonalScreen from './components/Account/Settings/Edit/UpdatePersonalScreen'
 import UpdatePasswordScreen from './components/Account/Settings/Edit/UpdatePasswordScreen'
+import SearchScreen from './components/Search/SearchScreen'
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(ActionCreators, dispatch);
@@ -70,9 +73,7 @@ class Main extends React.Component {
 				hideNavBar = {true}
 				>
 					<Scene title = "Cart" 
-					/* toggle these for testing */
 					key = "cart"
-					// key = "checkout"
 					renderLeftButton = {() => (<BackIcon/>)}>
 
 						<Scene {...this.props} 
@@ -92,6 +93,17 @@ class Main extends React.Component {
 					</Scene>
 
 
+					<Scene title = "Search" 
+					key = "search"
+					renderLeftButton = {() => (<BackIcon/>)}>
+
+						<Scene {...this.props} 
+						initial = {true}
+						hideTabBar = {true} key="search"
+						component={SearchScreen} title = "Search"/>
+					</Scene>
+
+
 					<Scene {...this.props}
 					title = "Product" key = "product"
 					renderLeftButton = {() => (<BackIcon />)} 
@@ -106,6 +118,7 @@ class Main extends React.Component {
 					<Scene title = "Home" key = "home" 
 					// this should be true if we're going LIVE
 					initial = {true}
+					renderLeftButton = {() => (<SearchIcon />)}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
 
 						<Scene title = "Home" key = "home" 
@@ -123,6 +136,7 @@ class Main extends React.Component {
 
 						<Scene key = "account"
 						title = "Account" 
+						renderLeftButton = {() => (<BackIcon />)}
 						icon = {()=> this.getTabIcon("user")} >
 
 							<Scene {...this.props} initial = {true}

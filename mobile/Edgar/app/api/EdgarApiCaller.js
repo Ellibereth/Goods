@@ -1,9 +1,10 @@
+const dev_url = "https://edgarusa-devgeniy.herokuapp.com"
 const url = "https://edgarusa-testserver.herokuapp.com"
-const test_url = "http://0.0.0.0:5000"
+const local_url = "http://0.0.0.0:5000"
 
 // returns the json response from the http request
 export async function executeRequest(route, form_data) {
-		let resp = await fetch(test_url + route, {
+		let resp = await fetch(local_url + route, {
 			method: "POST",
 			headers: {
 					'Accept': 'application/json',

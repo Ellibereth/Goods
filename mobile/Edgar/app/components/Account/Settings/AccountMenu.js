@@ -2,7 +2,7 @@ import React from 'react';
 import {Component} from 'react'
 import {TouchableHighlight, Text, View, Button, AsyncStorage, StyleSheet} from 'react-native';
 import SettingsList from 'react-native-settings-list'
-import {Actions} from 'react-native-router-flux'
+import {Actions, ActionConst} from 'react-native-router-flux'
 
 export default class AccountMenu extends Component {
 	constructor(props) {
@@ -14,6 +14,7 @@ export default class AccountMenu extends Component {
 	}
 	onLogout() {
 		this.props.logoutUser()
+		Actions.home({type : ActionConst.RESET})
 	}
 
 	render() {

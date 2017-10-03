@@ -10,7 +10,6 @@ export default class LoadingSpinner extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			home_products : [],
 		}
 	}
 
@@ -18,8 +17,7 @@ export default class LoadingSpinner extends Component {
 		return (
 			
 				<View style = {styles.loading}>
-					<Spinner visible={this.props.visible} 
-					 />
+					<Spinner visible={this.props.visible} />
 				</View>
 			
 

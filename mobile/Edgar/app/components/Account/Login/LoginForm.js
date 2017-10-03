@@ -11,6 +11,7 @@ import {
 import {dismissKeyboard} from 'react-native-dismiss-keyboard'
 import {handleLoginSubmit} from '../../../api/UserService'
 import LoadingSpinner from '../../Misc/LoadingSpinner'
+import Actions from 'react-native-router-flux'
 
 export default class LoginForm extends Component {
 	constructor(props) {
