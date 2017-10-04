@@ -88,14 +88,14 @@ export default class AddAddressModal extends Component {
 		this.state = {
 			// hard coded for easier testing
 			// change to all "" except country when done
-			address_name : "",
+			address_name : "Darek",
 			description : "",
-			address_state: "",
-			address_city : "",
+			address_state: "PA",
+			address_city : "Philadelphia",
 			address_country : "US",
-			address_line1 : "",
+			address_line1 : "3900 City Ave",
 			address_line2 : "",
-			address_zip : "",
+			address_zip : "19131",
 
 		}
 		this.onChangeText = this.onChangeText.bind(this);
@@ -113,7 +113,7 @@ export default class AddAddressModal extends Component {
 	}
 
 	async addAddress() {
-		var new_index = (this.props.user.addresses.length - 1 || 0)
+		var new_index = (this.props.user.addresses.length || 0)
 		var form_data = {
 					jwt : this.props.jwt,
 					address_name : this.state.address_name,
@@ -128,9 +128,10 @@ export default class AddAddressModal extends Component {
 		let data = await handleAddAddress(form_data)
 		if (data.success) {
 			await this.props.loadUserCheckout(this.props.jwt)
-			this.props.toggleEditAddress()
+			this.props.setModal(false)
 			this.props.selectAddress(new_index);
-			this.props.setModal(false)	
+			this.props.toggleEditAddress()
+				
 		} 
 		else {
 			console.log(data.error)
@@ -222,7 +223,7 @@ export default class AddAddressModal extends Component {
 						onPress={() => {
 					  this.props.setModal(true)
 					}}>
-					 	<Text style=  {styles.show_modal_button_text}>Add New Address</Text>
+						<Text style=  {styles.show_modal_button_text}>Add New Address</Text>
 					</TouchableHighlight>
 
 				</View>
@@ -235,6 +236,8 @@ export default class AddAddressModal extends Component {
 const styles = StyleSheet.create({
 	container : {
 		flexDirection : 'column',
+		justifyContent : 'center',
+		alignItems : 'stretch'
 	},
 	scroll_container : {
 		flex: 9,
@@ -269,7 +272,7 @@ const styles = StyleSheet.create({
 		padding : 16,
 		borderWidth : 1,
 		borderColor : 'silver',
-		backgroundColor : 'silver'
+		backgroundColor : '#D5D5D5'
 	}, 
 	cancel_button_text : {
 		textAlign : 'center',
@@ -294,7 +297,7 @@ const styles = StyleSheet.create({
 	},
 	picker_icon_container : {
 		flex : 1,
-		backgroundColor : 'silver',
+		backgroundColor : '#D5D5D5',
 		alignItems : 'center',
 		justifyContent : 'center'
 	},
@@ -306,28 +309,30 @@ const styles = StyleSheet.create({
 		paddingLeft: 15,
 		paddingRight: 15,
 		borderRadius: 5
-  	},
-  	show_modal_button : {
-  		padding: 8,
-  		borderRadius: 6,
-  		backgroundColor : 'silver',
-  		borderColor : 'silver',
-  		borderWidth : 1,
-  		margin : 8,
-  	},
-  	show_modal_button_text : {
-  		color : 'grey',
-  		textAlign : 'center'
-  	},
-  	title :{
-  		textAlign : 'center',
-  		fontSize : 16,
+	},
+	show_modal_button : {
+		paddingVertical: 12,
+		borderRadius: 6,
+		backgroundColor : '#D5D5D5',
+		borderColor : 'silver',
+		borderWidth : 1,
+		margin : 8,
+	},
+	show_modal_button_text : {
+		color : 'grey',
+		textAlign : 'center',
+		fontSize : 16,
+		fontWeight : 'bold',
+	},
+	title :{
+		textAlign : 'center',
+		fontSize : 16,
 
-  	}, 
-  	title_container : {
-  		flexDirection : 'row',
-  		margin : 6
-  	}
+	}, 
+	title_container : {
+		flexDirection : 'row',
+		margin : 6
+	}
 	
 })
 

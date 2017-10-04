@@ -19,9 +19,11 @@ export default class LoadingSpinner extends Component {
 	}
 
 	render() {
+		var z_index_style = this.props.visible ? {zIndex : 20} : {}
 		return (
-			<View style = {styles.loading}>
+			<View style = {[styles.loading, z_index_style]}>
 				<ActivityIndicator animating={this.props.visible}
+				color = {this.props.color}
 				size ="large" />
 			</View>
 			

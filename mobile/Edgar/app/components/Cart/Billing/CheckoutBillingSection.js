@@ -1,12 +1,20 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {ScrollView,StyleSheet, TouchableHighlight, Text, View} from 'react-native';
+import {
+	ScrollView,
+	StyleSheet,
+	TouchableHighlight, 
+	Text, 
+	View,
+	Alert
+} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import AddBillingModal from './AddBillingModal'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutBillingDisplay from './CheckoutBillingDisplay'
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from 'react-native-animatable'
+import {toTitleCase} from '../../../util/Format'
 
 export default class CheckoutBillingSection extends Component {
 	constructor(props) {
@@ -17,19 +25,41 @@ export default class CheckoutBillingSection extends Component {
 	}
 
 	toggleEditBilling(){
-		this.setState({can_edit_billing : !this.state.can_edit_billing})
+		var can_edit_billing = this.state.can_edit_billing
+		if (can_edit_billing) {
+			if (this.props.selected_card_index == null) {
+				Alert.alert(
+					'Warning',
+					'You must select or add a payment method first',
+					[
+						{text: 'OK', onPress: () => console.log('OK Pressed')},
+				  	],
+				  { cancelable: false }
+				)
+			}	
+			else {
+				this.setState({can_edit_billing : !can_edit_billing})	
+			}
+		}
+		else {
+			this.setState({can_edit_billing : !can_edit_billing})
+		}
+		
 	}
 
 	componentDidMount(){
+		if (this.props.selected_card_index == null){
+			this.setState({can_edit_billing : true})
+		}
 	}
 
 	render() {
 		return (
 				<View style = {styles.billing_container}>
 					<View style = {[{flex : 1},styles.title_container]}>
-					 	<Text style=  {styles.title_text}>
-					 		Billing Information
-					 	</Text>
+						<Text style=  {styles.title_text}>
+							Billing Information
+						</Text>
 					</View>
 
 
@@ -38,21 +68,24 @@ export default class CheckoutBillingSection extends Component {
 					{
 						this.state.can_edit_billing ? 
 						<View style = {[{flex : 1} ,styles.collapsible_container]}>
-							<ScrollView>
-								{this.props.user.cards.map((card, index) =>
-									<CheckoutBillingDisplay 
-									index = {index}
-									key = {index}
-									selectCard = {this.props.selectCard}
-									card = {card}
-									selected = {this.props.selected_card_index == index}
-									/>
-									)
-								}
-							</ScrollView>
+							{this.props.user.cards.length > 0 &&
+								<ScrollView>
+									{this.props.user.cards.map((card, index) =>
+										<CheckoutBillingDisplay 
+										index = {index}
+										key = {index}
+										selectCard = {this.props.selectCard}
+										card = {card}
+										selected = {this.props.selected_card_index == index}
+										/>
+										)
+									}
+								</ScrollView>
+							}
 							{ this.state.can_edit_billing &&
 
 							<AddBillingModal 
+							user = {this.props.user}
 							selectCard = {this.props.selectCard}
 							setUserInfo = {this.props.setUserInfo}
 							modal_visible = {this.props.modal_visible}
@@ -66,16 +99,18 @@ export default class CheckoutBillingSection extends Component {
 						:
 						<View 
 						style = {[{flex : 1}, styles.collapsible_container]}>
-							<Text> Selected Billing Display - No Editing</Text>
 							{this.props.selected_card 
-								?
-									<View>
-										<Text> {this.props.selected_card.brand} ending in {this.props.selected_card.last4} </Text>
-										<Text> {this.props.selected_card.name} </Text>
-										<Text> Exp: {this.props.selected_card.exp_month} / {this.props.selected_card.exp_year} </Text>
+								&&
+									<View style = {{flexDirection : 'row'}}>
+										<View style = {{flex : 4}}>
+											<Text> {this.props.selected_card.brand} ending in {this.props.selected_card.last4} </Text>
+											<Text> {this.props.selected_card.name} </Text>
+											<Text> Exp: {this.props.selected_card.exp_month} / {this.props.selected_card.exp_year} </Text>
+										</View>
+										<View style = {{flex: 1,  alignItems : "center", justifyContent : "center"}}>
+											<Icon name = "circle"/>
+										</View>	
 									</View>
-								:
-									<Text> No Billing Method Selected Yet </Text>
 							}
 						</View>
 					}
@@ -105,7 +140,7 @@ export default class CheckoutBillingSection extends Component {
 const styles = StyleSheet.create({
 	billing_container : {
 		flexDirection : 'column',
-		minHeight : 160,
+		minHeight : 120,
 		borderColor : "silver",
 		borderWidth : 1,
 		margin : 8,
@@ -118,16 +153,17 @@ const styles = StyleSheet.create({
 	},
 	
 	toggle_container : {
-		flexDirection : 'column'
+		flexDirection : 'column',
+		height : 40,
 	},
 	toggle_button : {
-		backgroundColor : 'silver',
+		backgroundColor : '#D5D5D5',
 		flexDirection : 'column',
 		justifyContent : 'center'
 	},
 	toggle_text : {
 		textAlign : "center",
-		color : 'grey'
+		color : 'grey',
 	},
 	title_text : {
 		fontSize : 20,

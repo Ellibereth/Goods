@@ -20,7 +20,8 @@ export default class HomeProducts extends Component {
 			)
 
 		return (
-				<ScrollView  horizontal = {true}
+				<ScrollView  
+					horizontal = {true}
 					showsHorizontalScrollIndicator = {false}>
 						{products}
 					</ScrollView>

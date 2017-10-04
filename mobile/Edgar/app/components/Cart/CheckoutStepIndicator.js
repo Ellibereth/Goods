@@ -37,7 +37,7 @@ export default class CheckoutStepIndicator extends Component {
 				stepCount = {3}
 				customStyles={secondIndicatorStyles} 
 				currentPosition={current_step} 
-				labels={["Cart","Checkout","Order Placed"]} />
+				labels={["My Cart","Checkout","Confirmed"]} />
 			</View>
 		
 	);
@@ -61,13 +61,13 @@ const secondIndicatorStyles = {
 	stepIndicatorFinishedColor: 'red',
 	stepIndicatorUnFinishedColor: '#ffffff',
 	stepIndicatorCurrentColor: '#ffffff',
-	stepIndicatorLabelFontSize: 13,
-	currentStepIndicatorLabelFontSize: 13,
+	stepIndicatorLabelFontSize: 12,
+	currentStepIndicatorLabelFontSize: 12,
 	stepIndicatorLabelCurrentColor: 'red',
 	stepIndicatorLabelFinishedColor: '#ffffff',
 	stepIndicatorLabelUnFinishedColor: '#aaaaaa',
 	labelColor: '#999999',
-	labelSize: 13,
+	labelSize: 12,
 	currentStepLabelColor: 'red'
 }
 
@@ -76,8 +76,8 @@ const secondIndicatorStyles = {
 
 const styles = StyleSheet.create({
 	stepIndicator: {
-		marginBottom : 8,
-		marginTop : 16
+		marginBottom : 4,
+		marginTop : 8
 	},
 });
 			

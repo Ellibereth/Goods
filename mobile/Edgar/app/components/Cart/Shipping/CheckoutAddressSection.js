@@ -1,13 +1,22 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {ScrollView,StyleSheet, TouchableHighlight, Text, View, TextInput} from 'react-native';
+import {
+	ScrollView,
+	StyleSheet,
+	TouchableHighlight,
+	Text,
+	View,
+	TextInput,
+	Alert
+} from 'react-native';
 import dismissKeyboard from 'react-native-dismiss-keyboard';
 import {Actions} from 'react-native-router-flux';
 import AddAddressModal from './AddAddressModal'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutAddressDisplay from './CheckoutAddressDisplay'
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from 'react-native-animatable'
+import {toTitleCase} from '../../../util/Format'
 
 export default class CheckoutAddressSection extends Component {
 	
@@ -19,18 +28,31 @@ export default class CheckoutAddressSection extends Component {
 	}
 
 	toggleEditAddress(){
-		if (this.state.can_edit_address) {
-
+		var can_edit_address = this.state.can_edit_address
+		if (can_edit_address) {
+			if (this.props.selected_address_index == null) {
+				Alert.alert(
+					'Error',
+					'You must select or add an address first',
+					[
+						{text: 'OK', onPress: () => console.log('OK Pressed')},
+				  	],
+				  { cancelable: false }
+				)
+			}	
+			else {
+				this.setState({can_edit_address : !can_edit_address})	
+			}
 		}
 		else {
-
+			this.setState({can_edit_address : !can_edit_address})
 		}
-		this.setState({can_edit_address : !this.state.can_edit_address})
-
 	}
 
 	componentDidMount(){
-		
+		if (this.props.selected_address_index == null){
+			this.setState({can_edit_address : true})
+		}
 	}
 
 	render() {
@@ -46,20 +68,21 @@ export default class CheckoutAddressSection extends Component {
 					<Animatable.View 
 					style = {{flex : 4}}>
 						{this.state.can_edit_address ?
-						<View 
-						  style = {[{flex : 1} ,styles.collapsible_container]}>
+						<View style = {[{flex : 1} ,styles.collapsible_container]}>
+						  	{this.props.user.addresses.length > 0 &&
 							<ScrollView>
-								{this.props.user.addresses.map((address, index) =>
-									<CheckoutAddressDisplay 
-									index = {index}
-									key = {index}
-									selectAddress = {this.props.selectAddress}
-									address = {address}
-									selected = {this.props.selected_address_index == index}
-									/>
-									)
-								}
-							</ScrollView>
+									{this.props.user.addresses.map((address, index) =>
+										<CheckoutAddressDisplay 
+										index = {index}
+										key = {index}
+										selectAddress = {this.props.selectAddress}
+										address = {address}
+										selected = {this.props.selected_address_index == index}
+										/>
+										)
+									}
+								</ScrollView>
+							}
 							{ this.state.can_edit_address &&
 							<AddAddressModal 
 							selectAddress = {this.props.selectAddress}
@@ -76,17 +99,20 @@ export default class CheckoutAddressSection extends Component {
 						:
 						<View 
 						style = {[{flex : 1}, styles.collapsible_container]}>
-							<Text> Selected Address Display - No Editing</Text>
 							{this.props.selected_address 
-								?
-									<View>
-										<Text> {this.props.selected_address.name} </Text>
-										<Text> {this.props.selected_address.address_line1} </Text>
-										{this.props.selected_address.address_line2  ? <Text> {this.props.selected_address.address_line2} </Text> : <View/>}
-										<Text> {this.props.selected_address.address_city}, {this.props.selected_address.address_state} {this.props.selected_address.address_zip} </Text>
+								&&
+									<View style = {{flexDirection : 'row'}}>
+										<View style = {{flex : 4}}> 
+											<Text> {toTitleCase(this.props.selected_address.name)} </Text>
+											<Text> {toTitleCase(this.props.selected_address.address_line1)} </Text>
+											{this.props.selected_address.address_line2  ? <Text> {toTitleCase(this.props.selected_address.address_line2)} </Text> : <View/>}
+											<Text> {toTitleCase(this.props.selected_address.address_city)}, {this.props.selected_address.address_state} {this.props.selected_address.address_zip} </Text>
+										</View>
+										<View style = {{flex: 1,  alignItems : "center", justifyContent : "center"}}>
+											<Icon name = "circle"/>
+										</View>	
+									
 									</View>
-								:
-									<Text> No Address Selected Yet </Text>
 							}
 						</View>
 					}
@@ -115,11 +141,11 @@ export default class CheckoutAddressSection extends Component {
 const styles = StyleSheet.create({
 	address_container : {
 		flexDirection : 'column',
-		minHeight : 160,
+		minHeight : 120,
 		borderColor : "silver",
 		borderWidth : 1,
 		margin : 8,
-		marginBottom : 0,
+		marginTop : 0,
 		paddingBottom : 0,
 		
 	},
@@ -128,16 +154,17 @@ const styles = StyleSheet.create({
 	},
 	
 	toggle_container : {
-		flexDirection : 'column'
+		flexDirection : 'column',
+		height: 40,
 	},
 	toggle_button : {
-		backgroundColor : 'silver',
+		backgroundColor : '#D5D5D5',
 		flexDirection : 'column',
 		justifyContent : 'center'
 	},
 	toggle_text : {
 		textAlign : "center",
-		color : 'grey'
+		color : 'grey',
 	},
 	title_text : {
 		fontSize : 20,

@@ -71,9 +71,14 @@ class Main extends React.Component {
 			<Router>
 				<Scene key="root"  
 				hideNavBar = {true}
+				navigationBarStyle = {{
+						borderBottomWidth : 1,
+						borderBottomColor : 'silver'
+					}}
 				>
 					<Scene title = "Cart" 
 					key = "cart"
+					// initial = {true}
 					renderLeftButton = {() => (<BackIcon/>)}>
 
 						<Scene {...this.props} 

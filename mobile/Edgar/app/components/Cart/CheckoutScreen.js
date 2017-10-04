@@ -20,6 +20,7 @@ import CheckoutStepIndicator from './CheckoutStepIndicator'
 import CheckoutAddressSection from './Shipping/CheckoutAddressSection'
 import CheckoutBillingSection from './Billing/CheckoutBillingSection'
 import OrderSummarySection from './OrderSummarySection'
+import LoadingSpinner from '../Misc/LoadingSpinner'
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -47,40 +48,45 @@ class CheckoutScreen extends Component {
 			selected_card_index : null,
 			shipping_price : null,
 			sales_tax_price : null,
+			is_loading : true
 		}
 		this.selectAddress = this.selectAddress.bind(this)
 		this.selectCard = this.selectCard.bind(this)
+		this.setLoading = this.setLoading.bind(this)
 	}
 
-	componentDidMount(){
-		this.props.loadUserCheckout(this.props.jwt).then(()=>{
-			var user = this.props.user
-			var addresses = user.addresses
-			var cards = user.cards
-			var addresss_set = false
-			if (addresses.length > 0){
-				for (var i = 0; i < addresses.length; i++){
-					if (addresses[i].id == user.default_address){
-						addresss_set = true
-						this.selectAddress(i)
-					}	
+	componentWillMount(){
+		var user = this.props.user
+		var addresses = user.addresses
+		var cards = user.cards
+		var addresss_set = false
+		if (addresses.length > 0){
+			for (var i = 0; i < addresses.length; i++){
+				if (addresses[i].id == user.default_address){
+					addresss_set = true
+					this.selectAddress(i)
 				}	
-				if (!addresss_set){
-					this.selectAddress(0)
-				}
+			}	
+			if (!addresss_set){
+				this.selectAddress(0)
 			}
-			if (cards.length > 0){
-				for (var i = 0; i < cards.length; i++){
-					if (cards[i].id == user.default_card){
-						this.selectCard(i)
-					}	
+		}
+		if (cards.length > 0){
+			for (var i = 0; i < cards.length; i++){
+				if (cards[i].id == user.default_card){
+					this.selectCard(i)
 				}	
-				if (this.state.selected_card_index == null){
-					this.selectCard(0)
-				}
+			}	
+			if (this.state.selected_card_index == null){
+				this.selectCard(0)
 			}
-		})
-		
+		}
+
+		this.setLoading(false)
+	}
+
+	setLoading(is_loading){
+		this.setState({is_loading : is_loading})
 	}
 	setAddressModalVisible(visible) {
 		this.setState({addressModalVisible: visible});
@@ -92,11 +98,9 @@ class CheckoutScreen extends Component {
 
 	async checkout() {
 		if (this.state.selected_card == null) {
-			console.log("select a card first")
 			return
 		}
 		if (this.state.selected_address == null) {
-			console.log("select an address first")
 			return
 		}
 		var jwt = this.props.jwt
@@ -104,7 +108,7 @@ class CheckoutScreen extends Component {
 		var address_id = this.state.selected_address ? this.state.selected_address.id : null
 		let data = await handleCheckoutCart(jwt, address_id, card_id)
 		if (data.success){
-			console.log("success")
+			Actions.order_confirmed()
 		}		
 		else {
 			console.log(data.error)
@@ -112,7 +116,6 @@ class CheckoutScreen extends Component {
 	}
 
 	selectAddress(index){
-		console.log(index, this.state.selected_address_index, this.props.user.addresses[index])
 		if (index != this.state.selected_address_index){
 			this.props.loadUserCheckout(this.props.jwt, this.props.user.addresses[index])
 		}
@@ -130,9 +133,10 @@ class CheckoutScreen extends Component {
 	}
 	
 	render() {
-		console.log(this.props.user.addresses.length)
+		var dim_style = this.state.is_loading ? {opacity : 0.6, backgroundColor : 'grey'}  : {}
 		return (
-				<View style = {[{flex : 1}, styles.container]}>
+				<View style = {[{flex : 1}, dim_style, styles.container]}>
+					<LoadingSpinner color = {"black"} visible = {this.state.is_loading}/>
 					<View style = {[{flex : 9}, styles.scroll_container]}>
 						<ScrollView>
 							<CheckoutStepIndicator />
@@ -171,7 +175,7 @@ class CheckoutScreen extends Component {
 					<View style= {styles.checkout_container}>
 						<TouchableOpacity onPress = {this.checkout.bind(this)} style = {styles.checkout_button}>
 							<Text style = {styles.checkout_text}>
-								Place Your Order  <Icon name = "chevron-right" size = {12}/> 
+								Place Your Order  <Icon name = "chevron-right" size = {20}/> 
 							</Text>
 						</TouchableOpacity>
 					</View> 
@@ -195,13 +199,15 @@ const styles = StyleSheet.create({
 
 	},
 	checkout_button : {
-		backgroundColor : 'silver',
+		backgroundColor : '#D5D5D5',
 		borderRadius : 6,
-		padding: 12
+		paddingVertical: 16,
 	},
 	checkout_text : {
 		textAlign : "center",
-		color : 'grey'
+		color : 'grey',
+		fontWeight : 'bold',
+		fontSize:  20,
 	},
 	
 })

@@ -111,7 +111,7 @@ export default class AddBillingModal extends Component {
 	}
 
 	async addBilling() {
-		var new_index = (this.props.user.cards.length - 1 || 0)
+		var new_index = (this.props.user.cards.length || 0)
 		var form_data = {
 				jwt : this.props.jwt,
 				address_name : this.state.address_name,
@@ -131,9 +131,10 @@ export default class AddBillingModal extends Component {
 		let data = await handleAddBilling(form_data)
 		if (data.success) {
 			await this.props.loadUserCheckout(this.props.jwt)
-			this.props.toggleEditAddress()
+			this.props.setModal(false)
 			this.props.selectCard(new_index);
-			this.props.setModal(false)	
+			this.props.toggleEditBilling()
+			
 		} 
 		else {
 			console.log(data.error)
@@ -263,6 +264,8 @@ export default class AddBillingModal extends Component {
 const styles = StyleSheet.create({
 	container : {
 		flexDirection : 'column',
+		justifyContent : 'center',
+		alignItems : 'stretch'
 	},
 	scroll_container : {
 		flex: 9,
@@ -297,7 +300,7 @@ const styles = StyleSheet.create({
 		padding : 16,
 		borderWidth : 1,
 		borderColor : 'silver',
-		backgroundColor : 'silver'
+		backgroundColor : '#D5D5D5'
 	}, 
 	cancel_button_text : {
 		textAlign : 'center',
@@ -312,7 +315,7 @@ const styles = StyleSheet.create({
 		flexDirection : 'row',
 		justifyContent : 'center',
 		margin : 8,
-		borderColor : 'silver',
+		borderColor : '#D5D5D5',
 		borderWidth : 1,
 		borderRadius : 4,
 	},
@@ -322,7 +325,7 @@ const styles = StyleSheet.create({
 	},
 	picker_icon_container : {
 		flex : 1,
-		backgroundColor : 'silver',
+		backgroundColor : '#D5D5D5',
 		alignItems : 'center',
 		justifyContent : 'center'
 	},
@@ -334,20 +337,22 @@ const styles = StyleSheet.create({
 		paddingLeft: 15,
 		paddingRight: 15,
 		borderRadius: 5
-	},
-	show_modal_button : {
-		padding: 8,
-		borderRadius: 6,
-		backgroundColor : 'silver',
-		borderColor : 'silver',
-		borderWidth : 1,
-		margin : 8,
-	},
-	show_modal_button_text : {
-		color : 'grey',
-		textAlign : 'center'
-	},
-	title :{
+  	},
+  	show_modal_button : {
+  		paddingVertical: 12,
+  		borderRadius: 6,
+  		backgroundColor : '#D5D5D5',
+  		borderColor : 'silver',
+  		borderWidth : 1,
+  		margin : 8,
+  	},
+  	show_modal_button_text : {
+  		color : 'grey',
+  		textAlign : 'center',
+  		fontSize : 16,
+  		fontWeight : 'bold',
+  	},
+  	title :{
   		textAlign : 'center',
   		fontSize : 16,
 

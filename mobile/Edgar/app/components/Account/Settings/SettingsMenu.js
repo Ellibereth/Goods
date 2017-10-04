@@ -27,7 +27,7 @@ export default class SettingsMenu extends Component {
 							
 
 							<SettingsList.Header headerStyle={{color:'grey'}}/>
-							<SettingsList.Item  title='Signed In As'
+							<SettingsList.Item  title= 'Signed In As '
 							arrowIcon = {(
 										<View style = {{"padding" : 8,
 												flex:  1,

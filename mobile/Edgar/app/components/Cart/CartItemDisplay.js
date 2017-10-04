@@ -99,8 +99,8 @@ const styles = StyleSheet.create({
 		borderWidth : 1,
 		borderColor : 'silver',
 		margin : 8,
-		marginBottom : 0,
-		marginTop : 8,
+		marginBottom : 8,
+		marginTop : 0,
 		flexDirection : 'column',
 	},
 	title_text : {
