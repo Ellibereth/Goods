@@ -60,7 +60,7 @@ class RegisterScreen extends Component {
 			  	'You have been sent a confirmation email. Confirm before you make a purchase.',
 				[
 					{text: 'OK', onPress: () => {
-							this.props.setUserInfo(data)
+							this.props.setUserInfo(data.user)
 							Actions.home({type : ActionConst.RESET})
 						}
 					},

@@ -36,7 +36,7 @@ export default class LoginForm extends Component {
 	async asyncHandleLoginSubmit() {
 		let data = await handleLoginSubmit(this.state.email, this.state.password)
 		if (data.success) {
-			this.props.setUserInfo(data)
+			this.props.setUserInfo(data.user)
 			return true	
 		}
 		else {

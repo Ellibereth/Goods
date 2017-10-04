@@ -127,7 +127,7 @@ export default class AddAddressModal extends Component {
 				}
 		let data = await handleAddAddress(form_data)
 		if (data.success) {
-			await this.props.loadUserCheckout(this.props.jwt)
+			await this.props.loadUser(this.props.jwt)
 			this.props.setModal(false)
 			this.props.selectAddress(new_index);
 			this.props.toggleEditAddress()

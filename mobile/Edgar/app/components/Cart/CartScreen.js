@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import CartItemDisplay from './CartItemDisplay'
 import CheckoutStepIndicator from './CheckoutStepIndicator'
 import OrderSummarySection from './OrderSummarySection'
+import LoadingSpinner from '../Misc/LoadingSpinner'
 
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -36,7 +37,13 @@ class CartScreen extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			is_loading : false,
 		}	
+		this.setLoading = this.setLoading.bind(this)
+	}
+
+	setLoading(is_loading ) {
+		this.setState({is_loading : is_loading})
 	}
 
 
@@ -45,6 +52,7 @@ class CartScreen extends Component {
 			var cart_items = this.props.user.cart.items.map((item, index) => 
 				<CartItemDisplay item = {item} key = {index}
 				setUserInfo = {this.props.setUserInfo}
+				setLoading = {this.setLoading}
 				jwt = {this.props.jwt}/>
 			)	
 		}
@@ -54,6 +62,7 @@ class CartScreen extends Component {
 		
 		return (
 				<View style = {[{flex : 1},styles.container]}>
+					<LoadingSpinner visible = {this.state.is_loading}/>
 					<View style = {[{flex : 8},styles.scroll_container]}>
 						<ScrollView>
 							<CheckoutStepIndicator />

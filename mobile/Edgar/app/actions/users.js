@@ -7,47 +7,38 @@ export function loadUser(jwt, address){
 	return async (dispatch, getState) => {
 		let data = await refreshCheckoutInfo(jwt)
 		if (data.success) {
-			AsyncStorage.setItem('jwt', data.jwt)
-			dispatch(setUserInfo(data))	
+			dispatch(setUserInfo(data.user))	
+			dispatch(setJwtInfo(data.jwt))
 		}
 		else {
-			AsyncStorage.setItem('jwt', "")
-			dispatch(setUserInfo({user : "", jwt: ""}))	
-		}
-	}
-}
-
-export function loadUserCheckout(jwt, address){
-	return async (dispatch, getState) => {
-		let data = await refreshCheckoutInfo(jwt, address)
-		if (data.success) {
-			AsyncStorage.setItem('jwt', data.jwt)
-			dispatch(setUserInfo(data))	
-		}
-		else {
-			AsyncStorage.setItem('jwt', "")
-			dispatch(setUserInfo({user : "", jwt: ""}))	
+			dispatch(setUserInfo(""))
+			dispatch(setJwtInfo(""))	
 		}
 	}
 }
 
 export function logoutUser(){
 	return (dispatch, getState) => {
-		AsyncStorage.setItem('jwt', "")
+		dispatch(setJwtInfo(""))
 		dispatch(setUserInfo(""))	
 	}
 }
 
 
-
-export function setUserInfo(data) {
-	if (data.jwt){
-		AsyncStorage.setItem('jwt', data.jwt).done()	
+export function setJwtInfo(jwt) {
+	AsyncStorage.setItem('jwt', jwt).done()		
+	return {
+		type : types.SET_JWT_INFO,
+		jwt : jwt,
 	}
+}
+
+export function setUserInfo(user) {
 	return {
 		type: types.SET_USER_INFO,
-		user : data.user,
+		user : user,
 		initial_fetch_done : true,
-		jwt : data.jwt
+
 	}
+	
 }

@@ -43,7 +43,7 @@ export default class UpdatePasswordForm extends Component {
 			this.state.password_confirm
 		)
 		if (data.success) {
-			this.props.setUserInfo(data)
+			this.props.setUserInfo(data.user)
 			return true	
 		}
 		else {

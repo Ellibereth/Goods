@@ -23,7 +23,7 @@ export default class SelectDropdownButton extends Component {
 
 	render() {
 		return (
-				<TouchableHighlight stlye = {{flex : 1}}  onPress={this.props.onPress}>
+				<TouchableHighlight onPress={this.props.onPress}>
 					<View style = {styles.container}>
 						<View style = {styles.left_box}>
 							<Text style = {styles.left_text}>{this.props.left_display}</Text>

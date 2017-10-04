@@ -43,7 +43,7 @@ export default class UpdatePersonalForm extends Component {
 		}
 		let data = await updatePersonalSettings(this.props.jwt, new_settings)
 		if (data.success) {
-			this.props.setUserInfo(data)
+			this.props.setUserInfo(data.user)
 			return true	
 		}
 		else {

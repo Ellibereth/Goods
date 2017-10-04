@@ -20,8 +20,9 @@ export default class LoadingSpinner extends Component {
 
 	render() {
 		var z_index_style = this.props.visible ? {zIndex : 20} : {}
+		var loading_style = this.props.visible ? {backgroundColor : 'black', 'opacity' : 0.7} : {}
 		return (
-			<View style = {[styles.loading, z_index_style]}>
+			<View style = {[styles.loading, z_index_style, loading_style]}>
 				<ActivityIndicator animating={this.props.visible}
 				color = {this.props.color}
 				size ="large" />
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
 		top: 0,
 		bottom: 0,
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
 	},
 })
 

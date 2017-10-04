@@ -92,7 +92,7 @@ export default class CheckoutAddressSection extends Component {
 							jwt = {this.props.jwt} 
 							user = {this.props.user}
 							toggleEditAddress = {this.toggleEditAddress.bind(this)}
-							loadUserCheckout = {this.props.loadUserCheckout}/>
+							loadUser = {this.props.loadUser}/>
 							}
 
 						</View>

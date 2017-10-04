@@ -130,7 +130,7 @@ export default class AddBillingModal extends Component {
 			}
 		let data = await handleAddBilling(form_data)
 		if (data.success) {
-			await this.props.loadUserCheckout(this.props.jwt)
+			await this.props.loadUser(this.props.jwt)
 			this.props.setModal(false)
 			this.props.selectCard(new_index);
 			this.props.toggleEditBilling()

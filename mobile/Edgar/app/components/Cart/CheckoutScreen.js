@@ -117,7 +117,7 @@ class CheckoutScreen extends Component {
 
 	selectAddress(index){
 		if (index != this.state.selected_address_index){
-			this.props.loadUserCheckout(this.props.jwt, this.props.user.addresses[index])
+			this.props.loadUser(this.props.jwt, this.props.user.addresses[index])
 		}
 		this.setState({
 			selected_address : this.props.user.addresses[index], 
@@ -147,7 +147,7 @@ class CheckoutScreen extends Component {
 							selected_address_index = {this.state.selected_address_index}
 							user = {this.props.user} 
 							jwt = {this.props.jwt} 
-							loadUserCheckout = {this.props.loadUserCheckout}
+							loadUser = {this.props.loadUser}
 							setUserInfo = {this.props.setUserInfo}
 							setModal = {this.setAddressModalVisible.bind(this)}
 							modal_visible = {this.state.addressModalVisible}
@@ -159,7 +159,7 @@ class CheckoutScreen extends Component {
 							selected_card_index = {this.state.selected_card_index}
 							user = {this.props.user} 
 							jwt = {this.props.jwt} 
-							loadUserCheckout = {this.props.loadUserCheckout} 
+							loadUser = {this.props.loadUser} 
 							setUserInfo = {this.props.setUserInfo}
 							setModal = {this.setBillingModalVisible.bind(this)}
 							modal_visible = {this.state.billingModalVisible}

@@ -14,8 +14,7 @@ export default class CheckoutPriceRow extends Component {
 			container : {
 				flexDirection : 'row',
 				justifyContent : "space-between",
-				paddingTop : 6,
-				paddingBottom : 6,
+				paddingVertical : 12,
 				borderTopWidth : 1,
 				borderTopColor : 'silver'
 			},

@@ -1,6 +1,13 @@
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, StyleSheet, Image, TouchableHighlight} from 'react-native';
+import {
+	View,
+	Text,
+	StyleSheet,
+	Image,
+	TouchableHighlight,
+	Alert
+} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import SimplePicker from 'react-native-simple-picker'
@@ -30,27 +37,44 @@ export default class CartItemDisplay extends Component {
 	}
 
 	async updateQuantity(quantity){
+		this.props.setLoading(true)
 		let data = await updateCartQuantity(this.props.jwt, this.props.item, quantity)
 		if(data.success){
-			this.props.setUserInfo(data)
+			this.props.setUserInfo(data.user)
+			this.props.setLoading(false)
 		}
 		else {
+			this.props.setLoading(false)
 			console.log(data.error)
 		}
+	}
+
+	onRemovePress() {
+		Alert.alert(
+			'Edgar USA',
+			'Are you sure you want to remove this item?',
+			  [
+				{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+				{text: 'OK', onPress: () => this.updateQuantity(0)},
+			  ]
+		)
 	}
 
 	render() {
 		var item_limit = this.getNumItemsLimit.bind(this)()
 		var quantities = []
-		for (var i = 0; i <= item_limit; i ++){
+		for (var i = 1; i <= item_limit; i ++){
 			quantities.push(i);
 		}
 
 		return (
 			<View style = {styles.container}>
 				<View style = {[{flex : 1}, styles.title_container]}>
-					<Text numberOfLines = {1}
-					 style = {styles.title_text}>{this.props.item.name}</Text>
+					<Text numberOfLines = {1} style = {styles.title_text}>{this.props.item.name}</Text>
+					<Icon size = {20} 
+					color = "grey" name = {"times-circle"}
+						onPress = {this.onRemovePress.bind(this)}
+					/>
 				</View>
 				<View style = {[{flex : 3}, styles.box_container]}>
 					<View style = {[{flex : 1},styles.image_container]}>
@@ -68,7 +92,7 @@ export default class CartItemDisplay extends Component {
 
 						<View style = {[{flex : 2}, styles.price_container]}>
 							<Text style = {[{flex : 1},styles.price_text]}>
-								${formatPrice(this.props.item.price)}
+								${formatPrice(this.props.item.price * this.props.item.num_items)}
 							</Text>
 						</View>
 					</View>
@@ -82,7 +106,7 @@ export default class CartItemDisplay extends Component {
 							ref = {'quantity_picker'}
 							options={quantities}
 							labels = {quantities.map((quantity)=>quantity.toString())}
-							initialOptionIndex = {this.props.item.num_items}
+							initialOptionIndex = {this.props.item.num_items - 1 || 0}
 							onSubmit={(option) => {
 							this.updateQuantity(option)
 							}}
@@ -98,8 +122,8 @@ const styles = StyleSheet.create({
 		height: 140,
 		borderWidth : 1,
 		borderColor : 'silver',
-		margin : 8,
-		marginBottom : 8,
+		marginHorizontal : 10,
+		marginBottom : 16,
 		marginTop : 0,
 		flexDirection : 'column',
 	},
@@ -109,6 +133,9 @@ const styles = StyleSheet.create({
 	},
 	title_container : {
 		padding : 4,
+		flexDirection : 'row',
+		justifyContent : 'space-between',
+		alignItems : 'center'
 	},
 	box_container : {
 		flexDirection : 'row',
@@ -117,7 +144,7 @@ const styles = StyleSheet.create({
 		borderColor : 'silver',
 		borderRightWidth : 0,
 		borderLeftWidth : 1,
-		marginLeft : 2,
+		marginLeft : 4,
 	},
 	image_container : {
 		borderRightWidth : 1,

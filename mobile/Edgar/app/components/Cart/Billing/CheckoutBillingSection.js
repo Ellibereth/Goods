@@ -92,7 +92,7 @@ export default class CheckoutBillingSection extends Component {
 							setModal = {this.props.setModal}
 							jwt = {this.props.jwt} 
 							toggleEditBilling = {this.toggleEditBilling.bind(this)}
-							loadUserCheckout = {this.props.loadUserCheckout}/>
+							loadUser = {this.props.loadUser}/>
 							}
 
 						</View>
