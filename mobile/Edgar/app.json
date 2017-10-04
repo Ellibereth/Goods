@@ -4,7 +4,7 @@
     "icon": "./favico.ico",
     "version": "0.0.1",
     "slug" : "edgarusa",
-    "sdkVersion": "20.0.0",
+    "sdkVersion": "21.0.0",
     "privacy" : "unlisted",
     "notification" : "icon",
     "orientation" : "portrait"
