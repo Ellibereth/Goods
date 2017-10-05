@@ -117,7 +117,10 @@ class CheckoutScreen extends Component {
 
 	selectAddress(index){
 		if (index != this.state.selected_address_index){
-			this.props.loadUser(this.props.jwt, this.props.user.addresses[index])
+			this.setLoading(true)
+			this.props.loadUser(this.props.jwt, this.props.user.addresses[index]).then(() => 
+				this.setLoading(false)
+			)
 		}
 		this.setState({
 			selected_address : this.props.user.addresses[index], 
@@ -133,10 +136,9 @@ class CheckoutScreen extends Component {
 	}
 	
 	render() {
-		var dim_style = this.state.is_loading ? {opacity : 0.6, backgroundColor : 'grey'}  : {}
 		return (
-				<View style = {[{flex : 1}, dim_style, styles.container]}>
-					<LoadingSpinner color = {"black"} visible = {this.state.is_loading}/>
+				<View style = {[{flex : 1}, styles.container]}>
+					<LoadingSpinner visible = {this.state.is_loading}/>
 					<View style = {[{flex : 9}, styles.scroll_container]}>
 						<ScrollView>
 							<CheckoutStepIndicator />
@@ -151,6 +153,7 @@ class CheckoutScreen extends Component {
 							setUserInfo = {this.props.setUserInfo}
 							setModal = {this.setAddressModalVisible.bind(this)}
 							modal_visible = {this.state.addressModalVisible}
+							setLoading = {this.setLoading}
 							 />
 
 							<CheckoutBillingSection
@@ -163,6 +166,7 @@ class CheckoutScreen extends Component {
 							setUserInfo = {this.props.setUserInfo}
 							setModal = {this.setBillingModalVisible.bind(this)}
 							modal_visible = {this.state.billingModalVisible}
+							setLoading = {this.setLoading}
 							/>  
 							
 							<OrderSummarySection 
@@ -205,8 +209,7 @@ const styles = StyleSheet.create({
 	},
 	checkout_text : {
 		textAlign : "center",
-		color : 'grey',
-		fontWeight : 'bold',
+		color : '#333333',
 		fontSize:  20,
 	},
 	

@@ -85,6 +85,7 @@ export default class CheckoutBillingSection extends Component {
 							{ this.state.can_edit_billing &&
 
 							<AddBillingModal 
+							setLoading = {this.props.setLoading}
 							user = {this.props.user}
 							selectCard = {this.props.selectCard}
 							setUserInfo = {this.props.setUserInfo}
@@ -123,8 +124,8 @@ export default class CheckoutBillingSection extends Component {
 							<Text style = {styles.toggle_text}>
 								{this.state.can_edit_billing ? "Save " : "Edit Billing "}
 								{this.state.can_edit_billing ? 
-									<Icon name = 'caret-up'/> :
-									<Icon name = 'caret-down'/>
+									<Icon name = 'chevron-up'/> :
+									<Icon name = 'chevron-down'/>
 								}
 							</Text>
 						</TouchableHighlight>
@@ -143,18 +144,18 @@ const styles = StyleSheet.create({
 		minHeight : 120,
 		borderColor : "silver",
 		borderWidth : 1,
-		margin : 8,
-		marginBottom : 0,
+		marginHorizontal : 8,
+		marginBottom : 10,
 		paddingBottom : 0,
-		
 	},
+
 	collapsible_container : {
-		
+		padding : 4,
 	},
 	
 	toggle_container : {
 		flexDirection : 'column',
-		height : 40,
+		height: 40,
 	},
 	toggle_button : {
 		backgroundColor : '#D5D5D5',
@@ -163,20 +164,20 @@ const styles = StyleSheet.create({
 	},
 	toggle_text : {
 		textAlign : "center",
-		color : 'grey',
+		color : '#4d4d4d',
 	},
 	title_text : {
-		fontSize : 20,
+		fontSize : 16,
 		fontWeight : 'bold',
 	},
 	title_container : {
 		borderBottomWidth : 1,
 		borderBottomColor : 'silver',
-		marginLeft: 6,
+		marginLeft: 8,
 		paddingLeft: 0,
-		padding : 6,
+		paddingRight : 8,
 		marginRight: 0,
+		paddingVertical : 12,
 	}
 
 })
-

@@ -28,6 +28,7 @@ class LoginScreen extends Component {
 	render() {
 		return (
 				<LoginForm 
+				setJwt = {this.props.setJwt}
 				setUserInfo = {this.props.setUserInfo} />
 		)
 	}

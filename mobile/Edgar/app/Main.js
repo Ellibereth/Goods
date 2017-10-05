@@ -64,7 +64,6 @@ class Main extends React.Component {
 	
 	render() { 
 
-
 		if (!this.props.initial_fetch_done) return <View/>
 			
 		return (

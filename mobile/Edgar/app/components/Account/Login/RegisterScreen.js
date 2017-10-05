@@ -55,6 +55,8 @@ class RegisterScreen extends Component {
 
 		this.setState({is_loading : false})
 		if (data.success){
+			this.props.setUserInfo(data.user)
+			this.props.setJwt(data.jwt)
 			Alert.alert(
 				'Welcome!',
 			  	'You have been sent a confirmation email. Confirm before you make a purchase.',

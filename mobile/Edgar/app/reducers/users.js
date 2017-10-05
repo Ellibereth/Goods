@@ -21,7 +21,7 @@ export const initial_fetch_done = createReducer(false, {
 })
 
 export const jwt = createReducer("", {
-	[types.SET_JWT_INFO](state,action){
+	[types.SET_JWT](state,action){
 		if (action.jwt){
 			return action.jwt
 		}

@@ -85,6 +85,7 @@ export default class CheckoutAddressSection extends Component {
 							}
 							{ this.state.can_edit_address &&
 							<AddAddressModal 
+							setLoading = {this.props.setLoading}
 							selectAddress = {this.props.selectAddress}
 							setUserInfo = {this.props.setUserInfo}
 							modal_visible = {this.props.modal_visible}
@@ -125,8 +126,8 @@ export default class CheckoutAddressSection extends Component {
 							<Text style = {styles.toggle_text}>
 								{this.state.can_edit_address ? "Save " : "Edit Address "}
 								{this.state.can_edit_address ? 
-									<Icon name = 'caret-up'/> :
-									<Icon name = 'caret-down'/>
+									<Icon name = 'chevron-up'/> :
+									<Icon name = 'chevron-down'/>
 								}
 							</Text>
 						</TouchableHighlight>
@@ -144,13 +145,14 @@ const styles = StyleSheet.create({
 		minHeight : 120,
 		borderColor : "silver",
 		borderWidth : 1,
-		margin : 8,
+		marginHorizontal : 8,
 		marginTop : 0,
 		paddingBottom : 0,
-		
+		marginBottom : 10,
+			
 	},
 	collapsible_container : {
-		
+		padding : 4,
 	},
 	
 	toggle_container : {
@@ -164,19 +166,20 @@ const styles = StyleSheet.create({
 	},
 	toggle_text : {
 		textAlign : "center",
-		color : 'grey',
+		color : '#4d4d4d',
 	},
 	title_text : {
-		fontSize : 20,
+		fontSize : 16,
 		fontWeight : 'bold',
 	},
 	title_container : {
 		borderBottomWidth : 1,
 		borderBottomColor : 'silver',
-		marginLeft: 6,
+		marginLeft: 8,
 		paddingLeft: 0,
-		padding : 6,
+		paddingRight : 8,
 		marginRight: 0,
+		paddingVertical : 12,
 	}
 
 })

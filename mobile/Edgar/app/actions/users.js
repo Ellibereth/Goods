@@ -5,30 +5,30 @@ import {getUserInfo, refreshCheckoutInfo} from '../api/UserService'
 
 export function loadUser(jwt, address){
 	return async (dispatch, getState) => {
-		let data = await refreshCheckoutInfo(jwt)
+		let data = await refreshCheckoutInfo(jwt, address)
 		if (data.success) {
 			dispatch(setUserInfo(data.user))	
-			dispatch(setJwtInfo(data.jwt))
+			dispatch(setJwt(data.jwt))
 		}
 		else {
 			dispatch(setUserInfo(""))
-			dispatch(setJwtInfo(""))	
+			dispatch(setJwt(""))	
 		}
 	}
 }
 
 export function logoutUser(){
 	return (dispatch, getState) => {
-		dispatch(setJwtInfo(""))
+		dispatch(setJwt(""))
 		dispatch(setUserInfo(""))	
 	}
 }
 
 
-export function setJwtInfo(jwt) {
+export function setJwt(jwt) {
 	AsyncStorage.setItem('jwt', jwt).done()		
 	return {
-		type : types.SET_JWT_INFO,
+		type : types.SET_JWT,
 		jwt : jwt,
 	}
 }

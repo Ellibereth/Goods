@@ -6,7 +6,8 @@ import {TouchableOpacity,
 		Text,
 		ScrollView,
 		Modal,
-		TouchableHighlight
+		TouchableHighlight,
+		Alert
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {handleAddAddress} from '../../../api/UserService'
@@ -88,14 +89,14 @@ export default class AddAddressModal extends Component {
 		this.state = {
 			// hard coded for easier testing
 			// change to all "" except country when done
-			address_name : "Darek",
+			address_name : "",
 			description : "",
-			address_state: "PA",
-			address_city : "Philadelphia",
+			address_state: "",
+			address_city : "",
 			address_country : "US",
-			address_line1 : "3900 City Ave",
+			address_line1 : "",
 			address_line2 : "",
-			address_zip : "19131",
+			address_zip : "",
 
 		}
 		this.onChangeText = this.onChangeText.bind(this);
@@ -125,22 +126,36 @@ export default class AddAddressModal extends Component {
 					address_line2 : this.state.address_line2,
 					address_zip : this.state.address_zip,
 				}
+		this.props.setLoading(true)
+		this.props.setModal(false)
 		let data = await handleAddAddress(form_data)
 		if (data.success) {
 			await this.props.loadUser(this.props.jwt)
-			this.props.setModal(false)
-			this.props.selectAddress(new_index);
-			this.props.toggleEditAddress()
-				
+			this.props.selectAddress(new_index)
+			this.props.toggleEditAddress()		
+			Alert.alert(
+				'Success',
+				"New address added",
+				[	
+					{text : 'Ok'}
+				]
+			)
 		} 
 		else {
-			console.log(data.error)
+			this.props.setLoading(false)
+			Alert.alert(
+				'Error',
+				data.error.title,
+				[	
+					{text : 'Try Again', onPress: () => this.props.setModal(true)},
+					{text : 'Never Mind'}
+				]
+			)
 		}
 	}
 	
 	render() {
 		return (
-			
 				<View style = {styles.container}>
 					<Modal
 					  animationType="slide"
@@ -312,17 +327,14 @@ const styles = StyleSheet.create({
 	},
 	show_modal_button : {
 		paddingVertical: 12,
-		borderRadius: 6,
+		borderRadius: 4,
 		backgroundColor : '#D5D5D5',
-		borderColor : 'silver',
-		borderWidth : 1,
 		margin : 8,
 	},
 	show_modal_button_text : {
-		color : 'grey',
+		color : '#333333',
 		textAlign : 'center',
 		fontSize : 16,
-		fontWeight : 'bold',
 	},
 	title :{
 		textAlign : 'center',

@@ -24,7 +24,6 @@ export default class CheckoutTextInput extends Component {
 		this.props.onChangeText(this.props.field, value)
 	}
 
-	
 	render() {
 		return (
 			<View style = {styles.input_container}>
@@ -34,6 +33,7 @@ export default class CheckoutTextInput extends Component {
 					maxLength = {this.props.maxLength}
 					value = {this.props.value}
 					placeholder = {this.props.placeholder ? this.props.placeholder : this.props.field}
+					keyboardType = {this.props.keyboardType}
 				/>
 			</View>
 			

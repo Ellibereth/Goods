@@ -37,6 +37,7 @@ export default class LoginForm extends Component {
 		let data = await handleLoginSubmit(this.state.email, this.state.password)
 		if (data.success) {
 			this.props.setUserInfo(data.user)
+			this.props.setJwt(data.jwt)
 			return true	
 		}
 		else {
