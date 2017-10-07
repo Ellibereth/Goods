@@ -20472,53 +20472,7 @@ body.use-2015-font #sCart .rightBigArrowIcon .fa-angle-right {
 #applePayWebCheckout {
     display: none
 }
-@supports(-webkit-appearance:-apple-pay-button) {
-    .applePayWrapper {
-        display: none;
-        -webkit-appearance: -apple-pay-button;
-        -apple-pay-button-type: buy;
-        -apple-pay-button-style: black;
-        border-radius: 3px;
-        width: 100%;
-        height: 44px
-    }
-    .applePayWrapper>.applePayText {
-        display: none
-    }
-}
-@supports not(-webkit-appearance: -apple-pay-button) {
-    .applePayWrapper {
-        --apple-pay-scale: 1;
-        display: inline-flex;
-        justify-content: center;
-        font-size: 16px;
-        border-radius: 3px;
-        padding: 10px 0;
-        box-sizing: border-box;
-        width: 100%;
-        height: 44px;
-        background-color: black;
-        color: white
-    }
-    .applePayWrapper>.applePayText {
-        font-family: -apple-system;
-        font-size: calc(1em * var(--apple-pay-scale));
-        font-weight: 300;
-        align-self: center;
-        margin-right: calc(2px * var(--apple-pay-scale))
-    }
-    .applePayWrapper>.applePayLogo {
-        width: calc(35px * var(--apple-pay-scale));
-        height: 140%;
-        background-size: 100% 80%;
-        background-repeat: no-repeat;
-        background-position: 0 0;
-        margin-left: calc(2px * var(--apple-pay-scale));
-        border: 0;
-        background-image: -webkit-named-image(apple-pay-logo-white);
-        background-color: black
-    }
-}
+
 .edgar-mask {
     height: 100%;
     width: 100%;

@@ -77,7 +77,7 @@ class Main extends React.Component {
 				>
 					<Scene title = "Cart" 
 					key = "cart"
-					initial = {true}
+					// initial = {true}
 					renderLeftButton = {() => (<BackIcon/>)}>
 
 						<Scene {...this.props} 
@@ -121,7 +121,7 @@ class Main extends React.Component {
 
 					<Scene title = "Home" key = "home" 
 					// this should be true if we're going LIVE
-					// initial = {true}
+					initial = {true}
 					renderLeftButton = {() => (<SearchIcon />)}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
 
