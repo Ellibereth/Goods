@@ -26,7 +26,7 @@ Uses SSL for HTTPS connection <br/>
 When testing locally, use the virutal environment with the following shell command from the root directory. 
 
 ```
-source virtualenv/edgarvenv/bin/activate
+source venv/bin/activate
 ```
 
 The virtual environment will include all the necessary python dependencies. If not one can install them from requirements.txt as follows

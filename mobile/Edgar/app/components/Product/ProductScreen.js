@@ -103,10 +103,14 @@ class ProductScreen extends Component {
 						<ScrollView>
 							<Swiper 
 							loop = {false}
-							style={styles.image_slider_wrapper}>
+							style={styles.image_slider_wrapper}
+							paginationStyle={{
+								bottom: -20,
+							  }}
+							>
 								{images}
 							</Swiper>
-
+							<View style = {{paddingTop : 30}}/>
 							<View style = {styles.title}>
 								<Text style = {styles.name_text}> {this.props.product.name} </Text>
 								<Text style = {styles.manufacturer_text}>by <Text style = {{textDecorationLine : "underline"}}>{this.props.product.manufacturer.name} </Text></Text>
@@ -226,6 +230,7 @@ const styles = StyleSheet.create({
 	},
 	image_slider_wrapper : {
 		height: 300,
+		marginBottom: 20
 	},
 
 	product_image : {

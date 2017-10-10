@@ -38,7 +38,10 @@ class SearchIcon extends Component {
 					onPress = {() => this.setSearchModal(true)}
 					name = "search"
 					size = {20}
-					style = {{paddingLeft : 12}}
+					style = {{
+						paddingLeft : 12,
+						padding : 12
+					}}
 				/>
 				
 				<SearchModal 

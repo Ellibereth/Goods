@@ -10,8 +10,7 @@
     "orientation" : "portrait"
   },
   "loading": {
-      "icon": "./favico.ico",
-      "hideExponentText": false
+      "icon": "./loading.png",
     },
   "ios": {
       "bundleIdentifier": "com.edgarusa.edgarusa"

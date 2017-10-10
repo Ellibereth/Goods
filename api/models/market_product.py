@@ -104,7 +104,10 @@ class MarketProduct(db.Model):
 		for image in images:
 			if not image.soft_deleted:
 				image_dict = image.toPublicDict()
-				image_list.append(image_dict)
+				if image.image_id == self.main_image:
+					image_list.insert(0,image_dict)
+				else:
+					image_list.append(image_dict)
 		return image_list
 
 	@staticmethod

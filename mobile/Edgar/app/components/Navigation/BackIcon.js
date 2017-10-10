@@ -29,6 +29,9 @@ export default class BackIcon extends Component {
 							marginLeft : 8,
 							color : '#3399ff',
 							fontWeight : 'lighter',
+							padding : 8,
+							paddingRight : 24,
+							paddingLeft : 0,
 						}}
 						onPress = {this.navigateBack}/>
 		)
