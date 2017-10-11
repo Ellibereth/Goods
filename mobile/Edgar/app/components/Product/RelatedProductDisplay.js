@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
 	container :  {
 		flexDirection : 'row',
 		justifyContent : "flex-start",
-		borderTopWidth : 1,
+		borderBottomWidth : 0.5,
+		borderTopWidth : 0.5,
 		borderColor : 'silver',
 		padding : 12
 	},

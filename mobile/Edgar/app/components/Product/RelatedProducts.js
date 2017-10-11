@@ -1,6 +1,6 @@
 import React from 'react';
 import {Component} from 'react'
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ListView} from 'react-native';
 import {formatPrice} from '../../util/Format.js'
 import {getRelatedProducts} from '../../api/ProductService'
 import RelatedProductDisplay from './RelatedProductDisplay'
@@ -28,11 +28,11 @@ export default class RelatedProducts extends Component {
 	render() {
 		return (
 			<View style = {styles.container}>
-				{/*<View style = {styles.title_container}>
-					<Text style = {styles.title_text}>
-						YOU MIGHT ALSO LIKE
-					</Text> 
-				</View>*/}
+				<View style = {styles.title_container}>
+					<Text style  = {styles.title_text}>
+						RECOMMENDED
+					</Text>
+				</View>
 
 				{this.state.related_products &&
 						this.state.related_products.map((product, index) => 
@@ -49,19 +49,18 @@ export default class RelatedProducts extends Component {
 const styles = StyleSheet.create({
 	container : { 
 		flex : 1,
-		paddingTop : 20,
+		paddingTop : 10,
 		flexDirection : 'column',
-		justifyContent : 'center',
-		alignItems : 'center'
+		// justifyContent : 'center',
+		// alignItems : 'center'
+	},
+	title_text  : {
+		textAlign : "center",
+		fontSize : 18,
 	},
 	title_container : {
-		padding: 12,
-		borderTopWidth : 1,
-		borderColor : 'silver',
-	},
-	title_text : {
-		textAlign : "center",
-		fontSize : 20
+		paddingHorizontal : 6,
+		paddingVertical : 6,
 	}
 });
 			

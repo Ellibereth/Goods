@@ -13,17 +13,26 @@ export default class ProductDescription extends Component {
 		}
 	}
 
+
 	
 
 	render() {
 		return (
 			<View style = {styles.description_container}>
-				{/* <Text style = {styles.description_title}>
-					DESCRIPTION
-				</Text>*/}
-				<Text style = {styles.description_text}> 
-					{this.props.product.description}
-				</Text>
+					{this.props.product.description.split("\n").map((line, index) => {
+						if (line) {
+							return (
+									<View style = {styles.bullet_container}  key = {index}>
+										<Text style = {styles.description_bullet}>{'\u2022'}</Text>
+										<Text style = {styles.description_text}> 
+											{line}
+										</Text>		
+									</View>
+								)
+							}
+						}
+					)}
+				
 			</View>
 		
 		);
@@ -33,10 +42,9 @@ export default class ProductDescription extends Component {
 
 const styles = StyleSheet.create({
 	description_container : {
-		marginLeft : 20,
-		marginRight : 20,
 		marginTop : 6,
-		marginBottom: 6
+		marginBottom: 6,
+		paddingHorizontal : 8
 
 	},
 	description_title : {
@@ -45,10 +53,21 @@ const styles = StyleSheet.create({
 		textAlign : 'center'
 	},
 	description_text : {
-		textAlign : 'center',
+		textAlign : 'left',
 		fontSize : 16,
-		color : 'grey'
+		color : 'black',
+		paddingRight: 8
 	},
+	description_bullet : {
+		paddingLeft : 6,
+		paddingRight : 12,
+		fontSize : 16
+	},
+	bullet_container : {
+		paddingVertical : 12,
+		paddingHorizontal : 16,
+		flexDirection : 'row',
+	}
 });
 			
 

@@ -28,6 +28,7 @@ import SettingsScreen from './components/Account/Settings/SettingsScreen'
 import UpdatePersonalScreen from './components/Account/Settings/Edit/UpdatePersonalScreen'
 import UpdatePasswordScreen from './components/Account/Settings/Edit/UpdatePasswordScreen'
 import SearchScreen from './components/Search/SearchScreen'
+import MadeInUsaScreen from './components/Info/MadeInUsaScreen'
 
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators(ActionCreators, dispatch);
@@ -124,10 +125,18 @@ class Main extends React.Component {
 					initial = {true}
 					renderLeftButton = {() => (<SearchIcon />)}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
+						<Scene title = "Home" key = "home"
+						icon = {()=> this.getTabIcon("home")}>
+							<Scene title = "Home" key = "home" initial = {true} 
+							component = {HomeScreen}/>
 
-						<Scene title = "Home" key = "home" 
-						icon = {()=> this.getTabIcon("home")} 
-						component = {HomeScreen}/>
+							<Scene title = "Made in USA" key = "madeinusa"
+							component = {MadeInUsaScreen}
+							hideTabBar = {true}
+							renderLeftButton = {() => (<BackIcon/>)}
+
+							/>
+						</Scene>
 						
 
 					

@@ -93,6 +93,16 @@ class MarketProduct(db.Model):
 				return False
 
 		return True
+
+	def getMainImage(self):
+		if self.main_image:
+			return self.main_image
+
+		images = ProductImage.query.filter_by(product_id = self.product_id).all()
+		if len(images) == 0:
+			return None
+		else:
+			return images[0].image_id
 		
 	def getProductImages(self):
 		"""
@@ -246,6 +256,8 @@ class MarketProduct(db.Model):
 		for tag in matching_tags:
 			product_id_matches.add(tag.product_id)
 
+		product_id_matches.remove(self.product_id)
+
 		matching_products = MarketProduct.query.filter(MarketProduct.product_id.in_(product_id_matches)).all()
 
 		random.shuffle(matching_products)
@@ -337,7 +349,7 @@ class MarketProduct(db.Model):
 		images = self.getProductImages()
 		public_dict[Labels.Images] = images
 		public_dict[Labels.NumImages] = len(images)
-		public_dict[Labels.MainImage] = self.main_image
+		public_dict[Labels.MainImage] = self.getMainImage()
 		public_dict[Labels.ProductTemplate] = self.product_template
 		public_dict[Labels.NumItemsLimit] = self.num_items_limit
 		public_dict[Labels.Active] = self.active

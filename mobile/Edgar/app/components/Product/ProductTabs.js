@@ -22,8 +22,8 @@ export default class ProductTabs extends PureComponent {
 		index: 0,
 		routes: [
 			{ key: '1', title: 'Description' },
+			{ key: '3', title: 'Maker' },
 			{ key: '2', title: 'Related' },
-			{ key: '3', title: 'Manufacturer' },
 		],
 	};
 
@@ -58,7 +58,7 @@ export default class ProductTabs extends PureComponent {
 				renderScene={this._renderScene}
 				renderHeader={this._renderHeader}
 				onIndexChange={this._handleIndexChange}
-
+				lazy = {true}
 
 			/>
 		);
@@ -68,6 +68,9 @@ export default class ProductTabs extends PureComponent {
 const tab_styles = StyleSheet.create({
 	label : {
 		color: 'black',
+		fontSize : 18,
+		width : 100,
+		textAlign : 'center',
 	},
 	container : {
 		backgroundColor : 'white'

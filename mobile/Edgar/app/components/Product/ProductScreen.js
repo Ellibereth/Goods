@@ -23,6 +23,7 @@ import Swiper from 'react-native-swiper'
 import SimplePicker from 'react-native-simple-picker'
 import LoadingSpinner from '../Misc/LoadingSpinner'
 import ProductTabs from './ProductTabs'
+import ProductVariantPicker from './ProductVariantPicker'
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -146,38 +147,11 @@ class ProductScreen extends Component {
 							
 
 							{this.props.product.has_variants && 
-								<View style = {variant_styles.container}>
-									<View style = {{flex : 1}}/>
-									<View style = {variant_styles.content_container}>
-										<TouchableOpacity style = {variant_styles.picker_container}
-											onPress = {()=>this.refs.variant_picker.show()}>
-											<Text style = {variant_styles.picker_title}>
-												Select {toTitleCase(this.props.product.variant_type_description)}:
-											</Text>
-											<Text style = {variant_styles.picker_text}>
-												{this.state.variant ? this.state.variant.variant_type : "No Variant Selected"}
-											</Text>
-											<View style ={variant_styles.caret_container}>
-												<Icon name = {"caret-down"} 
-												style = {variant_styles.caret}/>
-											</View>
-										</TouchableOpacity>
-									</View>
-
-									<View style = {{flex : 1}}/>
-
-									<SimplePicker
-										ref = {'variant_picker'}
-										options={this.props.product.variants.map((variant, index) =>
-											index
-										)}
-										labels = {this.props.product.variants.map((variant) => variant.variant_type)}
-										initialOptionIndex = {0}
-										onSubmit={(index) => {
-											this.updateVariant(index)			
-										}}
-									/>
-								</View>
+								<ProductVariantPicker 
+									updateVariant = {this.updateVariant.bind(this)}
+									variant = {this.state.variant}
+									product = {this.props.product}
+								/>
 							}
 
 							<ProductTabs product = {this.props.product}/>
@@ -204,6 +178,7 @@ class ProductScreen extends Component {
 const variant_styles = StyleSheet.create({
 	container : {
 		flexDirection : 'row',
+		paddingVertical : 8,
 	},
 	picker_container : {
 		flex : 1,
@@ -211,8 +186,7 @@ const variant_styles = StyleSheet.create({
 		alignItems : 'flex-start',
 		justifyContent : 'center',
 		borderWidth : 1,
-		borderRadius : 6,
-		// margin : 4,
+		borderColor : 'silver',
 		padding : 8,
 	},
 	content_container : { 
@@ -269,9 +243,10 @@ const styles = StyleSheet.create({
 
 	name_text: {
 		textAlign : 'center',
-		color : 'grey',
+		color : 'black',
 		// margin: 4,
-		marginTop : 12
+		marginTop : 12,
+		fontSize : 20,
 	},
 	manufacturer_text:  {
 		textAlign : 'center',
@@ -279,10 +254,13 @@ const styles = StyleSheet.create({
 		opacity : 0.8,
 		marginTop: 4,
 		marginBottom : 8,
+		fontSize:  20
 	},
 	price_text : {
 		textAlign : 'center',
 		color : 'red',
+		fontSize : 20,
+		paddingTop : 10
 	},
 
 	

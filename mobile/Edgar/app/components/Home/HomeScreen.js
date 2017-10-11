@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
 import {getProductsByListing} from '../../api/ProductService'
 import HomeProducts from './HomeProducts'
 import LoadingSpinner from '../Misc/LoadingSpinner'
-
+import HomeMadeInUsaSection from './HomeMadeInUsaSection'
 
 const HOME_TAG = "Home_Page"
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -48,11 +48,16 @@ class HomeScreen extends Component {
 	render() {
 		return (
 			
-				<View style = {{"flex" : 1}}>
+				<View style = {[{flex : 1}, styles.container]}>
 					<LoadingSpinner visible = {this.state.home_products.length == 0}/>
-					<View style = {styles.scroll_wrapper}>
-						<HomeProducts home_products = {this.state.home_products}/>
-					</View>
+					<ScrollView style = {styles.scroll_wrapper}>
+						<View style = {styles.home_product_wrapper}>
+							<HomeProducts home_products = {this.state.home_products}/>
+						</View>
+
+						
+						<HomeMadeInUsaSection />
+					</ScrollView>
 				</View>
 			
 
@@ -62,7 +67,13 @@ class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
 	scroll_wrapper : {
+		paddingBottom : 40,
+	},
+	home_product_wrapper : {
 		height : 225
+	},
+	container : {
+		// backgroundColor : "white"
 	}
 })
 

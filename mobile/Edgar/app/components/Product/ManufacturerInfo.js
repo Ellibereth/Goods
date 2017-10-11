@@ -30,21 +30,15 @@ export default class ManufacturerInfo extends Component {
 
 const styles = StyleSheet.create({
 	description_container : {
-		marginLeft : 20,
-		marginRight : 20,
 		marginTop : 6,
-		marginBottom: 6
+		marginBottom: 6,
+		paddingVertical : 16,
+		paddingHorizontal : 24
 
 	},
-	description_title : {
-		margin : 12,
-		fontSize : 24,
-		textAlign : 'center'
-	},
 	description_text : {
-		textAlign : 'center',
 		fontSize : 16,
-		color : 'grey'
+		color : 'black',
 	},
 });
 			
