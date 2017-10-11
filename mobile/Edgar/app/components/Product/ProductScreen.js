@@ -21,7 +21,8 @@ import {formatPrice, toTitleCase} from '../../util/Format'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Swiper from 'react-native-swiper'
 import SimplePicker from 'react-native-simple-picker'
-import RelatedProducts from './RelatedProducts'
+import LoadingSpinner from '../Misc/LoadingSpinner'
+import ProductTabs from './ProductTabs'
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -44,9 +45,11 @@ class ProductScreen extends Component {
 		this.state = {
 			quantity : 1,
 			variant : null,
+			is_loading : false,
 		}
 		this.addItemToCart = this.addItemToCart.bind(this)	
 		this.updateVariant = this.updateVariant.bind(this)
+		this.setLoading = this.setLoading.bind(this)
 	}
 
 	componentDidMount(){	
@@ -57,26 +60,49 @@ class ProductScreen extends Component {
 		}
 	}
 
+	_navigateToSignUp(){
+		Actions.register()
+	}
+
+	setLoading(is_loading) {
+		this.setState({is_loading : is_loading})
+	}
+
 	async addItemToCart() {
+		if (!this.props.jwt) {
+			Alert.alert(
+				"Create an account",
+				"You need an account to start shopping",
+				[
+					{text: 'Sign Up', onPress: () => this._navigateToSignUp()},
+					{text: 'Back', onPress: () => console.log('OK Pressed')},
+				],
+				{ cancelable: false }
+			)
+			return
+		}
+
 		var product_id = this.props.product.product_id ? this.props.product.product_id.toString() : ""
+		this.setLoading(true)
 		let data = await addItemToCart(
 			this.props.jwt, 
 			product_id, 
 			this.state.quantity, 
 			this.state.variant
 		)
+		this.setLoading(false)
 		if (data.success){
-			this.props.loadUser(this.props.jwt)
-			
+			this.props.setUserInfo(data.user)
 		}
+		
 		else {
 			Alert.alert(
-			  data.error.title,
-			  data.error.text,
-			  [
-				{text: 'OK', onPress: () => console.log('OK Pressed')},
-			  ],
-			  { cancelable: false }
+				data.error.title,
+				data.error.text,
+				[
+					{text: 'OK', onPress: () => console.log('OK Pressed')},
+				],
+				{ cancelable: false }
 			)
 		}
 	}
@@ -98,7 +124,7 @@ class ProductScreen extends Component {
 		return (
 			
 				<View style = {styles.screen_container}>
-
+					<LoadingSpinner visible = {this.state.is_loading}/>
 					<View style = {styles.scroll_container}> 
 						<ScrollView>
 							<Swiper 
@@ -117,15 +143,7 @@ class ProductScreen extends Component {
 								<Text style = {styles.price_text}> ${formatPrice(this.props.product.price)} </Text>
 							</View>
 
-							<View style = {styles.description_container}>
-								<Text style = {styles.description_title}>
-									DESCRIPTION
-								</Text>
-								<Text style = {styles.description_text}> 
-									{this.props.product.description}
-								</Text>
-							</View>
-
+							
 
 							{this.props.product.has_variants && 
 								<View style = {variant_styles.container}>
@@ -162,7 +180,8 @@ class ProductScreen extends Component {
 								</View>
 							}
 
-							<RelatedProducts product = {this.props.product}/>
+							<ProductTabs product = {this.props.product}/>
+
 							<View style = {{paddingBottom : 24}}/>
 						</ScrollView>
 					</View>
@@ -266,25 +285,7 @@ const styles = StyleSheet.create({
 		color : 'red',
 	},
 
-	description_container : {
-		marginLeft : 20,
-		marginRight : 20,
-		borderTopWidth : 1,
-		borderColor : 'silver',
-		marginTop : 6,
-		marginBottom: 6
-
-	},
-	description_title : {
-		margin : 12,
-		fontSize : 24,
-		textAlign : 'center'
-	},
-	description_text : {
-		textAlign : 'center',
-		fontSize : 16,
-		color : 'grey'
-	},
+	
 	
 	add_to_cart_container : {
 		flex: 1,

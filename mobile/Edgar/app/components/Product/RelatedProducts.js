@@ -28,11 +28,11 @@ export default class RelatedProducts extends Component {
 	render() {
 		return (
 			<View style = {styles.container}>
-				<View style = {styles.title_container}>
+				{/*<View style = {styles.title_container}>
 					<Text style = {styles.title_text}>
 						YOU MIGHT ALSO LIKE
 					</Text> 
-				</View>
+				</View>*/}
 
 				{this.state.related_products &&
 						this.state.related_products.map((product, index) => 

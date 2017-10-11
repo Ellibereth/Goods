@@ -17,7 +17,7 @@ cart_api = Blueprint('cart_api', __name__)
 @decorators.check_user_jwt
 def addItemToCart(this_user):
 	product_id = request.json.get(Labels.ProductId)
-	quantity = int(request.json.get(Labels.Quantity))
+	quantity = int(request.json.get(Labels.Quantity)) or 1
 	variant = request.json.get(Labels.Variant)
 	if variant:
 		variant_id = variant.get(Labels.VariantId)
