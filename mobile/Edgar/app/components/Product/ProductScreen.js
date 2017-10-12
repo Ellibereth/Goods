@@ -94,6 +94,14 @@ class ProductScreen extends Component {
 		this.setLoading(false)
 		if (data.success){
 			this.props.setUserInfo(data.user)
+			Alert.alert(
+				"Success",
+				this.props.product.name + " added to cart",
+				[
+					{text: 'OK'},
+				],
+				{ cancelable: false }
+			)
 		}
 		
 		else {

@@ -36,7 +36,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
 	return {
-		initial_fetch_done : state.initial_fetch_done
+		// initial_fetch_done : state.initial_fetch_done
 	}
 }
 
@@ -64,9 +64,7 @@ class Main extends React.Component {
 	}
 	
 	render() { 
-
-		if (!this.props.initial_fetch_done) return <View/>
-			
+		// if (!this.props.initial_fetch_done) return <View/>
 		return (
 			<Router>
 				<Scene key="root"  
@@ -126,10 +124,7 @@ class Main extends React.Component {
 					renderLeftButton = {() => (<SearchIcon />)}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
 						<Scene title = "Home" key = "home"
-						icon = {()=> this.getTabIcon("home")}>
-							<Scene title = "Home" key = "home" initial = {true} 
-							component = {HomeScreen}/>
-
+						icon = {()=> this.getTabIcon("home")} component = {HomeScreen}>
 							<Scene title = "Made in USA" key = "madeinusa"
 							component = {MadeInUsaScreen}
 							hideTabBar = {true}
@@ -140,9 +135,10 @@ class Main extends React.Component {
 						
 
 					
-						<Scene title = "Sales" key = "sales"
+						<Scene title = "Sales" key = "sales" 
 						icon = {()=> this.getTabIcon("dollar")}>
-							<Scene {...this.props}    title="Sales" 
+							<Scene {...this.props}  
+							title="Sales" 
 							key="sales" component={SalesScreen} />
 							
 						</Scene>

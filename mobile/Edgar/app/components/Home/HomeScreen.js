@@ -9,6 +9,7 @@ import HomeProducts from './HomeProducts'
 import LoadingSpinner from '../Misc/LoadingSpinner'
 import HomeMadeInUsaSection from './HomeMadeInUsaSection'
 
+
 const HOME_TAG = "Home_Page"
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -31,8 +32,7 @@ class HomeScreen extends Component {
 	}
 
 	componentDidMount(){
-		this.loadHomeProducts()	
-
+		this.loadHomeProducts()		
 	}
 
 	async loadHomeProducts() {
@@ -42,12 +42,8 @@ class HomeScreen extends Component {
 		}
 	}
 
-	
-
-
 	render() {
 		return (
-			
 				<View style = {[{flex : 1}, styles.container]}>
 					<LoadingSpinner visible = {this.state.home_products.length == 0}/>
 					<ScrollView style = {styles.scroll_wrapper}>
@@ -59,8 +55,6 @@ class HomeScreen extends Component {
 						<HomeMadeInUsaSection />
 					</ScrollView>
 				</View>
-			
-
 		)
 	}
 }

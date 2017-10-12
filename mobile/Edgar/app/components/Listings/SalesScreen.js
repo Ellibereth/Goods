@@ -27,7 +27,6 @@ class SalesScreen extends Component {
 
 	componentDidMount(){
 		this.loadSaleProducts()	
-
 	}
 
 	async loadSaleProducts() {

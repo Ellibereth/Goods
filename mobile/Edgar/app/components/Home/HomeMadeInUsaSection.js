@@ -12,6 +12,7 @@ import {
 } from 'react-native'
 import {Actions} from 'react-native-router-flux'
 
+
 const img_src = "https://s3-us-west-2.amazonaws.com/edgarusahomepage/"
 
 export default class HomeMadeInUsaSection extends Component {
@@ -28,6 +29,7 @@ export default class HomeMadeInUsaSection extends Component {
 
 
 	render() {
+		var usa_url = img_src + "mia1.jpeg"
 		return (
 				
 				<TouchableOpacity style = {styles.container} onPress = {() => Actions.madeinusa()}>
@@ -37,7 +39,10 @@ export default class HomeMadeInUsaSection extends Component {
 
 					<Image 
 					style = {[styles.image]}
-					source={{uri : img_src + "mia1.jpeg"}} />
+					source={{uri : usa_url,
+						cache : 'force-cache'
+					}} />
+
 					
 				</TouchableOpacity>
 			

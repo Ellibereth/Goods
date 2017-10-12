@@ -36,7 +36,7 @@ export default class AccountMenu extends Component {
 												flexDirection : "column",
 												alignItems : "center",
 												justifyContent : "center",
-												backgroundColor : "black",
+												backgroundColor : "#002868",
 												borderRadius : 6,
 												padding: 6,
 											}}

@@ -49,7 +49,10 @@ class SearchScreen extends Component {
 		return (
 				<View style = {{"flex" : 1}}>
 					{/* <LoadingSpinner visible = {this.state.is_loading}/> */}
-					<View style = {[styles.scroll_wrapper, {flex : 1}]}>
+					<View style = {{flex : 1, paddingHorizontal : 8, paddingVertical : 4}}>
+						<Text>{'Showing search results for \'' + this.props.search_text + "\'"}</Text>
+					</View>
+					<View style = {[styles.scroll_wrapper, {flex : 14}]}>
 						<FlatList data = {this.state.products}
 						renderItem = {this.renderItem}
 						keyExtractor = {(item, index) => index}

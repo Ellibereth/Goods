@@ -86,7 +86,7 @@ class OrdersScreen extends Component {
 const empty_styles = StyleSheet.create({
 	text : {
 		fontSize : 20,
-		color : 'black',
+		color : '#002868',
 	},
 	button : {
 		paddingHorizontal : 24,

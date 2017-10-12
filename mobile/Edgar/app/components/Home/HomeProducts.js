@@ -13,7 +13,6 @@ export default class HomeProducts extends Component {
 		this.state = {}
 	}
 
-
 	render() {
 		var products = this.props.home_products.map((product, index) => 
 				<HomeProduct key = {index} product = {product}/>
