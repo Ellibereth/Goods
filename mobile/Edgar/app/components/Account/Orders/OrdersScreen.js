@@ -4,6 +4,8 @@ import {
 		StyleSheet,
 		View,
 		ScrollView,
+		Text, 
+		TouchableOpacity,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
@@ -51,6 +53,24 @@ class OrdersScreen extends Component {
 	}
 	
 	render() {
+		// returns in the case of no orders made
+		if (!this.state.orders.length) {
+			return (
+				<View style = {{flex :  1, flexDirection : 'column', alignItems : 'center'}}>
+					<View style = {{marginTop : 64}}/>
+				 	<Text style = {empty_styles.text}>
+				 		You have not placed any orders
+				 	</Text>
+				 	<View style = {{marginTop : 48}}/>
+				 	<TouchableOpacity style = {empty_styles.button}
+				 	onPress = {() => Actions.sales({type : ActionConst.RESET})}>
+				 		<Text style = {empty_styles.button_text}>
+				 			See Today's Sales
+				 		</Text>
+				 	</TouchableOpacity>
+				</View>
+			)
+		}
 		return (
 				<View style = {styles.container}>
 					<ScrollView>
@@ -62,6 +82,24 @@ class OrdersScreen extends Component {
 		)
 	}
 }
+
+const empty_styles = StyleSheet.create({
+	text : {
+		fontSize : 20,
+		color : 'black',
+	},
+	button : {
+		paddingHorizontal : 24,
+		paddingVertical : 12,
+		backgroundColor : 'red',
+		borderRadius : 2,
+	},
+	button_text : {
+		fontSize : 20,
+		color : 'white',
+		fontWeight : 'bold'
+	},
+})
 
 const styles = StyleSheet.create({
 	container : {
