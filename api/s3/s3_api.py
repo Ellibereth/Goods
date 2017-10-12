@@ -52,13 +52,15 @@ class S3:
 		
 		image_file = Image.open(transfer_dir + image_key)
 		for size in IMAGE_SIZES:
-			this_image_dir = transfer_dir + image_key + "_" + str(size)
-			image_file.save(this_image_dir, 'jpeg', quality=size)
-			this_file = open(this_image_dir, 'rb')
 			if size != 100:
 				this_key = image_key + "_" + str(size)
 			else:
 				this_key = image_key
+
+			this_image_dir = transfer_dir + this_key
+			image_file.save(this_image_dir, 'jpeg', quality=size)
+			this_file = open(this_image_dir, 'rb')
+			
 			s3.Bucket(bucket_name).put_object(
 				Key= this_key, 
 				Body=this_file,
