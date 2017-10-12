@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, ScrollView, StyleSheet} from 'react-native'
+import {View, Text, ScrollView, StyleSheet, Dimensions} from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {getProductsByListing} from '../../api/ProductService'
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 		paddingBottom : 40,
 	},
 	home_product_wrapper : {
-		height : 225
+		height : Dimensions.get('window').height * 0.4
 	},
 	container : {
 		// backgroundColor : "white"

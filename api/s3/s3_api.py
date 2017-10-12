@@ -22,7 +22,8 @@ s3 = boto3.resource('s3',
 		)
 base_url = "https://s3-us-west-2.amazonaws.com"
 
-IMAGE_SIZES = [1, 2, 5, 10,25,50, 100]
+# represents length in pixels
+IMAGE_SIZES = [50, 100,200, 300, 400, 500, 0]
 
 class S3:
 
@@ -49,16 +50,23 @@ class S3:
 		transfer_dir = './api/s3/transfer/'
 		with open(transfer_dir + image_key, "wb") as f:
 			f.write(image_data)
+
+		original_size = os.path.getsize(transfer_dir + image_key)
 		
-		image_file = Image.open(transfer_dir + image_key)
+
 		for size in IMAGE_SIZES:
-			if size != 100:
+			image_file = Image.open(transfer_dir + image_key)
+
+			if size != 0:
 				this_key = image_key + "_" + str(size)
+				dim = (size * 2, size * 2)
+				image_file.thumbnail(dim, Image.ANTIALIAS)
 			else:
 				this_key = image_key
 
 			this_image_dir = transfer_dir + this_key
-			image_file.save(this_image_dir, 'jpeg', quality=size)
+			
+			image_file.save(this_image_dir, 'jpeg', quality = 90)
 			this_file = open(this_image_dir, 'rb')
 			
 			s3.Bucket(bucket_name).put_object(

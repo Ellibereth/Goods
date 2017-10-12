@@ -124,7 +124,12 @@ class Main extends React.Component {
 					renderLeftButton = {() => (<SearchIcon />)}
 					tabs = {true} renderRightButton = {() => (<CartIcon/>)}>
 						<Scene title = "Home" key = "home"
-						icon = {()=> this.getTabIcon("home")} component = {HomeScreen}>
+						icon = {()=> this.getTabIcon("home")}>
+							<Scene 
+							title = "Home" key = "home" 
+							// initial = {true} 
+							component = {HomeScreen}/>
+
 							<Scene title = "Made in USA" key = "madeinusa"
 							component = {MadeInUsaScreen}
 							hideTabBar = {true}

@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
 		backgroundColor : 'white',
 	},
 	image : {
-		height: 175,
+		height:  Dimensions.get('window').height * 0.35,
 		width : Dimensions.get('window').width,	
 	},
 	text: {
