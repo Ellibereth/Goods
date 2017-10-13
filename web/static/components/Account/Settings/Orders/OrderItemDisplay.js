@@ -34,7 +34,7 @@ export default class OrderItemDisplay extends React.Component {
         							<th className = "order-image-table-row">
         								<a href = {'/eg/' + this.props.order.product_id}> 
         									<img 
-        									className = "order-preview-image" src = {src_base + order.main_image} />
+        									className = "order-preview-image" src = {src_base + order.main_image + "_100"} />
         								</a>
         							</th>
         							<th className = "table-header-vertical-align-center">

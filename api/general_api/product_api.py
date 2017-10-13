@@ -9,14 +9,11 @@ from api.models.shared_models import db
 from api.models.market_product import MarketProduct
 from api.utility.jwt_util import JwtUtil
 
-
 product_api = Blueprint('product_api', __name__)
-
-
-
 
 @product_api.route('/getMarketProductInfo', methods = ['POST'])
 def getMarketProductInfo():
+	get_full_details = request.json.get(Labels.GetFullDetails) or True
 	product_id = request.json.get(Labels.ProductId)
 	if not product_id:
 		return JsonUtil.failure("Bad Product Id")
@@ -26,7 +23,7 @@ def getMarketProductInfo():
 	if market_product == None:
 		return JsonUtil.failure("Error retrieving product information")
 	else:
-		return JsonUtil.success(Labels.Product, market_product.toPublicDict())
+		return JsonUtil.success(Labels.Product, market_product.toPublicDict(get_full_details = True))
 
 @product_api.route('/getBatchedProductInformation', methods = ['POST'])
 def getBatchedProductInformation():
@@ -49,12 +46,13 @@ def getOnSaleProducts():
 
 @product_api.route('/getProductsByListingTag', methods = ['POST'])
 def getProductsByListingTag():
-	get_related_products = request.json.get(Labels.GetRelatedProducts) or False
-
+	get_full_details = request.json.get(Labels.GetRelatedProducts) or False
 	tag = request.json.get(Labels.Tag)
+	print(tag)
 	if tag == "All_Products":
 		all_products = MarketProduct.query.filter_by(active = True).all()
 		matching_products = [product for product in all_products if product.inventory > 0 or product.has_variants]
+
 	elif tag == "Last_Chance":
 		all_products = MarketProduct.query.filter_by(active = True).all()
 		present = datetime.datetime.now()
@@ -76,12 +74,12 @@ def getProductsByListingTag():
 		all_products = MarketProduct.query.filter_by(active = True).all()
 		matching_products = [product for product in all_products]
 
-
 	else:
 		matching_products = MarketProduct.getProductsByListingTag(tag)
-	
+
+	output_products = [product.toPublicDict(get_full_details = get_full_details) for product in matching_products]	
 	return JsonUtil.successWithOutput({
-			Labels.Products :  [product.toPublicDict(get_related_products = get_related_products) for product in matching_products]
+			Labels.Products :  output_products
 		})
 
 
@@ -95,7 +93,7 @@ def getRelatedProducts():
 		})
 	
 	related_products = this_product.getRelatedProductsByTag()
-	public_list = [product.toPublicDict(get_related_products = False) for product in related_products]
+	public_list = [product.toPublicDict(get_full_details = False) for product in related_products]
 	return JsonUtil.successWithOutput({
 			Labels.RelatedProducts : public_list
 		})

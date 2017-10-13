@@ -158,7 +158,7 @@ export default class ProductTopRow extends React.Component {
 			var class_name = class_base + is_selected_class + is_first_class
 			return <li className={class_name}>
 				<img onClick = {this.selectImage.bind(this, index, image.image_id)} 
-					src={src_base + image.image_id} 
+					src={src_base + image.image_id + "_200"} 
 					className = "product-more-images pthumbimg center-block img-responsive" />
 				<div className="material-mask">
 					<div className="material-inner-mask"></div>
@@ -204,11 +204,11 @@ export default class ProductTopRow extends React.Component {
 											
 									<ImageZoom
 										image={{
-												  src: main_image_id,
+												  src: main_image_id + "_300",
 												  className: 'productPgMainImage edgar-img-responsive js-show-fs',
 										}}
 										zoomImage={{
-												  	src: main_image_id,
+												  	src: main_image_id + "_400",
 											className : 'zoomed-image'
 										}}
 											  />

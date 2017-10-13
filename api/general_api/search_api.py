@@ -31,7 +31,7 @@ def searchProducts():
 	all_matches = list()
 	for product in merged_list:
 		if product.product_id not in hit_product_ids:
-			all_matches.append(product.toPublicDict(get_related_products = False))
+			all_matches.append(product.toPublicDict(get_full_details = False))
 			hit_product_ids.append(product.product_id)
 	
 	return JsonUtil.successWithOutput({

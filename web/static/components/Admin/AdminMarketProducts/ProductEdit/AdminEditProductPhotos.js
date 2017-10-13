@@ -108,7 +108,7 @@ export default class AdminEditProductPhotos extends React.Component {
 						<h3> {label} </h3>
 					</div>
 					<div className = "row">
-						<img src= {src_base + image.image_id} id = {index} className = "admin-product-image"/>
+						<img src= {src_base + image.image_id + "_200"} id = {index} className = "admin-product-image"/>
 					</div>
 					<div className = "row">
 						<Button onClick = {this.onDeletePhoto.bind(this, image.image_id, index)}> Delete Photo </Button>

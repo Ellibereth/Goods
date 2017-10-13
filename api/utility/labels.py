@@ -96,6 +96,7 @@ class ProductImageLabels:
 	Live = "live"
 
 class MarketProductLabels:
+	GetFullDetails = "get_full_details"
 	GetRelatedProducts = "get_related_products"
 	Fee = "fee"
 	Email = "email"

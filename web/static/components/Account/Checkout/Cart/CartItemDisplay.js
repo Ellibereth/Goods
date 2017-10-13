@@ -99,7 +99,7 @@ export default class CartItemDisplay extends React.Component {
 
 		else {
 			
-			var image_display = <img className = "cart-image-display" src = {src_base + item.main_image} />
+			var image_display = <img className = "cart-image-display" src = {src_base + item.main_image + "_100"} />
 		}
 
 		var num_items_options = []

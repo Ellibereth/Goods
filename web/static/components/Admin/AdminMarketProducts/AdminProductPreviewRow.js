@@ -27,7 +27,7 @@ export default class AdminProductPreviewRow extends React.Component {
 				p_id = {product['product_id']}
 				index = {index}>
 				{product.main_image ? 
-					<img src = {src_base + product.main_image} 
+					<img src = {src_base + product.main_image + "_50"} 
 						className = "admin-product-image" />
 					:
 					<div> Main image unavailable </div>

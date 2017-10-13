@@ -131,7 +131,7 @@ class MarketProduct(db.Model):
 		: returns all products as list of public dictionaries
 		"""
 		products = MarketProduct.query.filter().order_by(MarketProduct.date_created).all()
-		return [product.toPublicDict(get_related_products = False) for product in products]
+		return [product.toPublicDict(get_full_details = False) for product in products]
 
 	@staticmethod
 	def getActiveProducts():
@@ -329,7 +329,7 @@ class MarketProduct(db.Model):
 	def getManufacturerName(self):
 		return self.getManufacturerInfo()[Labels.Name]
 
-	def toPublicDict(self, get_related_products = True):
+	def toPublicDict(self, get_full_details = True):
 		"""
 		: Returns this market product as a public dictionary
 		"""
@@ -340,7 +340,6 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Description] = self.description
 		public_dict[Labels.Manufacturer] = self.getManufacturerInfo() 
 		public_dict[Labels.ManufacturerId] = self.manufacturer_id 
-
 		public_dict[Labels.Inventory] = self.inventory
 		if self.sale_end_date:
 			public_dict[Labels.SaleEndDate] = self.sale_end_date.strftime("%Y-%m-%dT%H:%M")
@@ -349,9 +348,6 @@ class MarketProduct(db.Model):
 
 		public_dict[Labels.DateCreated] = self.date_created
 		public_dict[Labels.ProductId] = self.product_id
-		images = self.getProductImages()
-		public_dict[Labels.Images] = images
-		public_dict[Labels.NumImages] = len(images)
 		public_dict[Labels.MainImage] = self.getMainImage()
 		public_dict[Labels.ProductTemplate] = self.product_template
 		public_dict[Labels.NumItemsLimit] = self.num_items_limit
@@ -364,12 +360,18 @@ class MarketProduct(db.Model):
 		public_dict[Labels.Quadrant2] = self.quadrant2
 		public_dict[Labels.Quadrant3] = self.quadrant3
 		public_dict[Labels.Quadrant4] = self.quadrant4
+		public_dict[Labels.Images] = []
 		
-		public_dict[Labels.VariantTypeDescription] = self.variant_type_description
-		variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
-		public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
 		public_dict[Labels.IsAvailable] = self.isAvailable()
-		if get_related_products:
+		if get_full_details:
+			images = self.getProductImages()
+			public_dict[Labels.Images] = images
+			public_dict[Labels.NumImages] = len(images)
+
+			variants = ProductVariant.query.filter_by(product_id = self.product_id).all()
+			public_dict[Labels.VariantTypeDescription] = self.variant_type_description
+			public_dict[Labels.Variants] = [variant.toPublicDict() for variant in variants]
+
 			product_search_tags = ProductSearchTag.query.filter_by(product_id = self.product_id).all()
 			related_product_tags = RelatedProductTag.query.filter_by(product_id = self.product_id).all()
 			product_listing_tags = ProductListingTag.query.filter_by(product_id = self.product_id).all()
@@ -377,7 +379,8 @@ class MarketProduct(db.Model):
 			public_dict[Labels.ProductSearchTags] = ",".join([tag.tag for tag in product_search_tags])
 			public_dict[Labels.ProductListingTags] = ",".join([tag.tag for tag in product_listing_tags])
 			related_products = self.getRelatedProductsByTag()
-			public_dict[Labels.RelatedProducts] = [product.toPublicDict(get_related_products = False) for product in related_products]
+			public_dict[Labels.RelatedProducts] = [product.toPublicDict(get_full_details = False) for product in related_products]
+
 		return public_dict
 
 

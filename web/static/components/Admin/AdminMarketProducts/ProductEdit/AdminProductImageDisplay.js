@@ -56,14 +56,14 @@ export default class AdminProductMainContainer extends React.Component {
 			if (image.main_image){
 				return (	
 					<div className="item active">
-						<img src= {src_base + image.image_id} id = {index} className = "product-image"/>
+						<img src= {src_base + image.image_id + "_200"} id = {index} className = "product-image"/>
 					</div>
 				)
 			}
 			else {
 				return  (
 					<div className="item">
-						<img src= {src_base + image.image_id} id = {index} className = "product-image"/>
+						<img src= {src_base + image.image_id + "_200"} id = {index} className = "product-image"/>
 					</div>
 				)
 			}

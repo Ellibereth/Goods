@@ -95,14 +95,14 @@ export default class HomeProductPreview extends React.Component {
 
 				<a className = "no-underline" onClick = {this.productClicked.bind(this)} href = {'/eg/' + this.props.product.product_id} style = {{'width' : '100%', 'height' : '100%'}} href = {'/eg/' + this.props.product.product_id}>
 					{
-						this.props.product.images.length == 0 ? 
-							<div> No Image For This Product </div>
-							:
+						this.props.product.main_image ? 
 							<img 
 								alt = {this.props.product.product_id}
 								src = {'https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/' 
 								+ this.props.product.main_image + "_100"}
 								className = "img-responsive home-product-preview-image"/>
+							:
+							<div> No Image For This Product </div>
 					}
 				</a>
 				<div className = "home-product-preview-details">		

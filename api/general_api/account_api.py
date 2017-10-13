@@ -8,6 +8,7 @@
 
 import os
 import datetime
+import time
 from validate_email import validate_email
 
 from flask import Blueprint, request
@@ -325,6 +326,8 @@ def getUserInfo(this_user):
 	"""
 	: route to return the user
 	"""
+	
+
 	ip_addr = request.remote_addr
 	nums = [int(s) for s in ip_addr.split() if s.isdigit()]
 	ab_group = sum(nums) % 2
@@ -338,10 +341,12 @@ def getUserInfo(this_user):
 			return JsonUtil.failure({"ab_group" : ab_group})
 	else:
 		if this_user:
+			time_0 = time.time()
 			adjusted_items = this_user.adjustCart()
 			public_user_dict = this_user.toPublicDict()
+			this_jwt = this_user.getJwt()
 			return JsonUtil.successWithOutput({
-					Labels.Jwt : this_user.getJwt(),
+					Labels.Jwt : this_jwt,
 					Labels.User : public_user_dict,
 					Labels.AdjustedItems : adjusted_items
 				})

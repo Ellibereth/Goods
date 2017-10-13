@@ -1,7 +1,6 @@
 var React = require('react')
 var ReactDOM = require('react-dom')
 import PageContainer from '../Misc/PageContainer'
-// import SearchProductPreview from './SearchProductPreview'
 import HomeProductPreview from '../Home/HomeProductPreview'
 
 export default class ProductListingPage extends React.Component {

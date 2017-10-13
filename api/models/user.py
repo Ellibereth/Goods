@@ -2,6 +2,7 @@
 """
 : This module contains the user class.
 """
+import time
 import datetime
 import re
 from validate_email import validate_email

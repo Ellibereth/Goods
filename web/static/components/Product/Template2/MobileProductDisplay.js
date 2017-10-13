@@ -152,7 +152,7 @@ export default class MobileProductDisplay extends React.Component {
 			return 
 			<div className = {'col-xs-2 ' + className}>
 				<img onClick = {this.selectImage.bind(this, index, image.image_id)} 
-					src={src_base + image.image_id} 
+					src={src_base + image.image_id + "_100"} 
 					className = "product-more-images img-responsive" />
 			</div>
 		})
@@ -177,7 +177,7 @@ export default class MobileProductDisplay extends React.Component {
 				<div className = "small-buffer"/>
 				<div className="row">
 					<div className = "col-xs-12 text-center">
-						<img className="mobile-product-page-image" src= {main_image_id}/>
+						<img className="mobile-product-page-image" src= {main_image_id + "_100"}/>
 					</div>
 				</div>
 				<div className = "small-buffer"/>
