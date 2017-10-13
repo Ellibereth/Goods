@@ -95,10 +95,15 @@ class MarketProduct(db.Model):
 		return True
 
 	def getMainImage(self):
-		if self.main_image:
-			return self.main_image
 
-		images = ProductImage.query.filter_by(product_id = self.product_id).all()
+		images = ProductImage.query.filter_by(product_id = self.product_id, soft_deleted = False).all()
+
+		if self.main_image:
+			for image in images:
+				if self.main_image == image.image_id:
+					return self.main_image
+
+		
 		if len(images) == 0:
 			return None
 		else:
@@ -257,9 +262,7 @@ class MarketProduct(db.Model):
 			product_id_matches.add(tag.product_id)
 
 		product_id_matches.remove(self.product_id)
-
 		matching_products = MarketProduct.query.filter(MarketProduct.product_id.in_(product_id_matches)).all()
-
 		random.shuffle(matching_products)
 		# this 0:5 is hard coded as a limit for now, will discuss limits 
 		# and filters moving forward
