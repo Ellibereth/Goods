@@ -15,16 +15,15 @@ export default class HomeProducts extends Component {
 
 
 	renderItem(val) {
-
-		return <HomeProduct index = {val.index} product = {val.item}/>
+		return <HomeProduct index = {val.index} product = {val.item}/>	
 	}
 
 	render() {
-	
+		var products = this.props.home_products % 2 == 0 ? this.props.home_products : this.props.home_products.concat(["PLACE_HOLDER"])
 		return (
 
 			<FlatList 
-						data = {this.props.home_products}
+						data = {products}
 						renderItem = {this.renderItem}
 						keyExtractor = {(item, index) => index}
 						numColumns = {2}

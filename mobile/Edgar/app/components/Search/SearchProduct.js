@@ -22,6 +22,7 @@ export default class SearchProduct extends Component {
 	}
 
 	render() {
+		
 		return (
 				<TouchableHighlight
 				onPress = {this.onProductClick}>

@@ -37,18 +37,17 @@ class SalesScreen extends Component {
 	}
 
 	renderItem(val) {
-
 		return <HomeProduct index = {val.index} product = {val.item}/>
 	}
 
 	render() {
 
-
+		var products = this.state.sale_products % 2 == 0 ? this.state.sale_products : this.state.sale_products.concat(["PLACE_HOLDER"])
 		return (
 			
 				<View style = {{"flex" : 1}}>
 					<FlatList 
-						data = {this.state.sale_products}
+						data = {this.products}
 						renderItem = {this.renderItem}
 						keyExtractor = {(item, index) => index}
 						numColumns = {2}

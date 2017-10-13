@@ -166,7 +166,7 @@ export default class MobileProductDisplay extends React.Component {
 		if (this.state.selected_image_id){
 			var main_image_id = src_base + this.state.selected_image_id
 		}
-		else if (product.images) {
+		else if (product.images && product.images[0]) {
 			var main_image_id = src_base + product.images[0].image_id
 		}
 		var product_images = this.getProductImages(this.props.product)

@@ -33,6 +33,13 @@ export default class HomeProduct extends Component {
 
 	render() {
 		var padding_style = this.props.index % 2 == 0 ? {marginRight : 6, marginLeft : 12} : {marginLeft : 6, marginRight : 12}
+		if (this.props.product == "PLACE_HOLDER") {
+			return <View style = {{flex : 1}}>
+						<View style = {[styles.container, padding_style, {borderWidth : 0}]}/>
+					</View>
+		}
+
+		
 		return (
 				<TouchableHighlight style = {{flex : 1}}
 				onPress = {this.onProductClick}>

@@ -53,6 +53,7 @@ def getProductsByListingTag():
 		all_products = MarketProduct.query.filter_by(active = True).all()
 		matching_products = [product for product in all_products if product.inventory > 0 or product.has_variants]
 
+
 	elif tag == "Last_Chance":
 		all_products = MarketProduct.query.filter_by(active = True).all()
 		present = datetime.datetime.now()

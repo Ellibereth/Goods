@@ -27,7 +27,6 @@ class SearchScreen extends Component {
 
 	componentDidMount(){
 		this.searchProducts()	
-
 	}
 
 	
@@ -46,6 +45,8 @@ class SearchScreen extends Component {
 	}
 
 	render() {
+		var products = this.state.products % 2 == 0 ? this.state.products : this.state.products.concat(["PLACE_HOLDER"])
+
 		return (
 				<View style = {{"flex" : 1}}>
 					{/* <LoadingSpinner visible = {this.state.is_loading}/> */}
@@ -53,7 +54,7 @@ class SearchScreen extends Component {
 						<Text>{'Showing search results for \'' + this.props.search_text + "\'"}</Text>
 					</View>
 					<View style = {[styles.scroll_wrapper, {flex : 14}]}>
-						<FlatList data = {this.state.products}
+						<FlatList data = {this.products}
 						renderItem = {this.renderItem}
 						keyExtractor = {(item, index) => index}
 						numColumns = {2}
