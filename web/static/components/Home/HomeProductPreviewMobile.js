@@ -96,7 +96,7 @@ export default class HomeProductPreview extends React.Component {
 				<a href = {'/eg/' + this.props.product.product_id}>
 					<img 
 						src = {'https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/' 
-				+ this.props.product.main_image}
+				+ this.props.product.main_image + "_50"}
 						className = "home-product-image-mobile"/>
 				</a>
 				<div className = "small-buffer"/>
