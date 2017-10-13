@@ -343,9 +343,9 @@ class TestModels(TestCase):
 
 if __name__ == "__main__":
 
-	suite = unittest.TestSuite()
-	# suite.addTest(TestModels("test_add_user_success"))
-	runner = unittest.TextTestRunner(verbosity = 0)
-	runner.run(suite)
+	# suite = unittest.TestSuite()
+	# # suite.addTest(TestModels("test_add_user_success"))
+	# runner = unittest.TextTestRunner(verbosity = 0)
+	# runner.run(suite)
 
-	# unittest.main(warnings = 'ignore')
+	unittest.main(warnings = 'ignore')

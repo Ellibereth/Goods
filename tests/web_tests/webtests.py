@@ -114,7 +114,7 @@ class WebTests(unittest.TestCase):
 
 
 	@data(1,2,3)
-	@unittest.skip("done")
+	@unittest.skip("passed")
 	def test_add_to_cart_no_variant(self, qty):
 		"""
 		: We start by doing this for guest user's
@@ -155,7 +155,7 @@ class WebTests(unittest.TestCase):
 		self.assertTrue(empty_cart_display)
 		
 	@data(0,1)
-	@unittest.skip("done")
+	@unittest.skip("passed")
 	def test_add_to_cart_variant(self, index):
 		"""
 		: this method tests adding to cart

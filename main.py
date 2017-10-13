@@ -131,17 +131,17 @@ def before_request():
 	"""
 	g.start = time.time()
 
-@app.teardown_request
-def teardown_request(exception = None):
-	# print(exception)
-	time_spent = time.time() - g.start
-	path_splits = request.path.split('/')
+# @app.teardown_request
+# def teardown_request(exception = None):
+# 	# print(exception)
+# 	time_spent = time.time() - g.start
+# 	path_splits = request.path.split('/')
 
 	# this has been commented out as it is too database taxing
 	# perhaps we can modify to be more selective
 	# only record the request if it's non-static
-	if not(len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts'):
-		print(time_spent, path_splits)
+	# if not(len(path_splits) > 2 and path_splits[1] == 'static' and path_splits[2] == 'web_scripts'):
+	# 	print(time_spent, path_splits)
 	# 	HttpRequest.recordHttpRequest(request.path, time_spent, request.remote_addr)
 
 
