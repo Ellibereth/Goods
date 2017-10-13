@@ -1,6 +1,12 @@
 import React from 'react';
 import {Component, PureComponent} from 'react'
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native'
+import {StyleSheet,
+		Text,
+		View,
+		Image,
+		TouchableOpacity,
+		Dimensions
+} from 'react-native'
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view'
 
 import ProductDescription from './ProductDescription'
@@ -39,9 +45,10 @@ export default class ProductTabs extends PureComponent {
 
 	_renderHeader = props => <TabBar {...props}
 								renderLabel = {this._renderLabel}
+								// labelStyle = {tab_styles.label}
 								style = {tab_styles.container}
 								indicatorStyle = {tab_styles.indicator}
-								scrollEnabled = {true}
+								// scrollEnabled = {true}
 							/>;
 
 	_renderScene = SceneMap({
@@ -68,8 +75,8 @@ export default class ProductTabs extends PureComponent {
 const tab_styles = StyleSheet.create({
 	label : {
 		color: 'black',
-		fontSize : 18,
-		width : 100,
+		fontSize : 14,
+		// width : Dimensions.get('window').width / 3,
 		textAlign : 'center',
 	},
 	container : {
@@ -77,6 +84,7 @@ const tab_styles = StyleSheet.create({
 	},
 	indicator: {
 		backgroundColor : 'red',
+		// width : Dimensions.get('window').width / 3,
 	}
 })
 

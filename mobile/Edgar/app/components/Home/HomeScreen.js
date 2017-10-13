@@ -47,12 +47,18 @@ class HomeScreen extends Component {
 				<View style = {[{flex : 1}, styles.container]}>
 					<LoadingSpinner visible = {this.state.home_products.length == 0}/>
 					<ScrollView style = {styles.scroll_wrapper}>
+						<HomeMadeInUsaSection />
+						<View>
+							<Text style = {{fontSize : 18, padding : 12, paddingBottom : 4}}>
+								Hot Products
+							</Text>
+						</View>
 						<View style = {styles.home_product_wrapper}>
 							<HomeProducts home_products = {this.state.home_products}/>
 						</View>
 
 						
-						<HomeMadeInUsaSection />
+						
 					</ScrollView>
 				</View>
 		)
@@ -64,10 +70,10 @@ const styles = StyleSheet.create({
 		paddingBottom : 40,
 	},
 	home_product_wrapper : {
-		height : Dimensions.get('window').height * 0.4
+
 	},
 	container : {
-		// backgroundColor : "white"
+		backgroundColor : "white"
 	}
 })
 

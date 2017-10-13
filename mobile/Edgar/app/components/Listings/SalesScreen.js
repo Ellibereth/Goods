@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {View, Text, ScrollView } from 'react-native';
+import {View, Text, FlatList } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {getOnSaleProducts} from '../../api/ProductService'
@@ -36,22 +36,23 @@ class SalesScreen extends Component {
 		}
 	}
 
+	renderItem(val) {
+
+		return <HomeProduct index = {val.index} product = {val.item}/>
+	}
+
 	render() {
 
-
-		var products = this.state.sale_products.map((product, index) => 
-				<HomeProduct key = {index} product = {product}/>
-			)
 
 		return (
 			
 				<View style = {{"flex" : 1}}>
-					<View style = {{height: 225}}>
-					<ScrollView  horizontal = {true}
-					showsHorizontalScrollIndicator = {false}>
-						{products}
-					</ScrollView>
-					</View>
+					<FlatList 
+						data = {this.state.sale_products}
+						renderItem = {this.renderItem}
+						keyExtractor = {(item, index) => index}
+						numColumns = {2}
+					/>
 				</View>
 			
 

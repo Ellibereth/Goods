@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
 	container : {
 		flexDirection : 'column',
 		paddingTop: 8,
-		borderTopWidth : 1,
-		borderTopColor : 'darkblue',
+		borderBottomWidth : 1,
+		borderBottomColor : 'darkblue',
 		backgroundColor : 'white',
 	},
 	image : {

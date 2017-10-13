@@ -1,7 +1,7 @@
 
 import React from 'react';
 import {Component} from 'react'
-import {ScrollView} from 'react-native'
+import {FlatList} from 'react-native'
 
 import {Actions} from 'react-native-router-flux'
 import HomeProduct from './HomeProduct'
@@ -13,17 +13,22 @@ export default class HomeProducts extends Component {
 		this.state = {}
 	}
 
-	render() {
-		var products = this.props.home_products.map((product, index) => 
-				<HomeProduct key = {index} product = {product}/>
-			)
 
+	renderItem(val) {
+
+		return <HomeProduct index = {val.index} product = {val.item}/>
+	}
+
+	render() {
+	
 		return (
-				<ScrollView  
-					horizontal = {true}
-					showsHorizontalScrollIndicator = {false}>
-						{products}
-					</ScrollView>
+
+			<FlatList 
+						data = {this.props.home_products}
+						renderItem = {this.renderItem}
+						keyExtractor = {(item, index) => index}
+						numColumns = {2}
+					/>
 			
 		)
 	}
