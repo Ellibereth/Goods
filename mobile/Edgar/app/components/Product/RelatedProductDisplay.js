@@ -23,7 +23,7 @@ export default class RelatedProductDisplay extends Component {
 			<TouchableOpacity style = {styles.container} onPress = {this.navigateToProduct.bind(this)}>
 					<View style = {styles.image_container}>
 						<Image style = {styles.image}
-						source = {{uri : img_src + this.props.product.main_image}}/>
+						source = {{uri : img_src + this.props.product.main_image + "_100"}}/>
 					</View>
 					<View style = {styles.description_container}>
 						<Text style = {styles.name_text}>

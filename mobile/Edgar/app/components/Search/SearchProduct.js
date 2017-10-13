@@ -27,7 +27,7 @@ export default class SearchProduct extends Component {
 				onPress = {this.onProductClick}>
 					<View style = {styles.container}>
 						<View style = {styles.image_container}> 
-							<Image source={{uri : img_src + this.props.product.main_image}}
+							<Image source={{uri : img_src + this.props.product.main_image + "_100"}}
 							style={styles.image} resizeMode = {'stretch'}/>	
 						</View>
 						<View style = {styles.description_container}>

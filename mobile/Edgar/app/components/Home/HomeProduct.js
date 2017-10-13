@@ -24,7 +24,7 @@ export default class HomeProduct extends Component {
 	}
 
 	onProductClick() {
-		Actions.product({product : this.props.product})
+		Actions.product({product_id : this.props.product.product_id})
 	}
 
 	componentDidMount() {
@@ -40,7 +40,7 @@ export default class HomeProduct extends Component {
 						<View style = {[styles.image_container]}> 
 							<Image 
 							source={{
-								uri : img_src + this.props.product.main_image,
+								uri : img_src + this.props.product.main_image + "_100",
 								// cache : 'force-cache'
 							}}
 							style={styles.image} resizeMode = {'stretch'}/>	

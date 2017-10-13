@@ -14,7 +14,8 @@ import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import { ActionCreators } from  '../../actions'
 import {bindActionCreators} from 'redux'
-import {getProductInfo, addItemToCart} from '../../api/CartService'
+import {addItemToCart} from '../../api/CartService'
+import {getProductInfo} from '../../api/ProductService'
 
 import {formatPrice, toTitleCase} from '../../util/Format'
 
@@ -47,18 +48,33 @@ class ProductScreen extends Component {
 			quantity : 1,
 			variant : null,
 			is_loading : false,
+			product : null,
 		}
 		this.addItemToCart = this.addItemToCart.bind(this)	
 		this.updateVariant = this.updateVariant.bind(this)
 		this.setLoading = this.setLoading.bind(this)
+		this.loadProductInfo = this.loadProductInfo.bind(this)
+	}
+
+	async loadProductInfo(product_id) {
+		let data = await getProductInfo(product_id)
+		if (data.success){
+			this.setState({
+				product : data.product
+			})
+			if (data.product.variants){
+				this.setState({
+					variant: data.product.variants[0]
+				})
+			}
+		}
+		else {
+			Actions.home()
+		}
 	}
 
 	componentDidMount(){	
-		if (this.props.product.variants){
-			this.setState({
-				variant: this.props.product.variants[0]
-			})
-		}
+		this.loadProductInfo(this.props.product_id)
 	}
 
 	_navigateToSignUp(){
@@ -83,7 +99,7 @@ class ProductScreen extends Component {
 			return
 		}
 
-		var product_id = this.props.product.product_id ? this.props.product.product_id.toString() : ""
+		var product_id = this.props.product_id ? this.props.product_id.toString() : ""
 		this.setLoading(true)
 		let data = await addItemToCart(
 			this.props.jwt, 
@@ -96,7 +112,7 @@ class ProductScreen extends Component {
 			this.props.setUserInfo(data.user)
 			Alert.alert(
 				"Success",
-				this.props.product.name + " added to cart",
+				this.state.product.name + " added to cart",
 				[
 					{text: 'OK'},
 				],
@@ -118,15 +134,16 @@ class ProductScreen extends Component {
 
 	updateVariant(index){
 		this.setState({
-			variant : this.props.product.variants[index]
+			variant : this.state.product.variants[index]
 		})
 	}
 
 	
 
 	render() {
-		var images = this.props.product.images.map((image, index) => {
-				var url = img_src  + image.image_id
+		if (!this.state.product) return <View/>
+		var images = this.state.product.images.map((image, index) => {
+				var url = img_src  + image.image_id + "_200"
 				return <Image key = {index} resizeMode= {"stretch"}
 				source = {{uri : url}} style = {styles.product_image}/>
 			})
@@ -147,22 +164,22 @@ class ProductScreen extends Component {
 							</Swiper>
 							<View style = {{paddingTop : 30}}/>
 							<View style = {styles.title}>
-								<Text style = {styles.name_text}> {this.props.product.name} </Text>
-								<Text style = {styles.manufacturer_text}>by <Text style = {{textDecorationLine : "underline"}}>{this.props.product.manufacturer.name} </Text></Text>
-								<Text style = {styles.price_text}> ${formatPrice(this.props.product.price)} </Text>
+								<Text style = {styles.name_text}> {this.state.product.name} </Text>
+								<Text style = {styles.manufacturer_text}>by <Text style = {{textDecorationLine : "underline"}}>{this.state.product.manufacturer.name} </Text></Text>
+								<Text style = {styles.price_text}> ${formatPrice(this.state.product.price)} </Text>
 							</View>
 
 							
 
-							{this.props.product.has_variants && 
+							{this.state.product.has_variants && 
 								<ProductVariantPicker 
 									updateVariant = {this.updateVariant.bind(this)}
 									variant = {this.state.variant}
-									product = {this.props.product}
+									product = {this.state.product}
 								/>
 							}
 
-							<ProductTabs product = {this.props.product}/>
+							<ProductTabs product = {this.state.product}/>
 
 							<View style = {{paddingBottom : 24}}/>
 						</ScrollView>
