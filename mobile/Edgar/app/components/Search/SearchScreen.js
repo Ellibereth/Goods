@@ -8,6 +8,7 @@ import {searchProducts} from '../../api/ProductService'
 import LoadingSpinner from '../Misc/LoadingSpinner'
 import SearchProduct from './SearchProduct'
 
+
 function mapStateToProps(state) {
 	return {
 		user : state.user,
@@ -23,6 +24,11 @@ class SearchScreen extends Component {
 			is_loading : true
 		}
 		this.searchProducts = this.searchProducts.bind(this)
+		this.setLoading = this.setLoading.bind(this)
+	}
+
+	setLoading(is_loading){
+		this.setState({is_loading : is_loading})
 	}
 
 	componentDidMount(){
@@ -32,7 +38,9 @@ class SearchScreen extends Component {
 	
 
 	async searchProducts() {
+		this.setLoading(true)
 		let data = await searchProducts(this.props.search_text, false)
+		this.setLoading(false)
 		if (data.success) {
 			this.setState({products : data.products, is_loading : false})
 		}
@@ -49,7 +57,7 @@ class SearchScreen extends Component {
 
 		return (
 				<View style = {{"flex" : 1}}>
-					{/* <LoadingSpinner visible = {this.state.is_loading}/> */}
+					<LoadingSpinner visible = {this.state.is_loading}/>
 					<View style = {{flex : 1, paddingHorizontal : 8, paddingVertical : 4}}>
 						<Text>{'Showing search results for \'' + this.props.search_text + "\'"}</Text>
 					</View>

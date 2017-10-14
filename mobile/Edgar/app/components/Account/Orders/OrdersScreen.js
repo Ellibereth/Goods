@@ -15,6 +15,7 @@ import {getUserOrders} from '../../../api/UserService'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import OrderDisplay from './OrderDisplay'
+import LoadingSpinner from '../../Misc/LoadingSpinner'
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
 
@@ -36,11 +37,19 @@ class OrdersScreen extends Component {
 		super(props)
 		this.state = {
 			orders: [],
+			is_loading : true,
 		}
+		this.setLoading = this.setLoading.bind(this)
+	}
+
+	setLoading(is_loading) {
+		this.setState({is_loading : is_loading})
 	}
 
 	async getUserOrders() {
+		this.setLoading(true)
 		let data = await getUserOrders(this.props.jwt)
+		this.setLoading(false)
 		if (data.success){
 			this.setState({
 				orders : data.orders
@@ -73,6 +82,7 @@ class OrdersScreen extends Component {
 		}
 		return (
 				<View style = {styles.container}>
+					<LoadingSpinner visible = {this.state.is_loading}/>
 					<ScrollView>
 						{this.state.orders.map((order,index) => 
 							<OrderDisplay order = {order} key = {index}/>

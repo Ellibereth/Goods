@@ -6,7 +6,8 @@ import {TouchableOpacity,
 		View,
 		Text,
 		ScrollView,
-		TouchableHighlight
+		TouchableHighlight,
+		Alert
 } from 'react-native';
 import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
@@ -98,20 +99,42 @@ class CheckoutScreen extends Component {
 
 	async checkout() {
 		if (this.state.selected_card == null) {
+			Alert.alert(
+				"You must select or enter a payment method first",
+				"Try again",
+				[
+					{text : "Ok"}
+				]
+			)
 			return
 		}
 		if (this.state.selected_address == null) {
+			Alert.alert(
+				"You must select or enter an address first",
+				"Try again",
+				[
+					{text : "Ok"}
+				]
+			)
 			return
 		}
 		var jwt = this.props.jwt
 		var card_id = this.state.selected_card ? this.state.selected_card.id : null
 		var address_id = this.state.selected_address ? this.state.selected_address.id : null
+		this.setLoading(true)
 		let data = await handleCheckoutCart(jwt, address_id, card_id)
+		this.setLoading(false)
 		if (data.success){
 			Actions.order_confirmed()
 		}		
 		else {
-			console.log(data.error)
+			Alert.alert(
+				data.error.title,
+				data.error.text,
+				[
+					{text : "Ok"}
+				]
+			)
 		}
 	}
 

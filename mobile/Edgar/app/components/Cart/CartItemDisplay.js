@@ -80,7 +80,7 @@ export default class CartItemDisplay extends Component {
 					<View style = {[{flex : 1},styles.image_container]}>
 						<Image 
 						// resizeMode = 'stretch'
-						source={{uri: img_src + this.props.item.main_image}}
+						source={{uri: img_src + this.props.item.main_image + "_100"}}
 							style = {[{flex: 1}, styles.product_image]} />
 					</View>
 					<View style = {[{flex: 3}, styles.details_container]}>

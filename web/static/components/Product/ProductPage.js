@@ -15,8 +15,6 @@ export default class ProductPage extends React.Component {
 	
 	}
 
-	
-
 	getProductInformation(){
 
 		var form_data = JSON.stringify({

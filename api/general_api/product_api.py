@@ -48,7 +48,6 @@ def getOnSaleProducts():
 def getProductsByListingTag():
 	get_full_details = request.json.get(Labels.GetRelatedProducts) or False
 	tag = request.json.get(Labels.Tag)
-	print(tag)
 	if tag == "All_Products":
 		all_products = MarketProduct.query.filter_by(active = True).all()
 		matching_products = [product for product in all_products if product.inventory > 0 or product.has_variants]
