@@ -175,6 +175,7 @@ export default class AddAddressModal extends Component {
 								justifyContent : 'flex-end', alignItems : 'center'}}>
 									<Icon name = {"close"}
 									size = {16}
+									style = {{padding : 6}}
 									onPress = {() => this.props.setModal(false)}
 									/>
 								</View>
@@ -338,7 +339,7 @@ const styles = StyleSheet.create({
 	},
 	title :{
 		textAlign : 'center',
-		fontSize : 16,
+		fontSize : 20,
 
 	}, 
 	title_container : {

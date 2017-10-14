@@ -71,7 +71,7 @@ export default class CartItemDisplay extends Component {
 			<View style = {styles.container}>
 				<View style = {[{flex : 1}, styles.title_container]}>
 					<Text numberOfLines = {1} style = {styles.title_text}>{this.props.item.name}</Text>
-					<Icon size = {20} 
+					<Icon size = {20} style = {{padding : 6,}}
 					color = "grey" name = {"times-circle"}
 						onPress = {this.onRemovePress.bind(this)}
 					/>

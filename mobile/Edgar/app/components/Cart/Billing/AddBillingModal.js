@@ -186,6 +186,7 @@ export default class AddBillingModal extends Component {
 									<View style = {{flex : 1, flexDirection : "row", 
 										justifyContent : 'flex-end', alignItems : 'center'}}>
 										<Icon name = {"close"}
+										style = {{padding : 6}}
 										size = {16}
 										onPress = {() => this.props.setModal(false)}
 										/>
@@ -428,7 +429,7 @@ const styles = StyleSheet.create({
   	},
   	title :{
   		textAlign : 'center',
-  		fontSize : 16,
+  		fontSize : 20,
 
   	}, 
   	title_container : {

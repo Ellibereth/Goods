@@ -8,7 +8,9 @@ import {
 	TextInput,
 	ScrollView,
 	TouchableHighlight,
-	Alert
+	TouchableOpacity,
+	Alert,
+	Dimensions
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {Actions} from 'react-native-router-flux'
@@ -50,7 +52,7 @@ export default class SearchModal extends Component {
 					<View style = {styles.modal_container}>
 						<View style=  {title_styles.container}>
 							<View style = {[title_styles.search_input_container,
-								{flex : 4}]}>
+								{flex : 3}]}>
 								<Icon style = {title_styles.search_icon} 
 								size  = {16}
 								name = "search"/>
@@ -63,13 +65,17 @@ export default class SearchModal extends Component {
 									placeholder='Type Here...' />
 							</View>
 							<View style = {{flex : 1, flexDirection : "row", 
-							justifyContent : 'flex-end', alignItems : 'center'}}>
-								<Text
-								style = {{margin : 6, color : "white"}}
-								onPress = {() => this.props.setSearchModal(false)}
-								>
-									Cancel
-								</Text>
+							justifyContent : 'center', alignItems : 'center'}}>
+								<TouchableOpacity 
+								style = {{
+								paddingHorizontal : 6, paddingVertical : 8}}
+								onPress = {() => this.props.setSearchModal(false)}>
+									<Text
+									style = {{color : "white"}}
+									>
+										Cancel
+									</Text>
+								</TouchableOpacity>
 							</View>
 						</View>
 						<ScrollView>
@@ -144,7 +150,9 @@ const title_styles = StyleSheet.create({
 		paddingBottom : 12,
 	},
 	search_input_container :{
-		margin : 12,
+		marginLeft : 6,
+		marginVertical : 6,
+		marginRight : 0,
 		flex : 1,
 		flexDirection : "row",
 		alignItems : "center",
@@ -155,7 +163,8 @@ const title_styles = StyleSheet.create({
 	search_input_text : {
 		color : 'white',
 		flex : 9,
-		fontSize : 14
+		fontSize : 14,
+		paddingVertical : 10
 	},
 	search_icon : {
 		color : 'white',

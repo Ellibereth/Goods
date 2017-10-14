@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     },
     icon : {
     	color : 'white',
+    	padding: 8,
     },
     title : {
     	color : 'white',
