@@ -14,72 +14,7 @@ import {handleAddAddress} from '../../../api/UserService'
 import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutTextInput from '../../Misc/CheckoutTextInput'
-const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-const field_list = ['address_name', 'address_line1', 'address_line2', 'address_city', 'address_zip']
-const placeholder_list = ['Name', "Address Line 1", "Address Line 2", "City", "Zip"]
-const required_list = [true, true, false, true, true]
-const max_length_list = [null, null, null, null, 5]
-const states = {
-	'AL': 'Alabama',
-	'AK': 'Alaska',
-	'AS': 'American Samoa',
-	'AZ': 'Arizona',
-	'AR': 'Arkansas',
-	'CA': 'California',
-	'CO': 'Colorado',
-	'CT': 'Connecticut',
-	'DE': 'Delaware',
-	'DC': 'District Of Columbia',
-	'FM': 'Federated States Of Micronesia',
-	'FL': 'Florida',
-	'GA': 'Georgia',
-	'GU': 'Guam',
-	'HI': 'Hawaii',
-	'ID': 'Idaho',
-	'IL': 'Illinois',
-	'IN': 'Indiana',
-	'IA': 'Iowa',
-	'KS': 'Kansas',
-	'KY': 'Kentucky',
-	'LA': 'Louisiana',
-	'ME': 'Maine',
-	'MH': 'Marshall Islands',
-	'MD': 'Maryland',
-	'MA': 'Massachusetts',
-	'MI': 'Michigan',
-	'MN': 'Minnesota',
-	'MS': 'Mississippi',
-	'MO': 'Missouri',
-	'MT': 'Montana',
-	'NE': 'Nebraska',
-	'NV': 'Nevada',
-	'NH': 'New Hampshire',
-	'NJ': 'New Jersey',
-	'NM': 'New Mexico',
-	'NY': 'New York',
-	'NC': 'North Carolina',
-	'ND': 'North Dakota',
-	'MP': 'Northern Mariana Islands',
-	'OH': 'Ohio',
-	'OK': 'Oklahoma',
-	'OR': 'Oregon',
-	'PW': 'Palau',
-	'PA': 'Pennsylvania',
-	'PR': 'Puerto Rico',
-	'RI': 'Rhode Island',
-	'SC': 'South Carolina',
-	'SD': 'South Dakota',
-	'TN': 'Tennessee',
-	'TX': 'Texas',
-	'UT': 'Utah',
-	'VT': 'Vermont',
-	'VI': 'Virgin Islands',
-	'VA': 'Virginia',
-	'WA': 'Washington',
-	'WV': 'West Virginia',
-	'WI': 'Wisconsin',
-	'WY': 'Wyoming'
-  }
+import ModalAddressForm from './ModalAddressForm'
 
 
 export default class AddAddressModal extends Component {
@@ -89,17 +24,20 @@ export default class AddAddressModal extends Component {
 		this.state = {
 			// hard coded for easier testing
 			// change to all "" except country when done
-			address_name : "",
-			description : "",
-			address_state: "",
-			address_city : "",
-			address_country : "US",
-			address_line1 : "",
-			address_line2 : "",
-			address_zip : "",
+			address: {
+				address_name : "",
+				description : "",
+				address_state: "",
+				address_city : "",
+				address_country : "US",
+				address_line1 : "",
+				address_line2 : "",
+				address_zip : "",
+			}
 
 		}
-		this.onChangeText = this.onChangeText.bind(this);
+		this.onChangeAddress = this.onChangeAddress.bind(this)
+		this.addAddress = this.addAddress.bind(this)
 	}
 
 	componentDidMount(){	
@@ -107,24 +45,24 @@ export default class AddAddressModal extends Component {
 	}
 
 
-	onChangeText(field, value){
-		var obj = this.state
+	onChangeAddress(field, value){
+		var obj = this.state.address
 		obj[field] = value
-		this.setState(obj)
+		this.setState({address : obj})
 	}
 
 	async addAddress() {
 		var new_index = (this.props.user.addresses.length || 0)
 		var form_data = {
 					jwt : this.props.jwt,
-					address_name : this.state.address_name,
-					description : this.state.description,
-					address_state: this.state.address_state,
-					address_city : this.state.address_city,
-					address_country : this.state.address_country,
-					address_line1 : this.state.address_line1,
-					address_line2 : this.state.address_line2,
-					address_zip : this.state.address_zip,
+					address_name : this.state.address.address_name,
+					description : this.state.address.description,
+					address_state: this.state.address.address_state,
+					address_city : this.state.address.address_city,
+					address_country : this.state.address.address_country,
+					address_line1 : this.state.address.address_line1,
+					address_line2 : this.state.address.address_line2,
+					address_zip : this.state.address.address_zip,
 				}
 		this.props.setLoading(true)
 		this.props.setModal(false)
@@ -163,76 +101,12 @@ export default class AddAddressModal extends Component {
 					  visible={this.props.modal_visible}
 					  // onRequestClose={() => {alert("Modal has been closed.")}}
 					  >
-						<View style={{marginTop: 22}}>
-							<View style=  {styles.title_container}>
-								<View style = {{flex : 1}}/>
-								<View style = {{flex : 4}}>
-								<Text style = {styles.title}> 
-									Add Shipping Address
-								</Text>
-								</View>
-								<View style = {{flex : 1, flexDirection : "row", 
-								justifyContent : 'flex-end', alignItems : 'center'}}>
-									<Icon name = {"close"}
-									size = {16}
-									style = {{padding : 6}}
-									onPress = {() => this.props.setModal(false)}
-									/>
-								</View>
-							</View>
-							<View > 
-								{field_list.map((field, index) =>
-									<CheckoutTextInput 
-										key = {index}
-										field = {field_list[index]}
-										value = {this.state[field_list[index]]}
-										onChangeText = {this.onChangeText}
-										placeholder = {placeholder_list[index]}
-										required = {required_list[index]}
-										maxLength = {max_length_list[index]}
-									/>
-								)}
-
-									<View style = {styles.state_display}>
-										<View style={styles.state_text_container}>
-											<Text 
-												style = {styles.state_display_text}
-												onPress={() => {
-													this.refs.state_picker.show()}}>
-												{this.state.address_state ? states[this.state.address_state] : "Select State"}
-											</Text>
-										</View>
-										<View style = {styles.picker_icon_container}>
-											<Icon onPress={() => {
-													this.refs.state_picker.show()}}
-											style = {styles.picker_icon}
-											size = {16}
-											name = "caret-down"/>
-										</View>
-									</View>
-
-								<SimplePicker
-								  ref = {'state_picker'}
-								  options={Object.keys(states)}
-								  labels = {Object.values(states)}
-								  onSubmit={(option) => {
-									this.setState({
-										address_state : option,
-									});
-								  }}
-								/>
-
-							</View>
-						</View>
-						<View style = {styles.finish_button_container}>
-							<TouchableOpacity style = {styles.cancel_button} 
-								onPress = {() => this.props.setModal(false)}>
-								<Text style = {styles.cancel_button_text}>Cancel</Text>
-							</TouchableOpacity>
-							<TouchableOpacity style = {styles.save_button} onPress = {this.addAddress.bind(this)}>
-								<Text style = {styles.save_button_text}>Save</Text>
-							</TouchableOpacity>
-						</View>
+						<ModalAddressForm 
+							onChangeAddress = {this.onChangeAddress}
+							setModal = {this.props.setModal}
+							onSubmit = {this.addAddress}
+							address = {this.state.address}
+						/>
 					</Modal>
 					<TouchableHighlight 
 						style = {styles.show_modal_button}
