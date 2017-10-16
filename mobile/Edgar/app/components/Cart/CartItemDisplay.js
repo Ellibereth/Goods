@@ -127,7 +127,7 @@ const picker_preview_styles = StyleSheet.create({
 		borderRadius : 4,
 		borderWidth : 1,
 		flexDirection : 'row',
-		margin : 8,
+		margin : 6,
 		justifyContent : 'space-between',
 	},
 	text_container: {

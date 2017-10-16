@@ -6,7 +6,8 @@ import {Actions} from 'react-native-router-flux'
 import {connect} from 'react-redux'
 import {searchProducts} from '../../api/ProductService'
 import LoadingSpinner from '../Misc/LoadingSpinner'
-import SearchProduct from './SearchProduct'
+// import SearchProduct from './SearchProduct'
+import HomeProduct from '../Home/HomeProduct'
 
 
 function mapStateToProps(state) {
@@ -48,21 +49,21 @@ class SearchScreen extends Component {
 
 	
 	renderItem({item}) {
-		return <SearchProduct 
+		return <HomeProduct 
 		product = {item}/>
 	}
 
 	render() {
-		var products = this.state.products % 2 == 0 ? this.state.products : this.state.products.concat(["PLACE_HOLDER"])
 
+		var products = this.state.products % 2 == 0 ? this.state.products : this.state.products.concat(["PLACE_HOLDER"])
 		return (
-				<View style = {{"flex" : 1}}>
+				<View style = {{"flex" : 1, backgroundColor : "white"}}>
 					<LoadingSpinner visible = {this.state.is_loading}/>
 					<View style = {{flex : 1, paddingHorizontal : 8, paddingVertical : 4}}>
 						<Text>{'Showing search results for \'' + this.props.search_text + "\'"}</Text>
 					</View>
 					<View style = {[styles.scroll_wrapper, {flex : 14}]}>
-						<FlatList data = {this.products}
+						<FlatList data = {products}
 						renderItem = {this.renderItem}
 						keyExtractor = {(item, index) => index}
 						numColumns = {2}

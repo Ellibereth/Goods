@@ -15,7 +15,7 @@ import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutTextInput from '../../Misc/CheckoutTextInput'
 import ModalAddressForm from '../Shipping/ModalAddressForm'
-import ModalPicker from '../../Misc/ModalPicker'
+import ModalCreditCardForm from './ModalCreditCardForm'
 
 
 export default class AddBillingModal extends Component {
@@ -34,18 +34,22 @@ export default class AddBillingModal extends Component {
 				address_line2 : "",
 				address_zip : "",	
 			},
-			number : "",
-			cvc : "",
-			exp_month : "",
-			exp_year : "",
-			name: ""
+			card : {
+				number : "",
+				cvc : "",
+				exp_month : "",
+				exp_year : "",
+				name: ""
+
+			}
+			
 		}
-		this.onChangeText = this.onChangeText.bind(this)
+		this.onChangeCard = this.onChangeCard.bind(this)
 		this.onChangeAddress = this.onChangeAddress.bind(this)
 	}
 
-	onChangeText(field, value){
-		var obj = this.state
+	onChangeCard(field, value){
+		var obj = this.state.card
 		obj[field] = value
 		this.setState(obj)
 	}
@@ -71,12 +75,11 @@ export default class AddBillingModal extends Component {
 				address_line1 : this.state.address.address_line1,
 				address_line2 : this.state.address.address_line2,
 				address_zip : this.state.address.address_zip,
-
-				number : this.state.number,
-				cvc : this.state.cvc,
-				exp_month : this.state.exp_month,
-				exp_year : this.state.exp_year,
-				name: this.state.name
+				number : this.state.card.number,
+				cvc : this.state.card.cvc,
+				exp_month : this.state.card.exp_month,
+				exp_year : this.state.card.exp_year,
+				name: this.state.card.name
 			}
 		this.props.setLoading(true)
 		this.props.setModal(false)
@@ -141,68 +144,10 @@ export default class AddBillingModal extends Component {
 									</View>
 								</View>
 								<ScrollView>
-									<View style = {{paddingBottom : 10, paddingTop: 10}}>
-										<View style = {styles.heading_container}>
-											<Text style = {styles.heading_text}>Payment Method</Text>
-										</View>
-										<CheckoutTextInput 
-											field = {'name'}
-											value = {this.state.name}
-											onChangeText = {this.onChangeText}
-											placeholder = {"Cardholder Name"}
-											required = {true}
-											maxLength = {40}
-										/>
-
-										<CheckoutTextInput 
-											field = {'number'}
-											value = {this.state.number}
-											onChangeText = {this.onChangeText}
-											placeholder = {"Number"}
-											required = {true}
-											maxLength = {16}
-											keyboardType = {'number-pad'}
-										/>
-
-										<View style = {{flexDirection : 'row', justifyContent : 'space-between'}}>
-											<View style = {{flex : 1}}>
-											<CheckoutTextInput 
-												field = {'exp_month'}
-												value = {this.state.exp_month}
-												onChangeText = {this.onChangeText}
-												placeholder = {"Exp Month"}
-												required = {true}
-												maxLength = {2}
-												keyboardType = {'number-pad'}
-											/>
-											</View>
-											<View style = {{flex : 1}}>
-											<CheckoutTextInput 
-												field = {'exp_year'}
-												value = {this.state.exp_year}
-												onChangeText = {this.onChangeText}
-												placeholder = {"Exp Year"}
-												required = {true}
-												keyboardType = {'number-pad'}
-												maxLength = {2}
-											/>
-											</View>
-										</View>
-
-										<View style = {{flexDirection : "row"}}>
-											<View style = {{flex : 1}}>
-												<CheckoutTextInput 
-													field = {'cvc'}
-													value = {this.state.cvc}
-													onChangeText = {this.onChangeText}
-													placeholder = {"CVC"}
-													required = {true}
-													keyboardType = {'number-pad'}
-													maxLength = {3}
-												/>
-											</View>
-											<View style = {{flex : 1}}/>
-										</View>
+										<ModalCreditCardForm
+											card = {this.state.card}
+											onChangeCard = {this.onChangeCard}
+										 />
 
 
 										<View>
@@ -223,17 +168,18 @@ export default class AddBillingModal extends Component {
 											/>
 										</View>
 
-									</View>
-									<View style = {styles.finish_button_container}>
-										<TouchableOpacity style = {styles.cancel_button} 
-											onPress = {() => this.props.setModal(false)}>
-											<Text style = {styles.cancel_button_text}>Cancel</Text>
-										</TouchableOpacity>
-										<TouchableOpacity style = {styles.save_button} onPress = {this.addBilling.bind(this)}>
-											<Text style = {styles.save_button_text}>Save</Text>
-										</TouchableOpacity>
-									</View>
-									<View style= {{paddingBottom : 50}}/>
+
+
+										<View style = {styles.finish_button_container}>
+											<TouchableOpacity style = {styles.cancel_button} 
+												onPress = {() => this.props.setModal(false)}>
+												<Text style = {styles.cancel_button_text}>Cancel</Text>
+											</TouchableOpacity>
+											<TouchableOpacity style = {styles.save_button} onPress = {this.addBilling.bind(this)}>
+												<Text style = {styles.save_button_text}>Save</Text>
+											</TouchableOpacity>
+										</View>
+										<View style= {{paddingBottom : 50}}/>
 								</ScrollView>
 							</View>
 						</Modal>
@@ -349,6 +295,7 @@ const styles = StyleSheet.create({
   	title :{
   		textAlign : 'center',
   		fontSize : 20,
+  		paddingVertical : 10
 
   	}, 
   	title_container : {

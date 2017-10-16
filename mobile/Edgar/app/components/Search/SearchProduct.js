@@ -22,7 +22,9 @@ export default class SearchProduct extends Component {
 	}
 
 	render() {
-		
+		if (this.props.product == "PLACE_HOLDER"){
+			return <View style = {styles.container} />
+		}
 		return (
 				<TouchableHighlight
 				onPress = {this.onProductClick}>

@@ -225,6 +225,7 @@ const styles = StyleSheet.create({
 	title :{
 		textAlign : 'center',
 		fontSize : 20,
+		paddingVertical : 10
 
 	}, 
 	title_container : {
