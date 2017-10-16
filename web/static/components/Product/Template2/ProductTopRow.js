@@ -213,7 +213,6 @@ export default class ProductTopRow extends React.Component {
 										}}
 											  />
 											
-									{/* <img className="productPgMainImage edgar-img-responsive js-show-fs" src= {main_image_id}/> */}
 								</li>
 							</div>
 						</div>

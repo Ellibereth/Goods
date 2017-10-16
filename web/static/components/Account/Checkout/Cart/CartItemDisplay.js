@@ -93,12 +93,11 @@ export default class CartItemDisplay extends React.Component {
 		// will be updating this to have a better display in the near future
 		// need photo, price, etc
 		var item = this.props.item
-		if(item.images.length == 0) {
+		if(item.images.length == 0 && !item.main_image) {
 			var image_display = <div> No Image Exists for this product </div>
 		}
 
 		else {
-			
 			var image_display = <img className = "cart-image-display" src = {src_base + item.main_image + "_100"} />
 		}
 
