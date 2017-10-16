@@ -96,16 +96,21 @@ export default class ModalCreditCardForm extends Component {
 				</View>
 					
 
-				<View style = {{flex : 1}}>
-					<CheckoutTextInput 
-						field = {'cvc'}
-						value = {this.state.cvc}
-						onChangeText = {this.onChangeCard}
-						placeholder = {"CVC"}
-						required = {true}
-						keyboardType = {'number-pad'}
-						maxLength = {3}
-					/>
+				<View style = {{flexDirection : "row"}}>
+					
+					
+					<View style = {{flex : 1}}>
+						<CheckoutTextInput 
+							field = {'cvc'}
+							value = {this.state.cvc}
+							onChangeText = {this.onChangeCard}
+							placeholder = {"Confirm CVC"}
+							required = {true}
+							keyboardType = {'number-pad'}
+							maxLength = {3}
+						/>
+					</View>
+					<View style = {{flex : 1}}/>
 				</View>
 
 			
