@@ -92,7 +92,6 @@ export default class CartItemDisplay extends Component {
 					</View>
 					<View style = {[{flex: 3}, styles.details_container]}>
 						<View style=  {{flex : 3, flexDirection : "row"}}>
-							<View style = {{flex : 1}}>
 								<ModalPicker 
 										preview_styles = {picker_preview_styles}
 										show_picker = {this.state.show_quantity_picker}
@@ -102,15 +101,12 @@ export default class CartItemDisplay extends Component {
 										labels = {quantities.map((quantity)=> quantity.toString())}
 										onChange = {(value) => this.updateQuantity(value)}
 									/>
+
+							<View style = {[{flex : 1}, styles.price_container]}>
+								<Text style = {[{flex : 1},styles.price_text]}>
+									${formatPrice(this.props.item.price * this.props.item.num_items)}
+								</Text>
 							</View>
-							<View style = {{flex : 3}}/>
-
-						</View>
-
-						<View style = {[{flex : 2}, styles.price_container]}>
-							<Text style = {[{flex : 1},styles.price_text]}>
-								${formatPrice(this.props.item.price * this.props.item.num_items)}
-							</Text>
 						</View>
 					</View>
 				</View>
@@ -128,24 +124,30 @@ export default class CartItemDisplay extends Component {
 
 const picker_preview_styles = StyleSheet.create({
 	container : {
-		padding : 6,
 		borderRadius : 4,
 		borderWidth : 1,
 		flexDirection : 'row',
-		margin : 6,
-		justifyContent : 'space-between'
+		margin : 8,
+		justifyContent : 'space-between',
 	},
 	text_container: {
+		paddingVertical :6,
+		paddingHorizontal : 12,
+
+		borderRightWidth : 1,
 	},
 	text :{
 		fontSize : 14,
 	},
 	icon_container : {
+		padding: 6,
 		flexDirection : 'row',
 		justifyContent : 'center',
-		alignItems : 'center'
+		alignItems : 'center',
+		backgroundColor : 'darkgrey'
 	},
 	icon: {
+		color : 'white',
 		fontSize : 14,
 	}
 })
@@ -191,11 +193,10 @@ const styles = StyleSheet.create({
 	price_container : {
 		flexDirection : 'row',
 		justifyContent : 'flex-end',
-		alignItems: 'center',
 	},
 	price_text: {
 		fontWeight : 'bold',
-		fontSize : 14,
+		fontSize : 20,
 		textAlign : 'right',
 		margin : 6,
 	},
