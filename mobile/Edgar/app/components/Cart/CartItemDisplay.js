@@ -127,7 +127,7 @@ const picker_preview_styles = StyleSheet.create({
 		borderRadius : 4,
 		borderWidth : 1,
 		flexDirection : 'row',
-		margin : 6,
+		margin : 8,
 		justifyContent : 'space-between',
 	},
 	text_container: {
@@ -144,7 +144,9 @@ const picker_preview_styles = StyleSheet.create({
 		flexDirection : 'row',
 		justifyContent : 'center',
 		alignItems : 'center',
-		backgroundColor : 'darkgrey'
+		backgroundColor : 'darkgrey',
+		borderTopRightRadius : 4,
+		borderBottomRightRadius : 4,
 	},
 	icon: {
 		color : 'white',
