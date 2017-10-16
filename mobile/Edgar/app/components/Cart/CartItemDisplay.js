@@ -10,7 +10,8 @@ import {
 } from 'react-native'
 import {Actions} from 'react-native-router-flux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import SimplePicker from 'react-native-simple-picker'
+import ModalPicker from '../Misc/ModalPicker'
+
 import {updateCartQuantity} from '../../api/CartService'
 import {formatPrice} from '../../util/Format'
 import SelectDropdownButton from '../Misc/SelectDropdownButton'
@@ -20,13 +21,16 @@ export default class CartItemDisplay extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {}
-		this.showQuanityPicker = this.showQuanityPicker.bind(this)
+		this.state = {
+			show_quantity_picker : false,
+			num_items : this.props.item.num_items
+		}
+		this.setQuanityPicker = this.setQuanityPicker.bind(this)
 		this.updateQuantity = this.updateQuantity.bind(this)
 	}
 
-	showQuanityPicker(){
-		this.refs.quantity_picker.show()
+	setQuanityPicker(show_quantity_picker){
+		this.setState({show_quantity_picker : show_quantity_picker})
 	}
 
 	getNumItemsLimit(){
@@ -37,6 +41,8 @@ export default class CartItemDisplay extends Component {
 	}
 
 	async updateQuantity(quantity){
+		var old_quantity = this.state.num_items
+		this.setState({num_items : quantity})
 		this.props.setLoading(true)
 		let data = await updateCartQuantity(this.props.jwt, this.props.item, quantity)
 		if(data.success){
@@ -46,6 +52,7 @@ export default class CartItemDisplay extends Component {
 		else {
 			this.props.setLoading(false)
 			console.log(data.error)
+			this.setState({num_items : old_quantity})
 		}
 	}
 
@@ -71,7 +78,7 @@ export default class CartItemDisplay extends Component {
 			<View style = {styles.container}>
 				<View style = {[{flex : 1}, styles.title_container]}>
 					<Text numberOfLines = {1} style = {styles.title_text}>{this.props.item.name}</Text>
-					<Icon size = {20} style = {{padding : 6,}}
+					<Icon size = {20} style = {{padding : 4,}}
 					color = "grey" name = {"times-circle"}
 						onPress = {this.onRemovePress.bind(this)}
 					/>
@@ -84,10 +91,20 @@ export default class CartItemDisplay extends Component {
 							style = {[{flex: 1}, styles.product_image]} />
 					</View>
 					<View style = {[{flex: 3}, styles.details_container]}>
-						<View style=  {{flex : 3}}>
-							<SelectDropdownButton 
-							left_display = {"QTY:" + this.props.item.num_items}
-							onPress = {this.showQuanityPicker}/>
+						<View style=  {{flex : 3, flexDirection : "row"}}>
+							<View style = {{flex : 1}}>
+								<ModalPicker 
+										preview_styles = {picker_preview_styles}
+										show_picker = {this.state.show_quantity_picker}
+										setPicker = {this.setQuanityPicker}
+										selected_value = {this.state.num_items}
+										values = {quantities}
+										labels = {quantities.map((quantity)=> quantity.toString())}
+										onChange = {(value) => this.updateQuantity(value)}
+									/>
+							</View>
+							<View style = {{flex : 3}}/>
+
 						</View>
 
 						<View style = {[{flex : 2}, styles.price_container]}>
@@ -102,20 +119,36 @@ export default class CartItemDisplay extends Component {
 						Shipping information goes here
 					</Text>
 				</View>
-				<SimplePicker
-							ref = {'quantity_picker'}
-							options={quantities}
-							labels = {quantities.map((quantity)=>quantity.toString())}
-							initialOptionIndex = {this.props.item.num_items - 1 || 0}
-							onSubmit={(option) => {
-							this.updateQuantity(option)
-							}}
-						/>
+				
 
 			</View>
 		)
 	}
 }
+
+const picker_preview_styles = StyleSheet.create({
+	container : {
+		padding : 6,
+		borderRadius : 4,
+		borderWidth : 1,
+		flexDirection : 'row',
+		margin : 6,
+		justifyContent : 'space-between'
+	},
+	text_container: {
+	},
+	text :{
+		fontSize : 14,
+	},
+	icon_container : {
+		flexDirection : 'row',
+		justifyContent : 'center',
+		alignItems : 'center'
+	},
+	icon: {
+		fontSize : 14,
+	}
+})
 
 const styles = StyleSheet.create({
 	container : {

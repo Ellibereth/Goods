@@ -21,7 +21,7 @@ import {formatPrice, toTitleCase} from '../../util/Format'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Swiper from 'react-native-swiper'
-import SimplePicker from 'react-native-simple-picker'
+
 import LoadingSpinner from '../Misc/LoadingSpinner'
 import ProductTabs from './ProductTabs'
 import ProductVariantPicker from './ProductVariantPicker'
@@ -200,41 +200,6 @@ class ProductScreen extends Component {
 	}
 }
 
-const variant_styles = StyleSheet.create({
-	container : {
-		flexDirection : 'row',
-		paddingVertical : 8,
-	},
-	picker_container : {
-		flex : 1,
-		flexDirection : "row",
-		alignItems : 'flex-start',
-		justifyContent : 'center',
-		borderWidth : 1,
-		borderColor : 'silver',
-		padding : 8,
-	},
-	content_container : { 
-		flex: 3,
-	},
-	picker_title : {
-		flex: 4,
-	},
-	picker_text :{
-		flex: 2,
-	},
-	caret_container: {
-		flex : 1,
-		flexDirection : 'column',
-		justifyContent : 'center',
-		alignItems : 'center'
-	},
-	caret : {
-		flex : 1,
-		fontSize : 16,
-		flexDirection : 'row',
-	},
-})
 
 const styles = StyleSheet.create({
 	screen_container : {

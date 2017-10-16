@@ -102,11 +102,22 @@ export default class AddAddressModal extends Component {
 					  // onRequestClose={() => {alert("Modal has been closed.")}}
 					  >
 						<ModalAddressForm 
+							show_header = {true}
 							onChangeAddress = {this.onChangeAddress}
 							setModal = {this.props.setModal}
 							onSubmit = {this.addAddress}
 							address = {this.state.address}
 						/>
+						<View style = {styles.finish_button_container}>
+							<TouchableOpacity style = {styles.cancel_button} 
+								onPress = {() => this.props.setModal(false)}>
+								<Text style = {styles.cancel_button_text}>Cancel</Text>
+							</TouchableOpacity>
+							<TouchableOpacity style = {styles.save_button} onPress = {this.props.onSubmit}>
+								<Text style = {styles.save_button_text}>Save</Text>
+							</TouchableOpacity>
+						</View>
+						
 					</Modal>
 					<TouchableHighlight 
 						style = {styles.show_modal_button}

@@ -14,7 +14,7 @@ import {TouchableOpacity,
 import {Actions} from 'react-native-router-flux'
 import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import ModalPicker from './ModalPicker'
+import ModalPicker from '../../Misc/ModalPicker'
 
 import CheckoutTextInput from '../../Misc/CheckoutTextInput'
 
@@ -107,8 +107,8 @@ export default class ModalAddressForm extends Component {
 	render() {
 		return (
 					<View>
-						<View style={{marginTop: 22}}>
-							<View style=  {styles.title_container}>
+						{this.props.show_header &&
+							<View style=  {[styles.title_container, {marginTop : 22}]}>
 								<View style = {{flex : 1}}/>
 								<View style = {{flex : 4}}>
 								<Text style = {styles.title}> 
@@ -124,6 +124,7 @@ export default class ModalAddressForm extends Component {
 									/>
 								</View>
 							</View>
+						}
 							<View > 
 								{field_list.map((field, index) =>
 									<CheckoutTextInput 
@@ -137,25 +138,10 @@ export default class ModalAddressForm extends Component {
 									/>
 								)}
 
-									<View style = {styles.state_display}>
-										<View style={styles.state_text_container}>
-											<Text 
-												style = {styles.state_display_text}
-												onPress={() => {
-													this.setStatePicker(true)}}>
-												{this.props.address.address_state ? states[this.props.address.address_state] : "Select State"}
-											</Text>
-										</View>
-										<View style = {styles.picker_icon_container}>
-											<Icon onPress={() => {
-													this.refs.state_picker.show()}}
-											style = {styles.picker_icon}
-											size = {16}
-											name = "caret-down"/>
-										</View>
-									</View>
+									
 
 								<ModalPicker 
+									preview_styles = {preview_styles}
 									show_picker = {this.state.show_state_picker}
 									setPicker = {this.setStatePicker}
 									selected_value = {this.props.address.address_state}
@@ -167,17 +153,9 @@ export default class ModalAddressForm extends Component {
 
 
 
+
 							</View>
-						</View>
-						<View style = {styles.finish_button_container}>
-							<TouchableOpacity style = {styles.cancel_button} 
-								onPress = {() => this.props.setModal(false)}>
-								<Text style = {styles.cancel_button_text}>Cancel</Text>
-							</TouchableOpacity>
-							<TouchableOpacity style = {styles.save_button} onPress = {this.props.onSubmit}>
-								<Text style = {styles.save_button_text}>Save</Text>
-							</TouchableOpacity>
-						</View>
+						
 					</View>
 					
 			
@@ -185,6 +163,37 @@ export default class ModalAddressForm extends Component {
 		)
 	}
 }
+
+const preview_styles = StyleSheet.create({
+	container : {
+		flexDirection : 'row',
+		justifyContent : 'center',
+		margin : 8,
+		borderColor : 'silver',
+		borderWidth : 1,
+		borderRadius : 4,
+	},
+	text : {
+		padding : 8,
+		backgroundColor : 'transparent'
+	},
+	icon_container : {
+		flex : 1,
+		backgroundColor : '#D5D5D5',
+		alignItems : 'center',
+		justifyContent : 'center'
+	},
+	icon : {
+		color : 'white',
+		fontSize : 20
+	},
+	text_container : {
+		flex: 9,
+		paddingLeft: 15,
+		paddingRight: 15,
+		borderRadius: 5
+	},
+})
 
 const styles = StyleSheet.create({
 	container : {
@@ -235,33 +244,6 @@ const styles = StyleSheet.create({
 	checkout_text : {
 		textAlign : "center",
 		color : 'white'
-	},
-	state_display : {
-		flexDirection : 'row',
-		justifyContent : 'center',
-		margin : 8,
-		borderColor : 'silver',
-		borderWidth : 1,
-		borderRadius : 4,
-	},
-	state_display_text : {
-		padding : 8,
-		backgroundColor : 'transparent'
-	},
-	picker_icon_container : {
-		flex : 1,
-		backgroundColor : '#D5D5D5',
-		alignItems : 'center',
-		justifyContent : 'center'
-	},
-	picker_icon : {
-		color : 'white'
-	},
-	state_text_container : {
-		flex: 9,
-		paddingLeft: 15,
-		paddingRight: 15,
-		borderRadius: 5
 	},
 	show_modal_button : {
 		paddingVertical: 12,

@@ -9,12 +9,13 @@ import {TouchableOpacity,
 		ScrollView,
 		Image,
 		Alert,
+		Dimensions
 } from 'react-native';
 
 import {formatPrice, toTitleCase} from '../../util/Format'
 
 import Icon from 'react-native-vector-icons/FontAwesome'
-import SimplePicker from 'react-native-simple-picker'
+import ModalPicker from '../Misc/ModalPicker'
 
 
 const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
@@ -24,9 +25,14 @@ export default class ProductVariantPicker extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			show_variant_picker : false,
 		}
+		this.setVariantPicker = this.setVariantPicker.bind(this)
 	}
 
+	setVariantPicker(show_variant_picker){
+		this.setState({show_variant_picker : show_variant_picker})
+	}
 
 	render() {
 		
@@ -34,10 +40,10 @@ export default class ProductVariantPicker extends Component {
 			
 		
 			<View style = {variant_styles.container}>
-				<View style = {{flex : 1}}/>
+				{/* <View style = {{flex : 1}}/>
 				<View style = {variant_styles.content_container}>
 					<TouchableOpacity style = {variant_styles.picker_container}
-						onPress = {()=>this.refs.variant_picker.show()}>
+						onPress = {()=>this.setVariantPicker(true)}>
 						<Text style = {variant_styles.picker_title}>
 							{toTitleCase(this.props.product.variant_type_description) + ": " +
 								(this.props.variant ? this.props.variant.variant_type : "No Variant Selected")}
@@ -47,20 +53,17 @@ export default class ProductVariantPicker extends Component {
 							style = {variant_styles.caret}/>
 						</View>
 					</TouchableOpacity>
-				</View>
+				</View> */}
 
-				<View style = {{flex : 1}}/>
 
-				<SimplePicker
-					ref = {'variant_picker'}
-					options={this.props.product.variants.map((variant, index) =>
-						index
-					)}
-					labels = {this.props.product.variants.map((variant) => variant.variant_type)}
-					initialOptionIndex = {0}
-					onSubmit={(index) => {
-						this.props.updateVariant(index)			
-					}}
+				<ModalPicker 
+					preview_styles = {picker_preview_styles}
+					show_picker = {this.state.show_variant_picker}
+					setPicker = {this.setVariantPicker}
+					selected_value = {this.props.variant && this.props.variant.variant_type}
+					values = {this.props.product.variants.map((variant, index) => index)}
+					labels = {this.props.product.variants.map((variant, index) => variant.variant_type)}
+					onChange = {(index) => this.props.updateVariant(index)}
 				/>
 			</View>
 
@@ -69,37 +72,36 @@ export default class ProductVariantPicker extends Component {
 	}
 }
 
+const picker_preview_styles = StyleSheet.create({
+	container : {
+		padding : 8,
+		width : Dimensions.get('window').width * 0.9,
+		flexDirection : 'row',
+		borderWidth : 1,
+		borderRadius : 4,
+		justifyContent : "space-between"
+	},
+	text_container : {
+	},
+	text : {
+		fontSize : 20,
+	}, 
+	icon_container :{ 
+		flexDirection : "row",
+		justifyContent : 'center',
+		alignItems : "center"
+	},
+	icon : {
+		fontSize : 20,
+	}
+})
+
 const variant_styles = StyleSheet.create({
 	container : {
 		flexDirection : 'row',
 		paddingTop : 8,
-		paddingBottom : 12
-	},
-	picker_container : {
-		flex : 1,
-		flexDirection : "row",
-		alignItems : 'flex-start',
-		justifyContent : 'center',
-		borderWidth : 1,
-		borderColor : 'silver',
-		padding : 14,
-	},
-	content_container : { 
-		flex: 10,
-	},
-	picker_title : {
-		flex: 4,
-	},
-	caret_container: {
-		flex : 1,
-		flexDirection : 'column',
-		justifyContent : 'center',
-		alignItems : 'flex-end'
-	},
-	caret : {
-		flex : 1,
-		fontSize : 16,
-		flexDirection : 'row',
+		paddingBottom : 12,
+		justifyContent : "center"
 	},
 })
 

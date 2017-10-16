@@ -14,74 +14,9 @@ import {handleAddBilling} from '../../../api/UserService'
 import SimplePicker from 'react-native-simple-picker'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CheckoutTextInput from '../../Misc/CheckoutTextInput'
+import ModalAddressForm from '../Shipping/ModalAddressForm'
+import ModalPicker from '../../Misc/ModalPicker'
 
-
-const img_src = "https://s3-us-west-2.amazonaws.com/publicmarketproductphotos/"
-const field_list = ['address_name', 'address_line1', 'address_line2', 'address_city', 'address_zip']
-const placeholder_list = ['Name', "Address Line 1", "Address Line 2", "City", "Zip"]
-const required_list = [true, true, false, true, true]
-const max_length_list = [null, null, null, null, 5]
-const states = {
-	'AL': 'Alabama',
-	'AK': 'Alaska',
-	'AS': 'American Samoa',
-	'AZ': 'Arizona',
-	'AR': 'Arkansas',
-	'CA': 'California',
-	'CO': 'Colorado',
-	'CT': 'Connecticut',
-	'DE': 'Delaware',
-	'DC': 'District Of Columbia',
-	'FM': 'Federated States Of Micronesia',
-	'FL': 'Florida',
-	'GA': 'Georgia',
-	'GU': 'Guam',
-	'HI': 'Hawaii',
-	'ID': 'Idaho',
-	'IL': 'Illinois',
-	'IN': 'Indiana',
-	'IA': 'Iowa',
-	'KS': 'Kansas',
-	'KY': 'Kentucky',
-	'LA': 'Louisiana',
-	'ME': 'Maine',
-	'MH': 'Marshall Islands',
-	'MD': 'Maryland',
-	'MA': 'Massachusetts',
-	'MI': 'Michigan',
-	'MN': 'Minnesota',
-	'MS': 'Mississippi',
-	'MO': 'Missouri',
-	'MT': 'Montana',
-	'NE': 'Nebraska',
-	'NV': 'Nevada',
-	'NH': 'New Hampshire',
-	'NJ': 'New Jersey',
-	'NM': 'New Mexico',
-	'NY': 'New York',
-	'NC': 'North Carolina',
-	'ND': 'North Dakota',
-	'MP': 'Northern Mariana Islands',
-	'OH': 'Ohio',
-	'OK': 'Oklahoma',
-	'OR': 'Oregon',
-	'PW': 'Palau',
-	'PA': 'Pennsylvania',
-	'PR': 'Puerto Rico',
-	'RI': 'Rhode Island',
-	'SC': 'South Carolina',
-	'SD': 'South Dakota',
-	'TN': 'Tennessee',
-	'TX': 'Texas',
-	'UT': 'Utah',
-	'VT': 'Vermont',
-	'VI': 'Virgin Islands',
-	'VA': 'Virginia',
-	'WA': 'Washington',
-	'WV': 'West Virginia',
-	'WI': 'Wisconsin',
-	'WY': 'Wyoming'
-}
 
 export default class AddBillingModal extends Component {
 	constructor(props) {
@@ -89,21 +24,24 @@ export default class AddBillingModal extends Component {
 		this.state = {
 			// hard coded for easier testing
 			// change to all "" except country when done
-			address_name : "",
-			description : "",
-			address_state: "",
-			address_city : "",
-			address_country : "US",
-			address_line1 : "",
-			address_line2 : "",
-			address_zip : "",
+			address : {
+				address_name : "",
+				description : "",
+				address_state: "",
+				address_city : "",
+				address_country : "US",
+				address_line1 : "",
+				address_line2 : "",
+				address_zip : "",	
+			},
 			number : "",
 			cvc : "",
 			exp_month : "",
 			exp_year : "",
 			name: ""
 		}
-		this.onChangeText = this.onChangeText.bind(this);
+		this.onChangeText = this.onChangeText.bind(this)
+		this.onChangeAddress = this.onChangeAddress.bind(this)
 	}
 
 	onChangeText(field, value){
@@ -112,18 +50,28 @@ export default class AddBillingModal extends Component {
 		this.setState(obj)
 	}
 
+
+
+	onChangeAddress(field, value){
+		var obj = this.state.address
+		obj[field] = value
+		this.setState({address : obj})
+	}
+
+
 	async addBilling() {
 		var new_index = (this.props.user.cards.length || 0)
 		var form_data = {
 				jwt : this.props.jwt,
-				address_name : this.state.address_name,
-				description : this.state.description,
-				address_state: this.state.address_state,
-				address_city : this.state.address_city,
-				address_country : this.state.address_country,
-				address_line1 : this.state.address_line1,
-				address_line2 : this.state.address_line2,
-				address_zip : this.state.address_zip,
+				address_name : this.state.address.address_name,
+				description : this.state.address.description,
+				address_state: this.state.address.address_state,
+				address_city : this.state.address.address_city,
+				address_country : this.state.address.address_country,
+				address_line1 : this.state.address.address_line1,
+				address_line2 : this.state.address.address_line2,
+				address_zip : this.state.address.address_zip,
+
 				number : this.state.number,
 				cvc : this.state.cvc,
 				exp_month : this.state.exp_month,
@@ -257,53 +205,24 @@ export default class AddBillingModal extends Component {
 										</View>
 
 
-
-										<View style= {styles.heading_container}>
-											<Text style = {styles.heading_text}>
-												Billing Address
-											</Text>
-										</View>
-
-										{field_list.map((field, index) =>
-											<CheckoutTextInput 
-												key = {index}
-												field = {field_list[index]}
-												value = {this.state[field_list[index]]}
-												onChangeText = {this.onChangeText}
-												placeholder = {placeholder_list[index]}
-												required = {required_list[index]}
-												maxLength = {max_length_list[index]}
-											/>
-										)}
-
-											<View style = {styles.state_display}>
-												<View style={styles.state_text_container}>
-													<Text 
-														style = {styles.state_display_text}
-														onPress={() => {
-															this.refs.state_picker.show()}}>
-														{this.state.address_state ? states[this.state.address_state] : "Select State"}
+										<View>
+											<View style = {{paddingBottom : 10, paddingTop: 10}}>
+												<View style = {styles.heading_container}>
+													<Text style = {styles.heading_text}>
+														Billing address
 													</Text>
 												</View>
-												<View style = {styles.picker_icon_container}>
-													<Icon onPress={() => {
-															this.refs.state_picker.show()}}
-													style = {styles.picker_icon}
-													size = {16}
-													name = "caret-down"/>
-												</View>
 											</View>
+											<ModalAddressForm
+												show_header = {false}
 
-										<SimplePicker
-										  ref = {'state_picker'}
-										  options={Object.keys(states)}
-										  labels = {Object.values(states)}
-										  onSubmit={(option) => {
-											this.setState({
-												address_state : option,
-											});
-										  }}
-										/>
+												onChangeAddress = {this.onChangeAddress}
+												setModal = {this.props.setModal}
+												onSubmit = {this.addAddress}
+												address = {this.state.address}
+											/>
+										</View>
+
 									</View>
 									<View style = {styles.finish_button_container}>
 										<TouchableOpacity style = {styles.cancel_button} 
